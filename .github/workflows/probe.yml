@@ -1,0 +1,78 @@
+# One-off probe: fetch 1 example of each Limitless page type and save the raw HTML
+# to the branch "probe-results" (main stays clean). Used to design the scraper.
+# Runs when this file is pushed, or by hand (Actions tab -> Probe Limitless -> Run workflow).
+name: Probe Limitless
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/probe.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      BASE: https://play.limitlesstcg.com
+      UA: "pocket-meta-qr/0.1 (+https://github.com/samy-baladram/pocket-meta-qr)"
+    steps:
+      - name: Fetch example pages (1 request per 2 s)
+        run: |
+          set -u
+          mkdir -p probe && cd probe
+          get() {  # get <file> <path>
+            sleep 2
+            code=$(curl -sS -L -A "$UA" -o "$1" -w '%{http_code}' "$BASE$2" || echo ERR)
+            echo "$code $(wc -c < "$1" 2>/dev/null || echo 0) $1 $BASE$2" | tee -a index.txt
+          }
+
+          get completed.html "/tournaments/completed?game=POCKET&format=STANDARD&platform=all&type=all&show=50"
+          get decks.html "/decks?game=pocket"
+
+          # 2 recent tournaments: the newest one and the largest of the first 20 in the list.
+          ids=$(grep -oE '/tournament/[0-9a-f]{24}' completed.html | cut -d/ -f3 | awk '!s[$0]++' | head -20)
+          echo "first ids:" $ids | tee -a index.txt
+          first=$(echo "$ids" | head -1)
+          picks="$first"
+          for t in $ids; do [ "$t" != "$first" ] && picks="$picks $t" && break; done
+
+          for t in $picks; do
+            get "t-$t-details.html"   "/tournament/$t/details"
+            get "t-$t-standings.html" "/tournament/$t/standings"
+            get "t-$t-pairings.html"  "/tournament/$t/pairings"
+            # Round links found on the pairings page (first and last round).
+            rounds=$(grep -oE 'pairings\?round=[0-9]+' "t-$t-pairings.html" | awk '!s[$0]++')
+            echo "rounds $t:" $rounds | tee -a index.txt
+            r1=$(echo "$rounds" | head -1); rn=$(echo "$rounds" | tail -1)
+            [ -n "$r1" ] && get "t-$t-pairings-first.html" "/tournament/$t/$r1"
+            [ -n "$rn" ] && [ "$rn" != "$r1" ] && get "t-$t-pairings-last.html" "/tournament/$t/$rn"
+            # First 2 decklist links on the standings page.
+            n=0
+            for p in $(grep -oE '/tournament/[^"/]+/player/[^"/]+/decklist' "t-$t-standings.html" | awk '!s[$0]++' | head -2); do
+              n=$((n+1)); get "t-$t-decklist-$n.html" "$p"
+            done
+            echo "decklist links on standings $t: $(grep -oE '/player/[^"/]+/decklist' "t-$t-standings.html" | sort -u | wc -l)" | tee -a index.txt
+          done
+
+          # 1 deck page (first deck of the deck table), for comparison with the current pipeline.
+          d=$(grep -oE '/decks/[a-z0-9-]+\?' decks.html | head -1 | tr -d '?')
+          [ -n "$d" ] && get deckpage.html "$d?game=POCKET&format=standard"
+          cat index.txt
+
+      - name: Save the pages to branch probe-results
+        run: |
+          cd probe
+          git init -q -b probe-results
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Probe $(date -u +%FT%TZ) for $GITHUB_SHA"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe-results
