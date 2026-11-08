@@ -1,9 +1,12 @@
 """Export the page-build input from data/meta.db -> build/input.json (read by pipeline/build.mjs).
 
-  python pipeline/export.py [--data DIR] [--out FILE] [--window set] [--rows 10]
+  python pipeline/export.py [--data DIR] [--out FILE] [--window 7d] [--rows 0]
 
+Window: last 7 days by default (decision Nov 9, 2026: the meta changes fast); only tournaments of the current
+        set, so in the first 7 days of a set the window starts at the set release.
 Decks : archetypes with share >= MIN_SHARE in the window (max MAX_DECKS), most players first.
-Rows  : per deck, its best finishes in single-deck tournaments that have a decklist (MAX_ROWS):
+Rows  : per deck, all its finishes in the window (--rows 0) or the best N, in single-deck tournaments that have a
+        decklist:
         best place relative to the event size first (place / players: 3rd of 547 before 1st of 12),
         then the better place, then the newer event.
         Multi-deck tournaments are not used for the shown lists (same rule as the win rate, docs/DATA.md 4.4).
@@ -13,7 +16,7 @@ from datetime import datetime, timezone
 
 MIN_SHARE = 0.5   # % of all decks in the window
 MAX_DECKS = 40
-MAX_ROWS = 20     # finishes read per deck (build.mjs keeps up to 10 distinct lists from them)
+MAX_ROWS = 0      # finishes read per deck; 0 = all (build.mjs keeps up to 10 distinct lists from them)
 
 
 def ordinal(n):
@@ -25,8 +28,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default="data")
     ap.add_argument("--out", default="build/input.json")
-    ap.add_argument("--window", default="set", choices=["set", "7d", "3d"])
-    ap.add_argument("--rows", type=int, default=MAX_ROWS)
+    ap.add_argument("--window", default="7d", choices=["set", "7d", "3d"])
+    ap.add_argument("--rows", type=int, default=MAX_ROWS, help="finishes per deck; 0 = all")
     a = ap.parse_args()
 
     db = sqlite3.connect(os.path.join(a.data, "meta.db"))
@@ -54,7 +57,7 @@ def main():
                 FROM entry_decks d JOIN entries e USING (tid, pid) JOIN tournaments t ON t.id = e.tid
                 WHERE d.archetype = ? AND t.multi_deck = 0 AND e.place IS NOT NULL AND d.tid IN ({q})
                   AND EXISTS (SELECT 1 FROM decklists x WHERE x.tid = e.tid AND x.pid = e.pid)
-                ORDER BY CAST(e.place AS REAL) / t.players, e.place, t.date DESC LIMIT ?""", [arch, *tids, a.rows]):
+                ORDER BY CAST(e.place AS REAL) / t.players, e.place, t.date DESC LIMIT ?""", [arch, *tids, a.rows or -1]):
             lists = []
             for idx, energy in db.execute("SELECT idx, energy FROM decklists WHERE tid = ? AND pid = ? ORDER BY idx", (tid, pid)):
                 cards = [list(r) for r in db.execute(

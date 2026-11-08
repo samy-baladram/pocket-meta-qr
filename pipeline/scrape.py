@@ -486,14 +486,15 @@ def run(args):
             stats["new"] += 1
             print(f"  ok {raw['id']} {raw['date'][:10]} {raw['players']}p {len(raw['rounds'])} rounds"
                   f"{' multi-deck' if raw['multi_deck'] else ''}: {raw['name']}")
-        # Decklists: oldest tournaments first, best places first. Old-format lists (no energy) are fetched again.
+        # Decklists. Old-format lists (no energy) are fetched again.
         n_more = queue_more_places(data, index)
         if n_more:
             print(f"{n_more} more decklists queued (decklist rule: top {DECKLIST_SHARE:.0%} of players, {DECKLIST_MIN}..{DECKLIST_MAX})")
         n_old = queue_old_format(data, index)
         if n_old:
             print(f"{n_old} stored decklists have the old format (no energy); fetching them again")
-        for tid in sorted(index["decklists"], key=lambda t: index["done"].get(t, {}).get("date", "")):
+        # Newest tournaments first (the page uses the last 7 days), best places first.
+        for tid in sorted(index["decklists"], key=lambda t: index["done"].get(t, {}).get("date", ""), reverse=True):
             dpath = os.path.join(data, "decklists", f"{tid}.json")
             lists = load(dpath, {})
             for pid in list(index["decklists"][tid]):

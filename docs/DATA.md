@@ -121,8 +121,13 @@ The pairings do not say which deck a player used in a match. Thus:
 
 ### 4.6 Windows
 - Set: tournaments with `set` = the current set code (for example `C1`), see section 2.
-- Last 7 days and last 3 days (for trends).
-- A deck is shown when its share in the set window is 0.5 % or more (max 40), as today.
+- Last 7 days (`7d`) and last 3 days (`3d`): the days up to the build day, current set only (in the first days
+  of a set, the window starts at its release).
+- **The page uses the 7-day window** (decision Nov 9, 2026: the meta changes fast; the Limitless deck table uses
+  the whole set). Deck table, share, win rate and the shown lists all come from the last 7 days.
+- A deck is shown when its share in the 7-day window is 0.5 % or more (max 40).
+- Shown lists: up to 10 distinct lists from **all** the deck's finishes with a decklist in the window (in the 7-day
+  window the median deck has about 8, the largest about 25), best relative place first.
 
 ## 5. Fetch rules
 

@@ -134,7 +134,7 @@ for (const [rank, d] of input.decks.entries()) {
 
 // Time span and size of the data window (all tournaments of the window, not only the shown lists).
 const data = { updatedAt: new Date().toISOString(), set: input.set, setName: input.setName || "", format: input.format,
-  span: input.span, summary: input.summary, decks };
+  window: input.window, span: input.span, summary: input.summary, decks };
 writeFileSync("site/data.json", JSON.stringify(data));
 writeFileSync("images.json", JSON.stringify({
   cards: [...images].map((id) => ({ id, url: PD.get(id)?.image })),

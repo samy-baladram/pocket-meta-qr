@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 3 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 4 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -9,6 +9,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - Changed definitions: `share` adds up to 100 %; `win` excludes mirror matches and multi-deck events.
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers: a deck without any decklist yet is not in `decks`.
+- Version 4: **window = last 7 days** (new field `window`: `"7d"`). `count`, `share`, `w`/`l`/`t`, `win`, the deck
+  selection and the lists all use the last 7 days. `of` = **all** the deck's finishes with a readable list in
+  the window (not only the best ones).
 - Version 3: up to **10 lists** per deck (`nv` 1..10) from the deck's **20 best finishes** (`of` max 20);
   finishes are ranked by place relative to the event size (5th of 547 before 2nd of 153).
 
@@ -31,7 +34,8 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   "set": "C1",
   "setName": "Dual Fusion",
   "format": "standard",
-  "span": ["2026-10-29", "2026-11-08"],
+  "window": "7d",
+  "span": ["2026-11-02", "2026-11-08"],
   "summary": { "tournaments": 34, "players": 4478, "matches": 12228 },
   "decks": [ <deck>, ... ]
 }
@@ -40,7 +44,8 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 | Field | Type | Meaning |
 |---|---|---|
 | `updatedAt` | ISO time | build time |
-| `set`, `setName` | string | current set (window = all tournaments since its release) |
+| `set`, `setName` | string | current set (the window never goes back before its release) |
+| `window` | string | **new in v4.** `"7d"` = last 7 days up to the build day (other values: `"set"`, `"3d"`) |
 | `format` | string | always `standard` |
 | `span` | [date, date] | first and last tournament day in the window (`YYYY-MM-DD`) |
 | `summary` | object | **new.** tournaments, players (entries) and played matches in the window |
@@ -73,8 +78,8 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 | `pl` | string | place, e.g. `1st of 273` |
 | `sc` | string | record W-L-T, e.g. `11-1-2` |
 | `dt` | date | tournament day `YYYY-MM-DD` |
-| `nu` | int | finishes (of the best `of`) that used this list or a list 1 card away |
-| `of` | int | the deck's best finishes with a readable list (max 20) |
+| `nu` | int | finishes (of `of`) that used this list or a list 1 card away |
+| `of` | int | all the deck's finishes with a readable list in the window |
 
 ### v/&lt;deckId&gt;.json
 
@@ -86,7 +91,7 @@ The lists 2..`nv` of the deck, in order. Same fields as "list" (no `art`).
 
 ## Definitions (from docs/DATA.md in the repo)
 
-- Window: tournaments of the current set (Standard; not events with "special rules" or "suspended cards";
+- Window: the last 7 days of tournaments of the current set (Standard; not events with "special rules" or "suspended cards";
   8 players or more).
 - Lists come from single-deck events only. Best finish = smallest place / players (then place, then newer).
   Decklists exist for the top 25 % of each event (8 to 32 players).
