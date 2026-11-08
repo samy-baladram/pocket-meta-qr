@@ -1,0 +1,672 @@
+{
+ "done": {
+  "6ae25e2222fd412b92a4ee06": {
+   "date": "2026-10-29T03:00:00Z",
+   "path": "raw/2026/10/6ae25e2222fd412b92a4ee06.json"
+  },
+  "6ae12e2322fd412b92a4e4e0": {
+   "date": "2026-10-29T09:45:00Z",
+   "path": "raw/2026/10/6ae12e2322fd412b92a4e4e0.json"
+  },
+  "6ae3561380a8f79408d20ce3": {
+   "date": "2026-10-29T16:15:00Z",
+   "path": "raw/2026/10/6ae3561380a8f79408d20ce3.json"
+  },
+  "6ae11ff180a8f79408d1faf4": {
+   "date": "2026-10-29T18:05:00Z",
+   "path": "raw/2026/10/6ae11ff180a8f79408d1faf4.json"
+  },
+  "6adec44a91617679e84a1129": {
+   "date": "2026-10-29T22:00:00Z",
+   "path": "raw/2026/10/6adec44a91617679e84a1129.json"
+  },
+  "6ae3a03b22fd412b92a4f83e": {
+   "date": "2026-10-30T00:15:00Z",
+   "path": "raw/2026/10/6ae3a03b22fd412b92a4f83e.json"
+  },
+  "6ae3340222fd412b92a4f43c": {
+   "date": "2026-10-30T14:00:00Z",
+   "path": "raw/2026/10/6ae3340222fd412b92a4f43c.json"
+  },
+  "6adf7a2422fd412b92a4d422": {
+   "date": "2026-10-30T16:05:00Z",
+   "path": "raw/2026/10/6adf7a2422fd412b92a4d422.json"
+  },
+  "6ad2a63e8a8383117e3ed624": {
+   "date": "2026-10-30T17:45:00Z",
+   "path": "raw/2026/10/6ad2a63e8a8383117e3ed624.json"
+  },
+  "6ae511120d00101b48bf2a71": {
+   "date": "2026-10-31T01:05:00Z",
+   "path": "raw/2026/10/6ae511120d00101b48bf2a71.json"
+  },
+  "6ae4225922fd412b92a4fdd7": {
+   "date": "2026-10-31T13:00:00Z",
+   "path": "raw/2026/10/6ae4225922fd412b92a4fdd7.json"
+  },
+  "pmpt49": {
+   "date": "2026-10-31T16:00:00Z",
+   "path": "raw/2026/10/pmpt49.json"
+  },
+  "6ae2839e80a8f79408d206b4": {
+   "date": "2026-10-31T22:00:00Z",
+   "path": "raw/2026/10/6ae2839e80a8f79408d206b4.json"
+  },
+  "6ae66e08ae67092a407403f8": {
+   "date": "2026-11-01T11:00:00Z",
+   "path": "raw/2026/11/6ae66e08ae67092a407403f8.json"
+  },
+  "6ae742450d00101b48bf3e45": {
+   "date": "2026-11-01T15:45:00Z",
+   "path": "raw/2026/11/6ae742450d00101b48bf3e45.json"
+  },
+  "6ae762b40d00101b48bf3f8b": {
+   "date": "2026-11-01T20:15:00Z",
+   "path": "raw/2026/11/6ae762b40d00101b48bf3f8b.json"
+  },
+  "6ae727bd0d00101b48bf3da0": {
+   "date": "2026-11-02T08:30:00Z",
+   "path": "raw/2026/11/6ae727bd0d00101b48bf3da0.json"
+  },
+  "6ae877fb0d00101b48bf489d": {
+   "date": "2026-11-02T15:20:00Z",
+   "path": "raw/2026/11/6ae877fb0d00101b48bf489d.json"
+  },
+  "6ae7f6340d00101b48bf453d": {
+   "date": "2026-11-02T20:00:00Z",
+   "path": "raw/2026/11/6ae7f6340d00101b48bf453d.json"
+  },
+  "6ae921ab0c463890f304a00b": {
+   "date": "2026-11-03T18:15:00Z",
+   "path": "raw/2026/11/6ae921ab0c463890f304a00b.json"
+  },
+  "6aea43600c463890f304aa2e": {
+   "date": "2026-11-03T23:00:00Z",
+   "path": "raw/2026/11/6aea43600c463890f304aa2e.json"
+  },
+  "6ae1c42222fd412b92a4e897": {
+   "date": "2026-11-04T08:30:00Z",
+   "path": "raw/2026/11/6ae1c42222fd412b92a4e897.json"
+  },
+  "6ae6b6910d00101b48bf3b1c": {
+   "date": "2026-11-04T18:45:00Z",
+   "path": "raw/2026/11/6ae6b6910d00101b48bf3b1c.json"
+  },
+  "6ae5e174ae67092a4073fc42": {
+   "date": "2026-11-04T22:00:00Z",
+   "path": "raw/2026/11/6ae5e174ae67092a4073fc42.json"
+  },
+  "6aeb28380c463890f304b17d": {
+   "date": "2026-11-04T22:30:00Z",
+   "path": "raw/2026/11/6aeb28380c463890f304b17d.json"
+  },
+  "6aec5294e94eae0f94747bac": {
+   "date": "2026-11-05T11:55:00Z",
+   "path": "raw/2026/11/6aec5294e94eae0f94747bac.json"
+  },
+  "6ac4ecf7245696afb3517853": {
+   "date": "2026-11-05T18:00:00Z",
+   "path": "raw/2026/11/6ac4ecf7245696afb3517853.json"
+  },
+  "6aecf966e94eae0f94748306": {
+   "date": "2026-11-05T23:00:00Z",
+   "path": "raw/2026/11/6aecf966e94eae0f94748306.json"
+  },
+  "6aebb4d60c463890f304b691": {
+   "date": "2026-11-06T14:00:00Z",
+   "path": "raw/2026/11/6aebb4d60c463890f304b691.json"
+  },
+  "6adb946e97e21d82e5c6d561": {
+   "date": "2026-11-06T18:45:00Z",
+   "path": "raw/2026/11/6adb946e97e21d82e5c6d561.json"
+  },
+  "6aeecf0ac931f53978d95555": {
+   "date": "2026-11-07T08:55:00Z",
+   "path": "raw/2026/11/6aeecf0ac931f53978d95555.json"
+  },
+  "6ade5d0097e21d82e5c6f090": {
+   "date": "2026-11-07T23:15:00Z",
+   "path": "raw/2026/11/6ade5d0097e21d82e5c6f090.json"
+  },
+  "6aeebbdae99f3235a75e2b7f": {
+   "date": "2026-11-08T02:05:00Z",
+   "path": "raw/2026/11/6aeebbdae99f3235a75e2b7f.json"
+  },
+  "6aec37d10c463890f304bb92": {
+   "date": "2026-11-08T08:30:00Z",
+   "path": "raw/2026/11/6aec37d10c463890f304bb92.json"
+  }
+ },
+ "skipped": {
+  "6ae3b73522fd412b92a4f902": "players: 6",
+  "6ae5de81ae67092a4073fc33": "players: 6",
+  "6acbf044115c12b73a5a192a": "rules: suspended cards",
+  "6ae62ff5ae67092a4074000c": "rules: special rules",
+  "6ae1781b22fd412b92a4e823": "rules: suspended cards",
+  "6ad98b70115c12b73a5a9732": "rules: suspended cards"
+ },
+ "decklists": {
+  "6adec44a91617679e84a1129": [
+   "procurador",
+   "icyriaco",
+   "darkcate"
+  ],
+  "6ae3a03b22fd412b92a4f83e": [
+   "joshuasutherland21",
+   "iluchien",
+   "richyrich1999",
+   "sekkarou",
+   "gobztcg",
+   "tortellino69",
+   "strawberrycrepecookie",
+   "liquidhunter",
+   "ripfer",
+   "thischase",
+   "therico01",
+   "johnhaven10",
+   "manutan",
+   "elluquitas96",
+   "sneakattack",
+   "yamirai"
+  ],
+  "6ae3340222fd412b92a4f43c": [
+   "victorssito",
+   "s1gun",
+   "strawberrycrepecookie",
+   "h1kak1nsqie",
+   "njjord7",
+   "sinorci200",
+   "dariuspopek",
+   "mrcin0091",
+   "bbchillen",
+   "andregoat",
+   "cloudypanda",
+   "fontodasosa",
+   "flameking3",
+   "iplaypokemans",
+   "dandydan",
+   "akuma_nkz6"
+  ],
+  "6adf7a2422fd412b92a4d422": [
+   "whiterabbit",
+   "light_dn",
+   "nupel",
+   "javiercazorla",
+   "poisoned",
+   "six420",
+   "jose20216",
+   "rfa",
+   "hamuou",
+   "legendoery",
+   "elatomico",
+   "icyriaco",
+   "azin",
+   "kovacs469",
+   "warpis",
+   "soulfestival"
+  ],
+  "6ad2a63e8a8383117e3ed624": [
+   "avuuado",
+   "elliedark",
+   "stardast",
+   "strawberrycrepecookie",
+   "dariuspopek",
+   "fengar99",
+   "tavi2k",
+   "xastur",
+   "guunnz",
+   "momonagi",
+   "newfirsniper",
+   "iluchien",
+   "victorssito",
+   "juanpcv4540",
+   "frost22",
+   "nid"
+  ],
+  "6ae511120d00101b48bf2a71": [
+   "victorssito",
+   "liquidhunter",
+   "frappesdrinker",
+   "strawberrycrepecookie",
+   "hectordf",
+   "gagc",
+   "karasutcgp",
+   "normo360",
+   "einstun",
+   "anhz",
+   "gengarguy",
+   "s1gun",
+   "xastur",
+   "chill_vin",
+   "7l",
+   "awbscene"
+  ],
+  "6ae4225922fd412b92a4fdd7": [
+   "okarun",
+   "hosi",
+   "necroblaze",
+   "hansuwe",
+   "shankar",
+   "godi",
+   "corndog_xx",
+   "siulokxjai",
+   "leaffff",
+   "dietdrkelp",
+   "stargzer",
+   "crazynice",
+   "harian",
+   "preluxe",
+   "sirus",
+   "zegger"
+  ],
+  "pmpt49": [
+   "naoki",
+   "silveronion",
+   "popay",
+   "srafaelitocs",
+   "elluquitas96",
+   "estehlegitea",
+   "goldgalladevgc",
+   "golfermt",
+   "puronito",
+   "lordy",
+   "danimaton",
+   "super_peace",
+   "endg3gner",
+   "eku",
+   "fael24",
+   "cn123gaming"
+  ],
+  "6ae2839e80a8f79408d206b4": [
+   "sekkarou",
+   "sekinokatsu",
+   "soap728",
+   "njjord7",
+   "fireon04",
+   "pattyd",
+   "likounite",
+   "hectordf",
+   "bryan931006",
+   "fontodasosa",
+   "faramiglio",
+   "mindola",
+   "porygon3",
+   "bibiuzin",
+   "elluquitas96",
+   "lincedorado"
+  ],
+  "6ae66e08ae67092a407403f8": [
+   "iisalad",
+   "s2thi",
+   "r1nnegantcg",
+   "7earless",
+   "caffeine00",
+   "asterphoenix",
+   "whiterabbit",
+   "prototcg",
+   "kyorakust",
+   "rome90",
+   "yizzy_tcg1",
+   "hamuou",
+   "harian",
+   "ka1z0",
+   "amilaz",
+   "masarupoke"
+  ],
+  "6ae742450d00101b48bf3e45": [
+   "hosi",
+   "dragonkni8",
+   "nakopol91",
+   "iisalad",
+   "giaacomoo",
+   "jk_frost",
+   "icyriaco",
+   "komoriuta",
+   "berlusconismurf",
+   "n7hs4",
+   "troopscoop",
+   "normo360",
+   "luppyt",
+   "skyz211",
+   "olegonz00111",
+   "daaawn"
+  ],
+  "6ae762b40d00101b48bf3f8b": [
+   "giaacomoo",
+   "hectordf",
+   "victorssito",
+   "elatomico",
+   "thevikingway",
+   "ibfasting",
+   "tesla20",
+   "nj_210zz",
+   "castro37",
+   "balancedeala",
+   "alana",
+   "pattyd",
+   "mambadaddy9",
+   "theviice",
+   "tommykamikace",
+   "jorgegatica"
+  ],
+  "6ae727bd0d00101b48bf3da0": [
+   "kirteppat",
+   "estehlegitea",
+   "sirus",
+   "brendon68",
+   "ishaan",
+   "sharkeatingleeks",
+   "warpis",
+   "elmatadorperu",
+   "sukuna123",
+   "nj_210zz",
+   "haryanto",
+   "andregoat",
+   "gioboi",
+   "killermonkx",
+   "syr",
+   "soap728"
+  ],
+  "6ae877fb0d00101b48bf489d": [
+   "victorssito",
+   "doncucca",
+   "kiraryo",
+   "nakopol91",
+   "guunnz",
+   "nyrq",
+   "hectordf",
+   "trisurbahagia",
+   "cmgato",
+   "csmati",
+   "n7hs4",
+   "komoriuta",
+   "leotcgbr",
+   "hosi",
+   "sunfighter",
+   "doshihanazzzz"
+  ],
+  "6ae7f6340d00101b48bf453d": [
+   "douka",
+   "hofuruhoshi",
+   "nandosgude",
+   "warpis",
+   "preluxe",
+   "eternal_tcg",
+   "dhforty4",
+   "lv80mewtwo",
+   "balancedeala",
+   "genessiss",
+   "estehlegitea",
+   "robs",
+   "supreme13",
+   "dani20yt",
+   "luckyex888",
+   "robinio"
+  ],
+  "6ae921ab0c463890f304a00b": [
+   "golfermt",
+   "garchomplucario123",
+   "shankar",
+   "fijidr1nker",
+   "corcho5",
+   "jenamica",
+   "hosi",
+   "prfseur_chiene",
+   "nid",
+   "hectordf",
+   "bbchillen",
+   "giaacomoo",
+   "javiee333",
+   "absback910",
+   "sterns",
+   "guunnz"
+  ],
+  "6aea43600c463890f304aa2e": [
+   "syr",
+   "supreme13",
+   "joshuasutherland21",
+   "xpabsy",
+   "kodai",
+   "guunnz",
+   "manjoume",
+   "pimpin4dayz",
+   "almezda",
+   "mrd",
+   "bigslowpokefan",
+   "novamaygray",
+   "flicks",
+   "ibfasting",
+   "lincedorado",
+   "elluquitas96"
+  ],
+  "6ae1c42222fd412b92a4e897": [
+   "aoisora",
+   "alana",
+   "megaanyaex1",
+   "nausfeare",
+   "s1gun",
+   "super_peace",
+   "godi",
+   "souei_911",
+   "tortellino69",
+   "bernian",
+   "maus10",
+   "srafaelitocs",
+   "ishaan",
+   "dandydan",
+   "estehlegitea",
+   "njjord7"
+  ],
+  "6ae6b6910d00101b48bf3b1c": [
+   "vinsgg",
+   "garchomplucario123",
+   "caruzo",
+   "ferus",
+   "sinorci200",
+   "elite4aj",
+   "eku",
+   "sofy",
+   "xpress",
+   "coffplays",
+   "hansuwe",
+   "dj_marnel",
+   "pingovolante",
+   "srafaelitocs",
+   "likounite",
+   "fansas"
+  ],
+  "6ae5e174ae67092a4073fc42": [
+   "leotcgbr",
+   "abnermoyai",
+   "donattasxd",
+   "maskzin",
+   "camarada_thi",
+   "gracilianoneto",
+   "darkcate",
+   "eddiespfc",
+   "maximusale",
+   "ewertonjosepher",
+   "g7zinn",
+   "mirandolla",
+   "fenixgreen",
+   "faramiglio",
+   "cadu_f"
+  ],
+  "6aeb28380c463890f304b17d": [
+   "almezda",
+   "ojittik",
+   "lazydads",
+   "yeriana",
+   "zonice",
+   "fleepter",
+   "kabesu",
+   "gosulek",
+   "fitypaldis",
+   "aoisora",
+   "flicks",
+   "kyoffie",
+   "kaizenmoon",
+   "itachi1820",
+   "lincedorado",
+   "shinra67"
+  ],
+  "6aec5294e94eae0f94747bac": [
+   "matheusmota",
+   "elluquitas96",
+   "1101yuto",
+   "mega_rezpectore_ex",
+   "garbohanzo",
+   "danny_danny25",
+   "lanora",
+   "einstun",
+   "nuggie_d",
+   "javiee333",
+   "yuki01",
+   "tommykamikace",
+   "toromike",
+   "kayjay",
+   "jisu278",
+   "akito_boomboomhoney"
+  ],
+  "6ac4ecf7245696afb3517853": [
+   "narumi",
+   "adi1906",
+   "nid",
+   "sseisen",
+   "thischase",
+   "momonagi",
+   "hanalana",
+   "melihmegron",
+   "likounite",
+   "atomiix",
+   "fall88",
+   "sekensirazu",
+   "itachi1820",
+   "corcho5",
+   "doshihanazzzz",
+   "zverum"
+  ],
+  "6aecf966e94eae0f94748306": [
+   "yizzy_tcg1",
+   "pirow",
+   "guunnz",
+   "ikercho",
+   "klq_mm93",
+   "tavi2k",
+   "bibiuzin",
+   "crackportero",
+   "sunfighter",
+   "flicks",
+   "pattyd",
+   "lord_vader",
+   "elliedark",
+   "morsongoat14",
+   "dustycracker",
+   "hofaflocka"
+  ],
+  "6aebb4d60c463890f304b691": [
+   "lightxz",
+   "kabesu",
+   "melma",
+   "likounite",
+   "yuehidden",
+   "hf",
+   "harian",
+   "damari",
+   "whiterabbit",
+   "hofaflocka",
+   "wongtw",
+   "eri_myname",
+   "zonice",
+   "yhlqmdlgn",
+   "wawan",
+   "ktech3224"
+  ],
+  "6adb946e97e21d82e5c6d561": [
+   "velu",
+   "joshuasutherland21",
+   "whoisfabela",
+   "sofy",
+   "bibiuzin",
+   "fitypaldis",
+   "njjord7",
+   "dimitrikev",
+   "ozenith",
+   "elluquitas96",
+   "berlusconismurf",
+   "balancedeala",
+   "jjmartos10",
+   "https",
+   "dron",
+   "pauk55"
+  ],
+  "6aeecf0ac931f53978d95555": [
+   "joshuasutherland21",
+   "dandydan",
+   "berlusconismurf",
+   "toromike",
+   "syr",
+   "andikaaa",
+   "puntx",
+   "frappesdrinker",
+   "kalboph",
+   "pauk55",
+   "r0zey",
+   "baba3120",
+   "nakopol91",
+   "jaxtcgp",
+   "rekklesbert",
+   "buzz2buzz"
+  ],
+  "6ade5d0097e21d82e5c6f090": [
+   "limitlessgg",
+   "elliedark",
+   "albuus_00",
+   "strawberrycrepecookie",
+   "hairgoesxday",
+   "mamas",
+   "glacey",
+   "lunabunny",
+   "luksa",
+   "speedy_paws",
+   "moodyofthings",
+   "joshuasutherland21"
+  ],
+  "6aeebbdae99f3235a75e2b7f": [
+   "de_leon",
+   "fakehg",
+   "sindarma",
+   "garchomplucario123",
+   "luksa",
+   "davionn",
+   "nagetto_zuki",
+   "faded7",
+   "einstun",
+   "jisu278",
+   "eddyj",
+   "likounite",
+   "sharkeatingleeks",
+   "griffsama",
+   "javiee333",
+   "ikercho"
+  ],
+  "6aec37d10c463890f304bb92": [
+   "adi1906",
+   "momonagi",
+   "mewconwifi",
+   "godi",
+   "ndare27",
+   "nakopol91",
+   "warpis",
+   "harian",
+   "bielly",
+   "kabesu",
+   "hassam",
+   "mo1245",
+   "njjord7",
+   "jmbd",
+   "lanora",
+   "buzz2buzz"
+  ]
+ }
+}

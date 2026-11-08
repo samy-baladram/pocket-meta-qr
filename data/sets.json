@@ -1,0 +1,144 @@
+{
+ "updated": "2026-11-08T13:53:47Z",
+ "current": "C1",
+ "sets": [
+  {
+   "code": "C1",
+   "name": "Dual Fusion",
+   "release": "2026-10-29",
+   "cards": 217
+  },
+  {
+   "code": "B4b",
+   "name": "Deluxe Pack: Mega",
+   "release": "2026-09-30",
+   "cards": 429
+  },
+  {
+   "code": "B4a",
+   "name": "Team Rocket's Ambition",
+   "release": "2026-08-27",
+   "cards": 110
+  },
+  {
+   "code": "B4",
+   "name": "Ruler of the Skies",
+   "release": "2026-07-30",
+   "cards": 233
+  },
+  {
+   "code": "B3b",
+   "name": "Everyday Wonders",
+   "release": "2026-06-30",
+   "cards": 106
+  },
+  {
+   "code": "B3a",
+   "name": "Paradox Drive",
+   "release": "2026-05-28",
+   "cards": 109
+  },
+  {
+   "code": "B3",
+   "name": "Pulsing Aura",
+   "release": "2026-04-28",
+   "cards": 234
+  },
+  {
+   "code": "B2b",
+   "name": "Mega Shine",
+   "release": "2026-03-26",
+   "cards": 117
+  },
+  {
+   "code": "B2a",
+   "name": "Paldean Wonders",
+   "release": "2026-02-26",
+   "cards": 131
+  },
+  {
+   "code": "B2",
+   "name": "Fantastical Parade",
+   "release": "2026-01-29",
+   "cards": 234
+  },
+  {
+   "code": "B1a",
+   "name": "Crimson Blaze",
+   "release": "2025-12-17",
+   "cards": 103
+  },
+  {
+   "code": "B1",
+   "name": "Mega Rising",
+   "release": "2025-10-30",
+   "cards": 331
+  },
+  {
+   "code": "A4b",
+   "name": "Deluxe Pack: ex",
+   "release": "2025-09-30",
+   "cards": 379
+  },
+  {
+   "code": "A4a",
+   "name": "Secluded Springs",
+   "release": "2025-08-28",
+   "cards": 105
+  },
+  {
+   "code": "A4",
+   "name": "Wisdom of Sea and Sky",
+   "release": "2025-07-30",
+   "cards": 241
+  },
+  {
+   "code": "A3b",
+   "name": "Eevee Grove",
+   "release": "2025-06-26",
+   "cards": 107
+  },
+  {
+   "code": "A3a",
+   "name": "Extradimensional Crisis",
+   "release": "2025-05-29",
+   "cards": 103
+  },
+  {
+   "code": "A3",
+   "name": "Celestial Guardians",
+   "release": "2025-04-30",
+   "cards": 239
+  },
+  {
+   "code": "A2b",
+   "name": "Shining Revelry",
+   "release": "2025-03-27",
+   "cards": 111
+  },
+  {
+   "code": "A2a",
+   "name": "Triumphant Light",
+   "release": "2025-02-28",
+   "cards": 96
+  },
+  {
+   "code": "A2",
+   "name": "Space-Time Smackdown",
+   "release": "2025-01-29",
+   "cards": 207
+  },
+  {
+   "code": "A1a",
+   "name": "Mythical Island",
+   "release": "2024-12-17",
+   "cards": 86
+  },
+  {
+   "code": "A1",
+   "name": "Genetic Apex",
+   "release": "2024-10-30",
+   "cards": 286
+  }
+ ]
+}
