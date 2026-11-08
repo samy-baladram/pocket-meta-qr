@@ -5,6 +5,7 @@ node_modules/
 data/meta.db
 data/meta.db.tmp
 build/
-site/
+site/*
+!site/index.html
 images.json
 cache/
