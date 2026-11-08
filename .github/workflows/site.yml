@@ -1,0 +1,106 @@
+# Build the site from data/ and deploy it to GitHub Pages.
+# Runs after each "Scrape tournaments" run, when the page or the build changes on main, and by hand.
+name: Build and deploy site
+
+on:
+  workflow_run:
+    workflows: ["Scrape tournaments"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - site/index.html
+      - pipeline/build_db.py
+      - pipeline/export.py
+      - pipeline/build.mjs
+      - pipeline/common.mjs
+      - pipeline/images.py
+      - pipeline/qrcheck.mjs
+      - pipeline/page.mjs
+      - package.json
+      - package-lock.json
+      - .github/workflows/site.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main   # after a scrape run: the newest data commit
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          pip install Pillow
+
+      # Card and energy images are made once and kept between runs.
+      - name: Restore image cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            cache
+            site/c
+            site/e
+          key: images-${{ github.run_id }}
+          restore-keys: images-
+
+      - name: Build database
+        run: python pipeline/build_db.py --top 10
+
+      - name: Export page input
+        run: python pipeline/export.py
+
+      - name: Build page data
+        run: node pipeline/build.mjs
+
+      # A missing image does not stop the deploy (the page shows 1 empty card); it is a warning in the run summary.
+      - name: Make images
+        run: python pipeline/images.py || echo "::warning title=Images::some card or energy images failed (see log)"
+
+      - name: Check QR codes
+        run: node pipeline/qrcheck.mjs
+
+      - name: Assemble the site
+        run: |
+          rm -rf public && mkdir public
+          mkdir -p site/v && cp -r site/data.json site/v site/c site/e public/
+          node pipeline/page.mjs site/index.html public/index.html
+          touch public/.nojekyll
+          echo "files: $(find public -type f | wc -l), size: $(du -sh public | cut -f1)"
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

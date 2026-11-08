@@ -6,8 +6,12 @@
     "build": "node pipeline/build.mjs"
   },
   "dependencies": {
-    "ptcgp-deckcode": "2.0.0",
+    "pokemon-tcg-pocket-cards": "^5.5.1",
     "pokemon-tcg-pocket-database": "^2.13.1",
-    "pokemon-tcg-pocket-cards": "^5.5.1"
+    "ptcgp-deckcode": "2.0.0"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "jsqr": "^1.4.0"
   }
 }
