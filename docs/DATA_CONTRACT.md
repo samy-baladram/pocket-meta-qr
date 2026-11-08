@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 4 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 5 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -9,6 +9,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - Changed definitions: `share` adds up to 100 %; `win` excludes mirror matches and multi-deck events.
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers: a deck without any decklist yet is not in `decks`.
+- Version 5: `eg` has 2 values: `2` = energy from the deck's other lists (most common energy shown by Limitless),
+  `1` = from the attack costs. Absent = shown by Limitless for this list. The page can treat both as "not from
+  this list's event".
 - Version 4: **window = last 7 days** (new field `window`: `"7d"`). `count`, `share`, `w`/`l`/`t`, `win`, the deck
   selection and the lists all use the last 7 days. `of` = **all** the deck's finishes with a readable list in
   the window (not only the best ones).
@@ -72,7 +75,7 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 |---|---|---|
 | `cards` | [{id, n, c}] | card id, card name, count (20 cards in total) |
 | `energy` | [string] | energy types, 1 to 3 |
-| `eg` | 1 or absent | **new.** 1 = energy guessed from the attack costs (the event did not show it). Absent = energy as shown by Limitless |
+| `eg` | 2, 1 or absent | absent = energy shown by Limitless for this list; 2 = the event did not show it, so the most common energy of the deck's other Limitless lists; 1 = no list of the deck shows it, so guessed from the attack costs |
 | `qr` | SVG string or null | in-game deck code as QR (black modules, no background); null when no code was possible |
 | `ev` | string | tournament name |
 | `pl` | string | place, e.g. `1st of 273` |

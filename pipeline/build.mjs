@@ -56,20 +56,39 @@ function deckName(id) {
   return out.join(" ");
 }
 
-async function variation(name, list, problems, id, scraped) {
+const validEnergy = (e) => (e || []).filter((x) => Object.values(LETTER).includes(x)).slice(0, 3);
+
+// Most common energy (as shown by Limitless) among the deck's decklist pages in the set. Multi-deck pages:
+// the list whose Pokémon match the deck name. Returns null when no page of this deck shows the energy.
+function energyVote(name, votes) {
+  const n = new Map();
+  for (const page of votes || []) {
+    const pick = page.map((x) => ({ e: validEnergy(x.energy), s: attackers(name, toList(x.cards)).length }))
+      .filter((x) => x.e.length && x.s > 0).sort((a, b) => b.s - a.s)[0];
+    if (pick) { const k = [...pick.e].sort().join(","); n.set(k, (n.get(k) || 0) + 1); }
+  }
+  const best = [...n.entries()].sort((a, b) => b[1] - a[1])[0];
+  return best ? best[0].split(",") : null;
+}
+
+// Energy of 1 list (docs/DATA.md 4.5), checked on 593 lists with known energy: 99.2 % correct.
+//   1. as shown on its own Limitless decklist page            -> no eg
+//   2. else the most common energy of the deck's other pages  -> eg: 2
+//   3. else from the attack costs of the first named Pokémon  -> eg: 1
+async function variation(name, list, problems, id, scraped, vote) {
   const at = attackers(name, list);
-  let energy, guessed = false;
+  let energy, guessed = 0;
   if (scraped?.length) {
-    // Energy as shown on the Limitless decklist page.
-    energy = scraped.filter((e) => Object.values(LETTER).includes(e)).slice(0, 3);
+    energy = validEnergy(scraped);
     if (energy.length !== scraped.length) problems.push(`${id}: unknown energy ${scraped.join("+")}`);
   }
+  if (!energy?.length && vote?.length) { energy = vote; guessed = 2; }
   if (!energy?.length) {
-    // Guess: colored costs of the first named attacker; add the second when it is an "ex"
-    // or when the first has no colored cost.
-    guessed = true;
+    // Guess: colored costs of the first named attacker; the second only when the first has no colored cost.
+    // (Adding the second named "ex" was wrong for support Pokémon, e.g. Indeedee ex in Dedenne ex Indeedee ex.)
+    guessed = 1;
     let letters = at[0] ? colored(at[0]) : [];
-    if (at[1] && (/ ex$/.test(at[1].name) || !letters.length)) letters = [...new Set([...letters, ...colored(at[1])])];
+    if (at[1] && !letters.length) letters = colored(at[1]);
     // Fallback: the named Pokémon need only colorless energy -> use the colored costs of the other Pokémon in the list.
     if (!letters.length) letters = [...new Set(list.flatMap((c) => colored(c)))];
     energy = letters.slice(0, 3).map((l) => LETTER[l]);
@@ -89,7 +108,7 @@ async function variation(name, list, problems, id, scraped) {
     else qr = (await deckCodeToSVG(code, { margin: 0, errorCorrectionLevel: "M", color: { dark: "#000000", light: "#ffffff" } }))
       .replace(/<path fill="#ffffff"[^>]*\/>/, "");
   } else if (!energy.length) problems.push(`${id}: no energy`);
-  return { energy, ...(guessed ? { eg: 1 } : {}), qr, art: at.map((a) => pdId(a.set, a.num)), cards: list.map((c) => ({ id: pdId(c.set, c.num), n: c.name, c: c.count })) };
+  return { energy, ...(guessed ? { eg: guessed } : {}), qr, art: at.map((a) => pdId(a.set, a.num)), cards: list.map((c) => ({ id: pdId(c.set, c.num), n: c.name, c: c.count })) };
 }
 
 const decks = [], problems = [], images = new Set();
@@ -118,9 +137,10 @@ for (const [rank, d] of input.decks.entries()) {
   }
   if (!chosen.length) { waiting++; problems.push(`${id}: no lists yet`); continue; }
 
+  const vote = energyVote(name, d.votes);
   const vars = [];
   for (const c of chosen) {
-    const v = await variation(name, c.list, problems, id, c.energy);
+    const v = await variation(name, c.list, problems, id, c.energy, vote);
     v.ev = c.row.ev; v.pl = c.row.pl; v.sc = c.row.sc; v.dt = c.row.dt;
     v.nu = c.used; // finishes in the top rows that used this list (or one card away from it)
     v.of = of;     // finishes in the top rows with a readable list
@@ -142,7 +162,11 @@ writeFileSync("images.json", JSON.stringify({
 }));
 const nvars = decks.reduce((a, d) => a + d.nv, 0);
 if (waiting) console.log(`${waiting} decks have no decklist yet (later scrape runs fetch them)`);
-console.log(`energy: ${decks.filter((d) => !d.eg).length} decks from Limitless, ${decks.filter((d) => d.eg).length} guessed`);
+{
+  const all = decks.flatMap((d) => [d, ...(existsSync(`site/v/${d.id}.json`) ? JSON.parse(readFileSync(`site/v/${d.id}.json`, "utf8")).vars : [])]);
+  const k = (e) => all.filter((v) => (v.eg || 0) === e).length;
+  console.log(`energy of ${all.length} lists: ${k(0)} shown by Limitless, ${k(2)} from other lists of the deck, ${k(1)} from attack costs`);
+}
 console.log(`decks: ${decks.length}, lists: ${nvars}, unique cards: ${images.size}`);
 console.log("problems:", problems.join("; ") || "none");
 for (const d of decks) console.log(d.rank, d.name, `(${d.nv} lists)`, "->", d.energy.join("+"));

@@ -47,6 +47,24 @@ def main():
     summary = db.execute(f"SELECT COUNT(*), SUM(players), MIN(day), MAX(day) FROM tournaments WHERE id IN ({q})", tids).fetchone()
     matches = db.execute(f"SELECT COUNT(*) FROM matches WHERE special IS NULL AND b IS NOT NULL AND tid IN ({q})", tids).fetchone()[0]
 
+    def lists_of(tid, pid):
+        out = []
+        for idx, energy in db.execute("SELECT idx, energy FROM decklists WHERE tid = ? AND pid = ? ORDER BY idx", (tid, pid)):
+            cards = [list(r) for r in db.execute(
+                "SELECT count, set_code, num FROM decklist_cards WHERE tid = ? AND pid = ? AND idx = ?", (tid, pid, idx))]
+            out.append({"cards": cards, "energy": energy.split(",") if energy else None})
+        return out
+
+    # Energy votes: every decklist page of this archetype in the current set where Limitless shows the energy
+    # (multi-deck pages too: all their lists go in, build.mjs takes the list that matches the deck name).
+    # Used when a shown list's own event does not show the energy (docs/DATA.md 4.5).
+    def energy_votes(arch):
+        return [lists_of(tid, pid) for tid, pid in db.execute("""
+            SELECT DISTINCT d.tid, d.pid FROM entry_decks d JOIN tournaments t ON t.id = d.tid
+            WHERE d.archetype = ? AND t.set_code = ?
+              AND EXISTS (SELECT 1 FROM decklists x WHERE x.tid = d.tid AND x.pid = d.pid AND x.energy IS NOT NULL)""",
+            (arch, cur))]
+
     decks = []
     for arch, players, share, w, l, t, win in db.execute(
             "SELECT archetype, players, share, w, l, t, win_rate FROM archetype_stats "
@@ -58,15 +76,10 @@ def main():
                 WHERE d.archetype = ? AND t.multi_deck = 0 AND e.place IS NOT NULL AND d.tid IN ({q})
                   AND EXISTS (SELECT 1 FROM decklists x WHERE x.tid = e.tid AND x.pid = e.pid)
                 ORDER BY CAST(e.place AS REAL) / t.players, e.place, t.date DESC LIMIT ?""", [arch, *tids, a.rows or -1]):
-            lists = []
-            for idx, energy in db.execute("SELECT idx, energy FROM decklists WHERE tid = ? AND pid = ? ORDER BY idx", (tid, pid)):
-                cards = [list(r) for r in db.execute(
-                    "SELECT count, set_code, num FROM decklist_cards WHERE tid = ? AND pid = ? AND idx = ?", (tid, pid, idx))]
-                lists.append({"cards": cards, "energy": energy.split(",") if energy else None})
             rows.append({"key": f"{tid}/{pid}", "ev": ev, "pl": f"{ordinal(place)} of {size}",
-                         "sc": f"{ew}-{el}-{et}", "dt": day, "lists": lists})
+                         "sc": f"{ew}-{el}-{et}", "dt": day, "lists": lists_of(tid, pid)})
         decks.append({"id": arch, "count": players, "share": round(share, 2), "w": w, "l": l, "t": t,
-                      "win": round(win, 2) if win is not None else None, "rows": rows})
+                      "win": round(win, 2) if win is not None else None, "rows": rows, "votes": energy_votes(arch)})
 
     out = {
         "builtAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),

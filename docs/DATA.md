@@ -116,8 +116,14 @@ The pairings do not say which deck a player used in a match. Thus:
   than 1 builder code on a decklist page.
 
 ### 4.5 Energy
-- From the decklist page when the event shows it (`e`). Not every event shows it.
-- When `e` is null, the page build guesses it from the attack costs (current `build.mjs` rule).
+- From the decklist page when the event shows it (`e`). Not every event shows it (about 60 % of decks).
+- Else (decision Nov 9, 2026) the most common energy shown by Limitless on the other decklist pages of the same
+  archetype in the current set (multi-deck pages: the list that matches the deck name).
+- Else from the attack costs of the first named Pokémon (the second only when the first needs no colored energy).
+  The old rule also added the second named "ex"; that was wrong for support Pokémon (Dedenne ex Indeedee ex:
+  lightning, not lightning + psychic).
+- Checked on the 593 lists with known energy (Nov 9): vote 99.6 % correct where a vote exists; vote + attack-cost
+  fallback 99.2 %; the old attack-cost rule alone 98.0 %.
 
 ### 4.6 Windows
 - Set: tournaments with `set` = the current set code (for example `C1`), see section 2.
