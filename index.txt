@@ -1,0 +1,22 @@
+200 64867 completed.html https://play.limitlesstcg.com/tournaments/completed?game=POCKET&format=STANDARD&platform=all&type=all&show=50
+200 330720 decks.html https://play.limitlesstcg.com/decks?game=pocket
+first ids: 6aec37d10c463890f304bb92 6aeebbdae99f3235a75e2b7f 6ade5d0097e21d82e5c6f090 6ad98b70115c12b73a5a9732 6aeecf0ac931f53978d95555 6adb946e97e21d82e5c6d561 6aebb4d60c463890f304b691 6ae1781b22fd412b92a4e823 6ae62ff5ae67092a4074000c 6aecf966e94eae0f94748306 6ac4ecf7245696afb3517853 6aec5294e94eae0f94747bac 6aeb28380c463890f304b17d 6ae5e174ae67092a4073fc42 6ae6b6910d00101b48bf3b1c 6ae1c42222fd412b92a4e897 6aea43600c463890f304aa2e 6ae921ab0c463890f304a00b 6ae7f6340d00101b48bf453d 6ae877fb0d00101b48bf489d
+200 29173 t-6aec37d10c463890f304bb92-details.html https://play.limitlesstcg.com/tournament/6aec37d10c463890f304bb92/details
+200 174671 t-6aec37d10c463890f304bb92-standings.html https://play.limitlesstcg.com/tournament/6aec37d10c463890f304bb92/standings
+200 29518 t-6aec37d10c463890f304bb92-pairings.html https://play.limitlesstcg.com/tournament/6aec37d10c463890f304bb92/pairings
+rounds 6aec37d10c463890f304bb92: pairings?round=1 pairings?round=2 pairings?round=3 pairings?round=4 pairings?round=5 pairings?round=6 pairings?round=7 pairings?round=8
+200 58517 t-6aec37d10c463890f304bb92-pairings-first.html https://play.limitlesstcg.com/tournament/6aec37d10c463890f304bb92/pairings?round=1
+200 29518 t-6aec37d10c463890f304bb92-pairings-last.html https://play.limitlesstcg.com/tournament/6aec37d10c463890f304bb92/pairings?round=8
+200 20713 t-6aec37d10c463890f304bb92-decklist-1.html https://play.limitlesstcg.com/tournament/6aec37d10c463890f304bb92/player/adi1906/decklist
+200 21549 t-6aec37d10c463890f304bb92-decklist-2.html https://play.limitlesstcg.com/tournament/6aec37d10c463890f304bb92/player/momonagi/decklist
+decklist links on standings 6aec37d10c463890f304bb92: 137
+200 41958 t-6aeebbdae99f3235a75e2b7f-details.html https://play.limitlesstcg.com/tournament/6aeebbdae99f3235a75e2b7f/details
+200 121846 t-6aeebbdae99f3235a75e2b7f-standings.html https://play.limitlesstcg.com/tournament/6aeebbdae99f3235a75e2b7f/standings
+200 28776 t-6aeebbdae99f3235a75e2b7f-pairings.html https://play.limitlesstcg.com/tournament/6aeebbdae99f3235a75e2b7f/pairings
+rounds 6aeebbdae99f3235a75e2b7f: pairings?round=1 pairings?round=2 pairings?round=3 pairings?round=4 pairings?round=5 pairings?round=6 pairings?round=7 pairings?round=8 pairings?round=9
+200 55053 t-6aeebbdae99f3235a75e2b7f-pairings-first.html https://play.limitlesstcg.com/tournament/6aeebbdae99f3235a75e2b7f/pairings?round=1
+200 28776 t-6aeebbdae99f3235a75e2b7f-pairings-last.html https://play.limitlesstcg.com/tournament/6aeebbdae99f3235a75e2b7f/pairings?round=9
+200 15381 t-6aeebbdae99f3235a75e2b7f-decklist-1.html https://play.limitlesstcg.com/tournament/6aeebbdae99f3235a75e2b7f/player/de_leon/decklist
+200 15564 t-6aeebbdae99f3235a75e2b7f-decklist-2.html https://play.limitlesstcg.com/tournament/6aeebbdae99f3235a75e2b7f/player/fakehg/decklist
+decklist links on standings 6aeebbdae99f3235a75e2b7f: 128
+200 26408 deckpage.html https://play.limitlesstcg.com/decks/mega-charizard-y-ex-b1a-entei-ex-a4a?game=POCKET&format=standard
