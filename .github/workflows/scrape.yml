@@ -34,7 +34,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
+      # Always start from the newest main (not the commit that started the run): a run that waited in the
+      # queue must see the data of the run before it, or it fetches the same pages again and its push conflicts.
       - uses: actions/checkout@v5
+        with:
+          ref: main
 
       - uses: actions/setup-python@v6
         with:
@@ -65,7 +69,12 @@ jobs:
           n=$(git diff --cached --name-only -- data/raw | wc -l)
           git commit -q -m "Data: $n new tournaments ($(date -u +%FT%TZ))"
           for i in 1 2 3; do
-            git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0
+            if ! git pull -q --rebase origin main; then
+              git rebase --abort || true
+              echo "::error title=Data conflict::main has other data changes; this run's data was not saved (the next run fetches it again)"
+              exit 1
+            fi
+            git push -q origin HEAD:main && exit 0
             sleep 5
           done
-          echo "Push failed after 3 tries"; exit 1
+          echo "::error title=Push failed::push failed after 3 tries"; exit 1
