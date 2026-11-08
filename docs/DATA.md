@@ -11,6 +11,7 @@ Base URL: `https://play.limitlesstcg.com`. All pages are plain HTML (no JavaScri
 
 | Page | Path | Data we read |
 |---|---|---|
+| Set list | `https://pocket.limitlesstcg.com/cards` (other host) | 4 text lines per set: name, code, release date (`29 Oct 26`), card count. Same method as `update_sets_index()` in `tcg-deck-analyzer` |
 | Tournament list | `/tournaments/completed?game=POCKET&format=STANDARD&platform=all&type=all&show=N` | `table.completed-tournaments` rows: `data-date` (ISO UTC), `data-name`, `data-organizer`, `data-format`, `data-players`, `data-winner`; tournament ID from the `/tournament/<tid>/standings` link |
 | Details | `/tournament/<tid>/details` | date `[data-time]` (epoch ms); format text `Standard format` or `Standard format (multi-deck)`; full page text (rules check) |
 | Standings | `/tournament/<tid>/standings` | `table.striped` rows: `data-placing` (missing for dropped players), player ID (`/player/<pid>` link), name, points, record `W - L - T`, `drop`, archetype links `/metagame/<archetype>` (1, or 2+ in multi-deck events), decklist link |
@@ -29,7 +30,11 @@ The round links come from the pairings page itself. The last link is the top cut
 - Keep multi-deck tournaments, with the flag `multi_deck: true` (see 4.4).
 - Decklists: the top 16 entries by placement of each tournament (`DECKLIST_TOP = 16`). The other
   entries keep their archetype(s) and results, but no cards.
-- Backfill: from the release of the current set. About 40 tournaments (Nov 2026).
+- Current set: the newest set (not a promo set) with a release date of today or earlier. Each run reads
+  the set list, so a new set starts a new window automatically. Each tournament gets the set that was
+  current on its day.
+- Backfill: from the release of the current set (C1 Dual Fusion, 2026-10-29). About 40 tournaments.
+  `--since YYYY-MM-DD` overrides the start date.
 
 ## 3. Storage
 
@@ -38,6 +43,7 @@ data/raw/YYYY/MM/<tid>.json     # 1 file per tournament. Written once, when the 
                                 # Source of truth. Never edited by hand.
 data/decklists/<tid>.json       # {pid: [code, code?]} raw builder codes. Cached forever.
 data/index.json                 # tids done, tids skipped (with reason), decklists still to fetch
+data/sets.json                  # set list from the last run + the current set code
 data/meta.db                    # SQLite, BUILT from raw/ + decklists/ in each run. Not edited.
 site/*.json                     # small files for the page, built from meta.db
 ```
@@ -54,6 +60,7 @@ A parser fix needs only a rebuild of `meta.db`, not a new fetch. Raw HTML is not
   "organizer": "The Dark League",
   "date": "2026-11-07T18:00:00Z",
   "format": "STANDARD",
+  "set": "C1",
   "multi_deck": false,
   "players": 128,
   "fetched_at": "2026-11-08T13:38:52Z",
@@ -105,7 +112,7 @@ The pairings do not say which deck a player used in a match. Thus:
   than 1 builder code on a decklist page.
 
 ### 4.5 Windows
-- Set: since the release of the current set (the Limitless `set` code, for example `C1`).
+- Set: tournaments with `set` = the current set code (for example `C1`), see section 2.
 - Last 7 days and last 3 days (for trends).
 - A deck is shown when its share in the set window is 0.5 % or more (max 40), as today.
 
@@ -124,6 +131,13 @@ The pairings do not say which deck a player used in a match. Thus:
 
 About 3 new tournaments per day. Per tournament: details 1 + standings 1 + pairings about 8
 (Swiss rounds + top cut) + 16 decklists = about 26. About 80 requests per day, about 3 minutes.
+
+Schedule (`.github/workflows/scrape.yml`): every 6 hours. A run with nothing new makes 2 requests (set
+list + tournament list). The backfill (about 40 tournaments, about 1,100 requests) needs about 3 runs
+at the cap of 400.
+
+Size: a raw tournament file is about 100 KB (128 players, 9 rounds). About 3 per day = about 110 MB per
+year in git. Acceptable for now; if needed, old raw files can move to a release asset or be gzipped.
 
 ## 7. Open questions
 

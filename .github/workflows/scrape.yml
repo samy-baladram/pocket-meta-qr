@@ -1,0 +1,71 @@
+# Fetch new Limitless tournaments into data/ (spec: docs/DATA.md) and commit them to main.
+# Runs every 6 hours, by hand (Actions tab -> Scrape tournaments -> Run workflow),
+# and when the scraper or this file changes on main.
+name: Scrape tournaments
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"   # 00:17, 06:17, 12:17, 18:17 UTC
+  workflow_dispatch:
+    inputs:
+      since:
+        description: "First tournament date (YYYY-MM-DD). Empty = release of the current set."
+        required: false
+        default: ""
+      max_requests:
+        description: "Request cap for this run"
+        required: false
+        default: "400"
+  push:
+    branches: [main]
+    paths:
+      - pipeline/scrape.py
+      - .github/workflows/scrape.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pipeline/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r pipeline/requirements.txt
+
+      - name: Fetch new tournaments
+        env:
+          SINCE: ${{ github.event.inputs.since }}
+          MAX: ${{ github.event.inputs.max_requests || '400' }}
+        run: |
+          args=(run --data data --max-requests "$MAX")
+          [ -n "$SINCE" ] && args+=(--since "$SINCE")
+          python pipeline/scrape.py "${args[@]}"
+
+      # Runs also when the fetch step failed, so the tournaments that were complete are kept.
+      - name: Commit data
+        if: success() || failure()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then echo "No new data."; exit 0; fi
+          n=$(git diff --cached --name-only -- data/raw | wc -l)
+          git commit -q -m "Data: $n new tournaments ($(date -u +%FT%TZ))"
+          for i in 1 2 3; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0
+            sleep 5
+          done
+          echo "Push failed after 3 tries"; exit 1

@@ -2,6 +2,8 @@
 
   python pipeline/scrape.py run [--since YYYY-MM-DD] [--max-requests N] [--data DIR]
 
+Each run first reads the set list (pocket.limitlesstcg.com/cards). The current set = the newest set with a
+release date of today or earlier. --since defaults to its release date. data/sets.json keeps the list.
 Per new tournament: details, standings, every pairings round (Swiss + top cut) -> data/raw/YYYY/MM/<tid>.json.
 Then decklists of the top entries -> data/decklists/<tid>.json (raw builder codes, kept forever).
 The run stops at --max-requests; the next run continues. It exits with code 1 when a page does not parse.
@@ -13,10 +15,11 @@ import requests
 from bs4 import BeautifulSoup
 
 BASE = "https://play.limitlesstcg.com"
+SETS_URL = "https://pocket.limitlesstcg.com/cards"
 UA = "pocket-meta-qr/0.1 (+https://github.com/samy-baladram/pocket-meta-qr)"
 DELAY = 2.0                # seconds between requests
 RETRY_WAIT = (10, 30)      # backoff on HTTP 429 / 5xx
-LIST_SIZE = 100            # rows read from the completed-tournaments list
+LIST_SIZE = 150            # rows read from the completed-tournaments list
 MIN_PLAYERS = 8
 DECKLIST_TOP = 16          # decklists fetched per tournament (best places first)
 SKIP_PHRASES = ("special rules", "special rule", "suspended cards", "suspended card")
@@ -42,15 +45,17 @@ class Fetcher:
         self.s.headers["User-Agent"] = UA
 
     def get(self, path):
+        """path: a path on BASE, or a full https URL (the set list is on another Limitless host)."""
         if self.count >= self.max:
             raise Budget()
+        url = path if path.startswith("https://") else BASE + path
         for attempt in range(len(RETRY_WAIT) + 1):
             wait = self.last + DELAY - time.monotonic()
             if wait > 0:
                 time.sleep(wait)
             self.count += 1
             self.last = time.monotonic()
-            r = self.s.get(BASE + path, timeout=30)
+            r = self.s.get(url, timeout=30)
             if r.status_code == 200:
                 return r.text
             if r.status_code in (429, 500, 502, 503, 504) and attempt < len(RETRY_WAIT):
@@ -73,6 +78,39 @@ def pid_of(href):
 
 def text(el):
     return el.get_text(" ", strip=True) if el else ""
+
+
+SET_CODE = re.compile(r"^[A-Z]\d+[a-z]?$|^P-[A-Z]$")
+
+
+def parse_sets(html):
+    """Set list page -> [{code, name, release, cards}] in page order (newest first).
+    Same method as update_sets_index() in tcg-deck-analyzer: the page text has 4 lines per set:
+    name, code, release date ("29 Oct 26"), card count."""
+    # "\n" between elements: works also when the HTML has no line breaks between the cells.
+    lines = [ln.strip() for ln in soup(html).get_text("\n").split("\n") if ln.strip()]
+    out, seen = [], set()
+    for i in range(len(lines) - 3):
+        name, code, date_s, count_s = lines[i:i + 4]
+        if not (SET_CODE.match(code) and count_s.isdigit()) or code in seen:
+            continue
+        try:
+            release = datetime.strptime(date_s, "%d %b %y").strftime("%Y-%m-%d")
+        except ValueError:
+            release = None
+        seen.add(code)
+        out.append({"code": code, "name": name, "release": release, "cards": int(count_s)})
+    if not any(s["release"] for s in out):
+        raise ParseError("sets: no set with a release date")
+    return out
+
+
+def current_set(sets, today):
+    """Newest set released on or before today (YYYY-MM-DD). Promo sets (P-A, ...) do not count."""
+    released = [s for s in sets if s["release"] and s["release"] <= today and not s["code"].startswith("P-")]
+    if not released:
+        raise ParseError("sets: no released set")
+    return max(released, key=lambda s: s["release"])
 
 
 def parse_list(html):
@@ -252,7 +290,7 @@ def parse_decklist(html):
 
 # ---------------------------------------------------------------- tournament assembly
 
-def fetch_tournament(f, item):
+def fetch_tournament(f, item, set_code):
     """Fetch and parse 1 tournament. Returns (raw dict, None) or (None, skip reason)."""
     tid = item["id"]
     det = parse_details(f.get(f"/tournament/{tid}/details"))
@@ -275,7 +313,7 @@ def fetch_tournament(f, item):
     multi = det["multi_deck"] or any(len(e["decks"]) > 1 for e in entries)
     raw = {
         "v": RAW_VERSION, "id": tid, "name": item["name"], "organizer": item["organizer"],
-        "date": det["date"] or item["date"], "format": "STANDARD", "multi_deck": multi,
+        "date": det["date"] or item["date"], "format": "STANDARD", "set": set_code, "multi_deck": multi,
         "players": len(entries), "fetched_at": now(), "entries": entries, "rounds": rounds,
     }
     return raw, None
@@ -337,17 +375,26 @@ def run(args):
     f = Fetcher(args.max_requests)
     stats = {"new": 0, "skipped": 0, "decklists": 0, "warnings": 0}
     try:
+        sets = parse_sets(f.get(SETS_URL))
+        cur = current_set(sets, now()[:10])
+        save(os.path.join(data, "sets.json"), {"updated": now(), "current": cur["code"], "sets": sets}, indent=1)
+        since = args.since or cur["release"]
+        print(f"current set: {cur['code']} {cur['name']} (released {cur['release']}); since {since}")
         items = parse_list(f.get(f"/tournaments/completed?game=POCKET&format=STANDARD&platform=all&type=all&show={LIST_SIZE}"))
         todo = [it for it in reversed(items)  # oldest first, so a capped run leaves the newest for later
                 if it["id"] not in index["done"] and it["id"] not in index["skipped"]
-                and it["date"][:10] >= args.since]
-        print(f"list: {len(items)} tournaments, {len(todo)} new since {args.since}")
+                and it["date"][:10] >= since]
+        print(f"list: {len(items)} tournaments, {len(todo)} new since {since}")
+        if items and items[-1]["date"][:10] > since:
+            print(f"  warning: the list starts at {items[-1]['date'][:10]}, after {since}; raise LIST_SIZE to reach older events")
         for it in todo:
             if it["players"] < MIN_PLAYERS:
                 index["skipped"][it["id"]] = f"players: {it['players']}"
                 stats["skipped"] += 1
                 continue
-            raw, reason = fetch_tournament(f, it)
+            # Set = the newest set released on or before the event day (events of an older window keep their set).
+            ev_set = current_set(sets, it["date"][:10])["code"]
+            raw, reason = fetch_tournament(f, it, ev_set)
             if reason:
                 index["skipped"][it["id"]] = reason
                 stats["skipped"] += 1
@@ -394,7 +441,7 @@ def run(args):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["run"])
-    ap.add_argument("--since", default="2026-10-01", help="first tournament date (YYYY-MM-DD), e.g. the set release")
+    ap.add_argument("--since", default=None, help="first tournament date (YYYY-MM-DD); default: release of the current set")
     ap.add_argument("--max-requests", type=int, default=400)
     ap.add_argument("--data", default="data")
     args = ap.parse_args()
