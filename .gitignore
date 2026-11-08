@@ -4,3 +4,7 @@ __pycache__/
 node_modules/
 data/meta.db
 data/meta.db.tmp
+build/
+site/
+images.json
+cache/

@@ -1,0 +1,13 @@
+{
+  "name": "pocket-meta-qr",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "build": "node pipeline/build.mjs"
+  },
+  "dependencies": {
+    "ptcgp-deckcode": "2.0.0",
+    "pokemon-tcg-pocket-database": "^2.13.1",
+    "pokemon-tcg-pocket-cards": "^5.5.1"
+  }
+}
