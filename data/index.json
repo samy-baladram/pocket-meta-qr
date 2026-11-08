@@ -203,6 +203,12 @@
    "path": "raw/2026/11/6aec37d10c463890f304bb92.json",
    "players": 137,
    "dl": 32
+  },
+  "6adec92991617679e84a1147": {
+   "date": "2026-10-31T00:00:00Z",
+   "path": "raw/2026/10/6adec92991617679e84a1147.json",
+   "players": 23,
+   "dl": 8
   }
  },
  "skipped": {
@@ -213,57 +219,5 @@
   "6ae1781b22fd412b92a4e823": "rules: suspended cards",
   "6ad98b70115c12b73a5a9732": "rules: suspended cards"
  },
- "decklists": {
-  "6aeebbdae99f3235a75e2b7f": [
-   "doshihanazzzz",
-   "voicingchip",
-   "hirataro",
-   "albuus_00",
-   "reflexid",
-   "mega_rezpectore_ex",
-   "sho_sho",
-   "olegonz00111",
-   "soap728",
-   "hitemhazel",
-   "dr0p7",
-   "titsygopro",
-   "nicoz",
-   "kabesu",
-   "bunni"
-  ],
-  "6aec37d10c463890f304bb92": [
-   "adi1906",
-   "momonagi",
-   "mewconwifi",
-   "godi",
-   "ndare27",
-   "nakopol91",
-   "warpis",
-   "harian",
-   "bielly",
-   "kabesu",
-   "hassam",
-   "mo1245",
-   "njjord7",
-   "jmbd",
-   "lanora",
-   "buzz2buzz",
-   "tosaze",
-   "sleepy512pete",
-   "zonice",
-   "hamuou",
-   "haryanto",
-   "2811",
-   "pauk55",
-   "mambadaddy9",
-   "frostyicelad",
-   "illus",
-   "grotolo",
-   "grumpypants",
-   "xastur",
-   "juggynaut14",
-   "nuggie_d",
-   "griffsama"
-  ]
- }
+ "decklists": {}
 }
