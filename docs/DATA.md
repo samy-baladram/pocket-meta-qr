@@ -28,8 +28,11 @@ The round links come from the pairings page itself. The last link is the top cut
 - Skip a tournament (decision Nov 8, 2026: these are not Standard events, keep the rule as it is) when its details text has "special rules", "suspended card(s)" (same rule as
   `tcg-deck-analyzer`), or when it has fewer than 8 players.
 - Keep multi-deck tournaments, with the flag `multi_deck: true` (see 4.4).
-- Decklists: the top 16 entries by placement of each tournament (`DECKLIST_TOP = 16`). The other
-  entries keep their archetype(s) and results, but no cards.
+- Decklists (decision Nov 9, 2026): the best places of each tournament, **top 25 % of the players, at least 8,
+  at most 32** (12-33 players: 8; 100: 25; 128 or more: 32). Before Nov 9 it was a fixed top 16; those lists
+  stay, and the extra places were fetched once. The other entries keep their archetype(s) and results, but no cards.
+  Compared on the 34 C1 events: +46 % requests for about 2x the decks with 20 usable finishes (a fixed top 32
+  needs +93 % for a little more).
 - Current set: the newest set (not a promo set) with a release date of today or earlier. Each run reads
   the set list, so a new set starts a new window automatically. Each tournament gets the set that was
   current on its day.
@@ -135,7 +138,7 @@ The pairings do not say which deck a player used in a match. Thus:
 ## 6. Requests per run (estimate)
 
 About 3 new tournaments per day. Per tournament: details 1 + standings 1 + pairings about 8
-(Swiss rounds + top cut) + 16 decklists = about 26. About 80 requests per day, about 3 minutes.
+(Swiss rounds + top cut) + about 23 decklists = about 33. About 100 requests per day, about 4 minutes.
 
 Schedule (`.github/workflows/scrape.yml`): every 6 hours. A run with nothing new makes 2 requests (set
 list + tournament list). The backfill (about 40 tournaments, about 1,100 requests) needs about 3 runs

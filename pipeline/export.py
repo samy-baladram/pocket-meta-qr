@@ -4,7 +4,8 @@
 
 Decks : archetypes with share >= MIN_SHARE in the window (max MAX_DECKS), most players first.
 Rows  : per deck, its best finishes in single-deck tournaments that have a decklist (MAX_ROWS):
-        best place first, then the larger event, then the newer event.
+        best place relative to the event size first (place / players: 3rd of 547 before 1st of 12),
+        then the better place, then the newer event.
         Multi-deck tournaments are not used for the shown lists (same rule as the win rate, docs/DATA.md 4.4).
 """
 import argparse, json, os, sqlite3
@@ -12,7 +13,7 @@ from datetime import datetime, timezone
 
 MIN_SHARE = 0.5   # % of all decks in the window
 MAX_DECKS = 40
-MAX_ROWS = 10     # finishes read per deck (build.mjs keeps up to 5 distinct lists from them)
+MAX_ROWS = 20     # finishes read per deck (build.mjs keeps up to 10 distinct lists from them)
 
 
 def ordinal(n):
@@ -53,7 +54,7 @@ def main():
                 FROM entry_decks d JOIN entries e USING (tid, pid) JOIN tournaments t ON t.id = e.tid
                 WHERE d.archetype = ? AND t.multi_deck = 0 AND e.place IS NOT NULL AND d.tid IN ({q})
                   AND EXISTS (SELECT 1 FROM decklists x WHERE x.tid = e.tid AND x.pid = e.pid)
-                ORDER BY e.place, t.players DESC, t.date DESC LIMIT ?""", [arch, *tids, a.rows]):
+                ORDER BY CAST(e.place AS REAL) / t.players, e.place, t.date DESC LIMIT ?""", [arch, *tids, a.rows]):
             lists = []
             for idx, energy in db.execute("SELECT idx, energy FROM decklists WHERE tid = ? AND pid = ? ORDER BY idx", (tid, pid)):
                 cards = [list(r) for r in db.execute(

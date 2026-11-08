@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 2 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 3 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -9,6 +9,8 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - Changed definitions: `share` adds up to 100 %; `win` excludes mirror matches and multi-deck events.
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers: a deck without any decklist yet is not in `decks`.
+- Version 3: up to **10 lists** per deck (`nv` 1..10) from the deck's **20 best finishes** (`of` max 20);
+  finishes are ranked by place relative to the event size (5th of 547 before 2nd of 153).
 
 ## Files
 
@@ -56,7 +58,7 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 | `w`, `l`, `t` | int | match wins, losses, ties (no mirrors, no byes, no multi-deck events) |
 | `win` | number or null | win rate % = (w + 0.5·t) / (w + l + t); null when no matches |
 | `art` | [cardId] | the 1 or 2 named Pokémon (deck icon) |
-| `nv` | int | number of distinct lists (1..5); `v/<id>.json` exists when > 1 |
+| `nv` | int | number of distinct lists (1..10); `v/<id>.json` exists when > 1 |
 | + list fields | | the best list of the deck (see "list") |
 
 ### list (best list in `data.json`, other lists in `v/<id>.json`)
@@ -72,7 +74,7 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 | `sc` | string | record W-L-T, e.g. `11-1-2` |
 | `dt` | date | tournament day `YYYY-MM-DD` |
 | `nu` | int | finishes (of the best `of`) that used this list or a list 1 card away |
-| `of` | int | the deck's best finishes with a readable list (max 10) |
+| `of` | int | the deck's best finishes with a readable list (max 20) |
 
 ### v/&lt;deckId&gt;.json
 
@@ -86,6 +88,7 @@ The lists 2..`nv` of the deck, in order. Same fields as "list" (no `art`).
 
 - Window: tournaments of the current set (Standard; not events with "special rules" or "suspended cards";
   8 players or more).
-- Lists come from single-deck events only, best places first (top 16 of each event have decklists).
+- Lists come from single-deck events only. Best finish = smallest place / players (then place, then newer).
+  Decklists exist for the top 25 % of each event (8 to 32 players).
 - Lists that differ by 1 card or less count as the same list (`nu`).
 - Multi-deck events count for `count` and `share`, not for `w`/`l`/`t`/`win` or the shown lists.

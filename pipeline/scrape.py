@@ -22,7 +22,19 @@ DELAY = 2.0                # seconds between requests
 RETRY_WAIT = (10, 30)      # backoff on HTTP 429 / 5xx
 LIST_SIZE = 150            # rows read from the completed-tournaments list
 MIN_PLAYERS = 8
-DECKLIST_TOP = 16          # decklists fetched per tournament (best places first)
+# Decklists fetched per tournament (best places first): top 25 % of the players, at least 8, at most 32.
+DECKLIST_SHARE, DECKLIST_MIN, DECKLIST_MAX = 0.25, 8, 32
+DECKLIST_OLD = 16          # the fixed count used before Nov 9, 2026 (index entries without "dl")
+
+
+def decklist_count(players):
+    return max(DECKLIST_MIN, min(DECKLIST_MAX, round(players * DECKLIST_SHARE)))
+
+
+def decklist_pids(raw):
+    """Player ids whose decklist we keep: the best places with a list, decklist_count(players) of them."""
+    ranked = sorted((e for e in raw["entries"] if e["has_list"] and e["place"] is not None), key=lambda e: e["place"])
+    return [e["pid"] for e in ranked[:decklist_count(raw["players"])]]
 SKIP_PHRASES = ("special rules", "special rule", "suspended cards", "suspended card")
 RAW_VERSION = 1
 
@@ -312,6 +324,30 @@ def is_current(lists_value):
     return isinstance(lists_value, list) and all(isinstance(x, dict) for x in lists_value)
 
 
+def queue_more_places(data, index):
+    """When the decklist rule gives more places than an event got before, queue the extra places.
+    index["done"][tid]["dl"] = the count already queued for that event (missing = DECKLIST_OLD)."""
+    n = 0
+    for tid, info in index["done"].items():
+        if "players" in info and decklist_count(info["players"]) <= info.get("dl", DECKLIST_OLD):
+            continue  # no raw file read needed
+        raw = load(os.path.join(data, info["path"]), None)
+        if not raw:
+            continue
+        info["players"] = raw["players"]
+        want = decklist_count(raw["players"])
+        if want <= info.get("dl", DECKLIST_OLD):
+            info["dl"] = info.get("dl", DECKLIST_OLD)
+            continue
+        have = set(load(os.path.join(data, "decklists", f"{tid}.json"), {}))
+        q = index["decklists"].setdefault(tid, [])
+        extra = [p for p in decklist_pids(raw) if p not in have and p not in q]
+        q.extend(extra)
+        info["dl"] = want
+        n += len(extra)
+    return n
+
+
 def queue_old_format(data, index):
     """Add stored decklists in the old format (code strings, no energy) to the fetch queue again."""
     n = 0
@@ -443,15 +479,17 @@ def run(args):
                 print(f"  warning {it['id']}: {len(diff)} records differ from pairings, e.g. {diff[:3]}")
             path = os.path.join(data, "raw", raw["date"][:4], raw["date"][5:7], f"{raw['id']}.json")
             save(path, raw)
-            ranked = sorted((e for e in raw["entries"] if e["has_list"] and e["place"] is not None),
-                            key=lambda e: e["place"])[:DECKLIST_TOP]
-            index["done"][raw["id"]] = {"date": raw["date"], "path": os.path.relpath(path, data)}
-            index["decklists"][raw["id"]] = [e["pid"] for e in ranked]  # still to fetch
+            index["done"][raw["id"]] = {"date": raw["date"], "path": os.path.relpath(path, data),
+                                        "players": raw["players"], "dl": decklist_count(raw["players"])}
+            index["decklists"][raw["id"]] = decklist_pids(raw)  # still to fetch
             save(ipath, index, indent=1)
             stats["new"] += 1
             print(f"  ok {raw['id']} {raw['date'][:10]} {raw['players']}p {len(raw['rounds'])} rounds"
                   f"{' multi-deck' if raw['multi_deck'] else ''}: {raw['name']}")
         # Decklists: oldest tournaments first, best places first. Old-format lists (no energy) are fetched again.
+        n_more = queue_more_places(data, index)
+        if n_more:
+            print(f"{n_more} more decklists queued (decklist rule: top {DECKLIST_SHARE:.0%} of players, {DECKLIST_MIN}..{DECKLIST_MAX})")
         n_old = queue_old_format(data, index)
         if n_old:
             print(f"{n_old} stored decklists have the old format (no energy); fetching them again")

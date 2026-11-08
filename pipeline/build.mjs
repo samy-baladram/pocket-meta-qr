@@ -13,7 +13,7 @@ import { deckCodeToSVG } from "ptcgp-deckcode/qr";
 import { findCard, attackers } from "./common.mjs";
 const require = createRequire(import.meta.url);
 
-const MAX_VARIATIONS = 5;   // lists kept per deck (5 = the desktop columns)
+const MAX_VARIATIONS = 10;  // lists kept per deck (the page shows them as a carousel with 1 dot per list)
 const NEAR = 1;             // lists that differ by this many cards or fewer count as the same list
 const PD = new Map(require("pokemon-tcg-pocket-cards/data/v5/cards.min.json").map((c) => [c.id, c]));
 const pdId = (set, num) => `${set.toLowerCase().replace(/^p-/, "p")}-${String(num).padStart(3, "0")}`;
