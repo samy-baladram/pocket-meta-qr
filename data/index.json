@@ -209,6 +209,12 @@
    "path": "raw/2026/10/6adec92991617679e84a1147.json",
    "players": 23,
    "dl": 8
+  },
+  "pmpt50": {
+   "date": "2026-11-07T17:00:00Z",
+   "path": "raw/2026/11/pmpt50.json",
+   "players": 476,
+   "dl": 32
   }
  },
  "skipped": {
