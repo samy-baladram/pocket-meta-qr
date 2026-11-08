@@ -17,7 +17,7 @@ Base URL: `https://play.limitlesstcg.com`. All pages are plain HTML (no JavaScri
 | Standings | `/tournament/<tid>/standings` | `table.striped` rows: `data-placing` (missing for dropped players), player ID (`/player/<pid>` link), name, points, record `W - L - T`, `drop`, archetype links `/metagame/<archetype>` (1, or 2+ in multi-deck events), decklist link |
 | Pairings, Swiss | `/tournament/<tid>/pairings?round=N` | `tr[data-match]`: `data-match`, `data-winner` (player ID; `0` = tie; `-1` = no winner), both player IDs, game scores; special rows `bye`, `missed round` |
 | Pairings, top cut | the last round link (name "Top Cut", "Time to Win", ...) | `div.bracket-match`: `data-match`, `data-slot` (`T32-1` ... `T2-1`), `.live-bracket-player[data-id]`, class `winner`, game score per player |
-| Decklist | `/tournament/<tid>/player/<pid>/decklist` | 1 `my.limitlesstcg.com/builder/?i=<code>` link per deck (multi-deck pages have several); code format in `common.mjs` `parseBuilderParam()` |
+| Decklist | `/tournament/<tid>/player/<pid>/decklist` | 1 `div.pocket-dl` per deck (multi-deck pages have several), each with the `my.limitlesstcg.com/builder/?i=<code>` link (20 cards, no energy; format in `common.mjs` `parseBuilderParam()`) and, only in some events, `div.decklist-pocket-energy` (img `alt` = energy type). No energy block = energy unknown |
 
 The round links come from the pairings page itself. The last link is the top cut when the page has
 `div.bracket-match` and no `tr[data-match]`.
@@ -25,7 +25,7 @@ The round links come from the pairings page itself. The last link is the top cut
 ## 2. Scope
 
 - Game Pokémon TCG Pocket, format Standard (`format=STANDARD` in the list URL).
-- Skip a tournament when its details text has "special rules", "suspended card(s)" (same rule as
+- Skip a tournament (decision Nov 8, 2026: these are not Standard events, keep the rule as it is) when its details text has "special rules", "suspended card(s)" (same rule as
   `tcg-deck-analyzer`), or when it has fewer than 8 players.
 - Keep multi-deck tournaments, with the flag `multi_deck: true` (see 4.4).
 - Decklists: the top 16 entries by placement of each tournament (`DECKLIST_TOP = 16`). The other
@@ -41,7 +41,8 @@ The round links come from the pairings page itself. The last link is the top cut
 ```text
 data/raw/YYYY/MM/<tid>.json     # 1 file per tournament. Written once, when the tournament is complete.
                                 # Source of truth. Never edited by hand.
-data/decklists/<tid>.json       # {pid: [code, code?]} raw builder codes. Cached forever.
+data/decklists/<tid>.json       # {pid: [{"i": code, "e": ["lightning"] | null}, ...]} 1 object per deck.
+                                # Cached forever. Old format (code strings, no energy) is fetched again.
 data/index.json                 # tids done, tids skipped (with reason), decklists still to fetch
 data/sets.json                  # set list from the last run + the current set code
 data/meta.db                    # SQLite, BUILT from raw/ + decklists/ in each run. Not edited.
@@ -111,7 +112,11 @@ The pairings do not say which deck a player used in a match. Thus:
 - Detection: details text "(multi-deck)", or more than 1 archetype link in a standings row, or more
   than 1 builder code on a decklist page.
 
-### 4.5 Windows
+### 4.5 Energy
+- From the decklist page when the event shows it (`e`). Not every event shows it.
+- When `e` is null, the page build guesses it from the attack costs (current `build.mjs` rule).
+
+### 4.6 Windows
 - Set: tournaments with `set` = the current set code (for example `C1`), see section 2.
 - Last 7 days and last 3 days (for trends).
 - A deck is shown when its share in the set window is 0.5 % or more (max 40), as today.

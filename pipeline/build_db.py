@@ -26,7 +26,10 @@ CREATE TABLE entry_decks (tid TEXT, pid TEXT, idx INTEGER, archetype TEXT, PRIMA
 CREATE TABLE matches (
   tid TEXT, round INTEGER, kind TEXT, mid TEXT, slot TEXT, a TEXT, b TEXT, winner TEXT,
   ga INTEGER, gb INTEGER, special TEXT, PRIMARY KEY (tid, mid));
-CREATE TABLE decklists (tid TEXT, pid TEXT, idx INTEGER, code TEXT, cards INTEGER, PRIMARY KEY (tid, pid, idx));
+CREATE TABLE decklists (
+  tid TEXT, pid TEXT, idx INTEGER, code TEXT, cards INTEGER,
+  energy TEXT,  -- comma list as shown by Limitless ("lightning,darkness"); NULL = the page showed no energy
+  PRIMARY KEY (tid, pid, idx));
 CREATE TABLE decklist_cards (tid TEXT, pid TEXT, idx INTEGER, count INTEGER, set_code TEXT, num INTEGER);
 CREATE TABLE archetype_stats (
   window TEXT, archetype TEXT, players INTEGER, share REAL, tournaments INTEGER, top_cut INTEGER,
@@ -105,14 +108,17 @@ def load_raw(db, data):
                     m["ga"], m["gb"], m["special"]))
     for f in sorted(glob.glob(os.path.join(data, "decklists", "*.json"))):
         tid = os.path.basename(f)[:-5]
-        for pid, codes in json.load(open(f, encoding="utf8")).items():
-            for i, code in enumerate(codes):
+        for pid, decks in json.load(open(f, encoding="utf8")).items():
+            for i, d in enumerate(decks):
+                # Current format {"i": code, "e": [..] or null}; old format: the code string only (no energy).
+                code, energy = (d["i"], d.get("e")) if isinstance(d, dict) else (d, None)
                 try:
                     cards = parse_builder(code)
                 except (ValueError, IndexError):
                     print(f"  warning: bad builder code {tid}/{pid}: {code[:40]}")
                     continue
-                db.execute("INSERT INTO decklists VALUES (?,?,?,?,?)", (tid, pid, i, code, sum(c[0] for c in cards)))
+                db.execute("INSERT INTO decklists VALUES (?,?,?,?,?,?)", (tid, pid, i, code, sum(c[0] for c in cards),
+                                                                    ",".join(energy) if energy else None))
                 db.executemany("INSERT INTO decklist_cards VALUES (?,?,?,?,?,?)",
                                [(tid, pid, i, c, s, n) for c, s, n in cards])
     return len(files)
@@ -203,8 +209,8 @@ def report(db, cur, windows, top):
     print(f"window sizes: " + ", ".join(f"{w} {len(v)}" for w, v in windows.items()))
     bad = db.execute("SELECT id, record_diffs, players FROM tournaments WHERE record_diffs > 0 ORDER BY record_diffs DESC LIMIT 5").fetchall()
     print(f"record check: {t[3] or 0} tournaments with differences" + (f", worst: {bad}" if bad else ""))
-    dl = one("SELECT COUNT(*), SUM(cards = 20) FROM decklists")
-    print(f"decklists: {dl[0]} lists, {dl[1] or 0} with 20 cards")
+    dl = one("SELECT COUNT(*), SUM(cards = 20), SUM(energy IS NOT NULL) FROM decklists")
+    print(f"decklists: {dl[0]} lists, {dl[1] or 0} with 20 cards, {dl[2] or 0} with energy")
     s = one("SELECT ROUND(SUM(share), 2) FROM archetype_stats WHERE window = 'set'")
     print(f"share sum (set window): {s[0]} %")
     print(f"\ntop {top} archetypes, set window:")

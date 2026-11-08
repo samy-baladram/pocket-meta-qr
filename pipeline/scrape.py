@@ -5,10 +5,11 @@
 Each run first reads the set list (pocket.limitlesstcg.com/cards). The current set = the newest set with a
 release date of today or earlier. --since defaults to its release date. data/sets.json keeps the list.
 Per new tournament: details, standings, every pairings round (Swiss + top cut) -> data/raw/YYYY/MM/<tid>.json.
-Then decklists of the top entries -> data/decklists/<tid>.json (raw builder codes, kept forever).
+Then decklists of the top entries -> data/decklists/<tid>.json ({pid: [{"i": builder code, "e": energy or null}]},
+kept forever; lists stored in the old format without energy are fetched again).
 The run stops at --max-requests; the next run continues. It exits with code 1 when a page does not parse.
 """
-import argparse, json, os, re, sys, time
+import argparse, glob, json, os, re, sys, time
 from datetime import datetime, timezone
 
 import requests
@@ -278,14 +279,50 @@ def parse_bracket(html):
     return out
 
 
+BUILDER = re.compile(r"builder/\?i=")
+
+
+def _code(a):
+    return re.search(r"[?&]i=([^&#]+)", a["href"]).group(1)
+
+
 def parse_decklist(html):
-    """Decklist page -> list of builder codes (the i= value), 1 per deck."""
-    codes = []
-    for a in soup(html).find_all("a", href=re.compile(r"builder/\?i=")):
-        c = re.search(r"[?&]i=([^&#]+)", a["href"]).group(1)
-        if c not in codes:
-            codes.append(c)
-    return codes
+    """Decklist page -> [{"i": builder code, "e": energy list or None}], 1 per deck.
+    Each deck is a div.pocket-dl with its builder link and, only in some events, a
+    div.decklist-pocket-energy block (img alt = "Lightning", ...). "e": None = the page shows no energy."""
+    s = soup(html)
+    out, seen = [], set()
+    for block in s.select("div.pocket-dl"):
+        a = block.find("a", href=BUILDER)
+        if not a or _code(a) in seen:
+            continue
+        en = block.select_one(".decklist-pocket-energy")
+        energy = [img.get("alt", "").strip().lower() for img in en.find_all("img")] if en else None
+        seen.add(_code(a))
+        out.append({"i": _code(a), "e": energy})
+    for a in s.find_all("a", href=BUILDER):  # fallback: builder links outside a div.pocket-dl
+        if _code(a) not in seen:
+            seen.add(_code(a))
+            out.append({"i": _code(a), "e": None})
+    return out
+
+
+def is_current(lists_value):
+    """True when a stored decklist value has the current format (objects with energy), not old code strings."""
+    return isinstance(lists_value, list) and all(isinstance(x, dict) for x in lists_value)
+
+
+def queue_old_format(data, index):
+    """Add stored decklists in the old format (code strings, no energy) to the fetch queue again."""
+    n = 0
+    for dpath in sorted(glob.glob(os.path.join(data, "decklists", "*.json"))):
+        tid = os.path.basename(dpath)[:-5]
+        old = [pid for pid, v in load(dpath, {}).items() if not is_current(v)]
+        if old:
+            q = index["decklists"].setdefault(tid, [])
+            q[:0] = [p for p in old if p not in q]
+            n += len(old)
+    return n
 
 
 # ---------------------------------------------------------------- tournament assembly
@@ -373,7 +410,7 @@ def run(args):
     ipath = os.path.join(data, "index.json")
     index = load(ipath, {"done": {}, "skipped": {}, "decklists": {}})
     f = Fetcher(args.max_requests)
-    stats = {"new": 0, "skipped": 0, "decklists": 0, "warnings": 0}
+    stats = {"new": 0, "skipped": 0, "decklists": 0, "decks": 0, "with_energy": 0, "warnings": 0}
     try:
         sets = parse_sets(f.get(SETS_URL))
         cur = current_set(sets, now()[:10])
@@ -414,17 +451,22 @@ def run(args):
             stats["new"] += 1
             print(f"  ok {raw['id']} {raw['date'][:10]} {raw['players']}p {len(raw['rounds'])} rounds"
                   f"{' multi-deck' if raw['multi_deck'] else ''}: {raw['name']}")
-        # Decklists: oldest tournaments first, best places first.
+        # Decklists: oldest tournaments first, best places first. Old-format lists (no energy) are fetched again.
+        n_old = queue_old_format(data, index)
+        if n_old:
+            print(f"{n_old} stored decklists have the old format (no energy); fetching them again")
         for tid in sorted(index["decklists"], key=lambda t: index["done"].get(t, {}).get("date", "")):
             dpath = os.path.join(data, "decklists", f"{tid}.json")
             lists = load(dpath, {})
             for pid in list(index["decklists"][tid]):
-                if pid not in lists:
-                    codes = parse_decklist(f.get(f"/tournament/{tid}/player/{pid}/decklist"))
-                    if not codes:
+                if not is_current(lists.get(pid)):
+                    decks = parse_decklist(f.get(f"/tournament/{tid}/player/{pid}/decklist"))
+                    if not decks:
                         print(f"  warning: no builder code for {tid}/{pid}")
-                    lists[pid] = codes
+                    lists[pid] = decks
                     stats["decklists"] += 1
+                    stats["with_energy"] += sum(1 for d in decks if d["e"])
+                    stats["decks"] += len(decks)
                     save(dpath, lists, indent=0)
                 index["decklists"][tid].remove(pid)
             del index["decklists"][tid]
@@ -435,7 +477,8 @@ def run(args):
         save(ipath, index, indent=1)
         left = sum(len(v) for v in index["decklists"].values())
         print(f"requests: {f.count}, new tournaments: {stats['new']}, skipped: {stats['skipped']}, "
-              f"decklists: {stats['decklists']} (waiting: {left}), record warnings: {stats['warnings']}")
+              f"decklists: {stats['decklists']} pages / {stats['decks']} decks, {stats['with_energy']} with energy "
+              f"(waiting: {left}), record warnings: {stats['warnings']}")
 
 
 def main():
