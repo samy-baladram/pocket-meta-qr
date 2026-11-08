@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 *.tmp
 node_modules/
+data/meta.db
+data/meta.db.tmp
