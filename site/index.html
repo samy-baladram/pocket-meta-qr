@@ -1,0 +1,1324 @@
+<!-- ui: artifact version 1794116428-0069 -->
+<title>Pocket Meta QR</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
+<style>
+/* Pocket Meta QR. One stylesheet, built on tokens: change a token, not a rule.
+   Layout: header (ribbon, stat tiles, tip, search), top-3 podium, then one accordion list of decks.
+   A deck opens into a full-width strip of list cards; only the open deck loads its images. */
+
+/* ===== Tokens ===== */
+:root {
+  /* Color (light) */
+  --bg: #f0f3f6;           /* page: one step darker than the cards */
+  --surface: #fafbfc;      /* raised cards, rows, QR box, chips */
+  --tile: #ebeff2;         /* flat info boxes: stat tiles, Energy/Score/Event, tip, search */
+  --hover: #f3f6f7;
+  --line: #e2e8f0;
+  --line-strong: #cbd4e0;
+  --ink: #3a4250;
+  --muted: #5a697f;        /* the game's steel blue-grey, a little deeper for small text */
+  --accent: #12a7c2;       /* interactive / current / selected (the game's cyan) */
+  --mark: #1a8cff; --mark-ring: var(--surface); /* "not in list 1": a bright blue corner tag; its diagonal line has the list card's background color (light), black (dark) */
+  --pill-bg: #627189; --pill-ink: #ffffff;  /* place pill ("1st of 110") */
+  --row-band: 0.8;         /* strength of the energy band on deck rows */
+  --chev: #ffffff; --chev-glow: rgba(0, 0, 0, 0.45); --chev-halo: rgba(0, 0, 0, 0.25);  /* carousel arrows */
+  /* Header ribbon (Community Decks style) */
+  --band-top: #2a98f9; --band-bot: #0cd3fc; --rib-a: #f5fafd; --rib-b: #e3edf4; --rib-ink: #5d6b80; --rib-logo: #2a92f2;
+  --rib-shadow: 0 5px 10px rgba(40, 90, 150, 0.22), 0 1px 2px rgba(40, 90, 150, 0.18), inset 0 1px 0 #ffffff;
+  /* Depth: one light from the top-left. Raised = cards and things you tap; flat = info. Whole pixels only. */
+  --raised: 0 0 0 1px rgba(45, 95, 175, 0.08), -1px -1px 2px rgba(45, 95, 175, 0.06), 0 0 4px rgba(45, 95, 175, 0.10),
+    1px 2px 2px rgba(45, 95, 175, 0.09), 2px 3px 6px rgba(45, 95, 175, 0.09);
+  --raised-sm: 0 0 0 1px rgba(45, 95, 175, 0.08), 0 0 4px rgba(45, 95, 175, 0.10), 1px 2px 2px rgba(45, 95, 175, 0.09);
+  --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.6), inset -1px -1px 1px rgba(45, 95, 175, 0.10);
+  /* Radius: card > box > tile */
+  --r-card: 12px; --r-box: 10px; --r-tile: 8px;
+  /* Type: five small steps that land on whole pixels (10 / 12 / 13 / 15 / 17px at the default 16px), plus display sizes in the header */
+  --fs-xs: 0.625rem; --fs-s: 0.75rem; --fs-m: 0.8125rem; --fs-l: 0.9375rem; --fs-xl: 1.0625rem;
+  /* Spacing: a 4px grid */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+  --font-display: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  /* Motion: fast for small UI, slow for the cards and badges */
+  --t-fast: 0.2s; --t-slow: 0.45s;
+}
+/* Dark color and depth (system setting, unless the viewer picked light; or the dark-mode button) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #141922; --surface: #1c2230; --tile: #10141b; --hover: #212836; --line: #262d39; --line-strong: #323b4a;
+    --ink: #e8ecf2; --muted: #95a0b2; --accent: #6aa8ff; --mark: #1f7fff; --mark-ring: #0b0e13;
+    --pill-bg: #46526a; --pill-ink: #eef1f6; --row-band: 0.22;
+    --chev: #0f1218; --chev-glow: rgba(255, 255, 255, 0.5); --chev-halo: rgba(255, 255, 255, 0.3);
+    --band-top: #163a5f; --band-bot: #14506b; --rib-a: #222a37; --rib-b: #1b222d; --rib-ink: #e8ecf2; --rib-logo: #6aa8ff;
+    --rib-shadow: 0 5px 10px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    --raised: -1px -1px 2px rgba(0, 0, 0, 0.25), 0 0 4px rgba(0, 0, 0, 0.38), 1px 2px 2px rgba(0, 0, 0, 0.4), 2px 3px 6px rgba(0, 0, 0, 0.28);
+    --raised-sm: 0 0 4px rgba(0, 0, 0, 0.38), 1px 2px 2px rgba(0, 0, 0, 0.4);
+    --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.05), inset -1px -1px 1px rgba(0, 0, 0, 0.30);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #141922; --surface: #1c2230; --tile: #10141b; --hover: #212836; --line: #262d39; --line-strong: #323b4a;
+  --ink: #e8ecf2; --muted: #95a0b2; --accent: #6aa8ff; --mark: #1f7fff; --mark-ring: #0b0e13;
+  --pill-bg: #46526a; --pill-ink: #eef1f6; --row-band: 0.22;
+  --chev: #0f1218; --chev-glow: rgba(255, 255, 255, 0.5); --chev-halo: rgba(255, 255, 255, 0.3);
+  --band-top: #163a5f; --band-bot: #14506b; --rib-a: #222a37; --rib-b: #1b222d; --rib-ink: #e8ecf2; --rib-logo: #6aa8ff;
+  --rib-shadow: 0 5px 10px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --raised: -1px -1px 2px rgba(0, 0, 0, 0.25), 0 0 4px rgba(0, 0, 0, 0.38), 1px 2px 2px rgba(0, 0, 0, 0.4), 2px 3px 6px rgba(0, 0, 0, 0.28);
+  --raised-sm: 0 0 4px rgba(0, 0, 0, 0.38), 1px 2px 2px rgba(0, 0, 0, 0.4);
+  --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.05), inset -1px -1px 1px rgba(0, 0, 0, 0.30);
+}
+
+/* ===== Page ===== */
+* { box-sizing: border-box; }
+html, body { overflow-x: clip; overflow-anchor: none; } /* no browser scroll anchoring: the page places the open and closed deck itself (Safari has none anyway) */ /* the tilted ribbon and the list strip are wider than the content */
+body {
+  margin: 0; position: relative; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 40px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { position: relative; z-index: 1; max-width: 960px; /* a ranked list reads best at this width; the open deck strip still runs full width */ margin: 0 auto; display: flex; flex-direction: column; gap: var(--sp-4); }
+button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; } /* no grey flash on tap */
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.nw { white-space: nowrap; }
+.note { font-size: var(--fs-m); color: var(--muted); }
+.empty { padding: 40px 0; text-align: center; color: var(--muted); }
+footer { font-size: var(--fs-s); color: var(--muted); }
+footer a { color: var(--muted); }
+
+/* ===== Header: blue band, tilted light ribbon with a slanted title, section title, flat stat tiles ===== */
+.hdr { position: relative; display: block; padding: 0; --rot: -5deg; --slope: 8.75vw; } /* brand angle (same as the saved QR image); --slope = tan(rot) x 100vw */
+.hband { position: absolute; z-index: 0; left: calc(50% - 50vw); width: 100vw; top: -20px; height: 112px;
+  background: linear-gradient(180deg, var(--band-top), var(--band-bot));
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--slope)), 0 100%); } /* bottom edge follows the ribbon's tilt */
+.theme-btn { position: absolute; z-index: 3; top: -6px; right: 0; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer; background: var(--surface); color: var(--muted); box-shadow: var(--raised), var(--bevel); }
+.theme-btn:hover { color: var(--ink); }
+.theme-btn svg { width: 16px; height: 16px; display: block; stroke-width: 2; }
+.ribbon { position: relative; z-index: 2; margin: 30px calc(50% - 55vw) 0; width: 110vw; transform: rotate(var(--rot));
+  padding: 9px 0 10px calc(55vw - 50% + 6px); display: flex; align-items: center; gap: 10px;
+  background: linear-gradient(180deg, var(--rib-a), var(--rib-b)); box-shadow: var(--rib-shadow); }
+/* Logo: a QR glyph (no box) in the game's bright icon gradient (sampled from the in-game "Versus" icon), slanted 12deg like the title.
+   Three finder rings with large centers; round dots in the bottom-right, so it is not a copy of the game's square glyph. */
+.rlogo { width: 34px; height: 34px; flex: none; display: grid; place-items: center; --rl-a: #1fc1f6; --rl-b: #2aa2f2; }
+.rlogo svg { width: 34px; height: 34px; display: block; overflow: visible; }
+/* Title: upright Figtree 800, slanted by exactly the logo's angle (12deg, the logo's skewX(-12)), so both lean the same */
+.hdr h1 { margin: 0; color: var(--rib-ink); font-family: var(--font-display); font-style: normal; font-weight: 800;
+  font-size: 2.3rem; line-height: 1; letter-spacing: -0.01em; text-wrap: balance; transform: skewX(-12deg); }
+/* Section title row: "Meta Deck Rankings" + the filter button at its right end (the filter belongs to this list) */
+.hrow { position: relative; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); margin: 40px 2px 0; }
+.hsec { position: relative; z-index: 1; margin: 0; min-width: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: var(--ink); }
+/* Stat tiles: one line, never wrapping; "Updated" takes the rest of the width (cut with "..." only if too long) */
+.hdr .meta { position: relative; z-index: 1; display: flex; flex-wrap: nowrap; gap: var(--sp-2); margin: var(--sp-2) 0 0; color: var(--muted); }
+.mt { flex: none; min-width: 0; white-space: nowrap; background: var(--tile); border-radius: var(--r-tile); padding: var(--sp-1) var(--sp-2); }
+.mt.grow { flex: 1 1 0; }
+.mt > span, .mt > b { display: block; overflow: hidden; text-overflow: ellipsis; }
+.mt > span { font-size: var(--fs-xs); font-weight: 500; color: var(--muted); line-height: 1.3; }
+.mt > b { font-size: var(--fs-l); font-weight: 700; color: var(--ink); }
+/* First-visit tip */
+.hint { position: relative; z-index: 1; display: flex; align-items: flex-start; gap: var(--sp-2); margin: var(--sp-2) 0 0; padding: var(--sp-2) var(--sp-2) var(--sp-2) var(--sp-3);
+  border-radius: var(--r-box); background: var(--tile); color: var(--muted); font-size: var(--fs-s); line-height: 1.4; }
+.hint[hidden] { display: none; }
+.hint b { color: var(--ink); font-weight: 600; }
+.hint button { flex: none; margin-left: auto; border: 0; background: none; color: var(--muted); font-size: 1.05rem; line-height: 1; padding: 0 2px; cursor: pointer; }
+/* Search + energy filter */
+/* Filter button: next to the theme button, same raised round style; a blue dot shows that a search or filter is on */
+.filt-btn { position: relative; top: auto; right: auto; flex: none; margin-block: -4px; } /* no extra row height */
+.filt-btn[hidden] { display: none; }
+.filt-btn[aria-expanded="true"] { color: var(--accent); }
+.filt-btn .fdot { position: absolute; top: 1px; right: 1px; width: 8px; height: 8px; border-radius: 50%; background: var(--mark); box-shadow: 0 0 0 1.5px var(--surface); }
+.filt-btn .fdot[hidden] { display: none; }
+/* Dropdown: search + energy chips + count, under the buttons; closed by default */
+.filt { position: absolute; z-index: 5; top: calc(100% + 6px); right: 0; width: min(340px, 100%); display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2);
+  padding: var(--sp-3); border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), 0 8px 24px rgba(20, 40, 70, 0.2); }
+.filt[hidden] { display: none; }
+.filt .fsearch { flex-basis: 100%; }
+.fsearch { flex: 1 1 200px; min-width: 0; position: relative; display: flex; align-items: center; }
+.fsearch svg { position: absolute; left: 10px; width: 16px; height: 16px; color: var(--muted); pointer-events: none; stroke-width: 2; }
+/* 16px text: smaller text makes iOS zoom the page when the field gets focus */
+.fsearch input { width: 100%; height: 36px; padding: 0 10px 0 32px; border: 0; border-radius: var(--r-box); background: var(--tile); color: var(--ink);
+  font: inherit; font-size: 1rem; outline: none; }
+.fsearch input::placeholder { color: var(--muted); }
+.fsearch input:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+.fen { display: flex; gap: 4px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 2px; }
+.fen::-webkit-scrollbar { display: none; }
+.ech { flex: none; width: 36px; height: 36px; /* same height as the search box */ padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer; background: var(--tile); }
+.ech img { width: 22px; height: 22px; display: block; opacity: 0.45; filter: grayscale(0.6); transition: opacity var(--t-fast), filter var(--t-fast); }
+.ech[aria-pressed="true"] { background: var(--surface); box-shadow: var(--raised-sm), var(--bevel); } /* chosen: raised, full color */
+.ech[aria-pressed="true"] img { opacity: 1; filter: none; }
+.ech:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.fcount { font-size: var(--fs-s); color: var(--muted); white-space: nowrap; }
+.fcount, .fcount:empty { display: none; } /* the count shows once, in the bar above the list */
+.fnone { margin: 0; text-align: center; color: var(--muted); font-size: var(--fs-m); } /* "Showing N of M decks · Clear" while a filter is on */
+.fnone[hidden] { display: none; }
+.fnone button { border: 0; background: none; color: var(--accent); font-weight: 600; cursor: pointer; padding: 4px; }
+
+/* ===== Deck rows: each deck is a raised card with an energy-tinted band behind the rank and card icons ===== */
+.list { display: flex; flex-direction: column; gap: var(--sp-3); }
+.list > .empty { background: var(--surface); border-radius: var(--r-card); box-shadow: var(--raised); }
+.acc { position: relative; background: var(--surface); border-radius: var(--r-card); box-shadow: var(--raised); }
+.acc:has(> .arow[aria-expanded="true"]) { background: none; box-shadow: none; } /* open: the head is its own card */
+.arow {
+  position: relative; width: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 12px;
+  min-height: 62px; padding: 10px var(--sp-3) 10px var(--sp-4); border: 0; border-radius: var(--r-card); background: var(--surface); cursor: pointer; text-align: left;
+  --bw: 118px; /* where the name starts: 16px padding + 90px icons + 12px gap */
+}
+.arow > * { position: relative; }
+/* Energy band: only behind the rank and icons, with a slanted soft fade, so no line crosses the text */
+.arow::before { content: ""; position: absolute; inset: 0 auto 0 0; border-radius: inherit; width: calc(var(--bw, 126px) + 40px); pointer-events: none; opacity: var(--row-band);
+  background: linear-gradient(112deg, var(--eb1, #c9d3df) 0px, var(--eb2, var(--eb1, #c9d3df)) calc(var(--bw, 126px) * 0.42), transparent calc(var(--bw, 126px) * 0.9)); }
+/* Bevel overlay: above the row background, below the card icons and text */
+.arow::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1; box-shadow: var(--bevel); }
+@media (hover: hover) { .arow:hover { background: var(--hover); } } /* with a mouse only: a tap never leaves it stuck */
+.arow[aria-expanded="true"] { z-index: 3; background: var(--surface); box-shadow: var(--raised); } /* not sticky: on phones the open deck scrolls to the top instead */
+.arow > .icons, .arow > .atext { z-index: 2; }
+
+/* Rank badge (game style): white disc on the top-left corner; shrinks to 75% when the deck opens */
+.rk { position: absolute !important; left: -5px; top: -7px; z-index: 3; width: 22px; height: 22px; border-radius: 50%; pointer-events: none;
+  display: grid; place-items: center; background: #ffffff; color: #66758a; box-shadow: 0 2px 3px rgba(30, 50, 80, 0.3);
+  font-family: var(--font-display); font-weight: 700; font-size: var(--fs-s); line-height: 1; font-variant-numeric: tabular-nums;
+  transition: transform var(--t-slow) ease, opacity var(--t-slow) ease; }
+.rk .mn { position: relative; z-index: 1; }
+.arow[aria-expanded="true"] .rk { transform: scale(0.75); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rk { background: #2a3242; color: #a3b0c4; } }
+:root[data-theme="dark"] .rk { background: #2a3242; color: #a3b0c4; }
+
+/* Card icons: the deck's two main cards, fanned. Closed: 52px wide, 5px lower, tilted 9deg, faded at the row's bottom.
+   Open: 60px wide (scale 60/52), tilted 13deg, sticking out over the top and left edges. */
+.icons { position: relative; flex: none; box-sizing: content-box; width: 90px; align-self: stretch; margin-block: -10px;
+  margin-inline: -16px; padding-inline: 16px; /* extra room for the tilted corners, cancelled by the negative margin */
+  clip-path: inset(-40px 0 0 -40px); } /* cut only at the row's bottom and right edges */
+.arow[aria-expanded="false"] .icons {
+  -webkit-mask-image: linear-gradient(180deg, #000 52px, transparent 66px); mask-image: linear-gradient(180deg, #000 52px, transparent 66px); }
+.icons img { position: absolute; top: 10px; width: 52px; height: auto; aspect-ratio: 367 / 512; display: block; border-radius: 2px;
+  box-shadow: 0 3px 4px rgba(40, 60, 95, 0.5); /* box-shadow: Safari clips filter shadows on rotated images */
+  transition: transform var(--t-slow) ease; }
+.icons img:first-child { left: 10px; top: 12px; z-index: 2; transform: translateX(-8px) rotate(-13deg) scale(1.1538); }
+.icons img:nth-child(2) { left: 50px; top: 7px; z-index: 1; transform: translate(-2px, -3px) rotate(13deg) scale(1.1538); }
+.arow[aria-expanded="false"] .icons img:first-child { transform: translateY(5px) rotate(-9deg); }
+.arow[aria-expanded="false"] .icons img:nth-child(2) { transform: translateY(5px) rotate(9deg); }
+
+.atext { display: flex; flex-direction: column; min-width: 0; padding-right: 36px; } /* the name ends before the chevron (20px + 12px + 4px) */
+.aname { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-xl); line-height: 1.25;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.asub { font-size: var(--fs-m); color: var(--muted); font-variant-numeric: tabular-nums; }
+.asub b { color: var(--ink); font-weight: 600; }
+.asub b.lown { opacity: 0.55; } /* win rate from fewer than 30 players */
+.asub .sm { font-size: var(--fs-s); }
+.asub .sm { display: none !important; } /* players and W-L-T: in the deck stats bar of the open deck, not in the row or tile */
+/* Deck stats pill: the archetype's numbers, on the bottom edge of the open deck's row or podium tile (like the "differs" tab on a list).
+   It can be wider than a podium tile; tile 1 aligns it left, tile 3 right, so it stays on screen. */
+/* Info, not action: a light outlined pill (card color, 1px line, muted labels, bold ink numbers), so it reads quieter than the solid steel "differs" tab */
+.dpill { position: absolute !important; z-index: 5; bottom: -10px; display: none; padding: 2px 9px; border-radius: 999px; white-space: nowrap; pointer-events: none;
+  background: var(--surface); color: var(--muted); border: 1px solid var(--line-strong); font-size: var(--fs-xs); font-weight: 500; line-height: 1.3; font-variant-numeric: tabular-nums;
+  box-shadow: 0 1px 2px rgba(20, 60, 110, 0.12); }
+.dpill b { color: var(--ink); font-weight: 700; }
+.dpill .lw { opacity: 0.6; } /* win rate from fewer than 30 players */
+.arow[aria-expanded="true"] > .dpill { display: block; }
+.acc:not(.pod) > .arow > .dpill { left: 50%; transform: translateX(-50%); } /* rows: centered on the bottom edge */
+.arow[aria-expanded="true"] .atext .asub { display: none; } /* open row: the numbers are in the pill */
+.pcard > .dpill { left: 50%; transform: translateX(-50%); }
+.podium > .pod:nth-child(1) > .pcard > .dpill { left: 8px; transform: none; }
+.podium > .pod:nth-child(3) > .pcard > .dpill { left: auto; right: 8px; transform: none; }
+.pcard .psub .ow { display: none; } /* closed podium tile: name + share */
+.pcard[aria-expanded="true"] .psub { display: none !important; } /* open: the numbers are in the pill */
+/* Open deck: a bigger name, moved up a little (the stats pill sits on the bottom edge) */
+.pod > .pcard[aria-expanded="true"] { padding-bottom: 18px; }
+
+@media (min-width: 761px) {
+  .atext { flex-direction: row; flex-wrap: wrap; align-items: baseline; column-gap: 14px; }
+  .aname { -webkit-line-clamp: 1; max-width: 100%; }
+}
+/* Row chevron: a small raised circle; only the arrow turns, so the light stays top-left */
+.arow > .chev { position: absolute; right: 12px; top: calc(50% - 10px); z-index: 1; width: 20px; height: 20px; border-radius: 50%;
+  display: grid; place-items: center; color: var(--muted); background: var(--surface); box-shadow: var(--raised-sm), var(--bevel); }
+.arow > .chev svg { width: 13px; height: 13px; display: block; stroke-width: 2; transition: transform var(--t-fast); }
+.arow[aria-expanded="true"] .chev { color: var(--ink); }
+.arow[aria-expanded="true"] .chev svg { transform: rotate(180deg); }
+
+/* ===== Open deck: the lists are big raised cards in a strip that runs to both screen edges ===== */
+.apanel { position: relative; display: flex; flex-direction: column; gap: 12px; padding: 12px 0 0; /* room for the stats pill above: 10px from the pill to the list card, 2px to the "differs" tab */
+  --edge: calc((100vw - min(960px, 100vw - 32px)) / 2); /* the page gutter beside the content */
+  margin-inline: calc(-1 * var(--edge)); }
+.apanel[hidden] { display: none; }
+.apanel:has(.dots):not(.fit) { padding-bottom: 18px; } /* room for the dots */
+.apanel.fit .chev-btn, .apanel.fit .dots { display: none; } /* all lists fit in view */
+/* Lists per view: phone 1, phone landscape 2, iPad portrait 3, iPad landscape 4, desktop 5 (3+ need a screen taller than a landscape phone) */
+.vars { --per: 1; --vgap: 14px; display: flex; gap: var(--vgap); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
+  padding: var(--sp-2) var(--edge) var(--sp-3); scroll-padding-inline: var(--edge); } /* 8px on top: room for the "differs" tab */
+.vars::-webkit-scrollbar { display: none; }
+@media (min-width: 600px) { .vars { --per: 2; } }
+@media (min-width: 740px) and (min-height: 501px) { .apanel .vars { --per: 3; } }
+/* (the content is at most 960px wide, so 3 lists per view stays the most; each list is about 310px) */
+.slide { position: relative; flex: 0 0 calc((100% - (var(--per) - 1) * var(--vgap)) / var(--per)); min-width: 0; scroll-snap-align: start;
+  display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-3); container-type: inline-size;
+  background: var(--surface); border-radius: var(--r-card); box-shadow: var(--raised), var(--bevel); }
+/* "N cards differ from list 1": a tab on the card's top edge, with a small folded card as its legend (same fold and colors as on the cards) */
+.dnote { position: absolute; top: -8px; right: 12px; /* centered on the card's top edge, 4px clear of the card grid */ z-index: 1; padding: 2px 8px 2px 6px; border-radius: 999px; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--pill-bg); color: var(--pill-ink); font-size: var(--fs-xs); font-weight: 700; line-height: 1.2; box-shadow: 0 1px 2px rgba(20, 60, 110, 0.25); }
+.dnote svg, .cdif svg { width: 8px; height: 11px; display: block; flex: none; } /* a tiny card with the same corner tag */
+/* The tab is a button: a tap opens the swap panel (In / Out). A small caret says it opens. */
+button.dnote { border: 0; cursor: pointer; font-family: inherit; }
+.dnote .dcar { width: 8px; height: 8px; margin-left: 1px; opacity: 0.8; transition: transform var(--t-fast); }
+.dnote[aria-expanded="true"] .dcar { transform: rotate(180deg); }
+/* Swap panel: over the top of the list card, closed by default (clean screenshots). Tap it, the tab or anywhere else to close. */
+.swap { position: absolute; z-index: 3; top: 12px; left: var(--sp-2); right: var(--sp-2); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px var(--sp-2);
+  align-items: start; padding: 10px var(--sp-3); border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), 0 6px 16px rgba(20, 40, 70, 0.18);
+  font-size: var(--fs-s); cursor: pointer; }
+.swap[hidden] { display: none; }
+.swap .sl { padding-top: 3px; font-size: var(--fs-xs); font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.swap .sl.in { color: var(--mark); }
+.swap .chips { display: flex; flex-wrap: wrap; gap: 4px 10px; min-width: 0; }
+.chip { display: inline-flex; align-items: center; gap: 5px; min-width: 0; color: var(--ink); font-weight: 600; line-height: 1.2; }
+.chip img { width: 18px; height: auto; aspect-ratio: 150 / 209; flex: none; border-radius: 2px; background: var(--line); }
+.chip .x { color: var(--muted); font-weight: 500; }
+.swap .out .chip { color: var(--muted); }
+
+/* The 20 cards: one shared shadow under the whole grid, so no shadow spills onto a neighbor */
+.cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; } /* no shadow under the cards (light and dark) */
+.cards img, .ph { width: 100%; aspect-ratio: 150 / 209; display: block; border-radius: 2px; background: var(--line); }
+.cards img { height: auto; cursor: zoom-in; }
+/* Not in list 1: a corner tag. A bright blue triangle on the card's top-right corner, with a ring-color line along its diagonal
+   and a soft shadow, so it separates from any card art (light: a dark line in the shadow's tone; dark: black). Drawn over the card (the art is not cut). */
+.cards .dwrap { position: relative; display: block; min-width: 0; }
+.cards .dwrap::after { content: ""; position: absolute; z-index: 1; top: 0; right: 0; width: 18%; aspect-ratio: 1; pointer-events: none; border-top-right-radius: 2px;
+  background: linear-gradient(225deg, var(--mark) calc(50% - 2px), var(--mark-ring) calc(50% - 2px) 50%, transparent 50%);
+}
+/* Dark: card images 15% dimmer, so they do not glare */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .icons img, :root:not([data-theme="light"]) .cards img { filter: brightness(0.85); } }
+:root[data-theme="dark"] .icons img, :root[data-theme="dark"] .cards img { filter: brightness(0.85); }
+
+/* List footer: Energy / Score / Event (flat tiles) on the left, the QR box (raised) on the right */
+.sfoot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--sp-2) var(--sp-3); align-items: stretch; }
+.sfoot > .info { grid-row: 1; grid-column: 1; }
+.sfoot > .qcol, .sfoot > .qr { grid-row: 1; grid-column: 2; }
+.sfoot > .us { display: none; } /* "Played in ..." pill: hidden for now */
+.info { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sp-2); align-content: center; font-variant-numeric: tabular-nums; }
+.tile { min-width: 0; padding: 6px var(--sp-2); border-radius: var(--r-tile); background: var(--tile); }
+.tile.t-en { padding-inline: 6px; }
+.t-ev { grid-column: 1 / -1; }
+.tile .tl { display: block; margin-bottom: 1px; font-size: var(--fs-xs); font-weight: 500; color: var(--muted); }
+.energy { display: flex; align-items: center; justify-content: center; gap: 3px; min-height: 19px; } /* centered in the tile; same height as the score line, so the icons sit on its middle */
+.energy img { width: 18px; height: 18px; display: block; } /* 30% smaller than 26px */
+/* Score and place pill always on one line; JS (fitScores) shrinks the font when the tile is too narrow */
+.sc { display: flex; flex-wrap: nowrap; align-items: center; gap: 2px 6px; white-space: nowrap; overflow: hidden; font-weight: 600; font-size: var(--fs-l); }
+.ev { font-weight: 500; font-size: var(--fs-s); line-height: 1.3; color: var(--muted); overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ev .dt { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.pill { display: inline-block; border-radius: 999px; padding: 1px 7px; font-weight: 600; line-height: 1.5; white-space: nowrap; }
+.pill.pl { background: var(--pill-bg); color: var(--pill-ink); font-size: 0.76em; }
+/* QR box: raised; a small expand badge on its corner says "tap to enlarge" */
+.qcol { display: flex; flex-direction: column; align-items: center; gap: 1px; align-self: start; margin-right: 3px; padding: 6px;
+  border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), var(--bevel); }
+.qr { position: relative; width: 102px; aspect-ratio: 1; padding: 0; border: 0; display: block; background: transparent; cursor: zoom-in; }
+.qr img { display: block; width: 100%; height: auto; }
+.qr.wait { background: var(--line); cursor: default; }
+.qr .none { display: block; padding-top: 34px; text-align: center; color: #5b6575; font-size: 0.75rem; }
+.qr .qx { position: absolute; right: -9px; bottom: -9px; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--surface); color: var(--muted); box-shadow: var(--raised), var(--bevel); }
+.qr .qx svg { width: 10px; height: 10px; display: block; stroke-width: 2; }
+.qr:hover .qx { color: var(--accent); }
+/* Dark: the filter shows the PNG as light dots; its background color turns into the dark card color (no box, no blending).
+   A long-press still saves a normal dark-on-light code that the game reads. */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .qr img { filter: invert(1) hue-rotate(180deg) saturate(1.25); } }
+:root[data-theme="dark"] .qr img { filter: invert(1) hue-rotate(180deg) saturate(1.25); }
+
+/* Narrow list columns: a compact info block and QR so both still fit side by side */
+@container (max-width: 300px) {
+  .sfoot { column-gap: 8px; }
+  .info { grid-template-columns: minmax(0, 1fr); gap: var(--sp-1); } /* labels hidden: icons, date and score explain themselves */
+  .tile { padding: var(--sp-1) 6px; }
+  .tile.t-en { padding-inline: 5px; }
+  .tile .tl { display: none; }
+  .ev { font-size: var(--fs-xs); -webkit-line-clamp: 3; }
+  .sc { font-size: var(--fs-s); }
+  .pill { padding: 0 6px; }
+  .energy { min-height: 20px; }
+  .energy img { width: 14px; height: 14px; }
+  .qr { width: 80px; }
+  .cards { gap: 3px; }
+}
+
+/* Carousel controls: big side arrows that fade out 2s after use (clean screenshots), dots under the strip */
+.vwrap { position: relative; }
+.chev-btn { position: absolute; z-index: 2; top: calc(var(--gh, 200px) / 2 + 20px); /* + strip (8px) and card (12px) padding */ transform: translateY(-50%); width: 32px; height: 84px;
+  padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; color: var(--chev); opacity: 0.6;
+  transition: opacity var(--t-slow) ease; }
+.chev-btn[hidden] { display: none; }
+.chev-btn.prev { left: max(0px, calc(var(--edge) / 2 - 16px)); }  /* in the middle of the page gutter */
+.chev-btn.next { right: max(0px, calc(var(--edge) / 2 - 16px)); }
+.chev-btn svg { width: 18px; height: 32px; display: block; stroke-width: 3; filter: drop-shadow(0 1px 1px var(--chev-glow)) drop-shadow(0 0 3px var(--chev-halo)); }
+.chev-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; border-radius: 8px; }
+.vwrap.quiet .chev-btn { opacity: 0; }
+@media (hover: hover) { .vwrap:hover .chev-btn { opacity: 0.6; } }
+.dots { position: absolute; left: 50%; bottom: 3px; transform: translateX(-50%); z-index: 2; display: flex; gap: 2px; padding: 0 6px; }
+.dot { position: relative; width: 16px; height: 16px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--line-strong); }
+.dot::after { content: ""; position: absolute; inset: -6px -3px; } /* larger invisible tap area */
+.dot[aria-current="true"]::before { background: var(--accent); }
+.dot:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 50%; }
+
+/* ===== Full-screen views: QR (with Save) and card zoom ===== */
+.qdlg { border: 0; padding: 0; background: none; max-width: none; max-height: none; width: 100%; height: 100%; }
+.qdlg::backdrop { background: rgba(8, 10, 14, 0.88); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+.qdlg[open] { display: grid; place-items: center; cursor: zoom-out; }
+.qbox { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--sp-3); padding: var(--sp-4); width: min(460px, 100%); }
+.qstage { position: relative; width: 100%; touch-action: pan-y; } /* horizontal swipes switch lists */
+.qstage img { width: 100%; max-height: 66vh; object-fit: contain; display: block; border-radius: 18px; background: #ffffff22; aspect-ratio: 1080 / 1600; }
+.qstage img[src] { aspect-ratio: auto; background: none; }
+/* Raised round controls, like the theme button */
+.qclose, .qnav { width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  background: var(--surface); color: var(--ink); box-shadow: var(--raised), var(--bevel), 0 4px 12px rgba(0, 0, 0, 0.3); }
+.qclose svg, .qnav svg { width: 18px; height: 18px; display: block; stroke-width: 2; }
+.qclose { position: absolute; z-index: 2; top: max(16px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); }
+.qnav { position: absolute; z-index: 1; top: 50%; transform: translateY(-50%); }
+.qnav[hidden] { display: none; }
+.qnav.prev { left: -10px; }
+.qnav.next { right: -10px; }
+.qdots { display: flex; gap: 2px; }
+.qdots:empty { display: none; }
+.qdots .dot::before { background: rgba(255, 255, 255, 0.35); }
+.qdots .dot[aria-current="true"]::before { background: var(--accent); }
+.qhint { margin: 0; color: #d5dbe5; font-size: var(--fs-m); line-height: 1.5; text-align: center; text-wrap: balance; }
+.qmsg { margin: 0; min-height: 1.2em; color: #ffffff; font-size: var(--fs-m); }
+.qmsg:empty { display: none; }
+/* Save: a raised surface pill, like the cards */
+.qsave { display: inline-flex; align-items: center; gap: var(--sp-2); padding: 10px 18px; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--surface); color: var(--ink); font-weight: 700; font-size: var(--fs-l); line-height: 1;
+  box-shadow: var(--raised), var(--bevel), 0 4px 12px rgba(0, 0, 0, 0.3); }
+.qsave svg { width: 18px; height: 18px; display: block; stroke-width: 2; color: var(--accent); }
+.qsave:active { transform: scale(0.97); }
+.qsave:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
+.cbox { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px; width: min(320px, 82vw); }
+.cbox img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: var(--r-box); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); }
+.cname { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 8px; color: #ffffff; font-size: var(--fs-l); text-align: center; }
+.cname b { font-weight: 700; }
+.cname span { color: #d5dbe5; font-size: var(--fs-m); }
+.cname .cout { flex-basis: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 10px; color: #d5dbe5; font-size: var(--fs-m); }
+.cname .cout .chip { color: #ffffff; }
+.cname .chip img { width: 18px; box-shadow: none; border-radius: 2px; } /* not the big zoom image style */
+.cname .cout .chip .x { color: #d5dbe5; }
+.cname .cdif { display: inline-flex; align-items: center; gap: 5px; padding: 1px 8px 1px 7px; border-radius: 999px; background: var(--pill-bg); color: var(--pill-ink); font-size: var(--fs-s); font-weight: 700; }
+
+/* ===== Top 3 podium: three tiles with medals. A tap grows the tile by 12px in width (--ps, set by JS)
+   and opens its lists under the podium (--pgap, set by JS). ===== */
+.podium { container-type: inline-size; /* the card icons size from the podium width */ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-3); margin-bottom: var(--sp-1); --smh: 0px; } /* + list gap = 16px: room for rank 4's badge */
+.acc.pod { display: contents; }
+.pod > .pcard { grid-row: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 1px; overflow: visible;
+  height: 168px; padding: 100px 6px 10px; border-radius: var(--r-card); box-shadow: var(--raised); text-align: center;
+  transition: transform var(--t-slow) ease, opacity var(--t-slow) ease; }
+.pod > .pcard[aria-expanded="true"] { position: relative; top: auto; z-index: 4; transform: scale(var(--ps, 1.1)); padding-top: 10px; }
+.pod > .pcard::before { inset: 0 0 auto 0; width: auto; height: 78px; border-radius: var(--r-card) var(--r-card) 0 0;
+  background: linear-gradient(160deg, var(--eb1, #c9d3df), var(--eb2, var(--eb1, #c9d3df)) 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 40%, transparent); mask-image: linear-gradient(180deg, #000 40%, transparent); }
+.podium:has(.pcard[aria-expanded="true"]) .pcard[aria-expanded="false"] { opacity: 0.25; } /* the other two fade while one is open */
+/* Card icons fill the tile: the icon group is 75% of the tile width (at least the 92px phone size). Everything below is in
+   units of --u (1px of the original 92px design), so the fan keeps its shape at any size. */
+.pod > .pcard { --tw: calc((100cqw - 2 * var(--sp-3)) / 3); --u: calc(max(92px, var(--tw) * 0.75) / 92);
+  --t0: 12px; --tx: 48px; /* cards' top offset; text area height: name + share + 10px (phone: 10 / 72px, for 3-line names) */
+  --art: max(70px, 52 * var(--u)); /* card art above the text: 52/86 of the card group, but never less than 70px (phones) */
+  --pt: calc(var(--t0) + var(--art)); height: calc(var(--pt) + var(--tx)); padding-top: var(--pt);
+  --fe: var(--art); } /* fade end (= where the text starts), in px from the top of the cards; the same open or closed (the deck stats are in the bar) */
+.picons { position: absolute; z-index: 2; left: 50%; top: var(--t0); width: calc(92 * var(--u)); height: calc(86 * var(--u)); transform: translateX(-50%);
+  clip-path: inset(-60px -60px calc(86 * var(--u) - var(--art) - var(--tx) + 4px) -60px); } /* cards cut 4px inside the tile's bottom edge (tile bottom = 52u + text area below the group's top) */
+/* The cards fade out (mask on each image) before the text, so the name is always legible. Same rule on every screen size. */
+/* Fade in px, tied to the text: solid until 24px above it, transparent where it starts (each image minus its own top offset --it) */
+.picons img { --it: calc(4 * var(--u));
+  -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--fe) - var(--it) - 24px), transparent calc(var(--fe) - var(--it)));
+  mask-image: linear-gradient(180deg, #000 calc(var(--fe) - var(--it) - 24px), transparent calc(var(--fe) - var(--it))); }
+.picons img:nth-child(2) { --it: calc(9 * var(--u)); }
+.picons img { position: absolute; top: calc(4 * var(--u)); width: calc(52 * var(--u)); height: auto; aspect-ratio: 367 / 512; border-radius: 2px; box-shadow: 0 3px 4px rgba(40, 60, 95, 0.45);
+  transition: transform var(--t-slow) ease; }
+.picons img:first-child { left: calc(2 * var(--u)); transform: rotate(-9deg); z-index: 2; }
+.picons img:nth-child(2) { left: calc(38 * var(--u)); top: calc(9 * var(--u)); transform: rotate(9deg); z-index: 1; }
+.pcard[aria-expanded="true"] .picons img:first-child { transform: translateX(-6px) rotate(-13deg) scale(1.1538); }
+.pcard[aria-expanded="true"] .picons img:nth-child(2) { transform: translate(2px, -3px) rotate(13deg) scale(1.1538); }
+.pname, .psub { position: relative; z-index: 2; }
+.pname { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-m); /* bigger now that the tile shows only the name */ line-height: 1.2; color: var(--ink);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pcard .psub { display: block; line-height: 1.3; }
+.pcard .psub .sm { display: block; font-size: 0.6rem; line-height: 1.3; }
+.pod > .apanel { grid-column: 1 / -1; grid-row: 2; margin-top: calc(var(--pgap, 24px) + 10px) !important; padding-top: 0; } /* + room for the stats pill (same 10px gap as the rows) */
+/* Medals (game style): outer disc shaded from the top-left, a recessed inner disc, a crown with a white outline */
+.medal { position: absolute; z-index: 3; left: 7px; top: -3px; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--m-out); box-shadow: 0 2px 3px rgba(30, 50, 80, 0.3); transition: transform var(--t-slow) ease, opacity var(--t-slow) ease; }
+.medal::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--m-in);
+  box-shadow: inset 1.5px 1.5px 2px rgba(0, 0, 0, 0.22), inset -1px -1px 1.5px rgba(255, 255, 255, 0.55); }
+.medal .mn { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; color: #ffffff; font-weight: 600; font-size: 1.1rem; line-height: 1; }
+.medal .crown { position: absolute; z-index: 2; left: 50%; top: -7px; width: 15px; height: 12px; transform: translateX(-50%); overflow: visible;
+  fill: var(--m-c); stroke: var(--m-rim); stroke-width: 1.8; stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1px rgba(30, 50, 80, 0.25)); }
+.medal .crown .cb { fill: none; stroke: var(--m-rim); stroke-width: 0.7; stroke-linecap: round; }
+.medal.m1 { --m-rim: #fff8e1; --m-c: #e8b52e; --m-out: linear-gradient(135deg, #fbe07a, #d39a1c); --m-in: linear-gradient(135deg, #f0c440, #f7d968); }
+.medal.m2 { --m-rim: #eef4fd; --m-c: #87a5d4; --m-out: linear-gradient(135deg, #c9dbf3, #6585ba); --m-in: linear-gradient(135deg, #8eaad6, #b3c9ea); }
+.medal.m3 { --m-rim: #fff1e6; --m-c: #dc8b52; --m-out: linear-gradient(135deg, #f7c79c, #c4703a); --m-in: linear-gradient(135deg, #e0915a, #efb084); }
+.pcard[aria-expanded="true"] .medal { transform: scale(0.75); }
+/* Dark: medals 30% darker; crown outline and number = the card color (#283145 at 70% = #1c2230) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .medal { filter: brightness(0.7); --m-rim: #283145; }
+  :root:not([data-theme="light"]) .medal .mn { color: #283145; } }
+:root[data-theme="dark"] .medal { filter: brightness(0.7); --m-rim: #283145; }
+:root[data-theme="dark"] .medal .mn { color: #283145; }
+
+/* ===== Phones ===== */
+@media (max-width: 760px) {
+  body { padding-block: 10px 28px; }
+  .wrap { gap: var(--sp-3); }
+  .hband { top: -10px; height: 98px; }
+  .ribbon { margin-top: 26px; padding-block: 8px 9px; }
+  .rlogo, .rlogo svg { width: 30px; height: 30px; }
+  .hdr h1 { font-size: 1.85rem; }
+  .hrow { margin-top: 30px; }
+  .hsec { font-size: 1.05rem; }
+
+  .mt > b { font-size: var(--fs-m); }
+  .fsearch { flex-basis: 100%; }
+  .arow { gap: 10px; padding: var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-4); --bw: 116px; min-height: 70px; }
+  .icons { margin-block: -9px; }
+  .aname { font-size: var(--fs-l); }
+  .asub, .asub .sm { font-size: var(--fs-s); }
+  .sep { display: none; }
+  .ev { font-size: var(--fs-s); }
+  .sc { font-size: var(--fs-m); }
+  .cards { gap: 3px; }
+  .qr { width: 93px; }
+  /* podium: tiles 20px shorter; the medal sits on the tile's corner, like the game */
+  .podium { margin-top: 10px; }
+  .pod > .pcard { --t0: 10px; --tx: 72px; } /* same layout as wider screens; a taller text area for 2-line names */
+  .medal { left: -6px; top: -9px; width: 28px; height: 28px; }
+  .medal::after { inset: 2.5px; }
+  .medal .mn { font-size: 1rem; }
+  .medal .crown { top: -6px; width: 13px; height: 11px; }
+  .pname { -webkit-line-clamp: 3; } /* narrow tiles: up to 3 lines, so long names are not cut */
+  .pcard .psub { font-size: var(--fs-xs); }
+  .pcard .psub .sm { font-size: 0.56rem; }
+  .pcard .psub .nw { display: block; }
+  .pcard .psub .sep { display: none; }
+}
+/* ===== Wider screens ===== */
+@media (min-width: 761px) {
+  .hdr { --rot: -2.6deg; --slope: 4.5vw; }  /* a smaller tilt, so the ribbon drops about as much as on a phone */
+  .hband { height: 118px; }
+  .hrow { margin-top: 44px; }
+  .pname { font-size: var(--fs-xl); }
+  .psub { font-size: var(--fs-s); }
+}
+@media (min-width: 1300px) { .hdr { --rot: -1.8deg; --slope: 3.1vw; } }
+/* ===== Large screens (1024px and up): bigger card icons, so they fill the rows and podium tiles.
+   Icons that reach past a row's bottom edge are cut there (clip-path + fade). The podium icons size from the tile width (see .picons). ===== */
+@media (min-width: 1024px) {
+  .arow { min-height: 76px; --bw: 140px; } /* 16px padding + 112px icons + 12px gap */
+  .icons { width: 112px; }
+  .icons img { width: 64px; }
+  .icons img:first-child { left: 12px; top: 13px; }
+  .icons img:nth-child(2) { left: 61px; top: 8px; }
+  .arow[aria-expanded="false"] .icons { -webkit-mask-image: linear-gradient(180deg, #000 64px, transparent 80px); mask-image: linear-gradient(180deg, #000 64px, transparent 80px); }
+  /* scale 1.5 from the top (12px): the tile bottom is at (210 - 12) / 1.5 = 132px in icon space; the box is 86px tall, so cut 46px below it */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icons img, .picons img, .rk, .medal, .pod > .pcard, .arow > .chev svg, .ech img, .chev-btn { transition: none; }
+}
+</style>
+
+<div class="wrap">
+  <header class="hdr">
+    <div class="hband" aria-hidden="true"></div>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to dark mode"></button>
+    <div class="ribbon"><span class="rlogo" aria-hidden="true"><svg viewBox="0 0 24 24" overflow="visible"><defs><linearGradient id="rlGrad" gradientUnits="userSpaceOnUse" x1="0" y1="2" x2="0" y2="22"><stop offset="0" style="stop-color:var(--rl-a)"/><stop offset="1" style="stop-color:var(--rl-b)"/></linearGradient></defs><g transform="skewX(-12) translate(2.5 0)"><g fill="none" stroke="url(#rlGrad)" stroke-width="2"><rect x="2.95" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="url(#rlGrad)"><rect x="4.9" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></g></svg></span><h1>Pocket Meta QR</h1></div>
+    <div class="hrow">
+    <h2 class="hsec">Meta Deck Rankings</h2>
+    <button class="theme-btn filt-btn" id="filtBtn" type="button" aria-label="Search and filter decks" title="Search and filter" aria-expanded="false" aria-controls="filt" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V18l-3.6 2v-7.6z"/></svg><span class="fdot" id="fdot" hidden></span></button>
+    <div class="filt" id="filt" hidden>
+      <label class="fsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <input id="fq" type="search" placeholder="Search a deck or card" autocomplete="off" enterkeyhint="search" aria-label="Search decks by deck or card name"></label>
+      <div class="fen" id="fen" role="group" aria-label="Filter by energy"></div>
+      <span class="fcount" id="fcount" aria-live="polite"></span>
+    </div>
+    </div>
+    <div class="meta" id="meta"><span class="mt"><span>Loading</span><b>&hellip;</b></span></div>
+    <p class="hint" id="hint" hidden><span><b>How to use:</b> tap a deck, tap its QR code, then save the image. In the game: My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image.</span><button type="button" id="hintX" aria-label="Hide this tip">&times;</button></p>
+  </header>
+
+  <dialog class="qdlg cdlg" id="cardDlg" aria-label="Card">
+    <div class="cbox">
+      <img id="cImg" alt="">
+      <p class="cname" id="cName"></p>
+      <p class="qhint" id="cHint"></p>
+    </div>
+  </dialog>
+  <p class="fnone" id="fnone" aria-live="polite" hidden><span id="fnoneTxt"></span> <button type="button" id="fclear">Clear</button></p>
+  <main class="list" id="list"><div class="empty">Loading decks&hellip;</div></main>
+
+  <dialog class="qdlg" id="qrDlg" aria-label="Deck QR code">
+    <button class="qclose" id="qrClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="qbox">
+      <div class="qstage" id="qrStage">
+        <img id="qrImg" alt="">
+        <button class="qnav prev" id="qrPrev" type="button" aria-label="Previous list" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="qnav next" id="qrNext" type="button" aria-label="Next list" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+      </div>
+      <div class="qdots" id="qrDots" role="group" aria-label="Lists"></div>
+      <button class="qsave" id="qrSave" type="button"></button>
+      <p class="qmsg" id="qrMsg" role="status"></p>
+    </div>
+  </dialog>
+
+  <footer>
+    Deck stats and lists: <a href="https://play.limitlesstcg.com/decks?game=pocket" target="_blank" rel="noopener">Limitless TCG</a>
+    (decks with 0.5% share or more; up to 5 distinct lists from each deck's 10 best finishes).
+    Card images: PocketDecks. QR format: ptcgp-deckcode. Refreshes every 24 hours.
+  </footer>
+</div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const pct = (n) => (Math.round(n * 10) / 10).toFixed(1) + "%";
+  const cap = (s) => s[0].toUpperCase() + s.slice(1);
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // iPad portrait and larger: no scroll-to-top when a deck opens (phones scroll the opened deck to the top)
+  const BIG = matchMedia("(min-width: 740px) and (min-height: 501px)");
+  const AUTO_TOP = true; // move-to-top on phones (false = a deck opens where it is, like on iPad and desktop)
+  // The page places the open deck itself: the browser must not jump back to an old scroll position on back / close
+  try { history.scrollRestoration = "manual"; } catch (e) {}
+  // Where a deck sits after the scroll: its row (or the podium) this many px below the screen top
+  const anchorOf = (sec) => { const pod = sec.classList.contains("pod"); return { box: pod ? sec.parentElement : sec, gap: pod ? 18 : 8 }; };
+  const padTop = () => parseFloat(getComputedStyle(document.documentElement).paddingTop) || 0;
+  // Extra space under the footer, only while needed, so a deck near the end of the list can also reach the top
+  const tail = document.createElement("div");
+  tail.setAttribute("aria-hidden", "true");
+  document.body.append(tail);
+
+  // Theme toggle: follows the system until the viewer picks one; the pick is kept in this browser.
+  const root = document.documentElement, darkMq = matchMedia("(prefers-color-scheme: dark)");
+  const SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  const MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  try { const t = localStorage.getItem("pmq-theme"); if (t === "dark" || t === "light") root.dataset.theme = t; } catch (e) {}
+  const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : darkMq.matches);
+  const paintBtn = () => {
+    const d = isDark();
+    $("themeBtn").innerHTML = d ? SUN : MOON;
+    $("themeBtn").setAttribute("aria-label", d ? "Switch to light mode" : "Switch to dark mode");
+    $("themeBtn").title = d ? "Light mode" : "Dark mode";
+  };
+  $("themeBtn").addEventListener("click", () => {
+    const next = isDark() ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("pmq-theme", next); } catch (e) {}
+    paintBtn();
+    repaintQR?.();
+  });
+  darkMq.addEventListener?.("change", () => { paintBtn(); repaintQR?.(); });
+  paintBtn();
+  // First-visit tip: shown on the first visit only (or until dismissed)
+  try { if (!localStorage.getItem("pmq-hint")) { $("hint").hidden = false; localStorage.setItem("pmq-hint", "1"); } } catch (e) { $("hint").hidden = false; }
+  $("hintX").addEventListener("click", () => { $("hint").hidden = true; });
+
+  let data = null, openId = null, io = null;
+  const extra = new Map(); // deckId -> Promise of other lists (fetched once, on demand)
+
+  function loadExtra(id) {
+    if (!extra.has(id)) {
+      extra.set(id, fetch(`v/${id}.json`).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then((j) => j.vars).catch((e) => { extra.delete(id); throw e; }));
+    }
+    return extra.get(id);
+  }
+
+  // Tournament dates are calendar days ("YYYY-MM-DD"); show them as is, with no time-zone shift.
+  const fmtDate = (iso) => new Date(iso + "T00:00:00Z").toLocaleDateString(undefined, { month: "short", day: "numeric", timeZone: "UTC" });
+  // "Used by N of top M": main list only; N counts finishes with this list or one card away from it.
+  // Main list only. N = finishes with this list (or one card away) among this deck's M best-ranked finishes.
+  const usedBy = (v, i) => (i === 0 && v.of > 1 && v.nu ? `${v.nu} of the deck\u2019s ${v.of} best finishes` : "");
+  const info = (v, energyHtml, i = -1) => `
+        <div class="info">
+          <div class="tile t-en"><span class="tl">Energy</span><div class="energy">${energyHtml}</div></div>
+          <div class="tile t-sc"><span class="tl">Score</span><div class="sc"><span>${esc(v.sc || "\u2013")}</span>${v.pl ? `<span class="pill pl">${esc(v.pl)}</span>` : ""}</div></div>
+          <div class="tile t-ev"><span class="tl">Event</span><div class="ev" title="${esc(v.ev || "")}">${v.dt ? `<span class="dt">${fmtDate(v.dt)}</span> \u00b7 ` : ""}${esc(v.ev || "\u2013")}</div></div>
+        </div>
+        ${usedBy(v, i) ? `<span class="pill us">Played in ${usedBy(v, i)}</span>` : ""}`;
+  // Legend icon: a tiny card with the same corner tag as the marked cards
+  const MARK_ICON = '<svg viewBox="0 0 8 11" aria-hidden="true"><rect x="0" y="0" width="8" height="11" rx="1.2" fill="currentColor" opacity="0.45"/><path d="M3.2 0H6.8A1.2 1.2 0 0 1 8 1.2V4.8Z" fill="var(--mark)" stroke="var(--mark-ring)" stroke-width="0.9" stroke-linejoin="round"/></svg>';
+  const CARET = '<svg class="dcar" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 4 2.5 2.5L7.5 4"/></svg>';
+  function slideBody(v, d, i = 0) {
+    const copies = v.cards.flatMap((c) => Array.from({ length: c.c }, () => c));
+    // Lists 2-4: mark each copy that list 1 (the deck's main list) does not have, and count them.
+    // Compared by card name, so another print (alt art) of the same card does not count as a difference.
+    const base = i > 0 && d.cards ? d.cards.reduce((m, c) => m.set(c.n, (m.get(c.n) || 0) + c.c), new Map()) : null, seen = new Map();
+    const dif = copies.map((c) => { if (!base) return false; const k = (seen.get(c.n) || 0) + 1; seen.set(c.n, k); return k > (base.get(c.n) || 0); });
+    const nd = dif.filter(Boolean).length;
+    // Swap sets by card name: In = copies not in list 1; Out = list-1 copies this list does not have (always the same count, 20 cards each)
+    let swap = "", outTxt = "";
+    if (nd) {
+      const mine = v.cards.reduce((m, c) => m.set(c.n, (m.get(c.n) || 0) + c.c), new Map()), ids = new Map();
+      v.cards.forEach((c) => ids.has(c.n) || ids.set(c.n, c.id)); d.cards.forEach((c) => ids.has(c.n) || ids.set(c.n, c.id));
+      const diff = (a, b) => [...a].map(([n, k]) => [n, k - (b.get(n) || 0)]).filter(([, k]) => k > 0);
+      const ins = diff(mine, base), outs = diff(base, mine);
+      const chip = ([n, k]) => `<span class="chip"><img src="c/${ids.get(n)}.webp" alt="" width="150" height="209">${esc(n)}${k > 1 ? ` <span class="x">&times;${k}</span>` : ""}</span>`;
+      swap = `<div class="swap" id="sw-${d.id}-${i}" hidden>
+          <span class="sl in">In</span><span class="chips">${ins.map(chip).join("")}</span>
+          <span class="sl">Out</span><span class="chips out">${outs.map(chip).join("")}</span>
+        </div>`;
+      outTxt = outs.map(chip).join("");
+    }
+    return `
+      ${nd ? `<button class="dnote" type="button" aria-expanded="false" aria-controls="sw-${d.id}-${i}">${MARK_ICON}${nd} card${nd > 1 ? "s differ" : " differs"} from list 1${CARET}</button>${swap}` : ""}
+      <div class="cards"${outTxt ? ` data-out="${esc(outTxt)}"` : ""}>${copies.map((c, k) => { const img = `<img data-n="${esc(c.n)}"${dif[k] ? ' data-dif="1"' : ""} src="c/${c.id}.webp" alt="${esc(c.n)}${dif[k] ? " (not in list 1)" : ""}" title="${esc(c.n)}${dif[k] ? " – not in list 1" : ""}" width="150" height="209">`;
+        return dif[k] ? `<span class="dwrap">${img}</span>` : img; }).join("")}</div>
+      <div class="sfoot">
+        ${info(v, v.energy.map((e) => `<img src="e/${e}.webp" alt="${cap(e)}" title="${cap(e)}" width="28" height="28">`).join(""), i)}
+        ${v.qr ? `<div class="qcol">
+          <button class="qr" type="button" data-i="${i}" aria-label="Enlarge the QR code for ${esc(d.name)}"><img ${qrImg(v.qr)} alt="Deck share code for ${esc(d.name)}" width="128" height="128"><span class="qx" aria-hidden="true">${EXPAND}</span></button>
+        </div>` : '<div class="qr"><span class="none">QR code not available for this list.</span></div>'}
+      </div>`;
+  }
+  // ---- QR: PNG on the page (long-press saves it); a tap opens the full-screen card (long-press saves that too) ----
+  const EXPAND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>';
+  const TOUCH = matchMedia("(pointer: coarse)").matches;
+  const qrParse = (svg) => ({ n: +svg.match(/viewBox="0 0 (\d+)/)[1], d: svg.match(/<path[^>]*\sd="([^"]+)"/)[1] });
+  // Module grid from the SVG path (the path is only "M x y", "m dx dy" and "h n" runs on half-row centers).
+  function qrGrid(q) {
+    if (q.g) return q.g;
+    const g = Array.from({ length: q.n }, () => new Uint8Array(q.n));
+    let cx = 0, cy = 0;
+    for (const [, op, a, b] of q.d.matchAll(/([Mmh])\s*(-?[\d.]+)(?:[\s,]+(-?[\d.]+))?/g)) {
+      if (op === "M") { cx = +a; cy = +b; } else if (op === "m") { cx += +a; cy += +b; }
+      else { const r = Math.floor(cy); for (let k = 0; k < +a; k++) g[r][cx + k] = 1; cx += +a; }
+    }
+    return (q.g = g);
+  }
+  const QR_DOT = 0.84; // dot diameter as a share of one module (ZXing reads 0.70-0.92 on every code)
+  // In-game look: cyan -> blue vertical gradient, round dots and rounded finder squares. Whole-pixel modules keep the edges sharp.
+  function drawQR(ctx, q, x, y, mod) {
+    const n = q.n, g = qrGrid(q), size = n * mod;
+    const grad = ctx.createLinearGradient(0, y, 0, y + size);
+    grad.addColorStop(0, "#0e8db4"); grad.addColorStop(1, "#0a44a5"); // darker than the game so every code still decodes
+    ctx.save(); ctx.fillStyle = grad;
+    const inFinder = (r, c) => (r < 7 && c < 7) || (r < 7 && c >= n - 7) || (r >= n - 7 && c < 7);
+    ctx.beginPath(); // data modules as round dots
+    const rad = mod * QR_DOT / 2;
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (g[r][c] && !inFinder(r, c)) {
+      const cx = x + (c + 0.5) * mod, cy = y + (r + 0.5) * mod;
+      ctx.moveTo(cx + rad, cy); ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+    }
+    ctx.fill();
+    for (const [r0, c0] of [[0, 0], [0, n - 7], [n - 7, 0]]) {
+      const fx = x + c0 * mod, fy = y + r0 * mod;
+      ctx.beginPath(); // ring: outer 7x7 minus inner 5x5, both rounded
+      ctx.roundRect(fx, fy, 7 * mod, 7 * mod, 1.9 * mod);
+      ctx.roundRect(fx + mod, fy + mod, 5 * mod, 5 * mod, 1.1 * mod);
+      ctx.fill("evenodd");
+      ctx.beginPath(); ctx.roundRect(fx + 2 * mod, fy + 2 * mod, 3 * mod, 3 * mod, 0.8 * mod); ctx.fill();
+    }
+    ctx.restore();
+  }
+  // On-page QR background: the light panel color, or (dark theme) the color that the dark-theme filter turns
+  // into the dark panel color. Both keep a normal dark-on-light code for a long-press save.
+  const QR_BG = () => (isDark() ? "#d8dde8" : "#fafbfc"); // light: the card color; dark: the filter turns #d8dde8 into the card color #1c2230
+  const pngCache = new Map(), qrSvgs = [];
+  function qrPng(svg, bg = QR_BG()) {
+    const k = bg + svg;
+    if (pngCache.has(k)) return pngCache.get(k);
+    const q = qrParse(svg), mod = 8, c = document.createElement("canvas");
+    c.width = c.height = (q.n + 2) * mod; // 1 module of edge
+    const x = c.getContext("2d"); x.fillStyle = bg; x.fillRect(0, 0, c.width, c.height);
+    drawQR(x, q, mod, mod, mod);
+    const url = c.toDataURL("image/png"); pngCache.set(k, url); return url;
+  }
+  const qrImg = (svg) => { const n = qrSvgs.indexOf(svg) < 0 ? qrSvgs.push(svg) - 1 : qrSvgs.indexOf(svg); return `data-q="${n}" src="${qrPng(svg)}"`; };
+  // Theme change: draw the open QR codes again with the new background.
+  const repaintQR = () => document.querySelectorAll(".qr img[data-q]").forEach((im) => { im.src = qrPng(qrSvgs[+im.dataset.q]); });
+
+  const ECOL = { grass: "#3f9e4d", fire: "#e2553a", water: "#2f86dd", lightning: "#e9b81c", psychic: "#9457c9",
+    fighting: "#b8682f", darkness: "#34424f", metal: "#7d8c9c" };
+  const loadImg = (src) => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; });
+  const rrect = (x, l, t, w, h, r) => { x.beginPath(); x.roundRect(l, t, w, h, r); };
+  function fit(x, text, w) {
+    if (x.measureText(text).width <= w) return text;
+    while (text && x.measureText(text + "\u2026").width > w) text = text.slice(0, -1);
+    return text.trimEnd() + "\u2026";
+  }
+  function wrap(x, text, w, maxLines) {
+    const words = text.split(" "), lines = [];
+    let cur = "";
+    for (const wd of words) {
+      const t = cur ? cur + " " + wd : wd;
+      if (x.measureText(t).width <= w || !cur) cur = t; else { lines.push(cur); cur = wd; }
+    }
+    lines.push(cur);
+    if (lines.length > maxLines) { const rest = lines.slice(maxLines - 1).join(" "); lines.length = maxLines - 1; lines.push(fit(x, rest, w)); }
+    return lines;
+  }
+
+  // The saved image (1080 x 1600, fits a phone screen) in the page's style: the blue band with the tilted "Pocket Meta QR"
+  // ribbon; a raised card with the deck (fanned card icons, rank badge or medal, energy band), flat stat tiles, the QR in a
+  // raised box with a plain light quiet zone, and the in-game steps. Always light: a light image scans best and looks clean in Photos.
+  async function makeCard(d, v, i) {
+    try { await Promise.all(['800 52px "Figtree"', '700 50px "Figtree"', '600 26px "Figtree"', '500 26px "Figtree"'].map((f) => document.fonts.load(f))); } catch (e) {}
+    const W = 1080, H = 1600, c = document.createElement("canvas");
+    c.width = W; c.height = H;
+    const x = c.getContext("2d");
+    const C = { bg: "#f0f3f6", surface: "#fafbfc", tile: "#ebeff2", ink: "#3a4250", muted: "#5a697f", pill: "#627189" };
+    const F = (w, sz, it = "") => `${it}${w} ${sz}px "Figtree", "Segoe UI", sans-serif`;
+    const raised = (draw, blur, oy) => { x.save(); x.shadowColor = "rgba(45, 95, 175, 0.22)"; x.shadowBlur = blur; x.shadowOffsetX = oy / 2; x.shadowOffsetY = oy; draw(); x.restore(); };
+    // inner bevel: a light rim on the top and left, a dark rim on the bottom and right
+    const bevel = (l, t, w, h, r) => {
+      x.save(); rrect(x, l, t, w, h, r); x.clip(); x.lineWidth = 3;
+      x.strokeStyle = "rgba(255, 255, 255, 0.9)"; rrect(x, l + 1.5, t + 1.5, w + 4, h + 4, r); x.stroke();
+      x.strokeStyle = "rgba(45, 95, 175, 0.14)"; rrect(x, l - 3.5, t - 3.5, w + 2, h + 2, r); x.stroke();
+      x.restore();
+    };
+    x.fillStyle = C.bg; x.fillRect(0, 0, W, H);
+
+    // Header: blue band with a slanted bottom edge, and the tilted light ribbon with the logo and title
+    const band = x.createLinearGradient(0, 0, 0, 200); band.addColorStop(0, "#2a98f9"); band.addColorStop(1, "#0cd3fc");
+    x.fillStyle = band; x.beginPath(); x.moveTo(0, 0); x.lineTo(W, 0); x.lineTo(W, 102); x.lineTo(0, 196); x.closePath(); x.fill(); // bottom edge at the same 5deg as the ribbon
+    x.save(); x.translate(W / 2, 112); x.rotate(-5 * Math.PI / 180); // the brand angle, same as the page header
+    const rib = x.createLinearGradient(0, -40, 0, 40); rib.addColorStop(0, "#f5fafd"); rib.addColorStop(1, "#e3edf4");
+    x.shadowColor = "rgba(40, 90, 150, 0.25)"; x.shadowBlur = 16; x.shadowOffsetY = 6;
+    x.fillStyle = rib; x.fillRect(-W, -40, W * 2, 80); x.shadowColor = "transparent";
+    // Logo: the page's badge (band-gradient rounded square with a white QR glyph), slanted 12deg like the title. Drawn in its 24-unit SVG space.
+    const lx = -W / 2 + 64, ly = -26, LS = 52 / 23;
+    x.save(); x.translate(lx + 6, ly); x.transform(1, 0, Math.tan(-12 * Math.PI / 180), 1, 0, 0); x.scale(LS, LS); x.translate(-0.5, -0.5);
+    const lg = x.createLinearGradient(0, 0.5, 0, 23.5); lg.addColorStop(0, "#2a98f9"); lg.addColorStop(1, "#0cd3fc");
+    x.fillStyle = lg; rrect(x, 0.5, 0.5, 23, 23, 6); x.fill();
+    x.translate(3.6, 3.6); x.scale(0.7, 0.7);
+    x.strokeStyle = "#ffffff"; x.lineWidth = 2.2; [[2.95, 2.95], [13.45, 2.95], [2.95, 13.45]].forEach(([a, b]) => { rrect(x, a, b, 7.6, 7.6, 1.9); x.stroke(); });
+    x.fillStyle = "#ffffff";
+    [[5.35, 5.35, 2.8], [15.85, 5.35, 2.8], [5.35, 15.85, 2.8], [13, 13, 3], [18.5, 13, 3], [15.75, 15.75, 3], [13, 18.5, 3], [18.5, 18.5, 3]]
+      .forEach(([a, b, w]) => { rrect(x, a, b, w, w, 0.6); x.fill(); });
+    x.restore();
+    x.fillStyle = "#5d6b80"; x.font = F(800, 52); x.textBaseline = "middle";
+    x.save(); x.translate(lx + 74, 2); x.transform(1, 0, Math.tan(-12 * Math.PI / 180), 1, 0, 0); x.fillText("Pocket Meta QR", 0, 0); x.restore(); // slanted 12deg, like the page title
+    x.restore(); x.textBaseline = "alphabetic";
+
+    // The raised card
+    const cL = 54, cT = 228, cW = W - 108, cH = H - cT - 48, cR = 36, inL = cL + 40, inW = cW - 80;
+    raised(() => { x.fillStyle = C.surface; rrect(x, cL, cT, cW, cH, cR); x.fill(); }, 24, 8);
+    // energy band behind the card icons (like the deck rows), faded to the right and down
+    const es = (v.energy || d.energy || []).filter((e) => EBAND[e]);
+    const b1 = es.length === 1 ? EGRAD[es[0]][0] : EBAND[es[0]] || "#c9d3df", b2 = es.length === 1 ? EGRAD[es[0]][1] : EBAND[es[1]] || b1;
+    x.save(); rrect(x, cL, cT, cW, cH, cR); x.clip();
+    const eg = x.createLinearGradient(cL, cT, cL + 620, cT + 120); eg.addColorStop(0, b1); eg.addColorStop(0.45, b2); eg.addColorStop(1, "rgba(250, 251, 252, 0)");
+    x.globalAlpha = 0.8; x.fillStyle = eg; x.fillRect(cL, cT, 620, 280); x.globalAlpha = 1;
+    const fade = x.createLinearGradient(0, cT + 150, 0, cT + 280); fade.addColorStop(0, "rgba(250, 251, 252, 0)"); fade.addColorStop(1, C.surface);
+    x.fillStyle = fade; x.fillRect(cL, cT + 150, 620, 131);
+    x.restore();
+    bevel(cL, cT, cW, cH, cR);
+
+    // The deck's two card icons, fanned (back card first)
+    const arts = await Promise.all((d.art || []).slice(0, 2).map((a) => loadImg(`c/${a}.webp`).catch(() => null)));
+    const IW = 150, IH = Math.round(IW * 512 / 367);
+    [[1, 200, 34, 11], [0, 96, 44, -11]].forEach(([k, ox, oy, deg]) => {
+      const im = arts[k];
+      if (!im) return;
+      x.save(); x.translate(cL + ox + IW / 2, cT + oy + IH / 2); x.rotate(deg * Math.PI / 180);
+      x.shadowColor = "rgba(40, 60, 95, 0.45)"; x.shadowBlur = 10; x.shadowOffsetY = 6;
+      x.beginPath(); x.roundRect(-IW / 2, -IH / 2, IW, IH, 6); x.fillStyle = "#ffffff"; x.fill(); x.shadowColor = "transparent";
+      x.clip(); x.drawImage(im, -IW / 2, -IH / 2, IW, IH); x.restore();
+    });
+    // Rank: a medal for the top 3, else the white badge (on the card's top-left corner)
+    const MED = { 1: ["#fbe07a", "#d39a1c", "#f0c440", "#f7d968"], 2: ["#c9dbf3", "#6585ba", "#8eaad6", "#b3c9ea"], 3: ["#f7c79c", "#c4703a", "#e0915a", "#efb084"] };
+    const med = MED[d.rank], r0 = 32, mx = cL + 20, my = cT + 16;
+    const disc = (r, a, b) => { const g = x.createLinearGradient(mx - r, my - r, mx + r, my + r); g.addColorStop(0, a); g.addColorStop(1, b); x.beginPath(); x.arc(mx, my, r, 0, 7); x.fillStyle = g; x.fill(); };
+    x.save(); x.shadowColor = "rgba(30, 50, 80, 0.3)"; x.shadowBlur = 6; x.shadowOffsetY = 3;
+    if (med) disc(r0, med[0], med[1]); else { x.beginPath(); x.arc(mx, my, r0, 0, 7); x.fillStyle = "#ffffff"; x.fill(); }
+    x.restore();
+    if (med) disc(r0 - 5, med[2], med[3]);
+    x.fillStyle = med ? "#ffffff" : "#66758a"; x.font = F(700, 32); x.textAlign = "center"; x.textBaseline = "middle";
+    x.fillText(String(d.rank), mx, my + 1); x.textAlign = "left"; x.textBaseline = "alphabetic";
+
+    // Deck name (up to 2 lines) and share / win
+    const tx = cL + 410, tw = cL + cW - 40 - tx;
+    let fs = 50; x.font = F(700, fs);
+    if (wrap(x, d.name, tw, 9).length > 2) { fs = 42; x.font = F(700, fs); }
+    const nl = wrap(x, d.name, tw, 2), lh = fs * 1.12;
+    let ny = cT + 118 - ((nl.length - 1) * lh) / 2;
+    x.fillStyle = C.ink; nl.forEach((ln, k) => x.fillText(ln, tx, ny + k * lh));
+    x.font = F(500, 27); x.fillStyle = C.muted;
+    x.fillText(fit(x, `${pct(d.share)} share  ·  ${pct(d.win)} win`, tw), tx, ny + (nl.length - 1) * lh + 50);
+
+    // Flat stat tiles: Score (with the place pill) and Event (with the list number)
+    const tT = cT + 268, tH = 96, gap = 16;
+    const tile = (l, w, label) => { x.fillStyle = C.tile; rrect(x, l, tT, w, tH, 16); x.fill(); x.fillStyle = C.muted; x.font = F(500, 20); x.fillText(label, l + 20, tT + 32); };
+    x.font = F(700, 34); const scW = x.measureText(v.sc || "–").width;
+    x.font = F(700, 23); const plW = v.pl ? x.measureText(v.pl).width + 28 : 0;
+    const t1W = Math.max(170, 40 + scW + (plW ? 14 + plW : 0));
+    tile(inL, t1W, "Score");
+    x.fillStyle = C.ink; x.font = F(700, 34); x.fillText(v.sc || "–", inL + 20, tT + 76);
+    if (plW) {
+      const px0 = inL + 20 + scW + 14;
+      x.fillStyle = C.pill; rrect(x, px0, tT + 48, plW, 36, 18); x.fill();
+      x.fillStyle = "#ffffff"; x.font = F(700, 23); x.fillText(v.pl, px0 + 14, tT + 74);
+    }
+    const t2L = inL + t1W + gap, t2W = inL + inW - t2L;
+    tile(t2L, t2W, d.nv > 1 ? `Event  ·  list ${i + 1} of ${d.nv}` : "Event");
+    x.fillStyle = C.ink; x.font = F(600, 26);
+    x.fillText(fit(x, [v.dt && fmtDate(v.dt), v.ev].filter(Boolean).join("  ·  ") || "–", t2W - 40), t2L + 20, tT + 74);
+
+    // The QR in a raised box with a plain light quiet zone (at least 2 modules on every side)
+    const q = qrParse(v.qr), footTop = cT + cH - 150, qTop = tT + tH + 28;
+    const box = Math.min(inW, footTop - 24 - qTop), mod = Math.floor((box - 64) / q.n), qs = mod * q.n, bxL = Math.round(W / 2 - box / 2);
+    raised(() => { x.fillStyle = "#f6f9fc"; rrect(x, bxL, qTop, box, box, 28); x.fill(); }, 16, 6);
+    bevel(bxL, qTop, box, box, 28);
+    drawQR(x, q, Math.round(W / 2 - qs / 2), Math.round(qTop + (box - qs) / 2), mod);
+
+    // Footer: the in-game steps as flat tiles, then the source line
+    const steps = ["My Decks", "+", "Scan Code", "Scan Saved Image"], pad = 18, aw = 36, sy = footTop + 24, sh = 52;
+    x.font = F(600, 24);
+    const ws = steps.map((st) => x.measureText(st).width + pad * 2), total = ws.reduce((a, b) => a + b, 0) + aw * (steps.length - 1);
+    let sx = W / 2 - total / 2;
+    steps.forEach((st, k) => {
+      x.fillStyle = C.tile; rrect(x, sx, sy, ws[k], sh, 14); x.fill();
+      x.fillStyle = C.ink; x.fillText(st, sx + pad, sy + 35); sx += ws[k];
+      if (k < steps.length - 1) { x.fillStyle = C.muted; x.textAlign = "center"; x.fillText("→", sx + aw / 2, sy + 35); x.textAlign = "left"; sx += aw; }
+    });
+    x.font = F(500, 21); x.fillStyle = "#7d8aa0"; x.textAlign = "center";
+    x.fillText(`Pokémon TCG Pocket  ·  Pocket Meta QR  ·  Set ${data.set}${data.setName ? " " + data.setName : ""}  ·  #${d.rank} in the meta`, W / 2, sy + sh + 40);
+    x.textAlign = "left";
+    return new Promise((res, rej) => c.toBlob((b) => (b ? res(b) : rej(new Error("png"))), "image/png"));
+  }
+
+  const cardCache = new Map(); // "deckId/i" -> Promise<{blob, url}> (the full-screen card image)
+  async function listFor(d, i) { return i === 0 ? d : (await loadExtra(d.id))[i - 1]; }
+  function card(d, i) {
+    const k = d.id + "/" + i;
+    if (!cardCache.has(k)) cardCache.set(k, listFor(d, i).then((v) => makeCard(d, v, i)).then((blob) => ({ blob, url: URL.createObjectURL(blob) }))
+      .catch((e) => { cardCache.delete(k); throw e; }));
+    return cardCache.get(k);
+  }
+  const dlg = $("qrDlg");
+  let dlgDeck = null, dlgI = 0;
+  // Save button: the phone's share sheet (one tap: Save Image), else a download; long-press / right-click stay as a fallback
+  const SAVE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>';
+  $("qrSave").innerHTML = SAVE_ICON + (TOUCH ? "Save image" : "Download image");
+  // claude.ai downloads capability (null when this view cannot save); resolved once, used on click
+  const dlCap = window.claude && window.claude.use ? Promise.resolve(window.claude.use("downloads")).catch(() => null) : Promise.resolve(null);
+  $("qrSave").addEventListener("click", async (e) => {
+    e.stopPropagation(); // a tap elsewhere closes the view; this one must not
+    if (!dlgDeck) return;
+    const d = dlgDeck, i = dlgI;
+    const name = `${d.id}${d.nv > 1 ? "-list-" + (i + 1) : ""}.png`;
+    let r;
+    try { r = await card(d, i); } catch (err) { $("qrMsg").textContent = "The image is not ready. Try again."; return; }
+    const file = new File([r.blob], name, { type: "image/png" });
+    const fallback = () => { $("qrMsg").textContent = TOUCH ? "Saving is not available here: long-press the image instead." : "Saving is not available here: right-click the image instead."; };
+    // 1) Phone share sheet (one tap: Save Image). Some frames block it; then try the next way.
+    if (TOUCH && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file] }); return; }
+      catch (err) { if (err && err.name === "AbortError") return; } // the viewer closed the share sheet
+    }
+    // 2) Inside claude.ai: the platform's download (the viewer confirms the file)
+    if (window.claude && window.claude.use) {
+      const dl = await dlCap;
+      if (!dl) return fallback();
+      try { await dl.save({ filename: name, data: r.blob }); }
+      catch (err) {
+        if (err && err.code === "declined") return; // the viewer said no
+        if (err && err.code === "rate_limited") { $("qrMsg").textContent = "One moment, then try again."; return; }
+        fallback();
+      }
+      return;
+    }
+    // 3) As a normal web page (outside claude.ai): a plain download
+    try { const a = document.createElement("a"); a.href = r.url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
+    catch (err) { fallback(); }
+  });
+  // Show list i of the open deck (wraps around); the next list's image is prepared in the background
+  function showQR(i) {
+    const d = dlgDeck;
+    if (!d) return;
+    const n = d.nv || 1;
+    i = ((i % n) + n) % n; dlgI = i;
+    $("qrImg").removeAttribute("src");
+    $("qrImg").alt = `QR code card for ${d.name}${n > 1 ? `, list ${i + 1} of ${n}` : ""}`;
+    $("qrMsg").textContent = "";
+    $("qrDots").innerHTML = n > 1 ? Array.from({ length: n }, (_, k) => `<button class="dot" type="button" data-i="${k}" aria-label="List ${k + 1} of ${n}" aria-current="${k === i}"></button>`).join("") : "";
+    $("qrPrev").hidden = $("qrNext").hidden = n < 2;
+    card(d, i).then((r) => { if (dlgDeck === d && dlgI === i) $("qrImg").src = r.url; })
+      .catch(() => { if (dlgDeck === d && dlgI === i) $("qrMsg").textContent = "The QR image did not load. Try again."; });
+    if (n > 1) card(d, (i + 1) % n).catch(() => {});
+  }
+  async function openQR(d, i) {
+    dlgDeck = d;
+    if (!dlg.open) { dlg.showModal(); history.pushState({ ...(history.state || {}), qr: 1 }, "", location.href); } // back closes the QR view
+    showQR(i);
+  }
+  const stop = (fn) => (e) => { e.stopPropagation(); fn(e); }; // controls inside the view must not close it
+  $("qrClose").addEventListener("click", stop(() => dlg.close()));
+  $("qrPrev").addEventListener("click", stop(() => showQR(dlgI - 1)));
+  $("qrNext").addEventListener("click", stop(() => showQR(dlgI + 1)));
+  $("qrDots").addEventListener("click", stop((e) => { const b = e.target.closest(".dot"); if (b) showQR(+b.dataset.i); }));
+  dlg.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") showQR(dlgI + 1); else if (e.key === "ArrowLeft") showQR(dlgI - 1); });
+  // Swipe on the image: next / previous list (a swipe never closes the view)
+  let swStart = null, swiped = false;
+  $("qrStage").addEventListener("pointerdown", (e) => { swStart = { x: e.clientX, y: e.clientY }; });
+  $("qrStage").addEventListener("pointerup", (e) => {
+    if (!swStart) return;
+    const dx = e.clientX - swStart.x, dy = e.clientY - swStart.y;
+    swStart = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) && (dlgDeck?.nv || 1) > 1) { swiped = true; showQR(dlgI + (dx < 0 ? 1 : -1)); }
+  });
+  // A tap anywhere else closes (a long-press on the image opens the save menu instead). Esc and back also close.
+  dlg.addEventListener("click", () => { if (swiped) { swiped = false; return; } dlg.close(); });
+  dlg.addEventListener("close", () => { if (history.state && history.state.qr) history.back(); }); // drop its history entry
+
+  const placeholder = (d) => `
+      <div class="cards">${'<span class="ph"></span>'.repeat(20)}</div>
+      <div class="sfoot">${info({}, "")}<div class="qcol"><div class="qr wait"></div></div></div>`;
+
+  // Pastel energy colors for the band on each deck card (first two energies of the main list).
+  const EBAND = { grass: "#8fd98a", fire: "#f7a47e", water: "#7cc6f4", lightning: "#f5d65e", psychic: "#e7a3e3",
+    fighting: "#e3a978", darkness: "#93a3bb", metal: "#b8c3cf" };
+  // One energy: the game's own gradient for that element (My Decks). Two energies: blend the two pastels.
+  const EGRAD = { grass: ["#c9f06c", "#79dc79"], fire: ["#fbbd86", "#f27390"], water: ["#8ee9e6", "#7aa6f2"],
+    lightning: ["#f9e46b", "#f4bd3c"], psychic: ["#f5c8ee", "#b88be9"], fighting: ["#f8cd6c", "#e98c4c"],
+    darkness: ["#c9e6f4", "#45a0a8"], metal: ["#e2e7cf", "#a8cad1"] };
+  const bandStyle = (d) => {
+    const es = (d.energy || []).filter((e) => EBAND[e]);
+    if (es.length === 1) return `--eb1:${EGRAD[es[0]][0]};--eb2:${EGRAD[es[0]][1]}`;
+    return es.length ? `--eb1:${EBAND[es[0]]};--eb2:${EBAND[es[1]]}` : "";
+  };
+  // Deck stats pill (shown on the open deck): share, win rate, players, record
+  const dpill = (d) => `<span class="dpill"><b>${pct(d.share)}</b> share &middot; <span${d.count < 30 ? ' class="lw"' : ""}><b>${pct(d.win)}</b> win</span> &middot; <b>${d.count}</b> players &middot; <b>${d.w}-${d.l}-${d.t}</b></span>`;
+  function renderList() {
+    // Top 3: podium tiles (same section/button/panel structure as a row, so open/close work the same way).
+    const top = data.decks.length > 3 ? data.decks.slice(0, 3) : [];
+    const podium = top.length ? `<div class="podium">${top.map((d) => `
+      <section class="acc pod" id="${d.id}" style="${bandStyle(d)}">
+        <button class="arow pcard" type="button" data-id="${d.id}" aria-expanded="false" aria-controls="p-${d.id}" aria-label="Rank ${d.rank}: ${esc(d.name)}">
+          <span class="medal m${d.rank}" aria-hidden="true"><svg class="crown" viewBox="0 0 18 14"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg><span class="mn">${d.rank}</span></span>
+          <span class="picons">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="52" height="73" decoding="async">`).join("")}</span>
+          <span class="pname">${esc(d.name)}</span>
+          <span class="asub psub"><b>${pct(d.share)}</b> share<span class="ow"> &middot; <b>${pct(d.win)}</b> win</span>
+            <span class="sm"><span class="nw">${d.count} players</span> <span class="nw"><span class="sep">&middot; </span>${d.w}-${d.l}-${d.t}</span></span></span>
+          ${dpill(d)}
+        </button>
+        <div class="apanel" id="p-${d.id}" hidden></div>
+      </section>`).join("")}</div>` : ""; // the "Ranks 4\u2013N" label is left out for now
+    $("list").innerHTML = podium + data.decks.slice(top.length).map((d) => `
+      <section class="acc" id="${d.id}" style="${bandStyle(d)}">
+        <button class="arow" type="button" data-id="${d.id}" aria-expanded="false" aria-controls="p-${d.id}">
+          <span class="rk two"><span class="mn">${d.rank}</span></span>
+          <span class="icons">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>
+          <span class="atext"><span class="aname">${esc(d.name)}</span>
+            <span class="asub"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win
+              <span class="sm"><span class="sep">&middot; </span><span class="nw">${d.count} players</span> <span class="nw">&middot; ${d.w}-${d.l}-${d.t}</span></span></span></span>
+          ${dpill(d)}
+          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="apanel" id="p-${d.id}" hidden></div>
+      </section>`).join("");
+  }
+
+  // Podium: the open tile grows by GROW px in width (same scale for its height); the panel starts just below it.
+  const GROW = 12;
+  function podGrow() {
+    const pod = document.querySelector(".podium"), t = pod && pod.querySelector('.pcard[aria-expanded="false"]');
+    if (!t) return;
+    const w = t.offsetWidth, h = t.offsetHeight, s = (w + GROW) / w;
+    const smh = parseFloat(getComputedStyle(pod).getPropertyValue("--smh")) || 0;
+    pod.style.setProperty("--ps", s.toFixed(4));
+    const rowGap = parseFloat(getComputedStyle(pod).rowGap) || 0; // the grid gap already sits between the tiles and the panel
+    pod.style.setProperty("--pgap", (smh + ((s - 1) * (h + smh)) / 2 + 3 - rowGap).toFixed(1) + "px"); // 3px between the tile and the panel
+  }
+  addEventListener("resize", podGrow);
+
+  function close(id) {
+    const sec = $(id);
+    if (!sec) return;
+    sec.querySelector(".arow").setAttribute("aria-expanded", "false");
+    const p = sec.querySelector(".apanel");
+    carouselSync = null;
+    if (io) { io.disconnect(); io = null; }
+    p.hidden = true;
+    p.innerHTML = ""; // drop the images of a closed deck
+  }
+
+  const CHEV_L = '<svg viewBox="0 0 15 26" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 13l9 10"/></svg>';
+  const CHEV_R = '<svg viewBox="0 0 15 26" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 3 9 10-9 10"/></svg>';
+  // Center the chevrons on the card grid (not on the whole slide, which also holds the Energy/QR block).
+  let gridRo = null;
+  function placeChevrons(p) {
+    const grid = p.querySelector(".slide .cards"), wrap = p.querySelector(".vwrap");
+    if (!grid || !wrap) return;
+    const set = () => wrap.style.setProperty("--gh", grid.offsetHeight + "px");
+    set();
+    if (gridRo) gridRo.disconnect();
+    gridRo = new ResizeObserver(set);
+    gridRo.observe(grid);
+  }
+
+  function open(id, scroll = true) {
+    const d = data.decks.find((x) => x.id === id);
+    if (!d) return;
+    const boxOf = (el) => (el && el.classList.contains("pod") ? el.querySelector(".arow") : el); // podium sections have no box
+    const pinTop = $(id) ? boxOf($(id)).getBoundingClientRect().top : 0; // row position before a deck above it closes
+    if (openId && openId !== id) close(openId);
+    openId = id;
+    const sec = $(id), p = sec.querySelector(".apanel"), n = d.nv || 1;
+    sec.querySelector(".arow").setAttribute("aria-expanded", "true");
+    p.innerHTML = `
+      <div class="vwrap">
+        <div class="vars">
+          <div class="slide" data-i="0">${slideBody(d, d)}</div>
+          ${Array.from({ length: n - 1 }, (_, i) => `<div class="slide" data-i="${i + 1}" data-pending="1">${placeholder(d)}</div>`).join("")}
+        </div>
+        ${n > 1 ? `<button class="chev-btn prev" type="button" aria-label="Previous list" hidden>${CHEV_L}</button>
+        <button class="chev-btn next" type="button" aria-label="Next list">${CHEV_R}</button>` : ""}
+      </div>
+      ${n > 1 ? `<div class="dots" role="group" aria-label="Lists">${Array.from({ length: n }, (_, i) => `<button class="dot" type="button" data-i="${i}" aria-label="Show list ${i + 1} of ${n}" aria-current="${i === 0}"></button>`).join("")}</div>` : ""}`;
+    p.hidden = false;
+    if (n > 1) wireCarousel(p, d, n);
+    placeChevrons(p);
+    fitScores(p);
+    history.replaceState(history.state, "", "#" + id); // keep the back-gesture entry
+    if (scroll) {
+      // Put the row at the top of the screen (closing a deck above has already shifted the layout).
+      // Podium tiles scroll to the podium, 18px down so the medals and crowns stay in view; rows 8px down.
+      const { box, gap } = anchorOf(sec);
+      const top = box.getBoundingClientRect().top + scrollY - padTop() - gap;
+      tail.style.height = "0px";
+      const max = document.documentElement.scrollHeight - innerHeight;
+      if (top > max) tail.style.height = Math.ceil(top - max) + "px";
+      scrollTo({ top, behavior: reduced ? "auto" : "smooth" });
+    } else {
+      // No auto-scroll: keep the clicked row where it was, even if an open deck above it just closed.
+      const shift = boxOf(sec).getBoundingClientRect().top - pinTop;
+      if (shift) scrollBy(0, shift);
+    }
+  }
+
+  let nudgedOnce = false; // the swipe nudge plays once per page visit
+  let carouselSync = null; // the open deck's carousel; re-checked when the window width changes
+  addEventListener("resize", () => carouselSync && carouselSync());
+  // Score tile: keep the score and the place pill on one line; shrink the font (down to 60%) until it fits.
+  function fitScores(root) {
+    root.querySelectorAll(".sc").forEach((el) => {
+      el.style.fontSize = "";
+      let fs = parseFloat(getComputedStyle(el).fontSize);
+      const min = fs * 0.6;
+      while (el.scrollWidth > el.clientWidth + 0.5 && fs > min) { fs -= 0.25; el.style.fontSize = fs + "px"; }
+    });
+  }
+  let fitScT = null;
+  addEventListener("resize", () => { clearTimeout(fitScT); fitScT = setTimeout(() => fitScores(document), 100); });
+  document.fonts?.ready.then(() => fitScores(document));
+  function wireCarousel(p, d, n) {
+    const vars = p.querySelector(".vars");
+    const slides = [...vars.querySelectorAll(".slide")];
+    const per = () => parseInt(getComputedStyle(vars).getPropertyValue("--per"), 10) || 1;
+    const go = (i) => { i = Math.max(0, Math.min(i, n - per())); slides[i] && vars.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: reduced ? "auto" : "smooth" }); }; // offsets from the first list (the strip has side padding)
+    const at = () => { const x = vars.scrollLeft, o = slides[0].offsetLeft; return slides.reduce((b, s, i) => Math.abs(s.offsetLeft - o - x) < Math.abs(slides[b].offsetLeft - o - x) ? i : b, 0); };
+    const sync = () => {
+      const i = at(), k = per();
+      p.classList.toggle("fit", n <= k);
+      p.querySelector(".chev-btn.prev").hidden = i === 0;
+      p.querySelector(".chev-btn.next").hidden = i >= n - k;
+      // Dots: the lists now in view are highlighted.
+      p.querySelectorAll(".dot").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.i >= i && +b.dataset.i < i + k)));
+    };
+    carouselSync = sync;
+    sync();
+    p.querySelector(".chev-btn.prev").onclick = () => go(at() - 1);
+    p.querySelector(".chev-btn.next").onclick = () => go(at() + 1);
+    p.querySelector(".dots").onclick = (e) => { const b = e.target.closest(".dot"); if (b) go(+b.dataset.i); };
+    let t = null;
+    vars.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(sync, 60); }, { passive: true });
+
+    // Swipe hints that leave screenshots clean:
+    // (a) the side arrows show when the deck opens, then fade out after 2s; a touch or a swipe brings them back for a moment.
+    const vw = p.querySelector(".vwrap");
+    let qt = null;
+    const wake = () => { vw.classList.remove("quiet"); clearTimeout(qt); qt = setTimeout(() => vw.classList.add("quiet"), 2000); };
+    wake();
+    vars.addEventListener("scroll", wake, { passive: true });
+    vw.addEventListener("pointerdown", wake);
+    // (b) the first time a deck with more lists opens, the strip slides 30px left and springs back, once per visit.
+    if (!nudgedOnce && !reduced && !p.classList.contains("fit")) {
+      nudgedOnce = true;
+      setTimeout(() => {
+        if (!slides[0].isConnected || vars.scrollLeft > 2) return; // closed, or already swiped
+        slides.forEach((s) => s.animate([{ transform: "translateX(0)" }, { transform: "translateX(-30px)", offset: 0.4 }, { transform: "translateX(0)" }],
+          { duration: 700, easing: "ease-in-out" }));
+      }, 600);
+    }
+
+    // Render a list only when its slide comes into view: one small JSON per deck, then its card images.
+    io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting || !e.target.dataset.pending) return;
+        const slide = e.target, i = +slide.dataset.i;
+        delete slide.dataset.pending;
+        loadExtra(d.id).then((list) => {
+          if (openId !== d.id || !slide.isConnected) return;
+          slide.innerHTML = slideBody(list[i - 1], d, i);
+          fitScores(slide);
+        }).catch(() => {
+          slide.dataset.pending = "1";
+          slide.querySelector(".energy").innerHTML = '<span class="note">Did not load. Swipe away and back.</span>';
+        });
+      });
+    }, { root: vars, threshold: 0.2 });
+    slides.slice(1).forEach((s) => io.observe(s));
+  }
+
+  // ===== Card zoom: tap a card in a list to see it larger, with its name =====
+  const cdlg = $("cardDlg");
+  $("cHint").textContent = (TOUCH ? "Tap" : "Click") + " anywhere to close.";
+  function openCard(img) {
+    const n = img.dataset.n || img.alt, grid = img.closest(".cards");
+    const count = [...grid.querySelectorAll("img")].filter((x) => x.dataset.n === n).length;
+    $("cImg").src = img.src; $("cImg").alt = n;
+    $("cName").innerHTML = `<b>${esc(n)}</b>${count > 1 ? ` <span>&times;${count} in this list</span>` : ""}${img.dataset.dif ? `<span class="cdif">${MARK_ICON}Not in list 1</span>` : ""}${img.dataset.dif && grid.dataset.out ? `<span class="cout">List 1 has instead: ${grid.dataset.out}</span>` : ""}`;
+    if (!cdlg.open) { cdlg.showModal(); history.pushState({ ...(history.state || {}), card: 1 }, "", location.href); } // back closes it
+  }
+  cdlg.addEventListener("click", () => cdlg.close());
+  cdlg.addEventListener("close", () => { if (history.state && history.state.card) history.back(); });
+
+  // Swap panel: one open at a time; the tab toggles it, a tap on the panel or anywhere else closes it
+  const closeSwaps = (except) => document.querySelectorAll(".swap:not([hidden])").forEach((sw) => {
+    if (sw === except) return;
+    sw.hidden = true;
+    sw.parentElement.querySelector(".dnote")?.setAttribute("aria-expanded", "false");
+  });
+  document.addEventListener("click", (e) => { if (!e.target.closest(".dnote")) closeSwaps(); });
+  $("list").addEventListener("click", (e) => {
+    const tab = e.target.closest(".dnote");
+    if (tab) {
+      const sw = $(tab.getAttribute("aria-controls"));
+      if (!sw) return;
+      closeSwaps(sw);
+      sw.hidden = !sw.hidden;
+      tab.setAttribute("aria-expanded", String(!sw.hidden));
+      return;
+    }
+    if (e.target.closest(".swap")) return; // the document handler closes it
+    const ci = e.target.closest(".cards img");
+    if (ci) { openCard(ci); return; }
+    const qb = e.target.closest(".qr[data-i]");
+    if (qb) {
+      const d = data.decks.find((x) => x.id === openId);
+      if (!d) return;
+      openQR(d, +qb.dataset.i);
+      return;
+    }
+    const row = e.target.closest(".arow");
+    if (!row) return;
+    const id = row.dataset.id;
+    if (id === openId) {
+      if (history.state && history.state.deck) { history.back(); return; } // the popstate handler below closes it
+      closeOpen();
+    } else {
+      // A history entry for the open deck, so the phone's back gesture closes it (switching decks reuses the entry)
+      if (!(history.state && history.state.deck)) history.pushState({ deck: 1 }, "", location.href);
+      open(id, AUTO_TOP && !BIG.matches);
+    }
+  });
+  // ===== Search + energy filter: hides decks that do not match (ranks stay as they are) =====
+  const ENERGY_ORDER = ["grass", "fire", "water", "lightning", "psychic", "fighting", "darkness", "metal"];
+  const fstate = { q: "", en: new Set() };
+  function setupFilter() {
+    const used = new Set(data.decks.flatMap((d) => d.energy || []));
+    $("fen").innerHTML = ENERGY_ORDER.filter((e) => used.has(e)).map((e) =>
+      `<button class="ech" type="button" data-e="${e}" aria-pressed="false" title="${cap(e)}"><img src="e/${e}.webp" alt="${cap(e)}" width="22" height="22"></button>`).join("");
+    $("filtBtn").hidden = false;
+  }
+  // Dropdown: the filter button opens and closes it; a tap outside or Esc closes it (the filter stays on)
+  const setDrop = (on) => {
+    $("filt").hidden = !on;
+    $("filtBtn").setAttribute("aria-expanded", String(on));
+    if (on && !TOUCH) $("fq").focus(); // phones: no keyboard until the viewer taps the field
+  };
+  $("filtBtn").addEventListener("click", () => setDrop($("filt").hidden));
+  document.addEventListener("click", (e) => { if (!$("filt").hidden && !e.target.closest("#filt, #filtBtn")) setDrop(false); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("filt").hidden) { setDrop(false); $("filtBtn").focus(); } });
+  $("fq").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); $("fq").blur(); setDrop(false); } });
+  function applyFilter() {
+    const q = fstate.q.trim().toLowerCase();
+    let n = 0;
+    data.decks.forEach((d) => {
+      const sec = $(d.id);
+      if (!sec) return;
+      const okQ = !q || d.name.toLowerCase().includes(q) || (d.cards || []).some((c) => c.n.toLowerCase().includes(q));
+      const okE = [...fstate.en].every((e) => (d.energy || []).includes(e)); // every chosen energy
+      const ok = okQ && okE;
+      sec.hidden = !ok;
+      if (ok) n++;
+      if (!ok && openId === d.id) { if (history.state && history.state.deck) history.back(); else closeOpen(); }
+    });
+    const active = !!q || fstate.en.size > 0;
+    $("fcount").textContent = active ? `${n} of ${data.decks.length} decks` : "";
+    $("fnone").hidden = !active;
+    $("fnoneTxt").textContent = n ? `Showing ${n} of ${data.decks.length} decks.` : "No decks match.";
+    $("fdot").hidden = !active;
+    const pod = document.querySelector(".podium");
+    if (pod) pod.hidden = !pod.querySelector(".acc:not([hidden])");
+  }
+  let fqT = null;
+  $("fq").addEventListener("input", (e) => { fstate.q = e.target.value; clearTimeout(fqT); fqT = setTimeout(applyFilter, 120); });
+  $("fen").addEventListener("click", (e) => {
+    const b = e.target.closest(".ech");
+    if (!b) return;
+    const on = b.getAttribute("aria-pressed") !== "true";
+    b.setAttribute("aria-pressed", String(on));
+    on ? fstate.en.add(b.dataset.e) : fstate.en.delete(b.dataset.e);
+    applyFilter();
+  });
+  $("fclear").addEventListener("click", () => {
+    fstate.q = ""; fstate.en.clear(); $("fq").value = "";
+    document.querySelectorAll(".ech").forEach((b) => b.setAttribute("aria-pressed", "false"));
+    applyFilter();
+  });
+
+  function closeOpen() {
+    const id = openId;
+    if (!id) return;
+    close(id);
+    openId = null;
+    history.replaceState(null, "", location.pathname + location.search);
+    tail.style.height = "0px";
+    // Keep the page where it is. Only when the row (or the podium) is fully above the screen (a back gesture from deep in the deck),
+    // bring it back with the same gap as on open; otherwise the closed panel would pull the list up under the viewer.
+    const { box, gap } = anchorOf($(id)), rowBottom = $(id).querySelector(".arow").getBoundingClientRect().bottom;
+    if (rowBottom <= padTop()) scrollBy({ top: box.getBoundingClientRect().top - padTop() - gap, behavior: reduced ? "auto" : "smooth" });
+  }
+  // Back gesture / back button: first closes the full-screen QR, then the open deck
+  addEventListener("popstate", () => {
+    const st = history.state || {};
+    if (dlg.open && !st.qr) dlg.close();
+    if (cdlg.open && !st.card) cdlg.close();
+    if (openId && !st.deck) closeOpen();
+  });
+  window.addEventListener("hashchange", () => { const id = location.hash.slice(1); if (data && id && id !== openId && $(id)) open(id); });
+
+  // Long deck names: no auto-shrink for now (they wrap to 2 lines instead)
+  function fitNames() {}
+
+  fetch("data.json", { cache: "no-cache" })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((j) => {
+      data = j;
+      const t = new Date(data.updatedAt);
+      const when = t.toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZoneName: "short" });
+      const tile = (l, v, cls = "") => `<span class="mt${cls}"><span>${l}</span><b>${v}</b></span>`;
+      $("meta").innerHTML = tile("Set", esc(data.set)) + tile("Decks", data.decks.length)
+        + tile("Updated", when, " grow"); // the Events tile is left out for now
+      renderList();
+      setupFilter();
+      podGrow();
+      fitNames();
+      const id = location.hash.slice(1);
+      if (id && $(id)) open(id); // shared link: open that deck; otherwise all rows start closed
+    })
+    .catch(() => {
+      $("meta").innerHTML = "<span>Deck data did not load.</span>";
+      $("list").innerHTML = '<div class="empty">Deck data did not load. Reload the page to try again.</div>';
+    });
+})();
+</script>
