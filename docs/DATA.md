@@ -162,7 +162,8 @@ The pairings do not say which deck a player used in a match. Thus:
 About 3 new tournaments per day. Per tournament: details 1 + standings 1 + pairings about 8
 (Swiss rounds + top cut) + about 23 decklists = about 33. About 100 requests per day, about 4 minutes.
 
-Schedule (`.github/workflows/scrape.yml`): every 6 hours. A run with nothing new makes 2 requests (set
+Schedule (`.github/workflows/scrape.yml`): every hour at xx:23 UTC (every 6 hours until Nov 10, 2026: GitHub dropped
+or delayed most scheduled runs, see the comment in scrape.yml). A run with nothing new makes 2 requests (set
 list + tournament list). The backfill (about 40 tournaments, about 1,100 requests) needs about 3 runs
 at the cap of 400.
 

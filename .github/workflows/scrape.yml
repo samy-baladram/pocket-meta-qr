@@ -5,7 +5,10 @@ name: Scrape tournaments
 
 on:
   schedule:
-    - cron: "17 */6 * * *"   # 00:17, 06:17, 12:17, 18:17 UTC
+    # Every hour (was every 6 h until Nov 10, 2026): GitHub delays or drops scheduled runs when Actions is busy
+    # (Nov 8-9: 3 of 5 runs dropped, 1 late by 4 h), so frequent runs keep the data fresh. A run with nothing new
+    # makes 2 requests to Limitless.
+    - cron: "23 * * * *"
   workflow_dispatch:
     inputs:
       since:
