@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794215815-56ce -->
+<!-- ui: artifact version 1794243297-0581 -->
 <title>Pocket Meta QR</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,9 +32,9 @@
   --band-top: #2a98f9; --band-bot: #0cd3fc; --rib-a: #f5fafd; --rib-b: #e3edf4; --rib-ink: #5d6b80; --rib-logo: #2a92f2;
   --rib-shadow: 0 5px 10px rgba(40, 90, 150, 0.22), 0 1px 2px rgba(40, 90, 150, 0.18), inset 0 1px 0 #ffffff;
   /* Depth: one light from the top-left. Raised = cards and things you tap; flat = info. Whole pixels only. */
-  --raised: 0 0 0 1px rgba(45, 95, 175, 0.08), -1px -1px 2px rgba(45, 95, 175, 0.06), 0 0 4px rgba(45, 95, 175, 0.10),
+  --raised: -1px -1px 2px rgba(45, 95, 175, 0.06), 0 0 4px rgba(45, 95, 175, 0.10),
     1px 2px 2px rgba(45, 95, 175, 0.09), 2px 3px 6px rgba(45, 95, 175, 0.09);
-  --raised-sm: 0 0 0 1px rgba(45, 95, 175, 0.08), 0 0 4px rgba(45, 95, 175, 0.10), 1px 2px 2px rgba(45, 95, 175, 0.09);
+  --raised-sm: 0 0 4px rgba(45, 95, 175, 0.10), 1px 2px 2px rgba(45, 95, 175, 0.09);
   --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.6), inset -1px -1px 1px rgba(45, 95, 175, 0.10);
   /* Radius: card > box > tile */
   --r-card: 12px; --r-box: 10px; --r-tile: 8px;
@@ -102,6 +102,14 @@ footer a { color: var(--muted); }
   display: grid; place-items: center; cursor: pointer; background: var(--surface); color: var(--muted); box-shadow: var(--raised), var(--bevel); }
 .theme-btn:hover { color: var(--ink); }
 .theme-btn svg { width: 16px; height: 16px; display: block; stroke-width: 2; }
+/* Rainbow hairline on the ribbon's bottom edge (game "My Cards"), slowly moving */
+.ribbon::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; pointer-events: none;
+  background: linear-gradient(90deg, #ff6f91, #ffc75f, #8be36b, #4dd4ff, #8f7bff, #ff6fd8, #ff6f91); background-size: 200% 100%; animation: rbow 8s linear infinite;
+  box-shadow: 0 2px 0 var(--surface); } /* + a 2px light line under the rainbow */
+@keyframes rbow { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .ribbon::after { animation: none; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ribbon::after { opacity: 0.7; } }
+:root[data-theme="dark"] .ribbon::after { opacity: 0.7; }
 .ribbon { position: relative; z-index: 2; margin: 30px calc(50% - 55vw) 0; width: 110vw; transform: rotate(var(--rot));
   padding: 9px 0 10px calc(55vw - 50% + 6px); display: flex; align-items: center; gap: 10px;
   background: linear-gradient(180deg, var(--rib-a), var(--rib-b)); box-shadow: var(--rib-shadow); }
@@ -126,7 +134,8 @@ footer a { color: var(--muted); }
 .hint button { flex: none; margin-left: auto; border: 0; background: none; color: var(--muted); font-size: 1.05rem; line-height: 1; padding: 0 2px; cursor: pointer; }
 /* Search + energy filter */
 /* Filter button: next to the theme button, same raised round style; a blue dot shows that a search or filter is on */
-.filt-btn { position: relative; top: auto; right: auto; flex: none; margin-block: -4px; } /* no extra row height */
+.filt-btn { position: relative; top: auto; right: auto; flex: none; margin-block: -8px; width: 40px; height: 40px; }
+.filt-btn svg { width: 20px; height: 20px; } /* no extra row height */
 .filt-btn[hidden] { display: none; }
 .filt-btn[aria-expanded="true"] { color: var(--accent); }
 .filt-btn .fdot { position: absolute; top: 1px; right: 1px; width: 8px; height: 8px; border-radius: 50%; background: var(--mark); box-shadow: 0 0 0 1.5px var(--surface); }
@@ -160,6 +169,33 @@ footer a { color: var(--muted); }
 @media (max-width: 380px) { .ech { width: 34px; height: 34px; } } /* small phones: all 8 chips still fit */
 .fcount { font-size: var(--fs-s); color: var(--muted); white-space: nowrap; }
 .fcount, .fcount:empty { display: none; }
+/* Game style (the in-game search panel): a light top band with a pressed-in search pill, a slightly darker area below;
+   energy chips are raised round buttons in 1 row, icons always in color; the chosen one is a dark pressed-in disc */
+:root { --fp-top: #eef2f7; --fp-bot: #e6ecf3; --fp-line: rgba(45, 95, 175, 0.18);
+  --fin-bg: #e1e8f0; --fin-sh: inset 2px 2px 4px rgba(60, 90, 140, 0.22), inset -2px -2px 4px rgba(255, 255, 255, 0.9); --fin-icon: #8fb0d6;
+  --fch-bg: linear-gradient(180deg, #f8fafc, #edf1f6); --fch-sh: 0 2px 4px rgba(45, 95, 175, 0.18), inset 0 1px 0 #ffffff;
+  --fch-on: #4b5872; --fch-on-sh: inset 0 2px 3px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.8); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --fp-top: #222a37; --fp-bot: #1b222d; --fp-line: rgba(0, 0, 0, 0.5);
+  --fin-bg: #141922; --fin-sh: inset 2px 2px 4px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); --fin-icon: #6f8fb8;
+  --fch-bg: linear-gradient(180deg, #2a3342, #232b38); --fch-sh: 0 2px 4px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --fch-on: #b8c6dc; --fch-on-sh: inset 0 2px 3px rgba(0, 0, 0, 0.3); } }
+:root[data-theme="dark"] { --fp-top: #222a37; --fp-bot: #1b222d; --fp-line: rgba(0, 0, 0, 0.5);
+  --fin-bg: #141922; --fin-sh: inset 2px 2px 4px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); --fin-icon: #6f8fb8;
+  --fch-bg: linear-gradient(180deg, #2a3342, #232b38); --fch-sh: 0 2px 4px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --fch-on: #b8c6dc; --fch-on-sh: inset 0 2px 3px rgba(0, 0, 0, 0.3); }
+.filt { padding: 0; gap: 0; overflow: hidden; border-radius: 18px; background: var(--fp-bot);
+  box-shadow: var(--pop-sh); }
+.filt .fsearch { padding: 10px 12px; background: var(--fp-top); box-shadow: 0 3px 6px -2px var(--fp-line); position: relative; z-index: 1; }
+.filt .fsearch > svg { left: 24px; width: 18px; height: 18px; color: var(--fin-icon); stroke-width: 1.8; }
+.filt .fsearch input { height: 38px; border-radius: 999px; background: var(--fin-bg); padding-left: 40px; box-shadow: var(--fin-sh); }
+.filt .fsearch input:focus-visible { box-shadow: var(--fin-sh), 0 0 0 2px var(--accent); }
+.filt .fsx { right: 16px; }
+.filt .fsug { padding: 6px 8px 0; margin: 0; }
+.filt .fen { flex-basis: 100%; width: 100%; justify-content: space-between; gap: 4px; padding: 12px 14px 14px; }
+.filt .ech { width: 34px; height: 34px; background: var(--fch-bg); box-shadow: var(--fch-sh); }
+.filt .ech img { width: 26px; height: 26px; opacity: 1; filter: none; }
+.filt .ech[aria-pressed="true"] { background: var(--fch-on); box-shadow: var(--fch-on-sh); }
+@media (max-width: 380px) { .filt .fen { padding-inline: 10px; gap: 2px; } .filt .ech { width: 32px; height: 32px; } .filt .ech img { width: 24px; height: 24px; } }
 /* Search suggestions: decks (2 icon cards, name, share and win) and cards (thumbnail, name, decks that use it);
    with an empty box: "Popular cards" (cards in many decks, but not the staples that almost every deck plays) */
 .fsug { flex-basis: 100%; display: flex; flex-direction: column; gap: 1px; max-height: min(52vh, 420px); overflow-y: auto; overscroll-behavior: contain; margin: -2px -4px 0; }
@@ -203,8 +239,10 @@ footer a { color: var(--muted); }
 }
 .arow > * { position: relative; }
 /* Energy band: only behind the rank and icons, with a slanted soft fade, so no line crosses the text */
-.arow::before { content: ""; position: absolute; inset: 0 auto 0 0; border-radius: inherit; width: calc(var(--bw, 126px) + var(--ox, 0px) + 40px); pointer-events: none; opacity: var(--row-band);
-  background: linear-gradient(112deg, var(--eb1, #c9d3df) 0px, var(--eb2, var(--eb1, #c9d3df)) calc((var(--bw, 126px) + var(--ox, 0px)) * 0.42), transparent calc((var(--bw, 126px) + var(--ox, 0px)) * 0.9)); }
+/* Energy streak (game "Community Decks" style): a slanted band in the deck colors across the row top, fading to the right */
+.arow::before { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--bw, 126px) + var(--ox, 0px) + 20px); border-radius: inherit; pointer-events: none; opacity: var(--row-band);
+  background: linear-gradient(90deg, var(--eb1, #c9d3df) 0, var(--eb2, var(--eb1, #c9d3df)) 35%, transparent 100%);
+  clip-path: polygon(0 0, 100% 0, 0 50%); } /* a triangle from the top edge to the bottom-left corner: the name stays on a light ground */
 /* Bevel overlay: above the row background, below the card icons and text */
 .arow::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1; box-shadow: var(--bevel); }
 @media (hover: hover) { .arow:hover { background: var(--hover); } } /* with a mouse only: a tap never leaves it stuck */
@@ -304,6 +342,7 @@ footer a { color: var(--muted); }
 .apanel[hidden] { display: none; }
 .apanel:has(.dots):not(.fit) { padding-bottom: 18px; } /* room for the dots */
 .apanel.fit .chev-btn, .apanel.fit .dots { display: none; } /* all lists fit in view */
+.apanel.fit .vars, .apanel:not(:has(.slide + .slide)) .vars { justify-content: center; } /* fewer lists than fit in view (iPad, desktop): centered */
 /* Lists per view: phone 1, phone landscape 2, iPad portrait 3, iPad landscape 4, desktop 5 (3+ need a screen taller than a landscape phone) */
 .vars { --per: 1; --vgap: 14px; display: flex; gap: var(--vgap); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
   padding: var(--sp-2) var(--edge) var(--sp-3); scroll-padding-inline: var(--edge); } /* 8px on top: room for the "differs" tab */
@@ -337,7 +376,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .chip .x { color: var(--muted); font-weight: 500; }
 /* Set code after a name that 2+ different cards share in the deck ("Dratini B4"): muted and smaller */
 .setc { margin-left: 3px; color: var(--muted); font-size: 0.82em; font-weight: 500; letter-spacing: 0.02em; }
-.cname .setc, .qvar .setc { color: #aab3c2; }
+.cname .setc, .qvar .setc { color: var(--dlg-muted); }
 .swap .out .chip { color: var(--muted); }
 
 /* The 20 cards: one shared shadow under the whole grid, so no shadow spills onto a neighbor */
@@ -368,17 +407,41 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --acc-bg: rgba(127, 169, 230, 0.16); --acc-ink: #9cc4ff; --acc-mark: #6aa8ff; --acc-line: rgba(127, 169, 230, 0.45); } }
 :root[data-theme="dark"] { --acc-bg: rgba(127, 169, 230, 0.16); --acc-ink: #9cc4ff; --acc-mark: #6aa8ff; --acc-line: rgba(127, 169, 230, 0.45); }
 .l1 { display: inline-flex; align-items: center; gap: 2px; color: var(--acc-ink); font-weight: 700; white-space: nowrap; }
+/* Hot list: a warm rose red (not error red, not Fire orange) */
+:root { --hot-ink: #d6345a; --hot-bg: rgba(214, 52, 90, 0.10); --hot-line: rgba(214, 52, 90, 0.40); --hot-mark: #ef4f74; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --hot-ink: #ff8fa8; --hot-bg: rgba(255, 110, 145, 0.14); --hot-line: rgba(255, 110, 145, 0.45); --hot-mark: #ff6f91; } }
+:root[data-theme="dark"] { --hot-ink: #ff8fa8; --hot-bg: rgba(255, 110, 145, 0.14); --hot-line: rgba(255, 110, 145, 0.45); --hot-mark: #ff6f91; }
+.l1.hot, .ipop .cmpt .sl.l1s .l1.hot, .qvar .l1.hot { color: var(--hot-ink); }
+.dnote.l1tab.hot { color: var(--hot-ink); border-color: var(--hot-line); background: linear-gradient(var(--hot-bg), var(--hot-bg)), var(--surface); }
+.dnote.l1tab.hot > svg { color: var(--hot-mark); }
+.dot.l1.hot::before, .qdots .dot.l1.hot::before { background: var(--hot-mark); }
 .l1 svg { width: 0.85em; height: 0.85em; display: block; flex: none; color: var(--acc-mark); }
 .cname .l1 { color: inherit; } /* on the dark full-screen view */
 /* The tab on list 1's top edge (same place as "N cards differ" on the other lists): cyan tint, not a button */
 .dnote.l1tab { color: var(--acc-ink); font-weight: 700; padding-right: 6px; border: 1px solid var(--acc-line); /* a thin blue outline, so the tint does not blend into the card */
   background: linear-gradient(var(--acc-bg), var(--acc-bg)), var(--surface); }
-.dnote.l1tab > svg { width: 9px; height: 9px; color: var(--acc-mark); }
+.dnote.l1tab > svg { width: 11px; height: 11px; color: var(--acc-mark); }
 .dnote.l1tab .ii { color: inherit; width: 11px; height: 11px; }
 .dnote.l1tab .ii svg { width: 11px; height: 11px; }
 .swap .sl.l1s { color: var(--acc-ink); }
 /* "Used by N of M top players": plain muted text; on list 1 a light cyan tint */
 /* Row under the tiles: "Used by" pill + "Also played (N)" button */
+/* Compare mode */
+.cards img { transition: opacity 0.2s; }
+.cards.cmp img:not([data-dif]), .cards.cmp1 img:not(.keep), .vars.cmpv .cards:not(.cmp, .cmp1) img { opacity: 0.2; }
+.cmpb .l1 { gap: 1px; }
+.cmpb .swi { width: 12px; height: 12px; display: block; flex: none; }
+.cmpb .cdi { width: 12px; height: 12px; display: block; flex: none; margin: 0 3px 0 -1px; color: var(--muted); transform: scaleX(-1); } /* close to the number, mirrored */
+.ipop h3 .swi { width: 16px; height: 16px; display: inline-block; vertical-align: -2px; margin-right: 5px; color: var(--muted); }
+.ipop .cmpt { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 10px; align-items: start; font-size: var(--fs-s); }
+.ipop .cmpt .sl { padding-top: 3px; font-size: var(--fs-xs); font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+.ipop .cmpt .sl.in { color: var(--muted); }
+.ipop .cmpt .sl.l1s { color: var(--acc-ink); text-transform: none; letter-spacing: 0; }
+.ipop .chip[data-cid] { cursor: pointer; border-radius: 4px; }
+@media (hover: hover) { .ipop .chip[data-cid]:hover { color: var(--accent); } }
+.ipop .chip[data-cid]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ipop .cmpt .chips { display: flex; flex-wrap: wrap; gap: 4px 10px; min-width: 0; }
+.ipop .cmpt .out .chip { color: var(--muted); }
 .sfoot > .usrow { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
 .sfoot .us { justify-self: start; border-radius: 999px; white-space: normal; background: none;
   color: var(--muted); font-size: var(--fs-xs); font-weight: 500; padding: 0 2px; line-height: 1.5; }
@@ -420,6 +483,12 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 
 /* Narrow list columns (3 per view on wide screens): the same tiles and labels as on the phone, with a smaller QR and text */
 @container (max-width: 300px) {
+  .ustop { display: none; } /* "5/20 players": the row fits on one line */
+  .sfoot > .usrow { gap: 4px 6px; }
+  .altb { padding: 0 5px; gap: 2px; letter-spacing: -0.01em; }
+  .cmpb .cdi { margin: 0 2px 0 -1px; }
+  .sfoot > .usrow { gap: 4px 5px; }
+  .usrow .ii { margin-left: 2px; }
   .sfoot { column-gap: 8px; }
   .tile { padding: var(--sp-1) 6px; }
   .tile.t-en { padding-inline: 5px; }
@@ -454,7 +523,11 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 
 /* ===== Full-screen views: QR (with Save) and card zoom ===== */
 .qdlg { border: 0; padding: 0; background: none; max-width: none; max-height: none; width: 100%; height: 100%; }
-.qdlg::backdrop { background: rgba(8, 10, 14, 0.88); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+/* Full-screen views (game style): a light grey-blue blur over the page, not black; dark mode: a dark blur */
+:root { --dlg-bd: rgba(138, 158, 188, 0.62); --dlg-ink: #26303f; --dlg-muted: #3f4c60; --dlg-dot: rgba(38, 48, 63, 0.3); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --dlg-bd: rgba(8, 12, 18, 0.78); --dlg-ink: #ffffff; --dlg-muted: #d5dbe5; --dlg-dot: rgba(255, 255, 255, 0.35); } }
+:root[data-theme="dark"] { --dlg-bd: rgba(8, 12, 18, 0.78); --dlg-ink: #ffffff; --dlg-muted: #d5dbe5; --dlg-dot: rgba(255, 255, 255, 0.35); }
+.qdlg::backdrop { background: var(--dlg-bd); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .qdlg[open] { display: grid; place-items: center; cursor: zoom-out; }
 .qbox { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--sp-3); padding: var(--sp-4); width: min(460px, 100%); }
 .qstage { position: relative; width: 100%; touch-action: pan-y; } /* horizontal swipes switch lists */
@@ -464,26 +537,28 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .qclose, .qnav { width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
   background: var(--surface); color: var(--ink); box-shadow: var(--raised), var(--bevel), 0 4px 12px rgba(0, 0, 0, 0.3); }
 .qclose svg, .qnav svg { width: 18px; height: 18px; display: block; stroke-width: 2; }
-.qclose { position: absolute; z-index: 2; top: max(16px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); }
+.qclose { position: static; width: 44px; height: 44px; margin: 12px 0 28px; }
+.qclose svg { width: 28px; height: 28px; stroke-width: 1.4; }
+.qclose { color: #7b8798; } /* a soft grey ×, like the game */ /* game style: a round close button at the bottom center */
 .qnav { position: absolute; z-index: 1; top: 50%; transform: translateY(-50%); }
 .qnav[hidden] { display: none; }
 .qnav.prev { left: -10px; }
 .qnav.next { right: -10px; }
 .qdots { display: flex; gap: 2px; }
 .qdots:empty { display: none; }
-.qdots .dot::before { background: rgba(255, 255, 255, 0.35); }
-.qdots .dot[aria-current="true"]::before { background: #ffffff; }
+.qdots .dot::before { background: var(--dlg-dot); }
+.qdots .dot[aria-current="true"]::before { background: var(--dlg-ink); }
 .qdots .dot.l1::before { background: #6aa8ff; } /* the dark-mode mark blue (this view is always dark) */
 /* Full-screen QR of an "Also played" version: a heading over the image ("★ List 1 with Red Card + Soothing Shore") */
-.qvar { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2px 8px; color: #d5dbe5; font-size: var(--fs-m); text-align: center; }
+.qvar { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2px 8px; color: var(--dlg-muted); font-size: var(--fs-m); text-align: center; }
 .qvar[hidden] { display: none; }
-.qvar .l1 { color: #9cc4ff; }
+.qvar .l1 { color: var(--acc-ink); }
 .qvar .l1 svg { color: #6aa8ff; }
-.qvar s { color: #aab3c2; text-decoration-thickness: 1px; }
-.qvar b { color: #ffffff; font-weight: 700; }
+.qvar s { color: var(--dlg-muted); opacity: 0.75; text-decoration-thickness: 1px; }
+.qvar b { color: var(--dlg-ink); font-weight: 700; }
 .qvar .qvm { flex-basis: 100%; font-size: var(--fs-s); }
-.qhint { margin: 0; color: #d5dbe5; font-size: var(--fs-m); line-height: 1.5; text-align: center; text-wrap: balance; }
-.qmsg { margin: 0; min-height: 1.2em; color: #ffffff; font-size: var(--fs-m); }
+.qhint { margin: 0; color: var(--dlg-muted); font-size: var(--fs-m); line-height: 1.5; text-align: center; text-wrap: balance; }
+.qmsg { margin: 0; min-height: 1.2em; color: var(--dlg-ink); font-size: var(--fs-m); }
 .qmsg:empty { display: none; }
 /* Save: a raised surface pill, like the cards */
 .qsave { display: inline-flex; align-items: center; gap: var(--sp-2); padding: 10px 18px; border: 0; border-radius: 999px; cursor: pointer;
@@ -493,18 +568,50 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .qsave:active { transform: scale(0.97); }
 .qsave:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
 /* Card popup: phone = bottom sheet (tap); mouse = popover beside the card (hover, click pins). The card image opens full screen. */
-.cscrim { position: fixed; inset: 0; z-index: 40; background: rgba(8, 12, 20, 0.42); opacity: 0; transition: opacity 0.2s; }
+/* Popover and sheet shadows: strong enough to lift them off the page; dark mode adds a faint light edge (a shadow alone is lost on dark) */
+:root { --pop-sh: 0 2px 6px rgba(20, 40, 70, 0.16), 0 16px 40px rgba(20, 40, 70, 0.34);
+  --sheet-sh: 0 -2px 6px rgba(20, 40, 70, 0.14), 0 -14px 44px rgba(20, 40, 70, 0.36); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --pop-sh: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 10px rgba(0, 0, 0, 0.5), 0 18px 48px rgba(0, 0, 0, 0.75);
+  --sheet-sh: 0 -1px 0 rgba(255, 255, 255, 0.10), 0 -4px 12px rgba(0, 0, 0, 0.5), 0 -18px 50px rgba(0, 0, 0, 0.8); } }
+:root[data-theme="dark"] {
+  --pop-sh: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 10px rgba(0, 0, 0, 0.5), 0 18px 48px rgba(0, 0, 0, 0.75);
+  --sheet-sh: 0 -1px 0 rgba(255, 255, 255, 0.10), 0 -4px 12px rgba(0, 0, 0, 0.5), 0 -18px 50px rgba(0, 0, 0, 0.8); }
+/* QR sheet */
+.ipop.qsheet.float { width: min(340px, calc(100vw - 24px)); }
+.qsbox { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 12px 14px; border-radius: 16px; background: var(--bg);
+  box-shadow: inset 0 1px 3px rgba(20, 40, 70, 0.12); text-align: center; }
+.qst { margin: 0; align-self: stretch; padding: 5px 10px; border-radius: 999px; background: var(--surface); box-shadow: var(--raised-sm), var(--bevel);
+  font-weight: 600; font-size: var(--fs-m); color: var(--ink); }
+.qsdeck { margin: 2px 0 0; display: flex; flex-direction: column; align-items: center; gap: 1px; line-height: 1.25; }
+.qsdeck b { font-size: var(--fs-l); color: var(--ink); }
+.qsl { font-size: var(--fs-s); color: var(--muted); }
+.qsl .qsn { color: var(--muted); font-weight: 500; }
+.qsl .qsv { display: block; font-weight: 500; }
+.qsrow { display: flex; align-items: center; gap: 6px; }
+.qsimg { width: min(236px, 62vw); height: auto; aspect-ratio: 1; display: block; border-radius: 12px; background: #ffffff; padding: 6px; }
+.qsnav { width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  background: var(--surface); color: var(--muted); box-shadow: var(--raised-sm), var(--bevel); }
+.qsnav svg { width: 10px; height: 18px; display: block; stroke-width: 3; }
+.qsh { margin: 0; font-size: var(--fs-s); color: var(--muted); line-height: 1.4; }
+.ipop .qssave { margin: 12px auto 0; display: flex; }
+/* Phone sheet: Save sits on the same line as the round ×, at the lower right (easy to reach with a thumb) */
+.ipop.sheet.qsheet .ibody { position: static; } /* so Save is placed against the sheet, not the content */
+.ipop.sheet.qsheet .qssave { position: absolute; right: 16px; bottom: calc(41px + env(safe-area-inset-bottom)); margin: 0; padding: 9px 16px; font-size: var(--fs-m); }
+.ipop.sheet.qsheet #qsMsg { margin-top: 8px; }
+.ipop #qsMsg { color: var(--ink); text-align: center; margin-top: 6px; }
+.cscrim { position: fixed; inset: 0; z-index: 40; background: transparent; pointer-events: none; /* the page stays clear and tappable */ opacity: 0; transition: opacity 0.2s; }
 .cscrim.on { opacity: 1; }
 .cpop { position: fixed; z-index: 41; box-sizing: border-box; background: var(--surface); color: var(--ink); }
 .cpop[hidden] { display: none; }
 .cpop.sheet { left: 0; right: 0; bottom: 0; padding: 8px 16px calc(16px + env(safe-area-inset-bottom)); border-radius: 18px 18px 0 0;
-  box-shadow: 0 -8px 30px rgba(10, 20, 40, 0.25); transform: translateY(105%); transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1); touch-action: none; }
+  box-shadow: var(--sheet-sh); transform: translateY(105%); transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1); touch-action: none; }
 .cpop.sheet.on { transform: none; }
 .cpop.sheet .sbody { max-width: 480px; margin: 0 auto; }
 .cpop.float { width: min(380px, calc(100vw - 24px)); padding: 12px; border-radius: 12px;
-  box-shadow: 0 0 0 1px rgba(45, 95, 175, 0.12), 0 12px 32px rgba(20, 40, 70, 0.25); opacity: 0; transition: opacity 0.12s; }
+  box-shadow: var(--pop-sh); opacity: 0; transition: opacity 0.12s; }
 .cpop.float.on { opacity: 1; }
-.cpop .grab { display: block; width: 36px; height: 4px; border-radius: 2px; background: var(--line-strong); margin: 0 auto 12px; }
+.cpop .grab { display: block; width: 52px; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--accent) 22%, var(--line)); margin: 0 auto 12px; }
 .cpop.float .grab, .cpop.sheet .parr { display: none; }
 .cpop .parr { position: absolute; top: 40px; width: 14px; height: 14px; background: var(--surface); transform: rotate(45deg); }
 .cpop .parr.l { left: -7px; box-shadow: -1px 1px 0 rgba(45, 95, 175, 0.12); }
@@ -565,9 +672,9 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .aqr svg { width: 20px; height: 20px; display: block; }
 @media (hover: hover) { .aqr:hover { color: var(--accent); } }
 .aqr:active { transform: scale(0.96); }
-/* One change = 2 aligned lines: "−  Red Card" then "+  Soothing Shore" (a sign column, then the card) */
-.ipop .altc { display: grid; grid-template-columns: 12px minmax(0, 1fr); align-items: center; gap: 3px 4px; }
-.ipop .altc .aout, .ipop .altc .ain { display: contents; }
+/* One change on one line: "− Red Card  + Soothing Shore" (wraps only when too long) */
+.ipop .altc { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 12px; }
+.ipop .altc .aout, .ipop .altc .ain { display: inline-flex; align-items: center; gap: 4px; min-width: 0; }
 .ipop .altc .chip { font-size: var(--fs-s); min-width: 0; }
 .ipop .altc .asg { font-weight: 700; text-align: center; line-height: 1; }
 .ipop .altc .aout .chip { color: var(--muted); font-weight: 500; }
@@ -587,15 +694,26 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .ipop dt span { display: block; font-size: var(--fs-xs); font-weight: 500; color: var(--muted); }
 .ipop dd { margin: 0; color: var(--muted); }
 .ipop .inote { font-size: var(--fs-s); }
+/* Sheets (touch), game "Sort" style: centered title over a soft divider, a round close button at the bottom center */
+.cpop .sx { display: none; }
+.cpop.sheet .sx { display: grid; place-items: center; width: 44px; height: 44px; margin: 8px auto 22px; /* higher, like the game */ padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  background: var(--surface); color: #7b8798; box-shadow: var(--raised), var(--bevel); }
+.cpop.sheet .sx svg { width: 28px; height: 28px; display: block; stroke-width: 1.4; }
+.ipop.sheet h3 { text-align: center; padding-bottom: 10px; margin-bottom: 10px; box-shadow: 0 6px 6px -6px var(--line-strong); }
+.cpop .zcol { flex: none; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.cpop .zcol .shint { margin: 0; }
+.cdlg::backdrop { background: color-mix(in srgb, var(--bg) 94%, transparent); -webkit-backdrop-filter: none; backdrop-filter: none; } /* plain page color, no grey blur (only the QR view has it) */
+.cdlg .cname { display: none; } /* the card popup under it already shows the name */
+.cdlg[open] { cursor: default; }
 .cbox { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px; width: min(320px, 82vw); }
 .cbox img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: var(--r-box); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); }
-.cname { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 8px; color: #ffffff; font-size: var(--fs-l); text-align: center; }
+.cname { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 8px; color: var(--dlg-ink); font-size: var(--fs-l); text-align: center; }
 .cname b { font-weight: 700; }
-.cname span { color: #d5dbe5; font-size: var(--fs-m); }
-.cname .cout { flex-basis: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 10px; color: #d5dbe5; font-size: var(--fs-m); }
-.cname .cout .chip { color: #ffffff; }
+.cname span { color: var(--dlg-muted); font-size: var(--fs-m); }
+.cname .cout { flex-basis: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 10px; color: var(--dlg-muted); font-size: var(--fs-m); }
+.cname .cout .chip { color: var(--dlg-ink); }
 .cname .chip img { width: 18px; box-shadow: none; border-radius: 2px; } /* not the big zoom image style */
-.cname .cout .chip .x { color: #d5dbe5; }
+.cname .cout .chip .x { color: var(--dlg-muted); }
 .cname .cdif { display: inline-flex; align-items: center; gap: 5px; padding: 1px 8px 1px 7px; border-radius: 999px; background: var(--pill-bg); color: var(--pill-ink); font-size: var(--fs-s); font-weight: 700; }
 
 /* ===== Top 3 podium: three tiles with medals. A tap grows the tile by 12px in width (--ps, set by JS)
@@ -720,6 +838,8 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 @media (prefers-reduced-motion: reduce) {
   .icons, .icons img, .aname, .picons img, .rk, .medal, .pod > .pcard, .arow > .chev svg, .ech img, .chev-btn { transition: none; }
 }
+/* Opening and closing a deck is instant (no grow/shrink animation): snappier, and the row/tile can be held in place exactly */
+.snap, .snap * { transition: none !important; }
 </style>
 
 <div class="wrap">
@@ -746,17 +866,17 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     <div class="cbox">
       <img id="cImg" alt="">
       <p class="cname" id="cName"></p>
-      <p class="qhint" id="cHint"></p>
+      <button class="qclose" id="cClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     </div>
   </dialog>
   <div class="cscrim" id="cScrim" hidden></div>
-  <div class="cpop ipop" id="iPop" role="dialog" aria-label="About this label" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div class="ibody" id="iPopIn"></div></div>
-  <div class="cpop" id="cPop" role="dialog" aria-label="Card details" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div id="cPopIn"></div></div>
+  <div class="cpop ipop" id="iPop" role="dialog" aria-label="About this label" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div class="ibody" id="iPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="iPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="cpop" id="cPop" role="dialog" aria-label="Card details" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div id="cPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="cPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <p class="fnone" id="fnone" aria-live="polite" hidden><span id="fnoneTxt"></span> <button type="button" id="fclear">Clear</button></p>
   <main class="list" id="list"><div class="empty">Loading decks&hellip;</div></main>
 
   <dialog class="qdlg" id="qrDlg" aria-label="Deck QR code">
-    <button class="qclose" id="qrClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    
     <div class="qbox">
       <p class="qvar" id="qrVar" hidden></p>
       <div class="qstage" id="qrStage">
@@ -768,6 +888,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       <button class="qsave" id="qrSave" type="button"></button>
       <p class="qhint" id="qrScanHint" hidden>Or scan it with the game&rsquo;s camera: My Decks &rarr; + &rarr; Scan Code</p>
       <p class="qmsg" id="qrMsg" role="status"></p>
+      <button class="qclose" id="qrClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     </div>
   </dialog>
 
@@ -850,7 +971,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     return `<h3>Top players</h3><p>A <b>top player</b> placed in the top 25% of a single-deck event in the last 7 days, so their decklist is public.</p>
     <p><b>${v.of}</b> top players used this deck; <b>${v.nu}</b> used this list${ch ? ` (${ex} exactly, ${ch} with 1 card changed)` : ""}.</p>`; };
   // "Also played": the 1-card changes inside this list's group (data field alt), shown in the info popover
-  const altChip = (c) => `<span class="chip"><img src="c/${c.id}.webp" alt="" width="150" height="209">${cName(c)}${c.c > 1 ? ` <span class="x">&times;${c.c}</span>` : ""}</span>`;
+  const altChip = (c) => `<span class="chip" role="button" tabindex="0" data-cid="${c.id}" data-cn="${esc(c.n)}"><img src="c/${c.id}.webp" alt="" width="150" height="209">${cName(c)}${c.c > 1 ? ` <span class="x">&times;${c.c}</span>` : ""}</span>`;
   // Each version has a small QR button (logo glyph + "QR"); it opens the full-screen QR view for that version (data: alt[k].qr)
   const QR_GLYPH = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="2.95" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="currentColor"><rect x="4.9" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></svg>';
   const tName = (c) => c.n + (curDup.has(c.n) ? " " + c.id.split("-")[0].toUpperCase() : ""); // plain-text name (+ set code when needed)
@@ -860,18 +981,26 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       <div class="altr"><div class="altc"><span class="aout"><span class="asg">\u2212</span>${a.out.map(altChip).join("")}</span><span class="ain"><span class="asg">+</span>${a.in.map(altChip).join("")}</span></div>
       <span class="altm"><b>${a.u}</b> top player${a.u > 1 ? "s" : ""}${a.pl ? ` \u00b7 best ${esc(a.pl)}` : ""}</span>${a.qr ? `<button class="aqr" type="button" data-aq="${esc(id)}|${i}|${k}" aria-label="QR code for list ${i + 1} with ${esc(altName(a))}">${QR_GLYPH}QR</button>` : ""}</div>`).join("")}</div>
     `; };
-  const altBtn = (v, i) => (v.alt && v.alt.length ? `<button class="altb" type="button" aria-expanded="false" aria-label="Also played: ${v.alt.length} one-card change${v.alt.length > 1 ? "s" : ""}" data-tip="${esc(altTip(v, curDeck ? curDeck.id : "", i))}">Also played (${v.alt.length})${CARET}</button>` : "");
+  const altBtn = (v, i) => (v.alt && v.alt.length ? `<button class="altb" type="button" aria-expanded="false" aria-label="Also played: ${v.alt.length} one-card change${v.alt.length > 1 ? "s" : ""}" data-tip="${esc(altTip(v, curDeck ? curDeck.id : "", i))}">+ Also played ${v.alt.length}${CARET}</button>` : "");
   const STAR = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 .8l1.6 3.3 3.6.5-2.6 2.5.6 3.6L6 9l-3.2 1.7.6-3.6L.8 4.6l3.6-.5z" fill="currentColor"/></svg>';
-  const L1 = `<span class="l1">${STAR}List 1</span>`; // how the page names list 1 everywhere
+  const FIRE = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6.2.8c.3 1.7-.6 2.6-1.4 3.5C4 5.2 3.1 6.2 3.1 7.7A2.9 2.9 0 0 0 6 10.9a2.9 2.9 0 0 0 2.9-3.1c0-1-.4-1.8-.9-2.4.1.8-.2 1.5-.8 1.7.3-2-.2-4.5-1-6.3z" fill="currentColor"/></svg>'; // "Hot" mark, filled (a star means rarity in the game)
+  const UPM = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.2 10.6 6.4H7.6V10.8H4.4V6.4H1.4Z" fill="currentColor"/></svg>'; // "Top" mark (decks under 2% share)
+  // List 1's name: "Hot list" (red, fire) for decks with 2% share or more; "Top list" (blue, up arrow) for smaller decks
+  const isHot = (d) => ((d && d.share) || 0) >= 2;
+  const L1n = (d) => (isHot(d) ? "hot list" : "top list"), L1s = (d) => (isHot(d) ? "Hot" : "Top");
+  const L1 = (d) => `<span class="l1${isHot(d) ? " hot" : ""}">${isHot(d) ? "Hot list" : "Top list"}</span>`;
   // List 1's tab: "Most played" when a top player count decides the order, else "Best place" (all lists used once: the data order = best place first)
   const l1Tab = (L0) => {
     const most = (L0.nu || 0) >= 2;
     const tip = most
-      ? `<h3>★ List 1: most played</h3><p>List 1 is the list that the most top players used: <b>${L0.nu} of ${L0.of}</b>.</p><p class="inote">The other lists compare their cards with list 1. Lists with the same count are sorted by their best place.</p>`
-      : `<h3>★ List 1: best place</h3><p>No list was used by more than 1 top player, so list 1 is the list with the best place${L0.pl ? `: <b>${esc(L0.pl)}</b>` : ""}.</p><p class="inote">A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with list 1.</p>`;
-    return `<span class="dnote l1tab">${STAR}${most ? "Most played" : "Best place"}</span>`; // no ⓘ: the "Used by" ⓘ explains it
+      ? `<h3>${L1(curDeck)}: most played</h3><p>The ${L1n(curDeck)} is the list that the most top players used: <b>${L0.nu} of ${L0.of}</b>.</p><p class="inote">The other lists compare their cards with it. Lists with the same count are sorted by their best place.</p>`
+      : `<h3>${L1(curDeck)}: best place</h3><p>No list was used by more than 1 top player, so the ${L1n(curDeck)} is the list with the best place${L0.pl ? `: <b>${esc(L0.pl)}</b>` : ""}.</p><p class="inote">A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.</p>`;
+    return `<span class="dnote l1tab${isHot(curDeck) ? " hot" : ""}">${isHot(curDeck) ? FIRE : UPM}${L1s(curDeck)}</span>`; // no ⓘ: the "Used by" ⓘ explains it
   };
   let spanTxt = ""; // the data window as text ("Nov 3 – 8"), set when data.json loads
+  const SWAP_I = '<svg class="swi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.2 6.2A5.4 5.4 0 0 0 3.4 5"/><path d="M3.2 2.6 3.4 5l2.4-.3"/><path d="M2.8 9.8A5.4 5.4 0 0 0 12.6 11"/><path d="m12.8 13.4-.2-2.4-2.4.3"/></svg>'; // two curved arrows in a circle: "swapped"
+  const CARDS_I = '<svg class="cdi" viewBox="0 0 14 14" aria-hidden="true"><rect x="2.2" y="2.6" width="6.6" height="9.2" rx="1.1" transform="rotate(-12 5.5 7.2)" fill="var(--surface)" stroke="currentColor" stroke-width="1.2" opacity="0.7"/><rect x="5.4" y="2.2" width="6.6" height="9.2" rx="1.1" transform="rotate(10 8.7 6.8)" fill="var(--surface)" stroke="currentColor" stroke-width="1.2"/></svg>'; // 2 fanned cards
+  let curCmp = ""; // the compare button of the list being drawn (used once by info())
   let curDeck = null; // the deck whose lists are being drawn (for the "Most played" mark)
   const info = (v, energyHtml, i = -1) => `
         <div class="info">
@@ -879,7 +1008,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
           <div class="tile t-sc"><span class="tl">Score${i === 0 ? ii("Score", scoreTip(v)) : ""}</span><div class="sc"><span>${esc(v.sc || "\u2013")}</span>${v.pl ? `<span class="pill pl">${esc(v.pl)}</span>` : ""}</div></div>
           <div class="tile t-ev"><span class="tl">Event</span><div class="ev" title="${esc(v.ev || "")}">${v.dt ? `<span class="dt">${fmtDate(v.dt)}</span> \u00b7 ` : ""}${esc(v.ev || "\u2013")}</div></div>
         </div>
-        ${usedBy(v) || altBtn(v) ? `<div class="usrow">${usedBy(v) ? `<span class="pill us">Used by ${usedBy(v)}${ii("top players", usedTip(v))}</span>` : ""}${altBtn(v, i)}</div>` : ""}`;
+        ${(() => { const cmp = curCmp; curCmp = ""; return usedBy(v) || altBtn(v) || cmp ? `<div class="usrow">${usedBy(v) ? `<span class="pill us">${v.nu}/${v.of} <span class="ustop">top </span>players${ii("top players", usedTip(v))}</span>` : ""}${cmp}${altBtn(v, i)}</div>` : ""; })()}`;
   // Legend icon: a tiny card with the same corner tag as the marked cards
   const MARK_ICON = '<svg viewBox="0 0 8 11" aria-hidden="true"><rect x="0" y="0" width="8" height="11" rx="1.2" fill="currentColor" opacity="0.45"/><path d="M3.2 0H6.8A1.2 1.2 0 0 1 8 1.2V4.8Z" fill="var(--mark)" stroke="var(--mark-edge)" stroke-width="0.9" stroke-linejoin="round"/></svg>';
   const CARET = '<svg class="dcar" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 4 2.5 2.5L7.5 4"/></svg>';
@@ -908,18 +1037,18 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       [...v.cards, ...L0.cards].forEach((c) => names.set(c.id, c.n));
       const diff = (a, b) => [...a].map(([id, k]) => [id, k - (b.get(id) || 0)]).filter(([, k]) => k > 0);
       const ins = diff(mine, base), outs = diff(base, mine);
-      const chip = ([id, k]) => `<span class="chip"><img src="c/${id}.webp" alt="" width="150" height="209">${cName({ id, n: names.get(id) })}${k > 1 ? ` <span class="x">&times;${k}</span>` : ""}</span>`;
-      swap = `<div class="swap" id="sw-${d.id}-${i}" hidden>
+      const chip = ([id, k]) => `<span class="chip" role="button" tabindex="0" data-cid="${id}" data-cn="${esc(names.get(id))}"><img src="c/${id}.webp" alt="" width="150" height="209">${cName({ id, n: names.get(id) })}${k > 1 ? ` <span class="x">&times;${k}</span>` : ""}</span>`;
+      const tip = `<h3>${SWAP_I}${nd} card${nd > 1 ? "s" : ""} swapped vs the <span class="l1${isHot(d) ? " hot" : ""}">${L1n(d)}</span></h3><div class="cmpt">
           <span class="sl in">This list</span><span class="chips">${ins.map(chip).join("")}</span>
-          <span class="sl l1s">${L1}</span><span class="chips out">${outs.map(chip).join("")}</span>
-        </div>`;
+          <span class="sl l1s">${L1(d)}</span><span class="chips out">${outs.map(chip).join("")}</span></div>`;
+      // ⇄ N vs ★1: opens the In / Out popover and fades every card except the changed ones (this list: added; List 1: removed)
+      curCmp = `<button class="altb cmpb" type="button" aria-expanded="false" aria-label="${nd} change${nd > 1 ? "s" : ""} versus the ${L1n(d)}" data-tip="${esc(tip)}" data-outids="${outs.map(([id, k]) => id + ":" + k).join(",")}">${SWAP_I}${nd}${CARDS_I}vs <span class="l1${isHot(d) ? " hot" : ""}">${L1s(d)}</span>${CARET}</button>`;
       outTxt = outs.map(chip).join("");
     }
     return `
       ${i === 0 && d.lists && d.lists.length > 1 ? l1Tab(v) : ""}
-      ${nd ? `<button class="dnote" type="button" aria-expanded="false" aria-controls="sw-${d.id}-${i}">${MARK_ICON}${nd} change${nd > 1 ? "s" : ""} vs ${L1}${CARET}</button>${swap}` : ""}
-      <div class="cards"${outTxt ? ` data-out="${esc(outTxt)}"` : ""}>${copies.map((c, k) => { const img = `<img data-n="${esc(c.n)}"${dif[k] ? ' data-dif="1"' : ""} src="c/${c.id}.webp" alt="${esc(c.n)}${dif[k] ? " (not in List 1)" : ""}" width="150" height="209">`;
-        return dif[k] ? `<span class="dwrap">${img}</span>` : img; }).join("")}</div>
+      <div class="cards"${outTxt ? ` data-out="${esc(outTxt)}"` : ""}>${copies.map((c, k) => { const img = `<img data-n="${esc(c.n)}"${dif[k] ? ' data-dif="1"' : ""} src="c/${c.id}.webp" alt="${esc(c.n)}${dif[k] ? ` (not in the ${L1n(d)})` : ""}" width="150" height="209">`;
+        return img; }).join("")}</div>
       <div class="sfoot">
         ${info(v, v.energy.map((e) => `<img src="e/${e}.webp" alt="${cap(e)}" title="${cap(e)}" width="28" height="28">`).join(""), i)}
         ${v.qr ? `<div class="qcol">
@@ -1034,16 +1163,17 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     const rib = x.createLinearGradient(0, -40, 0, 40); rib.addColorStop(0, "#f5fafd"); rib.addColorStop(1, "#e3edf4");
     x.shadowColor = "rgba(40, 90, 150, 0.25)"; x.shadowBlur = 16; x.shadowOffsetY = 6;
     x.fillStyle = rib; x.fillRect(-W, -40, W * 2, 80); x.shadowColor = "transparent";
-    // Logo: the page's badge (band-gradient rounded square with a white QR glyph), slanted 12deg like the title. Drawn in its 24-unit SVG space.
-    const lx = -W / 2 + 64, ly = -26, LS = 52 / 23;
-    x.save(); x.translate(lx + 6, ly); x.transform(1, 0, Math.tan(-12 * Math.PI / 180), 1, 0, 0); x.scale(LS, LS); x.translate(-0.5, -0.5);
-    const lg = x.createLinearGradient(0, 0.5, 0, 23.5); lg.addColorStop(0, "#2a98f9"); lg.addColorStop(1, "#0cd3fc");
-    x.fillStyle = lg; rrect(x, 0.5, 0.5, 23, 23, 6); x.fill();
-    x.translate(3.6, 3.6); x.scale(0.7, 0.7);
-    x.strokeStyle = "#ffffff"; x.lineWidth = 2.2; [[2.95, 2.95], [13.45, 2.95], [2.95, 13.45]].forEach(([a, b]) => { rrect(x, a, b, 7.6, 7.6, 1.9); x.stroke(); });
-    x.fillStyle = "#ffffff";
-    [[5.35, 5.35, 2.8], [15.85, 5.35, 2.8], [5.35, 15.85, 2.8], [13, 13, 3], [18.5, 13, 3], [15.75, 15.75, 3], [13, 18.5, 3], [18.5, 18.5, 3]]
-      .forEach(([a, b, w]) => { rrect(x, a, b, w, w, 0.6); x.fill(); });
+    // Rainbow line on the ribbon's bottom edge, with a 2px light line under it (same as the page)
+    const rb = x.createLinearGradient(-W / 2, 0, W / 2, 0); ["#ff6f91", "#ffc75f", "#8be36b", "#4dd4ff", "#8f7bff", "#ff6fd8"].forEach((c, k) => rb.addColorStop(k / 5, c));
+    x.fillStyle = rb; x.fillRect(-W, 36, W * 2, 4); x.fillStyle = "#fafbfc"; x.fillRect(-W, 40, W * 2, 4);
+    // Logo: the page's gradient QR glyph (no box; round dots bottom right), slanted 12deg like the title. Drawn in its 24-unit SVG space.
+    const lx = -W / 2 + 64, ly = -26, LS = 52 / 24;
+    x.save(); x.translate(lx + 6, ly); x.transform(1, 0, Math.tan(-12 * Math.PI / 180), 1, 0, 0); x.scale(LS, LS);
+    const lg = x.createLinearGradient(0, 2, 0, 22); lg.addColorStop(0, "#1fc1f6"); lg.addColorStop(1, "#2aa2f2");
+    x.strokeStyle = lg; x.fillStyle = lg; x.lineWidth = 2;
+    [[2.95, 2.95], [13.45, 2.95], [2.95, 13.45]].forEach(([a, b]) => { rrect(x, a, b, 7.6, 7.6, 1.9); x.stroke(); });
+    [[4.9, 4.9], [15.4, 4.9], [4.9, 15.4]].forEach(([a, b]) => { rrect(x, a, b, 3.4, 3.4, 0.75); x.fill(); });
+    [[14.5, 14.5], [20, 14.5], [17.25, 17.25], [14.5, 20], [20, 20]].forEach(([a, b]) => { x.beginPath(); x.arc(a, b, 1.5, 0, 2 * Math.PI); x.fill(); });
     x.restore();
     x.fillStyle = "#5d6b80"; x.font = F(800, 52); x.textBaseline = "middle";
     x.save(); x.translate(lx + 74, 2); x.transform(1, 0, Math.tan(-12 * Math.PI / 180), 1, 0, 0); x.fillText("Pocket Meta QR", 0, 0); x.restore(); // slanted 12deg, like the page title
@@ -1116,8 +1246,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     // The QR in a raised box with a plain light quiet zone (at least 2 modules on every side)
     const q = qrParse(v.qr), footTop = cT + cH - 150, qTop = tT + tH + 28;
     const box = Math.min(inW, footTop - 24 - qTop), mod = Math.floor((box - 64) / q.n), qs = mod * q.n, bxL = Math.round(W / 2 - box / 2);
-    raised(() => { x.fillStyle = "#f6f9fc"; rrect(x, bxL, qTop, box, box, 28); x.fill(); }, 16, 6);
-    bevel(bxL, qTop, box, box, 28);
+    // no box: the QR sits flat on the card (a box made it look like a button)
     drawQR(x, q, Math.round(W / 2 - qs / 2), Math.round(qTop + (box - qs) / 2), mod);
 
     // Footer: the in-game steps as flat tiles, then the source line
@@ -1157,15 +1286,16 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   $("qrScanHint").hidden = TOUCH;
   // claude.ai downloads capability (null when this view cannot save); resolved once, used on click
   const dlCap = window.claude && window.claude.use ? Promise.resolve(window.claude.use("downloads")).catch(() => null) : Promise.resolve(null);
+  const qmsgEl = () => (!ipop.hidden && $("qsMsg")) || $("qrMsg");
   $("qrSave").addEventListener("click", async (e) => {
     e.stopPropagation(); // a tap elsewhere closes the view; this one must not
     if (!dlgDeck) return;
     const d = dlgDeck, i = dlgI, ak = dlgAlt;
     const name = `${d.id}${d.nv > 1 || ak != null ? "-list-" + (i + 1) : ""}${ak != null ? "-alt-" + (ak + 1) : ""}.png`;
     let r;
-    try { r = await card(d, i, ak); } catch (err) { $("qrMsg").textContent = "The image is not ready. Try again."; return; }
+    try { r = await card(d, i, ak); } catch (err) { qmsgEl().textContent = "The image is not ready. Try again."; return; }
     const file = new File([r.blob], name, { type: "image/png" });
-    const fallback = () => { $("qrMsg").textContent = TOUCH ? "Saving is not available here: long-press the image instead." : "Saving is not available here: right-click the image instead."; };
+    const fallback = () => { qmsgEl().textContent = TOUCH ? "Saving is not available here: long-press the QR code instead." : "Saving is not available here: right-click the QR code instead."; };
     // 1) Phone share sheet (one tap: Save Image). Some frames block it; then try the next way.
     if (TOUCH && navigator.canShare && navigator.canShare({ files: [file] })) {
       try { await navigator.share({ files: [file] }); return; }
@@ -1178,7 +1308,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       try { await dl.save({ filename: name, data: r.blob }); }
       catch (err) {
         if (err && err.code === "declined") return; // the viewer said no
-        if (err && err.code === "rate_limited") { $("qrMsg").textContent = "One moment, then try again."; return; }
+        if (err && err.code === "rate_limited") { qmsgEl().textContent = "One moment, then try again."; return; }
         fallback();
       }
       return;
@@ -1193,11 +1323,11 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     if (!d) return;
     const n = d.nv || 1;
     i = ((i % n) + n) % n; dlgI = i; dlgAlt = null;
-    $("qrVar").innerHTML = n > 1 ? `${i === 0 ? L1 : `List ${i + 1}`} <span>of ${n}</span>` : ""; $("qrVar").hidden = n < 2;
+    $("qrVar").innerHTML = n > 1 ? `${i === 0 ? `${L1(d)} <span>\u00b7 1 of ${n}</span>` : `List ${i + 1} <span>of ${n}</span>`}` : ""; $("qrVar").hidden = n < 2;
     $("qrImg").removeAttribute("src");
     $("qrImg").alt = `QR code card for ${d.name}${n > 1 ? `, list ${i + 1} of ${n}` : ""}`;
     $("qrMsg").textContent = "";
-    $("qrDots").innerHTML = n > 1 ? Array.from({ length: n }, (_, k) => `<button class="dot${k === 0 ? " l1" : ""}" type="button" data-i="${k}" aria-label="List ${k + 1} of ${n}" aria-current="${k === i}"></button>`).join("") : "";
+    $("qrDots").innerHTML = n > 1 ? Array.from({ length: n }, (_, k) => `<button class="dot${k === 0 ? " l1" + (isHot(d) ? " hot" : "") : ""}" type="button" data-i="${k}" aria-label="List ${k + 1} of ${n}" aria-current="${k === i}"></button>`).join("") : "";
     $("qrPrev").hidden = $("qrNext").hidden = n < 2 || TOUCH; // touch: swipe or dots
     card(d, i).then((r) => { if (dlgDeck === d && dlgI === i) $("qrImg").src = r.url; })
       .catch(() => { if (dlgDeck === d && dlgI === i) $("qrMsg").textContent = "The QR image did not load. Try again."; });
@@ -1208,7 +1338,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     dlgDeck = d; dlgI = i; dlgAlt = k;
     const v = await listFor(d, i), a = v.alt[k];
     curDup = dupNames(d);
-    $("qrVar").innerHTML = `${i === 0 ? L1 : `List ${i + 1}`} with ${a.out.map((c) => `<s>${cName(c)}</s>`).join(" ")} <b>+ ${a.in.map(cName).join(", ")}</b>`
+    $("qrVar").innerHTML = `${i === 0 ? L1(d) : `List ${i + 1}`} with ${a.out.map((c) => `<s>${cName(c)}</s>`).join(" ")} <b>+ ${a.in.map(cName).join(", ")}</b>`
       + `<span class="qvm">${a.u} top player${a.u > 1 ? "s" : ""}${a.pl ? ` \u00b7 best ${esc(a.pl)}` : ""}</span>`;
     $("qrVar").hidden = false;
     $("qrImg").removeAttribute("src");
@@ -1226,6 +1356,30 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       dlg.showModal();
     }
     showAlt(d, i, k);
+  }
+  // ---- QR sheet (game style "Share With 2D Pattern Code"): a bottom sheet on phones, a popover on larger screens.
+  // The QR on a light plate (scans best), the list name, the in-game steps, Save; the saved image is the full QR card.
+  let qsAnchor = null;
+  function qsHTML(d, v, i, ak) {
+    const n = d.nv || 1, a = ak == null ? null : v.alt[ak], svg = a ? a.qr : v.qr;
+    const name = a ? `${i === 0 ? L1(d) : `List ${i + 1}`} <span class="qsv">−${a.out.map(cName).join(", ")} +${a.in.map(cName).join(", ")}</span>`
+      : n > 1 ? `${i === 0 ? L1(d) : `List ${i + 1}`} <span class="qsn">· ${i + 1} of ${n}</span>` : "";
+    return `<div class="qsbox">
+      <p class="qsdeck"><b>${esc(d.name)}</b>${name ? `<span class="qsl">${name}</span>` : ""}</p>
+      <div class="qsrow"><img class="qsimg" src="${qrPng(svg, "#ffffff")}" alt="QR code for ${esc(d.name)}" width="240" height="240"></div>
+      <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p></div>
+      <button class="qsave qssave" type="button">${SAVE_ICON}${TOUCH ? "Save image" : "Download image"}</button><p class="qmsg" id="qsMsg" role="status"></p>`;
+  }
+  async function openQRSheet(anchor, d, i, ak = null) {
+    const v = await listFor(d, i);
+    dlgDeck = d; dlgI = i; dlgAlt = ak; curDup = dupNames(d);
+    const html = qsHTML(d, v, i, ak);
+    if (!ipop.hidden && tipBtn) { tipBtn.setAttribute("aria-expanded", "false"); setCmp(null); tipBtn = anchor; }
+    // the anchor keeps its own content (the "Also played" button must still open "Also played")
+    if (ipop.hidden || tipBtn !== anchor) { tipBtn = null; showTip(anchor, html); } else $("iPopIn").innerHTML = html;
+    ipop.classList.remove("wide"); ipop.classList.add("qsheet"); qsAnchor = anchor;
+    placeTip(); // again, with the QR panel's own width and height
+    card(d, i, ak).catch(() => {}); // prepare the saved image
   }
   async function openQR(d, i) {
     dlgDeck = d;
@@ -1336,7 +1490,11 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   function close(id) {
     const sec = $(id);
     if (!sec) return;
+    const snap = sec.closest(".podium") || sec;
+    snap.classList.add("snap");
     sec.querySelector(".arow").setAttribute("aria-expanded", "false");
+    void snap.offsetHeight; // apply the closed look now, without transitions
+    requestAnimationFrame(() => requestAnimationFrame(() => snap.classList.remove("snap")));
     const p = sec.querySelector(".apanel");
     carouselSync = null;
     if (io) { io.disconnect(); io = null; }
@@ -1351,11 +1509,11 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   function placeChevrons(p) {
     const grid = p.querySelector(".slide .cards"), wrap = p.querySelector(".vwrap");
     if (!grid || !wrap) return;
-    const set = () => wrap.style.setProperty("--gh", grid.offsetHeight + "px");
+    const set = () => { const g = p.querySelector(".slide .cards"); if (g && g.offsetHeight) wrap.style.setProperty("--gh", g.offsetHeight + "px"); };
     set();
     if (gridRo) gridRo.disconnect();
     gridRo = new ResizeObserver(set);
-    gridRo.observe(grid);
+    gridRo.observe(p.querySelector(".vars")); // the strip: its height changes when a list is drawn again or its images load
   }
 
   function open(id, scroll = true) {
@@ -1367,7 +1525,11 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     openId = id;
     const sec = $(id), p = sec.querySelector(".apanel"), n = d.nv || 1;
 
+    const snap = sec.closest(".podium") || sec; // opening is instant too (no grow animation)
+    snap.classList.add("snap");
     sec.querySelector(".arow").setAttribute("aria-expanded", "true");
+    void snap.offsetHeight;
+    requestAnimationFrame(() => requestAnimationFrame(() => snap.classList.remove("snap")));
     p.innerHTML = `
       <div class="vwrap">
         <div class="vars">
@@ -1377,7 +1539,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
         ${n > 1 ? `<button class="chev-btn prev" type="button" aria-label="Previous list" hidden>${CHEV_L}</button>
         <button class="chev-btn next" type="button" aria-label="Next list">${CHEV_R}</button>` : ""}
       </div>
-      ${n > 1 ? `<div class="dots" role="group" aria-label="Lists">${Array.from({ length: n }, (_, i) => `<button class="dot${i === 0 ? " l1" : ""}" type="button" data-i="${i}" aria-label="Show list ${i + 1} of ${n}${i === 0 ? " (\u2605 list 1)" : ""}" aria-current="${i === 0}"></button>`).join("")}</div>` : ""}`;
+      ${n > 1 ? `<div class="dots" role="group" aria-label="Lists">${Array.from({ length: n }, (_, i) => `<button class="dot${i === 0 ? " l1" + (isHot(d) ? " hot" : "") : ""}" type="button" data-i="${i}" aria-label="Show list ${i + 1} of ${n}${i === 0 ? " (" + L1n(d) + ")" : ""}" aria-current="${i === 0}"></button>`).join("")}</div>` : ""}`;
     p.hidden = false;
     if (n > 1 && !d.lists) listsOf(d).then((L) => { // first open: list 1 (the most played) comes from the order
       const s0 = p.querySelector('.slide[data-i="0"]');
@@ -1483,17 +1645,20 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 
   // ===== Card zoom: tap a card in a list to see it larger, with its name =====
   const cdlg = $("cardDlg");
-  $("cHint").textContent = (TOUCH ? "Tap" : "Click") + " anywhere to close.";
+
+  const deckOf = (img) => data.decks.find((x) => x.id === img.closest(".acc")?.id);
   const cardId = (img) => (img.getAttribute("src").match(/c\/([^/]+)\.webp/) || [])[1] || "";
   function openCard(img) {
     const n = img.dataset.n || img.alt, grid = img.closest(".cards"), cid = cardId(img);
     const count = [...grid.querySelectorAll("img")].filter((x) => cardId(x) === cid).length;
     $("cImg").src = `z/${cardId(img)}.webp`; $("cImg").alt = n;
-    $("cName").innerHTML = `<b>${esc(n)}</b>${count > 1 ? ` <span>&times;${count} in this list</span>` : ""}${img.dataset.dif ? `<span class="cdif">${MARK_ICON}Not in ${L1}</span>` : ""}${img.dataset.dif && grid.dataset.out ? `<span class="cout">${L1} has instead: ${grid.dataset.out}</span>` : ""}`;
+    $("cName").innerHTML = `<b>${esc(n)}</b>${count > 1 ? ` <span>&times;${count} in this list</span>` : ""}${img.dataset.dif ? `<span class="cdif">Not in the ${L1n(deckOf(img))}</span>` : ""}${img.dataset.dif && grid.dataset.out ? `<span class="cout">${L1(deckOf(img))} has instead: ${grid.dataset.out}</span>` : ""}`;
     if (!cdlg.open) { cdlg.showModal(); history.pushState({ ...(history.state || {}), card: 1 }, "", location.href); } // back closes it
   }
   // ---- Card popup: name, count, set and number, booster pack(s), "not in list 1". Phone: bottom sheet; mouse: popover. ----
   const HOVER = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  // Popover (not bottom sheet) on anything larger than a phone, also on touch (iPad); hover-to-open stays mouse only
+  const FLOAT = HOVER || matchMedia("(min-width: 761px)").matches;
   const cpop = $("cPop"), cscrim = $("cScrim");
   let PK = null, pkP = null, popImg = null, pinned = false, showT = 0, hideT = 0;
   const loadPacks = () => pkP || (pkP = fetch("packs.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).then((j) => (PK = j)).catch(() => null));
@@ -1517,13 +1682,13 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     const count = [...grid.querySelectorAll("img")].filter((x) => cardId(x) === id).length;
     const [code, num] = id.split("-"), set = PK && PK.sets[code];
     const ps = `${set ? esc(set.name) + " \u00b7 " : ""}${esc((code || "").toUpperCase())} ${esc(num || "")}`;
-    const dif = img.dataset.dif ? `<p class="pdif">${MARK_ICON}<span><b>Not in</b> ${L1}${grid.dataset.out ? ` \u00b7 ${(grid.dataset.out.match(/class="chip"/g) || []).length > 1 ? `${L1} has instead` : "replaces"}<span class="pout">${grid.dataset.out}</span>` : ""}</span></p>` : "";
-    return `<div class="sbody"><button class="zc" type="button" aria-label="Show ${esc(n)} full screen"><img src="z/${id}.webp" alt="${esc(n)}" width="367" height="512"></button>
-      <div class="pinfo"><p class="pn"><b>${esc(n)}${(() => { const dk = data.decks.find((x) => x.id === img.closest(".acc")?.id); return dk && dupNames(dk).has(n) ? setTag(id) : ""; })()}</b>${count > 1 ? `<span class="cnt">&times;${count}</span>` : ""}</p><p class="ps">${ps}</p>${packBox(id)}${dif}</div></div>
-      <p class="shint">${HOVER ? "Click the card for full screen" : "Tap the card for full screen"}</p>`;
+    const dif = img.dataset.dif ? `<p class="pdif"><span><b>Not in the ${L1n(deckOf(img))}</b>${grid.dataset.out ? ` \u00b7 ${(grid.dataset.out.match(/class="chip"/g) || []).length > 1 ? `${L1n(deckOf(img))} has` : "replaces"}<span class="pout">${grid.dataset.out}</span>` : ""}</span></p>` : "";
+    return `<div class="sbody"><div class="zcol"><button class="zc" type="button" aria-label="Show ${esc(n)} full screen"><img src="z/${id}.webp" alt="${esc(n)}" width="367" height="512"></button>
+      <p class="shint">${HOVER ? "Click for full screen" : "Tap for full screen"}</p></div>
+      <div class="pinfo"><p class="pn"><b>${esc(n)}${(() => { const dk = data.decks.find((x) => x.id === img.closest(".acc")?.id); return dk && dupNames(dk).has(n) ? setTag(id) : ""; })()}</b>${count > 1 ? `<span class="cnt">&times;${count}</span>` : ""}</p><p class="ps">${ps}</p>${packBox(id)}${dif}</div></div>`;
   }
   function placePop() {
-    if (!HOVER || !popImg) return;
+    if (!FLOAT || !popImg) return;
     const r = popImg.getBoundingClientRect(), w = cpop.offsetWidth, h = cpop.offsetHeight, vw = innerWidth, vh = innerHeight, g = 12;
     const right = vw - r.right >= r.left; // the side with more room
     let x = right ? r.right + g : r.left - g - w;
@@ -1544,9 +1709,9 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     fill();
     if (!PK) loadPacks().then(fill);
     if (cpop.hidden) {
-      cpop.className = "cpop " + (HOVER ? "float" : "sheet");
+      cpop.className = "cpop " + (FLOAT ? "float" : "sheet");
       cpop.hidden = false;
-      if (!HOVER) {
+      if (!FLOAT) {
         cscrim.hidden = false;
         history.pushState({ ...(history.state || {}), cpop: 1 }, "", location.href); // back closes it
       }
@@ -1557,25 +1722,31 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   function hidePop(fromHistory) {
     clearTimeout(showT); clearTimeout(hideT);
     if (cpop.hidden) return;
-    if (!HOVER && !fromHistory && history.state && history.state.cpop) { history.back(); return; } // the popstate handler closes it
+    if (!FLOAT && !fromHistory && history.state && history.state.cpop) { history.back(); return; } // the popstate handler closes it
     if (popImg) popImg.closest(".cards")?.querySelectorAll("img.hl").forEach((x) => x.classList.remove("hl"));
     popImg = null; pinned = false;
     cpop.classList.remove("on"); cscrim.classList.remove("on");
     cpop.style.transform = "";
     const done = () => { if (!popImg) { cpop.hidden = true; cscrim.hidden = true; } };
-    if (reduced || HOVER) done(); else setTimeout(done, 240);
+    if (reduced || FLOAT) done(); else setTimeout(done, 240);
   }
   cpop.addEventListener("click", (e) => { if (e.target.closest(".zc") && popImg) openCard(popImg); });
-  cscrim.addEventListener("click", () => hidePop());
+  // (a tap outside a sheet does not close it: swipe down, the × or back, like the game)
+  document.addEventListener("click", (e) => { const x = e.target.closest(".sx"); if (!x) return; e.stopPropagation(); x.dataset.close === "iPop" ? hideTip() : hidePop(); }, true);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !cpop.hidden && !cdlg.open) hidePop(); });
   // Sheet: swipe down to close
-  let sy = null, sdy = 0;
-  cpop.addEventListener("touchstart", (e) => { if (HOVER) return; sy = e.touches[0].clientY; sdy = 0; cpop.style.transition = "none"; }, { passive: true });
-  cpop.addEventListener("touchmove", (e) => { if (sy == null) return; sdy = Math.max(0, e.touches[0].clientY - sy); cpop.style.transform = `translateY(${sdy}px)`; }, { passive: true });
-  cpop.addEventListener("touchend", () => {
-    if (sy == null) return; sy = null; cpop.style.transition = "";
-    if (sdy > 70) hidePop(); else cpop.style.transform = "";
-  });
+  // (both sheets: the card popup and the info / "Also played" sheet)
+  function swipeClose(el, hide) {
+    let sy = null, sdy = 0;
+    el.addEventListener("touchstart", (e) => { if (FLOAT) return; sy = e.touches[0].clientY; sdy = 0; el.style.transition = "none"; }, { passive: true });
+    el.addEventListener("touchmove", (e) => { if (sy == null) return; sdy = Math.max(0, e.touches[0].clientY - sy); el.style.transform = `translateY(${sdy}px)`; }, { passive: true });
+    el.addEventListener("touchend", () => {
+      if (sy == null) return; sy = null; el.style.transition = "";
+      if (sdy > 70) hide(); else el.style.transform = "";
+    });
+  }
+  swipeClose(cpop, () => hidePop());
+  swipeClose($("iPop"), () => hideTip());
   // Mouse: hover shows it after a short delay; leaving the card and the popover hides it; a click pins it
   if (HOVER) {
     $("list").addEventListener("pointerover", (e) => {
@@ -1593,75 +1764,115 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     });
     cpop.addEventListener("pointerenter", () => clearTimeout(hideT));
     cpop.addEventListener("pointerleave", () => { if (!pinned) hideT = setTimeout(() => hidePop(), 200); });
-    document.addEventListener("click", (e) => { if (!cpop.hidden && !cdlg.open && !e.target.closest("#cPop, .cards img")) hidePop(); });
+  }
+  if (FLOAT) {
     addEventListener("scroll", () => { if (!cpop.hidden && !cdlg.open) hidePop(); }, { capture: true, passive: true });
     addEventListener("resize", () => { if (!cpop.hidden) hidePop(); });
   }
+  // A tap or click outside a popover or sheet closes it, and the tap still works (opens a deck, a card, ...).
+  // Sheets close without a history step here (the back entry is dropped), so the tapped action is not undone.
+  const dropState = (k) => { const st = { ...(history.state || {}) }; if (st[k]) { delete st[k]; history.replaceState(st, "", location.href); } };
+  document.addEventListener("click", (e) => {
+    if (cpop.hidden || cdlg.open || e.target.closest("#cPop, .cards img")) return;
+    if (FLOAT) hidePop(); else { dropState("cpop"); hidePop(true); }
+  });
   // ---- Info points (and "Also played"): one popover (mouse: beside the "i"; touch: bottom sheet). A tap on the same "i" or outside closes it. ----
   const ipop = $("iPop");
+  ipop.addEventListener("click", (e) => {
+    if (e.target.closest(".qssave")) { $("qrSave").click(); return; }
+    const nb = e.target.closest(".qsnav");
+    if (nb && dlgDeck) { const n = dlgDeck.nv || 1; openQRSheet(qsAnchor, dlgDeck, (dlgI + +nb.dataset.qs + n) % n); }
+  });
   let tipBtn = null, tipAt = 0; // tipAt: open time (a scroll just after the click, e.g. the browser bringing the button into view, does not close it)
   function placeTip() {
-    if (!HOVER || !tipBtn) return;
+    if (!FLOAT || !tipBtn) return;
     const r = tipBtn.getBoundingClientRect(), w = ipop.offsetWidth, h = ipop.offsetHeight, g = 10, cx = r.left + r.width / 2;
-    const below = innerHeight - r.bottom >= h + g + 8 || r.top < h + g + 8;
-    const x = Math.max(8, Math.min(cx - w / 2, innerWidth - w - 8)), y = below ? r.bottom + g : r.top - g - h;
+    const fitB = innerHeight - r.bottom >= h + g + 8, fitA = r.top >= h + g + 8;
+    const below = fitB || (!fitA && innerHeight - r.bottom >= r.top); // the side that fits, else the side with more room
+    const x = Math.max(8, Math.min(cx - w / 2, innerWidth - w - 8));
+    const y = Math.max(8, Math.min(below ? r.bottom + g : r.top - g - h, innerHeight - h - 8)); // always fully on screen
     ipop.style.left = x + "px"; ipop.style.top = y + "px";
     const a = ipop.querySelector(".parr");
     a.className = "parr " + (below ? "t" : "b");
     a.style.left = Math.max(12, Math.min(cx - x - 7, w - 26)) + "px";
   }
-  function showTip(btn) {
+  // Compare mode: fade every card but the changed ones; this list keeps its added cards, List 1 (when in view) its removed ones
+  function setCmp(btn) {
+    document.querySelectorAll(".cards.cmp, .cards.cmp1").forEach((g) => g.classList.remove("cmp", "cmp1"));
+    document.querySelectorAll(".vars.cmpv").forEach((v) => v.classList.remove("cmpv"));
+    document.querySelectorAll(".cards img.keep").forEach((x) => x.classList.remove("keep"));
+    if (!btn) return;
+    const slide = btn.closest(".slide"), g = slide?.querySelector(".cards");
+    if (g) g.classList.add("cmp");
+    slide?.closest(".vars")?.classList.add("cmpv"); // the other lists fade completely
+    const g1 = slide?.closest(".vars")?.querySelector('.slide[data-i="0"] .cards');
+    if (!g1 || g1 === g) return;
+    btn.dataset.outids.split(",").filter(Boolean).forEach((t) => {
+      const [id, k] = t.split(":"); [...g1.querySelectorAll(`img[src="c/${id}.webp"]`)].slice(0, +k).forEach((x) => x.classList.add("keep"));
+    });
+    g1.classList.add("cmp1");
+  }
+  function showTip(btn, html) { // html: content to show instead of the button's own (the QR panel)
     if (tipBtn === btn) { hideTip(); return; }
     if (!cpop.hidden) hidePop(true);
     if (tipBtn) tipBtn.setAttribute("aria-expanded", "false");
     tipBtn = btn; btn.setAttribute("aria-expanded", "true"); tipAt = Date.now();
-    $("iPopIn").innerHTML = btn.dataset.tip;
+    setCmp(btn.classList.contains("cmpb") ? btn : null);
+    $("iPopIn").innerHTML = html ?? btn.dataset.tip;
     if (ipop.hidden) {
-      ipop.className = "cpop ipop " + (HOVER ? "float" : "sheet") + (btn.classList.contains("altb") ? " wide" : "");
+      ipop.className = "cpop ipop " + (FLOAT ? "float" : "sheet") + (btn.classList.contains("altb") ? " wide" : "");
       ipop.style.transform = "";
       ipop.hidden = false;
-      if (!HOVER) { cscrim.hidden = false; history.pushState({ ...(history.state || {}), tip: 1 }, "", location.href); }
-      requestAnimationFrame(() => requestAnimationFrame(() => { ipop.classList.add("on"); if (!HOVER) cscrim.classList.add("on"); }));
+      if (!FLOAT) { cscrim.hidden = false; history.pushState({ ...(history.state || {}), tip: 1 }, "", location.href); }
+      requestAnimationFrame(() => requestAnimationFrame(() => { ipop.classList.add("on"); if (!FLOAT) cscrim.classList.add("on"); }));
     }
     placeTip();
   }
   function hideTip(fromHistory) {
     if (ipop.hidden) return;
-    if (!HOVER && !fromHistory && history.state && history.state.tip) { history.back(); return; } // the popstate handler closes it
+    if (!FLOAT && !fromHistory && history.state && history.state.tip) { history.back(); return; } // the popstate handler closes it
     if (tipBtn) tipBtn.setAttribute("aria-expanded", "false");
-    tipBtn = null;
+    tipBtn = null; setCmp(null); ipop.classList.remove("qsheet");
     ipop.classList.remove("on"); cscrim.classList.remove("on");
     const done = () => { if (!tipBtn) { ipop.hidden = true; if (cpop.hidden) cscrim.hidden = true; } };
-    if (reduced || HOVER) done(); else setTimeout(done, 240);
+    if (reduced || FLOAT) done(); else setTimeout(done, 240);
   }
+  // A card in "Also played" or the swap list: open it full screen (the image and its name are the tap area)
+  function openCardId(id, n) {
+    $("cImg").src = `z/${id}.webp`; $("cImg").alt = n || "";
+    $("cName").innerHTML = "";
+    if (!cdlg.open) { cdlg.showModal(); history.pushState({ ...(history.state || {}), card: 1 }, "", location.href); }
+  }
+  ipop.addEventListener("click", (e) => { const c = e.target.closest(".chip[data-cid]"); if (c) openCardId(c.dataset.cid, c.dataset.cn); });
+  ipop.addEventListener("keydown", (e) => { const c = e.target.closest?.(".chip[data-cid]"); if (c && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openCardId(c.dataset.cid, c.dataset.cn); } });
   ipop.addEventListener("click", (e) => {
     const b = e.target.closest(".aqr");
     if (!b) return;
     const [id, i, k] = b.dataset.aq.split("|"), d = data.decks.find((x) => x.id === id);
     if (!d) return;
-    hideTip(true); // no history step here: openAlt reuses the sheet's entry
-    openAlt(d, +i, +k);
+    // (the "Also played" popover turns into the QR sheet)
+    openQRSheet(tipBtn || b, d, +i, +k);
   });
   // Capture phase: the "i" inside a deck row must not open or close the deck
   document.addEventListener("click", (e) => {
     const b = e.target.closest(".ii, .altb");
     if (b) { e.preventDefault(); e.stopPropagation(); showTip(b); return; }
-    if (!ipop.hidden && !e.target.closest("#iPop")) hideTip();
+    if (!ipop.hidden && !e.target.closest("#iPop, dialog")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
   }, true);
   document.addEventListener("keydown", (e) => {
     if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches("span.ii")) { e.preventDefault(); e.stopPropagation(); showTip(e.target); }
     else if (e.key === "Escape" && !ipop.hidden) hideTip();
   }, true);
   addEventListener("scroll", (e) => {
-    if (!HOVER || ipop.hidden || (e.target instanceof Element && e.target.closest("#iPop"))) return;
+    if (!FLOAT || ipop.hidden || (e.target instanceof Element && e.target.closest("#iPop"))) return;
     if (Date.now() - tipAt < 400) placeTip(); else hideTip();
   }, { capture: true, passive: true });
-  addEventListener("resize", () => { if (HOVER) hideTip(); });
+  addEventListener("resize", () => { if (FLOAT) hideTip(); });
   function cardClick(ci) {
-    if (HOVER) { pinned = true; showPop(ci); return; }
+    if (FLOAT) { pinned = true; showPop(ci); return; }
     showPop(ci);
   }
-  cdlg.addEventListener("click", () => cdlg.close());
+  $("cClose").addEventListener("click", (e) => { e.stopPropagation(); cdlg.close(); });
   cdlg.addEventListener("close", () => { if (history.state && history.state.card) history.back(); });
 
   // Swap panel: one open at a time; the tab toggles it, a tap on the panel or anywhere else closes it
@@ -1688,18 +1899,16 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     if (qb) {
       const d = data.decks.find((x) => x.id === openId);
       if (!d) return;
-      openQR(d, +qb.dataset.i);
+      openQRSheet(qb, d, +qb.dataset.i);
       return;
     }
     const row = e.target.closest(".arow");
     if (!row) return;
     const id = row.dataset.id;
     if (id === openId) {
-      if (history.state && history.state.deck) { history.back(); return; } // the popstate handler below closes it
       closeOpen();
     } else {
-      // A history entry for the open deck, so the phone's back gesture closes it (switching decks reuses the entry)
-      if (!(history.state && history.state.deck)) history.pushState({ deck: 1 }, "", location.href);
+      // No history entry for an open deck: going back made the browser restore an old scroll position (the jump on close)
       open(id, AUTO_TOP && !BIG.matches);
     }
   });
@@ -1790,7 +1999,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     L.forEach((v, k) => { if ((v.cards || []).some((c) => c.id === id)) ls.push(k + 1); else if ((v.alt || []).some((a) => a.in.some((c) => c.id === id))) al.push(k + 1); });
     const parts = [];
     if (ls.length) parts.push(`${ls.length > 1 ? "lists" : "list"} ${ls.join(", ")}`);
-    if (al.length) parts.push(`\u201cAlso played\u201d of list ${al.join(", ")}`);
+    if (al.length) parts.push(`\u201cAlso played\u201d of ${al.map((k) => (k === 1 ? "the " + L1n(d) : "list " + k)).join(", ")}`);
     return parts.length ? "in " + parts.join(" and ") : "";
   }
   // On open: scroll to the first list that has the card (its copies and the "Also played" button are highlighted by CSS)
@@ -1867,7 +2076,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       // A deck: clear the search and open that deck
       fstate.q = ""; fstate.card = null; $("fq").value = ""; $("fqx").hidden = true; applyFilter(); setDrop(false);
       const id = b.dataset.deck;
-      if (id !== openId) { if (!(history.state && history.state.deck)) history.pushState({ deck: 1 }, "", location.href); open(id); }
+      if (id !== openId) open(id);
       return;
     }
     // A card: show only the decks that play this exact card
@@ -1888,22 +2097,28 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   function closeOpen() {
     const id = openId;
     if (!id) return;
+    // Near the end of the list the page must not get shorter, or the browser pulls the row down: grow the space under the footer
+    // by the panel height first, close, then trim it to what is still needed (the next open resets it).
+    const y0 = scrollY, th = (parseFloat(tail.style.height) || 0) + $(id).querySelector(".apanel").offsetHeight;
+    tail.style.height = th + "px";
     close(id);
     openId = null;
     history.replaceState(null, "", location.pathname + location.search);
-    tail.style.height = "0px";
-    // Keep the page where it is. Only when the row (or the podium) is fully above the screen (a back gesture from deep in the deck),
-    // bring it back with the same gap as on open; otherwise the closed panel would pull the list up under the viewer.
-    const { box, gap } = anchorOf($(id)), rowBottom = $(id).querySelector(".arow").getBoundingClientRect().bottom;
-    if (rowBottom <= padTop()) scrollBy({ top: box.getBoundingClientRect().top - padTop() - gap, behavior: reduced ? "auto" : "smooth" });
+    const body = document.documentElement.scrollHeight - th;
+    tail.style.height = Math.max(0, Math.ceil(y0 + innerHeight - body)) + "px";
+    if (Math.abs(scrollY - y0) > 1) scrollTo(0, y0);
+    // Simple close: the page stays where it is. Only when the row is above the screen (closed from deep in the deck)
+    // put it back at the top, at once (no animation).
+    const { box, gap } = anchorOf($(id));
+    if ($(id).querySelector(".arow").getBoundingClientRect().bottom <= padTop()) scrollBy(0, box.getBoundingClientRect().top - padTop() - gap);
   }
   // Back gesture / back button: first closes the full-screen QR, then the open deck
   addEventListener("popstate", () => {
     const st = history.state || {};
     if (dlg.open && !st.qr) dlg.close();
     if (cdlg.open && !st.card) cdlg.close();
-    if (!cpop.hidden && !st.cpop && !HOVER) hidePop(true);
-    if (!ipop.hidden && !st.tip && !HOVER) hideTip(true);
+    if (!cpop.hidden && !st.cpop && !FLOAT) hidePop(true);
+    if (!ipop.hidden && !st.tip && !FLOAT) hideTip(true);
     if (openId && !st.deck) closeOpen();
   });
   window.addEventListener("hashchange", () => { const id = location.hash.slice(1); if (data && id && id !== openId && $(id)) open(id); });
