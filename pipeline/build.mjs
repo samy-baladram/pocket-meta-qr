@@ -186,7 +186,7 @@ function printGuard(id, lists, problems) {
   }
 }
 
-const decks = [], problems = [], images = new Set(), dropped = [];
+const decks = [], problems = [], images = new Set(), dropped = [], searchDecks = [];
 let waiting = 0;
 rmSync("site/v", { recursive: true, force: true });
 mkdirSync("site/v", { recursive: true });
@@ -237,6 +237,10 @@ for (const [rank, d] of input.decks.entries()) {
     (v.alt || []).forEach((a) => [...a.in, ...a.out].forEach((c) => images.add(c.id)));
   });
   if (vars.length > 1) writeFileSync(`site/v/${id}.json`, JSON.stringify({ id, vars: vars.slice(1).map(({ art, ...v }) => v) }));
+  // For the search index (R6): every finish of the deck (all groups) and the shown lists + alt versions.
+  searchDecks.push({ id, finishes: groups.flatMap((g) => g.members.map((x) => x.m)),
+    shown: vars.map((v) => new Map(v.cards.map((c) => [c.id, c.c]))),
+    altIn: vars.flatMap((v) => (v.alt || []).flatMap((a) => a.in.map((c) => c.id))) });
   const { art, ...best } = vars[0];
   decks.push({ id, rank: rank + 1, name, count, share, w, l, t, win, art, nv: vars.length, ...best });
 }
@@ -245,6 +249,38 @@ for (const [rank, d] of input.decks.entries()) {
 const data = { updatedAt: new Date().toISOString(), set: input.set, setName: input.setName || "", format: input.format,
   window: input.window, span: input.span, summary: input.summary, decks };
 writeFileSync("site/data.json", JSON.stringify(data));
+
+// R6 (Nov 9, 2026): card index for the page's search -> site/search.json (loaded when the search box opens).
+// Cards = every card id in a shown list or an alt version ("in" card) of any deck on the page.
+// Per card and deck: [deckId, usual copies, top players]. Top players = the deck's finishes in the window whose
+// list has the card (all groups, also those not shown: the same population as "of"). Usual copies = the copies in
+// the deck's most used shown list that has the card, else the most common count among those finishes.
+// Only decks with at least 1 such finish are listed.
+{
+  const ids = new Set(searchDecks.flatMap((d) => [...d.shown.flatMap((m) => [...m.keys()]), ...d.altIn]));
+  const cards = [];
+  for (const cid of ids) {
+    const per = [];
+    for (const d of searchDecks) {
+      const counts = d.finishes.map((m) => m.get(cid) || 0).filter((n) => n > 0);
+      if (!counts.length) continue;
+      let copies = d.shown.find((m) => m.has(cid))?.get(cid);
+      if (copies == null) {
+        const freq = new Map();
+        counts.forEach((n) => freq.set(n, (freq.get(n) || 0) + 1));
+        copies = [...freq].sort((a, b) => b[1] - a[1] || b[0] - a[0])[0][0];
+      }
+      per.push([d.id, copies, counts.length]);
+    }
+    per.sort((a, b) => b[2] - a[2] || a[0].localeCompare(b[0]));
+    cards.push({ id: cid, n: PD.get(cid)?.name ?? "?", u: per.reduce((t, x) => t + x[2], 0), decks: per });
+  }
+  cards.sort((a, b) => b.u - a.u || a.id.localeCompare(b.id));
+  writeFileSync("site/search.json", JSON.stringify({ cards }));
+  const noImg = cards.filter((c) => !images.has(c.id)).map((c) => c.id);
+  if (noImg.length) problems.push(`search: cards without an image: ${noImg.join(", ")}`);
+  console.log(`search.json: ${cards.length} cards, ${cards.reduce((t, c) => t + c.decks.length, 0)} card-deck pairs`);
+}
 // Booster packs of the cards on the site (PocketDecks expansions.json) -> site/packs.json + images.json "packs".
 // A card from "Shared(<set>)" is in every pack of its set. Single-pack sets: the card's pack is the set name.
 // Promo "packs" without an image (shop, missions, ...) use the promo set logo (promo-a, promo-b) when it exists.

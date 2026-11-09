@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 8 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 9 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -9,6 +9,8 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - Changed definitions: `share` adds up to 100 %; `win` excludes mirror matches and multi-deck events.
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers: a deck without any decklist yet is not in `decks`.
+- Version 9 (request R6 of the UI chat): new file **`search.json`**, a card index for the search suggestions
+  (see below). About 26 KB (about 4 KB compressed).
 - Version 8 (request R5 of the UI chat): each `alt` entry has its own **`qr`** (the shown list - `out` + `in`, with
   the list's energy) and the **`sc`**, **`ev`**, **`dt`** of the best finish with that change (like `pl`).
   Size: about 2.7 KB per QR; list 1's `alt` QRs add about 96 KB to `data.json` (about 12 KB when compressed).
@@ -50,6 +52,7 @@ Use the same word in new docs and UI notes.
 | `z/<cardId>.webp` | **new in v6.** card image for the zoom view, 367 px wide (the full PocketDecks source, about 29 KB) | on tap |
 | `packs.json` | **new in v6.** set and booster pack of every card on the site (see below) | on demand |
 | `p/<image>.webp` | **new in v6.** booster pack image, 200 px wide (about 23 KB); promo cards without a pack image use the promo set logo | on demand |
+| `search.json` | **new in v9.** card index for the search: every card on the page, the decks that play it, copies and top players (see below) | when the search box opens |
 | `e/<energy>.webp` | energy icon, 48 px (`grass`, `fire`, `water`, `lightning`, `psychic`, `fighting`, `darkness`, `metal`) | per energy |
 
 `cardId` = lower-case set + 3-digit number, for example `b1a-014`, `c1-127`, `pa-007` (promo A).
@@ -148,6 +151,24 @@ needs another type, the build log says so (none on Nov 9). The QR check decodes 
 ```
 
 The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list" (no `art`).
+
+## search.json (new in v9)
+
+```json
+{ "cards": [
+  { "id": "c1-098", "n": "Dratini", "u": 11,
+    "decks": [["giratina-ex-c1-dragonair-b4", 2, 9], ["dragonair-mega-rayquaza-ex-b4", 2, 2]] } ] }
+```
+
+| Field | Meaning |
+|---|---|
+| `cards` | 1 entry per card id that is in a shown list or an `alt` version (`in` card) of any deck in `data.json`. Sorted by `u`, high first |
+| `id`, `n` | card id and card name (every `id` has a `c/` image) |
+| `u` | sum of the top players over all decks (the third value of each `decks` entry) |
+| `decks` | `[deckId, usual copies, top players]`, sorted by top players, high first. Top players = the deck's finishes in the window whose list has the card (all groups, also those not shown: the same population as `of`). Usual copies = the copies in the deck's most used shown list that has the card; else the most common count among those finishes. Only decks with at least 1 such finish |
+
+Note: when a deck has more than 10 groups, a card can be in a group that is not shown. Then `decks` lists that deck,
+but no shown list or `alt` of it has the card. On Nov 9 this happens 0 times (no deck has more than 10 groups).
 
 ## packs.json (new in v6)
 

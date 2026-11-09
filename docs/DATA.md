@@ -140,6 +140,8 @@ The pairings do not say which deck a player used in a match. Thus:
   place). Each shown list carries `alt`: its distinct 1-card changes, with count and best place.
 - Each `alt` version also gets a QR code (decision Nov 9, request R5): the shown list - out + in, with the shown
   list's energy, and the record, event and day of its best finish. Checked before deploy like the lists' QRs.
+- Card index for the search (decision Nov 9, request R6): `search.json` lists every card on the page with, per deck,
+  the usual copies and the top players whose list has the card (all finishes in the window).
 - Cards are compared by card id (set + number). Limitless decklists use 1 standard print per card (checked Nov 9:
   989 decklists, 361 card ids, no ☆/Crown print, no card with 2 prints of the same function); `build.mjs`
   reports a problem if a deck ever has 2 prints of the same card.
