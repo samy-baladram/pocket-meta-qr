@@ -111,7 +111,44 @@ async function variation(name, list, problems, id, scraped, vote) {
   return { energy, ...(guessed ? { eg: guessed } : {}), qr, art: at.map((a) => pdId(a.set, a.num)), cards: list.map((c) => ({ id: pdId(c.set, c.num), n: c.name, c: c.count })) };
 }
 
-const decks = [], problems = [], images = new Set();
+// R2 (Nov 9, 2026): the distinct 1-card changes inside a group, compared with its representative (the shown list).
+//   in  = cards the change has and the shown list does not; out = cards of the shown list that the change does not have.
+//   u   = finishes with that change; pl = the best place among them (members come best place first).
+// Sorted by u (high first), then best place. Exact copies are not listed, so nu = exact copies + sum of u.
+function changes(g) {
+  const by = new Map();
+  g.members.forEach((x, order) => {
+    const ins = [], outs = [];
+    for (const k of new Set([...g.m.keys(), ...x.m.keys()])) {
+      const diff = (x.m.get(k) || 0) - (g.m.get(k) || 0);
+      const card = { id: k, n: PD.get(k)?.name ?? "?", c: Math.abs(diff) };
+      if (diff > 0) ins.push(card); else if (diff < 0) outs.push(card);
+    }
+    if (!ins.length && !outs.length) return; // exact copy
+    const key = JSON.stringify([ins.map((c) => [c.id, c.c]).sort(), outs.map((c) => [c.id, c.c]).sort()]);
+    const e = by.get(key);
+    if (e) e.u++;
+    else by.set(key, { in: ins, out: outs, u: 1, pl: x.row.pl, order });
+  });
+  return [...by.values()].sort((a, b) => b.u - a.u || a.order - b.order).map(({ order, ...a }) => a);
+}
+
+// Guard (R4 skipped): Limitless uses 1 print per card. Report when a deck's lists have 2 ids with the same function
+// (same name and text), because then lists that differ only by print would be counted as different lists.
+const fnKey = (c) => JSON.stringify([c.name, c.type, c.subtype, c.health, c.ability, c.card_text,
+  Object.values(c.attacks || {}).map((a) => [a.name, a.cost, a.damage, a.effect])]);
+function printGuard(id, lists, problems) {
+  const seen = new Map();
+  for (const l of lists) for (const c of l) {
+    const k = pdId(c.set, c.num), pd = PD.get(k);
+    if (!pd) continue;
+    const f = fnKey(pd);
+    if (seen.has(f) && seen.get(f) !== k) { problems.push(`${id}: 2 prints of the same card (${seen.get(f)}, ${k})`); return; }
+    seen.set(f, k);
+  }
+}
+
+const decks = [], problems = [], images = new Set(), dropped = [];
 let waiting = 0;
 rmSync("site/v", { recursive: true, force: true });
 mkdirSync("site/v", { recursive: true });
@@ -119,9 +156,10 @@ mkdirSync("site/v", { recursive: true });
 for (const [rank, d] of input.decks.entries()) {
   const { id, count, share, w, l, t, win } = d;
   const name = deckName(id);
-  // Rows come best finish first. Each list joins the first kept list it is near to;
-  // a new list is kept only while there is room. "used" = finishes with that list (or a near copy).
-  const chosen = [];
+  // R1 (Nov 9, 2026). Step 1: group ALL finishes. Rows come best finish first; a list joins the first group whose
+  // representative (the group's best-placed finish) is NEAR card swaps or less away, else it starts a new group.
+  // Step 2 (below): keep the MAX_VARIATIONS groups with the most finishes ("top players"), then by best place.
+  const groups = [];
   let of = 0;
   for (const row of d.rows) {
     const cands = row.lists.map((x) => ({ l: toList(x.cards), energy: x.energy }))
@@ -131,22 +169,35 @@ for (const [rank, d] of input.decks.entries()) {
     const pick = cands.map((x) => ({ ...x, score: attackers(name, x.l).length })).sort((a, b) => b.score - a.score)[0];
     if (pick.score === 0) { problems.push(`${id}: no list on ${row.key} matches the deck name "${name}"`); continue; }
     of++;
-    const m = counts(pick.l), near = chosen.find((c) => swaps(c.m, m) <= NEAR);
-    if (near) { near.used++; continue; }
-    if (chosen.length < MAX_VARIATIONS) chosen.push({ list: pick.l, energy: pick.energy, m, row, used: 1 });
+    const m = counts(pick.l), member = { m, list: pick.l, row };
+    const g = groups.find((c) => swaps(c.m, m) <= NEAR);
+    if (g) g.members.push(member);
+    else groups.push({ list: pick.l, energy: pick.energy, m, row, members: [member] });
   }
-  if (!chosen.length) { waiting++; problems.push(`${id}: no lists yet`); continue; }
+  if (!groups.length) { waiting++; problems.push(`${id}: no lists yet`); continue; }
+  printGuard(id, groups.flatMap((g) => g.members.map((x) => x.list)), problems);
+  // Step 2: most top players first; on a tie the group with the better best place (= the earlier group).
+  const chosen = groups.map((g, i) => ({ ...g, used: g.members.length, i }))
+    .sort((a, b) => b.used - a.used || a.i - b.i).slice(0, MAX_VARIATIONS);
+  if (groups.length > MAX_VARIATIONS) dropped.push(`${id}: ${groups.length} groups, kept ${MAX_VARIATIONS} ` +
+    `(smallest kept: ${chosen.at(-1).used} top players; largest dropped: ${Math.max(...groups.map((g) => g.members.length)
+      .filter((_, i) => !chosen.some((c) => c.i === i)))})`);
 
   const vote = energyVote(name, d.votes);
   const vars = [];
   for (const c of chosen) {
     const v = await variation(name, c.list, problems, id, c.energy, vote);
     v.ev = c.row.ev; v.pl = c.row.pl; v.sc = c.row.sc; v.dt = c.row.dt;
-    v.nu = c.used; // finishes in the top rows that used this list (or one card away from it)
-    v.of = of;     // finishes in the top rows with a readable list
+    v.nu = c.used; // finishes ("top players") in the group: exact copies + 1-card changes
+    v.of = of;     // all finishes with a readable list (also those of groups that are not kept)
+    const alt = changes(c);
+    if (alt.length) v.alt = alt;
     vars.push(v);
   }
-  vars.forEach((v) => v.cards.forEach((c) => images.add(c.id)));
+  vars.forEach((v) => {
+    v.cards.forEach((c) => images.add(c.id));
+    (v.alt || []).forEach((a) => [...a.in, ...a.out].forEach((c) => images.add(c.id)));
+  });
   if (vars.length > 1) writeFileSync(`site/v/${id}.json`, JSON.stringify({ id, vars: vars.slice(1).map(({ art, ...v }) => v) }));
   const { art, ...best } = vars[0];
   decks.push({ id, rank: rank + 1, name, count, share, w, l, t, win, art, nv: vars.length, ...best });
@@ -201,5 +252,6 @@ if (waiting) console.log(`${waiting} decks have no decklist yet (later scrape ru
   console.log(`energy of ${all.length} lists: ${k(0)} shown by Limitless, ${k(2)} from other lists of the deck, ${k(1)} from attack costs`);
 }
 console.log(`decks: ${decks.length}, lists: ${nvars}, unique cards: ${images.size}`);
+if (dropped.length) console.log("decks with more groups than kept:\n  " + dropped.join("\n  "));
 console.log("problems:", problems.join("; ") || "none");
 for (const d of decks) console.log(d.rank, d.name, `(${d.nv} lists)`, "->", d.energy.join("+"));

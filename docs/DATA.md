@@ -134,6 +134,13 @@ The pairings do not say which deck a player used in a match. Thus:
 - A deck is shown when its share in the 7-day window is 0.5 % or more (max 40).
 - Shown lists: up to 10 distinct lists from **all** the deck's finishes with a decklist in the window (in the 7-day
   window the median deck has about 8, the largest about 25), best relative place first.
+- Lists (decision Nov 9, 2026, requests R1 + R2 of the UI chat): all finishes with a decklist are grouped first
+  (best relative place first; a finish joins the first group whose representative, the group's best-placed
+  finish, is 1 card swap or less away). The 10 groups with the most finishes are shown (tie: the better best
+  place). Each shown list carries `alt`: its distinct 1-card changes, with count and best place.
+- Cards are compared by card id (set + number). Limitless decklists use 1 standard print per card (checked Nov 9:
+  989 decklists, 361 card ids, no ☆/Crown print, no card with 2 prints of the same function); `build.mjs`
+  reports a problem if a deck ever has 2 prints of the same card.
 
 ## 5. Fetch rules
 
