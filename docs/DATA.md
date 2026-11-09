@@ -138,6 +138,8 @@ The pairings do not say which deck a player used in a match. Thus:
   (best relative place first; a finish joins the first group whose representative, the group's best-placed
   finish, is 1 card swap or less away). The 10 groups with the most finishes are shown (tie: the better best
   place). Each shown list carries `alt`: its distinct 1-card changes, with count and best place.
+- Each `alt` version also gets a QR code (decision Nov 9, request R5): the shown list - out + in, with the shown
+  list's energy, and the record, event and day of its best finish. Checked before deploy like the lists' QRs.
 - Cards are compared by card id (set + number). Limitless decklists use 1 standard print per card (checked Nov 9:
   989 decklists, 361 card ids, no ☆/Crown print, no card with 2 prints of the same function); `build.mjs`
   reports a problem if a deck ever has 2 prints of the same card.

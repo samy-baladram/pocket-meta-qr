@@ -94,21 +94,29 @@ async function variation(name, list, problems, id, scraped, vote) {
     energy = letters.slice(0, 3).map((l) => LETTER[l]);
   }
 
-  let qr = null;
+  const qr = await makeQR(list, energy, problems, id);
+  return { energy, ...(guessed ? { eg: guessed } : {}), qr, art: at.map((a) => pdId(a.set, a.num)), cards: list.map((c) => ({ id: pdId(c.set, c.num), n: c.name, c: c.count })) };
+}
+
+// In-game deck code of a 20-card list + energy, as an SVG QR (black modules, no background), or null.
+// The code is decoded again and must give the same cards. Used for the lists and the alt versions (R5).
+async function makeQR(list, energy, problems, id) {
   const nrs = [];
   for (const c of list) {
     const nr = getCardDeckBuilderNr(findCard(c.set, c.num));
-    if (nr == null) { problems.push(`${id}: no game id for ${c.set}-${c.num}`); nrs.length = 0; break; }
+    if (nr == null) { problems.push(`${id}: no game id for ${c.set}-${c.num}`); return null; }
     for (let k = 0; k < c.count; k++) nrs.push(nr);
   }
-  if (nrs.length === 20 && energy.length) {
-    const code = createDeckCode(nrs, energy);
-    const back = parseDeckCode(code);
-    if (JSON.stringify([...back.deckBuilderNrs].sort()) !== JSON.stringify([...nrs].sort())) problems.push(`${id}: QR decode mismatch`);
-    else qr = (await deckCodeToSVG(code, { margin: 0, errorCorrectionLevel: "M", color: { dark: "#000000", light: "#ffffff" } }))
-      .replace(/<path fill="#ffffff"[^>]*\/>/, "");
-  } else if (!energy.length) problems.push(`${id}: no energy`);
-  return { energy, ...(guessed ? { eg: guessed } : {}), qr, art: at.map((a) => pdId(a.set, a.num)), cards: list.map((c) => ({ id: pdId(c.set, c.num), n: c.name, c: c.count })) };
+  if (!energy.length) { problems.push(`${id}: no energy`); return null; }
+  if (nrs.length !== 20) return null;
+  const code = createDeckCode(nrs, energy);
+  const back = parseDeckCode(code);
+  if (JSON.stringify([...back.deckBuilderNrs].sort()) !== JSON.stringify([...nrs].sort())) {
+    problems.push(`${id}: QR decode mismatch`);
+    return null;
+  }
+  return (await deckCodeToSVG(code, { margin: 0, errorCorrectionLevel: "M", color: { dark: "#000000", light: "#ffffff" } }))
+    .replace(/<path fill="#ffffff"[^>]*\/>/, "");
 }
 
 // R2 (Nov 9, 2026): the distinct 1-card changes inside a group, compared with its representative (the shown list).
@@ -128,9 +136,39 @@ function changes(g) {
     const key = JSON.stringify([ins.map((c) => [c.id, c.c]).sort(), outs.map((c) => [c.id, c.c]).sort()]);
     const e = by.get(key);
     if (e) e.u++;
-    else by.set(key, { in: ins, out: outs, u: 1, pl: x.row.pl, order });
+    else by.set(key, { in: ins, out: outs, u: 1, pl: x.row.pl, order, row: x.row });
   });
   return [...by.values()].sort((a, b) => b.u - a.u || a.order - b.order).map(({ order, ...a }) => a);
+}
+
+// R5 (Nov 9, 2026): a QR code for each alt version. Its list is exact: the shown list - out + in (1-card rule).
+// Energy = the shown list's energy; when an added Pokémon needs another type, only the build log says so.
+// sc, ev, dt = record, tournament and day of the best finish with that change (like pl).
+const altLog = { qr: 0, none: 0, energy: [] };
+async function altVersion(a, v, name, problems, id) {
+  const m = new Map(v.cards.map((c) => [c.id, c.c]));
+  for (const c of a.out) m.set(c.id, (m.get(c.id) || 0) - c.c);
+  for (const c of a.in) m.set(c.id, (m.get(c.id) || 0) + c.c);
+  const list = [...m].filter(([, n]) => n > 0).map(([k, n]) => {
+    const [set, num] = k.split("-");
+    const s = /^p[a-z]$/.test(set) ? `P-${set[1].toUpperCase()}` : set[0].toUpperCase() + set.slice(1);
+    return { count: n, set: s, num: +num, name: PD.get(k)?.name ?? "?" };
+  });
+  if ([...m.values()].some((n) => n < 0) || list.reduce((t, c) => t + c.count, 0) !== 20) {
+    problems.push(`${id}: alt version is not a 20-card list (${a.in.map((c) => c.n)} for ${a.out.map((c) => c.n)})`);
+    a.qr = null;
+  } else {
+    for (const c of a.in) {
+      const need = colored({ set: list.find((x) => pdId(x.set, x.num) === c.id).set, num: +c.id.split("-")[1] })
+        .map((l) => LETTER[l]).filter((e) => !v.energy.includes(e));
+      if (need.length) altLog.energy.push(`${name}: +${c.n} needs ${need.join("+")}, list energy ${v.energy.join("+")}`);
+    }
+    a.qr = await makeQR(list, v.energy, problems, `${id} (alt)`);
+  }
+  altLog[a.qr ? "qr" : "none"]++;
+  a.sc = a.row.sc; a.ev = a.row.ev; a.dt = a.row.dt;
+  delete a.row;
+  return a;
 }
 
 // Guard (R4 skipped): Limitless uses 1 print per card. Report when a deck's lists have 2 ids with the same function
@@ -191,7 +229,7 @@ for (const [rank, d] of input.decks.entries()) {
     v.nu = c.used; // finishes ("top players") in the group: exact copies + 1-card changes
     v.of = of;     // all finishes with a readable list (also those of groups that are not kept)
     const alt = changes(c);
-    if (alt.length) v.alt = alt;
+    if (alt.length) v.alt = await Promise.all(alt.map((a) => altVersion(a, v, name, problems, id)));
     vars.push(v);
   }
   vars.forEach((v) => {
@@ -252,6 +290,8 @@ if (waiting) console.log(`${waiting} decks have no decklist yet (later scrape ru
   console.log(`energy of ${all.length} lists: ${k(0)} shown by Limitless, ${k(2)} from other lists of the deck, ${k(1)} from attack costs`);
 }
 console.log(`decks: ${decks.length}, lists: ${nvars}, unique cards: ${images.size}`);
+console.log(`alt versions: ${altLog.qr} with QR, ${altLog.none} without QR` +
+  (altLog.energy.length ? `; energy notes:\n  ${altLog.energy.join("\n  ")}` : "; energy notes: none"));
 if (dropped.length) console.log("decks with more groups than kept:\n  " + dropped.join("\n  "));
 console.log("problems:", problems.join("; ") || "none");
 for (const d of decks) console.log(d.rank, d.name, `(${d.nv} lists)`, "->", d.energy.join("+"));

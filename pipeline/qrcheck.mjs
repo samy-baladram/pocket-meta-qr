@@ -1,5 +1,6 @@
 // QR check before deploy: render every QR in site/data.json and site/v/*.json to pixels, decode it with jsQR
 // (like a phone camera), parse the deck code, and compare it with the cards and energy shown next to it.
+// alt versions (R5): their QR must give the list's cards - out + in, with the list's energy.
 // Exit code 1 when any QR fails, so the site workflow does not deploy.
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { createRequire } from "node:module";
@@ -36,12 +37,24 @@ function expected(list) {
   return nrs.sort((a, b) => a - b);
 }
 
+// The list of an alt version: the shown list's cards - out + in, with the shown list's energy.
+function altList(list, a) {
+  const m = new Map(list.cards.map((c) => [c.id, { ...c }]));
+  for (const c of a.out) m.get(c.id).c -= c.c;
+  for (const c of a.in) m.set(c.id, { ...c, c: (m.get(c.id)?.c || 0) + c.c });
+  return { cards: [...m.values()].filter((c) => c.c > 0), energy: list.energy, qr: a.qr };
+}
+
 const lists = [];
+const add = (where, list) => {
+  lists.push({ where, list });
+  (list.alt || []).forEach((a, k) => lists.push({ where: `${where} alt ${k + 1}`, list: altList(list, a), alt: true }));
+};
 const data = JSON.parse(readFileSync(`${site}/data.json`, "utf8"));
-for (const d of data.decks) lists.push({ where: `${d.id} (best)`, list: d });
+for (const d of data.decks) add(`${d.id} (best)`, d);
 if (existsSync(`${site}/v`)) for (const f of readdirSync(`${site}/v`)) {
   const v = JSON.parse(readFileSync(`${site}/v/${f}`, "utf8"));
-  v.vars.forEach((x, i) => lists.push({ where: `${v.id} (list ${i + 2})`, list: x }));
+  v.vars.forEach((x, i) => add(`${v.id} (list ${i + 2})`, x));
 }
 
 let ok = 0, none = 0;
@@ -61,6 +74,8 @@ for (const { where, list } of lists) {
     bad.push(`${where}: ${e.message}`);
   }
 }
-console.log(`QR check: ${ok} of ${lists.length} lists decoded and equal to the shown deck; ${none} without QR; ${bad.length} failed`);
+const nAlt = lists.filter((x) => x.alt).length;
+console.log(`QR check: ${ok} of ${lists.length} QR codes (${lists.length - nAlt} lists + ${nAlt} alt versions) decoded and ` +
+  `equal to the deck; ${none} without QR; ${bad.length} failed`);
 bad.forEach((b) => console.log("  FAIL", b));
 process.exit(bad.length ? 1 : 0);

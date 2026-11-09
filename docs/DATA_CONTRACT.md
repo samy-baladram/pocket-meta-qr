@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 7 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 8 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -9,6 +9,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - Changed definitions: `share` adds up to 100 %; `win` excludes mirror matches and multi-deck events.
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers: a deck without any decklist yet is not in `decks`.
+- Version 8 (request R5 of the UI chat): each `alt` entry has its own **`qr`** (the shown list - `out` + `in`, with
+  the list's energy) and the **`sc`**, **`ev`**, **`dt`** of the best finish with that change (like `pl`).
+  Size: about 2.7 KB per QR; list 1's `alt` QRs add about 96 KB to `data.json` (about 12 KB when compressed).
 - Version 7 (requests R1 + R2 of the UI chat; R4 skipped): the shown lists are the **10 groups with the most top
   players** (then the better best place), not the first 10 groups by place. Lists are written in that order
   (`nu` high first). New optional field **`alt`** per list: the 1-card changes inside the group (see "list").
@@ -117,7 +120,8 @@ page shows the 10 groups with the most top players (`nu`), then the better best 
 "alt": [
   { "in":  [{ "id": "b4-154", "n": "Soothing Shore", "c": 1 }],
     "out": [{ "id": "pa-006", "n": "Red Card",       "c": 1 }],
-    "u": 2, "pl": "15th of 203" }
+    "u": 2, "pl": "15th of 203",
+    "qr": "<svg ...>", "sc": "7-4-0", "ev": "The Breakfast Club Daily-FA +", "dt": "2026-11-03" }
 ]
 ```
 
@@ -127,9 +131,14 @@ page shows the 10 groups with the most top players (`nu`), then the better best 
 | `out` | cards of the shown list that the change does not have |
 | `u` | finishes ("top players") with exactly this change |
 | `pl` | the best place among them (same format as `pl`) |
+| `qr` | **new in v8.** SVG QR of this version: the shown list's `cards` - `out` + `in`, with the shown list's `energy` (same SVG options and decode check as a list's `qr`); null when no code was possible |
+| `sc` | **new in v8.** record W-L-T of the best finish with this change |
+| `ev` | **new in v8.** tournament name of that finish |
+| `dt` | **new in v8.** tournament day of that finish (`YYYY-MM-DD`) |
 
 Sorted by `u` (high first), then best place. Always: `nu` = exact copies + the sum of all `u`.
-Every `in`/`out` card id has a `c/` image. Example UI text: "Also played: −1 Red Card +1 Soothing Shore
+Every `in`/`out` card id has a `c/` image. The version's energy is always the list's energy; when an added Pokémon
+needs another type, the build log says so (none on Nov 9). The QR check decodes every `alt` QR before deploy. Example UI text: "Also played: −1 Red Card +1 Soothing Shore
 (2 top players, best 15th of 203)".
 
 ### v/&lt;deckId&gt;.json
