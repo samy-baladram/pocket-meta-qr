@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 5 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 6 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -9,6 +9,8 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - Changed definitions: `share` adds up to 100 %; `win` excludes mirror matches and multi-deck events.
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers: a deck without any decklist yet is not in `decks`.
+- Version 6: card thumbnails `c/` are **240 px** wide (were 150; same paths, sharper). New, not yet used by the
+  page: `z/<cardId>.webp` (367 px, for the zoom view), `packs.json` + `p/<image>.webp` (booster pack of each card).
 - Version 5: `eg` has 2 values: `2` = energy from the deck's other lists (most common energy shown by Limitless),
   `1` = from the attack costs. Absent = shown by Limitless for this list. The page can treat both as "not from
   this list's event".
@@ -24,7 +26,10 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 |---|---|---|
 | `data.json` | deck table + the best list of each deck | at page load |
 | `v/<deckId>.json` | the other lists of 1 deck (only when the deck has more than 1 list) | on demand |
-| `c/<cardId>.webp` | card image, 150 px wide (also used for the deck icons via `art`) | per card |
+| `c/<cardId>.webp` | card image, 240 px wide (also used for the deck icons via `art`) | per card |
+| `z/<cardId>.webp` | **new in v6.** card image for the zoom view, 367 px wide (the full PocketDecks source, about 29 KB) | on tap |
+| `packs.json` | **new in v6.** set and booster pack of every card on the site (see below) | on demand |
+| `p/<image>.webp` | **new in v6.** booster pack image, 200 px wide (about 23 KB); promo cards without a pack image use the promo set logo | on demand |
 | `e/<energy>.webp` | energy icon, 48 px (`grass`, `fire`, `water`, `lightning`, `psychic`, `fighting`, `darkness`, `metal`) | per energy |
 
 `cardId` = lower-case set + 3-digit number, for example `b1a-014`, `c1-127`, `pa-007` (promo A).
@@ -91,6 +96,25 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 ```
 
 The lists 2..`nv` of the deck, in order. Same fields as "list" (no `art`).
+
+## packs.json (new in v6)
+
+```json
+{
+  "sets":  { "c1": { "name": "Dual Fusion", "release": "2026-10-29" } },
+  "packs": { "c1-pikachu": { "set": "c1", "name": "Pikachu", "img": "c1-pikachu" },
+             "pa-shop":    { "set": "pa", "name": "Shop", "img": "promo-a" } },
+  "cards": { "c1-127": ["c1-pikachu"], "a1-110": ["a1-charizard", "a1-mewtwo", "a1-pikachu"] }
+}
+```
+
+| Field | Meaning |
+|---|---|
+| `sets[code]` | set name and release date; `code` = the card id prefix (`c1-127` -> `c1`) |
+| `packs[packId]` | the pack's set, display name (single-pack sets: the set name, e.g. `Fantastical Parade`), and `img` = file name in `p/` (`p/<img>.webp`) or null |
+| `cards[cardId]` | the pack(s) the card comes from. More than 1 = a "shared" card that is in every pack of its set |
+
+Only cards that are on the site are listed. Source: PocketDecks `data/v5/expansions.json` and the card `pack` field.
 
 ## Definitions (from docs/DATA.md in the repo)
 

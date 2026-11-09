@@ -54,13 +54,15 @@ jobs:
           npm ci
           pip install Pillow
 
-      # Card and energy images are made once and kept between runs.
+      # Card, zoom, pack and energy images are made once and kept between runs.
       - name: Restore image cache
         uses: actions/cache@v4
         with:
           path: |
             cache
             site/c
+            site/z
+            site/p
             site/e
           key: images-${{ github.run_id }}
           restore-keys: images-
@@ -84,7 +86,8 @@ jobs:
       - name: Assemble the site
         run: |
           rm -rf public && mkdir public
-          mkdir -p site/v && cp -r site/data.json site/v site/c site/e public/
+          mkdir -p site/v && cp -r site/data.json site/packs.json site/v site/c site/z site/p site/e public/
+          rm -f public/c/.width public/p/.width
           node pipeline/page.mjs site/index.html public/index.html
           touch public/.nojekyll
           echo "files: $(find public -type f | wc -l), size: $(du -sh public | cut -f1)"

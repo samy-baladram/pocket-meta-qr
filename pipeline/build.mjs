@@ -156,9 +156,42 @@ for (const [rank, d] of input.decks.entries()) {
 const data = { updatedAt: new Date().toISOString(), set: input.set, setName: input.setName || "", format: input.format,
   window: input.window, span: input.span, summary: input.summary, decks };
 writeFileSync("site/data.json", JSON.stringify(data));
+// Booster packs of the cards on the site (PocketDecks expansions.json) -> site/packs.json + images.json "packs".
+// A card from "Shared(<set>)" is in every pack of its set. Single-pack sets: the card's pack is the set name.
+// Promo "packs" without an image (shop, missions, ...) use the promo set logo (promo-a, promo-b) when it exists.
+const PACK_IMG = "https://raw.githubusercontent.com/PocketDecks/pokemon-tcg-pocket-cards/refs/heads/main/images/webp/packs";
+const PROMO_LOGO = { pa: "promo-a", pb: "promo-b" };
+const EXP = new Map(require("pokemon-tcg-pocket-cards/data/v5/expansions.min.json").map((e) => [e.id, e]));
+const norm = (s) => String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
+const packsOut = { sets: {}, packs: {}, cards: {} }, packImg = new Map();
+for (const id of [...images].sort()) {
+  const c = PD.get(id), e = c && EXP.get(c.set_code);
+  if (!e) { problems.push(`packs: no set data for ${id}`); continue; }
+  const P = e.packs || [];
+  let ids;
+  if (/^Shared\(/.test(c.pack)) ids = P.map((p) => p.id);
+  else {
+    const hit = P.find((p) => norm(p.name) === norm(c.pack));
+    ids = hit ? [hit.id] : P.length === 1 ? [P[0].id] : [`${e.id}-${norm(c.pack)}`];
+  }
+  packsOut.cards[id] = ids;
+  packsOut.sets[e.id] ??= { name: e.name, release: e.release_date };
+  for (const pid of ids) {
+    if (packsOut.packs[pid]) continue;
+    const p = P.find((x) => x.id === pid);
+    // Image: the data link; else the file named like the pack id (promo volumes); else the promo set logo.
+    const url = p?.image || (/^p[a-z]-promov\d+$/.test(pid) && pid !== "pa-promov14" ? `${PACK_IMG}/${pid}.webp` : null);
+    const file = url ? pid : PROMO_LOGO[e.id] || null;
+    if (file) packImg.set(file, url || `${PACK_IMG}/${file}.webp`);
+    const name = p?.name === "Booster" || !p ? (P.length === 1 && p ? e.name : c.pack) : p.name;
+    packsOut.packs[pid] = { set: e.id, name, img: file };
+  }
+}
+writeFileSync("site/packs.json", JSON.stringify(packsOut));
 writeFileSync("images.json", JSON.stringify({
   cards: [...images].map((id) => ({ id, url: PD.get(id)?.image })),
   art: [...new Set(decks.flatMap((d) => d.art))],
+  packs: [...packImg].map(([id, url]) => ({ id, url })),
 }));
 const nvars = decks.reduce((a, d) => a + d.nv, 0);
 if (waiting) console.log(`${waiting} decks have no decklist yet (later scrape runs fetch them)`);
