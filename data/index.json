@@ -221,6 +221,30 @@
    "path": "raw/2026/11/6aef9c25c931f53978d95cf5.json",
    "players": 185,
    "dl": 32
+  },
+  "6af08f57e99f3235a75e41de": {
+   "date": "2026-11-08T22:00:00Z",
+   "path": "raw/2026/11/6af08f57e99f3235a75e41de.json",
+   "players": 43,
+   "dl": 11
+  },
+  "6af0a90de99f3235a75e42f5": {
+   "date": "2026-11-09T01:05:00Z",
+   "path": "raw/2026/11/6af0a90de99f3235a75e42f5.json",
+   "players": 113,
+   "dl": 28
+  },
+  "6af15fd9c931f53978d9704d": {
+   "date": "2026-11-09T09:30:00Z",
+   "path": "raw/2026/11/6af15fd9c931f53978d9704d.json",
+   "players": 69,
+   "dl": 17
+  },
+  "6af061fae99f3235a75e406a": {
+   "date": "2026-11-09T17:05:00Z",
+   "path": "raw/2026/11/6af061fae99f3235a75e406a.json",
+   "players": 215,
+   "dl": 32
   }
  },
  "skipped": {
