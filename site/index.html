@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794243297-0581 -->
+<!-- ui: artifact version 1794261504-fe51 -->
 <title>Pocket Meta QR</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2119,7 +2119,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     if (cdlg.open && !st.card) cdlg.close();
     if (!cpop.hidden && !st.cpop && !FLOAT) hidePop(true);
     if (!ipop.hidden && !st.tip && !FLOAT) hideTip(true);
-    if (openId && !st.deck) closeOpen();
+    // An open deck has no history entry anymore, so going back (closing a popup) must not close it
   });
   window.addEventListener("hashchange", () => { const id = location.hash.slice(1); if (data && id && id !== openId && $(id)) open(id); });
 
