@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794301029-7b3d -->
+<!-- ui: artifact version 1794308361-d975 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks from tournament results, the lists that top players use, and a QR code for every list to import it into the game. Updated every hour.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -424,7 +424,72 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .swap .out .chip { color: var(--muted); }
 
 /* The 20 cards: one shared shadow under the whole grid, so no shadow spills onto a neighbor */
-.cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; } /* no shadow under the cards (light and dark) */
+.cards { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+/* ===== "Also played" (artifact version 294): a popover over the list footer, its arrow on the button; a centered snap carousel of
+   the 1-card changes. The change in the middle is chosen and shown in the deck: the replaced card fades, the new card lies on it,
+   8px right and down. Tap outside closes it. ===== */
+.cards img.arep { opacity: 0.3; }
+.anew { position: absolute; z-index: 3; pointer-events: none; animation: anewIn 0.22s ease-out; }
+.anew img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 4px 10px rgba(20, 40, 70, 0.45); pointer-events: auto; }
+.cards img.arep0 { opacity: 0; }
+.aback { position: absolute; z-index: 2; pointer-events: none; opacity: 0.3; }
+.aback img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; }
+@keyframes anewIn { from { transform: translate(-8px, -8px); opacity: 0; } }
+.apop2 { position: absolute; z-index: 6; left: 8px; right: 8px; bottom: var(--ab, 30px); border-radius: 12px; background: var(--surface); box-shadow: var(--pop-sh);
+  display: flex; flex-direction: column; animation: apopIn 0.16s ease-out; }
+.slide .altb[aria-expanded="true"] { position: relative; z-index: 7; } /* the button that opened the popover stays above its shadow */
+@keyframes apopIn { from { opacity: 0; transform: translateY(6px); } }
+.apop2 .parr2 { position: absolute; bottom: -5px; left: var(--ax, 50%); width: 10px; height: 10px; margin-left: -5px; background: var(--surface); transform: rotate(45deg);
+  box-shadow: 3px 3px 5px rgba(20, 40, 70, 0.22); }
+.acar { --iw: 222px; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
+  padding: 8px calc(50% - var(--iw) / 2) 6px; align-items: center; border-radius: 12px; }
+.acar::-webkit-scrollbar { display: none; }
+.ait { flex: 0 0 var(--iw); scroll-snap-align: center; display: grid; grid-template-columns: 44px 12px 44px 62px; column-gap: 8px; justify-content: center; align-items: stretch;
+  padding: 8px 9px; border: 1.5px solid transparent; border-radius: 10px; background: var(--tile); opacity: 0.5; transform: scale(0.94); cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s, background 0.2s, border-color 0.2s; }
+.ait.on { opacity: 1; transform: none; background: var(--surface); border-color: var(--acc-ink); box-shadow: var(--raised-sm); }
+.ait > img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(40, 60, 95, 0.35); }
+.ait.on > img { cursor: zoom-in; }
+.ait > img.ao { opacity: 0.55; filter: grayscale(0.4); }
+.ait .achev { display: grid; place-items: center; color: var(--muted); }
+.ait .achev svg { width: 10px; height: 14px; }
+.ait .aqr { grid-column: 4; grid-row: 1; width: 62px; height: auto; margin-left: 2px; }
+.ait .ast { grid-column: 1 / -1; margin-top: 5px; font-size: var(--fs-xs); color: var(--muted); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ait .ast b { color: var(--ink); }
+.adots2 { display: flex; justify-content: center; gap: 4px; padding: 0 0 8px; }
+/* Swap with the Hot / Top list: the Hot card › this list's card, names under them (one line; a long name slides) */
+.acar.asw { display: block; padding: 10px 10px 8px; scroll-snap-type: none; }
+.aswl { display: flex; align-items: flex-start; gap: 6px; width: max-content; margin: 0 auto; }
+.aswl .asc { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 50px; }
+.aswl .asc img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(40, 60, 95, 0.35); cursor: zoom-in; }
+.aswl .asc img.ao { opacity: 0.55; filter: grayscale(0.4); }
+.aswl .achev { align-self: center; margin-top: -14px; color: var(--muted); }
+.aswl .achev svg { width: 10px; height: 14px; display: block; }
+.aswl .anm { width: 100%; white-space: normal; overflow: visible; overflow-wrap: break-word; hyphens: auto; -webkit-hyphens: auto; line-height: 1.2; }
+.aswl .anm > span { display: inline; }
+.aswl.tight { gap: 3px; }
+.aswl.tight .asc { width: 44px; }
+.aswl.tight .achev { margin-inline: 4px; }
+.anm { min-width: 0; overflow: hidden; white-space: nowrap; font-size: 0.5625rem; font-weight: 600; line-height: 1.3; color: var(--muted); text-align: center; }
+.anm.in { color: var(--ink); }
+.anm > span { display: inline-block; }
+.anm.mq { text-align: left; }
+.aswl .anm.mq > span, .ait.on .anm.mq > span { animation: anmq var(--mqd, 4s) ease-in-out 0.6s infinite alternate; }
+@keyframes anmq { 0%, 15% { transform: translateX(0); } 85%, 100% { transform: translateX(var(--mqx, 0px)); } }
+@media (prefers-reduced-motion: reduce) { .aswl .anm.mq > span, .ait.on .anm.mq > span { animation: none; } }
+.adots2 i { width: 6px; height: 6px; border-radius: 3px; background: var(--line-strong); transition: width 0.2s, background 0.2s; }
+.adots2 i.on { width: 14px; background: var(--acc-ink); }
+@media (prefers-reduced-motion: reduce) { .anew, .apop2 { animation: none; } .ait { transition: none; } }
+/* Narrow list columns (3 per view): a smaller panel, so it covers the footer only */
+@container (max-width: 300px) {
+  .acar { --iw: 182px; padding: 6px calc(50% - var(--iw) / 2) 4px; }
+  .ait { grid-template-columns: 34px 10px 34px 48px; column-gap: 6px; padding: 6px 7px; }
+  .ait > img { width: 34px; }
+  .ait .aqr { width: 48px; margin-left: 1px; font-size: 8px; }
+  .ait .aqr svg { width: 16px; height: 16px; }
+  .ait .ast { margin-top: 3px; }
+  .adots2 { padding-bottom: 6px; }
+} /* no shadow under the cards (light and dark) */
 .cards img, .ph { width: 100%; aspect-ratio: 150 / 209; display: block; border-radius: 2px; background: var(--line); }
 .cards img { height: auto; cursor: pointer; }
 .cards img.hl { outline: 2px solid var(--accent); outline-offset: 1px; position: relative; z-index: 2; } /* all copies of the card in the popup */
@@ -1546,6 +1611,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   }
 
   function close(id) {
+    closeAlts();
     const sec = $(id);
     if (!sec) return;
     const snap = sec.closest(".podium") || sec;
@@ -1934,8 +2000,115 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     // (the "Also played" popover turns into the QR sheet)
     openQRSheet(tipBtn || b, d, +i, +k);
   });
+  // ---- "Also played" carousel popover (one open at a time) ----
+  let altOpen = null; // { btn, pop, slide, d, i }
+  const ACHEV = '<svg viewBox="0 0 10 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 2 5 5-5 5"/></svg>';
+  // p = { slot: card id in the grid (its last copy is the place), back: {id, n}, front: {id, n} } or null
+  function altPreview(slide, p) {
+    const g = slide.querySelector(".cards");
+    if (!g) return;
+    g.querySelectorAll(".anew, .aback").forEach((x) => x.remove());
+    g.querySelectorAll("img.arep0").forEach((x) => x.classList.remove("arep0"));
+    if (!p) return;
+    for (const q of [].concat(p)) {
+      const reps = [...g.querySelectorAll(`:scope > img[src="c/${q.slot}.webp"]:not(.arep0)`)], r = reps[reps.length - 1]; // the last free copy
+      if (!r) continue;
+      r.classList.add("arep0");
+      const box = (cls, c, dx) => { const n = document.createElement("span"); n.className = cls;
+        n.style.cssText = `left:${r.offsetLeft + dx}px;top:${r.offsetTop + dx}px;width:${r.offsetWidth}px`;
+        n.innerHTML = `<img src="c/${c.id}.webp" data-n="${esc(c.n)}" alt="${esc(c.n)}" width="150" height="209">`; g.append(n); };
+      box("aback", q.back, 0);
+      box("anew", q.front, 8);
+    }
+  }
+  // The swaps of list i against list 1, as pairs (one per copy): [{ out: list-1 card, in: this list's card }]
+  function swapPairs(v, L0) {
+    const cnt = (L) => L.cards.reduce((m, c) => m.set(c.id, (m.get(c.id) || 0) + c.c), new Map()), names = new Map();
+    [...v.cards, ...L0.cards].forEach((c) => names.set(c.id, c.n));
+    const a = cnt(v), b = cnt(L0), list = (x, y) => [...x].flatMap(([id, k]) => Array.from({ length: Math.max(0, k - (y.get(id) || 0)) }, () => ({ id, n: names.get(id) })));
+    const ins = list(a, b), outs = list(b, a);
+    return ins.map((c, k) => ({ in: c, out: outs[k] })).filter((x) => x.out);
+  }
+  function closeAlts() {
+    if (!altOpen) return;
+    const o = altOpen; altOpen = null;
+    o.btn.setAttribute("aria-expanded", "false");
+    o.pop.remove();
+    altPreview(o.slide, null);
+  }
+  async function toggleAlts(btn) {
+    if (altOpen && altOpen.btn === btn) { closeAlts(); return; }
+    closeAlts();
+    const slide = btn.closest(".slide"), d = data.decks.find((x) => x.id === openId);
+    if (!slide || !d) return;
+    const i = +slide.dataset.i, v = await listFor(d, i), sw = btn.classList.contains("cmpb");
+    if (!v || !btn.isConnected) return;
+    const L0 = d.lists ? d.lists[0] : d, pairs = sw ? swapPairs(v, L0) : null, items0 = sw ? pairs : v.alt || [];
+    if (!items0.length) return;
+    track(sw ? "compare" : "also-played");
+    curDup = dupNames(d);
+    const pop = document.createElement("div");
+    pop.className = "apop2";
+    const nm = (c, cls) => `<span class="anm${cls}"><span>${esc(tName(c))}</span></span>`;
+    pop.innerHTML = `<span class="parr2" aria-hidden="true"></span><div class="acar" role="listbox" aria-label="${sw ? `Cards swapped vs the ${L1n(d)}` : "Also played: 1-card changes"}">${sw ? `<div class="aswl${pairs.length >= 3 ? " tight" : ""}" lang="en">${pairs.map((x) => `<span class="asc"><img class="ao" src="c/${x.out.id}.webp" data-cid="${x.out.id}" data-cn="${esc(x.out.n)}" alt="${esc(x.out.n)}" width="150" height="209">${nm(x.out, "")}</span>`).join("")}
+        <span class="achev">${ACHEV}</span>${pairs.map((x) => `<span class="asc"><img src="c/${x.in.id}.webp" data-cid="${x.in.id}" data-cn="${esc(x.in.n)}" alt="${esc(x.in.n)}" width="150" height="209">${nm(x.in, " in")}</span>`).join("")}</div>` : v.alt.map((a, k) => `
+      <div class="ait" role="option" data-k="${k}" aria-label="${esc(altName(a))}">
+        <img class="ao" src="c/${a.out[0].id}.webp" data-cid="${a.out[0].id}" data-cn="${esc(a.out[0].n)}" alt="${esc(a.out[0].n)} (out)" title="\u2212${esc(tName(a.out[0]))}" width="150" height="209">
+        <span class="achev">${ACHEV}</span>
+        <img src="c/${a.in[0].id}.webp" data-cid="${a.in[0].id}" data-cn="${esc(a.in[0].n)}" alt="${esc(a.in[0].n)} (in)" title="+${esc(tName(a.in[0]))}" width="150" height="209">
+        ${a.qr ? `<button class="aqr" type="button" data-k="${k}" aria-label="QR code for this version">${QR_GLYPH}QR</button>` : "<span></span>"}
+        <span class="ast"><b>${a.u}</b> top player${a.u > 1 ? "s" : ""}${a.pl ? ` \u00b7 best ${esc(a.pl)}` : ""}</span>
+      </div>`).join("")}</div>${!sw && items0.length > 1 ? `<div class="adots2">${items0.map(() => "<i></i>").join("")}</div>` : ""}`;
+    slide.append(pop);
+    // above the pill row, the arrow on the button
+    const sr = slide.getBoundingClientRect(), br = btn.getBoundingClientRect();
+    pop.style.setProperty("--ab", (sr.bottom - br.top + 9) + "px");
+    pop.style.setProperty("--ax", Math.max(18, Math.min(br.left + br.width / 2 - sr.left - 8, sr.width - 34)) + "px");
+    altOpen = { btn, pop, slide, d, i, x0: slide.closest(".vars")?.scrollLeft || 0 };
+    btn.setAttribute("aria-expanded", "true");
+    const car = pop.querySelector(".acar"), items = [...car.querySelectorAll(".ait")];
+    let cur = -1, t = null;
+    const choose = (k) => {
+      if (k === cur || !altOpen || altOpen.pop !== pop) return;
+      cur = k;
+      items.forEach((el, j) => { el.classList.toggle("on", j === k); el.setAttribute("aria-selected", String(j === k)); });
+      pop.querySelectorAll(".adots2 i").forEach((el, j) => el.classList.toggle("on", j === k));
+      const x = items0[k];
+      altPreview(slide, { slot: x.out[0].id, back: x.out[0], front: x.in[0] });
+    };
+    car.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(() => {
+      const mid = car.scrollLeft + car.clientWidth / 2;
+      let best = 0, bd = 1e9;
+      items.forEach((el, j) => { const dd = Math.abs(el.offsetLeft + el.offsetWidth / 2 - mid); if (dd < bd) { bd = dd; best = j; } });
+      choose(best);
+    }, 60); }, { passive: true });
+    car.addEventListener("click", (e) => {
+      const q = e.target.closest(".aqr");
+      if (q) { e.stopPropagation(); openQRSheet(btn, d, i, +q.dataset.k); return; }
+      const it = e.target.closest(".ait, .aswl");
+      if (!it) return;
+      const im = e.target.closest("img[data-cid]");
+      if (im && (sw || it.classList.contains("on"))) { openCardId(im.dataset.cid, im.dataset.cn); return; } // a card of the chosen change: open it
+      if (!sw) it.scrollIntoView({ behavior: reduced ? "auto" : "smooth", inline: "center", block: "nearest" });
+    });
+    // long names slide sideways (one line; not in the swap row, where they wrap)
+    pop.querySelectorAll(".ait .anm").forEach((el) => { const o = el.firstElementChild.offsetWidth - el.clientWidth;
+      if (o > 1) { el.classList.add("mq"); el.style.setProperty("--mqx", -o + "px"); el.style.setProperty("--mqd", Math.max(2, o / 18) + "s"); } });
+    if (sw) { // no choice: one row, all swaps shown in the deck at once; a card opens the zoom
+      car.classList.add("asw");
+      altPreview(slide, pairs.map((x) => ({ slot: x.in.id, back: x.out, front: x.in })));
+      return;
+    }
+    choose(0);
+  }
+  // Tap outside closes it (not a tap in the card zoom, the QR panel or a card popup that it opened)
+  document.addEventListener("click", (e) => { if (altOpen && !e.target.closest(".apop2, #iPop, #cPop, dialog, .anew")) closeAlts(); });
+  addEventListener("resize", () => closeAlts());
+  addEventListener("scroll", (e) => { if (altOpen && e.target instanceof Element && e.target.classList.contains("vars") && Math.abs(e.target.scrollLeft - altOpen.x0) > 30) closeAlts(); }, { capture: true, passive: true }); // another list swiped in
   // Capture phase: the "i" inside a deck row must not open or close the deck
   document.addEventListener("click", (e) => {
+    const ab = e.target.closest(".altb");
+    if (ab) { e.preventDefault(); e.stopPropagation(); if (!ipop.hidden) hideTip(); toggleAlts(ab); return; }
     const b = e.target.closest(".ii, .altb, .fabout");
     if (b) { e.preventDefault(); e.stopPropagation(); showTip(b); return; }
     if (!ipop.hidden && !e.target.closest("#iPop, dialog")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
