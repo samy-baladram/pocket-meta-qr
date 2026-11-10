@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - site/index.html
+      - static/**
       - pipeline/build_db.py
       - pipeline/export.py
       - pipeline/build.mjs
@@ -89,6 +90,9 @@ jobs:
           mkdir -p site/v && cp -r site/data.json site/packs.json site/search.json site/v site/c site/z site/p site/e public/
           rm -f public/c/.width public/p/.width
           node pipeline/page.mjs site/index.html public/index.html
+          # Static files from the UI chat (R7a): favicon, app icons, manifest, link preview image, robots.txt,
+          # sitemap.xml. Served from the site root, next to index.html.
+          find static -maxdepth 1 -type f ! -name README.md -exec cp {} public/ \;
           touch public/.nojekyll
           echo "files: $(find public -type f | wc -l), size: $(du -sh public | cut -f1)"
 
