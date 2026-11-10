@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794288111-8d07 -->
+<!-- ui: artifact version 1794298815-f782 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks from tournament results, the lists that top players use, and a QR code for every list to import it into the game. Updated every hour.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -48,7 +48,7 @@
   --row-band: 0.8;         /* strength of the energy band on deck rows */
   --chev: #ffffff; --chev-glow: rgba(0, 0, 0, 0.45); --chev-halo: rgba(0, 0, 0, 0.25);  /* carousel arrows */
   /* Header ribbon (Community Decks style) */
-  --band-top: #2a98f9; --band-bot: #0cd3fc; --rib-a: #f5fafd; --rib-b: #e3edf4; --rib-ink: #5d6b80; --rib-logo: #2a92f2;
+  --band-top: #2a98f9; --band-bot: #0cd3fc; --rib-a: #ffffff; --rib-b: #eef4f9; --rib-ink: #5d6b80; --rib-logo: #2a92f2;
   --rib-shadow: 0 5px 10px rgba(40, 90, 150, 0.22), 0 1px 2px rgba(40, 90, 150, 0.18), inset 0 1px 0 #ffffff;
   /* Depth: one light from the top-left. Raised = cards and things you tap; flat = info. Whole pixels only. */
   --raised: -1px -1px 2px rgba(45, 95, 175, 0.06), 0 0 4px rgba(45, 95, 175, 0.10),
@@ -74,7 +74,7 @@
     --ink: #e8ecf2; --muted: #95a0b2; --accent: #7fa9e6; --mark-ring: #0b0e13; --mark-edge: var(--mark-ring); --mark-text: var(--mark);
     --pill-bg: #46526a; --pill-ink: #eef1f6; --row-band: 0.22;
     --chev: #0f1218; --chev-glow: rgba(255, 255, 255, 0.5); --chev-halo: rgba(255, 255, 255, 0.3);
-    --band-top: #163a5f; --band-bot: #14506b; --rib-a: #222a37; --rib-b: #1b222d; --rib-ink: #e8ecf2; --rib-logo: #6aa8ff;
+    --band-top: #163a5f; --band-bot: #14506b; --rib-a: #2a3342; --rib-b: #232b38; --rib-ink: #e8ecf2; --rib-logo: #6aa8ff;
     --rib-shadow: 0 5px 10px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
     --raised: -1px -1px 2px rgba(0, 0, 0, 0.25), 0 0 4px rgba(0, 0, 0, 0.38), 1px 2px 2px rgba(0, 0, 0, 0.4), 2px 3px 6px rgba(0, 0, 0, 0.28);
     --raised-sm: 0 0 4px rgba(0, 0, 0, 0.38), 1px 2px 2px rgba(0, 0, 0, 0.4);
@@ -87,7 +87,7 @@
   --ink: #e8ecf2; --muted: #95a0b2; --accent: #7fa9e6; --mark-ring: #0b0e13; --mark-edge: var(--mark-ring); --mark-text: var(--mark);
   --pill-bg: #46526a; --pill-ink: #eef1f6; --row-band: 0.22;
   --chev: #0f1218; --chev-glow: rgba(255, 255, 255, 0.5); --chev-halo: rgba(255, 255, 255, 0.3);
-  --band-top: #163a5f; --band-bot: #14506b; --rib-a: #222a37; --rib-b: #1b222d; --rib-ink: #e8ecf2; --rib-logo: #6aa8ff;
+  --band-top: #163a5f; --band-bot: #14506b; --rib-a: #2a3342; --rib-b: #232b38; --rib-ink: #e8ecf2; --rib-logo: #6aa8ff;
   --rib-shadow: 0 5px 10px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   --raised: -1px -1px 2px rgba(0, 0, 0, 0.25), 0 0 4px rgba(0, 0, 0, 0.38), 1px 2px 2px rgba(0, 0, 0, 0.4), 2px 3px 6px rgba(0, 0, 0, 0.28);
   --raised-sm: 0 0 4px rgba(0, 0, 0, 0.38), 1px 2px 2px rgba(0, 0, 0, 0.4);
@@ -113,10 +113,10 @@ footer { font-size: var(--fs-s); color: var(--muted); }
 footer a { color: var(--muted); }
 /* Footer: the maker card (avatar, Reddit, feedback, About & FAQ), the sources, the fan-site notice */
 .foot { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 12px; text-align: center; line-height: 1.5; }
-.fmade { display: flex; align-items: center; gap: 12px; width: min(420px, 100%); padding: 12px 14px; border-radius: var(--r-card); background: var(--surface);
+.fmade { display: flex; align-items: center; gap: 12px; width: auto; max-width: min(420px, 100%); padding: 12px 14px; border-radius: var(--r-card); background: var(--surface);
   box-shadow: var(--raised), var(--bevel); text-align: left; }
-.fmade img { width: 48px; height: 48px; flex: none; border-radius: 50%; box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px var(--line-strong); }
-.fmt { display: flex; flex-direction: column; min-width: 0; flex: 1; font-size: var(--fs-m); color: var(--muted); line-height: 1.35; }
+.fmade img { width: 48px; height: 48px; flex: none; border-radius: 50%; background: #ffffff; box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px var(--line-strong); }
+.fmt { display: flex; flex-direction: column; min-width: 0; flex: 0 1 auto; font-size: var(--fs-m); color: var(--muted); line-height: 1.35; }
 .fmt b { color: var(--ink); font-weight: 700; }
 .fmt a { color: var(--acc-ink); font-weight: 700; text-decoration: none; }
 .fmt small { font-size: var(--fs-s); }
@@ -475,7 +475,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .cards.cmp img:not([data-dif]), .cards.cmp1 img:not(.keep), .vars.cmpv .cards:not(.cmp, .cmp1) img { opacity: 0.2; }
 .cmpb .l1 { gap: 1px; }
 .cmpb .swi { width: 12px; height: 12px; display: block; flex: none; }
-.cmpb .cdi { width: 12px; height: 12px; display: block; flex: none; margin: 0 3px 0 -1px; color: var(--muted); transform: scaleX(-1); } /* close to the number, mirrored */
+.cmpb .cdi { width: 12px; height: 12px; display: block; flex: none; margin: 0 -1px 0 -1px; color: var(--muted); transform: scaleX(-1); } /* close to the number, mirrored */
 .ipop h3 .swi { width: 16px; height: 16px; display: inline-block; vertical-align: -2px; margin-right: 5px; color: var(--muted); }
 .ipop .cmpt { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 10px; align-items: start; font-size: var(--fs-s); }
 .ipop .cmpt .sl { padding-top: 3px; font-size: var(--fs-xs); font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
@@ -530,7 +530,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   .ustop { display: none; } /* "5/20 players": the row fits on one line */
   .sfoot > .usrow { gap: 4px 6px; }
   .altb { padding: 0 5px; gap: 2px; letter-spacing: -0.01em; }
-  .cmpb .cdi { margin: 0 2px 0 -1px; }
+  .cmpb .cdi { margin: 0 -1px 0 -1px; }
   .sfoot > .usrow { gap: 4px 5px; }
   .usrow .ii { margin-left: 2px; }
   .sfoot { column-gap: 8px; }
@@ -769,7 +769,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   height: 168px; padding: 100px 6px 10px; border-radius: var(--r-card); box-shadow: var(--raised); text-align: center;
   transition: transform var(--t-slow) ease, opacity var(--t-slow) ease; }
 .pod > .pcard[aria-expanded="true"] { position: relative; top: auto; z-index: 4; transform: scale(var(--ps, 1.1)); padding-top: 10px; }
-.pod > .pcard::before { inset: 0 0 auto 0; width: auto; height: 78px; border-radius: var(--r-card) var(--r-card) 0 0;
+.pod > .pcard::before { clip-path: polygon(0 0, 100% 0, 0 calc(50% + 10px)); inset: 0 0 auto 0; width: auto; height: 78px; border-radius: var(--r-card) var(--r-card) 0 0;
   background: linear-gradient(160deg, var(--eb1, #c9d3df), var(--eb2, var(--eb1, #c9d3df)) 55%, transparent 100%);
   -webkit-mask-image: linear-gradient(180deg, #000 40%, transparent); mask-image: linear-gradient(180deg, #000 40%, transparent); }
 .podium:has(.pcard[aria-expanded="true"]) .pcard[aria-expanded="false"] { opacity: 0.25; } /* the other two fade while one is open */
@@ -801,7 +801,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .pcard .psub .sm { display: block; font-size: 0.6rem; line-height: 1.3; }
 .pod > .apanel { grid-column: 1 / -1; grid-row: 2; margin-top: calc(var(--pgap, 24px) + 10px) !important; padding-top: 0; } /* + room for the stats pill (same 10px gap as the rows) */
 /* Medals (game style): outer disc shaded from the top-left, a recessed inner disc, a crown with a white outline */
-.medal { position: absolute; z-index: 3; left: 7px; top: -3px; width: 32px; height: 32px; border-radius: 50%;
+.medal { position: absolute; z-index: 3; left: 7px; top: 12px; width: 32px; height: 32px; border-radius: 50%;
   background: var(--m-out); box-shadow: 0 2px 3px rgba(30, 50, 80, 0.3); transition: transform var(--t-slow) ease, opacity var(--t-slow) ease; }
 .medal::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--m-in);
   box-shadow: inset 1.5px 1.5px 2px rgba(0, 0, 0, 0.22), inset -1px -1px 1.5px rgba(255, 255, 255, 0.55); }
@@ -848,7 +848,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   /* podium: tiles 20px shorter; the medal sits on the tile's corner, like the game */
   .podium { margin-top: 10px; }
   .pod > .pcard { --t0: 10px; --tx: 72px; } /* same layout as wider screens; a taller text area for 2-line names */
-  .medal { left: -6px; top: -9px; width: 28px; height: 28px; }
+  .medal { left: -6px; top: 6px; width: 28px; height: 28px; }
   .medal::after { inset: 2.5px; }
   .medal .mn { font-size: 1rem; }
   .medal .crown { top: -6px; width: 13px; height: 11px; }
@@ -938,7 +938,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 
   <footer class="foot">
     <div class="fmade">
-      <img src="data:image/webp;base64,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" alt="" width="48" height="48">
+      <img src="data:image/webp;base64,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" alt="" width="48" height="48">
       <span class="fmt"><span>Made by <a href="https://www.reddit.com/user/Myxas_/" target="_blank" rel="noopener">u/Myxas_</a></span>
         <small>Feedback or a bug? <a href="https://www.reddit.com/message/compose/?to=Myxas_" target="_blank" rel="noopener">Send me a message</a></small></span>
       <button class="fabout" id="aboutBtn" type="button" aria-expanded="false"><svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5.25" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="3.6" r="0.8" fill="currentColor"/><path d="M6 5.4v3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>About &amp; FAQ</button>
