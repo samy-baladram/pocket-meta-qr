@@ -142,6 +142,8 @@ The pairings do not say which deck a player used in a match. Thus:
   list's energy, and the record, event and day of its best finish. Checked before deploy like the lists' QRs.
 - Card index for the search (decision Nov 9, request R6): `search.json` lists every card on the page with, per deck,
   the usual copies and the top players whose list has the card (all finishes in the window).
+- Events tab (decision Nov 10, request R8): `events.json` lists the single-deck events of the 7-day window (multi-deck
+  events left out); `t/<tid>.json` has each event's public lists in place order, with the same energy and QR rules.
 - Cards are compared by card id (set + number). Limitless decklists use 1 standard print per card (checked Nov 9:
   989 decklists, 361 card ids, no ☆/Crown print, no card with 2 prints of the same function); `build.mjs`
   reports a problem if a deck ever has 2 prints of the same card.

@@ -1,6 +1,7 @@
 // QR check before deploy: render every QR in site/data.json and site/v/*.json to pixels, decode it with jsQR
 // (like a phone camera), parse the deck code, and compare it with the cards and energy shown next to it.
 // alt versions (R5): their QR must give the list's cards - out + in, with the list's energy.
+// Event lists (R8) in site/t/: their QR must give their own cards and energy.
 // Exit code 1 when any QR fails, so the site workflow does not deploy.
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { createRequire } from "node:module";
@@ -57,6 +58,12 @@ if (existsSync(`${site}/v`)) for (const f of readdirSync(`${site}/v`)) {
   v.vars.forEach((x, i) => add(`${v.id} (list ${i + 2})`, x));
 }
 
+// Event lists (R8): site/t/<tid>.json, 1 list per public decklist of the event.
+if (existsSync(`${site}/t`)) for (const f of readdirSync(`${site}/t`)) {
+  const t = JSON.parse(readFileSync(`${site}/t/${f}`, "utf8"));
+  t.lists.forEach((x) => lists.push({ where: `event ${t.tid} place ${x.pl}`, list: x, ev: true }));
+}
+
 let ok = 0, none = 0;
 const bad = [];
 for (const { where, list } of lists) {
@@ -74,8 +81,8 @@ for (const { where, list } of lists) {
     bad.push(`${where}: ${e.message}`);
   }
 }
-const nAlt = lists.filter((x) => x.alt).length;
-console.log(`QR check: ${ok} of ${lists.length} QR codes (${lists.length - nAlt} lists + ${nAlt} alt versions) decoded and ` +
+const nAlt = lists.filter((x) => x.alt).length, nEv = lists.filter((x) => x.ev).length;
+console.log(`QR check: ${ok} of ${lists.length} QR codes (${lists.length - nAlt - nEv} lists + ${nAlt} alt versions + ${nEv} event lists) decoded and ` +
   `equal to the deck; ${none} without QR; ${bad.length} failed`);
 bad.forEach((b) => console.log("  FAIL", b));
 process.exit(bad.length ? 1 : 0);

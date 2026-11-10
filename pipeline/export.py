@@ -81,12 +81,50 @@ def main():
         decks.append({"id": arch, "count": players, "share": round(share, 2), "w": w, "l": l, "t": t,
                       "win": round(win, 2) if win is not None else None, "rows": rows, "votes": energy_votes(arch)})
 
+    # R8 (Nov 10, 2026): events of the window for the "Latest Events" tab. Single-deck events only, newest first.
+    # Per event: the top 8 decks by place (all entries with a place, with or without a public list) and every entry
+    # with a public decklist, in place order. build.mjs makes the energy, art and QR (same rules as the deck lists).
+    events, used = [], set()
+    for tid, name, date, day, players in db.execute(
+            f"SELECT id, name, date, day, players FROM tournaments WHERE multi_deck = 0 AND id IN ({q}) "
+            "ORDER BY date DESC, id", tids).fetchall():
+        rows = db.execute("""SELECT e.pid, e.name, e.place, e.w, e.l, e.t,
+                                    (SELECT archetype FROM entry_decks d WHERE d.tid = e.tid AND d.pid = e.pid AND d.idx = 0)
+                             FROM entries e WHERE e.tid = ? AND e.place IS NOT NULL ORDER BY e.place""", (tid,)).fetchall()
+        top = [[arch, place] for pid, pn, place, w, l, t, arch in rows if place <= 8 and arch]
+        first = next(({"deck": arch, "sc": f"{w}-{l}-{t}"} for pid, pn, place, w, l, t, arch in rows if place == 1), None)
+        entries = []
+        for pid, pn, place, w, l, t, arch in rows:
+            lists = lists_of(tid, pid)
+            if lists:
+                entries.append({"pid": pid, "pl": place, "place": f"{ordinal(place)} of {players}", "deck": arch,
+                                "sc": f"{w}-{l}-{t}", "p": pn, "lists": lists})
+        used.update(x[0] for x in top)
+        used.update(e["deck"] for e in entries if e["deck"])
+        if first and first["deck"]:
+            used.add(first["deck"])
+        events.append({"tid": tid, "name": name, "dt": day, "date": date, "players": players,
+                       "url": f"https://play.limitlesstcg.com/tournament/{tid}/standings",
+                       "win": first, "top": top, "entries": entries})
+    # Decks of the events that are not in the deck table: 1 recent list of the current set (for name, art, energy)
+    # and the energy votes. Decks in the table use their list 1.
+    shown = {d["id"] for d in decks}
+    samples = {}
+    for arch in sorted(used - shown):
+        row = db.execute("""SELECT d.tid, d.pid FROM entry_decks d JOIN tournaments t ON t.id = d.tid
+                            WHERE d.archetype = ? AND t.set_code = ? AND t.multi_deck = 0
+                              AND EXISTS (SELECT 1 FROM decklists x WHERE x.tid = d.tid AND x.pid = d.pid)
+                            ORDER BY t.date DESC LIMIT 1""", (arch, cur)).fetchone()
+        samples[arch] = {"lists": lists_of(*row) if row else [], "votes": energy_votes(arch)}
+
     out = {
         "builtAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "set": cur, "setName": set_name, "format": "standard", "window": a.window,
         "summary": {"tournaments": summary[0], "players": summary[1] or 0, "matches": matches},
         "span": [summary[2], summary[3]] if summary[2] else None,
         "decks": decks,
+        "events": events,
+        "samples": samples,
     }
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     with open(a.out, "w", encoding="utf8") as fh:

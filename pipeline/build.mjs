@@ -281,6 +281,79 @@ writeFileSync("site/data.json", JSON.stringify(data));
   if (noImg.length) problems.push(`search: cards without an image: ${noImg.join(", ")}`);
   console.log(`search.json: ${cards.length} cards, ${cards.reduce((t, c) => t + c.decks.length, 0)} card-deck pairs`);
 }
+// R8 (Nov 10, 2026): "Latest Events" tab -> site/events.json (event list) + site/t/<tid>.json (lists of 1 event).
+// Single-deck events of the window, newest first. Each public list: same cards / energy / eg / QR rules as the deck
+// lists (energy shown on its page, else the deck's vote, else attack costs). Every card id goes into the image set.
+const eventLog = { events: 0, lists: 0, qr: 0, none: 0 };
+{
+  rmSync("site/t", { recursive: true, force: true });
+  mkdirSync("site/t", { recursive: true });
+  const shown = new Map(decks.map((d) => [d.id, d]));
+  const votesOf = new Map([...input.decks.map((d) => [d.id, d.votes]),
+    ...Object.entries(input.samples || {}).map(([k, v]) => [k, v.votes])]);
+  // Pick the list of a decklist page that matches the deck name (pages of single-deck events have 1 list).
+  const pickList = (name, lists) => lists.map((x) => ({ l: toList(x.cards), energy: x.energy }))
+    .filter((x) => x.l.reduce((a, c) => a + c.count, 0) === 20)
+    .map((x) => ({ ...x, score: attackers(name, x.l).length })).sort((a, b) => b.score - a.score)[0] || null;
+  const info = new Map(); // deckId -> { name, art, energy }
+  async function deckInfo(arch) {
+    if (info.has(arch)) return info.get(arch);
+    const name = deckName(arch);
+    let r = { name, art: [], energy: [] };
+    if (shown.has(arch)) r = { name, art: shown.get(arch).art, energy: shown.get(arch).energy };
+    else {
+      const pick = pickList(name, input.samples?.[arch]?.lists || []);
+      if (pick) {
+        const v = await variation(name, pick.l, [], arch, pick.energy, energyVote(name, votesOf.get(arch)));
+        r = { name, art: v.art, energy: v.energy };
+      } else problems.push(`events: no list for deck ${arch}`);
+    }
+    r.art.forEach((a) => images.add(a));
+    info.set(arch, r);
+    return r;
+  }
+  const out = [];
+  for (const ev of input.events || []) {
+    const lists = [];
+    for (const e of ev.entries) {
+      const name = e.deck ? deckName(e.deck) : "";
+      const pick = pickList(name, e.lists);
+      if (!pick) { problems.push(`events: no valid list for ${ev.tid}/${e.pid}`); continue; }
+      const v = await variation(name, pick.l, problems, `${ev.tid}/${e.pid}`, pick.energy,
+        e.deck ? energyVote(name, votesOf.get(e.deck)) : null);
+      if (e.deck) await deckInfo(e.deck);
+      v.cards.forEach((c) => images.add(c.id));
+      lists.push({ pl: e.pl, place: e.place, deck: e.deck, sc: e.sc, p: e.p, energy: v.energy,
+        ...(v.eg ? { eg: v.eg } : {}), cards: v.cards, qr: v.qr });
+      eventLog[v.qr ? "qr" : "none"]++;
+    }
+    writeFileSync(`site/t/${ev.tid}.json`, JSON.stringify({ tid: ev.tid, lists }));
+    for (const [arch] of ev.top) await deckInfo(arch);
+    let win = null;
+    if (ev.win?.deck) {
+      const w1 = lists.find((x) => x.pl === 1);
+      const d = await deckInfo(ev.win.deck);
+      win = { deck: ev.win.deck, name: d.name, art: w1 && w1.deck === ev.win.deck ? attackersArt(d.name, w1.cards) || d.art : d.art,
+        energy: w1 ? w1.energy : d.energy, sc: ev.win.sc };
+    }
+    out.push({ tid: ev.tid, name: ev.name, dt: ev.dt, players: ev.players, url: ev.url, nl: lists.length, win, top: ev.top });
+    eventLog.events++; eventLog.lists += lists.length;
+  }
+  const deckMap = Object.fromEntries([...info].sort(([a], [b]) => a.localeCompare(b)));
+  writeFileSync("site/events.json", JSON.stringify({ updatedAt: new Date().toISOString(), window: input.window,
+    events: out, decks: deckMap }));
+}
+// Art (1-2 card ids of the named Pokémon) of an event list, from its cards ({id, n, c}).
+function attackersArt(name, cards) {
+  const list = cards.map((c) => {
+    const [set, num] = c.id.split("-");
+    const s = /^p[a-z]$/.test(set) ? `P-${set[1].toUpperCase()}` : set[0].toUpperCase() + set.slice(1);
+    return { count: c.c, set: s, num: +num, name: c.n };
+  });
+  const at = attackers(name, list).map((a) => pdId(a.set, a.num));
+  return at.length ? at : null;
+}
+
 // Booster packs of the cards on the site (PocketDecks expansions.json) -> site/packs.json + images.json "packs".
 // A card from "Shared(<set>)" is in every pack of its set. Single-pack sets: the card's pack is the set name.
 // Promo "packs" without an image (shop, missions, ...) use the promo set logo (promo-a, promo-b) when it exists.
@@ -326,6 +399,7 @@ if (waiting) console.log(`${waiting} decks have no decklist yet (later scrape ru
   console.log(`energy of ${all.length} lists: ${k(0)} shown by Limitless, ${k(2)} from other lists of the deck, ${k(1)} from attack costs`);
 }
 console.log(`decks: ${decks.length}, lists: ${nvars}, unique cards: ${images.size}`);
+console.log(`events: ${eventLog.events} events, ${eventLog.lists} lists (${eventLog.qr} with QR, ${eventLog.none} without)`);
 console.log(`alt versions: ${altLog.qr} with QR, ${altLog.none} without QR` +
   (altLog.energy.length ? `; energy notes:\n  ${altLog.energy.join("\n  ")}` : "; energy notes: none"));
 if (dropped.length) console.log("decks with more groups than kept:\n  " + dropped.join("\n  "));

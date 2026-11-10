@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 9 (Nov 9, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 10 (Nov 10, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -9,6 +9,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - Changed definitions: `share` adds up to 100 %; `win` excludes mirror matches and multi-deck events.
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers: a deck without any decklist yet is not in `decks`.
+- Version 10 (request R8 of the UI chat): new files **`events.json`** (the single-deck events of the window, for a
+  "Latest Events" tab) and **`t/<tid>.json`** (the public lists of 1 event, in place order, with QR). See below.
+  About 18 KB (4 KB compressed) for `events.json`; up to about 110 KB (18 KB compressed) per `t/` file.
 - Version 9 (request R6 of the UI chat): new file **`search.json`**, a card index for the search suggestions
   (see below). About 26 KB (about 4 KB compressed).
 - Version 8 (request R5 of the UI chat): each `alt` entry has its own **`qr`** (the shown list - `out` + `in`, with
@@ -53,6 +56,8 @@ Use the same word in new docs and UI notes.
 | `packs.json` | **new in v6.** set and booster pack of every card on the site (see below) | on demand |
 | `p/<image>.webp` | **new in v6.** booster pack image, 200 px wide (about 23 KB); promo cards without a pack image use the promo set logo | on demand |
 | `search.json` | **new in v9.** card index for the search: every card on the page, the decks that play it, copies and top players (see below) | when the search box opens |
+| `events.json` | **new in v10.** the single-deck events of the window, newest first, with winner and top 8 (see below) | when the events tab opens |
+| `t/<tid>.json` | **new in v10.** the public lists of 1 event, in place order, with QR (see below) | when an event opens |
 | `e/<energy>.webp` | energy icon, 48 px (`grass`, `fire`, `water`, `lightning`, `psychic`, `fighting`, `darkness`, `metal`) | per energy |
 
 `cardId` = lower-case set + 3-digit number, for example `b1a-014`, `c1-127`, `pa-007` (promo A).
@@ -151,6 +156,48 @@ needs another type, the build log says so (none on Nov 9). The QR check decodes 
 ```
 
 The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list" (no `art`).
+
+## events.json (new in v10)
+
+```json
+{ "updatedAt": "2026-11-10T13:05:00Z", "window": "7d",
+  "events": [
+    { "tid": "6912...", "name": "xPabsy Cup #13 - $20", "dt": "2026-11-09", "players": 215,
+      "url": "https://play.limitlesstcg.com/tournament/6912.../standings", "nl": 32,
+      "win": { "deck": "greninja-ex-b1-mega-greninja-ex-c1", "name": "Greninja ex Mega Greninja ex",
+               "art": ["b1-073", "c1-042"], "energy": ["water"], "sc": "12-1-1" },
+      "top": [["greninja-ex-b1-mega-greninja-ex-c1", 1], ["...", 2]] } ],
+  "decks": { "greninja-ex-b1-mega-greninja-ex-c1": { "name": "Greninja ex Mega Greninja ex",
+             "art": ["b1-073", "c1-042"], "energy": ["water"] } } }
+```
+
+| Field | Meaning |
+|---|---|
+| `events` | every **single-deck** Standard event of the window (multi-deck events are left out: no single list per player), newest first (start time) |
+| `tid` | Limitless tournament id; the event's lists are in `t/<tid>.json` |
+| `name`, `dt`, `players`, `url` | event name, day `YYYY-MM-DD`, entries, Limitless standings link |
+| `nl` | number of lists in `t/<tid>.json` (the public decklists: top 25 % of the players, 8 to 32) |
+| `win` | the 1st place: `deck` id, display `name` (same naming as `data.json`), `art` (1-2 card ids, from the winner's list when it is public), `energy` (the winner's list when public, else the deck's), `sc` record. null only when the 1st place has no deck |
+| `top` | the decks of places 1 to 8 as `[deckId, place]`, place order (with or without a public list) |
+| `decks` | `{deckId: {name, art, energy}}` for every deck id in `win`, `top` and `t/`. For decks in `data.json`: their list 1. Other decks: a recent list of the current set (energy rule as for lists) |
+
+## t/&lt;tid&gt;.json (new in v10)
+
+```json
+{ "tid": "6912...", "lists": [
+  { "pl": 1, "place": "1st of 215", "deck": "greninja-ex-b1-mega-greninja-ex-c1", "sc": "12-1-1", "p": "IamCOMPLEX",
+    "energy": ["water"], "cards": [{ "id": "b1-073", "n": "Greninja ex", "c": 2 }], "qr": "<svg ...>" } ] }
+```
+
+| Field | Meaning |
+|---|---|
+| `lists` | 1 entry per public decklist of the event, place order (1st first) |
+| `pl` | place number |
+| `place` | place text, same format as a list's `pl` in `data.json` (`1st of 215`) |
+| `deck` | archetype id (name, art, energy in `events.json` `decks`) |
+| `sc` | record W-L-T |
+| `p` | the player's name as Limitless shows it (public) |
+| `energy`, `eg`, `cards`, `qr` | same rules as a list in `data.json` (energy shown on the page, else `eg: 2` the deck's most common Limitless energy, else `eg: 1` attack costs; QR decoded before deploy). Every card id has a `c/` image and is in `packs.json` |
 
 ## search.json (new in v9)
 
