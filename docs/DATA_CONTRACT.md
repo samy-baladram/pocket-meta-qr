@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 11 (Nov 11, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 12 (Nov 11, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -8,7 +8,11 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - New: `summary` (top level) and `eg` (per list). The page can ignore them.
 - Changed definitions: `share` adds up to 100 %; `win` excludes mirror matches and multi-deck events.
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
-- `rank` can skip numbers: a deck without any decklist yet is not in `decks`.
+- `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
+  `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 12 (request R10 of the UI chat): new field **`nolist`** in `data.json` and `more.json`: the decks of
+  that file's share range that have no list in the window, with rank, numbers, name, art and energy, for a disabled
+  row in their rank place (see "nolist"). About 0.5 KB in `data.json`, 2 KB in `more.json` on Nov 11.
 - Version 11 (request R9 of the UI chat): new file **`more.json`** (the decks with 0.2 % <= share < 0.5 % that
   have at least 1 list, same deck format, for a "Show more decks" button) and new field **`more`** in `data.json`
   (the number of decks in `more.json`). Their other lists are in `v/` as usual; `search.json` includes them.
@@ -92,13 +96,14 @@ Use the same word in new docs and UI notes.
 | `summary` | object | **new.** tournaments, players (entries) and played matches in the window |
 | `decks` | array | most players first, max 40, share >= 0.5 % |
 | `more` | int | **new in v11.** number of decks in `more.json`; `0` = no button |
+| `nolist` | array | **new in v12.** decks with share >= 0.5 % (max-40 rule as `decks`) and no list in the window, by rank (see "nolist"); `[]` = none |
 
 ### deck
 
 | Field | Type | Meaning |
 |---|---|---|
 | `id` | string | Limitless archetype slug, e.g. `mega-charizard-y-ex-b1a-entei-ex-a4a` |
-| `rank` | int | position by players (1 = most); can skip numbers |
+| `rank` | int | position by players (1 = most); can skip numbers (the missing ranks are in `nolist`) |
 | `name` | string | display name, e.g. `Mega Charizard Y ex Entei ex` (same as Limitless) |
 | `count` | int | players with this deck in the window |
 | `share` | number | % of all decks in the window (2 decimals) |
@@ -155,6 +160,24 @@ Every `in`/`out` card id has a `c/` image. The version's energy is always the li
 needs another type, the build log says so (none on Nov 9). The QR check decodes every `alt` QR before deploy. Example UI text: "Also played: −1 Red Card +1 Soothing Shore
 (2 top players, best 15th of 203)".
 
+### nolist (new in v12)
+
+```json
+"nolist": [ { "rank": 18, "id": "mega-greninja-ex-c1-suicune-ex-a4a", "name": "Mega Greninja ex Suicune ex",
+              "count": 21, "share": 0.76, "win": 52.3, "art": ["c1-042", "a4a-020"], "energy": ["water"] } ]
+```
+
+| Field | Meaning |
+|---|---|
+| `rank`, `id`, `name`, `count`, `share`, `win` | same as a deck (`win` can be null) |
+| `art` | the 1-2 named Pokémon, same rule as a deck's `art`; every id has a `c/` (and `z/`) image |
+| `energy` | from the newest decklist of the deck in the current set (any event, also multi-deck; energy rule as for lists); else the deck's energy vote or the attack costs of the named Pokémon. Can be `[]` (only colorless costs) |
+
+Sorted by rank. A deck is in `nolist` when none of its finishes in the window has a public single-deck list (its
+lists are only from earlier days of the set, only from multi-deck events, or not public). No `w`/`l`/`t`, no lists,
+no QR. Without a decklist in the set, `art` comes from the slug (named Pokémon + set code; checked Nov 11: the same
+art as the lists for 53 of 53 decks).
+
 ### v/&lt;deckId&gt;.json
 
 ```json
@@ -166,7 +189,7 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 ## more.json (new in v11)
 
 ```json
-{ "updatedAt": "2026-11-11T14:00:00Z", "window": "7d", "min": 0.2, "decks": [ <deck>, ... ] }
+{ "updatedAt": "2026-11-11T14:00:00Z", "window": "7d", "min": 0.2, "decks": [ <deck>, ... ], "nolist": [ ... ] }
 ```
 
 | Field | Meaning |
@@ -175,8 +198,10 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 | `min` | the lowest share % in this file (`0.2`) |
 | `decks` | same `<deck>` format as `data.json` (list 1 fields, `alt`, QR), for the decks with `min` <= share < 0.5 %, most players first. **Only decks with at least 1 list** (a deck without a public list is left out). Also a deck with 0.5 % or more that is over the 40-deck limit of `data.json` would go here (none so far) |
 
-- `rank` continues the global order by players: the ranks are after the last deck of `data.json` and can skip
-  numbers (a deck without a list keeps its rank place but is not in any file).
+- `nolist` (**new in v12**): the decks with `min` <= share < 0.5 % and no list in the window, same format as in
+  `data.json`.
+- `rank` continues the global order by players: the ranks are after the last rank of `data.json` (`decks` and
+  `nolist`). `decks` + `nolist` of both files = ranks 1..N with no gap (N = all decks with 0.2 % share or more).
 - Lists 2..`nv` are in `v/<deckId>.json`, same rules (10 groups, `alt`, QR check before deploy).
 - `search.json` includes the cards and decks of `more.json`; `events.json` `decks` uses their list 1 as for
   `data.json` decks.

@@ -186,6 +186,52 @@ function printGuard(id, lists, problems) {
   }
 }
 
+// R10 (Nov 11, 2026): a deck without a list in the window is a "nolist" row (rank place kept on the page).
+// Its art and energy: the newest decklist page of the deck in the current set ("sample", any event), the list that
+// matches the deck name (energy rule as for lists); else from the slug (named Pokémon + set code, lowest number =
+// standard print) and the deck's energy vote or the attack costs of the named Pokémon (can be [] when they need
+// only colorless energy).
+const pickPage = (name, lists) => (lists || []).map((x) => ({ l: toList(x.cards), energy: x.energy }))
+  .filter((x) => x.l.reduce((a, c) => a + c.count, 0) === 20)
+  .map((x) => ({ ...x, score: attackers(name, x.l).length })).filter((x) => x.score > 0)
+  .sort((a, b) => b.score - a.score)[0] || null;
+const SET_WORD = /^([a-z]{1,2}\d+[a-z]?|p-[a-z])$/;
+const limitlessSet = (code) => /^p[a-z]$/.test(code) ? `P-${code[1].toUpperCase()}` : code[0].toUpperCase() + code.slice(1);
+function slugCards(id) {
+  const words = id.replace(/(^|-)p-([a-z])(?=-|$)/g, "$1p@$2").split("-").map((w) => w.replace("@", "-"));
+  const out = [];
+  for (let i = 0; i < words.length;) {
+    if (SET_WORD.test(words[i])) { i++; continue; }
+    let j = words.length;
+    for (; j > i; j--) if (NAME_BY_SLUG.has(words.slice(i, j).join("-"))) break;
+    if (j === i) { i++; continue; }
+    const n = NAME_BY_SLUG.get(words.slice(i, j).join("-"));
+    // The set code after the name; else the next set code in the slug (1 code for 2 names: "pikachu-ex-pawmot-c1").
+    const code = words.slice(j).find((w) => SET_WORD.test(w))?.replace("-", "") ?? null;
+    const prints = [...PD.values()].filter((c) => c.name === n && c.type === "Pokémon" && (!code || c.set_code === code))
+      .sort((a, b) => (code ? 0 : b.release_date.localeCompare(a.release_date)) || a.id.localeCompare(b.id));
+    if (prints[0]) {
+      const [set, num] = prints[0].id.split("-");
+      out.push({ count: 1, set: limitlessSet(set), num: +num, name: n });
+    }
+    i = j;
+  }
+  return out;
+}
+async function noListInfo(d, name) {
+  const page = pickPage(name, d.sample);
+  if (page) {
+    const v = await variation(name, page.l, [], d.id, page.energy, energyVote(name, d.votes));
+    return { art: v.art, energy: v.energy, from: "list" };
+  }
+  const at = slugCards(d.id);
+  let letters = at[0] ? colored(at[0]) : [];
+  if (at[1] && !letters.length) letters = colored(at[1]);
+  const vote = energyVote(name, d.votes);
+  return { art: at.map((a) => pdId(a.set, a.num)), energy: vote || letters.slice(0, 3).map((l) => LETTER[l]), from: "slug" };
+}
+const nolist = [];
+
 const decks = [], problems = [], images = new Set(), dropped = [], searchDecks = [];
 let waiting = 0;
 // R9 (Nov 11, 2026): decks with 0.2 % <= share < 0.5 % (input flag "more") go to site/more.json, loaded on tap.
@@ -216,7 +262,14 @@ for (const [rank, d] of input.decks.entries()) {
     if (g) g.members.push(member);
     else groups.push({ list: pick.l, energy: pick.energy, m, row, members: [member] });
   }
-  if (!groups.length) { waiting++; if (!d.more) problems.push(`${id}: no lists yet`); continue; }
+  if (!groups.length) {
+    waiting++;
+    const x = await noListInfo(d, name);
+    if (!x.art.length) problems.push(`${id}: nolist row without art`);
+    x.art.forEach((a) => images.add(a));
+    nolist.push({ rank: rank + 1, id, name, count, share, win, art: x.art, energy: x.energy, more: !!d.more, from: x.from });
+    continue;
+  }
   printGuard(id, groups.flatMap((g) => g.members.map((x) => x.list)), problems);
   // Step 2: most top players first; on a tie the group with the better best place (= the earlier group).
   const chosen = groups.map((g, i) => ({ ...g, used: g.members.length, i }))
@@ -253,10 +306,12 @@ for (const [rank, d] of input.decks.entries()) {
 // Time span and size of the data window (all tournaments of the window, not only the shown lists).
 const data = { updatedAt: new Date().toISOString(), set: input.set, setName: input.setName || "", format: input.format,
   window: input.window, span: input.span, summary: input.summary,
-  decks: decks.filter((d) => !moreIds.has(d.id)), more: moreIds.size };
+  decks: decks.filter((d) => !moreIds.has(d.id)), more: moreIds.size,
+  nolist: nolist.filter((x) => !x.more).map(({ more, from, ...x }) => x) };
 writeFileSync("site/data.json", JSON.stringify(data));
 writeFileSync("site/more.json", JSON.stringify({ updatedAt: data.updatedAt, window: input.window, min: 0.2,
-  decks: decks.filter((d) => moreIds.has(d.id)) }));
+  decks: decks.filter((d) => moreIds.has(d.id)),
+  nolist: nolist.filter((x) => x.more).map(({ more, from, ...x }) => x) }));
 
 // R6 (Nov 9, 2026): card index for the page's search -> site/search.json (loaded when the search box opens).
 // Cards = every card id in a shown list or an alt version ("in" card) of any deck on the page.
@@ -297,6 +352,7 @@ const eventLog = { events: 0, lists: 0, qr: 0, none: 0 };
   rmSync("site/t", { recursive: true, force: true });
   mkdirSync("site/t", { recursive: true });
   const shown = new Map(decks.map((d) => [d.id, d]));
+  const nolistOf = new Map(nolist.map((x) => [x.id, x]));
   const votesOf = new Map([...input.decks.map((d) => [d.id, d.votes]),
     ...Object.entries(input.samples || {}).map(([k, v]) => [k, v.votes])]);
   // Pick the list of a decklist page that matches the deck name (pages of single-deck events have 1 list).
@@ -309,6 +365,7 @@ const eventLog = { events: 0, lists: 0, qr: 0, none: 0 };
     const name = deckName(arch);
     let r = { name, art: [], energy: [] };
     if (shown.has(arch)) r = { name, art: shown.get(arch).art, energy: shown.get(arch).energy };
+    else if (nolistOf.has(arch)) r = { name, art: nolistOf.get(arch).art, energy: nolistOf.get(arch).energy };
     else {
       const pick = pickList(name, input.samples?.[arch]?.lists || []);
       if (pick) {
@@ -400,7 +457,8 @@ writeFileSync("images.json", JSON.stringify({
   packs: [...packImg].map(([id, url]) => ({ id, url })),
 }));
 const nvars = decks.reduce((a, d) => a + d.nv, 0);
-if (waiting) console.log(`${waiting} decks have no decklist yet (later scrape runs fetch them; "more" decks without a list are left out)`);
+if (waiting) console.log(`${waiting} decks have no list in the window (nolist rows, R10): ` +
+  nolist.map((x) => `${x.rank} ${x.name} [${x.art.join(",")}] ${x.energy.join("+")} (${x.from})`).join("; "));
 console.log(`more.json: ${moreIds.size} decks (of ${input.decks.filter((d) => d.more).length} with 0.2-0.5 % share), ` +
   `${decks.filter((d) => moreIds.has(d.id)).reduce((a, d) => a + d.nv, 0)} lists`);
 {

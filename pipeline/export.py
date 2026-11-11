@@ -81,8 +81,17 @@ def main():
                 ORDER BY CAST(e.place AS REAL) / t.players, e.place, t.date DESC LIMIT ?""", [arch, *tids, a.rows or -1]):
             rows.append({"key": f"{tid}/{pid}", "ev": ev, "pl": f"{ordinal(place)} of {size}",
                          "sc": f"{ew}-{el}-{et}", "dt": day, "lists": lists_of(tid, pid)})
-        decks.append({"id": arch, "count": players, "share": round(share, 2), "w": w, "l": l, "t": t,
-                      "win": round(win, 2) if win is not None else None, "rows": rows, "votes": energy_votes(arch), "more": more})
+        deck = {"id": arch, "count": players, "share": round(share, 2), "w": w, "l": l, "t": t,
+                "win": round(win, 2) if win is not None else None, "rows": rows, "votes": energy_votes(arch), "more": more}
+        if not rows:
+            # R10 (Nov 11, 2026): no list in the window -> the deck is a "nolist" row. For its art and energy: the newest
+            # decklist page of the deck in the current set (any event, also multi-deck); build.mjs falls back to the slug.
+            row = db.execute("""SELECT d.tid, d.pid FROM entry_decks d JOIN tournaments t ON t.id = d.tid
+                                WHERE d.archetype = ? AND t.set_code = ?
+                                  AND EXISTS (SELECT 1 FROM decklists x WHERE x.tid = d.tid AND x.pid = d.pid)
+                                ORDER BY t.date DESC LIMIT 1""", (arch, cur)).fetchone()
+            deck["sample"] = lists_of(*row) if row else []
+        decks.append(deck)
 
     # R8 (Nov 10, 2026): events of the window for the "Latest Events" tab. Single-deck events only, newest first.
     # Per event: the top 8 decks by place (all entries with a place, with or without a public list) and every entry
