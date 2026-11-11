@@ -1,11 +1,11 @@
-// Pocket Meta QR service worker (UI chat, Nov 12, 2026): keeps the card, zoom, pack and energy images on the device.
+// Pocket Meta QR service worker (UI chat, Nov 12, 2026): keeps the card, zoom, pack and energy images and the font on the device.
 // GitHub Pages sends them with max-age=600, so without this every visit after 10 min checks each image again.
 // An image path always shows the same picture (c/<card id>.webp), so cache-first is safe. Only these image paths are
 // handled; data.json, the lists and the page always come from the network as before.
 // To drop all stored images (for example after images.py changes how it draws them): change VERSION.
 const VERSION = "img-v1";
 const MAX = 1500; // stored images at most (about 25 MB); the oldest go first
-const IMG = /^\/(c|z|p|e)\/[^/]+\.webp$/;
+const IMG = /^\/((c|z|p|e)\/[^/]+\.webp|figtree\.woff2)$/; // + the page font (static/figtree.woff2)
 
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil((async () => {
