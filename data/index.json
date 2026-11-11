@@ -314,6 +314,12 @@
    "players": 109,
    "dl": 27,
    "rule": "wl1"
+  },
+  "6af3a8e400d53a11f5b90a66": {
+   "date": "2026-11-11T11:30:00Z",
+   "path": "raw/2026/11/6af3a8e400d53a11f5b90a66.json",
+   "players": 116,
+   "rule": "wl1"
   }
  },
  "skipped": {
