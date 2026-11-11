@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794412846-cdef -->
+<!-- ui: artifact version 1794414067-274b -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -127,6 +127,12 @@ footer a { color: var(--muted); }
 .fabout { margin-top: 6px; display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border: 0; border-radius: 999px; cursor: pointer;
   background: var(--surface); color: var(--ink); font-size: var(--fs-s); font-weight: 700; white-space: nowrap; box-shadow: var(--raised-sm), var(--bevel); }
 .fabout svg { width: 13px; height: 13px; color: var(--accent); }
+.fbtns { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2px 4px; margin-top: 2px; }
+/* Footer actions are quiet text links (not raised pills): the raised pill style is for actions in the content (Show more decks, Also played, QR) */
+.fbtns .fabout { margin-top: 0; background: none; box-shadow: none; padding: 6px 8px; color: var(--acc-ink); font-weight: 600; font-size: var(--fs-s); }
+.fbtns .fabout svg { color: currentColor; }
+.fbtns .fabout + .fabout:not([hidden])::before { content: "\00b7"; color: var(--muted); margin: 0 6px 0 -8px; font-weight: 400; }
+@media (hover: hover) { .fbtns .fabout:hover { text-decoration: underline; text-underline-offset: 3px; } } #homeBtn[hidden] { display: none; }
 .fsrc, .fleg { margin: 0; max-width: 640px; }
 .fleg { font-size: var(--fs-xs); opacity: 0.85; }
 .fsite { font-weight: 700; color: var(--acc-ink); letter-spacing: 0.01em; }
@@ -544,6 +550,7 @@ html { -webkit-tap-highlight-color: transparent; }
   padding: 8px 14px; border-radius: 999px; background: var(--surface); color: var(--ink); font-size: var(--fs-m); font-weight: 600; white-space: nowrap;
   border: 1px solid var(--line-strong); box-shadow: 0 6px 20px rgba(var(--sh), 0.18); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
+.hsteps { margin: 8px 0; padding-left: 20px; } .hsteps li { margin: 4px 0; }
 /* "Below the cut" (bc lists): amber, a caution and not an error */
 :root { --bc-ink: #9a5b00; --bc-bg: rgba(245, 166, 35, 0.16); --bc-line: rgba(214, 140, 20, 0.55); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bc-ink: #ffc861; --bc-bg: rgba(255, 190, 80, 0.15); --bc-line: rgba(255, 190, 80, 0.45); } }
@@ -1074,7 +1081,8 @@ html { -webkit-tap-highlight-color: transparent; }
     <div class="fmade">
       <span class="fsig"><img src="data:image/webp;base64,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" alt="" width="40" height="40"><span>Made by <a href="https://www.reddit.com/user/Myxas_/" target="_blank" rel="noopener">u/Myxas_</a></span></span>
       <span class="ffb">Feedback or a bug? <a href="https://www.reddit.com/message/compose/?to=Myxas_" target="_blank" rel="noopener">Send me a message</a></span>
-      <button class="fabout" id="aboutBtn" type="button" aria-expanded="false"><svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5.25" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="3.6" r="0.8" fill="currentColor"/><path d="M6 5.4v3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>About &amp; FAQ</button>
+      <span class="fbtns"><button class="fabout" id="aboutBtn" type="button" aria-expanded="false"><svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5.25" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="3.6" r="0.8" fill="currentColor"/><path d="M6 5.4v3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>About &amp; FAQ</button>
+      <button class="fabout" id="homeBtn" type="button" aria-expanded="false" hidden><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="3" y="0.9" width="6" height="10.2" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.6v3.6M4.5 5.7 6 7.2l1.5-1.5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Add to Home Screen</button></span>
     </div>
     <p class="fsrc"><span class="fsite">pocketmetaqr.com</span> &middot; Stats, lists and events: computed from <a href="https://play.limitlesstcg.com/tournaments?game=POCKET" target="_blank" rel="noopener">Limitless TCG</a> tournament results of the last 7 days
       (decks with 0.2% share or more, the ones under 0.5% under &ldquo;Show more decks&rdquo;; up to 10 lists per deck, from the decklists of top players (a winning record); the top 8 lists of each single-deck event). Card images: PocketDecks.</p>
@@ -1963,6 +1971,7 @@ html { -webkit-tap-highlight-color: transparent; }
     <h4>What does &ldquo;&#9888; Below the cut&rdquo; mean?</h4><p>No player of that deck had a winning record in the last 7 days. So the page shows the list of its best-placed player instead, as a starting point. It is not a proven list.</p>
     <h4>What are the Hot list and the Top list?</h4><p>List 1 of a deck is the list that the most top players used. For decks with 2% share or more it is the <b>Hot list</b>, for smaller decks the <b>Top list</b>. The other lists show which cards they swap.</p>
     <h4>Why is the win rate different from other sites?</h4><p>Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.</p>
+    <h4>Can I use it like an app?</h4><p>Yes: add it to your Home Screen. It then opens full screen with one tap and refreshes itself when you come back. <b>iPhone / iPad</b> (Safari, Chrome, Edge, Firefox; iOS 16.4 or later): Share &rarr; Add to Home Screen. <b>Android:</b> Chrome menu &#8942; &rarr; Add to Home screen (or Install app).</p>
     <h4>Is it free?</h4><p>Yes: no ads and no sign-up. ${GC ? "No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter)." : "No tracking."} This browser keeps only your theme and the last tab you used.</p>
     <p class="afine">Data: Limitless TCG. Card and pack images: PocketDecks. Made by <a href="https://www.reddit.com/user/Myxas_/" target="_blank" rel="noopener">u/Myxas_</a>.
       Pocket Meta QR is a free fan site, not affiliated with Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK or DeNA.</p></div>`;
@@ -2143,6 +2152,9 @@ html { -webkit-tap-highlight-color: transparent; }
   document.addEventListener("click", (e) => {
     const ab = e.target.closest(".altb");
     if (ab) { e.preventDefault(); e.stopPropagation(); if (!ipop.hidden) hideTip(); toggleAlts(ab); return; }
+    if (e.target.closest("#homeBtn") && installEv) { e.preventDefault(); e.stopPropagation(); track("home-btn"); const ev = installEv; installEv = null;
+      ev.prompt(); ev.userChoice.then((c) => track("home-prompt-" + (c && c.outcome))).catch(() => {}); return; }
+    if (e.target.closest("#homeBtn")) track("home-btn");
     const b = e.target.closest(".ii, .altb, .fabout");
     if (b) { e.preventDefault(); e.stopPropagation(); showTip(b); return; }
     if (!ipop.hidden && !e.target.closest("#iPop, dialog")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
@@ -2590,6 +2602,34 @@ html { -webkit-tap-highlight-color: transparent; }
         location.reload();
       }
     } catch (err) {} finally { checking = false; }
+  }
+  // "Add to Home Screen" (footer button, never a popup): steps for this device in the info sheet; on Android/desktop
+  // Chrome the browser's own install prompt, kept from beforeinstallprompt and shown only on a tap. Hidden in home-screen
+  // mode. Counts (GoatCounter): home-btn, home-prompt-accepted/dismissed, app-installed, and standalone-visit.
+  let installEv = null;
+  addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); installEv = e; });
+  addEventListener("appinstalled", () => { track("app-installed"); $("homeBtn").hidden = true; });
+  if (STANDALONE) setTimeout(() => track("standalone-visit"), 3000); // after GoatCounter has loaded
+  else {
+    const ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const android = /Android/.test(navigator.userAgent);
+    const SHARE = '<svg viewBox="0 0 12 14" width="12" height="14" aria-label="Share" style="vertical-align:-2px"><path d="M6 1v8M3.5 3.5 6 1l2.5 2.5M3 6H2v7h8V6H9" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    // iPhone / iPad: every browser can add it since iOS 16.4 (all use the Share sheet); the Share button is in a different place
+    const ua = navigator.userAgent;
+    const iosShare = /CriOS/.test(ua) ? `Tap <b>Share</b> ${SHARE} in the address bar (top right).`
+      : /EdgiOS/.test(ua) ? `Tap the menu <b>&middot;&middot;&middot;</b>, then <b>Share</b> ${SHARE}.`
+      : /FxiOS/.test(ua) ? `Tap the menu <b>&#9776;</b>, then <b>Share</b> ${SHARE}.`
+      : /Safari/.test(ua) && !/(DuckDuckGo|OPT|YaBrowser)/.test(ua) ? `Tap <b>Share</b> ${SHARE} (Safari: at the bottom, or at the top on iPad).`
+      : `Open your browser&rsquo;s <b>Share</b> ${SHARE} menu.`;
+    const steps = ios
+      ? `<ol class="hsteps"><li>${iosShare}</li><li>Scroll down and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol><p class="inote">Works in Safari, Chrome, Edge, Firefox and most other browsers (iOS 16.4 or later).</p>`
+      : android
+        ? `<ol class="hsteps"><li>Tap the Chrome menu <b>&#8942;</b> (top right).</li><li>Tap <b>Add to Home screen</b> or <b>Install app</b>.</li><li>Tap <b>Install</b> or <b>Add</b>.</li></ol>`
+        : `<ol class="hsteps"><li><b>Chrome / Edge:</b> click the install icon at the right end of the address bar, or menu &rarr; <b>Install Pocket Meta QR</b>.</li><li><b>Safari on Mac:</b> File &rarr; <b>Add to Dock</b>.</li></ol>`;
+    $("homeBtn").dataset.tip = `<h3>Add to Home Screen</h3><p>Open Pocket Meta QR with one tap, full screen like an app. It refreshes itself when you come back.</p>${steps}<p class="inote">No download, no sign-up. Remove it any time like any other app icon.</p>`;
+    $("homeBtn").hidden = false;
+    // Android Chrome: already installed (needs "related_applications" with this manifest in manifest.webmanifest) -> no button
+    if (navigator.getInstalledRelatedApps) navigator.getInstalledRelatedApps().then((a) => { if (a && a.length) $("homeBtn").hidden = true; }).catch(() => {});
   }
   if (STANDALONE) document.addEventListener("visibilitychange", () => {
     if (document.hidden) hidAt = Date.now();
