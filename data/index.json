@@ -257,6 +257,12 @@
    "path": "raw/2026/11/6af2de36e99f3235a75e59cf.json",
    "players": 77,
    "dl": 19
+  },
+  "6aeb20970c463890f304b137": {
+   "date": "2026-11-10T16:05:00Z",
+   "path": "raw/2026/11/6aeb20970c463890f304b137.json",
+   "players": 245,
+   "dl": 32
   }
  },
  "skipped": {
