@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794416151-6ef1 -->
+<!-- ui: artifact version 1794434091-add7 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -20,13 +20,15 @@
 <meta name="twitter:image" content="https://pocketmetaqr.com/og.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Pocket Meta QR","url":"https://pocketmetaqr.com/","applicationCategory":"GameApplication","operatingSystem":"Any","description":"This week's winning Pokémon TCG Pocket decks with a QR code for every list.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Myxas_","url":"https://www.reddit.com/user/Myxas_/"}}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
+<link rel="preload" href="figtree.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Pocket Meta QR. One stylesheet, built on tokens: change a token, not a rule.
    Layout: header (ribbon, stat tiles, tip, search), top-3 podium, then one accordion list of decks.
    A deck opens into a full-width strip of list cards; only the open deck loads its images. */
+
+/* Figtree (SIL Open Font License), hosted with the site: one variable file (weights 300-900, Latin), no outside server */
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 300 900; font-display: swap; src: url("figtree.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
 /* ===== Tokens ===== */
 :root {
@@ -177,12 +179,6 @@ footer a { color: var(--muted); }
 /* Stat tiles: one line, never wrapping; "Updated" takes the rest of the width (cut with "..." only if too long) */
 .hdr .meta { position: relative; z-index: 1; margin: 2px 2px 0; color: var(--muted); font-size: var(--fs-s); line-height: 1.4; }
 .hdr .meta b { color: var(--ink); font-weight: 600; }
-/* First-visit tip */
-.hint { position: relative; z-index: 1; display: flex; align-items: flex-start; gap: var(--sp-2); margin: var(--sp-2) 0 0; padding: var(--sp-2) var(--sp-2) var(--sp-2) var(--sp-3);
-  border-radius: var(--r-box); background: var(--tile); color: var(--muted); font-size: var(--fs-s); line-height: 1.4; }
-.hint[hidden] { display: none; }
-.hint b { color: var(--ink); font-weight: 600; }
-.hint button { flex: none; margin-left: auto; border: 0; background: none; color: var(--muted); font-size: 1.05rem; line-height: 1; padding: 0 2px; cursor: pointer; }
 /* Search + energy filter */
 /* Filter button: next to the theme button, same raised round style; a blue dot shows that a search or filter is on */
 .filt-btn { position: relative; top: auto; right: auto; flex: none; margin-block: -8px; width: 40px; height: 40px; }
@@ -218,8 +214,6 @@ footer a { color: var(--muted); }
 .ech[aria-pressed="true"] img { opacity: 1; filter: none; }
 .ech:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 @media (max-width: 380px) { .ech { width: 34px; height: 34px; } } /* small phones: all 8 chips still fit */
-.fcount { font-size: var(--fs-s); color: var(--muted); white-space: nowrap; }
-.fcount, .fcount:empty { display: none; }
 /* Game style (the in-game search panel): a light top band with a pressed-in search pill, a slightly darker area below;
    energy chips are raised round buttons in 1 row, icons always in color; the chosen one is a dark pressed-in disc */
 :root { --fp-top: #eef2f7; --fp-bot: #e6ecf3; --fp-line: rgba(var(--sh), 0.13);
@@ -390,12 +384,6 @@ footer a { color: var(--muted); }
   .acc:not(.pod) > .arow > .dpill { grid-column: 3; grid-row: 1; align-self: center; margin-right: 8px;
     padding: 3px 12px; font-size: var(--fs-s); }
 }
-/* Row chevron: a small raised circle; only the arrow turns, so the light stays top-left */
-.arow > .chev { position: absolute; right: 12px; top: calc(50% - 10px); z-index: 1; width: 20px; height: 20px; border-radius: 50%;
-  display: grid; place-items: center; color: var(--muted); background: var(--surface); box-shadow: var(--raised-sm), var(--bevel); }
-.arow > .chev svg { width: 13px; height: 13px; display: block; stroke-width: 2; transition: transform var(--t-fast); }
-.arow[aria-expanded="true"] .chev { color: var(--ink); }
-.arow[aria-expanded="true"] .chev svg { transform: rotate(180deg); }
 
 /* ===== Open deck: the lists are big raised cards in a strip that runs to both screen edges ===== */
 .apanel { position: relative; display: flex; flex-direction: column; gap: 12px; padding: 12px 0 0; /* room for the stats pill above: 10px from the pill to the list card, 2px to the "differs" tab */
@@ -503,6 +491,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 } /* no shadow under the cards (light and dark) */
 .cards img, .ph { width: 100%; aspect-ratio: 150 / 209; display: block; border-radius: 2px; background: var(--line); }
 .cards img { height: auto; cursor: pointer; }
+.cards > img:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 /* Card fade: a card image that is not loaded yet fades in when it is ready (see dealGrid) */
 .cards img.dealt { animation: cardIn 0.18s ease-out both; } /* until it loads, the slot shows the card's grey background */
 @keyframes cardIn { from { opacity: 0.35; } }
@@ -553,6 +542,8 @@ html { -webkit-tap-highlight-color: transparent; }
   padding: 8px 14px; border-radius: 999px; background: var(--surface); color: var(--ink); font-size: var(--fs-m); font-weight: 600; white-space: nowrap;
   border: 1px solid var(--line-strong); box-shadow: 0 6px 20px rgba(var(--sh), 0.18); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
+.toast.newp { pointer-events: auto; cursor: pointer; font: inherit; font-size: var(--fs-m); font-weight: 600; } /* "New data · Refresh" (browser tab) */
+.toast.newp b { color: var(--acc-ink); }
 .hsteps { margin: 8px 0; padding-left: 20px; } .hsteps li { margin: 4px 0; }
 /* "Below the cut" (bc lists): amber, a caution and not an error */
 :root { --bc-ink: #9a5b00; --bc-bg: rgba(245, 166, 35, 0.16); --bc-line: rgba(214, 140, 20, 0.55); }
@@ -570,25 +561,10 @@ html { -webkit-tap-highlight-color: transparent; }
 .cmpb .l1 { gap: 1px; }
 .cmpb .swi { width: 12px; height: 12px; display: block; flex: none; }
 .cmpb .cdi { width: 12px; height: 12px; display: block; flex: none; margin: 0 -1px 0 -1px; color: var(--muted); transform: scaleX(-1); } /* close to the number, mirrored */
-.ipop h3 .swi { width: 16px; height: 16px; display: inline-block; vertical-align: -2px; margin-right: 5px; color: var(--muted); }
-.ipop .cmpt { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 10px; align-items: start; font-size: var(--fs-s); }
-.ipop .cmpt .sl { padding-top: 3px; font-size: var(--fs-xs); font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
-.ipop .cmpt .sl.in { color: var(--muted); }
-.ipop .cmpt .sl.l1s { color: var(--acc-ink); text-transform: none; letter-spacing: 0; }
-.ipop .chip[data-cid] { cursor: pointer; border-radius: 4px; }
-@media (hover: hover) { .ipop .chip[data-cid]:hover { color: var(--accent); } }
-.ipop .chip[data-cid]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.ipop .cmpt .chips { display: flex; flex-wrap: wrap; gap: 4px 10px; min-width: 0; }
-.ipop .cmpt .out .chip { color: var(--muted); }
 .sfoot > .usrow { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
 .sfoot .us { justify-self: start; border-radius: 999px; white-space: normal; background: none;
   color: var(--muted); font-size: var(--fs-xs); font-weight: 500; padding: 0 2px; line-height: 1.5; }
 .sfoot .us.top { display: inline-flex; align-items: center; background: var(--acc-bg); color: var(--acc-ink); font-weight: 600; padding: 1px 9px; }
-/* More than 5 lists: a "1 / 10" counter in place of the dots */
-.vcount { position: absolute; left: 50%; bottom: 1px; transform: translateX(-50%); z-index: 2; font-size: var(--fs-xs); font-weight: 600;
-  color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.apanel:has(.vcount):not(.fit) { padding-bottom: 18px; }
-.apanel.fit .vcount { display: none; }
 .info { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sp-2); align-content: center; font-variant-numeric: tabular-nums; }
 .tile { min-width: 0; padding: 6px var(--sp-2); border-radius: var(--r-tile); background: var(--tile); }
 .tile.t-en { padding-inline: 6px; }
@@ -706,9 +682,6 @@ html { -webkit-tap-highlight-color: transparent; }
 .qsl .qsv { display: block; font-weight: 500; }
 .qsrow { display: flex; align-items: center; gap: 6px; }
 .qsimg { width: min(236px, 62vw); height: auto; aspect-ratio: 1; display: block; border-radius: 12px; background: #ffffff; padding: 6px; }
-.qsnav { width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
-  background: var(--surface); color: var(--muted); box-shadow: var(--raised-sm), var(--bevel); }
-.qsnav svg { width: 10px; height: 18px; display: block; stroke-width: 3; }
 .qsh { margin: 0; font-size: var(--fs-s); color: var(--muted); line-height: 1.4; }
 .ipop .qssave { margin: 12px auto 0; display: flex; }
 /* Phone sheet: Save sits on the same line as the round ×, at the lower right (easy to reach with a thumb) */
@@ -778,9 +751,6 @@ html { -webkit-tap-highlight-color: transparent; }
 @media (hover: hover) { .altb:hover { border-color: var(--muted); } }
 .altb[aria-expanded="true"] .dcar { transform: rotate(180deg); }
 .altb .dcar { width: 8px; height: 8px; opacity: 0.8; transition: transform var(--t-fast); }
-.ipop .alts { display: flex; flex-direction: column; gap: 8px; margin: 0 0 8px; }
-.ipop .altr { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 2px 10px; padding: 6px 8px; border-radius: var(--r-tile); background: var(--tile); }
-.ipop .altr > .altc, .ipop .altr > .altm { grid-column: 1; }
 /* QR button of a version: raised, the logo glyph + "QR" */
 .aqr { grid-column: 2; grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 46px; height: 46px;
   padding: 0; border: 0; border-radius: var(--r-box); cursor: pointer; background: var(--surface); color: var(--acc-ink);
@@ -788,18 +758,9 @@ html { -webkit-tap-highlight-color: transparent; }
 .aqr svg { width: 20px; height: 20px; display: block; }
 @media (hover: hover) { .aqr:hover { color: var(--accent); } }
 .aqr:active { transform: scale(0.96); }
-/* One change on one line: "− Red Card  + Soothing Shore" (wraps only when too long) */
-.ipop .altc { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 12px; }
-.ipop .altc .aout, .ipop .altc .ain { display: inline-flex; align-items: center; gap: 4px; min-width: 0; }
-.ipop .altc .chip { font-size: var(--fs-s); min-width: 0; }
-.ipop .altc .asg { font-weight: 700; text-align: center; line-height: 1; }
-.ipop .altc .aout .chip { color: var(--muted); font-weight: 500; }
-.ipop .altc .aout .asg { color: var(--muted); }
-.ipop .altc .ain .asg { color: var(--acc-ink); }
-.ipop .altm { font-size: var(--fs-xs); color: var(--muted); }
-.ipop .altm b { color: var(--ink); }
 .ipop .parr.t { top: -7px; box-shadow: -1px -1px 0 rgba(var(--sh), 0.09); }
 .ipop .parr.b { top: auto; bottom: -7px; box-shadow: 1px 1px 0 rgba(var(--sh), 0.09); }
+#iPop:focus, #cPop:focus { outline: none; }
 .ipop .ibody { position: relative; max-width: 480px; margin: 0 auto; font-size: var(--fs-m); line-height: 1.45; }
 .ipop h3 { margin: 0 0 6px; font-size: var(--fs-l); font-weight: 700; color: var(--ink); }
 .ipop p { margin: 0 0 6px; color: var(--muted); }
@@ -952,7 +913,7 @@ html { -webkit-tap-highlight-color: transparent; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .icons, .icons img, .aname, .picons img, .rk, .medal, .pod > .pcard, .arow > .chev svg, .ech img, .chev-btn { transition: none; }
+  .icons, .icons img, .aname, .picons img, .rk, .medal, .pod > .pcard, .ech img, .chev-btn { transition: none; }
 }
 /* Opening and closing a deck is instant (no grow/shrink animation): snappier, and the row/tile can be held in place exactly */
 .snap, .snap * { transition: none !important; }
@@ -996,15 +957,8 @@ html { -webkit-tap-highlight-color: transparent; }
 .evday:first-child { margin-top: 0; }
 .evname { display: flex; align-items: center; gap: 6px; min-width: 0; }
 .evname .aname { min-width: 0; }
-.evsz { flex: none; padding: 1px 7px; border-radius: 999px; font-size: var(--fs-xs); font-weight: 700; line-height: 1.4; white-space: nowrap; border: 1px solid var(--line-strong); color: var(--muted); background: var(--surface); }
-.evsz.m { color: var(--acc-ink); border-color: var(--acc-line); background: linear-gradient(var(--acc-bg), var(--acc-bg)), var(--surface); }
-.evsz.l { color: var(--hot-ink); border-color: var(--hot-line); background: linear-gradient(var(--hot-bg), var(--hot-bg)), var(--surface); }
 .evsub { font-size: var(--fs-s); color: var(--muted); line-height: 1.35; }
 .evsub b { color: var(--ink); font-weight: 600; }
-.evtop { display: flex; align-items: center; gap: 2px; margin-top: 3px; }
-.evtop img { width: 15px; height: auto; aspect-ratio: 367 / 512; border-radius: 1.5px; box-shadow: 0 1px 2px rgba(var(--sh), 0.29); }
-.evtop span { margin-right: 4px; font-size: var(--fs-xs); color: var(--muted); }
-.evr.acc > .arow[aria-expanded="true"] .evtop { display: none; }
 /* An open event: the lists of its top players (deck name and player on top, a place tab, no "top players" or swaps) */
 .evs .t-dk b { display: block; font-size: var(--fs-s); font-weight: 700; line-height: 1.25; }
 .evs .t-dk small { display: block; font-size: var(--fs-xs); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1057,11 +1011,9 @@ html { -webkit-tap-highlight-color: transparent; }
         <input id="fq" type="search" placeholder="Search a deck or card" autocomplete="off" enterkeyhint="search" aria-label="Search decks by deck or card name" aria-controls="fsug"><button class="fsx" id="fqx" type="button" aria-label="Clear the search" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></button></label>
       <div class="fsug" id="fsug" role="listbox" aria-label="Suggestions"></div>
       <div class="fen" id="fen" role="group" aria-label="Filter by energy"></div>
-      <span class="fcount" id="fcount" aria-live="polite"></span>
     </div>
     </div>
     <p class="meta" id="meta">Loading&hellip;</p>
-    <p class="hint" id="hint" hidden><span>The decks that win in Pok&eacute;mon TCG Pocket tournaments now, with a QR code for every list. <b>How to use:</b> open a deck &rarr; tap the QR &rarr; save. In the game: My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image.</span><button type="button" id="hintX" aria-label="Hide this tip">&times;</button></p>
   </header>
 
   <dialog class="qdlg cdlg" id="cardDlg" aria-label="Card">
@@ -1072,8 +1024,8 @@ html { -webkit-tap-highlight-color: transparent; }
     </div>
   </dialog>
   <div class="cscrim" id="cScrim" hidden></div>
-  <div class="cpop ipop" id="iPop" role="dialog" aria-label="About this label" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div class="ibody" id="iPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="iPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
-  <div class="cpop" id="cPop" role="dialog" aria-label="Card details" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div id="cPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="cPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="cpop ipop" id="iPop" role="dialog" aria-label="About this label" tabindex="-1" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div class="ibody" id="iPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="iPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="cpop" id="cPop" role="dialog" aria-label="Card details" tabindex="-1" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div id="cPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="cPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <div class="tabs" id="tabs" role="tablist" aria-label="View"><button type="button" role="tab" id="tabM" aria-selected="true" aria-controls="list">Meta Decks</button><button type="button" role="tab" id="tabE" aria-selected="false" aria-controls="evl">Latest Events</button></div>
   <p class="fnone" id="fnone" aria-live="polite" hidden><span id="fnoneTxt"></span> <button type="button" id="fclear">Clear</button></p>
   <main class="list" id="list"><div class="empty">Loading decks&hellip;</div></main>
@@ -1139,9 +1091,6 @@ html { -webkit-tap-highlight-color: transparent; }
   });
   darkMq.addEventListener?.("change", () => { paintBtn(); repaintQR?.(); });
   paintBtn();
-  // First-visit tip: shown on the first visit only (or until dismissed)
-  // First-visit tip: off (the About & FAQ in the footer explains the page)
-  $("hintX").addEventListener("click", () => { $("hint").hidden = true; });
 
   let data = null, openId = null, io = null;
   const extra = new Map(); // deckId -> Promise of other lists (fetched once, on demand)
@@ -1162,25 +1111,18 @@ html { -webkit-tap-highlight-color: transparent; }
   const II_SVG = '<svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5.25" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="3.6" r="0.8" fill="currentColor"/><path d="M6 5.4v3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
   // An info point. tip = the popover HTML (stored escaped in the attribute). asSpan: inside a button (the deck row), where a nested button is not allowed.
   const ii = (label, tip, asSpan) => asSpan
-    ? `<span class="ii" role="button" tabindex="0" aria-label="About ${esc(label)}" aria-expanded="false" data-tip="${esc(tip)}">${II_SVG}</span>`
+    ? `<span class="ii" aria-hidden="true" data-tip="${esc(tip)}">${II_SVG}</span>` // the numbers are read with the row; a tap still opens the tip
     : `<button class="ii" type="button" aria-label="About ${esc(label)}" aria-expanded="false" data-tip="${esc(tip)}">${II_SVG}</button>`;
   const scoreTip = (v) => `<h3>Score</h3><p>The match record (<b>wins-losses-ties</b>) of the player who used this list${v.sc ? `: <b>${esc(v.sc)}</b>` : ""}${v.pl ? `, and their place: <b>${esc(v.pl)}</b>` : ""}.</p>`;
   const altSum = (v) => (v.alt || []).reduce((a, x) => a + (x.u || 0), 0);
   const usedTip = (v) => { const ch = altSum(v), ex = v.nu - ch;
     return `<h3>Top players</h3><p>A <b>top player</b> won more matches than they lost (ties do not count) at a single-deck event in the last 7 days.</p>
     <p><b>${v.of}</b> top players used this deck; <b>${v.nu}</b> used this list${ch ? ` (${ex} exactly, ${ch} with 1 card changed)` : ""}.</p>`; };
-  // "Also played": the 1-card changes inside this list's group (data field alt), shown in the info popover
-  const altChip = (c) => `<span class="chip" role="button" tabindex="0" data-cid="${c.id}" data-cn="${esc(c.n)}"><img src="c/${c.id}.webp" alt="" width="150" height="209">${cName(c)}${c.c > 1 ? ` <span class="x">&times;${c.c}</span>` : ""}</span>`;
   // Each version has a small QR button (logo glyph + "QR"); it opens the full-screen QR view for that version (data: alt[k].qr)
   const QR_GLYPH = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="2.95" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="currentColor"><rect x="4.9" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></svg>';
   const tName = (c) => c.n + (curDup.has(c.n) ? " " + c.id.split("-")[0].toUpperCase() : ""); // plain-text name (+ set code when needed)
   const altName = (a) => `\u2212${a.out.map(tName).join(", ")} +${a.in.map(tName).join(", ")}`;
-  const altTip = (v, id, i) => { const q = v.alt.some((a) => a.qr);
-    return `<h3>Also played</h3><p class="inote">Top players who used this list with 1 card changed:</p><div class="alts">${v.alt.map((a, k) => `
-      <div class="altr"><div class="altc"><span class="aout"><span class="asg">\u2212</span>${a.out.map(altChip).join("")}</span><span class="ain"><span class="asg">+</span>${a.in.map(altChip).join("")}</span></div>
-      <span class="altm"><b>${a.u}</b> top player${a.u > 1 ? "s" : ""}${a.pl ? ` \u00b7 best ${esc(a.pl)}` : ""}</span>${a.qr ? `<button class="aqr" type="button" data-aq="${esc(id)}|${i}|${k}" aria-label="QR code for list ${i + 1} with ${esc(altName(a))}">${QR_GLYPH}QR</button>` : ""}</div>`).join("")}</div>
-    `; };
-  const altBtn = (v, i) => (v.alt && v.alt.length ? `<button class="altb" type="button" aria-expanded="false" aria-label="Also played: ${v.alt.length} one-card change${v.alt.length > 1 ? "s" : ""}" data-tip="${esc(altTip(v, curDeck ? curDeck.id : "", i))}">+ Also played ${v.alt.length}${CARET}</button>` : "");
+  const altBtn = (v, i) => (v.alt && v.alt.length ? `<button class="altb" type="button" aria-expanded="false" aria-label="Also played: ${v.alt.length} one-card change${v.alt.length > 1 ? "s" : ""}" data-cids="${v.alt.flatMap((a) => a.in.map((c) => c.id)).join(" ")}">+ Also played ${v.alt.length}${CARET}</button>` : "");
   const STAR = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 .8l1.6 3.3 3.6.5-2.6 2.5.6 3.6L6 9l-3.2 1.7.6-3.6L.8 4.6l3.6-.5z" fill="currentColor"/></svg>';
   const FIRE = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6.2.8c.3 1.7-.6 2.6-1.4 3.5C4 5.2 3.1 6.2 3.1 7.7A2.9 2.9 0 0 0 6 10.9a2.9 2.9 0 0 0 2.9-3.1c0-1-.4-1.8-.9-2.4.1.8-.2 1.5-.8 1.7.3-2-.2-4.5-1-6.3z" fill="currentColor"/></svg>'; // "Hot" mark, filled (a star means rarity in the game)
   const UPM = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.2 10.6 6.4H7.6V10.8H4.4V6.4H1.4Z" fill="currentColor"/></svg>'; // "Top" mark (decks under 2% share)
@@ -1239,16 +1181,13 @@ html { -webkit-tap-highlight-color: transparent; }
       const diff = (a, b) => [...a].map(([id, k]) => [id, k - (b.get(id) || 0)]).filter(([, k]) => k > 0);
       const ins = diff(mine, base), outs = diff(base, mine);
       const chip = ([id, k]) => `<span class="chip" role="button" tabindex="0" data-cid="${id}" data-cn="${esc(names.get(id))}"><img src="c/${id}.webp" alt="" width="150" height="209">${cName({ id, n: names.get(id) })}${k > 1 ? ` <span class="x">&times;${k}</span>` : ""}</span>`;
-      const tip = `<h3>${SWAP_I}${nd} card${nd > 1 ? "s" : ""} swapped vs the <span class="l1${isHot(d) ? " hot" : ""}">${L1n(d)}</span></h3><div class="cmpt">
-          <span class="sl in">This list</span><span class="chips">${ins.map(chip).join("")}</span>
-          <span class="sl l1s">${L1(d)}</span><span class="chips out">${outs.map(chip).join("")}</span></div>`;
       // ⇄ N vs ★1: opens the In / Out popover and fades every card except the changed ones (this list: added; List 1: removed)
-      curCmp = `<button class="altb cmpb" type="button" aria-expanded="false" aria-label="${nd} change${nd > 1 ? "s" : ""} versus the ${L1n(d)}" data-tip="${esc(tip)}" data-outids="${outs.map(([id, k]) => id + ":" + k).join(",")}">${SWAP_I}${nd}${CARDS_I}vs <span class="l1${isHot(d) ? " hot" : ""}">${L1s(d)}</span>${CARET}</button>`;
+      curCmp = `<button class="altb cmpb" type="button" aria-expanded="false" aria-label="${nd} change${nd > 1 ? "s" : ""} versus the ${L1n(d)}">${SWAP_I}${nd}${CARDS_I}vs <span class="l1${isHot(d) ? " hot" : ""}">${L1s(d)}</span>${CARET}</button>`;
       outTxt = outs.map(chip).join("");
     }
     return `
       ${v.bc ? bcTab(v) : i === 0 && d.lists && d.lists.length > 1 ? l1Tab(v) : ""}
-      <div class="cards"${outTxt ? ` data-out="${esc(outTxt)}"` : ""}>${copies.map((c, k) => { const img = `<img data-n="${esc(c.n)}"${dif[k] ? ' data-dif="1"' : ""} ${i === 0 ? 'fetchpriority="high" ' : ""}src="c/${c.id}.webp" alt="${esc(c.n)}${dif[k] ? ` (not in the ${L1n(d)})` : ""}" width="150" height="209">`;
+      <div class="cards"${outTxt ? ` data-out="${esc(outTxt)}"` : ""}>${copies.map((c, k) => { const img = `<img data-n="${esc(c.n)}"${dif[k] ? ' data-dif="1"' : ""} ${i === 0 ? 'fetchpriority="high" ' : ""}tabindex="0" role="button" src="c/${c.id}.webp" alt="${esc(c.n)}${dif[k] ? ` (not in the ${L1n(d)})` : ""}" width="150" height="209">`;
         return img; }).join("")}</div>
       <div class="sfoot">
         ${info(v, v.energy.map((e) => `<img src="e/${e}.webp" alt="${cap(e)}" title="${cap(e)}" width="28" height="28">`).join(""), i)}
@@ -1321,14 +1260,14 @@ html { -webkit-tap-highlight-color: transparent; }
     c.width = c.height = (q.n + 2) * mod; // 1 module of edge
     const x = c.getContext("2d"); x.fillStyle = bg; x.fillRect(0, 0, c.width, c.height);
     drawQR(x, q, mod, mod, mod);
-    const url = c.toDataURL("image/png"); pngCache.set(k, url); return url;
+    const url = c.toDataURL("image/png"); pngCache.set(k, url);
+    if (pngCache.size > 80) pngCache.delete(pngCache.keys().next().value); // about 37 KB each: keep the newest 80
+    return url;
   }
   const qrImg = (svg) => { const n = qrSvgs.indexOf(svg) < 0 ? qrSvgs.push(svg) - 1 : qrSvgs.indexOf(svg); return `data-q="${n}" src="${qrPng(svg)}"`; };
   // Theme change: draw the open QR codes again with the new background.
   const repaintQR = () => document.querySelectorAll(".qr img[data-q]").forEach((im) => { im.src = qrPng(qrSvgs[+im.dataset.q]); });
 
-  const ECOL = { grass: "#3f9e4d", fire: "#e2553a", water: "#2f86dd", lightning: "#e9b81c", psychic: "#9457c9",
-    fighting: "#b8682f", darkness: "#34424f", metal: "#7d8c9c" };
   const loadImg = (src) => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; });
   const rrect = (x, l, t, w, h, r) => { x.beginPath(); x.roundRect(l, t, w, h, r); };
   function fit(x, text, w) {
@@ -1483,6 +1422,9 @@ html { -webkit-tap-highlight-color: transparent; }
   // ak: index of an "Also played" version of list i (its own QR, record, place and event), or null for the list itself
   function card(d, i, ak = null) {
     const k = d.id + "/" + i + (ak == null ? "" : "/a" + ak);
+    if (cardCache.has(k)) { const v = cardCache.get(k); cardCache.delete(k); cardCache.set(k, v); } // newest last
+    // A saved image is about 640 KB: keep the newest 4 and free the rest (phones reload heavy tabs)
+    while (cardCache.size > 4) { const [ok, op] = cardCache.entries().next().value; cardCache.delete(ok); op.then((r) => URL.revokeObjectURL(r.url)).catch(() => {}); }
     if (!cardCache.has(k)) cardCache.set(k, listFor(d, i).then((v) => {
       if (ak == null) return makeCard(d, v, i);
       const a = v.alt[ak]; curDup = dupNames(d);
@@ -1774,8 +1716,6 @@ html { -webkit-tap-highlight-color: transparent; }
       p.querySelectorAll(".dot").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.i >= i && +b.dataset.i < i + k)));
       slides.forEach((s, j) => s.classList.toggle("away", n > k && (j < i || j >= i + k)));
       if (p._wake) p._wake();
-      const vc = p.querySelector(".vcount"); // many lists: "3 / 10", or "1–3 / 10" when several show at once
-      if (vc) vc.textContent = `${k > 1 ? `${i + 1}\u2013${Math.min(i + k, n)}` : i + 1} / ${n}`;
     };
     carouselSync = sync;
     sync();
@@ -1831,7 +1771,7 @@ html { -webkit-tap-highlight-color: transparent; }
   const cardId = (img) => (img.getAttribute("src").match(/c\/([^/]+)\.webp/) || [])[1] || "";
   function openCard(img) {
     const n = img.dataset.n || img.alt, grid = img.closest(".cards"), cid = cardId(img);
-    const count = [...grid.querySelectorAll("img")].filter((x) => cardId(x) === cid).length;
+    const count = [...grid.querySelectorAll(":scope > img")].filter((x) => cardId(x) === cid).length;
     $("cImg").src = `z/${cardId(img)}.webp`; $("cImg").alt = n;
     $("cName").innerHTML = `<b>${esc(n)}</b>${count > 1 ? ` <span>&times;${count} in this list</span>` : ""}${img.dataset.dif ? `<span class="cdif">Not in the ${L1n(deckOf(img))}</span>` : ""}${img.dataset.dif && grid.dataset.out ? `<span class="cout">${L1(deckOf(img))} has instead: ${grid.dataset.out}</span>` : ""}`;
     if (!cdlg.open) { cdlg.showModal(); pushH({ ...(history.state || {}), card: 1 }, "", location.href); } // back closes it
@@ -1860,7 +1800,7 @@ html { -webkit-tap-highlight-color: transparent; }
   }
   function popHTML(img) {
     const n = img.dataset.n || img.alt, grid = img.closest(".cards"), id = cardId(img);
-    const count = [...grid.querySelectorAll("img")].filter((x) => cardId(x) === id).length;
+    const count = [...grid.querySelectorAll(":scope > img")].filter((x) => cardId(x) === id).length;
     const [code, num] = id.split("-"), set = PK && PK.sets[code];
     const ps = `${set ? esc(set.name) + " \u00b7 " : ""}${esc((code || "").toUpperCase())} ${esc(num || "")}`;
     const dif = img.dataset.dif ? `<p class="pdif"><span><b>Not in the ${L1n(deckOf(img))}</b>${grid.dataset.out ? ` \u00b7 ${(grid.dataset.out.match(/class="chip"/g) || []).length > 1 ? `${L1n(deckOf(img))} has` : "replaces"}<span class="pout">${grid.dataset.out}</span>` : ""}</span></p>` : "";
@@ -1886,7 +1826,7 @@ html { -webkit-tap-highlight-color: transparent; }
     if (popImg) popImg.closest(".cards")?.querySelectorAll("img.hl").forEach((x) => x.classList.remove("hl"));
     popImg = img;
     const cid = cardId(img), fill = () => { if (popImg === img) { $("cPopIn").innerHTML = popHTML(img); placePop(); } };
-    img.closest(".cards").querySelectorAll("img").forEach((x) => cardId(x) === cid && x.classList.add("hl"));
+    img.closest(".cards").querySelectorAll(":scope > img").forEach((x) => cardId(x) === cid && x.classList.add("hl"));
     fill();
     if (!PK) loadPacks().then(fill);
     if (cpop.hidden) {
@@ -1899,12 +1839,14 @@ html { -webkit-tap-highlight-color: transparent; }
       placePop();
       requestAnimationFrame(() => requestAnimationFrame(() => { cpop.classList.add("on"); cscrim.classList.add("on"); }));
     }
+    if (img.matches(":focus-visible")) cpop.focus({ preventScroll: true });
   }
   function hidePop(fromHistory) {
     clearTimeout(showT); clearTimeout(hideT);
     if (cpop.hidden) return;
     if (!FLOAT && !fromHistory && history.state && history.state.cpop) { history.back(); return; } // the popstate handler closes it
     if (popImg) popImg.closest(".cards")?.querySelectorAll("img.hl").forEach((x) => x.classList.remove("hl"));
+    if (popImg && cpop.contains(document.activeElement)) popImg.focus({ preventScroll: true });
     popImg = null; pinned = false;
     cpop.classList.remove("on"); cscrim.classList.remove("on");
     cpop.style.transform = "";
@@ -1984,9 +1926,7 @@ html { -webkit-tap-highlight-color: transparent; }
     <p class="afine">Data: Limitless TCG. Card and pack images: PocketDecks. Made by <a href="https://www.reddit.com/user/Myxas_/" target="_blank" rel="noopener">u/Myxas_</a>.
       Pocket Meta QR is a free fan site, not affiliated with Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK or DeNA.</p></div>`;
   ipop.addEventListener("click", (e) => {
-    if (e.target.closest(".qssave")) { saveQR(e); return; }
-    const nb = e.target.closest(".qsnav");
-    if (nb && dlgDeck) { const n = dlgDeck.nv || 1; openQRSheet(qsAnchor, dlgDeck, (dlgI + +nb.dataset.qs + n) % n); }
+    if (e.target.closest(".qssave")) saveQR(e);
   });
   let tipBtn = null, tipAt = 0; // tipAt: open time (a scroll just after the click, e.g. the browser bringing the button into view, does not close it)
   function placeTip() {
@@ -2016,11 +1956,12 @@ html { -webkit-tap-highlight-color: transparent; }
       requestAnimationFrame(() => requestAnimationFrame(() => { ipop.classList.add("on"); if (!FLOAT) cscrim.classList.add("on"); }));
     }
     placeTip();
+    if (btn.matches(":focus-visible")) ipop.focus({ preventScroll: true }); // keyboard: into the sheet (Esc closes it and returns)
   }
   function hideTip(fromHistory) {
     if (ipop.hidden) return;
     if (!FLOAT && !fromHistory && history.state && history.state.tip) { history.back(); return; } // the popstate handler closes it
-    if (tipBtn) tipBtn.setAttribute("aria-expanded", "false");
+    if (tipBtn) { tipBtn.setAttribute("aria-expanded", "false"); if (ipop.contains(document.activeElement)) tipBtn.focus({ preventScroll: true }); }
     tipBtn = null; ipop.classList.remove("qsheet");
     ipop.classList.remove("on"); cscrim.classList.remove("on");
     const done = () => { if (!tipBtn) { ipop.hidden = true; if (cpop.hidden) cscrim.hidden = true; } };
@@ -2032,16 +1973,6 @@ html { -webkit-tap-highlight-color: transparent; }
     $("cName").innerHTML = "";
     if (!cdlg.open) { cdlg.showModal(); pushH({ ...(history.state || {}), card: 1 }, "", location.href); }
   }
-  ipop.addEventListener("click", (e) => { const c = e.target.closest(".chip[data-cid]"); if (c) openCardId(c.dataset.cid, c.dataset.cn); });
-  ipop.addEventListener("keydown", (e) => { const c = e.target.closest?.(".chip[data-cid]"); if (c && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openCardId(c.dataset.cid, c.dataset.cn); } });
-  ipop.addEventListener("click", (e) => {
-    const b = e.target.closest(".aqr");
-    if (!b) return;
-    const [id, i, k] = b.dataset.aq.split("|"), d = data.decks.find((x) => x.id === id);
-    if (!d) return;
-    // (the "Also played" popover turns into the QR sheet)
-    openQRSheet(tipBtn || b, d, +i, +k);
-  });
   // ---- "Also played" carousel popover (one open at a time) ----
   let altOpen = null; // { btn, pop, slide, d, i }
   const ACHEV = '<svg viewBox="0 0 10 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 2 5 5-5 5"/></svg>';
@@ -2168,8 +2099,7 @@ html { -webkit-tap-highlight-color: transparent; }
     if (!ipop.hidden && !e.target.closest("#iPop, dialog")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
   }, true);
   document.addEventListener("keydown", (e) => {
-    if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches("span.ii")) { e.preventDefault(); e.stopPropagation(); showTip(e.target); }
-    else if (e.key === "Escape" && !ipop.hidden) hideTip();
+    if (e.key === "Escape" && !ipop.hidden) hideTip();
   }, true);
   addEventListener("scroll", (e) => {
     if (!FLOAT || ipop.hidden || (e.target instanceof Element && e.target.closest("#iPop"))) return;
@@ -2185,6 +2115,8 @@ html { -webkit-tap-highlight-color: transparent; }
   cdlg.addEventListener("click", () => cdlg.close()); // a tap on the zoomed card (or anywhere) closes it
   cdlg.addEventListener("close", () => { if (history.state && history.state.card) history.back(); });
 
+  // Keyboard: Enter or Space on a focused card opens its pop-up
+  document.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches?.(".cards > img")) { e.preventDefault(); cardClick(e.target); } });
   $("list").addEventListener("click", (e) => {
     const ci = e.target.closest(".cards img");
     if (ci) { cardClick(ci); return; }
@@ -2257,7 +2189,6 @@ html { -webkit-tap-highlight-color: transparent; }
       if (!vis && openId === d.id) { if (history.state && history.state.deck) history.back(); else closeOpen(); }
     });
     const active = !!q || !!fstate.card || fstate.en.size > 0;
-    $("fcount").textContent = active ? `${n} of ${data.decks.length} decks` : "";
     $("fnone").hidden = !active;
     const used = new Set(data.decks.flatMap((d) => d.energy || [])), none = [...fstate.en].filter((e) => !used.has(e));
     const pc = pickC;
@@ -2314,7 +2245,7 @@ html { -webkit-tap-highlight-color: transparent; }
   // Spotlight: the other cards fade, so the picked card stands out (no outline: the card popup uses the outline)
   const setPickStyle = (id) => { pickStyle.textContent = id ? `.cards img:not([src="c/${id}.webp"]) { opacity: 0.25; transition: opacity 0.2s; }
     .cards img.hl { opacity: 1; }
-    .altb:not(.cmpb)[data-tip*="c/${id}.webp"] { border-color: var(--acc-mark); box-shadow: 0 0 0 1px var(--acc-mark); }
+    .altb:not(.cmpb)[data-cids~="${id}"] { border-color: var(--acc-mark); box-shadow: 0 0 0 1px var(--acc-mark); }
     .cmpb { display: none !important; }` : ""; if (id) closeAlts(); }; // a picked card: no "swap vs Hot/Top" buttons
   // ---- Search suggestions ----
   const norm = (t) => String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); // "Pokémon" = "pokemon"
@@ -2426,8 +2357,6 @@ html { -webkit-tap-highlight-color: transparent; }
     moreShown = true; track("more-decks"); $("moreBtn").textContent = "Loading\u2026";
     loadMore().then((j) => { if (!j) { $("moreBtn").textContent = `Show more decks (${data.more})`; moreShown = false; } applyFilter(); }); });
 
-  // Long deck names: no auto-shrink for now (they wrap to 2 lines instead)
-  function fitNames() {}
 
 
   // A missing zoom image (z/) falls back to the card image (c/)
@@ -2439,9 +2368,8 @@ html { -webkit-tap-highlight-color: transparent; }
   const loadEvents = () => evP || (evP = fetch("events.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).then((j) => (EV = j)).catch(() => { evP = null; return null; }));
   const evTlist = new Map();
   const loadT = (tid) => { if (!evTlist.has(tid)) evTlist.set(tid, fetch(`t/${tid}.json`).then((r) => { if (!r.ok) throw new Error(r.status); return r.json().then(normQ); }).catch((e) => { evTlist.delete(tid); throw e; })); return evTlist.get(tid); };
-  const evSize = (n) => (n >= 200 ? ["l", "Large"] : n >= 64 ? ["m", "Medium"] : ["s", "Small"]);
   const ordN = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th");
-  const evDay = (iso) => { const t = new Date(), y = new Date(Date.now() - 864e5), f = (d) => d.toISOString().slice(0, 10);
+  const evDay = (iso) => { const t = new Date(), y = new Date(Date.now() - 864e5), f = (d) => new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); // the viewer's own date
     return iso === f(t) ? "Today" : iso === f(y) ? "Yesterday" : fmtDate(iso); };
   const placeTab = (pl) => pl <= 3 ? `<span class="dnote ptab p${pl}"><span class="pm" aria-hidden="true"></span>${ordN(pl)} place</span>`
     : `<span class="dnote ptab">${pl <= 4 ? "Top 4" : pl <= 8 ? "Top 8" : pl <= 16 ? "Top 16" : "Top 32"}</span>`;
@@ -2451,7 +2379,7 @@ html { -webkit-tap-highlight-color: transparent; }
     let day = "";
     const skip = data && data.summary ? data.summary.tournaments - EV.events.length : 0;
     box.innerHTML = `<p class="evnote">${EV.events.length} event${EV.events.length > 1 ? "s" : ""} in the last 7 days${skip > 0 ? ` &middot; ${skip} multi-deck event${skip > 1 ? "s" : ""} not listed` : ""}</p>` + EV.events.map((e) => {
-      const w = e.win, dk = (id) => (EV.decks && EV.decks[id]) || {}, [sz, szT] = evSize(e.players);
+      const w = e.win;
       const head = e.dt !== day ? `<h3 class="evday">${evDay((day = e.dt))}</h3>` : "";
       return `${head}<section class="acc evr" id="ev-${e.tid}" style="${w ? bandStyle(w) : ""}">
         <button class="arow" type="button" data-tid="${e.tid}" aria-expanded="false" aria-controls="evp-${e.tid}">
@@ -2506,21 +2434,27 @@ html { -webkit-tap-highlight-color: transparent; }
     const L = T.lists.filter((v) => v.pl <= 8).slice(0, 8), n = L.length; // the top 8 only
     evOpen.T = { lists: L };
     if (!n) { p.querySelector(".slide").innerHTML = '<p class="note">No public lists for this event.</p>'; return; }
-    p.innerHTML = `<div class="vwrap"><div class="vars">${L.map((v, k) => `<div class="slide evs" data-k="${k}">${evSlide(e, v, k)}</div>`).join("")}</div>
+    // Only the first list is drawn now; the others when they come into view (like the deck lists)
+    p.innerHTML = `<div class="vwrap"><div class="vars">${L.map((v, k) => `<div class="slide evs" data-k="${k}"${k ? ' data-pending="1"' : ""}>${k ? placeholder() : evSlide(e, v, k)}</div>`).join("")}</div>
       ${n > 1 ? `<button class="chev-btn prev" type="button" aria-label="Previous list" hidden>${CHEV_L}</button><button class="chev-btn next" type="button" aria-label="Next list">${CHEV_R}</button>` : ""}</div>
       ${n > 1 ? `<div class="dots" role="group" aria-label="Lists">${L.map((v, k) => `<button class="dot${v.pl <= 3 ? " pd" + v.pl : ""}" type="button" data-i="${k}" aria-label="${esc(ordN(v.pl))} place" aria-current="${k === 0}"></button>`).join("")}</div>` : ""}
       <p class="evlink"><a href="${esc(e.url)}" target="_blank" rel="noopener">Full standings on Limitless</a></p>`;
-    p.querySelectorAll(".slide").forEach((sl) => evTile(sl, L[+sl.dataset.k]));
+    evTile(p.querySelector(".slide"), L[0]);
     fitScores(p); placeChevrons(p);
     if (n > 1) {
       const vars = p.querySelector(".vars"), slides = [...vars.querySelectorAll(".slide")];
       const per = () => parseInt(getComputedStyle(vars).getPropertyValue("--per"), 10) || 1;
+      const draw = (sl) => { if (!sl.dataset.pending || (sl.classList.contains("away") && per() > 1)) return; // wide screens: only the lists in view
+        delete sl.dataset.pending; const k = +sl.dataset.k; sl.innerHTML = evSlide(e, L[k], k); evTile(sl, L[k]); fitScores(sl); };
+      evIo = new IntersectionObserver((es) => es.forEach((x) => x.isIntersecting && draw(x.target)), { root: vars, threshold: 0.2 });
+      slides.slice(1).forEach((sl) => evIo.observe(sl));
       const at = () => { const x = vars.scrollLeft, o = slides[0].offsetLeft; return slides.reduce((b, s, i) => (Math.abs(s.offsetLeft - o - x) < Math.abs(slides[b].offsetLeft - o - x) ? i : b), 0); };
       const go = (i) => { i = Math.max(0, Math.min(i, n - per())); vars.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: reduced ? "auto" : "smooth" }); };
       const sync = () => { const i = at(), k = per(); p.classList.toggle("fit", n <= k);
         p.querySelector(".chev-btn.prev").hidden = i === 0; p.querySelector(".chev-btn.next").hidden = i >= n - k;
         p.querySelectorAll(".dot").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.i >= i && +b.dataset.i < i + k)));
-        slides.forEach((s, j) => s.classList.toggle("away", n > k && (j < i || j >= i + k))); };
+        slides.forEach((s, j) => s.classList.toggle("away", n > k && (j < i || j >= i + k)));
+        slides.forEach((s) => { if (s.dataset.pending && !s.classList.contains("away")) draw(s); }); };
       sync();
       p.querySelector(".chev-btn.prev").onclick = () => go(at() - 1);
       p.querySelector(".chev-btn.next").onclick = () => go(at() + 1);
@@ -2542,7 +2476,7 @@ html { -webkit-tap-highlight-color: transparent; }
     const ev = t === "events";
     $("tabM").setAttribute("aria-selected", String(!ev)); $("tabE").setAttribute("aria-selected", String(ev));
     $("list").hidden = ev; $("evl").hidden = !ev;
-    $("filtBtn").hidden = ev || !data; if (ev) { setDrop(false); $("fnone").hidden = true; } else applyFilter();
+    $("filtBtn").hidden = ev || !data; if (ev) { setDrop(false); $("fnone").hidden = true; } else if (data) applyFilter();
     if (ev) { if (openId) closeOpen(); track("tab-events"); if (!EV) { $("evl").innerHTML = '<div class="empty">Loading events&hellip;</div>'; loadEvents().then(renderEvents); } }
     else evClose();
     if (save) try { localStorage.setItem("pmq-tab", t); } catch (err) {}
@@ -2570,7 +2504,6 @@ html { -webkit-tap-highlight-color: transparent; }
       renderList();
       setupFilter();
       podGrow();
-      fitNames();
       const id = location.hash.slice(1);
       if (id && $(id)) open(id); // shared link: open that deck; otherwise all rows start closed
       else if (id && id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); open(id); } });
@@ -2624,17 +2557,27 @@ html { -webkit-tap-highlight-color: transparent; }
     setTimeout(() => { t.classList.remove("on"); setTimeout(() => t.remove(), 400); }, 2600);
   }
   const busy = () => !$("iPop").hidden || !$("cPop").hidden || !!document.querySelector("dialog[open]");
+  // Reload with the open deck (#id) or the Events tab and the scroll place kept; then a short "Updated" note
+  function reloadKeep() {
+    try { sessionStorage.setItem("pmq-rs", String(Math.round(scrollY))); } catch (err) {}
+    const h = openId ? "#" + openId : !$("evl").hidden ? "#events" : "";
+    history.replaceState(null, "", location.pathname + location.search + h);
+    location.reload();
+  }
+  // Browser tab (not home-screen mode): never reload by itself (the viewer may be reading); a small pill offers it
+  function newPill() {
+    if ($("newPill")) return;
+    const b = document.createElement("button"); b.id = "newPill"; b.type = "button"; b.className = "toast newp on";
+    b.innerHTML = 'New data &middot; <b>Refresh</b>'; b.addEventListener("click", () => { track("refresh-pill"); reloadKeep(); });
+    document.body.appendChild(b);
+  }
   async function checkNew() {
-    if (checking || !data || busy() || Date.now() - new Date(data.updatedAt) < OLD) return;
+    if (checking || !data || Date.now() - new Date(data.updatedAt) < OLD) return;
+    if (STANDALONE && busy()) return;
     checking = true;
     try {
       const r = await fetch("data.json", { cache: "no-cache" }), j = r.ok ? await r.json() : null;
-      if (j && j.updatedAt !== data.updatedAt && !busy()) {
-        try { sessionStorage.setItem("pmq-rs", String(Math.round(scrollY))); } catch (err) {}
-        const h = openId ? "#" + openId : !$("evl").hidden ? "#events" : "";
-        history.replaceState(null, "", location.pathname + location.search + h);
-        location.reload();
-      }
+      if (j && j.updatedAt !== data.updatedAt) { if (!STANDALONE) newPill(); else if (!busy()) reloadKeep(); }
     } catch (err) {} finally { checking = false; }
   }
   // "Add to Home Screen" (footer button, never a popup): steps for this device in the info sheet; on Android/desktop
@@ -2665,7 +2608,7 @@ html { -webkit-tap-highlight-color: transparent; }
     // Android Chrome: already installed (needs "related_applications" with this manifest in manifest.webmanifest) -> no button
     if (navigator.getInstalledRelatedApps) navigator.getInstalledRelatedApps().then((a) => { if (a && a.length) $("homeBtn").hidden = true; }).catch(() => {});
   }
-  if (STANDALONE) document.addEventListener("visibilitychange", () => {
+  document.addEventListener("visibilitychange", () => { // home-screen app: reload; browser tab: the "New data" pill
     if (document.hidden) hidAt = Date.now();
     else if (hidAt && Date.now() - hidAt >= RET_MIN) checkNew();
   });
