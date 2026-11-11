@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794368492-ae6d -->
+<!-- ui: artifact version 1794409887-1bce -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -30,6 +30,8 @@
 
 /* ===== Tokens ===== */
 :root {
+  /* Shadows: one color for every shadow on the page (hue 217, the steel blue of the brand); black in dark mode */
+  --sh: 24, 52, 96;
   /* Color (light) */
   --bg: #f0f3f6;           /* page: one step darker than the cards */
   --surface: #fafbfc;      /* raised cards, rows, QR box, chips */
@@ -49,12 +51,12 @@
   --chev: #ffffff; --chev-glow: rgba(0, 0, 0, 0.45); --chev-halo: rgba(0, 0, 0, 0.25);  /* carousel arrows */
   /* Header ribbon (Community Decks style) */
   --band-top: #2a98f9; --band-bot: #0cd3fc; --rib-a: #ffffff; --rib-b: #eef4f9; --rib-ink: #5d6b80; --rib-logo: #2a92f2;
-  --rib-shadow: 0 5px 10px rgba(40, 90, 150, 0.22), 0 1px 2px rgba(40, 90, 150, 0.18), inset 0 1px 0 #ffffff;
+  --rib-shadow: 0 5px 10px rgba(var(--sh), 0.18), 0 1px 2px rgba(var(--sh), 0.15), inset 0 1px 0 #ffffff;
   /* Depth: one light from the top-left. Raised = cards and things you tap; flat = info. Whole pixels only. */
-  --raised: -1px -1px 2px rgba(45, 95, 175, 0.06), 0 0 4px rgba(45, 95, 175, 0.10),
-    1px 2px 2px rgba(45, 95, 175, 0.09), 2px 3px 6px rgba(45, 95, 175, 0.09);
-  --raised-sm: 0 0 4px rgba(45, 95, 175, 0.10), 1px 2px 2px rgba(45, 95, 175, 0.09);
-  --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.6), inset -1px -1px 1px rgba(45, 95, 175, 0.10);
+  --raised: -1px -1px 2px rgba(var(--sh), 0.04), 0 0 4px rgba(var(--sh), 0.07),
+    1px 2px 2px rgba(var(--sh), 0.07), 2px 3px 6px rgba(var(--sh), 0.07);
+  --raised-sm: 0 0 4px rgba(var(--sh), 0.07), 1px 2px 2px rgba(var(--sh), 0.07);
+  --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.6), inset -1px -1px 1px rgba(var(--sh), 0.07);
   /* Radius: card > box > tile */
   --r-card: 12px; --r-box: 10px; --r-tile: 8px;
   /* Type: five small steps that land on whole pixels (10 / 12 / 13 / 15 / 17px at the default 16px), plus display sizes in the header */
@@ -70,6 +72,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
+    --sh: 0, 0, 0;
     --bg: #141922; --surface: #1c2230; --tile: #10141b; --hover: #212836; --line: #262d39; --line-strong: #323b4a;
     --ink: #e8ecf2; --muted: #95a0b2; --accent: #7fa9e6; --mark-ring: #0b0e13; --mark-edge: var(--mark-ring); --mark-text: var(--mark);
     --pill-bg: #46526a; --pill-ink: #eef1f6; --row-band: 0.22;
@@ -83,6 +86,7 @@
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
+  --sh: 0, 0, 0;
   --bg: #141922; --surface: #1c2230; --tile: #10141b; --hover: #212836; --line: #262d39; --line-strong: #323b4a;
   --ink: #e8ecf2; --muted: #95a0b2; --accent: #7fa9e6; --mark-ring: #0b0e13; --mark-edge: var(--mark-ring); --mark-text: var(--mark);
   --pill-bg: #46526a; --pill-ink: #eef1f6; --row-band: 0.22;
@@ -113,19 +117,16 @@ footer { font-size: var(--fs-s); color: var(--muted); }
 footer a { color: var(--muted); }
 /* Footer: the maker card (avatar, Reddit, feedback, About & FAQ), the sources, the fan-site notice */
 .foot { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 12px; text-align: center; line-height: 1.5; }
-.fmade { display: flex; align-items: center; gap: 12px; width: auto; max-width: min(420px, 100%); padding: 12px 14px; border-radius: var(--r-card); background: var(--surface);
-  box-shadow: var(--raised), var(--bevel); text-align: left; }
-.fmade img { width: 48px; height: 48px; flex: none; border-radius: 50%; background: #ffffff; box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px var(--line-strong); }
-.fmt { display: flex; flex-direction: column; min-width: 0; flex: 0 1 auto; font-size: var(--fs-m); color: var(--muted); line-height: 1.35; }
-.fmt b { color: var(--ink); font-weight: 700; }
-.fmt a { color: var(--acc-ink); font-weight: 700; text-decoration: none; }
-.fmt small { font-size: var(--fs-s); }
-.fmt small a { font-weight: 600; }
-.fabout { flex: none; display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 999px; cursor: pointer;
-  background: var(--surface); color: var(--ink); font-size: var(--fs-s); font-weight: 700; white-space: nowrap; }
-@media (hover: hover) { .fabout:hover { border-color: var(--muted); } }
+.fmade { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; padding-top: 18px; border-top: 1px solid var(--line); }
+.fsig { display: inline-flex; align-items: center; gap: 10px; font-size: var(--fs-l); color: var(--muted); }
+.fsig img { width: 40px; height: 40px; flex: none; border-radius: 50%; background: #ffffff; box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--line-strong); }
+.fsig a { color: var(--ink); font-weight: 700; text-decoration: none; }
+.ffb { font-size: var(--fs-s); color: var(--muted); }
+.fmade a { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+@media (hover: hover) { .fmade a:hover { color: var(--acc-ink); text-decoration-color: currentColor; } }
+.fabout { margin-top: 6px; display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--surface); color: var(--ink); font-size: var(--fs-s); font-weight: 700; white-space: nowrap; box-shadow: var(--raised-sm), var(--bevel); }
 .fabout svg { width: 13px; height: 13px; color: var(--accent); }
-@media (max-width: 380px) { .fmade { flex-wrap: wrap; } .fabout { margin-left: 60px; } }
 .fsrc, .fleg { margin: 0; max-width: 640px; }
 .fleg { font-size: var(--fs-xs); opacity: 0.85; }
 .fsite { font-weight: 700; color: var(--acc-ink); letter-spacing: 0.01em; }
@@ -186,7 +187,7 @@ footer a { color: var(--muted); }
 .filt-btn .fdot[hidden] { display: none; }
 /* Dropdown: search + energy chips + count, under the buttons; closed by default */
 .filt { position: absolute; z-index: 5; top: calc(100% + 6px); right: 0; width: min(340px, 100%); display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2);
-  padding: var(--sp-3); border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), 0 8px 24px rgba(20, 40, 70, 0.2); }
+  padding: var(--sp-3); border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), 0 8px 24px rgba(var(--sh), 0.2); }
 .filt[hidden] { display: none; }
 .filt .fsearch { flex-basis: 100%; }
 .fsearch { flex: 1 1 200px; min-width: 0; position: relative; display: flex; align-items: center; }
@@ -215,9 +216,9 @@ footer a { color: var(--muted); }
 .fcount, .fcount:empty { display: none; }
 /* Game style (the in-game search panel): a light top band with a pressed-in search pill, a slightly darker area below;
    energy chips are raised round buttons in 1 row, icons always in color; the chosen one is a dark pressed-in disc */
-:root { --fp-top: #eef2f7; --fp-bot: #e6ecf3; --fp-line: rgba(45, 95, 175, 0.18);
-  --fin-bg: #e1e8f0; --fin-sh: inset 2px 2px 4px rgba(60, 90, 140, 0.22), inset -2px -2px 4px rgba(255, 255, 255, 0.9); --fin-icon: #8fb0d6;
-  --fch-bg: linear-gradient(180deg, #f8fafc, #edf1f6); --fch-sh: 0 2px 4px rgba(45, 95, 175, 0.18), inset 0 1px 0 #ffffff;
+:root { --fp-top: #eef2f7; --fp-bot: #e6ecf3; --fp-line: rgba(var(--sh), 0.13);
+  --fin-bg: #e1e8f0; --fin-sh: inset 2px 2px 4px rgba(var(--sh), 0.17), inset -2px -2px 4px rgba(255, 255, 255, 0.9); --fin-icon: #8fb0d6;
+  --fch-bg: linear-gradient(180deg, #f8fafc, #edf1f6); --fch-sh: 0 2px 4px rgba(var(--sh), 0.13), inset 0 1px 0 #ffffff;
   --fch-on: #4b5872; --fch-on-sh: inset 0 2px 3px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.8); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --fp-top: #222a37; --fp-bot: #1b222d; --fp-line: rgba(0, 0, 0, 0.5);
   --fin-bg: #141922; --fin-sh: inset 2px 2px 4px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); --fin-icon: #6f8fb8;
@@ -249,7 +250,7 @@ footer a { color: var(--muted); }
   background: none; color: var(--ink); text-align: left; cursor: pointer; }
 .sg:hover, .sg:focus-visible { background: var(--tile); outline: none; }
 .sgi { position: relative; height: 34px; }
-.sgi img { position: absolute; top: 1px; width: 23px; height: auto; aspect-ratio: 367 / 512; border-radius: 2px; box-shadow: 0 1px 2px rgba(40, 60, 95, 0.35); }
+.sgi img { position: absolute; top: 1px; width: 23px; height: auto; aspect-ratio: 367 / 512; border-radius: 2px; box-shadow: 0 1px 2px rgba(var(--sh), 0.34); }
 .sgi img:first-child { left: 2px; transform: rotate(-8deg); z-index: 1; }
 .sgi img + img { left: 17px; transform: rotate(8deg); }
 .sgi.one img { left: 10px; transform: none; }
@@ -265,7 +266,7 @@ footer a { color: var(--muted); }
 .sgc { padding: 0; border: 0; background: none; cursor: pointer; border-radius: 3px; }
 .sgc { display: flex; flex-direction: column; gap: 3px; min-width: 0; color: var(--muted); }
 .sgc span { font-size: 0.5625rem; font-weight: 600; line-height: 1.15; text-align: center; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.sgc img { width: 100%; height: auto; aspect-ratio: 367 / 512; display: block; border-radius: 3px; box-shadow: 0 1px 3px rgba(40, 60, 95, 0.35); }
+.sgc img { width: 100%; height: auto; aspect-ratio: 367 / 512; display: block; border-radius: 3px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); }
 .sgc:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; } /* the count shows once, in the bar above the list */
 .fnone { margin: 0; text-align: center; color: var(--muted); font-size: var(--fs-m); } /* "Showing N of M decks · Clear" while a filter is on */
 .fnone[hidden] { display: none; }
@@ -295,7 +296,7 @@ footer a { color: var(--muted); }
 
 /* Rank badge (game style): white disc on the top-left corner; shrinks to 75% when the deck opens */
 .rk { position: absolute !important; left: -5px; top: -7px; z-index: 3; width: 22px; height: 22px; border-radius: 50%; pointer-events: none;
-  display: grid; place-items: center; background: #ffffff; color: #66758a; box-shadow: 0 2px 3px rgba(30, 50, 80, 0.3);
+  display: grid; place-items: center; background: #ffffff; color: #66758a; box-shadow: 0 2px 3px rgba(var(--sh), 0.3);
   font-family: var(--font-display); font-weight: 700; font-size: var(--fs-s); line-height: 1; font-variant-numeric: tabular-nums;
   transition: transform var(--t-slow) ease, opacity var(--t-slow) ease; }
 .rk .mn { position: relative; z-index: 1; }
@@ -311,7 +312,7 @@ footer a { color: var(--muted); }
 .arow[aria-expanded="false"] .icons {
   -webkit-mask-image: linear-gradient(180deg, #000 52px, transparent 66px); mask-image: linear-gradient(180deg, #000 52px, transparent 66px); }
 .icons img { position: absolute; top: 10px; width: 52px; height: auto; aspect-ratio: 367 / 512; display: block; border-radius: 2px;
-  box-shadow: 0 3px 4px rgba(40, 60, 95, 0.5); /* box-shadow: Safari clips filter shadows on rotated images */
+  box-shadow: 0 3px 4px rgba(var(--sh), 0.48); /* box-shadow: Safari clips filter shadows on rotated images */
   transition: transform var(--t-slow) ease; }
 /* Open row: the icons (same size as before, 1.1538) move right; the icon box widens by --ox, so the name moves with them
    and has more room; the name is 20% bigger */
@@ -321,6 +322,12 @@ footer a { color: var(--muted); }
 .aname { transition: font-size var(--t-slow) ease; }
 .acc:not(.pod) > .arow[aria-expanded="true"] .aname { font-size: calc(var(--fs-xl) * 1.2); }
 .arow[aria-expanded="false"] .icons img:first-child { transform: translateY(5px) rotate(-9deg); }
+/* A deck with 1 named Pokémon: its card is centered in the icon box and 20% bigger */
+.icons.one img:first-child { left: 19px; transform: translateX(16px) rotate(-8deg) scale(1.385); }
+.arow[aria-expanded="false"] .icons.one img:first-child { transform: translateY(5px) rotate(-5deg) scale(1.2); }
+@media (min-width: 1024px) { .icons.one img:first-child { left: 24px; } }
+.picons.one img:first-child { left: calc(20 * var(--u)); transform: rotate(-5deg) scale(1.2); }
+.pcard[aria-expanded="true"] .picons.one img:first-child { transform: rotate(-8deg) scale(1.385); }
 .arow[aria-expanded="false"] .icons img:nth-child(2) { transform: translateY(5px) rotate(9deg); }
 
 .atext { display: flex; flex-direction: column; min-width: 0; padding-right: 4px; } /* no chevron: the whole row is the button */
@@ -336,7 +343,7 @@ footer a { color: var(--muted); }
 /* Info, not action: a light outlined pill (card color, 1px line, muted labels, bold ink numbers), so it reads quieter than the solid steel "differs" tab */
 .dpill { position: absolute !important; z-index: 5; bottom: -10px; display: none; padding: 2px 9px; border-radius: 999px; white-space: nowrap; pointer-events: none;
   background: var(--surface); color: var(--muted); border: 1px solid var(--line-strong); font-size: var(--fs-xs); font-weight: 500; line-height: 1.3; font-variant-numeric: tabular-nums;
-  box-shadow: 0 1px 2px rgba(20, 60, 110, 0.12); }
+  box-shadow: 0 1px 2px rgba(var(--sh), 0.12); }
 .dpill b { color: var(--ink); font-weight: 700; }
 .dpill .lw { opacity: 0.6; } /* win rate from fewer than 30 players */
 .arow[aria-expanded="true"] > .dpill { display: block; }
@@ -347,6 +354,11 @@ footer a { color: var(--muted); }
 .podium > .pod:nth-child(3) > .pcard > .dpill { left: auto; right: 8px; transform: none; }
 /* closed podium tile: name + share + win (same as the rows); phones: share only (the tile is too narrow for both) */
 @media (max-width: 760px) { .pcard .psub .ow { display: none; } }
+/* Phones: the open tile's stats pill is centered on the podium (the screen), not on the tile (tile w = 100%, gap 12px) */
+@media (max-width: 760px) {
+  .podium > .pod:nth-child(1) > .pcard > .dpill { left: calc(50% + (100% + 12px) / var(--ps, 1)); right: auto; transform: translateX(-50%); } /* the open tile is scaled by --ps */
+  .podium > .pod:nth-child(3) > .pcard > .dpill { left: calc(50% - (100% + 12px) / var(--ps, 1)); right: auto; transform: translateX(-50%); }
+}
 .pcard[aria-expanded="true"] .psub { display: none !important; } /* open: the numbers are in the pill */
 /* Open deck: a bigger name, moved up a little (the stats pill sits on the bottom edge) */
 .pod > .pcard[aria-expanded="true"] { padding-bottom: 18px; }
@@ -394,34 +406,25 @@ footer a { color: var(--muted); }
 @media (min-width: 600px) { .vars { --per: 2; } }
 @media (min-width: 840px) and (min-height: 501px) { .apanel .vars { --per: 3; } } /* 3 lists from 840px (was 740: too narrow lists) */
 /* (the content is at most 960px wide, so 3 lists per view stays the most; each list is about 310px) */
+@media (min-width: 600px) { .vars .slide.away { opacity: 0.35; } .vars .slide { transition: opacity 0.2s; } } /* lists beyond the ones in view */
 .slide { position: relative; flex: 0 0 calc((100% - (var(--per) - 1) * var(--vgap)) / var(--per)); min-width: 0; scroll-snap-align: start;
   display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-3); container-type: inline-size;
   background: var(--surface); border-radius: var(--r-card); box-shadow: var(--raised), var(--bevel); }
 /* "N cards differ from list 1": a tab on the card's top edge, with a small folded card as its legend (same fold and colors as on the cards) */
 .dnote { position: absolute; top: -8px; right: 12px; /* centered on the card's top edge, 4px clear of the card grid */ z-index: 1; padding: 2px 8px 2px 6px; border-radius: 999px; white-space: nowrap;
   display: inline-flex; align-items: center; gap: 4px;
-  background: var(--surface); color: var(--ink); font-size: var(--fs-xs); font-weight: 600; line-height: 1.2; box-shadow: 0 1px 2px rgba(20, 60, 110, 0.12); }
+  background: var(--surface); color: var(--ink); font-size: var(--fs-xs); font-weight: 600; line-height: 1.2; box-shadow: 0 1px 2px rgba(var(--sh), 0.12); }
 .dnote svg, .cdif svg { width: 8px; height: 11px; display: block; flex: none; } /* a tiny card with the same corner tag */
 /* The tab is a button: a tap opens the swap panel (In / Out). A small caret says it opens. */
 button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-family: inherit; } /* outlined, like the deck stats pill */
 @media (hover: hover) { button.dnote:hover { border-color: var(--muted); } }
 .dnote .dcar { width: 8px; height: 8px; margin-left: 1px; opacity: 0.8; transition: transform var(--t-fast); }
 .dnote[aria-expanded="true"] .dcar { transform: rotate(180deg); }
-/* Swap panel: over the top of the list card, closed by default (clean screenshots). Tap it, the tab or anywhere else to close. */
-.swap { position: absolute; z-index: 3; top: 12px; left: var(--sp-2); right: var(--sp-2); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px var(--sp-2);
-  align-items: start; padding: 10px var(--sp-3); border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), 0 6px 16px rgba(20, 40, 70, 0.18);
-  font-size: var(--fs-s); cursor: pointer; }
-.swap[hidden] { display: none; }
-.swap .sl { padding-top: 3px; font-size: var(--fs-xs); font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
-.swap .sl.in { color: var(--mark-text); }
-.swap .chips { display: flex; flex-wrap: wrap; gap: 4px 10px; min-width: 0; }
 .chip { display: inline-flex; align-items: center; gap: 5px; min-width: 0; color: var(--ink); font-weight: 600; line-height: 1.2; }
 .chip img { width: 18px; height: auto; aspect-ratio: 150 / 209; flex: none; border-radius: 2px; background: var(--line); }
 .chip .x { color: var(--muted); font-weight: 500; }
-/* Set code after a name that 2+ different cards share in the deck ("Dratini B4"): muted and smaller */
 .setc { margin-left: 3px; color: var(--muted); font-size: 0.82em; font-weight: 500; letter-spacing: 0.02em; }
-.cname .setc, .qvar .setc { color: var(--dlg-muted); }
-.swap .out .chip { color: var(--muted); }
+.cname .setc { color: var(--dlg-muted); }
 
 /* The 20 cards: one shared shadow under the whole grid, so no shadow spills onto a neighbor */
 .cards { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
@@ -441,7 +444,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .slide .altb[aria-expanded="true"] { position: relative; z-index: 7; } /* the button that opened the popover stays above its shadow */
 @keyframes apopIn { from { opacity: 0; transform: translateY(6px); } }
 .apop2 .parr2 { position: absolute; bottom: -5px; left: var(--ax, 50%); width: 10px; height: 10px; margin-left: -5px; background: var(--surface); transform: rotate(45deg);
-  box-shadow: 3px 3px 5px rgba(20, 40, 70, 0.22); }
+  box-shadow: 3px 3px 5px rgba(var(--sh), 0.22); }
 .acar { --iw: 228px; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
   padding: 8px calc(50% - var(--iw) / 2) 6px; align-items: center; border-radius: 12px; }
 .acar::-webkit-scrollbar { display: none; }
@@ -449,7 +452,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   padding: 8px 9px; border: 1.5px solid transparent; border-radius: 10px; background: var(--tile); opacity: 0.5; transform: scale(0.94); cursor: pointer;
   transition: opacity 0.2s, transform 0.2s, background 0.2s, border-color 0.2s; }
 .ait.on { opacity: 1; transform: none; background: var(--surface); border-color: var(--acc-ink); box-shadow: var(--raised-sm); }
-.ait > img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(40, 60, 95, 0.35); }
+.ait > img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); }
 .ait.on > img { cursor: zoom-in; }
 .ait > img.ao { opacity: 0.55; filter: grayscale(0.4); }
 .ait .achev { display: grid; place-items: center; color: var(--muted); }
@@ -463,7 +466,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .acar.asw { display: block; padding: 10px 10px 8px; scroll-snap-type: none; }
 .aswl { display: flex; align-items: flex-start; gap: 6px; width: max-content; margin: 0 auto; }
 .aswl .asc { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 50px; }
-.aswl .asc img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(40, 60, 95, 0.35); cursor: zoom-in; }
+.aswl .asc img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); cursor: zoom-in; }
 .aswl .asc img.ao { opacity: 0.55; filter: grayscale(0.4); }
 .aswl .achev { align-self: center; margin-top: -14px; color: var(--muted); }
 .aswl .achev svg { width: 10px; height: 14px; display: block; }
@@ -494,7 +497,9 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 } /* no shadow under the cards (light and dark) */
 .cards img, .ph { width: 100%; aspect-ratio: 150 / 209; display: block; border-radius: 2px; background: var(--line); }
 .cards img { height: auto; cursor: pointer; }
-.cards img.hl { outline: 2px solid var(--accent); outline-offset: 1px; position: relative; z-index: 2; } /* all copies of the card in the popup */
+.cards img.hl { position: relative; z-index: 2; } /* the copies of the card in the popup (no outline) */
+html { -webkit-tap-highlight-color: transparent; }
+.cards img, .ait img, .aswl img, .cbox img { -webkit-user-select: none; user-select: none; }
 /* Not in list 1: a corner tag. A bright blue triangle on the card's top-right corner, with a ring-color line along its diagonal
    and a soft shadow, so it separates from any card art (light: a dark line in the shadow's tone; dark: black). Drawn over the card (the art is not cut). */
 .cards .dwrap { position: relative; display: block; min-width: 0; }
@@ -522,10 +527,10 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 :root { --hot-ink: #d6345a; --hot-bg: rgba(214, 52, 90, 0.10); --hot-line: rgba(214, 52, 90, 0.40); --hot-mark: #ef4f74; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --hot-ink: #ff8fa8; --hot-bg: rgba(255, 110, 145, 0.14); --hot-line: rgba(255, 110, 145, 0.45); --hot-mark: #ff6f91; } }
 :root[data-theme="dark"] { --hot-ink: #ff8fa8; --hot-bg: rgba(255, 110, 145, 0.14); --hot-line: rgba(255, 110, 145, 0.45); --hot-mark: #ff6f91; }
-.l1.hot, .ipop .cmpt .sl.l1s .l1.hot, .qvar .l1.hot { color: var(--hot-ink); }
+.l1.hot, .ipop .cmpt .sl.l1s .l1.hot { color: var(--hot-ink); }
 .dnote.l1tab.hot { color: var(--hot-ink); border-color: var(--hot-line); background: linear-gradient(var(--hot-bg), var(--hot-bg)), var(--surface); }
 .dnote.l1tab.hot > svg { color: var(--hot-mark); }
-.dot.l1.hot::before, .qdots .dot.l1.hot::before { background: var(--hot-mark); }
+.dot.l1.hot::before { background: var(--hot-mark); }
 .l1 svg { width: 0.85em; height: 0.85em; display: block; flex: none; color: var(--acc-mark); }
 .cname .l1 { color: inherit; } /* on the dark full-screen view */
 /* The tab on list 1's top edge (same place as "N cards differ" on the other lists): cyan tint, not a button */
@@ -534,12 +539,10 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .dnote.l1tab > svg { width: 11px; height: 11px; color: var(--acc-mark); }
 .dnote.l1tab .ii { color: inherit; width: 11px; height: 11px; }
 .dnote.l1tab .ii svg { width: 11px; height: 11px; }
-.swap .sl.l1s { color: var(--acc-ink); }
 /* "Used by N of M top players": plain muted text; on list 1 a light cyan tint */
 /* Row under the tiles: "Used by" pill + "Also played (N)" button */
 /* Compare mode */
 .cards img { transition: opacity 0.2s; }
-.cards.cmp img:not([data-dif]), .cards.cmp1 img:not(.keep), .vars.cmpv .cards:not(.cmp, .cmp1) img { opacity: 0.2; }
 .cmpb .l1 { gap: 1px; }
 .cmpb .swi { width: 12px; height: 12px; display: block; flex: none; }
 .cmpb .cdi { width: 12px; height: 12px; display: block; flex: none; margin: 0 -1px 0 -1px; color: var(--muted); transform: scaleX(-1); } /* close to the number, mirrored */
@@ -640,48 +643,26 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 :root[data-theme="dark"] { --dlg-bd: rgba(8, 12, 18, 0.78); --dlg-ink: #ffffff; --dlg-muted: #d5dbe5; --dlg-dot: rgba(255, 255, 255, 0.35); }
 .qdlg::backdrop { background: var(--dlg-bd); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .qdlg[open] { display: grid; place-items: center; cursor: zoom-out; }
-.qbox { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--sp-3); padding: var(--sp-4); width: min(460px, 100%); }
-.qstage { position: relative; width: 100%; touch-action: pan-y; } /* horizontal swipes switch lists */
-.qstage img { width: 100%; max-height: 66vh; object-fit: contain; display: block; border-radius: 18px; background: #ffffff22; aspect-ratio: 1080 / 1600; }
-.qstage img[src] { aspect-ratio: auto; background: none; }
 /* Raised round controls, like the theme button */
-.qclose, .qnav { width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
-  background: var(--surface); color: var(--ink); box-shadow: var(--raised), var(--bevel), 0 4px 12px rgba(0, 0, 0, 0.3); }
-.qclose svg, .qnav svg { width: 18px; height: 18px; display: block; stroke-width: 2; }
+.qclose { width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  background: var(--surface); color: var(--ink); box-shadow: var(--raised), var(--bevel), 0 4px 12px rgba(var(--sh), 0.3); }
+.qclose svg { width: 18px; height: 18px; display: block; stroke-width: 2; }
 .qclose { position: static; width: 44px; height: 44px; margin: 12px 0 28px; }
 .qclose svg { width: 28px; height: 28px; stroke-width: 1.4; }
 .qclose { color: #7b8798; } /* a soft grey ×, like the game */ /* game style: a round close button at the bottom center */
-.qnav { position: absolute; z-index: 1; top: 50%; transform: translateY(-50%); }
-.qnav[hidden] { display: none; }
-.qnav.prev { left: -10px; }
-.qnav.next { right: -10px; }
-.qdots { display: flex; gap: 2px; }
-.qdots:empty { display: none; }
-.qdots .dot::before { background: var(--dlg-dot); }
-.qdots .dot[aria-current="true"]::before { background: var(--dlg-ink); }
-.qdots .dot.l1::before { background: #6aa8ff; } /* the dark-mode mark blue (this view is always dark) */
-/* Full-screen QR of an "Also played" version: a heading over the image ("★ List 1 with Red Card + Soothing Shore") */
-.qvar { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2px 8px; color: var(--dlg-muted); font-size: var(--fs-m); text-align: center; }
-.qvar[hidden] { display: none; }
-.qvar .l1 { color: var(--acc-ink); }
-.qvar .l1 svg { color: #6aa8ff; }
-.qvar s { color: var(--dlg-muted); opacity: 0.75; text-decoration-thickness: 1px; }
-.qvar b { color: var(--dlg-ink); font-weight: 700; }
-.qvar .qvm { flex-basis: 100%; font-size: var(--fs-s); }
-.qhint { margin: 0; color: var(--dlg-muted); font-size: var(--fs-m); line-height: 1.5; text-align: center; text-wrap: balance; }
 .qmsg { margin: 0; min-height: 1.2em; color: var(--dlg-ink); font-size: var(--fs-m); }
 .qmsg:empty { display: none; }
 /* Save: a raised surface pill, like the cards */
 .qsave { display: inline-flex; align-items: center; gap: var(--sp-2); padding: 10px 18px; border: 0; border-radius: 999px; cursor: pointer;
   background: var(--surface); color: var(--ink); font-weight: 700; font-size: var(--fs-l); line-height: 1;
-  box-shadow: var(--raised), var(--bevel), 0 4px 12px rgba(0, 0, 0, 0.3); }
+  box-shadow: var(--raised), var(--bevel), 0 4px 12px rgba(var(--sh), 0.3); }
 .qsave svg { width: 18px; height: 18px; display: block; stroke-width: 2; color: var(--accent); }
 .qsave:active { transform: scale(0.97); }
 .qsave:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
 /* Card popup: phone = bottom sheet (tap); mouse = popover beside the card (hover, click pins). The card image opens full screen. */
 /* Popover and sheet shadows: strong enough to lift them off the page; dark mode adds a faint light edge (a shadow alone is lost on dark) */
-:root { --pop-sh: 0 2px 6px rgba(20, 40, 70, 0.16), 0 16px 40px rgba(20, 40, 70, 0.34);
-  --sheet-sh: 0 -2px 6px rgba(20, 40, 70, 0.14), 0 -14px 44px rgba(20, 40, 70, 0.36); }
+:root { --pop-sh: 0 2px 6px rgba(var(--sh), 0.16), 0 16px 40px rgba(var(--sh), 0.34);
+  --sheet-sh: 0 -2px 6px rgba(var(--sh), 0.14), 0 -14px 44px rgba(var(--sh), 0.36); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --pop-sh: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 10px rgba(0, 0, 0, 0.5), 0 18px 48px rgba(0, 0, 0, 0.75);
   --sheet-sh: 0 -1px 0 rgba(255, 255, 255, 0.10), 0 -4px 12px rgba(0, 0, 0, 0.5), 0 -18px 50px rgba(0, 0, 0, 0.8); } }
@@ -691,7 +672,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 /* QR sheet */
 .ipop.qsheet.float { width: min(340px, calc(100vw - 24px)); }
 .qsbox { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 12px 14px; border-radius: 16px; background: var(--bg);
-  box-shadow: inset 0 1px 3px rgba(20, 40, 70, 0.12); text-align: center; }
+  box-shadow: inset 0 1px 3px rgba(var(--sh), 0.12); text-align: center; }
 .qst { margin: 0; align-self: stretch; padding: 5px 10px; border-radius: 999px; background: var(--surface); box-shadow: var(--raised-sm), var(--bevel);
   font-weight: 600; font-size: var(--fs-m); color: var(--ink); }
 .qsdeck { margin: 2px 0 0; display: flex; flex-direction: column; align-items: center; gap: 1px; line-height: 1.25; }
@@ -725,11 +706,11 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .cpop .grab { display: block; width: 52px; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--accent) 22%, var(--line)); margin: 0 auto 12px; }
 .cpop.float .grab, .cpop.sheet .parr { display: none; }
 .cpop .parr { position: absolute; top: 40px; width: 14px; height: 14px; background: var(--surface); transform: rotate(45deg); }
-.cpop .parr.l { left: -7px; box-shadow: -1px 1px 0 rgba(45, 95, 175, 0.12); }
-.cpop .parr.r { right: -7px; box-shadow: 1px -1px 0 rgba(45, 95, 175, 0.12); }
+.cpop .parr.l { left: -7px; box-shadow: -1px 1px 0 rgba(var(--sh), 0.09); }
+.cpop .parr.r { right: -7px; box-shadow: 1px -1px 0 rgba(var(--sh), 0.09); }
 .cpop .sbody { position: relative; display: flex; gap: 14px; align-items: flex-start; }
 .cpop .zc { flex: none; width: 138px; height: auto; aspect-ratio: 367 / 512; padding: 0; border: 0; background: var(--line); border-radius: 7px; cursor: zoom-in;
-  box-shadow: 0 4px 12px rgba(20, 40, 70, 0.3); overflow: hidden; }
+  box-shadow: 0 4px 12px rgba(var(--sh), 0.3); overflow: hidden; }
 .cpop.float .zc { width: 150px; }
 .cpop .zc img { width: 100%; height: 100%; display: block; }
 .cpop .pinfo { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 8px; padding-top: 2px; }
@@ -739,7 +720,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .cpop .ps { margin: -4px 0 0; font-size: var(--fs-s); color: var(--muted); }
 .cpop .pack { display: flex; gap: 10px; align-items: center; background: var(--tile); border-radius: var(--r-box); padding: 8px; }
 .cpop .pks { display: flex; flex: none; }
-.cpop .pk { height: 72px; width: auto; display: block; border-radius: 3px; filter: drop-shadow(0 2px 3px rgba(20, 40, 70, 0.3)); }
+.cpop .pk { height: 72px; width: auto; display: block; border-radius: 3px; filter: drop-shadow(0 2px 3px rgba(var(--sh), 0.3)); }
 .cpop .pks.n2 .pk:first-child, .cpop .pks.n3 .pk:first-child { transform: rotate(-4deg); }
 .cpop .pks.n2 .pk + .pk, .cpop .pks.n3 .pk + .pk { margin-left: -18px; transform: rotate(6deg); }
 .cpop .pks.n3 .pk { height: 64px; }
@@ -793,8 +774,8 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .ipop .altc .ain .asg { color: var(--acc-ink); }
 .ipop .altm { font-size: var(--fs-xs); color: var(--muted); }
 .ipop .altm b { color: var(--ink); }
-.ipop .parr.t { top: -7px; box-shadow: -1px -1px 0 rgba(45, 95, 175, 0.12); }
-.ipop .parr.b { top: auto; bottom: -7px; box-shadow: 1px 1px 0 rgba(45, 95, 175, 0.12); }
+.ipop .parr.t { top: -7px; box-shadow: -1px -1px 0 rgba(var(--sh), 0.09); }
+.ipop .parr.b { top: auto; bottom: -7px; box-shadow: 1px 1px 0 rgba(var(--sh), 0.09); }
 .ipop .ibody { position: relative; max-width: 480px; margin: 0 auto; font-size: var(--fs-m); line-height: 1.45; }
 .ipop h3 { margin: 0 0 6px; font-size: var(--fs-l); font-weight: 700; color: var(--ink); }
 .ipop p { margin: 0 0 6px; color: var(--muted); }
@@ -817,7 +798,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .cdlg .cname { display: none; } /* the card popup under it already shows the name */
 .cdlg[open] { cursor: default; }
 .cbox { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px; width: min(320px, 82vw); }
-.cbox img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: var(--r-box); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); }
+.cbox img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: var(--r-box); box-shadow: 0 8px 30px rgba(var(--sh), 0.45); }
 .cname { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 8px; color: var(--dlg-ink); font-size: var(--fs-l); text-align: center; }
 .cname b { font-weight: 700; }
 .cname span { color: var(--dlg-muted); font-size: var(--fs-m); }
@@ -855,7 +836,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--fe) - var(--it) - 24px), transparent calc(var(--fe) - var(--it)));
   mask-image: linear-gradient(180deg, #000 calc(var(--fe) - var(--it) - 24px), transparent calc(var(--fe) - var(--it))); }
 .picons img:nth-child(2) { --it: calc(9 * var(--u)); }
-.picons img { position: absolute; top: calc(4 * var(--u)); width: calc(52 * var(--u)); height: auto; aspect-ratio: 367 / 512; border-radius: 2px; box-shadow: 0 3px 4px rgba(40, 60, 95, 0.45);
+.picons img { position: absolute; top: calc(4 * var(--u)); width: calc(52 * var(--u)); height: auto; aspect-ratio: 367 / 512; border-radius: 2px; box-shadow: 0 3px 4px rgba(var(--sh), 0.43);
   transition: transform var(--t-slow) ease; }
 .picons img:first-child { left: calc(2 * var(--u)); transform: rotate(-9deg); z-index: 2; }
 .picons img:nth-child(2) { left: calc(38 * var(--u)); top: calc(9 * var(--u)); transform: rotate(9deg); z-index: 1; }
@@ -869,12 +850,12 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .pod > .apanel { grid-column: 1 / -1; grid-row: 2; margin-top: calc(var(--pgap, 24px) + 10px) !important; padding-top: 0; } /* + room for the stats pill (same 10px gap as the rows) */
 /* Medals (game style): outer disc shaded from the top-left, a recessed inner disc, a crown with a white outline */
 .medal { position: absolute; z-index: 3; left: -6px; top: -9px; width: 32px; height: 32px; border-radius: 50%;
-  background: var(--m-out); box-shadow: 0 2px 3px rgba(30, 50, 80, 0.3); transition: transform var(--t-slow) ease, opacity var(--t-slow) ease; }
+  background: var(--m-out); box-shadow: 0 2px 3px rgba(var(--sh), 0.3); transition: transform var(--t-slow) ease, opacity var(--t-slow) ease; }
 .medal::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--m-in);
   box-shadow: inset 1.5px 1.5px 2px rgba(0, 0, 0, 0.22), inset -1px -1px 1.5px rgba(255, 255, 255, 0.55); }
 .medal .mn { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; color: #ffffff; font-weight: 600; font-size: 1.1rem; line-height: 1; }
 .medal .crown { position: absolute; z-index: 2; left: 50%; top: -7px; width: 15px; height: 12px; transform: translateX(-50%); overflow: visible;
-  fill: var(--m-c); stroke: var(--m-rim); stroke-width: 1.8; stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1px rgba(30, 50, 80, 0.25)); }
+  fill: var(--m-c); stroke: var(--m-rim); stroke-width: 1.8; stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1px rgba(var(--sh), 0.25)); }
 .medal .crown .cb { fill: none; stroke: var(--m-rim); stroke-width: 0.7; stroke-linecap: round; }
 .medal.m1 { --m-rim: #fff8e1; --m-c: #e8b52e; --m-out: linear-gradient(135deg, #fbe07a, #d39a1c); --m-in: linear-gradient(135deg, #f0c440, #f7d968); }
 .medal.m2 { --m-rim: #eef4fd; --m-c: #87a5d4; --m-out: linear-gradient(135deg, #c9dbf3, #6585ba); --m-in: linear-gradient(135deg, #8eaad6, #b3c9ea); }
@@ -954,12 +935,37 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 
 /* ===== Tabs (in-game style segmented control): Meta Decks | Latest Events ===== */
 .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 999px; background: var(--tile);
-  box-shadow: inset 1px 2px 4px rgba(45, 95, 175, 0.14), inset -1px -1px 2px rgba(255, 255, 255, 0.7); }
+  box-shadow: inset 1px 2px 4px rgba(var(--sh), 0.1), inset -1px -1px 2px rgba(255, 255, 255, 0.7); }
 .tabs button { height: 38px; border: 0; border-radius: 999px; background: none; color: var(--muted); font-weight: 600; font-size: var(--fs-l); cursor: pointer; }
 .tabs button[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--raised-sm), var(--bevel); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tabs { box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.5); } }
 :root[data-theme="dark"] .tabs { box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.5); }
 .list[hidden] { display: none; }
+/* A deck without a public list yet: flat, dashed, faded, not a button */
+.acc.ghost { background: none; box-shadow: none; border: 1px dashed var(--line-strong); }
+.grow { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 12px; min-height: 50px; padding: 6px var(--sp-3) 6px var(--sp-4); opacity: 0.62; cursor: default; }
+.grow .rk { background: var(--tile); color: var(--muted); box-shadow: none; }
+.gicons { position: relative; align-self: stretch; width: 90px; margin-block: -6px; margin-inline: -16px; padding-inline: 16px; box-sizing: content-box;
+  clip-path: inset(-40px -24px 0 -40px); -webkit-mask-image: linear-gradient(180deg, #000 44px, transparent 58px); mask-image: linear-gradient(180deg, #000 44px, transparent 58px); }
+.gicons img, .gicons i { position: absolute; top: 10px; width: 52px; height: auto; aspect-ratio: 367 / 512; border-radius: 2px; filter: grayscale(1); }
+.gicons i { display: block; border: 1.5px dashed var(--line-strong); box-sizing: border-box; filter: none; }
+.gicons > :first-child { left: 10px; top: 12px; z-index: 1; transform: translateY(3px) rotate(-9deg); }
+.gicons > :nth-child(2) { left: 50px; top: 7px; transform: translateY(3px) rotate(9deg); }
+@media (min-width: 1024px) { .gicons { width: 112px; } .gicons img, .gicons i { width: 64px; } .gicons > :first-child { left: 12px; } .gicons > :nth-child(2) { left: 61px; } }
+.gicons.one > :first-child { left: 19px; transform: translateY(3px) rotate(-5deg) scale(1.2); }
+.grow .aname { font-size: var(--fs-l); font-weight: 600; }
+.grow .asub { font-size: var(--fs-s); }
+.gnl { font-style: italic; }
+/* "Show more decks" (0.2-0.5 % share): a divider over the smaller decks, a raised pill button at the end */
+#moreRows { display: contents; }
+.mored { display: flex; align-items: center; gap: 10px; margin: 8px 4px 0; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.mored[hidden], .moreb[hidden] { display: none; }
+.mored span { font-weight: 500; text-transform: none; letter-spacing: 0; }
+.mored::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); }
+.moreb { display: flex; justify-content: center; padding: 6px 0 2px; }
+.morebtn { padding: 9px 18px; border: 0; border-radius: 999px; cursor: pointer; background: var(--surface); color: var(--ink); font-weight: 700; font-size: var(--fs-m);
+  box-shadow: var(--raised), var(--bevel); }
+@media (hover: hover) { .morebtn:hover { color: var(--acc-ink); } }
 /* ===== Latest Events: one row per event (winner deck icons and energy streak), day headers ===== */
 .evnote { margin: 0 4px -4px; font-size: var(--fs-s); color: var(--muted); }
 .evday { margin: 6px 4px -4px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
@@ -972,7 +978,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .evsub { font-size: var(--fs-s); color: var(--muted); line-height: 1.35; }
 .evsub b { color: var(--ink); font-weight: 600; }
 .evtop { display: flex; align-items: center; gap: 2px; margin-top: 3px; }
-.evtop img { width: 15px; height: auto; aspect-ratio: 367 / 512; border-radius: 1.5px; box-shadow: 0 1px 2px rgba(40, 60, 95, 0.3); }
+.evtop img { width: 15px; height: auto; aspect-ratio: 367 / 512; border-radius: 1.5px; box-shadow: 0 1px 2px rgba(var(--sh), 0.29); }
 .evtop span { margin-right: 4px; font-size: var(--fs-xs); color: var(--muted); }
 .evr.acc > .arow[aria-expanded="true"] .evtop { display: none; }
 /* An open event: the lists of its top players (deck name and player on top, a place tab, no "top players" or swaps) */
@@ -980,20 +986,20 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .evs .t-dk small { display: block; font-size: var(--fs-xs); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* Winner crown over the first card icon (the 1st place medal's crown) */
-.arow > .wcrown { position: absolute; z-index: 4; left: 21px; top: 3px; width: 15px; height: 11.5px; overflow: visible; fill: #e8b52e; stroke: #fff8e1; stroke-width: 1.8;
-  stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1px rgba(30, 50, 80, 0.3)); transform: rotate(-9deg); transition: transform var(--t-slow) ease; }
+.arow > .wcrown { position: absolute; z-index: 4; left: 21px; top: 5px; width: 15px; height: 11.5px; overflow: visible; fill: #e8b52e; stroke: #fff8e1; stroke-width: 1.8;
+  stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 0.5px 0.5px rgba(var(--sh), 0.16)); transform: rotate(-9deg); transition: transform var(--t-slow) ease; }
 .wcrown .cb { fill: none; stroke: #fff8e1; stroke-width: 0.7; stroke-linecap: round; }
 .arow[aria-expanded="true"] > .wcrown { display: none; } /* open: no crown */
-@media (min-width: 1024px) { .arow > .wcrown { left: 26px; top: 3px; width: 18px; height: 13.5px; } }
+@media (min-width: 1024px) { .arow > .wcrown { left: 26px; top: 5px; width: 18px; height: 13.5px; } }
 /* Dark: like the dark medal crown (darker gold, outline in the dark card color) */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .wcrown, :root:not([data-theme="light"]) .wcrown .cb { stroke: #283145; }
-  :root:not([data-theme="light"]) .wcrown { filter: brightness(0.7) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4)); } }
+  :root:not([data-theme="light"]) .wcrown { filter: brightness(0.7) drop-shadow(0 0.5px 0.5px rgba(0, 0, 0, 0.25)); } }
 :root[data-theme="dark"] .wcrown, :root[data-theme="dark"] .wcrown .cb { stroke: #283145; }
-:root[data-theme="dark"] .wcrown { filter: brightness(0.7) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4)); }
+:root[data-theme="dark"] .wcrown { filter: brightness(0.7) drop-shadow(0 0.5px 0.5px rgba(0, 0, 0, 0.25)); }
 /* Event lists: the dots under the strip (in the flow), the standings link under them; place colors for 1st-3rd */
 .apanel.evp .dots { position: static; transform: none; align-self: center; margin-top: -6px; }
 .apanel.evp:has(.dots):not(.fit) { padding-bottom: 0; }
-.dot.pd1::before { background: #e3ae2b; } .dot.pd2::before { background: #8eaad6; } .dot.pd3::before { background: #d98a52; }
+.dot.pd1::before { background: linear-gradient(135deg, #fbe07a, #d39a1c); } .dot.pd2::before { background: linear-gradient(135deg, #c9dbf3, #6585ba); } .dot.pd3::before { background: linear-gradient(135deg, #f7c79c, #c4703a); }
 .dot.pd1[aria-current="true"]::before, .dot.pd2[aria-current="true"]::before, .dot.pd3[aria-current="true"]::before { width: 14px; }
 .evdk { display: flex; flex-direction: column; gap: 1px; margin: 2px 0 -4px; min-width: 0; line-height: 1.25; }
 .evdk b { font-size: var(--fs-m); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1049,32 +1055,15 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   <main class="list" id="list"><div class="empty">Loading decks&hellip;</div></main>
   <section class="list" id="evl" aria-label="Latest events" hidden></section>
 
-  <dialog class="qdlg" id="qrDlg" aria-label="Deck QR code">
-    
-    <div class="qbox">
-      <p class="qvar" id="qrVar" hidden></p>
-      <div class="qstage" id="qrStage">
-        <img id="qrImg" alt="">
-        <button class="qnav prev" id="qrPrev" type="button" aria-label="Previous list" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <button class="qnav next" id="qrNext" type="button" aria-label="Next list" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
-      </div>
-      <div class="qdots" id="qrDots" role="group" aria-label="Lists"></div>
-      <button class="qsave" id="qrSave" type="button"></button>
-      <p class="qhint" id="qrScanHint" hidden>Or scan it with the game&rsquo;s camera: My Decks &rarr; + &rarr; Scan Code</p>
-      <p class="qmsg" id="qrMsg" role="status"></p>
-      <button class="qclose" id="qrClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-    </div>
-  </dialog>
 
   <footer class="foot">
     <div class="fmade">
-      <img src="data:image/webp;base64,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" alt="" width="48" height="48">
-      <span class="fmt"><span>Made by <a href="https://www.reddit.com/user/Myxas_/" target="_blank" rel="noopener">u/Myxas_</a></span>
-        <small>Feedback or a bug? <a href="https://www.reddit.com/message/compose/?to=Myxas_" target="_blank" rel="noopener">Send me a message</a></small></span>
+      <span class="fsig"><img src="data:image/webp;base64,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" alt="" width="40" height="40"><span>Made by <a href="https://www.reddit.com/user/Myxas_/" target="_blank" rel="noopener">u/Myxas_</a></span></span>
+      <span class="ffb">Feedback or a bug? <a href="https://www.reddit.com/message/compose/?to=Myxas_" target="_blank" rel="noopener">Send me a message</a></span>
       <button class="fabout" id="aboutBtn" type="button" aria-expanded="false"><svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5.25" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="3.6" r="0.8" fill="currentColor"/><path d="M6 5.4v3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>About &amp; FAQ</button>
     </div>
     <p class="fsrc"><span class="fsite">pocketmetaqr.com</span> &middot; Stats, lists and events: computed from <a href="https://play.limitlesstcg.com/tournaments?game=POCKET" target="_blank" rel="noopener">Limitless TCG</a> tournament results of the last 7 days
-      (decks with 0.5% share or more; up to 10 lists per deck, from the decklists of top players; the top 8 lists of each single-deck event). Card images: PocketDecks.</p>
+      (decks with 0.2% share or more, the ones under 0.5% under &ldquo;Show more decks&rdquo;; up to 10 lists per deck, from the decklists of top players; the top 8 lists of each single-deck event). Card images: PocketDecks.</p>
     <p class="fleg">Pocket Meta QR is a free fan site. It is not affiliated with, endorsed or sponsored by Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK or DeNA.
       Pok&eacute;mon and all card images are trademarks and &copy; of their owners.</p>
   </footer>
@@ -1134,7 +1123,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 
   function loadExtra(id) {
     if (!extra.has(id)) {
-      extra.set(id, fetch(`v/${id}.json`).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      extra.set(id, fetch(`v/${id}.json`).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(normQ)
         .then((j) => j.vars).catch((e) => { extra.delete(id); throw e; }));
     }
     return extra.get(id);
@@ -1246,7 +1235,18 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   const TOUCH = matchMedia("(pointer: coarse)").matches;
   // Small QR caption: phones cannot scan their own screen, so "Tap to save"; on a computer the game's camera can scan it
   const SCAN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 12h8"/></svg>';
-  const qrParse = (svg) => ({ n: +svg.match(/viewBox="0 0 (\d+)/)[1], d: svg.match(/<path[^>]*\sd="([^"]+)"/)[1] });
+  // A QR comes as SVG text (data contract <= 12) or packed (request R12): "<n>:<base64>", n x n modules, row by row,
+  // 1 bit per module, the first module in the top bit of the first byte. Both give the same module grid.
+  const qrParse = (src) => {
+    if (src[0] !== "<") {
+      const [n, b] = src.split(":"), N = +n, bin = atob(b), g = Array.from({ length: N }, () => new Uint8Array(N));
+      for (let k = 0; k < N * N; k++) if (bin.charCodeAt(k >> 3) & (128 >> (k & 7))) g[(k / N) | 0][k % N] = 1;
+      return { n: N, g };
+    }
+    return { n: +src.match(/viewBox="0 0 (\d+)/)[1], d: src.match(/<path[^>]*\sd="([^"]+)"/)[1] };
+  };
+  // Packed codes are in the field "q": copy them to "qr", so the rest of the page reads one field
+  const normQ = (o) => { if (Array.isArray(o)) o.forEach(normQ); else if (o && typeof o === "object") { if (o.q && !o.qr) o.qr = o.q; Object.values(o).forEach(normQ); } return o; };
   // Module grid from the SVG path (the path is only "M x y", "m dx dy" and "h n" runs on half-row centers).
   function qrGrid(q) {
     if (q.g) return q.g;
@@ -1331,12 +1331,12 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     const x = c.getContext("2d");
     const C = { bg: "#f0f3f6", surface: "#fafbfc", tile: "#ebeff2", ink: "#3a4250", muted: "#5a697f", pill: "#627189" };
     const F = (w, sz, it = "") => `${it}${w} ${sz}px "Figtree", "Segoe UI", sans-serif`;
-    const raised = (draw, blur, oy) => { x.save(); x.shadowColor = "rgba(45, 95, 175, 0.22)"; x.shadowBlur = blur; x.shadowOffsetX = oy / 2; x.shadowOffsetY = oy; draw(); x.restore(); };
+    const raised = (draw, blur, oy) => { x.save(); x.shadowColor = "rgba(24, 52, 96, 0.16)"; x.shadowBlur = blur; x.shadowOffsetX = oy / 2; x.shadowOffsetY = oy; draw(); x.restore(); };
     // inner bevel: a light rim on the top and left, a dark rim on the bottom and right
     const bevel = (l, t, w, h, r) => {
       x.save(); rrect(x, l, t, w, h, r); x.clip(); x.lineWidth = 3;
       x.strokeStyle = "rgba(255, 255, 255, 0.9)"; rrect(x, l + 1.5, t + 1.5, w + 4, h + 4, r); x.stroke();
-      x.strokeStyle = "rgba(45, 95, 175, 0.14)"; rrect(x, l - 3.5, t - 3.5, w + 2, h + 2, r); x.stroke();
+      x.strokeStyle = "rgba(24, 52, 96, 0.1)"; rrect(x, l - 3.5, t - 3.5, w + 2, h + 2, r); x.stroke();
       x.restore();
     };
     x.fillStyle = C.bg; x.fillRect(0, 0, W, H);
@@ -1346,7 +1346,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     x.fillStyle = band; x.beginPath(); x.moveTo(0, 0); x.lineTo(W, 0); x.lineTo(W, 102); x.lineTo(0, 196); x.closePath(); x.fill(); // bottom edge at the same 5deg as the ribbon
     x.save(); x.translate(W / 2, 112); x.rotate(-5 * Math.PI / 180); // the brand angle, same as the page header
     const rib = x.createLinearGradient(0, -40, 0, 40); rib.addColorStop(0, "#f5fafd"); rib.addColorStop(1, "#e3edf4");
-    x.shadowColor = "rgba(40, 90, 150, 0.25)"; x.shadowBlur = 16; x.shadowOffsetY = 6;
+    x.shadowColor = "rgba(24, 52, 96, 0.2)"; x.shadowBlur = 16; x.shadowOffsetY = 6;
     x.fillStyle = rib; x.fillRect(-W, -40, W * 2, 80); x.shadowColor = "transparent";
     // Rainbow line on the ribbon's bottom edge, with a 2px light line under it (same as the page)
     const rb = x.createLinearGradient(-W / 2, 0, W / 2, 0); ["#ff6f91", "#ffc75f", "#8be36b", "#4dd4ff", "#8f7bff", "#ff6fd8"].forEach((c, k) => rb.addColorStop(k / 5, c));
@@ -1385,7 +1385,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       const im = arts[k];
       if (!im) return;
       x.save(); x.translate(cL + ox + IW / 2, cT + oy + IH / 2); x.rotate(deg * Math.PI / 180);
-      x.shadowColor = "rgba(40, 60, 95, 0.45)"; x.shadowBlur = 10; x.shadowOffsetY = 6;
+      x.shadowColor = "rgba(24, 52, 96, 0.43)"; x.shadowBlur = 10; x.shadowOffsetY = 6;
       x.beginPath(); x.roundRect(-IW / 2, -IH / 2, IW, IH, 6); x.fillStyle = "#ffffff"; x.fill(); x.shadowColor = "transparent";
       x.clip(); x.drawImage(im, -IW / 2, -IH / 2, IW, IH); x.restore();
     });
@@ -1393,7 +1393,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     const MED = { 1: ["#fbe07a", "#d39a1c", "#f0c440", "#f7d968"], 2: ["#c9dbf3", "#6585ba", "#8eaad6", "#b3c9ea"], 3: ["#f7c79c", "#c4703a", "#e0915a", "#efb084"] };
     const med = MED[d.evt ? d.rank : data.decks.indexOf(d) + 1], r0 = 32 /* medal by position: ranks can skip numbers */, mx = cL + 20, my = cT + 16;
     const disc = (r, a, b) => { const g = x.createLinearGradient(mx - r, my - r, mx + r, my + r); g.addColorStop(0, a); g.addColorStop(1, b); x.beginPath(); x.arc(mx, my, r, 0, 7); x.fillStyle = g; x.fill(); };
-    x.save(); x.shadowColor = "rgba(30, 50, 80, 0.3)"; x.shadowBlur = 6; x.shadowOffsetY = 3;
+    x.save(); x.shadowColor = "rgba(24, 52, 96, 0.3)"; x.shadowBlur = 6; x.shadowOffsetY = 3;
     if (med) disc(r0, med[0], med[1]); else { x.beginPath(); x.arc(mx, my, r0, 0, 7); x.fillStyle = "#ffffff"; x.fill(); }
     x.restore();
     if (med) disc(r0 - 5, med[2], med[3]);
@@ -1464,16 +1464,13 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       .catch((e) => { cardCache.delete(k); throw e; }));
     return cardCache.get(k);
   }
-  const dlg = $("qrDlg");
   let dlgDeck = null, dlgI = 0, dlgAlt = null; // dlgAlt: the "Also played" version shown (index in alt), or null
   // Save button: the phone's share sheet (one tap: Save Image), else a download; long-press / right-click stay as a fallback
   const SAVE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>';
-  $("qrSave").innerHTML = SAVE_ICON + (TOUCH ? "Save image" : "Download image");
-  $("qrScanHint").hidden = TOUCH;
   // claude.ai downloads capability (null when this view cannot save); resolved once, used on click
   const dlCap = window.claude && window.claude.use ? Promise.resolve(window.claude.use("downloads")).catch(() => null) : Promise.resolve(null);
-  const qmsgEl = () => (!ipop.hidden && $("qsMsg")) || $("qrMsg");
-  $("qrSave").addEventListener("click", async (e) => {
+  const qmsgEl = () => $("qsMsg") || { textContent: "" };
+  async function saveQR(e) { // the Save button of the QR panel
     track("qr-save");
     e.stopPropagation(); // a tap elsewhere closes the view; this one must not
     if (!dlgDeck) return;
@@ -1503,46 +1500,6 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     // 3) As a normal web page (outside claude.ai): a plain download
     try { const a = document.createElement("a"); a.href = r.url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
     catch (err) { fallback(); }
-  });
-  // Show list i of the open deck (wraps around); the next list's image is prepared in the background
-  function showQR(i) {
-    const d = dlgDeck;
-    if (!d) return;
-    const n = d.nv || 1;
-    i = ((i % n) + n) % n; dlgI = i; dlgAlt = null;
-    $("qrVar").innerHTML = n > 1 ? `${i === 0 ? `${L1(d)} <span>\u00b7 1 of ${n}</span>` : `List ${i + 1} <span>of ${n}</span>`}` : ""; $("qrVar").hidden = n < 2;
-    $("qrImg").removeAttribute("src");
-    $("qrImg").alt = `QR code card for ${d.name}${n > 1 ? `, list ${i + 1} of ${n}` : ""}`;
-    $("qrMsg").textContent = "";
-    $("qrDots").innerHTML = n > 1 ? Array.from({ length: n }, (_, k) => `<button class="dot${k === 0 ? " l1" + (isHot(d) ? " hot" : "") : ""}" type="button" data-i="${k}" aria-label="List ${k + 1} of ${n}" aria-current="${k === i}"></button>`).join("") : "";
-    $("qrPrev").hidden = $("qrNext").hidden = n < 2 || TOUCH; // touch: swipe or dots
-    card(d, i).then((r) => { if (dlgDeck === d && dlgI === i) $("qrImg").src = r.url; })
-      .catch(() => { if (dlgDeck === d && dlgI === i) $("qrMsg").textContent = "The QR image did not load. Try again."; });
-    if (n > 1) card(d, (i + 1) % n).catch(() => {});
-  }
-  // An "Also played" version: 1 QR, no list dots or arrows; a heading says which version it is
-  async function showAlt(d, i, k) {
-    dlgDeck = d; dlgI = i; dlgAlt = k;
-    const v = await listFor(d, i), a = v.alt[k];
-    curDup = dupNames(d);
-    $("qrVar").innerHTML = `${i === 0 ? L1(d) : `List ${i + 1}`} with ${a.out.map((c) => `<s>${cName(c)}</s>`).join(" ")} <b>+ ${a.in.map(cName).join(", ")}</b>`
-      + `<span class="qvm">${a.u} top player${a.u > 1 ? "s" : ""}${a.pl ? ` \u00b7 best ${esc(a.pl)}` : ""}</span>`;
-    $("qrVar").hidden = false;
-    $("qrImg").removeAttribute("src");
-    $("qrImg").alt = `QR code card for ${d.name}, list ${i + 1} with ${altName(a)}`;
-    $("qrMsg").textContent = ""; $("qrDots").innerHTML = ""; $("qrPrev").hidden = $("qrNext").hidden = true;
-    card(d, i, k).then((r) => { if (dlgDeck === d && dlgI === i && dlgAlt === k) $("qrImg").src = r.url; })
-      .catch(() => { if (dlgDeck === d && dlgI === i && dlgAlt === k) $("qrMsg").textContent = "The QR image did not load. Try again."; });
-  }
-  function openAlt(d, i, k) {
-    if (!dlg.open) {
-      // From the touch sheet: its history entry becomes the QR view's entry (one back closes the QR view)
-      const st = { ...(history.state || {}) };
-      if (st.tip) { delete st.tip; history.replaceState({ ...st, qr: 1 }, "", location.href); }
-      else pushH({ ...st, qr: 1 }, "", location.href);
-      dlg.showModal();
-    }
-    showAlt(d, i, k);
   }
   // ---- QR sheet (game style "Share With 2D Pattern Code"): a bottom sheet on phones, a popover on larger screens.
   // The QR on a light plate (scans best), the list name, the in-game steps, Save; the saved image is the full QR card.
@@ -1562,36 +1519,13 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     const v = await listFor(d, i);
     dlgDeck = d; dlgI = i; dlgAlt = ak; curDup = dupNames(d);
     const html = qsHTML(d, v, i, ak);
-    if (!ipop.hidden && tipBtn) { tipBtn.setAttribute("aria-expanded", "false"); setCmp(null); tipBtn = anchor; }
+    if (!ipop.hidden && tipBtn) { tipBtn.setAttribute("aria-expanded", "false"); tipBtn = anchor; }
     // the anchor keeps its own content (the "Also played" button must still open "Also played")
     if (ipop.hidden || tipBtn !== anchor) { tipBtn = null; showTip(anchor, html); } else $("iPopIn").innerHTML = html;
     ipop.classList.remove("wide"); ipop.classList.add("qsheet"); qsAnchor = anchor;
     placeTip(); // again, with the QR panel's own width and height
     card(d, i, ak).catch(() => {}); // prepare the saved image
   }
-  async function openQR(d, i) {
-    dlgDeck = d;
-    if (!dlg.open) { dlg.showModal(); pushH({ ...(history.state || {}), qr: 1 }, "", location.href); } // back closes the QR view
-    showQR(i);
-  }
-  const stop = (fn) => (e) => { e.stopPropagation(); fn(e); }; // controls inside the view must not close it
-  $("qrClose").addEventListener("click", stop(() => dlg.close()));
-  $("qrPrev").addEventListener("click", stop(() => showQR(dlgI - 1)));
-  $("qrNext").addEventListener("click", stop(() => showQR(dlgI + 1)));
-  $("qrDots").addEventListener("click", stop((e) => { const b = e.target.closest(".dot"); if (b) showQR(+b.dataset.i); }));
-  dlg.addEventListener("keydown", (e) => { if (dlgAlt != null) return; if (e.key === "ArrowRight") showQR(dlgI + 1); else if (e.key === "ArrowLeft") showQR(dlgI - 1); });
-  // Swipe on the image: next / previous list (a swipe never closes the view)
-  let swStart = null, swiped = false;
-  $("qrStage").addEventListener("pointerdown", (e) => { swStart = { x: e.clientX, y: e.clientY }; });
-  $("qrStage").addEventListener("pointerup", (e) => {
-    if (!swStart) return;
-    const dx = e.clientX - swStart.x, dy = e.clientY - swStart.y;
-    swStart = null;
-    if (dlgAlt == null && Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) && (dlgDeck?.nv || 1) > 1) { swiped = true; showQR(dlgI + (dx < 0 ? 1 : -1)); }
-  });
-  // A tap anywhere else closes (a long-press on the image opens the save menu instead). Esc and back also close.
-  dlg.addEventListener("click", (e) => { if (swiped) { swiped = false; return; } if (e.target.closest("#qrImg")) return; dlg.close(); }); // a tap on the image keeps it open
-  dlg.addEventListener("close", () => { if (history.state && history.state.qr) history.back(); }); // drop its history entry
 
   const placeholder = (d) => `
       <div class="cards">${'<span class="ph"></span>'.repeat(20)}</div>
@@ -1617,6 +1551,29 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       <dt>${d.w}-${d.l}-${d.t}<span>record</span></dt><dd>all match wins, losses and ties of this deck</dd>
     </dl>`;
   const dpill = (d) => `<span class="dpill"><b>${pct(d.share)}</b> share &middot; <span${d.count < 30 ? ' class="lw"' : ""}><b>${pct(d.win)}</b> win</span> &middot; <b>${d.count}</b> players &middot; <b>${d.w}-${d.l}-${d.t}</b>${ii("these numbers", deckTip(d), true)}</span>`;
+  // Decks without a public list yet (no lists, no QR): a quiet, disabled row in their rank place, so no rank is skipped
+  const ghostHTML = (g, more) => `<div class="acc ghost" data-rank="${g.rank}"${more ? ' data-more="1"' : ""} aria-disabled="true" title="No public decklist in the last 7 days yet">
+      <div class="grow"><span class="rk two"><span class="mn">${g.rank}</span></span>
+        <span class="gicons${g.art && g.art.length === 1 ? " one" : ""}" aria-hidden="true">${(g.art && g.art.length ? g.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="34" height="47" loading="lazy">`) : ["<i></i>", "<i></i>"]).join("")}</span>
+        <span class="atext"><span class="aname">${esc(g.name)}</span>
+          <span class="asub"><b>${pct(g.share)}</b> share &middot; <span class="gnl">no public list yet</span></span></span></div></div>`;
+  const withGhosts = (decks, ghosts, after, more) => [...decks, ...(ghosts || []).filter((g) => g.rank > after).map((g) => ({ ...g, _ghost: 1 }))]
+    .sort((a, b) => a.rank - b.rank).map((x) => (x._ghost ? ghostHTML(x, more) : rowHTML(x))).join("");
+  // "Show more decks": the decks from 0.2 % to under 0.5 % share (more.json), loaded on tap, or when the filter opens
+  let MORE = null, moreP = null, moreShown = false;
+  const moreBoxHTML = () => (data.more ? `<div class="mored" id="moreDiv" hidden>Smaller decks <span>0.2\u20130.5% share</span></div><div id="moreRows"></div>
+      <div class="moreb" id="moreBox"><button class="morebtn" type="button" id="moreBtn">Show more decks (${data.more})</button></div>` : "");
+  function loadMore() {
+    if (!data || !data.more) return Promise.resolve(null);
+    return moreP || (moreP = fetch("more.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(normQ).then((j) => {
+      MORE = j;
+      const have = new Set(data.decks.map((d) => d.id)), add = (j.decks || []).filter((d) => !have.has(d.id));
+      add.forEach((d) => { d._more = true; data.decks.push(d); });
+      $("moreRows").insertAdjacentHTML("beforeend", withGhosts(add, j.nolist, 0, true));
+      applyFilter(); if (!$("filt").hidden) renderSug();
+      return j;
+    }).catch(() => { moreP = null; return null; }));
+  }
   function renderList() {
     // Top 3: podium tiles (same section/button/panel structure as a row, so open/close work the same way).
     const top = data.decks.length > 3 ? data.decks.slice(0, 3) : [];
@@ -1624,7 +1581,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       <section class="acc pod" id="${d.id}" style="${bandStyle(d)}">
         <button class="arow pcard" type="button" data-id="${d.id}" aria-expanded="false" aria-controls="p-${d.id}" aria-label="Rank ${d.rank}: ${esc(d.name)}">
           <span class="medal m${k + 1}" aria-hidden="true"><svg class="crown" viewBox="0 0 18 14"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg><span class="mn">${d.rank}</span></span>
-          <span class="picons">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="52" height="73" decoding="async">`).join("")}</span>
+          <span class="picons${d.art.length === 1 ? " one" : ""}">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="52" height="73" decoding="async">`).join("")}</span>
           <span class="pname">${esc(d.name)}</span>
           <span class="asub psub"><b>${pct(d.share)}</b> share<span class="ow"> &middot; <b>${pct(d.win)}</b> win</span>
             <span class="sm"><span class="nw">${d.count} players</span> <span class="nw"><span class="sep">&middot; </span>${d.w}-${d.l}-${d.t}</span></span></span>
@@ -1632,19 +1589,20 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
         </button>
         <div class="apanel" id="p-${d.id}" hidden></div>
       </section>`).join("")}</div>` : ""; // the "Ranks 4\u2013N" label is left out for now
-    $("list").innerHTML = podium + data.decks.slice(top.length).map((d) => `
+    $("list").innerHTML = podium + withGhosts(data.decks.slice(top.length), data.nolist, top.length ? top[top.length - 1].rank : 0, false) + moreBoxHTML();
+  }
+  const rowHTML = (d) => `
       <section class="acc" id="${d.id}" style="${bandStyle(d)}">
         <button class="arow" type="button" data-id="${d.id}" aria-expanded="false" aria-controls="p-${d.id}">
           <span class="rk two"><span class="mn">${d.rank}</span></span>
-          <span class="icons">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>
+          <span class="icons${d.art.length === 1 ? " one" : ""}">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>
           <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, d.name.length)}">${esc(d.name)}</span>
             <span class="asub"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win
               <span class="sm"><span class="sep">&middot; </span><span class="nw">${d.count} players</span> <span class="nw">&middot; ${d.w}-${d.l}-${d.t}</span></span></span></span>
           ${dpill(d)}
         </button>
         <div class="apanel" id="p-${d.id}" hidden></div>
-      </section>`).join("");
-  }
+      </section>`;
 
   // Podium: the open tile grows by GROW px in width (same scale for its height); the panel starts just below it.
   const GROW = 12;
@@ -1785,6 +1743,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       p.querySelector(".chev-btn.next").hidden = i >= n - k;
       // Dots: the lists now in view are highlighted.
       p.querySelectorAll(".dot").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.i >= i && +b.dataset.i < i + k)));
+      slides.forEach((s, j) => s.classList.toggle("away", n > k && (j < i || j >= i + k)));
       const vc = p.querySelector(".vcount"); // many lists: "3 / 10", or "1–3 / 10" when several show at once
       if (vc) vc.textContent = `${k > 1 ? `${i + 1}\u2013${Math.min(i + k, n)}` : i + 1} / ${n}`;
     };
@@ -1991,7 +1950,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     <p class="afine">Data: Limitless TCG. Card and pack images: PocketDecks. Made by <a href="https://www.reddit.com/user/Myxas_/" target="_blank" rel="noopener">u/Myxas_</a>.
       Pocket Meta QR is a free fan site, not affiliated with Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK or DeNA.</p></div>`;
   ipop.addEventListener("click", (e) => {
-    if (e.target.closest(".qssave")) { $("qrSave").click(); return; }
+    if (e.target.closest(".qssave")) { saveQR(e); return; }
     const nb = e.target.closest(".qsnav");
     if (nb && dlgDeck) { const n = dlgDeck.nv || 1; openQRSheet(qsAnchor, dlgDeck, (dlgI + +nb.dataset.qs + n) % n); }
   });
@@ -2008,28 +1967,11 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     a.className = "parr " + (below ? "t" : "b");
     a.style.left = Math.max(12, Math.min(cx - x - 7, w - 26)) + "px";
   }
-  // Compare mode: fade every card but the changed ones; this list keeps its added cards, List 1 (when in view) its removed ones
-  function setCmp(btn) {
-    document.querySelectorAll(".cards.cmp, .cards.cmp1").forEach((g) => g.classList.remove("cmp", "cmp1"));
-    document.querySelectorAll(".vars.cmpv").forEach((v) => v.classList.remove("cmpv"));
-    document.querySelectorAll(".cards img.keep").forEach((x) => x.classList.remove("keep"));
-    if (!btn) return;
-    const slide = btn.closest(".slide"), g = slide?.querySelector(".cards");
-    if (g) g.classList.add("cmp");
-    slide?.closest(".vars")?.classList.add("cmpv"); // the other lists fade completely
-    const g1 = slide?.closest(".vars")?.querySelector('.slide[data-i="0"] .cards');
-    if (!g1 || g1 === g) return;
-    btn.dataset.outids.split(",").filter(Boolean).forEach((t) => {
-      const [id, k] = t.split(":"); [...g1.querySelectorAll(`img[src="c/${id}.webp"]`)].slice(0, +k).forEach((x) => x.classList.add("keep"));
-    });
-    g1.classList.add("cmp1");
-  }
   function showTip(btn, html) { // html: content to show instead of the button's own (the QR panel)
     if (tipBtn === btn) { hideTip(); return; }
     if (!cpop.hidden) hidePop(true);
     if (tipBtn) tipBtn.setAttribute("aria-expanded", "false");
     tipBtn = btn; btn.setAttribute("aria-expanded", "true"); tipAt = Date.now();
-    setCmp(btn.classList.contains("cmpb") ? btn : null);
     track(btn.classList.contains("cmpb") ? "compare" : btn.classList.contains("fabout") ? "about" : btn.classList.contains("altb") ? "also-played" : "info");
     $("iPopIn").innerHTML = html ?? btn.dataset.tip;
     if (ipop.hidden) {
@@ -2045,7 +1987,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     if (ipop.hidden) return;
     if (!FLOAT && !fromHistory && history.state && history.state.tip) { history.back(); return; } // the popstate handler closes it
     if (tipBtn) tipBtn.setAttribute("aria-expanded", "false");
-    tipBtn = null; setCmp(null); ipop.classList.remove("qsheet");
+    tipBtn = null; ipop.classList.remove("qsheet");
     ipop.classList.remove("on"); cscrim.classList.remove("on");
     const done = () => { if (!tipBtn) { ipop.hidden = true; if (cpop.hidden) cscrim.hidden = true; } };
     if (reduced || FLOAT) done(); else setTimeout(done, 240);
@@ -2130,6 +2072,15 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     const sr = slide.getBoundingClientRect(), br = btn.getBoundingClientRect();
     pop.style.setProperty("--ab", (sr.bottom - br.top + 9) + "px");
     pop.style.setProperty("--ax", Math.max(18, Math.min(br.left + br.width / 2 - sr.left - 8, sr.width - 34)) + "px");
+    // Swaps on wider screens: the popover grows to fit the whole row (no scrolling), centered on the button, on screen
+    if (sw && matchMedia("(min-width: 600px)").matches) {
+      const row = pop.querySelector(".aswl"), w = Math.min(row.scrollWidth + 22, innerWidth - 24), cx = br.left + br.width / 2;
+      if (w > sr.width - 16) {
+        const L = Math.max(12, Math.min(cx - w / 2, innerWidth - 12 - w));
+        pop.style.left = (L - sr.left) + "px"; pop.style.right = "auto"; pop.style.width = w + "px";
+        pop.style.setProperty("--ax", (cx - L) + "px");
+      }
+    }
     altOpen = { btn, pop, slide, d, i, x0: slide.closest(".vars")?.scrollLeft || 0 };
     btn.setAttribute("aria-expanded", "true");
     const car = pop.querySelector(".acar"), items = [...car.querySelectorAll(".ait")];
@@ -2189,30 +2140,15 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   }, { capture: true, passive: true });
   addEventListener("resize", () => { if (FLOAT) hideTip(); });
   function cardClick(ci) {
+    if (!cpop.hidden && popImg === ci) { hidePop(); return; } // the same card again: close
     if (FLOAT) { pinned = true; showPop(ci); return; }
     showPop(ci);
   }
   $("cClose").addEventListener("click", (e) => { e.stopPropagation(); cdlg.close(); });
+  cdlg.addEventListener("click", () => cdlg.close()); // a tap on the zoomed card (or anywhere) closes it
   cdlg.addEventListener("close", () => { if (history.state && history.state.card) history.back(); });
 
-  // Swap panel: one open at a time; the tab toggles it, a tap on the panel or anywhere else closes it
-  const closeSwaps = (except) => document.querySelectorAll(".swap:not([hidden])").forEach((sw) => {
-    if (sw === except) return;
-    sw.hidden = true;
-    sw.parentElement.querySelector(".dnote")?.setAttribute("aria-expanded", "false");
-  });
-  document.addEventListener("click", (e) => { if (!e.target.closest(".dnote")) closeSwaps(); });
   $("list").addEventListener("click", (e) => {
-    const tab = e.target.closest(".dnote");
-    if (tab) {
-      const sw = $(tab.getAttribute("aria-controls"));
-      if (!sw) return;
-      closeSwaps(sw);
-      sw.hidden = !sw.hidden;
-      tab.setAttribute("aria-expanded", String(!sw.hidden));
-      return;
-    }
-    if (e.target.closest(".swap")) return; // the document handler closes it
     const ci = e.target.closest(".cards img");
     if (ci) { cardClick(ci); return; }
     const qb = e.target.closest(".qr[data-i]");
@@ -2246,7 +2182,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   const setDrop = (on) => {
     $("filt").hidden = !on;
     $("filtBtn").setAttribute("aria-expanded", String(on));
-    if (on) { renderSug(); loadSearch(); }
+    if (on) { renderSug(); loadSearch(); loadMore(); } // the filter also covers the smaller decks
     if (on && !TOUCH) $("fq").focus(); // phones: no keyboard until the viewer taps the field
   };
   $("filtBtn").addEventListener("click", () => setDrop($("filt").hidden));
@@ -2255,15 +2191,17 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   $("fq").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); $("fq").blur(); setDrop(false); } });
   function applyFilter() {
     const q = fstate.q.trim().toLowerCase(), pickC = fstate.card ? searchIndex().cards.find((c) => c.id === fstate.card) : null;
-    let n = 0;
+    const act0 = !!q || !!fstate.card || fstate.en.size > 0; // a filter is on: the smaller decks count too
+    let n = 0, nMore = 0;
     data.decks.forEach((d) => {
       const sec = $(d.id);
       if (!sec) return;
       const okQ = fstate.card ? (pickC ? pickC.decks.has(d.id) : deckCards(d).has(fstate.card))
         : !q || norm(d.name).includes(norm(q)) || [...deckCards(d).values()].some((n) => norm(n).includes(norm(q)));
       const okE = [...fstate.en].every((e) => (d.energy || []).includes(e)); // every chosen energy
-      const ok = okQ && okE;
-      sec.hidden = !ok;
+      const ok = okQ && okE, vis = ok && (!d._more || moreShown || act0);
+      sec.hidden = !vis;
+      if (vis && d._more) nMore++;
       if (ok) n++;
       // A picked card: "2× Dratini C1 · 9 top players" on the row (removed again when the filter changes)
       sec.querySelector(".fuse")?.remove();
@@ -2279,7 +2217,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
           if (f && w && fstate.card === cid) { if (pc) f.title += " \u00b7 " + w; else f.textContent = full + " \u00b7 " + w; }
         }).catch(() => {});
       }
-      if (!ok && openId === d.id) { if (history.state && history.state.deck) history.back(); else closeOpen(); }
+      if (!vis && openId === d.id) { if (history.state && history.state.deck) history.back(); else closeOpen(); }
     });
     const active = !!q || !!fstate.card || fstate.en.size > 0;
     $("fcount").textContent = active ? `${n} of ${data.decks.length} decks` : "";
@@ -2289,11 +2227,13 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     setPickStyle(pickC ? pickC.id : null);
     document.querySelector(".podium")?.classList.toggle("pk", !!pickC);
     $("fnoneTxt").textContent = pc && n ? `${n} deck${n > 1 ? "s" : ""} use${n > 1 ? "" : "s"} ${pc.n}${pc.dup ? " " + pc.id.split("-")[0].toUpperCase() : ""}.`
-      : n ? `Showing ${n} of ${data.decks.length} decks.`
+      : n ? `Showing ${n} of ${data.decks.length + (MORE ? 0 : data.more || 0)} decks.`
       : none.length ? `No ${none.map(cap).join(" or ")} decks in the meta right now (last 7 days).` : "No decks match.";
     $("fdot").hidden = !active;
     const pod = document.querySelector(".podium");
     if (pod) pod.hidden = !pod.querySelector(".acc:not([hidden])");
+    if ($("moreDiv")) { $("moreDiv").hidden = !nMore; $("moreBox").hidden = act0 || moreShown; }
+    document.querySelectorAll(".acc.ghost").forEach((g) => { g.hidden = act0 || (!!g.dataset.more && !moreShown); }); // no lists: not in filter results
   }
   let fqT = null;
   $("fq").addEventListener("input", (e) => { fstate.q = e.target.value; fstate.card = null; $("fqx").hidden = !e.target.value; renderSug(); clearTimeout(fqT); fqT = setTimeout(applyFilter, 120); });
@@ -2337,7 +2277,8 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   // Spotlight: the other cards fade, so the picked card stands out (no outline: the card popup uses the outline)
   const setPickStyle = (id) => { pickStyle.textContent = id ? `.cards img:not([src="c/${id}.webp"]) { opacity: 0.25; transition: opacity 0.2s; }
     .cards img.hl { opacity: 1; }
-    .altb[data-tip*="c/${id}.webp"] { border-color: var(--acc-mark); box-shadow: 0 0 0 1px var(--acc-mark); }` : ""; };
+    .altb:not(.cmpb)[data-tip*="c/${id}.webp"] { border-color: var(--acc-mark); box-shadow: 0 0 0 1px var(--acc-mark); }
+    .cmpb { display: none !important; }` : ""; if (id) closeAlts(); }; // a picked card: no "swap vs Hot/Top" buttons
   // ---- Search suggestions ----
   const norm = (t) => String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); // "Pokémon" = "pokemon"
   // A deck's cards (id -> name): list 1, the other lists once loaded, and the "Also played" changes
@@ -2396,7 +2337,8 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     if (b.dataset.deck) {
       // A deck: clear the search and open that deck
       fstate.q = ""; fstate.card = null; $("fq").value = ""; $("fqx").hidden = true; applyFilter(); setDrop(false);
-      const id = b.dataset.deck;
+      const id = b.dataset.deck, dk = data.decks.find((x) => x.id === id);
+      if (dk && dk._more && !moreShown) { moreShown = true; applyFilter(); }
       if (id !== openId) open(id);
       return;
     }
@@ -2436,13 +2378,16 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   // Back gesture / back button: first closes the full-screen QR, then the open deck
   addEventListener("popstate", () => {
     const st = history.state || {};
-    if (dlg.open && !st.qr) dlg.close();
     if (cdlg.open && !st.card) cdlg.close();
     if (!cpop.hidden && !st.cpop && !FLOAT) hidePop(true);
     if (!ipop.hidden && !st.tip && !FLOAT) hideTip(true);
     // An open deck has no history entry anymore, so going back (closing a popup) must not close it
   });
-  window.addEventListener("hashchange", () => { const id = location.hash.slice(1); if (data && id && id !== openId && $(id)) open(id); });
+  window.addEventListener("hashchange", () => { const id = location.hash.slice(1); if (!data || !id || id === openId) return;
+    if ($(id)) open(id); else if (id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); open(id); } }); });
+  $("list").addEventListener("click", (e) => { if (!e.target.closest("#moreBtn")) return;
+    moreShown = true; track("more-decks"); $("moreBtn").textContent = "Loading\u2026";
+    loadMore().then((j) => { if (!j) { $("moreBtn").textContent = `Show more decks (${data.more})`; moreShown = false; } applyFilter(); }); });
 
   // Long deck names: no auto-shrink for now (they wrap to 2 lines instead)
   function fitNames() {}
@@ -2456,7 +2401,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   let EV = null, evP = null, evOpen = null, evIo = null;
   const loadEvents = () => evP || (evP = fetch("events.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).then((j) => (EV = j)).catch(() => { evP = null; return null; }));
   const evTlist = new Map();
-  const loadT = (tid) => { if (!evTlist.has(tid)) evTlist.set(tid, fetch(`t/${tid}.json`).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch((e) => { evTlist.delete(tid); throw e; })); return evTlist.get(tid); };
+  const loadT = (tid) => { if (!evTlist.has(tid)) evTlist.set(tid, fetch(`t/${tid}.json`).then((r) => { if (!r.ok) throw new Error(r.status); return r.json().then(normQ); }).catch((e) => { evTlist.delete(tid); throw e; })); return evTlist.get(tid); };
   const evSize = (n) => (n >= 200 ? ["l", "Large"] : n >= 64 ? ["m", "Medium"] : ["s", "Small"]);
   const ordN = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th");
   const evDay = (iso) => { const t = new Date(), y = new Date(Date.now() - 864e5), f = (d) => d.toISOString().slice(0, 10);
@@ -2473,7 +2418,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       const head = e.dt !== day ? `<h3 class="evday">${evDay((day = e.dt))}</h3>` : "";
       return `${head}<section class="acc evr" id="ev-${e.tid}" style="${w ? bandStyle(w) : ""}">
         <button class="arow" type="button" data-tid="${e.tid}" aria-expanded="false" aria-controls="evp-${e.tid}">
-          <span class="icons">${(w && w.art ? w.art : []).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>${w ? `<svg class="wcrown" viewBox="0 0 18 14" aria-hidden="true"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg>` : ""}
+          <span class="icons${w && w.art && w.art.length === 1 ? " one" : ""}">${(w && w.art ? w.art : []).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>${w ? `<svg class="wcrown" viewBox="0 0 18 14" aria-hidden="true"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg>` : ""}
           <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, e.name.length)}">${esc(e.name)}</span>
             <span class="evsub">${e.players} players${w ? `<span class="sr-only"> \u00b7 won by ${esc(w.name)}</span>` : ""}</span></span>
         </button>
@@ -2537,7 +2482,8 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       const go = (i) => { i = Math.max(0, Math.min(i, n - per())); vars.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: reduced ? "auto" : "smooth" }); };
       const sync = () => { const i = at(), k = per(); p.classList.toggle("fit", n <= k);
         p.querySelector(".chev-btn.prev").hidden = i === 0; p.querySelector(".chev-btn.next").hidden = i >= n - k;
-        p.querySelectorAll(".dot").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.i >= i && +b.dataset.i < i + k))); };
+        p.querySelectorAll(".dot").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.i >= i && +b.dataset.i < i + k)));
+        slides.forEach((s, j) => s.classList.toggle("away", n > k && (j < i || j >= i + k))); };
       sync();
       p.querySelector(".chev-btn.prev").onclick = () => go(at() - 1);
       p.querySelector(".chev-btn.next").onclick = () => go(at() + 1);
@@ -2569,7 +2515,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   fetch("data.json", { cache: "no-cache" })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((j) => {
-      data = j;
+      data = normQ(j);
       const t = new Date(data.updatedAt);
       const when = t.toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZoneName: "short" });
       const tile = (l, v, cls = "") => `<span class="mt${cls}"><span>${l}</span><b>${v}</b></span>`;
@@ -2590,6 +2536,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       fitNames();
       const id = location.hash.slice(1);
       if (id && $(id)) open(id); // shared link: open that deck; otherwise all rows start closed
+      else if (id && id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); open(id); } });
       let t0 = null; try { t0 = localStorage.getItem("pmq-tab"); } catch (err) {}
       if (id === "events" || (!(id && $(id)) && t0 === "events")) setTab("events", false);
     })
