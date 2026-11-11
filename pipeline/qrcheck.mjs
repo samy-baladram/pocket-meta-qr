@@ -1,7 +1,7 @@
 // QR check before deploy: render every QR in site/data.json and site/v/*.json to pixels, decode it with jsQR
 // (like a phone camera), parse the deck code, and compare it with the cards and energy shown next to it.
 // alt versions (R5): their QR must give the list's cards - out + in, with the list's energy.
-// Event lists (R8) in site/t/: their QR must give their own cards and energy.
+// Event lists (R8) in site/t/: their QR must give their own cards and energy. more.json decks (R9): as data.json.
 // Exit code 1 when any QR fails, so the site workflow does not deploy.
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { createRequire } from "node:module";
@@ -53,6 +53,9 @@ const add = (where, list) => {
 };
 const data = JSON.parse(readFileSync(`${site}/data.json`, "utf8"));
 for (const d of data.decks) add(`${d.id} (best)`, d);
+// R9: the "Show more decks" file (more.json) has the same deck format.
+if (existsSync(`${site}/more.json`))
+  for (const d of JSON.parse(readFileSync(`${site}/more.json`, "utf8")).decks) add(`${d.id} (best, more)`, d);
 if (existsSync(`${site}/v`)) for (const f of readdirSync(`${site}/v`)) {
   const v = JSON.parse(readFileSync(`${site}/v/${f}`, "utf8"));
   v.vars.forEach((x, i) => add(`${v.id} (list ${i + 2})`, x));

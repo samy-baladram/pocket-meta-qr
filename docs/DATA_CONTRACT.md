@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 10 (Nov 10, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 11 (Nov 11, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -9,6 +9,10 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - Changed definitions: `share` adds up to 100 %; `win` excludes mirror matches and multi-deck events.
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers: a deck without any decklist yet is not in `decks`.
+- Version 11 (request R9 of the UI chat): new file **`more.json`** (the decks with 0.2 % <= share < 0.5 % that
+  have at least 1 list, same deck format, for a "Show more decks" button) and new field **`more`** in `data.json`
+  (the number of decks in `more.json`). Their other lists are in `v/` as usual; `search.json` includes them.
+  About 54 KB (10 KB compressed) on Nov 11 (13 decks).
 - Version 10 (request R8 of the UI chat): new files **`events.json`** (the single-deck events of the window, for a
   "Latest Events" tab) and **`t/<tid>.json`** (the public lists of 1 event, in place order, with QR). See below.
   About 18 KB (4 KB compressed) for `events.json`; up to about 110 KB (18 KB compressed) per `t/` file.
@@ -56,6 +60,7 @@ Use the same word in new docs and UI notes.
 | `packs.json` | **new in v6.** set and booster pack of every card on the site (see below) | on demand |
 | `p/<image>.webp` | **new in v6.** booster pack image, 200 px wide (about 23 KB); promo cards without a pack image use the promo set logo | on demand |
 | `search.json` | **new in v9.** card index for the search: every card on the page, the decks that play it, copies and top players (see below) | when the search box opens |
+| `more.json` | **new in v11.** the decks with 0.2 % <= share < 0.5 % and at least 1 list (see below) | when "Show more decks" is tapped, or a search result points to one of its decks |
 | `events.json` | **new in v10.** the single-deck events of the window, newest first, with winner and top 8 (see below) | when the events tab opens |
 | `t/<tid>.json` | **new in v10.** the public lists of 1 event, in place order, with QR (see below) | when an event opens |
 | `e/<energy>.webp` | energy icon, 48 px (`grass`, `fire`, `water`, `lightning`, `psychic`, `fighting`, `darkness`, `metal`) | per energy |
@@ -86,6 +91,7 @@ Use the same word in new docs and UI notes.
 | `span` | [date, date] | first and last tournament day in the window (`YYYY-MM-DD`) |
 | `summary` | object | **new.** tournaments, players (entries) and played matches in the window |
 | `decks` | array | most players first, max 40, share >= 0.5 % |
+| `more` | int | **new in v11.** number of decks in `more.json`; `0` = no button |
 
 ### deck
 
@@ -157,6 +163,24 @@ needs another type, the build log says so (none on Nov 9). The QR check decodes 
 
 The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list" (no `art`).
 
+## more.json (new in v11)
+
+```json
+{ "updatedAt": "2026-11-11T14:00:00Z", "window": "7d", "min": 0.2, "decks": [ <deck>, ... ] }
+```
+
+| Field | Meaning |
+|---|---|
+| `updatedAt`, `window` | same as `data.json` (same build) |
+| `min` | the lowest share % in this file (`0.2`) |
+| `decks` | same `<deck>` format as `data.json` (list 1 fields, `alt`, QR), for the decks with `min` <= share < 0.5 %, most players first. **Only decks with at least 1 list** (a deck without a public list is left out). Also a deck with 0.5 % or more that is over the 40-deck limit of `data.json` would go here (none so far) |
+
+- `rank` continues the global order by players: the ranks are after the last deck of `data.json` and can skip
+  numbers (a deck without a list keeps its rank place but is not in any file).
+- Lists 2..`nv` are in `v/<deckId>.json`, same rules (10 groups, `alt`, QR check before deploy).
+- `search.json` includes the cards and decks of `more.json`; `events.json` `decks` uses their list 1 as for
+  `data.json` decks.
+
 ## events.json (new in v10)
 
 ```json
@@ -179,7 +203,7 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 | `nl` | number of lists in `t/<tid>.json` (the public decklists: top 25 % of the players, 8 to 32) |
 | `win` | the 1st place: `deck` id, display `name` (same naming as `data.json`), `art` (1-2 card ids, from the winner's list when it is public), `energy` (the winner's list when public, else the deck's), `sc` record. null only when the 1st place has no deck |
 | `top` | the decks of places 1 to 8 as `[deckId, place]`, place order (with or without a public list) |
-| `decks` | `{deckId: {name, art, energy}}` for every deck id in `win`, `top` and `t/`. For decks in `data.json`: their list 1. Other decks: a recent list of the current set (energy rule as for lists) |
+| `decks` | `{deckId: {name, art, energy}}` for every deck id in `win`, `top` and `t/`. For decks in `data.json` or `more.json`: their list 1. Other decks: a recent list of the current set (energy rule as for lists) |
 
 ## t/&lt;tid&gt;.json (new in v10)
 
@@ -209,7 +233,7 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 
 | Field | Meaning |
 |---|---|
-| `cards` | 1 entry per card id that is in a shown list or an `alt` version (`in` card) of any deck in `data.json`. Sorted by `u`, high first |
+| `cards` | 1 entry per card id that is in a shown list or an `alt` version (`in` card) of any deck in `data.json` or (v11) `more.json`. Sorted by `u`, high first |
 | `id`, `n` | card id and card name (every `id` has a `c/` image) |
 | `u` | sum of the top players over all decks (the third value of each `decks` entry) |
 | `decks` | `[deckId, usual copies, top players]`, sorted by top players, high first. Top players = the deck's finishes in the window whose list has the card (all groups, also those not shown: the same population as `of`). Usual copies = the copies in the deck's most used shown list that has the card; else the most common count among those finishes. Only decks with at least 1 such finish |

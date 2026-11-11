@@ -132,6 +132,9 @@ The pairings do not say which deck a player used in a match. Thus:
 - **The page uses the 7-day window** (decision Nov 9, 2026: the meta changes fast; the Limitless deck table uses
   the whole set). Deck table, share, win rate and the shown lists all come from the last 7 days.
 - A deck is shown when its share in the 7-day window is 0.5 % or more (max 40).
+- "Show more decks" (decision Nov 11, request R9): the decks with 0.2 % <= share < 0.5 % that have at least 1 list
+  go to `more.json` (same deck format, loaded on tap), with their lists in `v/` and their cards in `search.json`.
+  `data.json` only gets the count (`more`).
 - Shown lists: up to 10 distinct lists from **all** the deck's finishes with a decklist in the window (in the 7-day
   window the median deck has about 8, the largest about 25), best relative place first.
 - Lists (decision Nov 9, 2026, requests R1 + R2 of the UI chat): all finishes with a decklist are grouped first

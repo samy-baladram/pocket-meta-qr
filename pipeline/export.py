@@ -4,7 +4,8 @@
 
 Window: last 7 days by default (decision Nov 9, 2026: the meta changes fast); only tournaments of the current
         set, so in the first 7 days of a set the window starts at the set release.
-Decks : archetypes with share >= MIN_SHARE in the window (max MAX_DECKS), most players first.
+Decks : archetypes with share >= MIN_SHARE in the window (max MAX_DECKS), most players first (data.json), then
+        (R9, Nov 11, 2026) the archetypes with MORE_SHARE <= share < MIN_SHARE, flag "more" (more.json, loaded on tap).
 Rows  : per deck, all its finishes in the window (--rows 0) or the best N, in single-deck tournaments that have a
         decklist:
         best place relative to the event size first (place / players: 3rd of 547 before 1st of 12),
@@ -14,7 +15,8 @@ Rows  : per deck, all its finishes in the window (--rows 0) or the best N, in si
 import argparse, json, os, sqlite3
 from datetime import datetime, timezone
 
-MIN_SHARE = 0.5   # % of all decks in the window
+MIN_SHARE = 0.5   # % of all decks in the window (data.json)
+MORE_SHARE = 0.2  # % for the "Show more decks" file (more.json, R9)
 MAX_DECKS = 40
 MAX_ROWS = 0      # finishes read per deck; 0 = all (build.mjs keeps up to 10 distinct lists from them)
 
@@ -66,9 +68,10 @@ def main():
             (arch, cur))]
 
     decks = []
-    for arch, players, share, w, l, t, win in db.execute(
+    for k, (arch, players, share, w, l, t, win) in enumerate(db.execute(
             "SELECT archetype, players, share, w, l, t, win_rate FROM archetype_stats "
-            "WHERE window = ? AND share >= ? ORDER BY players DESC, archetype LIMIT ?", (a.window, MIN_SHARE, MAX_DECKS)):
+            "WHERE window = ? AND share >= ? ORDER BY players DESC, archetype", (a.window, MORE_SHARE)).fetchall()):
+        more = share < MIN_SHARE or k >= MAX_DECKS
         rows = []
         for tid, pid, place, ew, el, et, ev, size, day in db.execute(f"""
                 SELECT e.tid, e.pid, e.place, e.w, e.l, e.t, t.name, t.players, t.day
@@ -79,7 +82,7 @@ def main():
             rows.append({"key": f"{tid}/{pid}", "ev": ev, "pl": f"{ordinal(place)} of {size}",
                          "sc": f"{ew}-{el}-{et}", "dt": day, "lists": lists_of(tid, pid)})
         decks.append({"id": arch, "count": players, "share": round(share, 2), "w": w, "l": l, "t": t,
-                      "win": round(win, 2) if win is not None else None, "rows": rows, "votes": energy_votes(arch)})
+                      "win": round(win, 2) if win is not None else None, "rows": rows, "votes": energy_votes(arch), "more": more})
 
     # R8 (Nov 10, 2026): events of the window for the "Latest Events" tab. Single-deck events only, newest first.
     # Per event: the top 8 decks by place (all entries with a place, with or without a public list) and every entry
@@ -130,7 +133,7 @@ def main():
     with open(a.out, "w", encoding="utf8") as fh:
         json.dump(out, fh, ensure_ascii=False)
     no_rows = [d["id"] for d in decks if not d["rows"]]
-    print(f"{a.out}: {len(decks)} decks, {sum(len(d['rows']) for d in decks)} rows with a decklist; "
+    print(f"{a.out}: {sum(not d['more'] for d in decks)} decks + {sum(d['more'] for d in decks)} more decks, {sum(len(d['rows']) for d in decks)} rows with a decklist; "
           f"{summary[0]} tournaments, {summary[1]} players, {matches} matches ({out['span']})")
     if no_rows:
         print(f"decks without a decklist yet: {len(no_rows)}: {', '.join(no_rows)}")

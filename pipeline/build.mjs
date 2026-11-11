@@ -188,6 +188,10 @@ function printGuard(id, lists, problems) {
 
 const decks = [], problems = [], images = new Set(), dropped = [], searchDecks = [];
 let waiting = 0;
+// R9 (Nov 11, 2026): decks with 0.2 % <= share < 0.5 % (input flag "more") go to site/more.json, loaded on tap.
+// Only decks with at least 1 list get there (a deck without a list is skipped above, as in data.json). They share
+// the global rank order, the v/ files, images, the search index and the event deck info with the data.json decks.
+const moreIds = new Set();
 rmSync("site/v", { recursive: true, force: true });
 mkdirSync("site/v", { recursive: true });
 
@@ -212,7 +216,7 @@ for (const [rank, d] of input.decks.entries()) {
     if (g) g.members.push(member);
     else groups.push({ list: pick.l, energy: pick.energy, m, row, members: [member] });
   }
-  if (!groups.length) { waiting++; problems.push(`${id}: no lists yet`); continue; }
+  if (!groups.length) { waiting++; if (!d.more) problems.push(`${id}: no lists yet`); continue; }
   printGuard(id, groups.flatMap((g) => g.members.map((x) => x.list)), problems);
   // Step 2: most top players first; on a tie the group with the better best place (= the earlier group).
   const chosen = groups.map((g, i) => ({ ...g, used: g.members.length, i }))
@@ -243,12 +247,16 @@ for (const [rank, d] of input.decks.entries()) {
     altIn: vars.flatMap((v) => (v.alt || []).flatMap((a) => a.in.map((c) => c.id))) });
   const { art, ...best } = vars[0];
   decks.push({ id, rank: rank + 1, name, count, share, w, l, t, win, art, nv: vars.length, ...best });
+  if (d.more) moreIds.add(id);
 }
 
 // Time span and size of the data window (all tournaments of the window, not only the shown lists).
 const data = { updatedAt: new Date().toISOString(), set: input.set, setName: input.setName || "", format: input.format,
-  window: input.window, span: input.span, summary: input.summary, decks };
+  window: input.window, span: input.span, summary: input.summary,
+  decks: decks.filter((d) => !moreIds.has(d.id)), more: moreIds.size };
 writeFileSync("site/data.json", JSON.stringify(data));
+writeFileSync("site/more.json", JSON.stringify({ updatedAt: data.updatedAt, window: input.window, min: 0.2,
+  decks: decks.filter((d) => moreIds.has(d.id)) }));
 
 // R6 (Nov 9, 2026): card index for the page's search -> site/search.json (loaded when the search box opens).
 // Cards = every card id in a shown list or an alt version ("in" card) of any deck on the page.
@@ -392,7 +400,9 @@ writeFileSync("images.json", JSON.stringify({
   packs: [...packImg].map(([id, url]) => ({ id, url })),
 }));
 const nvars = decks.reduce((a, d) => a + d.nv, 0);
-if (waiting) console.log(`${waiting} decks have no decklist yet (later scrape runs fetch them)`);
+if (waiting) console.log(`${waiting} decks have no decklist yet (later scrape runs fetch them; "more" decks without a list are left out)`);
+console.log(`more.json: ${moreIds.size} decks (of ${input.decks.filter((d) => d.more).length} with 0.2-0.5 % share), ` +
+  `${decks.filter((d) => moreIds.has(d.id)).reduce((a, d) => a + d.nv, 0)} lists`);
 {
   const all = decks.flatMap((d) => [d, ...(existsSync(`site/v/${d.id}.json`) ? JSON.parse(readFileSync(`site/v/${d.id}.json`, "utf8")).vars : [])]);
   const k = (e) => all.filter((v) => (v.eg || 0) === e).length;
