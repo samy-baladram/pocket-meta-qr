@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 13 (Nov 11, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 14 (Nov 12, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 14 (request R12 of the UI chat): the QR is **`q`** (packed bits, about 290 characters) in place of the SVG
+  **`qr`** (about 2,800 characters), in every list, `alt` entry, `more.json` and `t/` list (see "Packed QR").
+  `qr` is no longer written; the page still reads it (old field). The deploy copy of the page is minified.
 - Version 13 (request R11 of the UI chat): new **top player** definition: a player with a **winning record**
   (W > L; ties count neither way) at a single-deck event in the window (was: top 25 % of the players, 8 to 32).
   `nu`, `of`, the list groups, `alt` and `search.json` use it. New list field **`bc`**: a deck with no top player gets
@@ -130,7 +133,8 @@ page shows the 10 groups with the most top players (`nu`), then the better best 
 | `cards` | [{id, n, c}] | card id, card name, count (20 cards in total) |
 | `energy` | [string] | energy types, 1 to 3 |
 | `eg` | 2, 1 or absent | absent = energy shown by Limitless for this list; 2 = the event did not show it, so the most common energy of the deck's other Limitless lists; 1 = no list of the deck shows it, so guessed from the attack costs |
-| `qr` | SVG string or null | in-game deck code as QR (black modules, no background); null when no code was possible |
+| `q` | string or null | **new in v14.** in-game deck code as a packed QR (see "Packed QR"); null when no code was possible |
+| `qr` | SVG string | **old (v1-v13), not written since v14**; still read by the page. Same QR as `q`, as SVG (black modules, no background) |
 | `ev` | string | tournament name (of the representative) |
 | `pl` | string | place, e.g. `1st of 273` |
 | `sc` | string | record W-L-T, e.g. `11-1-2` |
@@ -147,7 +151,7 @@ page shows the 10 groups with the most top players (`nu`), then the better best 
   { "in":  [{ "id": "b4-154", "n": "Soothing Shore", "c": 1 }],
     "out": [{ "id": "pa-006", "n": "Red Card",       "c": 1 }],
     "u": 2, "pl": "15th of 203",
-    "qr": "<svg ...>", "sc": "7-4-0", "ev": "The Breakfast Club Daily-FA +", "dt": "2026-11-03" }
+    "q": "41:/n9H...", "sc": "7-4-0", "ev": "The Breakfast Club Daily-FA +", "dt": "2026-11-03" }
 ]
 ```
 
@@ -157,7 +161,7 @@ page shows the 10 groups with the most top players (`nu`), then the better best 
 | `out` | cards of the shown list that the change does not have |
 | `u` | finishes ("top players") with exactly this change |
 | `pl` | the best place among them (same format as `pl`) |
-| `qr` | **new in v8.** SVG QR of this version: the shown list's `cards` - `out` + `in`, with the shown list's `energy` (same SVG options and decode check as a list's `qr`); null when no code was possible |
+| `q` | (v14; `qr` SVG in v8-v13) packed QR of this version: the shown list's `cards` - `out` + `in`, with the shown list's `energy` (same SVG options and decode check as a list's `qr`); null when no code was possible |
 | `sc` | **new in v8.** record W-L-T of the best finish with this change |
 | `ev` | **new in v8.** tournament name of that finish |
 | `dt` | **new in v8.** tournament day of that finish (`YYYY-MM-DD`) |
@@ -166,6 +170,17 @@ Sorted by `u` (high first), then best place. Always: `nu` = exact copies + the s
 Every `in`/`out` card id has a `c/` image. The version's energy is always the list's energy; when an added Pokémon
 needs another type, the build log says so (none on Nov 9). The QR check decodes every `alt` QR before deploy. Example UI text: "Also played: −1 Red Card +1 Soothing Shore
 (2 top players, best 15th of 203)".
+
+### Packed QR (new in v14)
+
+`q` = `"<n>:<base64>"`:
+- `n` = modules per side (no quiet zone; the page draws the quiet zone);
+- the n × n grid, **row-major, MSB first**: module k (row `k / n`, column `k % n`) is bit `128 >> (k & 7)` of byte
+  `k >> 3`; 1 = dark; the last byte is padded with 0 bits; standard base64 with `=` padding.
+- Error correction M, from the `qrcode` package (the same grid as the SVG `qr` before v14; checked on 510 QR codes).
+- Decode (JS): `const [n, b] = q.split(":"), bin = atob(b); dark(k) = bin.charCodeAt(k >> 3) & (128 >> (k & 7))`.
+- The QR check before deploy draws every `q` with a quiet zone, reads it with jsQR and compares the deck code with
+  the list's cards and energy.
 
 ### nolist (new in v12)
 
@@ -243,7 +258,7 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 ```json
 { "tid": "6912...", "lists": [
   { "pl": 1, "place": "1st of 215", "deck": "greninja-ex-b1-mega-greninja-ex-c1", "sc": "12-1-1", "p": "IamCOMPLEX",
-    "energy": ["water"], "cards": [{ "id": "b1-073", "n": "Greninja ex", "c": 2 }], "qr": "<svg ...>" } ] }
+    "energy": ["water"], "cards": [{ "id": "b1-073", "n": "Greninja ex", "c": 2 }], "q": "37:/q8..." } ] }
 ```
 
 | Field | Meaning |
@@ -254,7 +269,7 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 | `deck` | archetype id (name, art, energy in `events.json` `decks`) |
 | `sc` | record W-L-T |
 | `p` | the player's name as Limitless shows it (public) |
-| `energy`, `eg`, `cards`, `qr` | same rules as a list in `data.json` (energy shown on the page, else `eg: 2` the deck's most common Limitless energy, else `eg: 1` attack costs; QR decoded before deploy). Every card id has a `c/` image and is in `packs.json` |
+| `energy`, `eg`, `cards`, `q` | same rules as a list in `data.json` (energy shown on the page, else `eg: 2` the deck's most common Limitless energy, else `eg: 1` attack costs; QR decoded before deploy). Every card id has a `c/` image and is in `packs.json` |
 
 ## search.json (new in v9)
 

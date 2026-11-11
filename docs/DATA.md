@@ -159,6 +159,9 @@ The pairings do not say which deck a player used in a match. Thus:
   the usual copies and the top players whose list has the card (all finishes in the window).
 - Events tab (decision Nov 10, request R8): `events.json` lists the single-deck events of the 7-day window (multi-deck
   events left out); `t/<tid>.json` has each event's public lists in place order, with the same energy and QR rules.
+- QR (decision Nov 12, request R12): each QR is written as packed bits `q` ("<n>:<base64>", row-major, MSB first),
+  not as an SVG string: about 10x smaller (data.json + v/ + t/ + more.json: about 1.7 MB -> 0.5 MB). The deploy copy
+  of the page is minified (terser + csso) by page.mjs.
 - Cards are compared by card id (set + number). Limitless decklists use 1 standard print per card (checked Nov 9:
   989 decklists, 361 card ids, no ☆/Crown print, no card with 2 prints of the same function); `build.mjs`
   reports a problem if a deck ever has 2 prints of the same card.
