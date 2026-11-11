@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 12 (Nov 11, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 13 (Nov 11, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,11 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 13 (request R11 of the UI chat): new **top player** definition: a player with a **winning record**
+  (W > L; ties count neither way) at a single-deck event in the window (was: top 25 % of the players, 8 to 32).
+  `nu`, `of`, the list groups, `alt` and `search.json` use it. New list field **`bc`**: a deck with no top player gets
+  its best-placed finish as its only list, `"bc": 1` ("below the cut"; `nu` = `of` = 0, no `alt`). `nolist` keeps
+  only decks with no single-deck list at all. `events.json` / `t/` do not change.
 - Version 12 (request R10 of the UI chat): new field **`nolist`** in `data.json` and `more.json`: the decks of
   that file's share range that have no list in the window, with rank, numbers, name, art and energy, for a disabled
   row in their rank place (see "nolist"). About 0.5 KB in `data.json`, 2 KB in `more.json` on Nov 11.
@@ -42,14 +47,15 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - Version 3: up to **10 lists** per deck (`nv` 1..10) from the deck's **20 best finishes** (`of` max 20);
   finishes are ranked by place relative to the event size (5th of 547 before 2nd of 153).
 
-## UI words (Nov 9, 2026)
+## UI words (Nov 9, 2026; top player rule changed Nov 11, v13)
 
 "Finish" in this contract is NOT the Limitless meaning ("top finishes" on a Limitless deck page = all shown placings,
-whole set, all events). Our finish = one player's top-25 % place at a single-deck event in the last 7 days, with a
-public decklist. The page calls it a **top player**:
+whole set, all events). Our finish = one player's place with a **winning record (W > L)** at a single-deck event in
+the last 7 days, with a public decklist (until v12: a top-25 % place). The page calls it a **top player**:
 - pill: "Used by `nu` of `of` top players" (was "Played in N of M finishes")
-- ⓘ text: "A top player placed in the top 25% of a single-deck event in the last 7 days (at least 8 and at most
-  32 players per event), so their decklist is public."
+- ⓘ text (UI chat to update): "A top player won more matches than they lost at a single-deck event in the last
+  7 days." (until v12: "placed in the top 25% ... at least 8 and at most 32 players per event").
+- "Below the cut" (`bc: 1`): the deck's best-placed player when the deck has no top player; not a top player.
 - footer: "up to 10 lists per deck, from the decklists of top players"
 Use the same word in new docs and UI notes.
 
@@ -129,8 +135,9 @@ page shows the 10 groups with the most top players (`nu`), then the better best 
 | `pl` | string | place, e.g. `1st of 273` |
 | `sc` | string | record W-L-T, e.g. `11-1-2` |
 | `dt` | date | tournament day `YYYY-MM-DD` |
-| `nu` | int | finishes in the group: exact copies + 1-card changes. UI: "top players" (see "UI words") |
-| `of` | int | all the deck's finishes with a readable list in the window (also those of groups that are not shown). UI: "top players" |
+| `nu` | int | finishes in the group: exact copies + 1-card changes. UI: "top players" (see "UI words"). `0` on a `bc` list |
+| `of` | int | all the deck's finishes with a readable list in the window (also those of groups that are not shown). UI: "top players". `0` on a `bc` list |
+| `bc` | 1 or absent | **new in v13.** "below the cut": the deck has no top player (W > L) in the window, so this is its best-placed finish (smallest place / players) with any record. Then it is the deck's only list (`nv` 1), `nu` = `of` = 0, no `alt`; `pl`, `sc`, `ev`, `dt`, energy and QR as for any list. The deck is not in `search.json` |
 | `alt` | array or absent | **new in v7.** the distinct 1-card changes inside the group (see below). Absent when the group has only exact copies |
 
 `alt` entry:
@@ -173,8 +180,9 @@ needs another type, the build log says so (none on Nov 9). The QR check decodes 
 | `art` | the 1-2 named Pokémon, same rule as a deck's `art`; every id has a `c/` (and `z/`) image |
 | `energy` | from the newest decklist of the deck in the current set (any event, also multi-deck; energy rule as for lists); else the deck's energy vote or the attack costs of the named Pokémon. Can be `[]` (only colorless costs) |
 
-Sorted by rank. A deck is in `nolist` when none of its finishes in the window has a public single-deck list (its
-lists are only from earlier days of the set, only from multi-deck events, or not public). No `w`/`l`/`t`, no lists,
+Sorted by rank. A deck is in `nolist` when none of its finishes in the window has a public single-deck list (since
+v13 the pipeline fetches a "below the cut" list for such decks, so `nolist` keeps only decks that are only in
+multi-deck events, or whose list is not fetched yet). No `w`/`l`/`t`, no lists,
 no QR. Without a decklist in the set, `art` comes from the slug (named Pokémon + set code; checked Nov 11: the same
 art as the lists for 53 of 53 decks).
 
@@ -225,7 +233,7 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 | `events` | every **single-deck** Standard event of the window (multi-deck events are left out: no single list per player), newest first (start time) |
 | `tid` | Limitless tournament id; the event's lists are in `t/<tid>.json` |
 | `name`, `dt`, `players`, `url` | event name, day `YYYY-MM-DD`, entries, Limitless standings link |
-| `nl` | number of lists in `t/<tid>.json` (the public decklists: top 25 % of the players, 8 to 32) |
+| `nl` | number of lists in `t/<tid>.json` (the public decklists: top 25 % of the players, 8 to 32; events fetched before Nov 9: 16). Not changed by the v13 top-player rule |
 | `win` | the 1st place: `deck` id, display `name` (same naming as `data.json`), `art` (1-2 card ids, from the winner's list when it is public), `energy` (the winner's list when public, else the deck's), `sc` record. null only when the 1st place has no deck |
 | `top` | the decks of places 1 to 8 as `[deckId, place]`, place order (with or without a public list) |
 | `decks` | `{deckId: {name, art, energy}}` for every deck id in `win`, `top` and `t/`. For decks in `data.json` or `more.json`: their list 1. Other decks: a recent list of the current set (energy rule as for lists) |
@@ -258,7 +266,7 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 
 | Field | Meaning |
 |---|---|
-| `cards` | 1 entry per card id that is in a shown list or an `alt` version (`in` card) of any deck in `data.json` or (v11) `more.json`. Sorted by `u`, high first |
+| `cards` | 1 entry per card id that is in a shown list or an `alt` version (`in` card) of any deck in `data.json` or (v11) `more.json` (v13: not the `bc` decks). Sorted by `u`, high first |
 | `id`, `n` | card id and card name (every `id` has a `c/` image) |
 | `u` | sum of the top players over all decks (the third value of each `decks` entry) |
 | `decks` | `[deckId, usual copies, top players]`, sorted by top players, high first. Top players = the deck's finishes in the window whose list has the card (all groups, also those not shown: the same population as `of`). Usual copies = the copies in the deck's most used shown list that has the card; else the most common count among those finishes. Only decks with at least 1 such finish |
@@ -291,7 +299,8 @@ and the card `pack` field.
 - Window: the last 7 days of tournaments of the current set (Standard; not events with "special rules" or "suspended cards";
   8 players or more).
 - Lists come from single-deck events only. Best finish = smallest place / players (then place, then newer).
-  Decklists exist for the top 25 % of each event (8 to 32 players).
+  Top player (v13) = a winning record (W > L) at a single-deck event; the pipeline fetches all their decklists.
+  A deck without a top player gets 1 "below the cut" list (`bc`).
 - Lists that differ by 1 card or less count as the same list (`nu`); the shown lists are the groups with the most
   top players.
 - Multi-deck events count for `count` and `share`, not for `w`/`l`/`t`/`win` or the shown lists.

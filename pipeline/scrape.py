@@ -5,12 +5,12 @@
 Each run first reads the set list (pocket.limitlesstcg.com/cards). The current set = the newest set with a
 release date of today or earlier. --since defaults to its release date. data/sets.json keeps the list.
 Per new tournament: details, standings, every pairings round (Swiss + top cut) -> data/raw/YYYY/MM/<tid>.json.
-Then decklists of the top entries -> data/decklists/<tid>.json ({pid: [{"i": builder code, "e": energy or null}]},
+Then decklists of the top players (R11: W > L in single-deck events) and "below the cut" lists -> data/decklists/<tid>.json ({pid: [{"i": builder code, "e": energy or null}]},
 kept forever; lists stored in the old format without energy are fetched again).
 The run stops at --max-requests; the next run continues. It exits with code 1 when a page does not parse.
 """
 import argparse, glob, json, os, re, sys, time
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 import requests
 from bs4 import BeautifulSoup
@@ -22,9 +22,15 @@ DELAY = 2.0                # seconds between requests
 RETRY_WAIT = (10, 30)      # backoff on HTTP 429 / 5xx
 LIST_SIZE = 150            # rows read from the completed-tournaments list
 MIN_PLAYERS = 8
-# Decklists fetched per tournament (best places first): top 25 % of the players, at least 8, at most 32.
+# Decklists fetched per tournament (decision Nov 11, 2026, request R11):
+#   single-deck events: every placed player with a winning record (W > L; ties do not count) = a "top player";
+#   multi-deck events (lists used only for energy votes): the old rule, top 25 % of the players, at least 8, at most 32.
+# Before Nov 11 it was the top-25 % rule for all events (and a fixed top 16 before Nov 9); those lists stay.
 DECKLIST_SHARE, DECKLIST_MIN, DECKLIST_MAX = 0.25, 8, 32
-DECKLIST_OLD = 16          # the fixed count used before Nov 9, 2026 (index entries without "dl")
+DECKLIST_RULE = "wl1"      # index["done"][tid]["rule"]: the rule already queued for that event
+# "Below the cut" (R11b): for a deck with BELOW_CUT_SHARE % or more of the 7-day window and no top player there, the
+# list of its best-placed player (single-deck events). The page shows decks from 0.2 %; 0.1 % gives a margin.
+BELOW_CUT_SHARE, WINDOW_DAYS = 0.1, 7
 
 
 def decklist_count(players):
@@ -32,9 +38,11 @@ def decklist_count(players):
 
 
 def decklist_pids(raw):
-    """Player ids whose decklist we keep: the best places with a list, decklist_count(players) of them."""
+    """Player ids whose decklist we keep, best places first (see DECKLIST_RULE)."""
     ranked = sorted((e for e in raw["entries"] if e["has_list"] and e["place"] is not None), key=lambda e: e["place"])
-    return [e["pid"] for e in ranked[:decklist_count(raw["players"])]]
+    if raw["multi_deck"]:
+        return [e["pid"] for e in ranked[:decklist_count(raw["players"])]]
+    return [e["pid"] for e in ranked if e["w"] > e["l"]]
 SKIP_PHRASES = ("special rules", "special rule", "suspended cards", "suspended card")
 RAW_VERSION = 1
 
@@ -324,27 +332,60 @@ def is_current(lists_value):
     return isinstance(lists_value, list) and all(isinstance(x, dict) for x in lists_value)
 
 
-def queue_more_places(data, index):
-    """When the decklist rule gives more places than an event got before, queue the extra places.
-    index["done"][tid]["dl"] = the count already queued for that event (missing = DECKLIST_OLD)."""
+def _queue(data, index, tid, pids):
+    have = set(load(os.path.join(data, "decklists", f"{tid}.json"), {}))
+    q = index["decklists"].setdefault(tid, [])
+    extra = [p for p in pids if p not in have and p not in q]
+    q.extend(extra)
+    if not q:
+        del index["decklists"][tid]
+    return len(extra)
+
+
+def queue_more_places(data, index, since):
+    """When the decklist rule changed since an event was queued, queue the lists the new rule adds (events of the
+    current set only). index["done"][tid]["rule"] = the rule already queued for that event."""
     n = 0
     for tid, info in index["done"].items():
-        if "players" in info and decklist_count(info["players"]) <= info.get("dl", DECKLIST_OLD):
-            continue  # no raw file read needed
+        if info.get("rule") == DECKLIST_RULE:
+            continue
+        if info["date"][:10] >= since:
+            raw = load(os.path.join(data, info["path"]), None)
+            if not raw:
+                continue
+            n += _queue(data, index, tid, decklist_pids(raw))
+        info["rule"] = DECKLIST_RULE
+    return n
+
+
+def queue_below_cut(data, index, today):
+    """R11b: decks of the 7-day window with BELOW_CUT_SHARE % or more of all decks and no top player (W > L, placed,
+    single-deck event): queue the list of the deck's best-placed player (place / players, then place, then newer).
+    Share as in build_db.py: every deck of an entry counts (multi-deck entries count once per deck)."""
+    lo = (date.fromisoformat(today) - timedelta(days=WINDOW_DAYS)).isoformat()
+    count, top, best = {}, set(), {}
+    for tid, info in index["done"].items():
+        if info["date"][:10] <= lo:
+            continue
         raw = load(os.path.join(data, info["path"]), None)
         if not raw:
             continue
-        info["players"] = raw["players"]
-        want = decklist_count(raw["players"])
-        if want <= info.get("dl", DECKLIST_OLD):
-            info["dl"] = info.get("dl", DECKLIST_OLD)
-            continue
-        have = set(load(os.path.join(data, "decklists", f"{tid}.json"), {}))
-        q = index["decklists"].setdefault(tid, [])
-        extra = [p for p in decklist_pids(raw) if p not in have and p not in q]
-        q.extend(extra)
-        info["dl"] = want
-        n += len(extra)
+        for e in raw["entries"]:
+            for a in e["decks"]:
+                count[a] = count.get(a, 0) + 1
+            if raw["multi_deck"] or not e["decks"] or e["place"] is None or not e["has_list"]:
+                continue
+            a = e["decks"][0]
+            if e["w"] > e["l"]:
+                top.add(a)
+            key = (e["place"] / raw["players"], e["place"], -int(raw["date"][:10].replace("-", "")))
+            if a not in best or key < best[a][0]:
+                best[a] = (key, tid, e["pid"])
+    total = sum(count.values()) or 1
+    n = 0
+    for a, (key, tid, pid) in sorted(best.items()):
+        if a not in top and 100 * count[a] / total >= BELOW_CUT_SHARE:
+            n += _queue(data, index, tid, [pid])
     return n
 
 
@@ -480,16 +521,19 @@ def run(args):
             path = os.path.join(data, "raw", raw["date"][:4], raw["date"][5:7], f"{raw['id']}.json")
             save(path, raw)
             index["done"][raw["id"]] = {"date": raw["date"], "path": os.path.relpath(path, data),
-                                        "players": raw["players"], "dl": decklist_count(raw["players"])}
+                                        "players": raw["players"], "rule": DECKLIST_RULE}
             index["decklists"][raw["id"]] = decklist_pids(raw)  # still to fetch
             save(ipath, index, indent=1)
             stats["new"] += 1
             print(f"  ok {raw['id']} {raw['date'][:10]} {raw['players']}p {len(raw['rounds'])} rounds"
                   f"{' multi-deck' if raw['multi_deck'] else ''}: {raw['name']}")
         # Decklists. Old-format lists (no energy) are fetched again.
-        n_more = queue_more_places(data, index)
+        n_more = queue_more_places(data, index, cur["release"])
         if n_more:
-            print(f"{n_more} more decklists queued (decklist rule: top {DECKLIST_SHARE:.0%} of players, {DECKLIST_MIN}..{DECKLIST_MAX})")
+            print(f"{n_more} more decklists queued (decklist rule {DECKLIST_RULE}: W > L in single-deck events)")
+        n_bc = queue_below_cut(data, index, now()[:10])
+        if n_bc:
+            print(f"{n_bc} below-the-cut decklists queued (decks with {BELOW_CUT_SHARE} % or more and no top player)")
         n_old = queue_old_format(data, index)
         if n_old:
             print(f"{n_old} stored decklists have the old format (no energy); fetching them again")

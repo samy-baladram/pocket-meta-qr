@@ -28,7 +28,12 @@ The round links come from the pairings page itself. The last link is the top cut
 - Skip a tournament (decision Nov 8, 2026: these are not Standard events, keep the rule as it is) when its details text has "special rules", "suspended card(s)" (same rule as
   `tcg-deck-analyzer`), or when it has fewer than 8 players.
 - Keep multi-deck tournaments, with the flag `multi_deck: true` (see 4.4).
-- Decklists (decision Nov 9, 2026): the best places of each tournament, **top 25 % of the players, at least 8,
+- Decklists (decision Nov 11, 2026, request R11): in single-deck events, every placed player with a **winning
+  record (W > L; ties count neither way)** = a "top player" (index rule `wl1`; on the switch, the extra lists of the
+  current set were queued once: 622 pages). Multi-deck events keep the top-25 % rule below (their lists are only used
+  for energy votes). Plus "below the cut": for each deck with 0.1 % share or more of the 7-day window and no top
+  player there, the list of its best-placed player (single-deck events). Lists already stored stay.
+- Decklists before Nov 11 (decision Nov 9, 2026): the best places of each tournament, **top 25 % of the players, at least 8,
   at most 32** (12-33 players: 8; 100: 25; 128 or more: 32). Before Nov 9 it was a fixed top 16; those lists
   stay, and the extra places were fetched once. The other entries keep their archetype(s) and results, but no cards.
   Compared on the 34 C1 events: +46 % requests for about 2x the decks with 20 usable finishes (a fixed top 32
@@ -135,6 +140,10 @@ The pairings do not say which deck a player used in a match. Thus:
 - "Show more decks" (decision Nov 11, request R9): the decks with 0.2 % <= share < 0.5 % that have at least 1 list
   go to `more.json` (same deck format, loaded on tap), with their lists in `v/` and their cards in `search.json`.
   `data.json` only gets the count (`more`).
+- Top players (decision Nov 11, request R11): the shown lists, `nu`, `of`, `alt` and `search.json` use only finishes
+  with a winning record (W > L). A deck without one gets its best-placed finish as its only list, flagged `bc`
+  ("below the cut"; not a top player: `nu` = `of` = 0, no `alt`, not in `search.json`). The Latest Events tab keeps
+  each event's top 25 % (8..32; 16 for events fetched before Nov 9).
 - Decks without a list (decision Nov 11, request R10): a deck with no public single-deck list in the window keeps its
   rank place as a `nolist` entry (rank, players, share, win, name, art, energy) in `data.json` / `more.json`.
   Art and energy from its newest decklist in the set (any event), else from the slug and attack costs.

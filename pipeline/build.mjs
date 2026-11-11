@@ -283,6 +283,13 @@ for (const [rank, d] of input.decks.entries()) {
   for (const c of chosen) {
     const v = await variation(name, c.list, problems, id, c.energy, vote);
     v.ev = c.row.ev; v.pl = c.row.pl; v.sc = c.row.sc; v.dt = c.row.dt;
+    if (d.bc) {
+      // R11b (Nov 11, 2026): "below the cut": the deck has no top player (W > L) in the window, so its only list is
+      // its best-placed finish. Not a top player: nu = of = 0, no alt.
+      v.bc = 1; v.nu = 0; v.of = 0;
+      vars.push(v);
+      continue;
+    }
     v.nu = c.used; // finishes ("top players") in the group: exact copies + 1-card changes
     v.of = of;     // all finishes with a readable list (also those of groups that are not kept)
     const alt = changes(c);
@@ -295,7 +302,8 @@ for (const [rank, d] of input.decks.entries()) {
   });
   if (vars.length > 1) writeFileSync(`site/v/${id}.json`, JSON.stringify({ id, vars: vars.slice(1).map(({ art, ...v }) => v) }));
   // For the search index (R6): every finish of the deck (all groups) and the shown lists + alt versions.
-  searchDecks.push({ id, finishes: groups.flatMap((g) => g.members.map((x) => x.m)),
+  // R11: top players only, so a "below the cut" deck is not in search.json.
+  if (!d.bc) searchDecks.push({ id, finishes: groups.flatMap((g) => g.members.map((x) => x.m)),
     shown: vars.map((v) => new Map(v.cards.map((c) => [c.id, c.c]))),
     altIn: vars.flatMap((v) => (v.alt || []).flatMap((a) => a.in.map((c) => c.id))) });
   const { art, ...best } = vars[0];
@@ -466,7 +474,8 @@ console.log(`more.json: ${moreIds.size} decks (of ${input.decks.filter((d) => d.
   const k = (e) => all.filter((v) => (v.eg || 0) === e).length;
   console.log(`energy of ${all.length} lists: ${k(0)} shown by Limitless, ${k(2)} from other lists of the deck, ${k(1)} from attack costs`);
 }
-console.log(`decks: ${decks.length}, lists: ${nvars}, unique cards: ${images.size}`);
+console.log(`decks: ${decks.length}, lists: ${nvars}, unique cards: ${images.size}; below the cut (bc): ` +
+  (decks.filter((d) => d.bc).map((d) => `${d.rank} ${d.name} ${d.pl} ${d.sc}`).join("; ") || "none"));
 console.log(`events: ${eventLog.events} events, ${eventLog.lists} lists (${eventLog.qr} with QR, ${eventLog.none} without)`);
 console.log(`alt versions: ${altLog.qr} with QR, ${altLog.none} without QR` +
   (altLog.energy.length ? `; energy notes:\n  ${altLog.energy.join("\n  ")}` : "; energy notes: none"));
