@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794414067-274b -->
+<!-- ui: artifact version 1794416151-6ef1 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -503,6 +503,9 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 } /* no shadow under the cards (light and dark) */
 .cards img, .ph { width: 100%; aspect-ratio: 150 / 209; display: block; border-radius: 2px; background: var(--line); }
 .cards img { height: auto; cursor: pointer; }
+/* Card fade: a card image that is not loaded yet fades in when it is ready (see dealGrid) */
+.cards img.dealt { animation: cardIn 0.18s ease-out both; } /* until it loads, the slot shows the card's grey background */
+@keyframes cardIn { from { opacity: 0.35; } }
 .cards img.hl { position: relative; z-index: 2; } /* the copies of the card in the popup (no outline) */
 html { -webkit-tap-highlight-color: transparent; }
 .cards img, .ait img, .aswl img, .cbox img { -webkit-user-select: none; user-select: none; }
@@ -1245,7 +1248,7 @@ html { -webkit-tap-highlight-color: transparent; }
     }
     return `
       ${v.bc ? bcTab(v) : i === 0 && d.lists && d.lists.length > 1 ? l1Tab(v) : ""}
-      <div class="cards"${outTxt ? ` data-out="${esc(outTxt)}"` : ""}>${copies.map((c, k) => { const img = `<img data-n="${esc(c.n)}"${dif[k] ? ' data-dif="1"' : ""} src="c/${c.id}.webp" alt="${esc(c.n)}${dif[k] ? ` (not in the ${L1n(d)})` : ""}" width="150" height="209">`;
+      <div class="cards"${outTxt ? ` data-out="${esc(outTxt)}"` : ""}>${copies.map((c, k) => { const img = `<img data-n="${esc(c.n)}"${dif[k] ? ' data-dif="1"' : ""} ${i === 0 ? 'fetchpriority="high" ' : ""}src="c/${c.id}.webp" alt="${esc(c.n)}${dif[k] ? ` (not in the ${L1n(d)})` : ""}" width="150" height="209">`;
         return img; }).join("")}</div>
       <div class="sfoot">
         ${info(v, v.energy.map((e) => `<img src="e/${e}.webp" alt="${cap(e)}" title="${cap(e)}" width="28" height="28">`).join(""), i)}
@@ -1705,7 +1708,7 @@ html { -webkit-tap-highlight-color: transparent; }
     p.innerHTML = `
       <div class="vwrap">
         <div class="vars">
-          <div class="slide" data-i="0">${n === 1 ? slideBody(d, d) : d.lists ? slideBody(d.lists[0], d, 0) : placeholder(d)}</div>
+          <div class="slide" data-i="0">${n === 1 ? slideBody(d, d) : d.lists ? slideBody(d.lists[0], d, 0) : slideBody(d, d, 0)}</div>
           ${Array.from({ length: n - 1 }, (_, i) => `<div class="slide" data-i="${i + 1}" data-pending="1">${placeholder(d)}</div>`).join("")}
         </div>
         ${n > 1 ? `<button class="chev-btn prev" type="button" aria-label="Previous list" hidden>${CHEV_L}</button>
@@ -1716,7 +1719,9 @@ html { -webkit-tap-highlight-color: transparent; }
     if (n > 1 && !d.lists) listsOf(d).then((L) => { // first open: list 1 (the most played) comes from the order
       const s0 = p.querySelector('.slide[data-i="0"]');
       if (openId !== d.id || !s0 || !s0.isConnected) return;
-      s0.innerHTML = slideBody(L[0], d, 0); fitScores(s0);
+      // list 1 is drawn at once from data.json; draw it again only when another list is the most played
+      if (L[0] !== d) { s0.innerHTML = slideBody(L[0], d, 0); fitScores(s0); }
+      else if (L.length > 1 && !s0.querySelector(".l1tab, .bctab")) { curDeck = d; s0.insertAdjacentHTML("afterbegin", l1Tab(d)); }
     }).catch(() => {});
     if (n > 1) wireCarousel(p, d, n);
     if (fstate.card && n > 1) jumpToCard(p, d, fstate.card);
@@ -1768,6 +1773,7 @@ html { -webkit-tap-highlight-color: transparent; }
       // Dots: the lists now in view are highlighted.
       p.querySelectorAll(".dot").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.i >= i && +b.dataset.i < i + k)));
       slides.forEach((s, j) => s.classList.toggle("away", n > k && (j < i || j >= i + k)));
+      if (p._wake) p._wake();
       const vc = p.querySelector(".vcount"); // many lists: "3 / 10", or "1–3 / 10" when several show at once
       if (vc) vc.textContent = `${k > 1 ? `${i + 1}\u2013${Math.min(i + k, n)}` : i + 1} / ${n}`;
     };
@@ -1798,10 +1804,12 @@ html { -webkit-tap-highlight-color: transparent; }
     }
 
     // Render a list only when its slide comes into view: one small JSON per deck, then its card images.
+    p._wake = () => slides.forEach((s) => { if (s.dataset.pending && !s.classList.contains("away")) { io.unobserve(s); io.observe(s); } }); // a list came into view: check again
     io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (!e.isIntersecting || !e.target.dataset.pending) return;
         const slide = e.target, i = +slide.dataset.i;
+        if (slide.classList.contains("away") && per() > 1) return; // wide screens: only the lists in view (the faded side ones wait)
         delete slide.dataset.pending;
         listsOf(d).then((L) => {
           if (openId !== d.id || !slide.isConnected) return;
@@ -2576,6 +2584,32 @@ html { -webkit-tap-highlight-color: transparent; }
       $("meta").innerHTML = "<span>Deck data did not load.</span>";
       $("list").innerHTML = '<div class="empty">Deck data did not load. Reload the page to try again.</div>';
     });
+
+  // Card fade: a list card that is not loaded yet fades in (0.16 s) when its own image is ready. No placeholder hold-back
+  // (cards are not held for their turn: that felt slower). Cards already in the cache show at once with no effect.
+  const FADE = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function dealGrid(g) {
+    if (g._dealt || !FADE) return; g._dealt = 1;
+    g.querySelectorAll("img[data-n]").forEach((im) => {
+      if (im.complete && im.naturalWidth) return;
+      im.addEventListener("load", () => im.classList.add("dealt"), { once: true });
+    });
+  }
+  new MutationObserver((ms) => { for (const m of ms) for (const n of m.addedNodes) if (n.nodeType === 1) {
+    if (n.matches(".cards")) dealGrid(n); n.querySelectorAll && n.querySelectorAll(".cards").forEach(dealGrid); } })
+    .observe(document.body, { childList: true, subtree: true });
+  // Load early: a touch or mouse-over on a deck row starts loading its list-1 cards, so most are ready when it opens
+  const warmed = new Set();
+  const warm = (e) => { const r = e.target.closest && e.target.closest(".arow[data-id]"); if (!r || warmed.has(r.dataset.id) || !data) return;
+    warmed.add(r.dataset.id); const d = data.decks.find((x) => x.id === r.dataset.id);
+    if (d && d.cards) d.cards.forEach((c) => { const im = new Image(); im.decoding = "async"; im.src = `c/${c.id}.webp`; }); };
+  document.addEventListener("pointerdown", warm, { capture: true, passive: true });
+  document.addEventListener("pointerover", (e) => { if (e.pointerType === "mouse") warm(e); }, { passive: true });
+
+  // Service worker (static/sw.js in the repo): keeps the card images on the device, so later visits show them without a
+  // network check. Only on the live site (and a local test server), not in the artifact preview.
+  if ("serviceWorker" in navigator && /^(pocketmetaqr\.com|www\.pocketmetaqr\.com|127\.0\.0\.1|localhost)$/.test(location.hostname))
+    addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
 
   // Home-screen mode (added to the home screen; iOS gives it no pull-to-refresh, and it keeps the page in memory for
   // hours): when the app comes back after 15 min or more and the data is older than 1 h, check data.json once. If it
