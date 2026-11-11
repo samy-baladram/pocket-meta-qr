@@ -1,6 +1,6 @@
-<!-- ui: artifact version 1794308361-d975 -->
-<title>Pocket Meta QR – Pokémon TCG Pocket meta decks with QR codes</title>
-<meta name="description" content="This week's winning Pokémon TCG Pocket decks from tournament results, the lists that top players use, and a QR code for every list to import it into the game. Updated every hour.">
+<!-- ui: artifact version 1794368492-ae6d -->
+<title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
+<meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
 <meta name="theme-color" content="#2a98f9">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -10,8 +10,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Pocket Meta QR">
 <meta property="og:url" content="https://pocketmetaqr.com/">
-<meta property="og:title" content="Pocket Meta QR – this week's Pokémon TCG Pocket meta, with QR codes">
-<meta property="og:description" content="The decks that win right now, the lists that top players use, and a QR code for every list. Free, updated every hour.">
+<meta property="og:title" content="Pocket Meta QR – this week's Pokémon TCG Pocket meta and tournaments, with QR codes">
+<meta property="og:description" content="The decks that win right now, the latest tournaments and their top 8, and a QR code for every list. Free, no sign-up.">
 <meta property="og:image" content="https://pocketmetaqr.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -429,19 +429,20 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
    the 1-card changes. The change in the middle is chosen and shown in the deck: the replaced card fades, the new card lies on it,
    8px right and down. Tap outside closes it. ===== */
 .cards img.arep { opacity: 0.3; }
-.anew { position: absolute; z-index: 3; pointer-events: none; animation: anewIn 0.22s ease-out; }
-.anew img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 4px 10px rgba(20, 40, 70, 0.45); pointer-events: auto; }
+.anew { position: absolute; z-index: 3; pointer-events: none; animation: anewIn 0.22s ease-out;
+  -webkit-mask-image: linear-gradient(180deg, #000 25%, transparent 100%); mask-image: linear-gradient(180deg, #000 25%, transparent 100%); } /* its bottom 75% fades out */
+.anew img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; pointer-events: auto; } /* no shadow: it would not fade */
 .cards img.arep0 { opacity: 0; }
-.aback { position: absolute; z-index: 2; pointer-events: none; opacity: 0.3; }
+.aback { position: absolute; z-index: 2; pointer-events: none; opacity: 0.3; clip-path: inset(0 0 50% 0); } /* the old card: faded, its bottom half cut */
 .aback img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; }
-@keyframes anewIn { from { transform: translate(-8px, -8px); opacity: 0; } }
+@keyframes anewIn { from { transform: translateY(-25%); opacity: 0; } }
 .apop2 { position: absolute; z-index: 6; left: 8px; right: 8px; bottom: var(--ab, 30px); border-radius: 12px; background: var(--surface); box-shadow: var(--pop-sh);
   display: flex; flex-direction: column; animation: apopIn 0.16s ease-out; }
 .slide .altb[aria-expanded="true"] { position: relative; z-index: 7; } /* the button that opened the popover stays above its shadow */
 @keyframes apopIn { from { opacity: 0; transform: translateY(6px); } }
 .apop2 .parr2 { position: absolute; bottom: -5px; left: var(--ax, 50%); width: 10px; height: 10px; margin-left: -5px; background: var(--surface); transform: rotate(45deg);
   box-shadow: 3px 3px 5px rgba(20, 40, 70, 0.22); }
-.acar { --iw: 222px; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
+.acar { --iw: 228px; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
   padding: 8px calc(50% - var(--iw) / 2) 6px; align-items: center; border-radius: 12px; }
 .acar::-webkit-scrollbar { display: none; }
 .ait { flex: 0 0 var(--iw); scroll-snap-align: center; display: grid; grid-template-columns: 44px 12px 44px 62px; column-gap: 8px; justify-content: center; align-items: stretch;
@@ -453,7 +454,8 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 .ait > img.ao { opacity: 0.55; filter: grayscale(0.4); }
 .ait .achev { display: grid; place-items: center; color: var(--muted); }
 .ait .achev svg { width: 10px; height: 14px; }
-.ait .aqr { grid-column: 4; grid-row: 1; width: 62px; height: auto; margin-left: 2px; }
+.ait .aqr { grid-column: 4; grid-row: 1; width: 62px; height: auto; margin-left: 8px; font-size: 11px; }
+.ait .aqr svg { width: 26px; height: 26px; }
 .ait .ast { grid-column: 1 / -1; margin-top: 5px; font-size: var(--fs-xs); color: var(--muted); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ait .ast b { color: var(--ink); }
 .adots2 { display: flex; justify-content: center; gap: 4px; padding: 0 0 8px; }
@@ -482,11 +484,11 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 @media (prefers-reduced-motion: reduce) { .anew, .apop2 { animation: none; } .ait { transition: none; } }
 /* Narrow list columns (3 per view): a smaller panel, so it covers the footer only */
 @container (max-width: 300px) {
-  .acar { --iw: 182px; padding: 6px calc(50% - var(--iw) / 2) 4px; }
+  .acar { --iw: 188px; padding: 6px calc(50% - var(--iw) / 2) 4px; }
   .ait { grid-template-columns: 34px 10px 34px 48px; column-gap: 6px; padding: 6px 7px; }
   .ait > img { width: 34px; }
-  .ait .aqr { width: 48px; margin-left: 1px; font-size: 8px; }
-  .ait .aqr svg { width: 16px; height: 16px; }
+  .ait .aqr { width: 48px; margin-left: 6px; font-size: 10px; }
+  .ait .aqr svg { width: 21px; height: 21px; }
   .ait .ast { margin-top: 3px; }
   .adots2 { padding-bottom: 6px; }
 } /* no shadow under the cards (light and dark) */
@@ -949,6 +951,67 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
 }
 /* Opening and closing a deck is instant (no grow/shrink animation): snappier, and the row/tile can be held in place exactly */
 .snap, .snap * { transition: none !important; }
+
+/* ===== Tabs (in-game style segmented control): Meta Decks | Latest Events ===== */
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 999px; background: var(--tile);
+  box-shadow: inset 1px 2px 4px rgba(45, 95, 175, 0.14), inset -1px -1px 2px rgba(255, 255, 255, 0.7); }
+.tabs button { height: 38px; border: 0; border-radius: 999px; background: none; color: var(--muted); font-weight: 600; font-size: var(--fs-l); cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--raised-sm), var(--bevel); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tabs { box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.5); } }
+:root[data-theme="dark"] .tabs { box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.5); }
+.list[hidden] { display: none; }
+/* ===== Latest Events: one row per event (winner deck icons and energy streak), day headers ===== */
+.evnote { margin: 0 4px -4px; font-size: var(--fs-s); color: var(--muted); }
+.evday { margin: 6px 4px -4px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.evday:first-child { margin-top: 0; }
+.evname { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.evname .aname { min-width: 0; }
+.evsz { flex: none; padding: 1px 7px; border-radius: 999px; font-size: var(--fs-xs); font-weight: 700; line-height: 1.4; white-space: nowrap; border: 1px solid var(--line-strong); color: var(--muted); background: var(--surface); }
+.evsz.m { color: var(--acc-ink); border-color: var(--acc-line); background: linear-gradient(var(--acc-bg), var(--acc-bg)), var(--surface); }
+.evsz.l { color: var(--hot-ink); border-color: var(--hot-line); background: linear-gradient(var(--hot-bg), var(--hot-bg)), var(--surface); }
+.evsub { font-size: var(--fs-s); color: var(--muted); line-height: 1.35; }
+.evsub b { color: var(--ink); font-weight: 600; }
+.evtop { display: flex; align-items: center; gap: 2px; margin-top: 3px; }
+.evtop img { width: 15px; height: auto; aspect-ratio: 367 / 512; border-radius: 1.5px; box-shadow: 0 1px 2px rgba(40, 60, 95, 0.3); }
+.evtop span { margin-right: 4px; font-size: var(--fs-xs); color: var(--muted); }
+.evr.acc > .arow[aria-expanded="true"] .evtop { display: none; }
+/* An open event: the lists of its top players (deck name and player on top, a place tab, no "top players" or swaps) */
+.evs .t-dk b { display: block; font-size: var(--fs-s); font-weight: 700; line-height: 1.25; }
+.evs .t-dk small { display: block; font-size: var(--fs-xs); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* Winner crown over the first card icon (the 1st place medal's crown) */
+.arow > .wcrown { position: absolute; z-index: 4; left: 21px; top: 3px; width: 15px; height: 11.5px; overflow: visible; fill: #e8b52e; stroke: #fff8e1; stroke-width: 1.8;
+  stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1px rgba(30, 50, 80, 0.3)); transform: rotate(-9deg); transition: transform var(--t-slow) ease; }
+.wcrown .cb { fill: none; stroke: #fff8e1; stroke-width: 0.7; stroke-linecap: round; }
+.arow[aria-expanded="true"] > .wcrown { display: none; } /* open: no crown */
+@media (min-width: 1024px) { .arow > .wcrown { left: 26px; top: 3px; width: 18px; height: 13.5px; } }
+/* Dark: like the dark medal crown (darker gold, outline in the dark card color) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .wcrown, :root:not([data-theme="light"]) .wcrown .cb { stroke: #283145; }
+  :root:not([data-theme="light"]) .wcrown { filter: brightness(0.7) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4)); } }
+:root[data-theme="dark"] .wcrown, :root[data-theme="dark"] .wcrown .cb { stroke: #283145; }
+:root[data-theme="dark"] .wcrown { filter: brightness(0.7) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4)); }
+/* Event lists: the dots under the strip (in the flow), the standings link under them; place colors for 1st-3rd */
+.apanel.evp .dots { position: static; transform: none; align-self: center; margin-top: -6px; }
+.apanel.evp:has(.dots):not(.fit) { padding-bottom: 0; }
+.dot.pd1::before { background: #e3ae2b; } .dot.pd2::before { background: #8eaad6; } .dot.pd3::before { background: #d98a52; }
+.dot.pd1[aria-current="true"]::before, .dot.pd2[aria-current="true"]::before, .dot.pd3[aria-current="true"]::before { width: 14px; }
+.evdk { display: flex; flex-direction: column; gap: 1px; margin: 2px 0 -4px; min-width: 0; line-height: 1.25; }
+.evdk b { font-size: var(--fs-m); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.evdk small { font-size: var(--fs-xs); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dnote.ptab { color: var(--muted); font-weight: 700; border: 1px solid var(--line-strong); }
+.dnote.ptab.p1 { color: #8a5a00; border-color: rgba(211, 154, 28, 0.55); background: linear-gradient(rgba(251, 224, 122, 0.4), rgba(251, 224, 122, 0.4)), var(--surface); }
+.dnote.ptab.p2 { color: #46618e; border-color: rgba(101, 133, 186, 0.5); background: linear-gradient(rgba(201, 219, 243, 0.55), rgba(201, 219, 243, 0.55)), var(--surface); }
+.dnote.ptab.p3 { color: #8a4a1e; border-color: rgba(196, 112, 58, 0.5); background: linear-gradient(rgba(247, 199, 156, 0.45), rgba(247, 199, 156, 0.45)), var(--surface); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .dnote.ptab.p1 { color: #f3cf62; background: linear-gradient(rgba(211, 154, 28, 0.18), rgba(211, 154, 28, 0.18)), var(--surface); }
+  :root:not([data-theme="light"]) .dnote.ptab.p2 { color: #c9dbf3; border-color: rgba(142, 170, 214, 0.55); background: linear-gradient(rgba(101, 133, 186, 0.22), rgba(101, 133, 186, 0.22)), var(--surface); }
+  :root:not([data-theme="light"]) .dnote.ptab.p3 { color: #efb084; background: linear-gradient(rgba(196, 112, 58, 0.2), rgba(196, 112, 58, 0.2)), var(--surface); } }
+:root[data-theme="dark"] .dnote.ptab.p1 { color: #f3cf62; background: linear-gradient(rgba(211, 154, 28, 0.18), rgba(211, 154, 28, 0.18)), var(--surface); }
+:root[data-theme="dark"] .dnote.ptab.p2 { color: #c9dbf3; border-color: rgba(142, 170, 214, 0.55); background: linear-gradient(rgba(101, 133, 186, 0.22), rgba(101, 133, 186, 0.22)), var(--surface); }
+:root[data-theme="dark"] .dnote.ptab.p3 { color: #efb084; background: linear-gradient(rgba(196, 112, 58, 0.2), rgba(196, 112, 58, 0.2)), var(--surface); }
+.dnote.ptab .pm { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.ptab.p1 .pm { background: linear-gradient(135deg, #fbe07a, #d39a1c); } .ptab.p2 .pm { background: linear-gradient(135deg, #c9dbf3, #6585ba); } .ptab.p3 .pm { background: linear-gradient(135deg, #f7c79c, #c4703a); }
+.evlink { margin: -6px auto 0; font-size: var(--fs-s); color: var(--muted); text-align: center; }
+.evlink a { color: var(--acc-ink); font-weight: 600; }
 </style>
 
 <div class="wrap">
@@ -957,7 +1020,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to dark mode"></button>
     <div class="ribbon"><span class="rlogo" aria-hidden="true"><svg viewBox="0 0 24 24" overflow="visible"><defs><linearGradient id="rlGrad" gradientUnits="userSpaceOnUse" x1="0" y1="2" x2="0" y2="22"><stop offset="0" style="stop-color:var(--rl-a)"/><stop offset="1" style="stop-color:var(--rl-b)"/></linearGradient></defs><g transform="skewX(-12) translate(2.5 0)"><g fill="none" stroke="url(#rlGrad)" stroke-width="2"><rect x="2.95" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="url(#rlGrad)"><rect x="4.9" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></g></svg></span><h1>Pocket Meta QR</h1></div>
     <div class="hrow">
-    <h2 class="hsec">Pok&eacute;mon TCG Pocket Meta Decks</h2>
+    <h2 class="hsec">Pok&eacute;mon TCG Pocket Meta</h2>
     <button class="theme-btn filt-btn" id="filtBtn" type="button" aria-label="Search and filter decks" title="Search and filter" aria-expanded="false" aria-controls="filt" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V18l-3.6 2v-7.6z"/></svg><span class="fdot" id="fdot" hidden></span></button>
     <div class="filt" id="filt" hidden>
       <label class="fsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
@@ -981,8 +1044,10 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   <div class="cscrim" id="cScrim" hidden></div>
   <div class="cpop ipop" id="iPop" role="dialog" aria-label="About this label" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div class="ibody" id="iPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="iPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <div class="cpop" id="cPop" role="dialog" aria-label="Card details" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div id="cPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="cPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="tabs" id="tabs" role="tablist" aria-label="View"><button type="button" role="tab" id="tabM" aria-selected="true" aria-controls="list">Meta Decks</button><button type="button" role="tab" id="tabE" aria-selected="false" aria-controls="evl">Latest Events</button></div>
   <p class="fnone" id="fnone" aria-live="polite" hidden><span id="fnoneTxt"></span> <button type="button" id="fclear">Clear</button></p>
   <main class="list" id="list"><div class="empty">Loading decks&hellip;</div></main>
+  <section class="list" id="evl" aria-label="Latest events" hidden></section>
 
   <dialog class="qdlg" id="qrDlg" aria-label="Deck QR code">
     
@@ -1008,8 +1073,8 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
         <small>Feedback or a bug? <a href="https://www.reddit.com/message/compose/?to=Myxas_" target="_blank" rel="noopener">Send me a message</a></small></span>
       <button class="fabout" id="aboutBtn" type="button" aria-expanded="false"><svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5.25" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="3.6" r="0.8" fill="currentColor"/><path d="M6 5.4v3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>About &amp; FAQ</button>
     </div>
-    <p class="fsrc"><span class="fsite">pocketmetaqr.com</span> &middot; Stats and lists: computed from <a href="https://play.limitlesstcg.com/tournaments?game=POCKET" target="_blank" rel="noopener">Limitless TCG</a> tournament results of the last 7 days
-      (decks with 0.5% share or more; up to 10 lists per deck, from the decklists of top players). Updated every hour. Card images: PocketDecks.</p>
+    <p class="fsrc"><span class="fsite">pocketmetaqr.com</span> &middot; Stats, lists and events: computed from <a href="https://play.limitlesstcg.com/tournaments?game=POCKET" target="_blank" rel="noopener">Limitless TCG</a> tournament results of the last 7 days
+      (decks with 0.5% share or more; up to 10 lists per deck, from the decklists of top players; the top 8 lists of each single-deck event). Card images: PocketDecks.</p>
     <p class="fleg">Pocket Meta QR is a free fan site. It is not affiliated with, endorsed or sponsored by Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK or DeNA.
       Pok&eacute;mon and all card images are trademarks and &copy; of their owners.</p>
   </footer>
@@ -1061,7 +1126,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   darkMq.addEventListener?.("change", () => { paintBtn(); repaintQR?.(); });
   paintBtn();
   // First-visit tip: shown on the first visit only (or until dismissed)
-  try { if (!localStorage.getItem("pmq-hint")) { $("hint").hidden = false; localStorage.setItem("pmq-hint", "1"); } } catch (e) { $("hint").hidden = false; }
+  // First-visit tip: off (the About & FAQ in the footer explains the page)
   $("hintX").addEventListener("click", () => { $("hint").hidden = true; });
 
   let data = null, openId = null, io = null;
@@ -1326,7 +1391,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
     });
     // Rank: a medal for the top 3, else the white badge (on the card's top-left corner)
     const MED = { 1: ["#fbe07a", "#d39a1c", "#f0c440", "#f7d968"], 2: ["#c9dbf3", "#6585ba", "#8eaad6", "#b3c9ea"], 3: ["#f7c79c", "#c4703a", "#e0915a", "#efb084"] };
-    const med = MED[data.decks.indexOf(d) + 1], r0 = 32 /* medal by position: ranks can skip numbers */, mx = cL + 20, my = cT + 16;
+    const med = MED[d.evt ? d.rank : data.decks.indexOf(d) + 1], r0 = 32 /* medal by position: ranks can skip numbers */, mx = cL + 20, my = cT + 16;
     const disc = (r, a, b) => { const g = x.createLinearGradient(mx - r, my - r, mx + r, my + r); g.addColorStop(0, a); g.addColorStop(1, b); x.beginPath(); x.arc(mx, my, r, 0, 7); x.fillStyle = g; x.fill(); };
     x.save(); x.shadowColor = "rgba(30, 50, 80, 0.3)"; x.shadowBlur = 6; x.shadowOffsetY = 3;
     if (med) disc(r0, med[0], med[1]); else { x.beginPath(); x.arc(mx, my, r0, 0, 7); x.fillStyle = "#ffffff"; x.fill(); }
@@ -1380,7 +1445,7 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       if (k < steps.length - 1) { x.fillStyle = C.muted; x.textAlign = "center"; x.fillText("→", sx + aw / 2, sy + 35); x.textAlign = "left"; sx += aw; }
     });
     x.font = F(500, 21); x.fillStyle = "#7d8aa0"; x.textAlign = "center";
-    x.fillText([`Set ${data.set}${data.setName ? " " + data.setName : ""}`, `#${d.rank} in the meta`, spanTxt].filter(Boolean).join("  ·  "), W / 2, sy + sh + 40);
+    x.fillText([`Set ${data.set}${data.setName ? " " + data.setName : ""}`, d.evt ? d.evt : `#${d.rank} in the meta`, d.evt ? "" : spanTxt].filter(Boolean).join("  ·  "), W / 2, sy + sh + 40);
     x.font = F(800, 30); x.fillStyle = "#1f63c7"; x.fillText("pocketmetaqr.com", W / 2, H - 14); // under the card: every shared image carries the address
     x.textAlign = "left";
     return new Promise((res, rej) => c.toBlob((b) => (b ? res(b) : rej(new Error("png"))), "image/png"));
@@ -1914,14 +1979,15 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   const track = (name) => { try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {} };
   // About & FAQ (footer button): the same popover / sheet as the info points
   $("aboutBtn").dataset.tip = `<h3>About Pocket Meta QR</h3><div class="about">
-    <p>The decks that win in Pok&eacute;mon TCG Pocket tournaments <b>right now</b>, the lists that top players use, and a <b>QR code</b> for every list, so you can import a deck in a few taps.</p>
+    <p>The decks that win in Pok&eacute;mon TCG Pocket tournaments <b>right now</b>, the <b>latest events</b> with their top 8, and a <b>QR code</b> for every list, so you can import a deck in a few taps.</p>
     <h4>How do I import a deck?</h4><p>Open a deck, tap its QR code and save the image. In the game: <b>My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image</b>. On a computer, you can also point the game&rsquo;s camera at the screen.</p>
-    <h4>Where does the data come from?</h4><p>From public tournament results on <a href="https://play.limitlesstcg.com/tournaments?game=POCKET" target="_blank" rel="noopener">Limitless TCG</a>: Standard events with 8 or more players. The numbers are computed here, so they can differ a little from other sites. The site updates every hour.</p>
+    <h4>Where does the data come from?</h4><p>From public tournament results on <a href="https://play.limitlesstcg.com/tournaments?game=POCKET" target="_blank" rel="noopener">Limitless TCG</a>: Standard events with 8 or more players. The numbers are computed here, so they can differ a little from other sites.</p>
+    <h4>What is in Latest Events?</h4><p>The tournaments of the last 7 days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.</p>
     <h4>Why only the last 7 days?</h4><p>The meta changes fast. A deck that was strong 3 weeks ago can be a bad pick today, so every number and list comes from the last 7 days.</p>
     <h4>What is a &ldquo;top player&rdquo;?</h4><p>A player who placed in the top 25% of a single-deck event, so their decklist is public.</p>
     <h4>What are the Hot list and the Top list?</h4><p>List 1 of a deck is the list that the most top players used. For decks with 2% share or more it is the <b>Hot list</b>, for smaller decks the <b>Top list</b>. The other lists show which cards they swap.</p>
     <h4>Why is the win rate different from other sites?</h4><p>Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.</p>
-    <h4>Is it free?</h4><p>Yes: no ads and no sign-up. ${GC ? "No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter)." : "No tracking."} This browser keeps only your theme and the first-visit tip.</p>
+    <h4>Is it free?</h4><p>Yes: no ads and no sign-up. ${GC ? "No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter)." : "No tracking."} This browser keeps only your theme and the last tab you used.</p>
     <p class="afine">Data: Limitless TCG. Card and pack images: PocketDecks. Made by <a href="https://www.reddit.com/user/Myxas_/" target="_blank" rel="noopener">u/Myxas_</a>.
       Pocket Meta QR is a free fan site, not affiliated with Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK or DeNA.</p></div>`;
   ipop.addEventListener("click", (e) => {
@@ -2014,11 +2080,11 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       const reps = [...g.querySelectorAll(`:scope > img[src="c/${q.slot}.webp"]:not(.arep0)`)], r = reps[reps.length - 1]; // the last free copy
       if (!r) continue;
       r.classList.add("arep0");
-      const box = (cls, c, dx) => { const n = document.createElement("span"); n.className = cls;
-        n.style.cssText = `left:${r.offsetLeft + dx}px;top:${r.offsetTop + dx}px;width:${r.offsetWidth}px`;
+      const box = (cls, c, dy) => { const n = document.createElement("span"); n.className = cls;
+        n.style.cssText = `left:${r.offsetLeft}px;top:${r.offsetTop + dy}px;width:${r.offsetWidth}px`;
         n.innerHTML = `<img src="c/${c.id}.webp" data-n="${esc(c.n)}" alt="${esc(c.n)}" width="150" height="209">`; g.append(n); };
       box("aback", q.back, 0);
-      box("anew", q.front, 8);
+      box("anew", q.front, Math.round(r.offsetHeight * 0.25)); // 25% of a card lower
     }
   }
   // The swaps of list i against list 1, as pairs (one per copy): [{ out: list-1 card, in: this list's card }]
@@ -2381,6 +2447,125 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
   // Long deck names: no auto-shrink for now (they wrap to 2 lines instead)
   function fitNames() {}
 
+
+  // A missing zoom image (z/) falls back to the card image (c/)
+  addEventListener("error", (e) => { const t = e.target, src = t && t.tagName === "IMG" && t.getAttribute("src");
+    if (src && /(^|\/)z\//.test(src)) t.src = src.replace(/(^|\/)z\//, "$1c/"); }, true);
+  // ===== Latest Events tab (data: events.json, t/<tid>.json; contract v10) =====
+  const SHOW_PLAYER = true; // show the player's name on each list
+  let EV = null, evP = null, evOpen = null, evIo = null;
+  const loadEvents = () => evP || (evP = fetch("events.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).then((j) => (EV = j)).catch(() => { evP = null; return null; }));
+  const evTlist = new Map();
+  const loadT = (tid) => { if (!evTlist.has(tid)) evTlist.set(tid, fetch(`t/${tid}.json`).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch((e) => { evTlist.delete(tid); throw e; })); return evTlist.get(tid); };
+  const evSize = (n) => (n >= 200 ? ["l", "Large"] : n >= 64 ? ["m", "Medium"] : ["s", "Small"]);
+  const ordN = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th");
+  const evDay = (iso) => { const t = new Date(), y = new Date(Date.now() - 864e5), f = (d) => d.toISOString().slice(0, 10);
+    return iso === f(t) ? "Today" : iso === f(y) ? "Yesterday" : fmtDate(iso); };
+  const placeTab = (pl) => pl <= 3 ? `<span class="dnote ptab p${pl}"><span class="pm" aria-hidden="true"></span>${ordN(pl)} place</span>`
+    : `<span class="dnote ptab">${pl <= 4 ? "Top 4" : pl <= 8 ? "Top 8" : pl <= 16 ? "Top 16" : "Top 32"}</span>`;
+  function renderEvents() {
+    const box = $("evl");
+    if (!EV || !EV.events || !EV.events.length) { box.innerHTML = '<div class="empty">No events in the last 7 days yet.</div>'; return; }
+    let day = "";
+    const skip = data && data.summary ? data.summary.tournaments - EV.events.length : 0;
+    box.innerHTML = `<p class="evnote">${EV.events.length} event${EV.events.length > 1 ? "s" : ""} in the last 7 days${skip > 0 ? ` &middot; ${skip} multi-deck event${skip > 1 ? "s" : ""} not listed` : ""}</p>` + EV.events.map((e) => {
+      const w = e.win, dk = (id) => (EV.decks && EV.decks[id]) || {}, [sz, szT] = evSize(e.players);
+      const head = e.dt !== day ? `<h3 class="evday">${evDay((day = e.dt))}</h3>` : "";
+      return `${head}<section class="acc evr" id="ev-${e.tid}" style="${w ? bandStyle(w) : ""}">
+        <button class="arow" type="button" data-tid="${e.tid}" aria-expanded="false" aria-controls="evp-${e.tid}">
+          <span class="icons">${(w && w.art ? w.art : []).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>${w ? `<svg class="wcrown" viewBox="0 0 18 14" aria-hidden="true"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg>` : ""}
+          <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, e.name.length)}">${esc(e.name)}</span>
+            <span class="evsub">${e.players} players${w ? `<span class="sr-only"> \u00b7 won by ${esc(w.name)}</span>` : ""}</span></span>
+        </button>
+        <div class="apanel" id="evp-${e.tid}" hidden></div>
+      </section>`;
+    }).join("");
+  }
+  function evDeck(e, v, k) { // a list as a 1-list "deck" (so slideBody, the QR panel and the saved image work as for decks)
+    const dk = (EV.decks && EV.decks[v.deck]) || {};
+    return { ...v, id: `${v.deck}-${e.tid}-${v.pl}`, name: dk.name || v.deck, art: dk.art || [], rank: v.pl, nv: 1, pl: v.place, ev: e.name, dt: e.dt,
+      evt: `${ordN(v.pl)} of ${e.players} · ${e.name}`, deckName: dk.name || v.deck, k };
+  }
+  function evSlide(e, v, k) {
+    const d = evDeck(e, v, k);
+    return `${placeTab(v.pl)}${slideBody({ ...d, pl: null }, d, -1)}`;
+  }
+  // The Event tile (the row already names the event) shows the deck and the player
+  function evTile(sl, v) {
+    const t = sl.querySelector(".t-ev"), dk = (EV.decks && EV.decks[v.deck]) || {};
+    if (t) t.outerHTML = `<div class="tile t-ev t-dk"><span class="tl">Deck</span><b>${esc(dk.name || v.deck)}</b>${SHOW_PLAYER && v.p ? `<small>${esc(v.p)}</small>` : ""}</div>`;
+  }
+  function evClose() {
+    if (!evOpen) return;
+    const sec = $("ev-" + evOpen.tid);
+    evOpen = null;
+    if (evIo) { evIo.disconnect(); evIo = null; }
+    if (!sec) return;
+    const snap = sec; snap.classList.add("snap");
+    sec.querySelector(".arow").setAttribute("aria-expanded", "false");
+    void snap.offsetHeight; requestAnimationFrame(() => requestAnimationFrame(() => snap.classList.remove("snap")));
+    const p = sec.querySelector(".apanel"); p.hidden = true; p.innerHTML = "";
+  }
+  async function evOpenId(tid) {
+    const e = EV && EV.events.find((x) => x.tid === tid), sec = $("ev-" + tid);
+    if (!e || !sec) return;
+    evClose();
+    evOpen = { tid, e };
+    track("event/" + tid);
+    const p = sec.querySelector(".apanel");
+    sec.classList.add("snap"); sec.querySelector(".arow").setAttribute("aria-expanded", "true");
+    void sec.offsetHeight; requestAnimationFrame(() => requestAnimationFrame(() => sec.classList.remove("snap")));
+    p.classList.add("evp");
+    p.innerHTML = `<div class="vwrap"><div class="vars"><div class="slide evs">${placeholder()}</div></div></div>`;
+    p.hidden = false;
+    let T;
+    try { T = await loadT(tid); } catch (err) { if (evOpen && evOpen.tid === tid) p.querySelector(".slide").innerHTML = '<p class="note">The lists did not load. Close and open the event again.</p>'; return; }
+    if (!evOpen || evOpen.tid !== tid) return;
+    const L = T.lists.filter((v) => v.pl <= 8).slice(0, 8), n = L.length; // the top 8 only
+    evOpen.T = { lists: L };
+    if (!n) { p.querySelector(".slide").innerHTML = '<p class="note">No public lists for this event.</p>'; return; }
+    p.innerHTML = `<div class="vwrap"><div class="vars">${L.map((v, k) => `<div class="slide evs" data-k="${k}">${evSlide(e, v, k)}</div>`).join("")}</div>
+      ${n > 1 ? `<button class="chev-btn prev" type="button" aria-label="Previous list" hidden>${CHEV_L}</button><button class="chev-btn next" type="button" aria-label="Next list">${CHEV_R}</button>` : ""}</div>
+      ${n > 1 ? `<div class="dots" role="group" aria-label="Lists">${L.map((v, k) => `<button class="dot${v.pl <= 3 ? " pd" + v.pl : ""}" type="button" data-i="${k}" aria-label="${esc(ordN(v.pl))} place" aria-current="${k === 0}"></button>`).join("")}</div>` : ""}
+      <p class="evlink"><a href="${esc(e.url)}" target="_blank" rel="noopener">Full standings on Limitless</a></p>`;
+    p.querySelectorAll(".slide").forEach((sl) => evTile(sl, L[+sl.dataset.k]));
+    fitScores(p); placeChevrons(p);
+    if (n > 1) {
+      const vars = p.querySelector(".vars"), slides = [...vars.querySelectorAll(".slide")];
+      const per = () => parseInt(getComputedStyle(vars).getPropertyValue("--per"), 10) || 1;
+      const at = () => { const x = vars.scrollLeft, o = slides[0].offsetLeft; return slides.reduce((b, s, i) => (Math.abs(s.offsetLeft - o - x) < Math.abs(slides[b].offsetLeft - o - x) ? i : b), 0); };
+      const go = (i) => { i = Math.max(0, Math.min(i, n - per())); vars.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: reduced ? "auto" : "smooth" }); };
+      const sync = () => { const i = at(), k = per(); p.classList.toggle("fit", n <= k);
+        p.querySelector(".chev-btn.prev").hidden = i === 0; p.querySelector(".chev-btn.next").hidden = i >= n - k;
+        p.querySelectorAll(".dot").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.i >= i && +b.dataset.i < i + k))); };
+      sync();
+      p.querySelector(".chev-btn.prev").onclick = () => go(at() - 1);
+      p.querySelector(".chev-btn.next").onclick = () => go(at() + 1);
+      p.querySelector(".dots").onclick = (ev) => { const b = ev.target.closest(".dot"); if (b) go(+b.dataset.i); };
+      let t = null; vars.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(sync, 60); }, { passive: true });
+    }
+  }
+  $("evl").addEventListener("click", (e) => {
+    const ci = e.target.closest(".cards img");
+    if (ci) { cardClick(ci); return; }
+    const qb = e.target.closest(".qr[data-i]");
+    if (qb) { const sl = qb.closest(".slide"), v = evOpen && evOpen.T && evOpen.T.lists[+sl.dataset.k]; if (v) openQRSheet(qb, evDeck(evOpen.e, v, +sl.dataset.k), 0); return; }
+    const row = e.target.closest(".arow[data-tid]");
+    if (!row) return;
+    if (evOpen && evOpen.tid === row.dataset.tid) evClose(); else evOpenId(row.dataset.tid);
+  });
+  // Tabs: remembered in this browser; #events opens the events tab
+  function setTab(t, save = true) {
+    const ev = t === "events";
+    $("tabM").setAttribute("aria-selected", String(!ev)); $("tabE").setAttribute("aria-selected", String(ev));
+    $("list").hidden = ev; $("evl").hidden = !ev;
+    $("filtBtn").hidden = ev || !data; if (ev) { setDrop(false); $("fnone").hidden = true; } else applyFilter();
+    if (ev) { if (openId) closeOpen(); track("tab-events"); if (!EV) { $("evl").innerHTML = '<div class="empty">Loading events&hellip;</div>'; loadEvents().then(renderEvents); } }
+    else evClose();
+    if (save) try { localStorage.setItem("pmq-tab", t); } catch (err) {}
+  }
+  $("tabM").addEventListener("click", () => setTab("decks"));
+  $("tabE").addEventListener("click", () => setTab("events"));
   fetch("data.json", { cache: "no-cache" })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((j) => {
@@ -2405,6 +2590,8 @@ button.dnote { border: 1px solid var(--line-strong); cursor: pointer; font-famil
       fitNames();
       const id = location.hash.slice(1);
       if (id && $(id)) open(id); // shared link: open that deck; otherwise all rows start closed
+      let t0 = null; try { t0 = localStorage.getItem("pmq-tab"); } catch (err) {}
+      if (id === "events" || (!(id && $(id)) && t0 === "events")) setTab("events", false);
     })
     .catch(() => {
       $("meta").innerHTML = "<span>Deck data did not load.</span>";
