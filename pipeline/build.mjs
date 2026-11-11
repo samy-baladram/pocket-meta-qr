@@ -9,9 +9,9 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from "node:fs";
 import { createRequire } from "node:module";
 import { createDeckCode, parseDeckCode, getCardDeckBuilderNr } from "ptcgp-deckcode";
-import { deckCodeToSVG } from "ptcgp-deckcode/qr";
 import { findCard, attackers } from "./common.mjs";
 const require = createRequire(import.meta.url);
+const QRCode = require("qrcode"); // the QR library that ptcgp-deckcode uses (deckCodeToSVG = QRCode.toString)
 
 const MAX_VARIATIONS = 10;  // lists kept per deck (the page shows them as a carousel with 1 dot per list)
 const NEAR = 1;             // lists that differ by this many cards or fewer count as the same list
@@ -94,13 +94,22 @@ async function variation(name, list, problems, id, scraped, vote) {
     energy = letters.slice(0, 3).map((l) => LETTER[l]);
   }
 
-  const qr = await makeQR(list, energy, problems, id);
-  return { energy, ...(guessed ? { eg: guessed } : {}), qr, art: at.map((a) => pdId(a.set, a.num)), cards: list.map((c) => ({ id: pdId(c.set, c.num), n: c.name, c: c.count })) };
+  const q = makeQR(list, energy, problems, id);
+  return { energy, ...(guessed ? { eg: guessed } : {}), q, art: at.map((a) => pdId(a.set, a.num)), cards: list.map((c) => ({ id: pdId(c.set, c.num), n: c.name, c: c.count })) };
 }
 
-// In-game deck code of a 20-card list + energy, as an SVG QR (black modules, no background), or null.
-// The code is decoded again and must give the same cards. Used for the lists and the alt versions (R5).
-async function makeQR(list, energy, problems, id) {
+// In-game deck code of a 20-card list + energy, as a packed QR (R12, Nov 12, 2026), or null.
+// Packed = "<n>:<base64>": the n x n module grid (no quiet zone), row-major, MSB first (bit k = byte k >> 3,
+// mask 128 >> (k & 7)), 1 = dark, last byte padded with 0. Same grid as the SVG used before (QRCode, error
+// correction M; checked on 30 codes). About 290 characters instead of about 2,800 for the SVG.
+// The code is decoded again and must give the same cards. Used for the lists, alt versions and event lists.
+function packQR(code) {
+  const m = QRCode.create(code, { errorCorrectionLevel: "M" }).modules;
+  const n = m.size, by = Buffer.alloc((n * n + 7) >> 3);
+  for (let k = 0; k < n * n; k++) if (m.data[k]) by[k >> 3] |= 128 >> (k & 7);
+  return `${n}:${by.toString("base64")}`;
+}
+function makeQR(list, energy, problems, id) {
   const nrs = [];
   for (const c of list) {
     const nr = getCardDeckBuilderNr(findCard(c.set, c.num));
@@ -115,8 +124,7 @@ async function makeQR(list, energy, problems, id) {
     problems.push(`${id}: QR decode mismatch`);
     return null;
   }
-  return (await deckCodeToSVG(code, { margin: 0, errorCorrectionLevel: "M", color: { dark: "#000000", light: "#ffffff" } }))
-    .replace(/<path fill="#ffffff"[^>]*\/>/, "");
+  return packQR(code);
 }
 
 // R2 (Nov 9, 2026): the distinct 1-card changes inside a group, compared with its representative (the shown list).
@@ -156,16 +164,16 @@ async function altVersion(a, v, name, problems, id) {
   });
   if ([...m.values()].some((n) => n < 0) || list.reduce((t, c) => t + c.count, 0) !== 20) {
     problems.push(`${id}: alt version is not a 20-card list (${a.in.map((c) => c.n)} for ${a.out.map((c) => c.n)})`);
-    a.qr = null;
+    a.q = null;
   } else {
     for (const c of a.in) {
       const need = colored({ set: list.find((x) => pdId(x.set, x.num) === c.id).set, num: +c.id.split("-")[1] })
         .map((l) => LETTER[l]).filter((e) => !v.energy.includes(e));
       if (need.length) altLog.energy.push(`${name}: +${c.n} needs ${need.join("+")}, list energy ${v.energy.join("+")}`);
     }
-    a.qr = await makeQR(list, v.energy, problems, `${id} (alt)`);
+    a.q = makeQR(list, v.energy, problems, `${id} (alt)`);
   }
-  altLog[a.qr ? "qr" : "none"]++;
+  altLog[a.q ? "qr" : "none"]++;
   a.sc = a.row.sc; a.ev = a.row.ev; a.dt = a.row.dt;
   delete a.row;
   return a;
@@ -397,8 +405,8 @@ const eventLog = { events: 0, lists: 0, qr: 0, none: 0 };
       if (e.deck) await deckInfo(e.deck);
       v.cards.forEach((c) => images.add(c.id));
       lists.push({ pl: e.pl, place: e.place, deck: e.deck, sc: e.sc, p: e.p, energy: v.energy,
-        ...(v.eg ? { eg: v.eg } : {}), cards: v.cards, qr: v.qr });
-      eventLog[v.qr ? "qr" : "none"]++;
+        ...(v.eg ? { eg: v.eg } : {}), cards: v.cards, q: v.q });
+      eventLog[v.q ? "qr" : "none"]++;
     }
     writeFileSync(`site/t/${ev.tid}.json`, JSON.stringify({ tid: ev.tid, lists }));
     for (const [arch] of ev.top) await deckInfo(arch);

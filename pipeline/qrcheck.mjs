@@ -1,4 +1,4 @@
-// QR check before deploy: render every QR in site/data.json and site/v/*.json to pixels, decode it with jsQR
+// QR check before deploy: render every QR (R12: packed "q", else the old SVG "qr") to pixels, decode it with jsQR
 // (like a phone camera), parse the deck code, and compare it with the cards and energy shown next to it.
 // alt versions (R5): their QR must give the list's cards - out + in, with the list's energy.
 // Event lists (R8) in site/t/: their QR must give their own cards and energy. more.json decks (R9): as data.json.
@@ -14,7 +14,26 @@ const require = createRequire(import.meta.url);
 const site = process.argv[2] || "site";
 const QUIET = 4; // quiet zone in modules (the page draws the QR on white; the SVG itself has no margin)
 
+// Packed QR (R12): "<n>:<base64>", n x n grid row-major, MSB first, 1 = dark. Drawn with a quiet zone, 8 px per module.
+function decodePacked(q) {
+  const [n, b64] = [+q.slice(0, q.indexOf(":")), q.slice(q.indexOf(":") + 1)];
+  const by = Buffer.from(b64, "base64");
+  if (by.length !== (n * n + 7) >> 3) throw new Error("packed QR has the wrong length");
+  const S = 8, W = (n + 2 * QUIET) * S, px = new Uint8ClampedArray(W * W * 4).fill(255);
+  for (let k = 0; k < n * n; k++) {
+    if (!(by[k >> 3] & (128 >> (k & 7)))) continue;
+    const r = Math.floor(k / n) + QUIET, c = (k % n) + QUIET;
+    for (let y = r * S; y < r * S + S; y++) for (let x = c * S; x < c * S + S; x++) {
+      const i = (y * W + x) * 4; px[i] = px[i + 1] = px[i + 2] = 0;
+    }
+  }
+  const res = jsQR(px, W, W);
+  if (!res) throw new Error("jsQR could not read the packed QR");
+  return res.data;
+}
+
 function decode(svg) {
+  if (!svg.startsWith("<")) return decodePacked(svg);
   // Add the quiet zone with a larger viewBox, render on white at about 8 px per module.
   const vb = svg.match(/viewBox="0 0 (\d+) (\d+)"/);
   if (!vb) throw new Error("no viewBox");
@@ -43,7 +62,7 @@ function altList(list, a) {
   const m = new Map(list.cards.map((c) => [c.id, { ...c }]));
   for (const c of a.out) m.get(c.id).c -= c.c;
   for (const c of a.in) m.set(c.id, { ...c, c: (m.get(c.id)?.c || 0) + c.c });
-  return { cards: [...m.values()].filter((c) => c.c > 0), energy: list.energy, qr: a.qr };
+  return { cards: [...m.values()].filter((c) => c.c > 0), energy: list.energy, q: a.q ?? a.qr };
 }
 
 const lists = [];
@@ -70,9 +89,10 @@ if (existsSync(`${site}/t`)) for (const f of readdirSync(`${site}/t`)) {
 let ok = 0, none = 0;
 const bad = [];
 for (const { where, list } of lists) {
-  if (!list.qr) { none++; continue; }
+  const qr = list.q ?? list.qr;
+  if (!qr) { none++; continue; }
   try {
-    const code = decode(list.qr);
+    const code = decode(qr);
     const p = parseDeckCode(code);
     const got = [...p.deckBuilderNrs].sort((a, b) => a - b);
     if (JSON.stringify(got) !== JSON.stringify(expected(list))) throw new Error("cards differ");
