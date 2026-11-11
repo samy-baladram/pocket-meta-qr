@@ -4,271 +4,316 @@
    "date": "2026-10-29T03:00:00Z",
    "path": "raw/2026/10/6ae25e2222fd412b92a4ee06.json",
    "players": 123,
-   "dl": 31
+   "dl": 31,
+   "rule": "wl1"
   },
   "6ae12e2322fd412b92a4e4e0": {
    "date": "2026-10-29T09:45:00Z",
    "path": "raw/2026/10/6ae12e2322fd412b92a4e4e0.json",
    "players": 68,
-   "dl": 17
+   "dl": 17,
+   "rule": "wl1"
   },
   "6ae3561380a8f79408d20ce3": {
    "date": "2026-10-29T16:15:00Z",
    "path": "raw/2026/10/6ae3561380a8f79408d20ce3.json",
    "players": 39,
-   "dl": 16
+   "dl": 16,
+   "rule": "wl1"
   },
   "6ae11ff180a8f79408d1faf4": {
    "date": "2026-10-29T18:05:00Z",
    "path": "raw/2026/10/6ae11ff180a8f79408d1faf4.json",
    "players": 163,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6adec44a91617679e84a1129": {
    "date": "2026-10-29T22:00:00Z",
    "path": "raw/2026/10/6adec44a91617679e84a1129.json",
    "players": 14,
-   "dl": 16
+   "dl": 16,
+   "rule": "wl1"
   },
   "6ae3a03b22fd412b92a4f83e": {
    "date": "2026-10-30T00:15:00Z",
    "path": "raw/2026/10/6ae3a03b22fd412b92a4f83e.json",
    "players": 55,
-   "dl": 16
+   "dl": 16,
+   "rule": "wl1"
   },
   "6ae3340222fd412b92a4f43c": {
    "date": "2026-10-30T14:00:00Z",
    "path": "raw/2026/10/6ae3340222fd412b92a4f43c.json",
    "players": 110,
-   "dl": 28
+   "dl": 28,
+   "rule": "wl1"
   },
   "6adf7a2422fd412b92a4d422": {
    "date": "2026-10-30T16:05:00Z",
    "path": "raw/2026/10/6adf7a2422fd412b92a4d422.json",
    "players": 35,
-   "dl": 16
+   "dl": 16,
+   "rule": "wl1"
   },
   "6ad2a63e8a8383117e3ed624": {
    "date": "2026-10-30T17:45:00Z",
    "path": "raw/2026/10/6ad2a63e8a8383117e3ed624.json",
    "players": 234,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6ae511120d00101b48bf2a71": {
    "date": "2026-10-31T01:05:00Z",
    "path": "raw/2026/10/6ae511120d00101b48bf2a71.json",
    "players": 89,
-   "dl": 22
+   "dl": 22,
+   "rule": "wl1"
   },
   "6ae4225922fd412b92a4fdd7": {
    "date": "2026-10-31T13:00:00Z",
    "path": "raw/2026/10/6ae4225922fd412b92a4fdd7.json",
    "players": 44,
-   "dl": 16
+   "dl": 16,
+   "rule": "wl1"
   },
   "pmpt49": {
    "date": "2026-10-31T16:00:00Z",
    "path": "raw/2026/10/pmpt49.json",
    "players": 547,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6ae2839e80a8f79408d206b4": {
    "date": "2026-10-31T22:00:00Z",
    "path": "raw/2026/10/6ae2839e80a8f79408d206b4.json",
    "players": 153,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6ae66e08ae67092a407403f8": {
    "date": "2026-11-01T11:00:00Z",
    "path": "raw/2026/11/6ae66e08ae67092a407403f8.json",
    "players": 39,
-   "dl": 16
+   "dl": 16,
+   "rule": "wl1"
   },
   "6ae742450d00101b48bf3e45": {
    "date": "2026-11-01T15:45:00Z",
    "path": "raw/2026/11/6ae742450d00101b48bf3e45.json",
    "players": 88,
-   "dl": 22
+   "dl": 22,
+   "rule": "wl1"
   },
   "6ae762b40d00101b48bf3f8b": {
    "date": "2026-11-01T20:15:00Z",
    "path": "raw/2026/11/6ae762b40d00101b48bf3f8b.json",
    "players": 138,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6ae727bd0d00101b48bf3da0": {
    "date": "2026-11-02T08:30:00Z",
    "path": "raw/2026/11/6ae727bd0d00101b48bf3da0.json",
    "players": 104,
-   "dl": 26
+   "dl": 26,
+   "rule": "wl1"
   },
   "6ae877fb0d00101b48bf489d": {
    "date": "2026-11-02T15:20:00Z",
    "path": "raw/2026/11/6ae877fb0d00101b48bf489d.json",
    "players": 83,
-   "dl": 21
+   "dl": 21,
+   "rule": "wl1"
   },
   "6ae7f6340d00101b48bf453d": {
    "date": "2026-11-02T20:00:00Z",
    "path": "raw/2026/11/6ae7f6340d00101b48bf453d.json",
    "players": 304,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6ae921ab0c463890f304a00b": {
    "date": "2026-11-03T18:15:00Z",
    "path": "raw/2026/11/6ae921ab0c463890f304a00b.json",
    "players": 203,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6aea43600c463890f304aa2e": {
    "date": "2026-11-03T23:00:00Z",
    "path": "raw/2026/11/6aea43600c463890f304aa2e.json",
    "players": 122,
-   "dl": 30
+   "dl": 30,
+   "rule": "wl1"
   },
   "6ae1c42222fd412b92a4e897": {
    "date": "2026-11-04T08:30:00Z",
    "path": "raw/2026/11/6ae1c42222fd412b92a4e897.json",
    "players": 133,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6ae6b6910d00101b48bf3b1c": {
    "date": "2026-11-04T18:45:00Z",
    "path": "raw/2026/11/6ae6b6910d00101b48bf3b1c.json",
    "players": 273,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6ae5e174ae67092a4073fc42": {
    "date": "2026-11-04T22:00:00Z",
    "path": "raw/2026/11/6ae5e174ae67092a4073fc42.json",
    "players": 20,
-   "dl": 16
+   "dl": 16,
+   "rule": "wl1"
   },
   "6aeb28380c463890f304b17d": {
    "date": "2026-11-04T22:30:00Z",
    "path": "raw/2026/11/6aeb28380c463890f304b17d.json",
    "players": 171,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6aec5294e94eae0f94747bac": {
    "date": "2026-11-05T11:55:00Z",
    "path": "raw/2026/11/6aec5294e94eae0f94747bac.json",
    "players": 64,
-   "dl": 16
+   "dl": 16,
+   "rule": "wl1"
   },
   "6ac4ecf7245696afb3517853": {
    "date": "2026-11-05T18:00:00Z",
    "path": "raw/2026/11/6ac4ecf7245696afb3517853.json",
    "players": 339,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6aecf966e94eae0f94748306": {
    "date": "2026-11-05T23:00:00Z",
    "path": "raw/2026/11/6aecf966e94eae0f94748306.json",
    "players": 37,
-   "dl": 16
+   "dl": 16,
+   "rule": "wl1"
   },
   "6aebb4d60c463890f304b691": {
    "date": "2026-11-06T14:00:00Z",
    "path": "raw/2026/11/6aebb4d60c463890f304b691.json",
    "players": 144,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6adb946e97e21d82e5c6d561": {
    "date": "2026-11-06T18:45:00Z",
    "path": "raw/2026/11/6adb946e97e21d82e5c6d561.json",
    "players": 231,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6aeecf0ac931f53978d95555": {
    "date": "2026-11-07T08:55:00Z",
    "path": "raw/2026/11/6aeecf0ac931f53978d95555.json",
    "players": 34,
-   "dl": 16
+   "dl": 16,
+   "rule": "wl1"
   },
   "6ade5d0097e21d82e5c6f090": {
    "date": "2026-11-07T23:15:00Z",
    "path": "raw/2026/11/6ade5d0097e21d82e5c6f090.json",
    "players": 12,
-   "dl": 16
+   "dl": 16,
+   "rule": "wl1"
   },
   "6aeebbdae99f3235a75e2b7f": {
    "date": "2026-11-08T02:05:00Z",
    "path": "raw/2026/11/6aeebbdae99f3235a75e2b7f.json",
    "players": 128,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6aec37d10c463890f304bb92": {
    "date": "2026-11-08T08:30:00Z",
    "path": "raw/2026/11/6aec37d10c463890f304bb92.json",
    "players": 137,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6adec92991617679e84a1147": {
    "date": "2026-10-31T00:00:00Z",
    "path": "raw/2026/10/6adec92991617679e84a1147.json",
    "players": 23,
-   "dl": 8
+   "dl": 8,
+   "rule": "wl1"
   },
   "pmpt50": {
    "date": "2026-11-07T17:00:00Z",
    "path": "raw/2026/11/pmpt50.json",
    "players": 476,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6aef9c25c931f53978d95cf5": {
    "date": "2026-11-08T19:30:00Z",
    "path": "raw/2026/11/6aef9c25c931f53978d95cf5.json",
    "players": 185,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6af08f57e99f3235a75e41de": {
    "date": "2026-11-08T22:00:00Z",
    "path": "raw/2026/11/6af08f57e99f3235a75e41de.json",
    "players": 43,
-   "dl": 11
+   "dl": 11,
+   "rule": "wl1"
   },
   "6af0a90de99f3235a75e42f5": {
    "date": "2026-11-09T01:05:00Z",
    "path": "raw/2026/11/6af0a90de99f3235a75e42f5.json",
    "players": 113,
-   "dl": 28
+   "dl": 28,
+   "rule": "wl1"
   },
   "6af15fd9c931f53978d9704d": {
    "date": "2026-11-09T09:30:00Z",
    "path": "raw/2026/11/6af15fd9c931f53978d9704d.json",
    "players": 69,
-   "dl": 17
+   "dl": 17,
+   "rule": "wl1"
   },
   "6af061fae99f3235a75e406a": {
    "date": "2026-11-09T17:05:00Z",
    "path": "raw/2026/11/6af061fae99f3235a75e406a.json",
    "players": 215,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6af20b85c931f53978d974c7": {
    "date": "2026-11-09T23:05:00Z",
    "path": "raw/2026/11/6af20b85c931f53978d974c7.json",
    "players": 96,
-   "dl": 24
+   "dl": 24,
+   "rule": "wl1"
   },
   "6af2de36e99f3235a75e59cf": {
    "date": "2026-11-10T11:30:00Z",
    "path": "raw/2026/11/6af2de36e99f3235a75e59cf.json",
    "players": 77,
-   "dl": 19
+   "dl": 19,
+   "rule": "wl1"
   },
   "6aeb20970c463890f304b137": {
    "date": "2026-11-10T16:05:00Z",
    "path": "raw/2026/11/6aeb20970c463890f304b137.json",
    "players": 245,
-   "dl": 32
+   "dl": 32,
+   "rule": "wl1"
   },
   "6af3936900d53a11f5b909bf": {
    "date": "2026-11-11T01:30:00Z",
    "path": "raw/2026/11/6af3936900d53a11f5b909bf.json",
    "players": 109,
-   "dl": 27
+   "dl": 27,
+   "rule": "wl1"
   }
  },
  "skipped": {
@@ -279,5 +324,269 @@
   "6ae1781b22fd412b92a4e823": "rules: suspended cards",
   "6ad98b70115c12b73a5a9732": "rules: suspended cards"
  },
- "decklists": {}
+ "decklists": {
+  "6ae25e2222fd412b92a4ee06": [
+   "cjxskull",
+   "bixie",
+   "cuice",
+   "nandosgude",
+   "frostbill",
+   "ppitopin8"
+  ],
+  "6ae12e2322fd412b92a4e4e0": [
+   "toromike",
+   "yuehidden",
+   "pauk55",
+   "ka1z0",
+   "razbersky202"
+  ],
+  "6ae11ff180a8f79408d1faf4": [
+   "implo",
+   "loaf026",
+   "griffsama",
+   "nj_210zz",
+   "fedaykin",
+   "elatomico",
+   "islo",
+   "xerxes03",
+   "stake",
+   "lelouch_near",
+   "cosmooo",
+   "pattyd",
+   "hanzee",
+   "razbersky202",
+   "hectordf"
+  ],
+  "6ae3a03b22fd412b92a4f83e": [
+   "mega_rezpectore_ex",
+   "alana"
+  ],
+  "6ae3340222fd412b92a4f43c": [
+   "nakopol91",
+   "normo360",
+   "ibrakadabra",
+   "ibfasting",
+   "laquita",
+   "giaacomoo",
+   "toromike",
+   "portlandpoliwags"
+  ],
+  "6ad2a63e8a8383117e3ed624": [
+   "supreme13",
+   "garchomplucario123",
+   "cosmooo",
+   "dens",
+   "belceboss",
+   "enzanebeat",
+   "koalelu",
+   "ridz",
+   "liquidhunter",
+   "ibfasting",
+   "warpis",
+   "joshuasutherland21",
+   "xorcist",
+   "semant1c24",
+   "javiee333",
+   "porygon3",
+   "lightxz",
+   "lanssnal",
+   "uncicho",
+   "ka1z0",
+   "airimima",
+   "dron",
+   "mibo19",
+   "mambadaddy9",
+   "hamza007",
+   "bald_hoang",
+   "yuehidden",
+   "ishaan",
+   "zverum",
+   "bbchillen",
+   "yocasper",
+   "frozzinnz",
+   "fontodasosa",
+   "coffplays",
+   "superchocoobo",
+   "tangjiro"
+  ],
+  "6ae511120d00101b48bf2a71": [
+   "hakitcgp",
+   "almezda",
+   "sekkarou",
+   "mega_rezpectore_ex",
+   "cadu_f",
+   "azin",
+   "shinra67",
+   "troopscoop"
+  ],
+  "6ae4225922fd412b92a4fdd7": [
+   "thanos9_9",
+   "estehlegitea",
+   "yeriana"
+  ],
+  "pmpt49": [
+   "njjord7",
+   "taroo",
+   "necroblaze",
+   "godi",
+   "eternal_tcg",
+   "vijayprasad",
+   "mrd",
+   "doink44",
+   "angkelvin",
+   "sirus",
+   "abnermoyai",
+   "my",
+   "hamza007",
+   "mayonesa2",
+   "fuuyii",
+   "brendon68",
+   "hasalf",
+   "esdeath",
+   "likounite",
+   "kinkakuj",
+   "kramerunner",
+   "strawberrycrepecookie",
+   "ur_ciao",
+   "agupon",
+   "zaksweatshirt",
+   "ppitopin8",
+   "ddaviss",
+   "gagc",
+   "supreme13",
+   "jacobjayyy",
+   "tesla20",
+   "toxicluiyo",
+   "lanora",
+   "boat_sensei",
+   "mhdayub28",
+   "ibfasting",
+   "javiercazorla",
+   "zonice",
+   "hakomatotaco",
+   "seraru",
+   "jphenomenal",
+   "mo1245",
+   "scapin",
+   "alana",
+   "minato",
+   "grotolo",
+   "matteo2492",
+   "haryanto",
+   "thebiowiz",
+   "ishaan",
+   "stardast",
+   "dorron",
+   "tommykamikace",
+   "ant_rstt",
+   "faded7",
+   "garbohanzo",
+   "meymuus",
+   "bigdev",
+   "megarenzo",
+   "hectordf",
+   "antony",
+   "rekklesbert",
+   "fontodasosa",
+   "yuehidden",
+   "juandeacu",
+   "omega_infernos",
+   "og_red",
+   "robs",
+   "razbersky202",
+   "draxoz",
+   "azin",
+   "soap728",
+   "lelouch_near",
+   "firedaan",
+   "varo0",
+   "dariuspopek",
+   "watchurback",
+   "su1_3o",
+   "wesker",
+   "zenith77",
+   "akuma_nkz6",
+   "lbn924",
+   "moni649",
+   "komoriuta",
+   "diasgamer45",
+   "nid",
+   "pkmn_sensei",
+   "fitypaldis",
+   "marckedcards",
+   "itachi1820",
+   "bixie",
+   "pl1222",
+   "evand",
+   "ndare27",
+   "n7hs4",
+   "zigizaga",
+   "azelma",
+   "alta",
+   "hansuwe",
+   "valden",
+   "fiumba",
+   "feray",
+   "csmati",
+   "sativa",
+   "pinguim",
+   "nymphnoctis",
+   "warpis",
+   "ritzyruu",
+   "arrowbob",
+   "elatomico",
+   "surdao123",
+   "coffplays",
+   "eddiespfc",
+   "redflag",
+   "flipand11",
+   "joshuasutherland21",
+   "dens",
+   "sunfighter",
+   "dandydan",
+   "semant1c24",
+   "portlandpoliwags",
+   "yuppy",
+   "sikoed",
+   "yeriana",
+   "doubleg784",
+   "jhum",
+   "whoisfabela",
+   "chocolate",
+   "revan_3000",
+   "ademolalookman",
+   "jetskiforless",
+   "johtopack",
+   "yiyu",
+   "nooh",
+   "gasali",
+   "frostbill",
+   "saitake",
+   "zoroark475",
+   "hectorsiaaan700",
+   "yalcn37",
+   "artif",
+   "hakitcgp",
+   "caruzo",
+   "hisoka2824"
+  ],
+  "6ae2839e80a8f79408d206b4": [
+   "garchomplucario123",
+   "victorssito",
+   "sofy",
+   "mrd",
+   "tuneupx",
+   "ikercho",
+   "arrowbob",
+   "kaizenmoon",
+   "mambadaddy9",
+   "davidleon",
+   "grotolo"
+  ],
+  "6adec92991617679e84a1147": [
+   "murilo64",
+   "eddiespfc",
+   "castro37"
+  ]
+ }
 }
