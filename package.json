@@ -6,10 +6,12 @@
     "build": "node pipeline/build.mjs"
   },
   "dependencies": {
+    "csso": "^5.0.5",
     "pokemon-tcg-pocket-cards": "^5.5.1",
     "pokemon-tcg-pocket-database": "^2.13.1",
     "ptcgp-deckcode": "2.0.0",
-    "qrcode": "^1.5.4"
+    "qrcode": "^1.5.4",
+    "terser": "^5.51.2"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
