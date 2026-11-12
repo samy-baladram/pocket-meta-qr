@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794493773-510a -->
+<!-- ui: artifact version 1794497662-71be -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -357,7 +357,7 @@ footer a { color: var(--muted); }
 /* Open row: the icons (same size as before, 1.1538) move right; the icon box widens by --ox, so the name moves with them
    and has more room; the name is 20% bigger */
 .arow[aria-expanded="true"] { --ox: 32px; }
-.icons img:first-child { left: 10px; top: 12px; z-index: 2; transform: translateX(6px) rotate(-13deg) scale(1.1538); }
+.icons img:first-child { left: 10px; top: 12px; z-index: 2; transform: translateX(4px) rotate(-13deg) scale(1.1538); } /* open row (Nov 13: 2px left) */
 .icons img:nth-child(2) { left: 50px; top: 7px; z-index: 1; transform: translate(16px, -3px) rotate(13deg) scale(1.1538); }
 .aname { transition: font-size var(--t-slow) ease; }
 .acc:not(.pod) > .arow[aria-expanded="true"] .aname { font-size: calc(var(--fs-xl) * 1.2); }
@@ -440,7 +440,8 @@ footer a { color: var(--muted); }
 @media (min-width: 600px) { .vars { --per: 2; } }
 @media (min-width: 840px) and (min-height: 501px) { .apanel .vars { --per: 3; } } /* 3 lists from 840px (was 740: too narrow lists) */
 /* (the content is at most 960px wide, so 3 lists per view stays the most; each list is about 310px) */
-@media (min-width: 600px) { .vars .slide.away { opacity: 0.35; } .vars .slide { transition: opacity 0.2s; } } /* lists beyond the ones in view */
+@media (min-width: 600px) { .vars .slide.away { opacity: 0.2; } .vars .slide { transition: opacity 0.2s; } } /* lists beyond the ones in view */
+@media (min-width: 600px) { .vars.afocus .slide:not(.aon) { opacity: 0.2; } } /* Nov 12: "Also played" or a swap view is open: the other lists fade */
 .slide { position: relative; flex: 0 0 calc((100% - (var(--per) - 1) * var(--vgap)) / var(--per)); min-width: 0; scroll-snap-align: start;
   display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-3); container-type: inline-size;
   background: var(--surface); border-radius: var(--r-card); box-shadow: var(--raised), var(--bevel); }
@@ -1028,6 +1029,62 @@ html { -webkit-tap-highlight-color: transparent; }
 .morelink span { grid-column: 1 / -1; color: var(--muted); font-weight: 500; font-size: var(--fs-xs); }
 @media (hover: hover) { .morelink:hover { background: var(--hover); } .morelink:hover b { text-decoration: underline; text-underline-offset: 3px; } .acc.peek:hover { opacity: 0.7; } }
 .morelink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ===== Rank badge (R14, Nov 13): a rounded square on the row's top-left corner: rank | thin grey line | change ===== */
+.rb { position: absolute !important; z-index: 5; left: -5px; top: -7px; display: inline-flex; align-items: stretch; height: 22px; border-radius: 4px;
+  background: #ffffff; box-shadow: 0 1px 2px rgba(var(--sh), 0.18); font-family: var(--font-display); font-variant-numeric: tabular-nums; pointer-events: none;
+  transition: transform var(--t-slow) ease; transform-origin: top left; }
+.rb.rbt { pointer-events: auto; cursor: pointer; }
+.rb .rn { position: relative; display: grid; place-items: center; min-width: 18px; padding: 0 3px 0 4px; font-weight: 700; font-size: 13px; color: #66758a; line-height: 1; }
+.rb.solo .rn { padding: 0 4px; min-width: 22px; }
+.rb .rsep { display: block; flex: none; width: 1px; margin: 4px 0; border-radius: 1px; background: #d3dbe4; }
+.rb .dl { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; min-width: 12px; padding: 0 3px; font-size: 8px; font-weight: 900; line-height: 1; }
+.rb .dl svg { width: 6px; height: 4px; display: block; }
+.rb .dl.up { color: #5c9c78; } .rb .dl.dn { color: #c46a7e; } .rb .dl.eq { color: #9aa6b6; font-size: 11px; font-weight: 600; }
+.rb .dl.nw { color: var(--acc-ink); font-size: 7px; letter-spacing: 0.02em; }
+.arow[aria-expanded="true"] .rb { transform: scale(0.85); }
+.rb::after { content: ""; position: absolute; inset: -6px; } /* a larger tap area */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rb { background: #2a3242; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+  :root:not([data-theme="light"]) .rb .rn { color: #c3cede; } :root:not([data-theme="light"]) .rb .rsep { background: #3a4456; }
+  :root:not([data-theme="light"]) .rb .dl.up { color: #7fbf9b; } :root:not([data-theme="light"]) .rb .dl.dn { color: #e392a5; } :root:not([data-theme="light"]) .rb .dl.eq { color: #6f7b8d; } }
+:root[data-theme="dark"] .rb { background: #2a3242; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+:root[data-theme="dark"] .rb .rn { color: #c3cede; } :root[data-theme="dark"] .rb .rsep { background: #3a4456; }
+:root[data-theme="dark"] .rb .dl.up { color: #7fbf9b; } :root[data-theme="dark"] .rb .dl.dn { color: #e392a5; } :root[data-theme="dark"] .rb .dl.eq { color: #6f7b8d; }
+/* Rows (rank 4 and on): a smaller badge */
+.rb:not(.pm) { height: 19px; left: -4px; top: -6px; }
+.rb:not(.pm) .rn { font-size: 12px; min-width: 16px; padding: 0 3px 0 4px; }
+.rb:not(.pm) .dl { font-size: 7px; padding: 0 3px 0 2px; } .rb:not(.pm) .dl svg { width: 5px; height: 3.5px; } .rb:not(.pm) .dl.eq { font-size: 10px; }
+.rb:not(.pm) .rsep { margin: 3px 0; }
+/* The tip of the badge: the change in its color */
+.ipop p b.tup { color: #3f8a60; } .ipop p b.tdn { color: #b8566c; } .ipop p b.teq { color: var(--muted); } .ipop p b.tnw { color: var(--acc-ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ipop p b.tup { color: #7fbf9b; } :root:not([data-theme="light"]) .ipop p b.tdn { color: #e392a5; } }
+:root[data-theme="dark"] .ipop p b.tup { color: #7fbf9b; } :root[data-theme="dark"] .ipop p b.tdn { color: #e392a5; }
+/* Podium: the same badge with a crown just above the number and a light gold / silver / bronze tint (top-left light) */
+.rb.pm .rn svg.cr { position: absolute; top: -4px; left: 50%; width: 13px; height: 10px; transform: translateX(-50%); stroke: #ffffff; stroke-width: 1.8; stroke-linejoin: round; paint-order: stroke; overflow: visible; }
+.rb.pm .rn svg.cr .cb { fill: none; stroke-width: 0.7; stroke-linecap: round; }
+.rb.pm.g { background: linear-gradient(135deg, #f9e3a0, #fffcee); box-shadow: inset 1.5px 1.5px 0 #ffffff, inset -1px -1px 0 #f9e3a0, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.g .rn { color: #a8740e; } .rb.pm.g svg.cr { fill: #e8b52e; } .rb.pm.g .rsep { background: rgba(201, 150, 40, 0.32); }
+.rb.pm.s { background: linear-gradient(135deg, #d8e3f4, #fafcff); box-shadow: inset 1.5px 1.5px 0 #ffffff, inset -1px -1px 0 #d8e3f4, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.s .rn { color: #4f6a96; } .rb.pm.s svg.cr { fill: #87a5d4; } .rb.pm.s .rsep { background: rgba(101, 133, 186, 0.32); }
+.rb.pm.b { background: linear-gradient(135deg, #f8d6ba, #fff9f3); box-shadow: inset 1.5px 1.5px 0 #ffffff, inset -1px -1px 0 #f8d6ba, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.b .rn { color: #9a5426; } .rb.pm.b svg.cr { fill: #dc8b52; } .rb.pm.b .rsep { background: rgba(196, 112, 58, 0.32); }
+.pcard[aria-expanded="true"] .rb { transform: scale(0.85); }
+@media (max-width: 760px) { /* phones: a smaller podium badge, like the rows */
+  .rb.pm { height: 19px; left: -4px; top: -6px; }
+  .rb.pm .rn { font-size: 12px; min-width: 16px; padding: 0 3px 0 4px; }
+  .rb.pm .dl { font-size: 7px; padding: 0 3px 0 2px; } .rb.pm .dl svg { width: 5px; height: 3.5px; } .rb.pm .dl.eq { font-size: 10px; }
+  .rb.pm .rsep { margin: 3px 0; } .rb.pm .rn svg.cr { top: -4px; width: 11px; height: 8.5px; } }
+@media (min-width: 1024px) { /* desktop: a larger podium badge (the tiles are 3x wider) */
+  .rb.pm { height: 28px; left: -6px; top: -9px; border-radius: 5px; }
+  .rb.pm .rn { font-size: 16px; min-width: 22px; padding: 0 4px 0 5px; }
+  .rb.pm .dl { font-size: 10px; padding: 0 4px; } .rb.pm .dl svg { width: 8px; height: 5px; } .rb.pm .dl.eq { font-size: 13px; }
+  .rb.pm .rn svg.cr { top: -6px; width: 16px; height: 12px; } .rb.pm .rsep { margin: 5px 0; } }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .rb.pm.g { background: linear-gradient(135deg, #4d3f19, #7f6a2f); box-shadow: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.18), inset -1px -1px 0 #4d3f19, 0 1px 2px rgba(0, 0, 0, 0.3); } :root:not([data-theme="light"]) .rb.pm.g .rn { color: #f3cf62; } :root:not([data-theme="light"]) .rb.pm.g .rsep { background: rgba(243, 207, 98, 0.25); }
+  :root:not([data-theme="light"]) .rb.pm.s { background: linear-gradient(135deg, #33415a, #55698d); box-shadow: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.18), inset -1px -1px 0 #33415a, 0 1px 2px rgba(0, 0, 0, 0.3); } :root:not([data-theme="light"]) .rb.pm.s .rn { color: #c9dbf3; } :root:not([data-theme="light"]) .rb.pm.s .rsep { background: rgba(201, 219, 243, 0.25); }
+  :root:not([data-theme="light"]) .rb.pm.b { background: linear-gradient(135deg, #4e3322, #7f573d); box-shadow: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.18), inset -1px -1px 0 #4e3322, 0 1px 2px rgba(0, 0, 0, 0.3); } :root:not([data-theme="light"]) .rb.pm.b .rn { color: #efb084; } :root:not([data-theme="light"]) .rb.pm.b .rsep { background: rgba(239, 176, 132, 0.25); }
+  :root:not([data-theme="light"]) .rb.pm svg.cr { stroke: #283145; } }
+:root[data-theme="dark"] .rb.pm.g { background: linear-gradient(135deg, #4d3f19, #7f6a2f); box-shadow: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.18), inset -1px -1px 0 #4d3f19, 0 1px 2px rgba(0, 0, 0, 0.3); } :root[data-theme="dark"] .rb.pm.g .rn { color: #f3cf62; } :root[data-theme="dark"] .rb.pm.g .rsep { background: rgba(243, 207, 98, 0.25); }
+:root[data-theme="dark"] .rb.pm.s { background: linear-gradient(135deg, #33415a, #55698d); box-shadow: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.18), inset -1px -1px 0 #33415a, 0 1px 2px rgba(0, 0, 0, 0.3); } :root[data-theme="dark"] .rb.pm.s .rn { color: #c9dbf3; } :root[data-theme="dark"] .rb.pm.s .rsep { background: rgba(201, 219, 243, 0.25); }
+:root[data-theme="dark"] .rb.pm.b { background: linear-gradient(135deg, #4e3322, #7f573d); box-shadow: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.18), inset -1px -1px 0 #4e3322, 0 1px 2px rgba(0, 0, 0, 0.3); } :root[data-theme="dark"] .rb.pm.b .rn { color: #efb084; } :root[data-theme="dark"] .rb.pm.b .rsep { background: rgba(239, 176, 132, 0.25); }
+:root[data-theme="dark"] .rb.pm svg.cr { stroke: #283145; }
 /* ===== Latest Events: one row per event (winner deck icons and energy streak), day headers ===== */
 .evnote { margin: 0 4px -4px; font-size: var(--fs-s); color: var(--muted); }
 .evday { margin: 6px 4px -4px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
@@ -1598,6 +1655,34 @@ html { -webkit-tap-highlight-color: transparent; }
       <dt>${d.w}-${d.l}-${d.t}<span>record</span></dt><dd>all match wins, losses and ties of this deck</dd>
     </dl>`;
   const dpill = (d) => `<span class="dpill"><b>${pct(d.share)}</b> share &middot; <span${d.count < 30 ? ' class="lw"' : ""}><b>${pct(d.win)}</b> win</span> &middot; <b>${d.count}</b> players &middot; <b>${d.w}-${d.l}-${d.t}</b>${ii("these numbers", deckTip(d), true)}</span>`;
+  // ===== Rank badge (R14, Nov 13): rank | grey line | the change vs 24 h earlier (stacked arrow and number). A tap on it
+  // explains the change. Podium: the same badge with a crown and a gold / silver / bronze tint.
+  // Data (R14): d.rk0 = the rank 24 h earlier (0 = not in the list then), d.nw = 1 for a deck new in the list this set
+  // (first 3 days). Without R14 data the badge shows the rank only (the artifact preview shows sample changes).
+  const RB_UP = '<svg viewBox="0 0 7 5" aria-hidden="true"><path d="M3.5 0 7 5H0z" fill="currentColor"/></svg>';
+  const RB_DN = '<svg viewBox="0 0 7 5" aria-hidden="true"><path d="M0 0h7L3.5 5z" fill="currentColor"/></svg>';
+  const RB_CR = '<svg class="cr" viewBox="0 0 18 14" aria-hidden="true"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg>';
+  const hasTrend = () => !!(data && data.decks.some((d) => "rk0" in d || d.nw));
+  function rbTip(d) {
+    const was = d.rk0, mv = was ? was - d.rank : null, set = esc(data.setName || data.set || "this set");
+    const body = d.nw ? `<p><b class="tnw">New</b>: the first time this deck is in the list since ${set} came out. The tag shows for 3 days.</p>`
+      : !was ? `<p>Not in the list 24 h ago. Now <b>${ordN(d.rank)}</b>.</p>`
+      : mv > 0 ? `<p><b class="tup">\u25b2 Up ${mv} place${mv > 1 ? "s" : ""}</b>: <b>${ordN(was)}</b> 24 h ago, now <b>${ordN(d.rank)}</b>.</p>`
+      : mv < 0 ? `<p><b class="tdn">\u25bc Down ${-mv} place${mv < -1 ? "s" : ""}</b>: <b>${ordN(was)}</b> 24 h ago, now <b>${ordN(d.rank)}</b>.</p>`
+      : `<p><b class="teq">\u2013 Same rank</b> as 24 h ago: <b>${ordN(d.rank)}</b>.</p>`;
+    return `<h3>Rank ${d.rank}</h3>${body}<p class="inote">Ranks are compared with the data of 24 h earlier.</p>`;
+  }
+  function rbHTML(d, pod) {
+    const cls = pod ? ` pm ${["g", "s", "b"][pod - 1]}` : "";
+    const rn = `<span class="rn">${pod ? RB_CR : ""}<span class="mn">${d.rank}</span></span>`;
+    if (!hasTrend() || (!("rk0" in d) && !d.nw)) return `<span class="rb${cls} solo" aria-hidden="true">${rn}</span>`; // no R14 data for this deck
+    const was = d.rk0, mv = was ? was - d.rank : null;
+    const dl = d.nw ? `<span class="dl nw">NEW</span>`
+      : mv > 0 ? `<span class="dl up">${RB_UP}<span>+${mv}</span></span>`
+      : mv < 0 ? `<span class="dl dn"><span>\u2212${-mv}</span>${RB_DN}</span>`
+      : `<span class="dl eq">\u2013</span>`;
+    return `<span class="rb rbt${cls}" data-tip="${esc(rbTip(d))}" aria-label="Rank ${d.rank}, change in 24 hours">${rn}<span class="rsep" aria-hidden="true"></span>${dl}</span>`;
+  }
   // Decks without a public list yet (no lists, no QR): a quiet, disabled row in their rank place, so no rank is skipped
   const ghostHTML = (g, more) => `<div class="acc ghost" data-rank="${g.rank}"${more ? ' data-more="1"' : ""} aria-disabled="true" title="No public decklist in the last 7 days yet">
       <div class="grow"><span class="rk two"><span class="mn">${g.rank}</span></span>
@@ -1640,7 +1725,7 @@ html { -webkit-tap-highlight-color: transparent; }
     const podium = top.length ? `<div class="podium">${top.map((d, k) => `
       <section class="acc pod" id="${d.id}" style="${bandStyle(d)}">
         <button class="arow pcard" type="button" data-id="${d.id}" aria-expanded="false" aria-controls="p-${d.id}" aria-label="Rank ${d.rank}: ${esc(d.name)}">
-          <span class="medal m${k + 1}" aria-hidden="true"><svg class="crown" viewBox="0 0 18 14"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg><span class="mn">${d.rank}</span></span>
+          ${rbHTML(d, k + 1)}
           <span class="picons${d.art.length === 1 ? " one" : ""}">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="52" height="73" decoding="async">`).join("")}</span>
           <span class="pname">${esc(d.name)}</span>
           <span class="asub psub"><b>${pct(d.share)}</b> share<span class="ow"> &middot; <b>${pct(d.win)}</b> win</span>
@@ -1654,7 +1739,7 @@ html { -webkit-tap-highlight-color: transparent; }
   const rowHTML = (d) => `
       <section class="acc" id="${d.id}" style="${bandStyle(d)}">
         <button class="arow" type="button" data-id="${d.id}" aria-expanded="false" aria-controls="p-${d.id}">
-          <span class="rk two"><span class="mn">${d.rank}</span></span>
+          ${rbHTML(d, 0)}
           <span class="icons${d.art.length === 1 ? " one" : ""}">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>
           <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, d.name.length)}">${esc(d.name)}${NEWD.has(d.id) ? '<span class="newb" title="New in the top 10 since your last visit">NEW</span>' : ""}</span>
             <span class="asub"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win${d.bc ? ' <span class="bcn" title="No top player: the list is from below the cut">&#9888; below the cut</span>' : ""}
@@ -1815,7 +1900,7 @@ html { -webkit-tap-highlight-color: transparent; }
       p.querySelector(".chev-btn.next").hidden = i >= n - k;
       // Dots: the lists now in view are highlighted.
       p.querySelectorAll(".dot").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.i >= i && +b.dataset.i < i + k)));
-      slides.forEach((s, j) => s.classList.toggle("away", n > k && (j < i || j >= i + k)));
+      slides.forEach((s, j) => { s.classList.toggle("away", n > k && (j < i || j >= i + k)); s.classList.toggle("near", j === i - 1 || j === i + k); }); // near: the faded list just beside the view is drawn too (Nov 12)
       if (p._wake) p._wake();
     };
     carouselSync = sync;
@@ -1845,12 +1930,12 @@ html { -webkit-tap-highlight-color: transparent; }
     }
 
     // Render a list only when its slide comes into view: one small JSON per deck, then its card images.
-    p._wake = () => slides.forEach((s) => { if (s.dataset.pending && !s.classList.contains("away")) { io.unobserve(s); io.observe(s); } }); // a list came into view: check again
+    p._wake = () => slides.forEach((s) => { if (s.dataset.pending && (!s.classList.contains("away") || s.classList.contains("near"))) { io.unobserve(s); io.observe(s); } }); // a list came into view: check again
     io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (!e.isIntersecting || !e.target.dataset.pending) return;
         const slide = e.target, i = +slide.dataset.i;
-        if (slide.classList.contains("away") && per() > 1) return; // wide screens: only the lists in view (the faded side ones wait)
+        if (slide.classList.contains("away") && !slide.classList.contains("near") && per() > 1) return; // wide screens: the lists in view and the one beside them
         delete slide.dataset.pending;
         listsOf(d).then((L) => {
           if (openId !== d.id || !slide.isConnected) return;
@@ -2105,6 +2190,7 @@ html { -webkit-tap-highlight-color: transparent; }
     if (!altOpen) return;
     const o = altOpen; altOpen = null;
     o.btn.setAttribute("aria-expanded", "false");
+    o.slide.classList.remove("aon"); o.slide.closest(".vars")?.classList.remove("afocus");
     o.pop.remove();
     altPreview(o.slide, null);
   }
@@ -2147,6 +2233,7 @@ html { -webkit-tap-highlight-color: transparent; }
     }
     altOpen = { btn, pop, slide, d, i, x0: slide.closest(".vars")?.scrollLeft || 0 };
     btn.setAttribute("aria-expanded", "true");
+    slide.classList.add("aon"); slide.closest(".vars")?.classList.add("afocus"); // wider screens: the other lists in view fade
     const car = pop.querySelector(".acar"), items = [...car.querySelectorAll(".ait")];
     let cur = -1, t = null;
     const choose = (k) => {
@@ -2194,7 +2281,8 @@ html { -webkit-tap-highlight-color: transparent; }
       ev.prompt(); ev.userChoice.then((c) => track("home-prompt-" + (c && c.outcome))).catch(() => {}); return; }
     if (e.target.closest("#homeBtn")) track("home-btn");
     if (e.target.closest(".lchk")) track("live-tip");
-    const b = e.target.closest(".ii, .altb, .fabout, .lchk");
+    if (e.target.closest(".rbt")) track("rank-tip");
+    const b = e.target.closest(".ii, .altb, .fabout, .lchk, .rbt");
     if (b) { e.preventDefault(); e.stopPropagation(); showTip(b); return; }
     if (!ipop.hidden && !e.target.closest("#iPop, dialog")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
   }, true);
@@ -2556,7 +2644,7 @@ html { -webkit-tap-highlight-color: transparent; }
     if (n > 1) {
       const vars = p.querySelector(".vars"), slides = [...vars.querySelectorAll(".slide")];
       const per = () => parseInt(getComputedStyle(vars).getPropertyValue("--per"), 10) || 1;
-      const draw = (sl) => { if (!sl.dataset.pending || (sl.classList.contains("away") && per() > 1)) return; // wide screens: only the lists in view
+      const draw = (sl) => { if (!sl.dataset.pending || (sl.classList.contains("away") && !sl.classList.contains("near") && per() > 1)) return; // wide screens: only the lists in view
         delete sl.dataset.pending; const k = +sl.dataset.k; sl.innerHTML = evSlide(e, L[k], k); evTile(sl, L[k]); fitScores(sl); };
       evIo = new IntersectionObserver((es) => es.forEach((x) => x.isIntersecting && draw(x.target)), { root: vars, threshold: 0.2 });
       slides.slice(1).forEach((sl) => evIo.observe(sl));
@@ -2565,8 +2653,8 @@ html { -webkit-tap-highlight-color: transparent; }
       const sync = () => { const i = at(), k = per(); p.classList.toggle("fit", n <= k);
         p.querySelector(".chev-btn.prev").hidden = i === 0; p.querySelector(".chev-btn.next").hidden = i >= n - k;
         p.querySelectorAll(".dot").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.i >= i && +b.dataset.i < i + k)));
-        slides.forEach((s, j) => s.classList.toggle("away", n > k && (j < i || j >= i + k)));
-        slides.forEach((s) => { if (s.dataset.pending && !s.classList.contains("away")) draw(s); }); };
+        slides.forEach((s, j) => { s.classList.toggle("away", n > k && (j < i || j >= i + k)); s.classList.toggle("near", j === i - 1 || j === i + k); });
+        slides.forEach((s) => { if (s.dataset.pending && (!s.classList.contains("away") || s.classList.contains("near"))) draw(s); }); };
       sync();
       p.querySelector(".chev-btn.prev").onclick = () => go(at() - 1);
       p.querySelector(".chev-btn.next").onclick = () => go(at() + 1);
@@ -2600,6 +2688,11 @@ html { -webkit-tap-highlight-color: transparent; }
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((j) => {
       data = normQ(j);
+      // Artifact preview only: sample rank changes until the R14 data exists (never on the live site)
+      if (!/pocketmetaqr\.com$/.test(location.hostname) && !data.decks.some((d) => "rk0" in d)) {
+        const S = [0, -1, 1, -2, 1, 0, -5, 3, -1, 2, 0, -3]; data.decks.forEach((d, k) => { if (k < S.length) d.rk0 = d.rank + S[k]; else d.rk0 = d.rank; });
+        if (data.decks[8]) { delete data.decks[8].rk0; data.decks[8].nw = 1; }
+      }
       const tile = (l, v, cls = "") => `<span class="mt${cls}"><span>${l}</span><b>${v}</b></span>`;
       const sm = data.summary, sp = data.span;
       // Window tile: "Last 7 days" with the dates; "updated N h ago" in its label (older data without a window: the plain Updated tile)
