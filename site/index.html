@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794502910-1e6b -->
+<!-- ui: artifact version 1794504526-d6db -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1828,7 +1828,7 @@ html { -webkit-tap-highlight-color: transparent; }
     void snap.offsetHeight; // apply the closed look now, without transitions
     requestAnimationFrame(() => requestAnimationFrame(() => snap.classList.remove("snap")));
     const p = sec.querySelector(".apanel");
-    carouselSync = null;
+    carouselSync = null; p._wake = null;
     if (io) { io.disconnect(); io = null; }
     p.hidden = true;
     p.innerHTML = ""; // drop the images of a closed deck
@@ -1934,6 +1934,7 @@ html { -webkit-tap-highlight-color: transparent; }
       if (p._wake) p._wake();
     };
     carouselSync = sync;
+    p._wake = null; // Nov 13 fix: the panel element is reused; the last open's _wake must not run (it threw before the new carousel was set up)
     sync();
     p.querySelector(".chev-btn.prev").onclick = () => go(at() - 1);
     p.querySelector(".chev-btn.next").onclick = () => go(at() + 1);
@@ -1960,7 +1961,7 @@ html { -webkit-tap-highlight-color: transparent; }
     }
 
     // Render a list only when its slide comes into view: one small JSON per deck, then its card images.
-    p._wake = () => slides.forEach((s) => { if (s.dataset.pending && (!s.classList.contains("away") || s.classList.contains("near"))) { io.unobserve(s); io.observe(s); } }); // a list came into view: check again
+    p._wake = () => slides.forEach((s) => { if (io && s.dataset.pending && (!s.classList.contains("away") || s.classList.contains("near"))) { io.unobserve(s); io.observe(s); } }); // a list came into view: check again
     io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (!e.isIntersecting || !e.target.dataset.pending) return;
