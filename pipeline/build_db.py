@@ -17,7 +17,8 @@ SCHEMA = """
 CREATE TABLE sets (code TEXT PRIMARY KEY, name TEXT, release TEXT, cards INTEGER, current INTEGER);
 CREATE TABLE tournaments (
   id TEXT PRIMARY KEY, name TEXT, organizer TEXT, date TEXT, day TEXT, set_code TEXT,
-  multi_deck INTEGER, players INTEGER, swiss_rounds INTEGER, top_cut INTEGER, record_diffs INTEGER);
+  multi_deck INTEGER, players INTEGER, swiss_rounds INTEGER, top_cut INTEGER, record_diffs INTEGER,
+  fetched_at TEXT);  -- when the scraper stored the raw file (raw files are written once), ISO UTC
 CREATE TABLE entries (
   tid TEXT, pid TEXT, name TEXT, country TEXT, place INTEGER, points INTEGER,
   w INTEGER, l INTEGER, t INTEGER, drop_ INTEGER, has_list INTEGER, n_decks INTEGER, made_top INTEGER,
@@ -91,10 +92,11 @@ def load_raw(db, data):
         tid = raw["id"]
         top_players = {p for r in raw["rounds"] if r["kind"] == "top" for m in r["matches"] for p in (m["a"], m["b"]) if p}
         diffs = record_check(raw)
-        db.execute("INSERT INTO tournaments VALUES (?,?,?,?,?,?,?,?,?,?,?)", (
+        db.execute("INSERT INTO tournaments VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (
             tid, raw["name"], raw["organizer"], raw["date"], raw["date"][:10], raw.get("set"),
             int(raw["multi_deck"]), raw["players"],
-            sum(r["kind"] == "swiss" for r in raw["rounds"]), int(any(r["kind"] == "top" for r in raw["rounds"])), diffs))
+            sum(r["kind"] == "swiss" for r in raw["rounds"]), int(any(r["kind"] == "top" for r in raw["rounds"])), diffs,
+            raw.get("fetched_at")))
         for e in raw["entries"]:
             db.execute("INSERT INTO entries VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", (
                 tid, e["pid"], e["name"], e["country"], e["place"], e["points"], e["w"], e["l"], e["t"],

@@ -111,8 +111,8 @@ def main():
     # with a public decklist, in place order. build.mjs makes the energy, art and QR (same rules as the deck lists).
     events, used = [], set()
     dl = {t: i.get("dl", 0) for t, i in json.load(open(os.path.join(a.data, "index.json"))).get("done", {}).items()}
-    for tid, name, date, day, players in db.execute(
-            f"SELECT id, name, date, day, players FROM tournaments WHERE multi_deck = 0 AND id IN ({q}) "
+    for tid, name, date, day, players, fetched in db.execute(
+            f"SELECT id, name, date, day, players, fetched_at FROM tournaments WHERE multi_deck = 0 AND id IN ({q}) "
             "ORDER BY date DESC, id", tids).fetchall():
         rows = db.execute("""SELECT e.pid, e.name, e.place, e.w, e.l, e.t,
                                     (SELECT archetype FROM entry_decks d WHERE d.tid = e.tid AND d.pid = e.pid AND d.idx = 0)
@@ -132,7 +132,8 @@ def main():
         used.update(e["deck"] for e in entries if e["deck"])
         if first and first["deck"]:
             used.add(first["deck"])
-        events.append({"tid": tid, "name": name, "dt": day, "date": date, "players": players,
+        # R13 (Nov 12, 2026): ts = start time, at = when the event reached the site (raw fetched_at; written once).
+        events.append({"tid": tid, "name": name, "dt": day, "date": date, "ts": date, "at": fetched, "players": players,
                        "url": f"https://play.limitlesstcg.com/tournament/{tid}/standings",
                        "win": first, "top": top, "entries": entries})
     # Decks of the events that are not in the deck table: 1 recent list of the current set (for name, art, energy)
@@ -152,6 +153,8 @@ def main():
         "summary": {"tournaments": summary[0], "players": summary[1] or 0, "matches": matches},
         "span": [summary[2], summary[3]] if summary[2] else None,
         "decks": decks,
+        # R13c: the last time a tournament of the window (multi-deck too) was added = the largest fetched_at.
+        "changedAt": db.execute(f"SELECT MAX(fetched_at) FROM tournaments WHERE id IN ({q})", tids).fetchone()[0],
         "events": events,
         "samples": samples,
     }

@@ -323,7 +323,14 @@ for (const [rank, d] of input.decks.entries()) {
 const data = { updatedAt: new Date().toISOString(), set: input.set, setName: input.setName || "", format: input.format,
   window: input.window, span: input.span, summary: input.summary,
   decks: decks.filter((d) => !moreIds.has(d.id)), more: moreIds.size,
-  nolist: nolist.filter((x) => !x.more).map(({ more, from, ...x }) => x) };
+  nolist: nolist.filter((x) => !x.more).map(({ more, from, ...x }) => x),
+  ...(input.changedAt ? { changedAt: input.changedAt } : {}) };
+// R13b (Nov 12, 2026): the single-deck event of the window that reached the site last (largest at, then latest ts).
+{
+  const ev = [...(input.events || [])].filter((e) => e.at)
+    .sort((a, b) => b.at.localeCompare(a.at) || b.ts.localeCompare(a.ts))[0];
+  if (ev) data.latest = { tid: ev.tid, name: ev.name, players: ev.players, ts: ev.ts, at: ev.at, dt: ev.dt };
+}
 writeFileSync("site/data.json", JSON.stringify(data));
 writeFileSync("site/more.json", JSON.stringify({ updatedAt: data.updatedAt, window: input.window, min: 0.2,
   decks: decks.filter((d) => moreIds.has(d.id)),
@@ -417,12 +424,12 @@ const eventLog = { events: 0, lists: 0, qr: 0, none: 0 };
       win = { deck: ev.win.deck, name: d.name, art: w1 && w1.deck === ev.win.deck ? attackersArt(d.name, w1.cards) || d.art : d.art,
         energy: w1 ? w1.energy : d.energy, sc: ev.win.sc };
     }
-    out.push({ tid: ev.tid, name: ev.name, dt: ev.dt, players: ev.players, url: ev.url, nl: lists.length, win, top: ev.top });
+    out.push({ tid: ev.tid, name: ev.name, dt: ev.dt, ts: ev.ts, at: ev.at, players: ev.players, url: ev.url, nl: lists.length, win, top: ev.top });
     eventLog.events++; eventLog.lists += lists.length;
   }
   const deckMap = Object.fromEntries([...info].sort(([a], [b]) => a.localeCompare(b)));
   writeFileSync("site/events.json", JSON.stringify({ updatedAt: new Date().toISOString(), window: input.window,
-    events: out, decks: deckMap }));
+    ...(input.changedAt ? { changedAt: input.changedAt } : {}), events: out, decks: deckMap }));
 }
 // Art (1-2 card ids of the named Pokémon) of an event list, from its cards ({id, n, c}).
 function attackersArt(name, cards) {

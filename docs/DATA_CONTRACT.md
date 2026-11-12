@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 14 (Nov 12, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 15 (Nov 12, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 15 (request R13 of the UI chat): event times for the "Live" status panel: **`ts`** (start) and **`at`**
+  (reached the site) per event in `events.json`; **`latest`** (the event that reached the site last) in `data.json`;
+  **`changedAt`** (last added tournament of the window) in `data.json` and `events.json`.
 - Version 14 (request R12 of the UI chat): the QR is **`q`** (packed bits, about 290 characters) in place of the SVG
   **`qr`** (about 2,800 characters), in every list, `alt` entry, `more.json` and `t/` list (see "Packed QR").
   `qr` is no longer written; the page still reads it (old field). The deploy copy of the page is minified.
@@ -105,6 +108,8 @@ Use the same word in new docs and UI notes.
 | `summary` | object | **new.** tournaments, players (entries) and played matches in the window |
 | `decks` | array | most players first, max 40, share >= 0.5 % |
 | `more` | int | **new in v11.** number of decks in `more.json`; `0` = no button |
+| `latest` | object or absent | **new in v15.** the single-deck event of the window that reached the site last (largest `at`, then latest `ts`): `{tid, name, players, ts, at, dt}`, same values as in `events.json` (open it there by `tid`). Absent when the window has no single-deck event |
+| `changedAt` | ISO time or absent | **new in v15.** the last time a tournament of the window (also multi-deck) reached the site = the largest `at` of the window's tournaments. `updatedAt` is the build time ("checked"); `changedAt` <= `updatedAt` |
 | `nolist` | array | **new in v12.** decks with share >= 0.5 % (max-40 rule as `decks`) and no list in the window, by rank (see "nolist"); `[]` = none |
 
 ### deck
@@ -232,9 +237,10 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 ## events.json (new in v10)
 
 ```json
-{ "updatedAt": "2026-11-10T13:05:00Z", "window": "7d",
+{ "updatedAt": "2026-11-10T13:05:00Z", "window": "7d", "changedAt": "2026-11-10T12:01:04Z",
   "events": [
-    { "tid": "6912...", "name": "xPabsy Cup #13 - $20", "dt": "2026-11-09", "players": 215,
+    { "tid": "6912...", "name": "xPabsy Cup #13 - $20", "dt": "2026-11-09", "ts": "2026-11-09T17:00:00Z",
+      "at": "2026-11-09T21:51:38Z", "players": 215,
       "url": "https://play.limitlesstcg.com/tournament/6912.../standings", "nl": 32,
       "win": { "deck": "greninja-ex-b1-mega-greninja-ex-c1", "name": "Greninja ex Mega Greninja ex",
                "art": ["b1-073", "c1-042"], "energy": ["water"], "sc": "12-1-1" },
@@ -245,9 +251,12 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 
 | Field | Meaning |
 |---|---|
+| `changedAt` | **new in v15.** same as in `data.json` |
 | `events` | every **single-deck** Standard event of the window (multi-deck events are left out: no single list per player), newest first (start time) |
 | `tid` | Limitless tournament id; the event's lists are in `t/<tid>.json` |
 | `name`, `dt`, `players`, `url` | event name, day `YYYY-MM-DD`, entries, Limitless standings link |
+| `ts` | **new in v15.** start time, ISO UTC (`"2026-11-11T22:00:00Z"`; Limitless start time) |
+| `at` | **new in v15.** when the event reached the site, ISO UTC: the time the scraper stored the finished tournament (raw `fetched_at`; the raw file is written once, so `at` does not change later). Usually 1-5 h after `ts` (the event must end, then the next hourly run finds it) |
 | `nl` | number of lists in `t/<tid>.json` (the public decklists: top 25 % of the players, 8 to 32; events fetched before Nov 9: 16). Not changed by the v13 top-player rule |
 | `win` | the 1st place: `deck` id, display `name` (same naming as `data.json`), `art` (1-2 card ids, from the winner's list when it is public), `energy` (the winner's list when public, else the deck's), `sc` record. null only when the 1st place has no deck |
 | `top` | the decks of places 1 to 8 as `[deckId, place]`, place order (with or without a public list) |
