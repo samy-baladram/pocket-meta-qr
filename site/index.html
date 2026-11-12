@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794470419-4fac -->
+<!-- ui: artifact version 1794472170-714c -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -182,7 +182,8 @@ footer a { color: var(--muted); }
 /* Live line: status dot (by the real data age) + "Checked N min ago" (a button: exact times in a tip) + the newest event */
 .hdr .live { position: relative; z-index: 1; margin: 3px 2px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; color: var(--muted); font-size: var(--fs-s); line-height: 1.4; }
 .hdr .live b { color: var(--ink); font-weight: 600; }
-.live .lchk { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 9px; border-radius: 999px;
+/* Explicit resets, no all-unset: the deploy minifier (csso) moves rules in front of it and they get lost (Nov 12) */
+.live .lchk { appearance: none; margin: 0; border: 0; background: none; font: inherit; color: inherit; text-align: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 9px; border-radius: 999px;
   border: 1px solid var(--line-strong); color: var(--ink); font-size: var(--fs-s); line-height: 1.4; } /* info level: outline, no shadow */
 .live .lchk b { font-weight: 700; } .live .lchk .mu { color: var(--muted); }
 .live .lchk .lch { width: 6px; height: 10px; flex: none; color: var(--muted); }
@@ -195,10 +196,10 @@ footer a { color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { .ldot.g::after { animation: none; } }
 /* "Since your last visit" pill (tap: the Events tab) and the NEW tags */
 .hdr .since { position: relative; z-index: 1; margin: 8px 0 0; }
-.since .sinb { all: unset; cursor: pointer; display: inline-flex; max-width: 100%; box-sizing: border-box; align-items: center; gap: 8px; padding: 6px 8px 6px 12px; border-radius: 999px; font-size: var(--fs-s); color: var(--ink);
+.since .sinb { appearance: none; margin: 0; border: 0; background: none; font: inherit; color: inherit; text-align: inherit; cursor: pointer; display: inline-flex; max-width: 100%; box-sizing: border-box; align-items: center; gap: 8px; padding: 6px 8px 6px 12px; border-radius: 999px; font-size: var(--fs-s); color: var(--ink);
   background: linear-gradient(var(--acc-bg), var(--acc-bg)), var(--surface); border: 1px solid var(--acc-line); }
 .since .sinb b { color: var(--acc-ink); }
-.since .sinx { all: unset; cursor: pointer; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
+.since .sinx { appearance: none; margin: 0; border: 0; background: none; font: inherit; color: inherit; text-align: inherit; padding: 0; cursor: pointer; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
 .since .sinx:focus-visible, .since .sinb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .newb { display: inline-block; margin-left: 6px; padding: 0 5px; border-radius: 4px; font-size: 10px; font-weight: 800; letter-spacing: 0.04em; line-height: 16px; vertical-align: 2px;
   color: #fff; background: var(--accent); }
