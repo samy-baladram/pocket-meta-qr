@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794434091-add7 -->
+<!-- ui: artifact version 1794470419-4fac -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -179,6 +179,29 @@ footer a { color: var(--muted); }
 /* Stat tiles: one line, never wrapping; "Updated" takes the rest of the width (cut with "..." only if too long) */
 .hdr .meta { position: relative; z-index: 1; margin: 2px 2px 0; color: var(--muted); font-size: var(--fs-s); line-height: 1.4; }
 .hdr .meta b { color: var(--ink); font-weight: 600; }
+/* Live line: status dot (by the real data age) + "Checked N min ago" (a button: exact times in a tip) + the newest event */
+.hdr .live { position: relative; z-index: 1; margin: 3px 2px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; color: var(--muted); font-size: var(--fs-s); line-height: 1.4; }
+.hdr .live b { color: var(--ink); font-weight: 600; }
+.live .lchk { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 9px; border-radius: 999px;
+  border: 1px solid var(--line-strong); color: var(--ink); font-size: var(--fs-s); line-height: 1.4; } /* info level: outline, no shadow */
+.live .lchk b { font-weight: 700; } .live .lchk .mu { color: var(--muted); }
+.live .lchk .lch { width: 6px; height: 10px; flex: none; color: var(--muted); }
+.live .lchk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (hover: hover) { .live .lchk:hover { background: var(--hover); } }
+.ldot { position: relative; flex: none; width: 8px; height: 8px; border-radius: 50%; background: #9aa6b6; }
+.ldot.g { background: #22b35e; } .ldot.a { background: #e6a417; }
+.ldot.g::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: inherit; animation: lpulse 2.4s ease-out infinite; }
+@keyframes lpulse { from { transform: scale(1); opacity: 0.55; } 70%, to { transform: scale(2.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .ldot.g::after { animation: none; } }
+/* "Since your last visit" pill (tap: the Events tab) and the NEW tags */
+.hdr .since { position: relative; z-index: 1; margin: 8px 0 0; }
+.since .sinb { all: unset; cursor: pointer; display: inline-flex; max-width: 100%; box-sizing: border-box; align-items: center; gap: 8px; padding: 6px 8px 6px 12px; border-radius: 999px; font-size: var(--fs-s); color: var(--ink);
+  background: linear-gradient(var(--acc-bg), var(--acc-bg)), var(--surface); border: 1px solid var(--acc-line); }
+.since .sinb b { color: var(--acc-ink); }
+.since .sinx { all: unset; cursor: pointer; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
+.since .sinx:focus-visible, .since .sinb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.newb { display: inline-block; margin-left: 6px; padding: 0 5px; border-radius: 4px; font-size: 10px; font-weight: 800; letter-spacing: 0.04em; line-height: 16px; vertical-align: 2px;
+  color: #fff; background: var(--accent); }
 /* Search + energy filter */
 /* Filter button: next to the theme button, same raised round style; a blue dot shows that a search or filter is on */
 .filt-btn { position: relative; top: auto; right: auto; flex: none; margin-block: -8px; width: 40px; height: 40px; }
@@ -738,7 +761,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .ii { position: relative; display: inline-grid; place-items: center; width: 12px; height: 12px; margin-left: 3px; padding: 0; border: 0; background: none;
   color: var(--muted); opacity: 0.8; cursor: pointer; vertical-align: -2px; pointer-events: auto; flex: none; }
 .ii svg { width: 12px; height: 12px; display: block; }
-.ii::after { content: ""; position: absolute; inset: -9px; } /* a bigger tap area */
+.ii::after { content: ""; position: absolute; inset: -10px; } /* a 32 px tap area */
 @media (hover: hover) { .ii:hover { opacity: 1; color: var(--accent); } }
 .ii:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-radius: 50%; }
 .ii[aria-expanded="true"] { opacity: 1; color: var(--accent); }
@@ -771,6 +794,22 @@ html { -webkit-tap-highlight-color: transparent; }
 .ipop dt span { display: block; font-size: var(--fs-xs); font-weight: 500; color: var(--muted); }
 .ipop dd { margin: 0; color: var(--muted); }
 .ipop .inote { font-size: var(--fs-s); }
+/* Live status panel (the sheet behind "Checked N min ago") */
+.lv { display: grid; gap: 10px; margin-top: 4px; }
+.lvtop { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; color: var(--ink); font-size: var(--fs-l); }
+.lvtop .ldot { width: 10px; height: 10px; } .lvtop b { font-weight: 700; } .lvtop span { color: var(--muted); font-size: var(--fs-s); margin-left: auto; }
+.lvbar { height: 4px; border-radius: 2px; background: var(--tile); overflow: hidden; margin-top: -4px; }
+.lvbar i { display: block; height: 100%; border-radius: 2px; background: linear-gradient(90deg, #22b35e, #7fd8a2); }
+.lvgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.lvgrid > div { padding: 8px 10px; border-radius: 10px; background: var(--tile); display: grid; gap: 2px; min-width: 0; }
+.lvgrid span, .lvk { font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.lvgrid b { font-size: var(--fs-l); color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lvev { display: grid; gap: 2px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--muted); font-size: var(--fs-s); }
+.lvev b { color: var(--ink); font-size: var(--fs-l); line-height: 1.3; }
+.lvopen { justify-self: start; margin-top: 6px; padding: 0; border: 0; background: none; color: var(--acc-ink); font: inherit; font-weight: 700; cursor: pointer; }
+.ipop p.lvnote { margin: 0; font-size: var(--fs-s); }
+.lvleg { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: var(--fs-xs); color: var(--muted); }
+.lvleg span { display: inline-flex; align-items: center; gap: 5px; } .lvleg .ldot { width: 7px; height: 7px; } .lvleg .ldot::after { display: none; }
 /* Sheets (touch), game "Sort" style: centered title over a soft divider, a round close button at the bottom center */
 .cpop .sx { display: none; }
 .cpop.sheet .sx { display: grid; place-items: center; width: 44px; height: 44px; margin: 8px auto 22px; /* higher, like the game */ padding: 0; border: 0; border-radius: 50%; cursor: pointer;
@@ -1014,6 +1053,8 @@ html { -webkit-tap-highlight-color: transparent; }
     </div>
     </div>
     <p class="meta" id="meta">Loading&hellip;</p>
+    <p class="live" id="live" hidden></p>
+    <p class="since" id="since" hidden></p>
   </header>
 
   <dialog class="qdlg cdlg" id="cardDlg" aria-label="Card">
@@ -1565,7 +1606,7 @@ html { -webkit-tap-highlight-color: transparent; }
         <button class="arow" type="button" data-id="${d.id}" aria-expanded="false" aria-controls="p-${d.id}">
           <span class="rk two"><span class="mn">${d.rank}</span></span>
           <span class="icons${d.art.length === 1 ? " one" : ""}">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>
-          <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, d.name.length)}">${esc(d.name)}</span>
+          <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, d.name.length)}">${esc(d.name)}${NEWD.has(d.id) ? '<span class="newb" title="New in the top 10 since your last visit">NEW</span>' : ""}</span>
             <span class="asub"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win${d.bc ? ' <span class="bcn" title="No top player: the list is from below the cut">&#9888; below the cut</span>' : ""}
               <span class="sm"><span class="sep">&middot; </span><span class="nw">${d.count} players</span> <span class="nw">&middot; ${d.w}-${d.l}-${d.t}</span></span></span></span>
           ${dpill(d)}
@@ -2094,7 +2135,8 @@ html { -webkit-tap-highlight-color: transparent; }
     if (e.target.closest("#homeBtn") && installEv) { e.preventDefault(); e.stopPropagation(); track("home-btn"); const ev = installEv; installEv = null;
       ev.prompt(); ev.userChoice.then((c) => track("home-prompt-" + (c && c.outcome))).catch(() => {}); return; }
     if (e.target.closest("#homeBtn")) track("home-btn");
-    const b = e.target.closest(".ii, .altb, .fabout");
+    if (e.target.closest(".lchk")) track("live-tip");
+    const b = e.target.closest(".ii, .altb, .fabout, .lchk");
     if (b) { e.preventDefault(); e.stopPropagation(); showTip(b); return; }
     if (!ipop.hidden && !e.target.closest("#iPop, dialog")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
   }, true);
@@ -2384,7 +2426,7 @@ html { -webkit-tap-highlight-color: transparent; }
       return `${head}<section class="acc evr" id="ev-${e.tid}" style="${w ? bandStyle(w) : ""}">
         <button class="arow" type="button" data-tid="${e.tid}" aria-expanded="false" aria-controls="evp-${e.tid}">
           <span class="icons${w && w.art && w.art.length === 1 ? " one" : ""}">${(w && w.art ? w.art : []).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>${w ? `<svg class="wcrown" viewBox="0 0 18 14" aria-hidden="true"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg>` : ""}
-          <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, e.name.length)}">${esc(e.name)}</span>
+          <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, e.name.length)}">${esc(e.name)}${NEWE.has(e.tid) ? '<span class="newb" title="New since your last visit">NEW</span>' : ""}</span>
             <span class="evsub">${e.players} players${w ? `<span class="sr-only"> \u00b7 won by ${esc(w.name)}</span>` : ""}</span></span>
         </button>
         <div class="apanel" id="evp-${e.tid}" hidden></div>
@@ -2477,7 +2519,8 @@ html { -webkit-tap-highlight-color: transparent; }
     $("tabM").setAttribute("aria-selected", String(!ev)); $("tabE").setAttribute("aria-selected", String(ev));
     $("list").hidden = ev; $("evl").hidden = !ev;
     $("filtBtn").hidden = ev || !data; if (ev) { setDrop(false); $("fnone").hidden = true; } else if (data) applyFilter();
-    if (ev) { if (openId) closeOpen(); track("tab-events"); if (!EV) { $("evl").innerHTML = '<div class="empty">Loading events&hellip;</div>'; loadEvents().then(renderEvents); } }
+    if (ev) { if (openId) closeOpen(); track("tab-events"); if (!EV) { $("evl").innerHTML = '<div class="empty">Loading events&hellip;</div>'; loadEvents().then(renderEvents); }
+      else if (!$("evl").querySelector(".evr")) renderEvents(); } // events.json is loaded early (live line): draw it once here
     else evClose();
     if (save) try { localStorage.setItem("pmq-tab", t); } catch (err) {}
   }
@@ -2487,12 +2530,9 @@ html { -webkit-tap-highlight-color: transparent; }
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((j) => {
       data = normQ(j);
-      const t = new Date(data.updatedAt);
-      const when = t.toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZoneName: "short" });
       const tile = (l, v, cls = "") => `<span class="mt${cls}"><span>${l}</span><b>${v}</b></span>`;
       const sm = data.summary, sp = data.span;
       // Window tile: "Last 7 days" with the dates; "updated N h ago" in its label (older data without a window: the plain Updated tile)
-      const ago = (() => { const h = Math.max(0, Math.round((Date.now() - t) / 36e5)); return h < 1 ? "just now" : h < 48 ? `${h} h ago` : `${Math.round(h / 24)} days ago`; })();
       const fmtSpan = (a, b) => { const o = { month: "short", day: "numeric", timeZone: "UTC" }, A = new Date(a + "T00:00:00Z"), B = new Date(b + "T00:00:00Z");
         return A.getUTCMonth() === B.getUTCMonth() ? `${A.toLocaleDateString(undefined, o)} \u2013 ${B.getUTCDate()}` : `${A.toLocaleDateString(undefined, o)} \u2013 ${B.toLocaleDateString(undefined, o)}`; };
       const win = data.window === "7d" ? "Last 7 days" : data.window === "3d" ? "Last 3 days" : data.window === "set" ? "Whole set" : "";
@@ -2500,7 +2540,9 @@ html { -webkit-tap-highlight-color: transparent; }
       // One quiet line: set, events, dates, age ("C1 Dual Fusion · 17 events · Nov 3 – 8 · updated 2 h ago")
       $("meta").innerHTML = ["Tournament meta", `<b>${esc(data.set)}</b>${data.setName ? " " + esc(data.setName) : ""}`,
         sm ? `<span title="${sm.players.toLocaleString()} players, ${sm.matches.toLocaleString()} matches"><b>${sm.tournaments}</b> events</span>` : "",
-        sp ? `<b>${spanTxt}</b>` : "", `<span title="Updated ${esc(when)}">updated ${ago}</span>`].filter(Boolean).join(" &middot; ");
+        sp ? `<b>${spanTxt}</b>` : ""].filter(Boolean).join(" &middot; ");
+      seenDecks(); // before the rows: the NEW tags of decks new in the top 10
+      renderLive(); loadEvents().then(() => { seenEvents(); renderLive(); });
       renderList();
       setupFilter();
       podGrow();
@@ -2557,6 +2599,89 @@ html { -webkit-tap-highlight-color: transparent; }
     setTimeout(() => { t.classList.remove("on"); setTimeout(() => t.remove(), 400); }, 2600);
   }
   const busy = () => !$("iPop").hidden || !$("cPop").hidden || !!document.querySelector("dialog[open]");
+  // ===== Live status (R13 fields when there: data.latest, events[].ts / .at; else events.json day) =====
+  // "Checked" = the hourly run (data.updatedAt): proves the site is awake. "Newest event" = a real tournament, so users
+  // can check it on Limitless. The dot follows the real data age: green < 2 h (pulse), amber < 6 h, grey older.
+  const agoTxt = (t) => { const m = Math.max(0, Math.round((Date.now() - new Date(t)) / 6e4));
+    return m < 1 ? "just now" : m < 60 ? `${m} min ago` : m < 48 * 60 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} days ago`; };
+  const clock = (t) => new Date(t).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+  const newestEv = () => (data && data.latest) || (EV && EV.events && EV.events[0]) || null;
+  function renderLive() {
+    if (!data) return;
+    const el = $("live"), age = Date.now() - new Date(data.updatedAt), dot = age < 2 * 36e5 ? "g" : age < 6 * 36e5 ? "a" : "";
+    const e = newestEv();
+    const next = new Date(new Date(data.updatedAt).getTime() + 36e5);
+    // The info sheet: a small status panel (status + hour bar, 3 time tiles, the newest event card, a short note)
+    const ck = new Date(data.updatedAt), nextIn = Math.max(0, Math.round((ck.getTime() + 36e5 - Date.now()) / 6e4)), fresh = age < 2 * 36e5;
+    const st = e && e.ts ? new Date(e.ts).toLocaleString(undefined, { weekday: "short", hour: "2-digit", minute: "2-digit" }) : e && e.dt ? evDay(e.dt) : "";
+    const tip = `<h3>Live tournament data</h3><div class="lv">
+      <div class="lvtop"><i class="ldot ${dot}" aria-hidden="true"></i><b>Checked ${agoTxt(data.updatedAt)}</b>${fresh ? `<span>${nextIn ? `next check in about ${nextIn} min` : "next check any minute"}</span>` : ""}</div>
+      ${fresh ? `<div class="lvbar" aria-hidden="true"><i style="width:${Math.min(100, Math.round(age / 36e3))}%"></i></div>` : ""}
+      <div class="lvgrid"><div><span>Last check</span><b>${clock(ck)}</b></div><div><span>Next check</span><b>${fresh ? "~" + clock(next) : "&mdash;"}</b></div>
+        <div><span>Last change</span><b>${data.changedAt ? agoTxt(data.changedAt) : "&mdash;"}</b></div></div>
+      ${e ? `<div class="lvev"><span class="lvk">Newest event</span><b>${esc(e.name)}</b><span>${[st && (e.ts ? "Started " + st : st), e.players ? e.players + " players" : ""].filter(Boolean).join(" &middot; ")}</span>
+        ${e.at ? `<span>Added to the site ${agoTxt(e.at)}</span>` : ""}<button class="lvopen" type="button" data-tid="${esc(e.tid || "")}">Open in Latest Events &rsaquo;</button></div>` : ""}
+      <p class="lvnote">We check Limitless for new tournaments every hour. Most checks find nothing new: the numbers change only when a new event is added. Times are in your time zone.</p>
+      <div class="lvleg"><span><i class="ldot g"></i>checked &lt; 2 h ago</span><span><i class="ldot a"></i>2&ndash;6 h</span><span><i class="ldot"></i>older</span></div></div>`;
+    // Option A: one flat chip (info level: outline, no shadow; raised pills are actions). "Live" only while fresh.
+    el.innerHTML = `<button class="lchk" type="button" aria-label="Data status: checked ${agoTxt(data.updatedAt)}. Details" data-tip="${esc(tip)}"><i class="ldot ${dot}" aria-hidden="true"></i>${fresh ? "<b>Live</b><span class=\"mu\">&middot; checked" : "<span class=\"mu\">Checked"} ${agoTxt(data.updatedAt)}</span><svg class="lch" viewBox="0 0 6 10" aria-hidden="true"><path d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
+    el.hidden = false;
+    // The status panel is open: keep its times current too
+    if (!ipop.hidden && tipBtn && tipBtn.classList && tipBtn.classList.contains("lchk")) { const nb = el.querySelector(".lchk"); tipBtn = nb; nb.setAttribute("aria-expanded", "true"); $("iPopIn").innerHTML = tip; }
+  }
+  // Every minute: the "N min ago" texts (line and open panel) stay true. While the page is on screen and the last check
+  // is over 65 min old, look for new data once (at most every 30 min): the "New data" pill / home-screen reload.
+  let lastTry = 0;
+  setInterval(() => {
+    renderLive();
+    if (data && !document.hidden && Date.now() - new Date(data.updatedAt) > 65 * 6e4 && Date.now() - lastTry > 30 * 6e4) { lastTry = Date.now(); checkNew(); }
+  }, 6e4);
+  const openEvent = (tid) => {
+    setTab("events");
+    const go = () => { const r = tid && $("ev-" + tid); if (r) { r.scrollIntoView({ block: "center" }); r.querySelector(".arow").click(); } };
+    loadEvents().then(() => requestAnimationFrame(go));
+  };
+  ipop.addEventListener("click", (e) => { const b = e.target.closest(".lvopen"); if (b) { hideTip(); openEvent(b.dataset.tid); } });
+  // The tip of "Checked ..." uses the same info sheet as the ⓘ buttons
+  // ===== Since your last visit (this browser only; localStorage "pmq-seen") =====
+  // Saved at each load: the data time, the event ids and the top-10 deck ids. Next visit with other data: a pill
+  // "+2 events · 1 new deck in the top 10" and NEW tags. The tags stay for this visit (sessionStorage), also after a
+  // home-screen refresh.
+  const NEWD = new Set(), NEWE = new Set();
+  let SEEN = null; try { SEEN = JSON.parse(localStorage.getItem("pmq-seen") || "null"); } catch (err) {}
+  let KEEP = null; try { KEEP = JSON.parse(sessionStorage.getItem("pmq-new") || "null"); } catch (err) {}
+  const saveSeen = (patch) => { try { const o = JSON.parse(localStorage.getItem("pmq-seen") || "{}"); localStorage.setItem("pmq-seen", JSON.stringify({ ...o, ...patch })); } catch (err) {} };
+  const keepNew = () => { try { sessionStorage.setItem("pmq-new", JSON.stringify({ d: [...NEWD], e: [...NEWE] })); } catch (err) {} };
+  function seenDecks() {
+    const top = data.decks.slice(0, 10).map((d) => d.id);
+    if (KEEP) (KEEP.d || []).forEach((id) => top.includes(id) && NEWD.add(id));
+    if (SEEN && SEEN.u && SEEN.u !== data.updatedAt && SEEN.t10) top.forEach((id) => { if (!SEEN.t10.includes(id)) NEWD.add(id); });
+    saveSeen({ u: data.updatedAt, t10: top }); keepNew(); renderSince();
+  }
+  function seenEvents() {
+    if (!EV || !EV.events) return;
+    const ids = EV.events.map((e) => e.tid);
+    if (KEEP) (KEEP.e || []).forEach((id) => ids.includes(id) && NEWE.add(id));
+    if (SEEN && SEEN.ev && SEEN.u !== data.updatedAt) ids.forEach((id) => { if (!SEEN.ev.includes(id)) NEWE.add(id); });
+    saveSeen({ ev: ids }); keepNew(); renderSince();
+    if (NEWE.size && !$("evl").hidden) renderEvents(); // the tab is already open: add the tags
+  }
+  function renderSince() {
+    const el = $("since"), ne = NEWE.size, nd = NEWD.size;
+    let off = false; try { off = sessionStorage.getItem("pmq-since-x") === data.updatedAt; } catch (err) {}
+    if ((!ne && !nd) || off) { el.hidden = true; return; }
+    const parts = [ne ? `<b>+${ne} event${ne > 1 ? "s" : ""}</b>` : "", nd ? `<b>${nd} new deck${nd > 1 ? "s" : ""}</b> in the top 10` : ""].filter(Boolean);
+    el.innerHTML = `<span class="sinb" role="button" tabindex="0"><span>Since your last visit: ${parts.join(" &middot; ")}</span><button class="sinx" type="button" aria-label="Hide">&times;</button></span>`;
+    el.hidden = false;
+  }
+  $("since").addEventListener("click", (e) => {
+    if (e.target.closest(".sinx")) { try { sessionStorage.setItem("pmq-since-x", data.updatedAt); } catch (err) {} $("since").hidden = true; return; }
+    if (!e.target.closest(".sinb")) return;
+    track("since-pill");
+    if (NEWE.size) setTab("events"); else { const r = [...NEWD].map((id) => $(id)).find(Boolean); if (r) r.scrollIntoView({ block: "center" }); }
+  });
+  $("since").addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches(".sinb")) { e.preventDefault(); e.target.click(); } });
+
   // Reload with the open deck (#id) or the Events tab and the scroll place kept; then a short "Updated" note
   function reloadKeep() {
     try { sessionStorage.setItem("pmq-rs", String(Math.round(scrollY))); } catch (err) {}
