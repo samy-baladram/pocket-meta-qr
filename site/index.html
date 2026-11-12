@@ -1,8 +1,9 @@
-<!-- ui: artifact version 1794497662-71be -->
+<!-- ui: artifact version 1794500870-a12b -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
-<meta name="theme-color" content="#1aa4f9">
+<meta name="theme-color" id="themeColor" content="#eff5f8">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -107,9 +108,10 @@ html, body { overflow-x: clip; overflow-anchor: none; } /* no browser scroll anc
 body {
   margin: 0; position: relative; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.45;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 20px 40px;
+  padding-block: calc(20px + env(safe-area-inset-top, 0px)) 40px; /* home-screen app: the page starts under the status bar */
 }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; /* the status bar strip (home-screen app): the banner gradient */
+  background: linear-gradient(90deg, var(--band-bot), var(--band-mid) 33%, var(--band-mid2) 67%, var(--band-top)); }
 .wrap { position: relative; z-index: 1; max-width: 960px; /* a ranked list reads best at this width; the open deck strip still runs full width */ margin: 0 auto; display: flex; flex-direction: column; gap: var(--sp-4); }
 button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; } /* no grey flash on tap */
 button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
@@ -155,7 +157,8 @@ footer a { color: var(--muted); }
 
 /* ===== Header: blue band, tilted light ribbon with a slanted title, section title, flat stat tiles ===== */
 .hdr { position: relative; display: block; padding: 0; --rot: -5deg; --slope: 8.75vw; } /* brand angle (same as the saved QR image); --slope = tan(rot) x 100vw */
-.hband { position: absolute; z-index: 0; left: calc(50% - 50vw); width: 100vw; top: -20px; height: 112px;
+.hband { --up: calc(600px + env(safe-area-inset-top, 0px)); /* Nov 13: reaches far above the page, so a pull-down (and the status bar) show the gradient */
+  position: absolute; z-index: 0; left: calc(50% - 50vw); width: 100vw; top: calc(-20px - var(--up)); height: calc(112px + var(--up));
   background: linear-gradient(90deg, var(--band-bot), var(--band-mid) 33%, var(--band-mid2) 67%, var(--band-top)); /* Nov 12: left to right, hue 190 -> 203 -> 216 -> 230 (cyan to deep blue); saturation down and lightness up a little toward the blue end, so it stays clear */
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--slope)), 0 100%); } /* bottom edge follows the ribbon's tilt */
 .theme-btn { position: absolute; z-index: 3; top: -6px; right: 0; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%;
@@ -193,6 +196,7 @@ footer a { color: var(--muted); }
 /* Nov 12: the set, events and dates, then the Live chip on the same line (it wraps under them on narrow screens) */
 .hdr .mline { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 2px 2px 0; }
 .hdr .mline .live { margin: 0; }
+@media (max-width: 413px) { .hdr .meta .snm { display: none; } } /* narrow phones: the set code only, so the Live chip fits on the line */
 .hdr .meta { position: relative; z-index: 1; margin: 0; color: var(--muted); font-size: var(--fs-s); line-height: 1.4; }
 .hdr .meta b { color: var(--ink); font-weight: 600; }
 /* Live line: status dot (by the real data age) + "Checked N min ago" (a button: exact times in a tip) + the newest event */
@@ -923,14 +927,14 @@ html { -webkit-tap-highlight-color: transparent; }
      at about 0.55em per character and 80% line fill; from 15px up to 1.2 x 17px. Tighter line spacing. */
   .acc:not(.pod) > .arow[aria-expanded="true"] .aname { line-height: 1.12;
     font-size: max(var(--fs-l), min(calc(var(--fs-xl) * 1.2), calc((100vw - 196px) * 2.9 / var(--nlen)))); }
-  body { padding-block: 10px 28px; }
+  body { padding-block: calc(10px + env(safe-area-inset-top, 0px)) 28px; }
   .wrap { gap: var(--sp-3); }
-  .hband { top: -10px; height: 98px; }
+  .hband { top: calc(-10px - var(--up)); height: calc(98px + var(--up)); }
   .ribbon { margin-top: 26px; padding-block: 8px 9px; }
   .rlogo, .rlogo svg { width: 30px; height: 30px; }
   .hdr h1 { font-size: 1.85rem; }
   .hrow { margin-top: 30px; }
-  .hsec { font-size: 1.05rem; }
+  .hsec { font-size: min(1.05rem, calc((100vw - 90px) / 18.3)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* Nov 13: one line on every phone (the room left of the filter button) */
 
     .fsearch { flex-basis: 100%; }
   .arow { gap: 10px; padding: var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-4); --bw: 116px; min-height: 70px; }
@@ -958,7 +962,7 @@ html { -webkit-tap-highlight-color: transparent; }
 /* ===== Wider screens ===== */
 @media (min-width: 761px) {
   .hdr { --rot: -2.6deg; --slope: 4.5vw; }  /* a smaller tilt, so the ribbon drops about as much as on a phone */
-  .hband { height: 118px; }
+  .hband { height: calc(118px + var(--up)); }
   .hrow { margin-top: 44px; }
   .pname { font-size: var(--fs-xl); }
   .psub { font-size: var(--fs-s); }
@@ -1216,6 +1220,8 @@ html { -webkit-tap-highlight-color: transparent; }
     $("themeBtn").innerHTML = d ? SUN : MOON;
     $("themeBtn").setAttribute("aria-label", d ? "Switch to light mode" : "Switch to dark mode");
     $("themeBtn").title = d ? "Light mode" : "Dark mode";
+    // Browser / home-screen status bar: the page color (a flat blue did not match the banner's gradient) (Nov 13)
+    $("themeColor")?.setAttribute("content", d ? "#141b24" : "#eff5f8");
   };
   $("themeBtn").addEventListener("click", () => {
     const next = isDark() ? "light" : "dark";
@@ -2701,7 +2707,7 @@ html { -webkit-tap-highlight-color: transparent; }
       const win = data.window === "7d" ? "Last 7 days" : data.window === "3d" ? "Last 3 days" : data.window === "set" ? "Whole set" : "";
       if (sp) spanTxt = fmtSpan(sp[0], sp[1]);
       // One quiet line: set, events, dates, age ("C1 Dual Fusion · 17 events · Nov 3 – 8 · updated 2 h ago")
-      $("meta").innerHTML = [`<b>${esc(data.set)}</b>${data.setName ? " " + esc(data.setName) : ""}`,
+      $("meta").innerHTML = [`<b>${esc(data.set)}</b>${data.setName ? `<span class="snm"> ${esc(data.setName)}</span>` : ""}`,
         sm ? `<span title="${sm.players.toLocaleString()} players, ${sm.matches.toLocaleString()} matches"><b>${sm.tournaments}</b> events</span>` : "",
         sp ? `<b>${spanTxt}</b>` : ""].filter(Boolean).join(" &middot; ");
       seenDecks(); // before the rows: the NEW tags of decks new in the top 10
@@ -2787,7 +2793,7 @@ html { -webkit-tap-highlight-color: transparent; }
       <p class="lvnote">Checked every hour. The numbers change only when a new event is added. Times are in your time zone.</p>
       <div class="lvleg"><span><i class="ldot g"></i>checked &lt; 2 h ago</span><span><i class="ldot a"></i>2&ndash;6 h</span><span><i class="ldot"></i>older</span></div></div>`;
     // Option A: one flat chip (info level: outline, no shadow; raised pills are actions). "Live" only while fresh.
-    el.innerHTML = `<button class="lchk" type="button" aria-label="Data status: checked ${agoTxt(data.updatedAt)}. Details" data-tip="${esc(tip)}"><i class="ldot ${dot}" aria-hidden="true"></i>${fresh ? "<b>Live</b><span class=\"mu\">&middot;" : "<span class=\"mu\">Checked"} ${agoTxt(data.updatedAt)}</span><svg class="lch" viewBox="0 0 6 10" aria-hidden="true"><path d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
+    el.innerHTML = `<button class="lchk" type="button" aria-label="Data status: checked ${agoTxt(data.updatedAt)}. Details" data-tip="${esc(tip)}"><i class="ldot ${dot}" aria-hidden="true"></i>${fresh ? `<b>Live</b><span class="mu">&middot; ${agoTxt(data.updatedAt).replace(/ ago$/, "")}` : `<span class="mu">${agoTxt(data.updatedAt)}`}</span><svg class="lch" viewBox="0 0 6 10" aria-hidden="true"><path d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
     el.hidden = false;
     // The status panel is open: keep its times current too
     if (!ipop.hidden && tipBtn && tipBtn.classList && tipBtn.classList.contains("lchk")) { const nb = el.querySelector(".lchk"); tipBtn = nb; nb.setAttribute("aria-expanded", "true"); $("iPopIn").innerHTML = tip; }
