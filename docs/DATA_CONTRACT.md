@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 15 (Nov 12, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 16 (Nov 13, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 16 (request R14 of the UI chat): per deck (`decks` and `nolist`, in `data.json` and `more.json`)
+  **`rk0`** = the rank 24 h before the build (0 = not in the list then) and **`nw: 1`** = new in the list (first time
+  in the list less than 72 h ago). About 10 bytes per deck.
 - Version 15 (request R13 of the UI chat): event times for the "Live" status panel: **`ts`** (start) and **`at`**
   (reached the site) per event in `events.json`; **`latest`** (the event that reached the site last) in `data.json`;
   **`changedAt`** (last added tournament of the window) in `data.json` and `events.json`.
@@ -118,6 +121,8 @@ Use the same word in new docs and UI notes.
 |---|---|---|
 | `id` | string | Limitless archetype slug, e.g. `mega-charizard-y-ex-b1a-entei-ex-a4a` |
 | `rank` | int | position by players (1 = most); can skip numbers (the missing ranks are in `nolist`) |
+| `rk0` | int | **new in v16.** the deck's rank 24 h before this build (`updatedAt` − 24 h), same rules (see "Rank 24 h ago"); `0` = not in the list then (under 0.2 % share or no entries). Always written |
+| `nw` | 1 or absent | **new in v16.** new in the list: its first time in the list (0.2 % share or more) since the set release was less than 72 h before this build, and more than 72 h after the release. The page shows NEW and ignores `rk0` then |
 | `name` | string | display name, e.g. `Mega Charizard Y ex Entei ex` (same as Limitless) |
 | `count` | int | players with this deck in the window |
 | `share` | number | % of all decks in the window (2 decimals) |
@@ -176,6 +181,19 @@ Every `in`/`out` card id has a `c/` image. The version's energy is always the li
 needs another type, the build log says so (none on Nov 9). The QR check decodes every `alt` QR before deploy. Example UI text: "Also played: −1 Red Card +1 Soothing Shore
 (2 top players, best 15th of 203)".
 
+### Rank 24 h ago and NEW (new in v16)
+
+Computed from the times the tournaments reached the site (`fetched_at` of the raw file, the `at` of `events.json`;
+the raw files are written once, so no stored history is needed). "The list at time T" = what a build at T would have
+shown: the current set's tournaments with `at` <= T and a day in the 7 days that end on T's date (UTC); share as for
+`share` (every deck of an entry counts, multi-deck too); decks with 0.2 % share or more; rank by players, then id.
+- `rk0` = the deck's rank in the list at `updatedAt` − 24 h (0 when not in it).
+- `nw` = the first T since the set release (checked at every tournament `at` and every midnight UTC, the only times
+  the list can change) at which the deck is in the list, is less than 72 h ago and more than 72 h after the release.
+- Note: the site's history starts with the first fetch on Nov 8, 2026 (all tournaments before it have `at` = Nov 8),
+  so a "first time" is never before Nov 8 for set C1.
+- Checked Nov 12: `rk0` of all 57 decks equals the ranks of a build from the repo data of 24 h earlier.
+
 ### Packed QR (new in v14)
 
 `q` = `"<n>:<base64>"`:
@@ -197,6 +215,7 @@ needs another type, the build log says so (none on Nov 9). The QR check decodes 
 | Field | Meaning |
 |---|---|
 | `rank`, `id`, `name`, `count`, `share`, `win` | same as a deck (`win` can be null) |
+| `rk0`, `nw` | **new in v16.** same as a deck |
 | `art` | the 1-2 named Pokémon, same rule as a deck's `art`; every id has a `c/` (and `z/`) image |
 | `energy` | from the newest decklist of the deck in the current set (any event, also multi-deck; energy rule as for lists); else the deck's energy vote or the attack costs of the named Pokémon. Can be `[]` (only colorless costs) |
 

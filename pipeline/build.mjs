@@ -275,7 +275,8 @@ for (const [rank, d] of input.decks.entries()) {
     const x = await noListInfo(d, name);
     if (!x.art.length) problems.push(`${id}: nolist row without art`);
     x.art.forEach((a) => images.add(a));
-    nolist.push({ rank: rank + 1, id, name, count, share, win, art: x.art, energy: x.energy, more: !!d.more, from: x.from });
+    nolist.push({ rank: rank + 1, rk0: d.rk0 ?? 0, ...(d.nw ? { nw: 1 } : {}), id, name, count, share, win, art: x.art,
+      energy: x.energy, more: !!d.more, from: x.from });
     continue;
   }
   printGuard(id, groups.flatMap((g) => g.members.map((x) => x.list)), problems);
@@ -315,7 +316,9 @@ for (const [rank, d] of input.decks.entries()) {
     shown: vars.map((v) => new Map(v.cards.map((c) => [c.id, c.c]))),
     altIn: vars.flatMap((v) => (v.alt || []).flatMap((a) => a.in.map((c) => c.id))) });
   const { art, ...best } = vars[0];
-  decks.push({ id, rank: rank + 1, name, count, share, w, l, t, win, art, nv: vars.length, ...best });
+  // R14: rk0 = rank 24 h before this build (0 = not in the list then); nw = first time in the list in the last 72 h.
+  decks.push({ id, rank: rank + 1, rk0: d.rk0 ?? 0, ...(d.nw ? { nw: 1 } : {}), name, count, share, w, l, t, win, art,
+    nv: vars.length, ...best });
   if (d.more) moreIds.add(id);
 }
 
@@ -480,6 +483,13 @@ writeFileSync("images.json", JSON.stringify({
   packs: [...packImg].map(([id, url]) => ({ id, url })),
 }));
 const nvars = decks.reduce((a, d) => a + d.nv, 0);
+{ // R14 summary: rank changes against 24 h ago
+  const all = [...decks, ...nolist], up = all.filter((d) => d.rk0 && d.rk0 > d.rank).length;
+  const down = all.filter((d) => d.rk0 && d.rk0 < d.rank).length, same = all.filter((d) => d.rk0 === d.rank).length;
+  console.log(`rank 24 h ago (rk0, ${input.rk0At}): ${up} up, ${down} down, ${same} same, ` +
+    `${all.filter((d) => !d.rk0).length} not in the list then; new (nw): ` +
+    (all.filter((d) => d.nw).map((d) => `${d.rank} ${d.name}`).join("; ") || "none"));
+}
 if (waiting) console.log(`${waiting} decks have no list in the window (nolist rows, R10): ` +
   nolist.map((x) => `${x.rank} ${x.name} [${x.art.join(",")}] ${x.energy.join("+")} (${x.from})`).join("; "));
 console.log(`more.json: ${moreIds.size} decks (of ${input.decks.filter((d) => d.more).length} with 0.2-0.5 % share), ` +
