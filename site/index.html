@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794500870-a12b -->
+<!-- ui: artifact version 1794502910-1e6b -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -225,14 +225,25 @@ footer a { color: var(--muted); }
   color: #fff; background: var(--accent); }
 /* Search + energy filter */
 /* Filter button: next to the theme button, same raised round style; a blue dot shows that a search or filter is on */
-.filt-btn { position: relative; top: -15px; right: auto; /* Nov 12: 15px up */ flex: none; margin-block: -8px; width: 40px; height: 40px; }
-.filt-btn svg { width: 20px; height: 20px; } /* no extra row height */
+.fwrap { position: relative; flex: none; display: flex; }
+.filt-btn { position: relative; top: auto; right: auto; flex: none; margin: 0; width: 32px; height: 32px; } /* in the tab band (Nov 13) */
+.filt-btn:disabled { opacity: 0.35; cursor: default; box-shadow: none; } /* Latest Events: the filter is for decks */
+/* Flat in the band (Nov 13): no raised circle, a thin line before it; open = pressed in, like the selected tab */
+.fwrap { align-items: center; gap: 6px; }
+.fwrap::before { content: ""; width: 1px; height: 18px; border-radius: 1px; background: var(--line-strong); }
+.tbar .filt-btn { background: none; box-shadow: none; color: var(--muted); width: 36px; border-radius: 999px; }
+@media (hover: hover) { .tbar .filt-btn:not(:disabled):hover { color: var(--ink); } }
+.tbar .filt-btn[aria-expanded="true"] { background: var(--tile); color: var(--ink); box-shadow: inset 2px 3px 4px rgba(var(--sh), 0.14), inset -2px -2px 3px rgba(255, 255, 255, 0.85); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tbar .filt-btn[aria-expanded="true"] { box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); } }
+:root[data-theme="dark"] .tbar .filt-btn[aria-expanded="true"] { box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); }
+.tbar .filt-btn .fdot { top: 3px; right: 6px; }
+.filt-btn svg { width: 17px; height: 17px; }
 .filt-btn[hidden] { display: none; }
 .filt-btn[aria-expanded="true"] { color: var(--accent); }
 .filt-btn .fdot { position: absolute; top: 1px; right: 1px; width: 8px; height: 8px; border-radius: 50%; background: var(--mark); box-shadow: 0 0 0 1.5px var(--surface); }
 .filt-btn .fdot[hidden] { display: none; }
 /* Dropdown: search + energy chips + count, under the buttons; closed by default */
-.filt { position: absolute; z-index: 5; top: calc(100% + 6px); right: 0; width: min(340px, 100%); display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2);
+.filt { position: absolute; z-index: 5; top: calc(100% + 10px); right: 0; width: min(340px, calc(100vw - 32px)); display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2);
   padding: var(--sp-3); border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), 0 8px 24px rgba(var(--sh), 0.2); }
 .filt[hidden] { display: none; }
 .filt .fsearch { flex-basis: 100%; }
@@ -285,6 +296,11 @@ footer a { color: var(--muted); }
 .filt .ech img { width: 26px; height: 26px; opacity: 1; filter: none; }
 .filt .ech[aria-pressed="true"] { background: var(--fch-on); box-shadow: var(--fch-on-sh); }
 @media (max-width: 380px) { .filt .fen { padding-inline: 10px; gap: 2px; } .filt .ech { width: 32px; height: 32px; } .filt .ech img { width: 24px; height: 24px; } }
+/* Nov 13: the energy types sit in one pressed-in bar (like the search pill), the chips are flat in it: the whole bar
+   reads as one big tap area. The chosen type: the dark pressed disc (as before). */
+.filt .fen { width: auto; flex-basis: auto; flex: 1 1 100%; margin: 12px 12px 14px; padding: 4px 6px; gap: 2px; border-radius: 999px; background: var(--fin-bg); box-shadow: var(--fin-sh); overflow-x: auto; }
+.filt .ech { background: none; box-shadow: none; }
+@media (max-width: 380px) { .filt .fen { margin-inline: 10px; padding-inline: 4px; } }
 /* Search suggestions: decks (2 icon cards, name, share and win) and cards (thumbnail, name, decks that use it);
    with an empty box: "Popular cards" (cards in many decks, but not the staples that almost every deck plays) */
 .fsug { flex-basis: 100%; display: flex; flex-direction: column; gap: 1px; max-height: min(52vh, 420px); overflow-y: auto; overscroll-behavior: contain; margin: -2px -4px 0; }
@@ -934,7 +950,7 @@ html { -webkit-tap-highlight-color: transparent; }
   .rlogo, .rlogo svg { width: 30px; height: 30px; }
   .hdr h1 { font-size: 1.85rem; }
   .hrow { margin-top: 30px; }
-  .hsec { font-size: min(1.05rem, calc((100vw - 90px) / 18.3)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* Nov 13: one line on every phone (the room left of the filter button) */
+  .hsec { font-size: min(1.05rem, calc((100vw - 40px) / 18.3)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* Nov 13: one line on every phone (the room left of the filter button) */
 
     .fsearch { flex-basis: 100%; }
   .arow { gap: 10px; padding: var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-4); --bw: 116px; min-height: 70px; }
@@ -989,13 +1005,15 @@ html { -webkit-tap-highlight-color: transparent; }
 /* ===== Tabs (in-game style segmented control): Meta Decks | Latest Events ===== */
 /* Game style (Nov 12): the bar is a flat light panel with a shadow under it; the selected tab is pressed in
    (inner shadow from the top left, a light rim on the bottom right). Pressed in = "you are here". */
-.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: var(--surface);
+/* Nov 13: the band holds the tabs and the filter button at its right end (sticky, so search is always in reach) */
+.tabs { flex: 1; min-width: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.tbar { display: flex; align-items: center; gap: 8px; background: var(--surface);
   /* a straight band across the screen (full width), the tabs stay in the page column */
   margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 4px calc(50vw - 50% + 4px); border-radius: 0;
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; /* stays at the top while the list scrolls */
   box-shadow: 0 -2px 3px rgba(var(--sh), 0.06), 0 -5px 11px rgba(var(--sh), 0.10), 0 2px 4px rgba(var(--sh), 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8); } /* shadow above, a short weak shadow below, light line on top */
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tabs { box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.3), 0 -5px 11px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04); } }
-:root[data-theme="dark"] .tabs { box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.3), 0 -5px 11px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tbar { box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.3), 0 -5px 11px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04); } }
+:root[data-theme="dark"] .tbar { box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.3), 0 -5px 11px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04); }
 .tabs button { height: 32px; border: 0; border-radius: 999px; background: none; color: var(--muted); font-weight: 500; font-size: 0.875rem; cursor: pointer; } /* 14px */
 .tabs button[aria-selected="true"] { background: var(--tile); color: var(--ink); font-weight: 600;
   box-shadow: inset 2px 3px 4px rgba(var(--sh), 0.14), inset -2px -2px 3px rgba(255, 255, 255, 0.85); }
@@ -1042,22 +1060,24 @@ html { -webkit-tap-highlight-color: transparent; }
 .rb .rn { position: relative; display: grid; place-items: center; min-width: 18px; padding: 0 3px 0 4px; font-weight: 700; font-size: 13px; color: #66758a; line-height: 1; }
 .rb.solo .rn { padding: 0 4px; min-width: 22px; }
 .rb .rsep { display: block; flex: none; width: 1px; margin: 4px 0; border-radius: 1px; background: #d3dbe4; }
-.rb .dl { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; min-width: 12px; padding: 0 3px; font-size: 8px; font-weight: 900; line-height: 1; }
+.rb .dl { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; min-width: 12px; padding: 0 3px; font-size: 9px; font-weight: 900; line-height: 1; }
 .rb .dl svg { width: 6px; height: 4px; display: block; }
-.rb .dl.up { color: #5c9c78; } .rb .dl.dn { color: #c46a7e; } .rb .dl.eq { color: #9aa6b6; font-size: 11px; font-weight: 600; }
+.rb .dl.dn svg { margin-top: 1px; }
+.rb .dl.dn { transform: translateY(-1px); } /* the number and its down arrow, 1px up (the extra line above made the pair sit low) */ /* the digits sit high in their line box: the down arrow needs 1px more */
+.rb .dl.up { color: #1f9d55; } .rb .dl.dn { color: #d6345a; } .rb .dl.eq { color: #9aa6b6; font-size: 11px; font-weight: 600; }
 .rb .dl.nw { color: var(--acc-ink); font-size: 7px; letter-spacing: 0.02em; }
 .arow[aria-expanded="true"] .rb { transform: scale(0.85); }
 .rb::after { content: ""; position: absolute; inset: -6px; } /* a larger tap area */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rb { background: #2a3242; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
   :root:not([data-theme="light"]) .rb .rn { color: #c3cede; } :root:not([data-theme="light"]) .rb .rsep { background: #3a4456; }
-  :root:not([data-theme="light"]) .rb .dl.up { color: #7fbf9b; } :root:not([data-theme="light"]) .rb .dl.dn { color: #e392a5; } :root:not([data-theme="light"]) .rb .dl.eq { color: #6f7b8d; } }
+  :root:not([data-theme="light"]) .rb .dl.up { color: #5fd38f; } :root:not([data-theme="light"]) .rb .dl.dn { color: #ff8fa8; } :root:not([data-theme="light"]) .rb .dl.eq { color: #6f7b8d; } }
 :root[data-theme="dark"] .rb { background: #2a3242; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
 :root[data-theme="dark"] .rb .rn { color: #c3cede; } :root[data-theme="dark"] .rb .rsep { background: #3a4456; }
-:root[data-theme="dark"] .rb .dl.up { color: #7fbf9b; } :root[data-theme="dark"] .rb .dl.dn { color: #e392a5; } :root[data-theme="dark"] .rb .dl.eq { color: #6f7b8d; }
+:root[data-theme="dark"] .rb .dl.up { color: #5fd38f; } :root[data-theme="dark"] .rb .dl.dn { color: #ff8fa8; } :root[data-theme="dark"] .rb .dl.eq { color: #6f7b8d; }
 /* Rows (rank 4 and on): a smaller badge */
 .rb:not(.pm) { height: 19px; left: -4px; top: -6px; }
 .rb:not(.pm) .rn { font-size: 12px; min-width: 16px; padding: 0 3px 0 4px; }
-.rb:not(.pm) .dl { font-size: 7px; padding: 0 3px 0 2px; } .rb:not(.pm) .dl svg { width: 5px; height: 3.5px; } .rb:not(.pm) .dl.eq { font-size: 10px; }
+.rb:not(.pm) .dl { font-size: 8px; padding: 0 3px 0 2px; } .rb:not(.pm) .dl svg { width: 5px; height: 3.5px; } .rb:not(.pm) .dl.eq { font-size: 10px; }
 .rb:not(.pm) .rsep { margin: 3px 0; }
 /* The tip of the badge: the change in its color */
 .ipop p b.tup { color: #3f8a60; } .ipop p b.tdn { color: #b8566c; } .ipop p b.teq { color: var(--muted); } .ipop p b.tnw { color: var(--acc-ink); }
@@ -1073,12 +1093,12 @@ html { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 760px) { /* phones: a smaller podium badge, like the rows */
   .rb.pm { height: 19px; left: -4px; top: -6px; }
   .rb.pm .rn { font-size: 12px; min-width: 16px; padding: 0 3px 0 4px; }
-  .rb.pm .dl { font-size: 7px; padding: 0 3px 0 2px; } .rb.pm .dl svg { width: 5px; height: 3.5px; } .rb.pm .dl.eq { font-size: 10px; }
+  .rb.pm .dl { font-size: 8px; padding: 0 3px 0 2px; } .rb.pm .dl svg { width: 5px; height: 3.5px; } .rb.pm .dl.eq { font-size: 10px; }
   .rb.pm .rsep { margin: 3px 0; } .rb.pm .rn svg.cr { top: -4px; width: 11px; height: 8.5px; } }
 @media (min-width: 1024px) { /* desktop: a larger podium badge (the tiles are 3x wider) */
   .rb.pm { height: 28px; left: -6px; top: -9px; border-radius: 5px; }
   .rb.pm .rn { font-size: 16px; min-width: 22px; padding: 0 4px 0 5px; }
-  .rb.pm .dl { font-size: 10px; padding: 0 4px; } .rb.pm .dl svg { width: 8px; height: 5px; } .rb.pm .dl.eq { font-size: 13px; }
+  .rb.pm .dl { font-size: 11px; padding: 0 4px; } .rb.pm .dl svg { width: 8px; height: 5px; } .rb.pm .dl.eq { font-size: 13px; }
   .rb.pm .rn svg.cr { top: -6px; width: 16px; height: 12px; } .rb.pm .rsep { margin: 5px 0; } }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .rb.pm.g { background: linear-gradient(135deg, #4d3f19, #7f6a2f); box-shadow: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.18), inset -1px -1px 0 #4d3f19, 0 1px 2px rgba(0, 0, 0, 0.3); } :root:not([data-theme="light"]) .rb.pm.g .rn { color: #f3cf62; } :root:not([data-theme="light"]) .rb.pm.g .rsep { background: rgba(243, 207, 98, 0.25); }
@@ -1143,13 +1163,6 @@ html { -webkit-tap-highlight-color: transparent; }
     <div class="ribbon"><span class="rlogo" aria-hidden="true"><svg viewBox="0 0 24 24" overflow="visible"><defs><linearGradient id="rlGrad" gradientUnits="userSpaceOnUse" x1="0" y1="2" x2="0" y2="22"><stop offset="0" style="stop-color:var(--rl-a)"/><stop offset="1" style="stop-color:var(--rl-b)"/></linearGradient></defs><g transform="skewX(-12) translate(2.5 0)"><g fill="none" stroke="url(#rlGrad)" stroke-width="2"><rect x="2.95" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="url(#rlGrad)"><rect x="4.9" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></g></svg></span><h1>Pocket Meta QR</h1></div>
     <div class="hrow">
     <h2 class="hsec">This week&rsquo;s Pok&eacute;mon TCG Pocket decks</h2>
-    <button class="theme-btn filt-btn" id="filtBtn" type="button" aria-label="Search and filter decks" title="Search and filter" aria-expanded="false" aria-controls="filt" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V18l-3.6 2v-7.6z"/></svg><span class="fdot" id="fdot" hidden></span></button>
-    <div class="filt" id="filt" hidden>
-      <label class="fsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
-        <input id="fq" type="search" placeholder="Search a deck or card" autocomplete="off" enterkeyhint="search" aria-label="Search decks by deck or card name" aria-controls="fsug"><button class="fsx" id="fqx" type="button" aria-label="Clear the search" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></button></label>
-      <div class="fsug" id="fsug" role="listbox" aria-label="Suggestions"></div>
-      <div class="fen" id="fen" role="group" aria-label="Filter by energy"></div>
-    </div>
     </div>
     <div class="mline"><p class="meta" id="meta">Loading&hellip;</p>
     <p class="live" id="live" hidden></p></div>
@@ -1166,7 +1179,18 @@ html { -webkit-tap-highlight-color: transparent; }
   <div class="cscrim" id="cScrim" hidden></div>
   <div class="cpop ipop" id="iPop" role="dialog" aria-label="About this label" tabindex="-1" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div class="ibody" id="iPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="iPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <div class="cpop" id="cPop" role="dialog" aria-label="Card details" tabindex="-1" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div id="cPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="cPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="tbar" id="tbar">
   <div class="tabs" id="tabs" role="tablist" aria-label="View"><button type="button" role="tab" id="tabM" aria-selected="true" aria-controls="list">Meta Decks</button><button type="button" role="tab" id="tabE" aria-selected="false" aria-controls="evl">Latest Events</button></div>
+  <div class="fwrap">
+    <button class="theme-btn filt-btn" id="filtBtn" type="button" aria-label="Search and filter decks" title="Search and filter" aria-expanded="false" aria-controls="filt" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V18l-3.6 2v-7.6z"/></svg><span class="fdot" id="fdot" hidden></span></button>
+    <div class="filt" id="filt" hidden>
+      <label class="fsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <input id="fq" type="search" placeholder="Search a deck or card" autocomplete="off" enterkeyhint="search" aria-label="Search decks by deck or card name" aria-controls="fsug"><button class="fsx" id="fqx" type="button" aria-label="Clear the search" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></button></label>
+      <div class="fsug" id="fsug" role="listbox" aria-label="Suggestions"></div>
+      <div class="fen" id="fen" role="group" aria-label="Filter by energy"></div>
+    </div>
+  </div>
+  </div>
   <p class="fnone" id="fnone" aria-live="polite" hidden><span id="fnoneTxt"></span> <button type="button" id="fclear">Clear</button></p>
   <main class="list" id="list"><div class="empty">Loading decks&hellip;</div></main>
   <section class="list" id="evl" aria-label="Latest events" hidden></section>
@@ -1203,7 +1227,7 @@ html { -webkit-tap-highlight-color: transparent; }
   const pushH = (...a) => { if (BACK_CLOSES) history.pushState(...a); };
   // Where a deck sits after the scroll: its row (or the podium) this many px below the screen top
   const anchorOf = (sec) => { const pod = sec.classList.contains("pod"); return { box: pod ? sec.parentElement : sec, gap: pod ? 18 : 8 }; };
-  const padTop = () => (parseFloat(getComputedStyle(document.documentElement).paddingTop) || 0) + (document.getElementById("tabs")?.offsetHeight || 0); // + the sticky tab bar
+  const padTop = () => (parseFloat(getComputedStyle(document.documentElement).paddingTop) || 0) + (document.getElementById("tbar")?.offsetHeight || 0); // + the sticky tab bar
   // Extra space under the footer, only while needed, so a deck near the end of the list can also reach the top
   const tail = document.createElement("div");
   tail.setAttribute("aria-hidden", "true");
@@ -2682,7 +2706,7 @@ html { -webkit-tap-highlight-color: transparent; }
     const ev = t === "events";
     $("tabM").setAttribute("aria-selected", String(!ev)); $("tabE").setAttribute("aria-selected", String(ev));
     $("list").hidden = ev; $("evl").hidden = !ev;
-    $("filtBtn").hidden = ev || !data; if (ev) { setDrop(false); $("fnone").hidden = true; } else if (data) applyFilter();
+    $("filtBtn").hidden = !data; $("filtBtn").disabled = ev; if (ev) { setDrop(false); $("fnone").hidden = true; } else if (data) applyFilter();
     if (ev) { if (openId) closeOpen(); track("tab-events"); if (!EV) { $("evl").innerHTML = '<div class="empty">Loading events&hellip;</div>'; loadEvents().then(renderEvents); }
       else if (!$("evl").querySelector(".evr")) renderEvents(); } // events.json is loaded early (live line): draw it once here
     else evClose();
