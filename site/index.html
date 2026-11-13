@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794564394-53e5 -->
+<!-- ui: artifact version 1794567474-2d6b -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -264,7 +264,7 @@ footer a { color: var(--muted); }
 .shbox h3 { margin: 0 40px 8px; font-size: var(--fs-m); }
 .shbox .shk { font-size: var(--fs-xs); }
 .shslide.pd { margin-top: 2px; }
-.pdtop { display: grid; grid-template-columns: minmax(0, 1fr) 148px; gap: 8px; align-items: center; }
+.pdtop { display: grid; grid-template-columns: minmax(0, 1fr) 133px; gap: 8px; align-items: center; }
 .pdtop .cards { gap: 3px; margin: 0 !important; }
 .pdside { display: flex; flex-direction: column; gap: 6px; }
 .pdside .qcol .qr { width: 100%; }
@@ -276,6 +276,12 @@ footer a { color: var(--muted); }
 .pdside .tile .sc .pill { font-size: 9px; padding: 0 3px; }
 .pdside .t-td { grid-column: 1 / -1 !important; }
 .pdside .t-td .ev { font-size: var(--fs-s); } .pdside .t-td .tdst { font-size: 10px; margin-top: 0; }
+.pdside .scd { font-size: var(--fs-xs); color: var(--muted); line-height: 1.3; }
+.shen { display: inline-flex; gap: 2px; margin-left: 6px; vertical-align: -3px; } .shen img { width: 18px; height: 18px; display: block; }
+.pdside { justify-content: flex-start !important; gap: 6px !important; }
+.pdside .info { grid-template-columns: 1fr !important; }
+.pdside .tile { min-height: 50px; box-sizing: border-box; }
+.pdside .tile .sc { font-size: var(--fs-m) !important; }
 .pdside .tile.tlink .tic { top: 4px; right: 4px; width: 9px; height: 9px; }
 .pdfoot .qclose { margin: 8px 0 4px !important; width: 38px !important; height: 38px !important; }
 .pdfoot .qclose svg { width: 22px !important; height: 22px !important; }
@@ -1867,7 +1873,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     track(SH.today.d ? (SH.today.k >= 0 ? "shared-same" : "shared-changed") : "shared-gone");
     if (!$("shv").hidden && $("shBox").dataset.mode === "cards") shCards();
   }
-  function shHead() { return `<p class="shk">Shared list${SH.when ? " \u00b7 " + SH.when : ""}</p><h3 id="shT">${esc(SH.name)}</h3>`; }
+  function shHead() { return `<p class="shk">Shared list${SH.when ? " \u00b7 " + SH.when : ""}</p><h3 id="shT">${esc(SH.name)}<span class="shen">${SH.dk.energy.map((e) => `<img src="e/${e}.webp" alt="${cap(e)}" title="${cap(e)}" width="20" height="20">`).join("")}</span></h3>`; }
   function shCards() {
     const box = $("shBox"), M = SH.M, dk = SH.dk, T = SH.today;
     box.dataset.mode = "cards";
@@ -1881,8 +1887,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const today = !T ? `<div class="ev">\u2026</div>` : !x ? `<div class="ev">Not in the meta now</div>`
       : `<div class="ev"><b>${num(x.share)}</b> \u00b7 <b>${num(x.win)}</b> win</div><div class="tdst">${T.d && T.k >= 0 ? "Still a top list" : "Not a top list now"}</div>`;
     box.innerHTML = `${shHead()}
-      <div class="shslide pd"><div class="pdtop"><div class="pdmain"><div class="cards">${cards}</div><button class="qslink shlink pdlink" type="button">${LINK_ICON}<span>${TOUCH ? "Share link" : "Copy link"}</span></button></div><div class="pdside"><div class="info"><div class="tile t-en"><span class="tl">Energy</span><div class="energy">${en}</div></div>
-        ${SH.src ? `<a class="tile t-sc tlink" href="${SH.src}" target="_blank" rel="noopener" aria-label="Score: the original list on Limitless">` : `<div class="tile t-sc">`}${SH.src ? `<svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>` : ""}<span class="tl">Score${SH.played ? ` \u00b7 ${SH.played}` : ""}</span><div class="sc"><span>${esc(SH.p.s || "\u2013")}</span>${place ? `<span class="pill pl">${place}</span>` : ""}</div>${SH.src ? "</a>" : "</div>"}
+      <div class="shslide pd"><div class="pdtop"><div class="pdmain"><div class="cards">${cards}</div><button class="qslink shlink pdlink" type="button">${LINK_ICON}<span>${TOUCH ? "Share link" : "Copy link"}</span></button></div><div class="pdside"><div class="info">
+        ${SH.src ? `<a class="tile t-sc tlink" href="${SH.src}" target="_blank" rel="noopener" aria-label="Score: the original list on Limitless">` : `<div class="tile t-sc">`}${SH.src ? `<svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>` : ""}<span class="tl">Score${SH.played ? ` \u00b7 ${SH.played}` : ""}</span><div class="sc"><span>${esc(SH.p.s || "\u2013")}</span></div>${place ? `<div class="scd">${place}</div>` : ""}${SH.src ? "</a>" : "</div>"}
         ${T && T.d ? `<button class="tile t-ev t-td tlink shtoday" type="button" data-k="${Math.max(0, T.k)}" aria-label="Open this deck on the site"><svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><span class="tl">Today</span>${today}</button>` : `<div class="tile t-ev t-td"><span class="tl">Today</span>${today}</div>`}</div><div class="qcol"><button class="qr shqr" type="button" aria-label="Show the QR code"><img src="${qrPng(SH.packed)}" alt="QR code for ${esc(SH.name)}" width="128" height="128"><span class="qcap">${TOUCH ? `${EXPAND}Tap to save` : `${SCAN}Scan in game`}</span></button></div></div></div></div>
       <div class="shfoot pdfoot"><button class="qclose shx" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>`;
   }
