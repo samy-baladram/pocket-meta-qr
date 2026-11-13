@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794504526-d6db -->
+<!-- ui: artifact version 1794532085-9669 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -383,9 +383,9 @@ footer a { color: var(--muted); }
 .acc:not(.pod) > .arow[aria-expanded="true"] .aname { font-size: calc(var(--fs-xl) * 1.2); }
 .arow[aria-expanded="false"] .icons img:first-child { transform: translateY(5px) rotate(-9deg); }
 /* A deck with 1 named Pokémon: its card is centered in the icon box and 20% bigger */
-.icons.one img:first-child { left: 29px; transform: translateX(16px) rotate(-8deg) scale(1.385); }
+.icons.one img:first-child { left: 34px; transform: translateX(16px) rotate(-8deg) scale(1.385); }
 .arow[aria-expanded="false"] .icons.one img:first-child { transform: translateY(5px) rotate(-5deg) scale(1.2); }
-@media (min-width: 1024px) { .icons.one img:first-child { left: 34px; } }
+@media (min-width: 1024px) { .icons.one img:first-child { left: 39px; } } /* Nov 13: +5px, centred in the icon box */
 .picons.one img:first-child { left: calc(20 * var(--u)); transform: rotate(-5deg) scale(1.2); }
 .pcard[aria-expanded="true"] .picons.one img:first-child { transform: rotate(-8deg) scale(1.385); }
 .arow[aria-expanded="false"] .icons img:nth-child(2) { transform: translateY(5px) rotate(9deg); }
@@ -1031,7 +1031,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .gicons > :first-child { left: 10px; top: 12px; z-index: 1; transform: translateY(3px) rotate(-9deg); }
 .gicons > :nth-child(2) { left: 50px; top: 7px; transform: translateY(3px) rotate(9deg); }
 @media (min-width: 1024px) { .gicons { width: 112px; } .gicons img, .gicons i { width: 64px; } .gicons > :first-child { left: 12px; } .gicons > :nth-child(2) { left: 61px; } }
-.gicons.one > :first-child { left: 29px; transform: translateY(3px) rotate(-5deg) scale(1.2); }
+.gicons.one > :first-child { left: 34px; transform: translateY(3px) rotate(-5deg) scale(1.2); }
 .grow .aname { font-size: var(--fs-l); font-weight: 600; }
 .grow .asub { font-size: var(--fs-s); }
 .gnl { font-style: italic; }
@@ -1059,6 +1059,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .rb.rbt { pointer-events: auto; cursor: pointer; }
 .rb .rn { position: relative; display: grid; place-items: center; min-width: 18px; padding: 0 3px 0 4px; font-weight: 700; font-size: 13px; color: #66758a; line-height: 1; }
 .rb.solo .rn { padding: 0 4px; min-width: 22px; }
+.rb.rb.solo:not(.pm) .rn { padding: 0 5px; } .rb.rb.solo.pm .rn { padding: 0 6px; } /* rank only (no change): the same space on both sides (rows 5px, podium 6px) */
 .rb .rsep { display: block; flex: none; width: 1px; margin: 4px 0; border-radius: 1px; background: #d3dbe4; }
 .rb .dl { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; min-width: 12px; padding: 0 3px; font-size: 9px; font-weight: 900; line-height: 1; }
 .rb .dl svg { width: 6px; height: 4px; display: block; }
@@ -1086,9 +1087,9 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Podium: the same badge with a crown just above the number and a light gold / silver / bronze tint (top-left light) */
 .rb.pm .rn svg.cr { position: absolute; top: -4px; left: 50%; width: 13px; height: 10px; transform: translateX(-50%); stroke: #ffffff; stroke-width: 1.8; stroke-linejoin: round; paint-order: stroke; overflow: visible; }
 .rb.pm .rn svg.cr .cb { fill: none; stroke-width: 0.7; stroke-linecap: round; }
-.rb.pm.g { background: linear-gradient(135deg, #f9e3a0, #fffcee); box-shadow: inset 1.5px 1.5px 0 #ffffff, inset -1px -1px 0 #f9e3a0, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.g .rn { color: #a8740e; } .rb.pm.g svg.cr { fill: #e8b52e; } .rb.pm.g .rsep { background: rgba(201, 150, 40, 0.32); }
-.rb.pm.s { background: linear-gradient(135deg, #d8e3f4, #fafcff); box-shadow: inset 1.5px 1.5px 0 #ffffff, inset -1px -1px 0 #d8e3f4, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.s .rn { color: #4f6a96; } .rb.pm.s svg.cr { fill: #87a5d4; } .rb.pm.s .rsep { background: rgba(101, 133, 186, 0.32); }
-.rb.pm.b { background: linear-gradient(135deg, #f8d6ba, #fff9f3); box-shadow: inset 1.5px 1.5px 0 #ffffff, inset -1px -1px 0 #f8d6ba, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.b .rn { color: #9a5426; } .rb.pm.b svg.cr { fill: #dc8b52; } .rb.pm.b .rsep { background: rgba(196, 112, 58, 0.32); }
+.rb.pm.g { background: linear-gradient(135deg, #f9e3a0, #fffcee); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.7), inset -1px -1px 0 #f9e3a0, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.g .rn { color: #a8740e; } .rb.pm.g svg.cr { fill: #e8b52e; } .rb.pm.g .rsep { background: rgba(201, 150, 40, 0.32); }
+.rb.pm.s { background: linear-gradient(135deg, #d8e3f4, #fafcff); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.7), inset -1px -1px 0 #d8e3f4, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.s .rn { color: #4f6a96; } .rb.pm.s svg.cr { fill: #87a5d4; } .rb.pm.s .rsep { background: rgba(101, 133, 186, 0.32); }
+.rb.pm.b { background: linear-gradient(135deg, #f8d6ba, #fff9f3); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.7), inset -1px -1px 0 #f8d6ba, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.b .rn { color: #9a5426; } .rb.pm.b svg.cr { fill: #dc8b52; } .rb.pm.b .rsep { background: rgba(196, 112, 58, 0.32); }
 .pcard[aria-expanded="true"] .rb { transform: scale(0.85); }
 @media (max-width: 760px) { /* phones: a smaller podium badge, like the rows */
   .rb.pm { height: 19px; left: -4px; top: -6px; }
@@ -1707,6 +1708,8 @@ html { -webkit-tap-highlight-color: transparent; }
     const rn = `<span class="rn">${pod ? RB_CR : ""}<span class="mn">${d.rank}</span></span>`;
     if (!hasTrend() || (!("rk0" in d) && !d.nw)) return `<span class="rb${cls} solo" aria-hidden="true">${rn}</span>`; // no R14 data for this deck
     const was = d.rk0, mv = was ? was - d.rank : null;
+    // Nov 13: no change in 24 h -> the rank only (no line, no dash), so quiet days add no clutter; a tap still explains it
+    if (!d.nw && mv === 0) return `<span class="rb rbt${cls} solo" data-tip="${esc(rbTip(d))}" aria-label="Rank ${d.rank}, same rank as 24 hours ago">${rn}</span>`;
     const dl = d.nw ? `<span class="dl nw">NEW</span>`
       : mv > 0 ? `<span class="dl up">${RB_UP}<span>+${mv}</span></span>`
       : mv < 0 ? `<span class="dl dn"><span>\u2212${-mv}</span>${RB_DN}</span>`
