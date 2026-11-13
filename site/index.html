@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794552749-015e -->
+<!-- ui: artifact version 1794560323-0a34 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -224,6 +224,48 @@ footer a { color: var(--muted); }
 .hdr .nset[hidden] { display: none; }
 .nset svg { flex: none; width: 15px; height: 15px; margin-top: 1px; color: var(--acc-ink); }
 .nset b { color: var(--ink); } /* Nov 13: blue bold reads as a link: bold ink only */
+/* Shared-link view (Nov 13): a list from a permanent link; a bottom sheet on phones, a centered box on larger screens */
+.shv { position: fixed; inset: 0; z-index: 60; display: flex; align-items: flex-end; justify-content: center; background: rgba(var(--sh), 0.28); }
+.shv[hidden] { display: none; }
+.shbox { position: relative; box-sizing: border-box; width: 100%; max-height: 92vh; overflow: auto; padding: 16px 12px calc(8px + env(safe-area-inset-bottom));
+  border-radius: 20px 20px 0 0; background: var(--surface); color: var(--ink); box-shadow: var(--sheet-sh); text-align: center; outline: none; }
+@media (min-width: 600px) { .shv { align-items: center; } .shbox { width: 380px; border-radius: 20px; box-shadow: var(--pop-sh); padding-bottom: 8px; width: 420px; } }
+.shk { margin: 0; font-size: var(--fs-s); color: var(--muted); }
+.shbox .qsimg { width: min(200px, 52vw); }
+.shbox h3 { margin: 2px 32px 10px; font-size: var(--fs-l); line-height: 1.25; }
+.shx { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border: 0; border-radius: 50%; cursor: pointer; font-size: 20px; line-height: 1;
+  background: var(--surface); color: var(--muted); box-shadow: var(--raised-sm), var(--bevel); }
+.shcards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; margin: 12px 0 0; }
+.shcards .shc { position: relative; aspect-ratio: 150 / 209; border-radius: 4px; overflow: hidden; background: var(--tile); }
+.shcards img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.shcards .shn { display: grid; place-items: center; height: 100%; padding: 2px; font-size: 9px; line-height: 1.15; color: var(--muted); }
+.shnow { margin: 12px 0 0; font-size: var(--fs-s); color: var(--muted); line-height: 1.4; }
+.shnow b { color: var(--ink); }
+.shbtns { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 12px; margin-top: 12px; }
+.shtoday { appearance: none; border: 0; background: none; padding: 6px 4px; cursor: pointer; font: inherit; font-size: var(--fs-m); font-weight: 700; color: var(--acc-ink); }
+/* Shared list: tappable tiles (raised, with a corner icon) and a share icon at the top right */
+.tile.tlink { position: relative; display: block; color: inherit; text-decoration: none; text-align: left; font: inherit; border: 0; cursor: pointer;
+  background: var(--surface); box-shadow: var(--raised-sm), var(--bevel); }
+.tile.tlink:active { transform: scale(0.98); }
+.tile.tlink .tic { position: absolute; top: 6px; right: 6px; width: 11px; height: 11px; color: var(--muted); }
+.tile.tlink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.shshare { position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+  background: var(--surface); color: var(--muted); box-shadow: var(--raised-sm), var(--bevel); }
+.shshare svg { width: 17px; height: 17px; display: block; }
+/* Shared list (option A) */
+.shslide { margin-top: 10px; text-align: left; }
+.shslide .cards { margin-bottom: 8px; }
+.shslide .cards img, .shslide .cards .shn { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 4px; }
+.shslide .cards .shn { display: grid; place-items: center; background: var(--tile); font-size: 9px; color: var(--muted); }
+.shfoot { position: relative; display: flex; justify-content: center; align-items: center; margin-top: 2px; }
+.shfoot .qclose { margin: 10px 0 6px; }
+.shfoot .shsave { position: absolute; right: 0; top: 50%; transform: translateY(-50%); padding: 9px 16px; font-size: var(--fs-m); }
+.shfoot .shsave:active { transform: translateY(-50%) scale(0.97); }
+.shbox .shnow { margin: 8px 0 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 14px; }
+.shbox .shnow .qslink { margin: 0; font-size: var(--fs-s); }
+.t-td .ev { white-space: normal; } .t-td .ev b { color: var(--ink); font-weight: 700; }
+.t-td .tdst { font-size: var(--fs-xs); color: var(--muted); margin-top: 1px; }
+.shslide .cards img { cursor: zoom-in; }
 /* Share link (QR panel): a quiet text button under the steps */
 .qslink { appearance: none; margin: 2px 0 0; padding: 4px 10px; border: 0; border-radius: 999px; background: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
   font: inherit; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.02em; color: var(--acc-ink); }
@@ -1226,6 +1268,11 @@ html { -webkit-tap-highlight-color: transparent; }
   </footer>
 </div>
 
+<!-- shared-link view (Nov 13): a list opened from a permanent link (#x=<token>) -->
+<div class="shv" id="shv" hidden><div class="shbox" id="shBox" role="dialog" aria-modal="true" aria-labelledby="shT" tabindex="-1"></div></div>
+
+<script>/*! qrcode-generator 1.4.4, (c) 2009 Kazuhiko Arase, MIT license, https://github.com/kazuhikoarase/qrcode-generator */
+var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,c,g=f.getModuleCount()*t+2*r,l="";for(c="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",l+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',l+=o.scalable?"":' width="'+g+'px" height="'+g+'px"',l+=' viewBox="0 0 '+g+" "+g+'" ',l+=' preserveAspectRatio="xMinYMin meet"',l+=n.text||e.text?' role="img" aria-labelledby="'+y([n.id,e.id].join(" ").trim())+'"':"",l+=">",l+=n.text?'<title id="'+y(n.id)+'">'+y(n.text)+"</title>":"",l+=e.text?'<description id="'+y(e.id)+'">'+y(e.text)+"</description>":"",l+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',l+='<path d="',a=0;a<f.getModuleCount();a+=1)for(u=a*t+r,i=0;i<f.getModuleCount();i+=1)f.isDark(a,i)&&(l+="M"+(i*t+r)+","+u+c);return l+='" stroke="transparent" fill="black"/>',l+="</svg>"},f.createDataURL=function(t,r){t=t||2,r=void 0===r?4*t:r;var e=f.getModuleCount()*t+2*r,n=r,o=e-r;return I(e,e,function(r,e){if(n<=r&&r<o&&n<=e&&e<o){var i=Math.floor((r-n)/t),a=Math.floor((e-n)/t);return f.isDark(a,i)?0:1}return 1})},f.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=f.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=f.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=y(e),o+='"'),o+="/>"};var y=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return f.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*f.getModuleCount()+2*t,u=t,c=a-t,g={"██":"█","█ ":"▀"," █":"▄","  ":" "},l={"██":"▀","█ ":"▀"," █":" ","  ":" "},h="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<c&&u<=r&&r<c&&f.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<c&&u<=r+1&&r+1<c&&f.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",h+=t<1&&r+1>=c?l[i]:g[i];h+="\n"}return a%2&&t>0?h.substring(0,h.length-a-1)+Array(a+1).join("▀"):h.substring(0,h.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=f.getModuleCount()*t+2*r,u=r,c=a-r,g=Array(t+1).join("██"),l=Array(t+1).join("  "),h="",s="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),s="",n=0;n<a;n+=1)i=1,u<=n&&n<c&&u<=e&&e<c&&f.isDark(o,Math.floor((n-u)/t))&&(i=0),s+=i?g:l;for(o=0;o<t;o+=1)h+=s+"\n"}return h.substring(0,h.length-1)},f.renderTo2dContext=function(t,r){r=r||2;for(var e=f.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=f.isDark(n,o)?"black":"white",t.fillRect(n*r,o*r,r,r)},f};t.stringToBytes=(t.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,t.createStringToBytes=function(t,r){var e=function(){for(var e=S(t),n=function(){var t=e.read();if(-1==t)throw"eof";return t},o=0,i={};;){var a=e.read();if(-1==a)break;var u=n(),f=n()<<8|n();i[String.fromCharCode(a<<8|u)]=f,o+=1}if(o!=r)throw o+" != "+r;return i}(),n="?".charCodeAt(0);return function(t){for(var r=[],o=0;o<t.length;o+=1){var i=t.charCodeAt(o);if(i<128)r.push(i);else{var a=e[t.charAt(o)];"number"==typeof a?(255&a)==a?r.push(a):(r.push(a>>>8),r.push(255&a)):r.push(n)}}return r}};var r,e,n,o,i,a=1,u=2,f=4,c=8,g={L:1,M:0,Q:3,H:2},l=0,h=1,s=2,v=3,d=4,w=5,p=6,y=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],e=1335,n=7973,i=function(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r},(o={}).getBCHTypeInfo=function(t){for(var r=t<<10;i(r)-i(e)>=0;)r^=e<<i(r)-i(e);return 21522^(t<<10|r)},o.getBCHTypeNumber=function(t){for(var r=t<<12;i(r)-i(n)>=0;)r^=n<<i(r)-i(n);return t<<12|r},o.getPatternPosition=function(t){return r[t-1]},o.getMaskFunction=function(t){switch(t){case l:return function(t,r){return(t+r)%2==0};case h:return function(t,r){return t%2==0};case s:return function(t,r){return r%3==0};case v:return function(t,r){return(t+r)%3==0};case d:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case w:return function(t,r){return t*r%2+t*r%3==0};case p:return function(t,r){return(t*r%2+t*r%3)%2==0};case y:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},o.getErrorCorrectPolynomial=function(t){for(var r=k([1],0),e=0;e<t;e+=1)r=r.multiply(k([1,C.gexp(e)],0));return r},o.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case f:case c:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case f:return 16;case c:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case f:return 16;case c:return 12;default:throw"mode:"+t}}},o.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);i>5&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},o),C=function(){for(var t=new Array(256),r=new Array(256),e=0;e<8;e+=1)t[e]=1<<e;for(e=8;e<256;e+=1)t[e]=t[e-4]^t[e-5]^t[e-6]^t[e-8];for(e=0;e<255;e+=1)r[t[e]]=e;var n={glog:function(t){if(t<1)throw"glog("+t+")";return r[t]},gexp:function(r){for(;r<0;)r+=255;for(;r>=256;)r-=255;return t[r]}};return n}();function k(t,r){if(void 0===t.length)throw t.length+"/"+r;var e=function(){for(var e=0;e<t.length&&0==t[e];)e+=1;for(var n=new Array(t.length-e+r),o=0;o<t.length-e;o+=1)n[o]=t[o+e];return n}(),n={getAt:function(t){return e[t]},getLength:function(){return e.length},multiply:function(t){for(var r=new Array(n.getLength()+t.getLength()-1),e=0;e<n.getLength();e+=1)for(var o=0;o<t.getLength();o+=1)r[e+o]^=C.gexp(C.glog(n.getAt(e))+C.glog(t.getAt(o)));return k(r,0)},mod:function(t){if(n.getLength()-t.getLength()<0)return n;for(var r=C.glog(n.getAt(0))-C.glog(t.getAt(0)),e=new Array(n.getLength()),o=0;o<n.getLength();o+=1)e[o]=n.getAt(o);for(o=0;o<t.getLength();o+=1)e[o]^=C.gexp(C.glog(t.getAt(o))+r);return k(e,0).mod(t)}};return n}var A=function(){var t=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],r=function(t,r){var e={};return e.totalCount=t,e.dataCount=r,e},e={};return e.getRSBlocks=function(e,n){var o=function(r,e){switch(e){case g.L:return t[4*(r-1)+0];case g.M:return t[4*(r-1)+1];case g.Q:return t[4*(r-1)+2];case g.H:return t[4*(r-1)+3];default:return}}(e,n);if(void 0===o)throw"bad rs block @ typeNumber:"+e+"/errorCorrectionLevel:"+n;for(var i=o.length/3,a=[],u=0;u<i;u+=1)for(var f=o[3*u+0],c=o[3*u+1],l=o[3*u+2],h=0;h<f;h+=1)a.push(r(c,l));return a},e}(),b=function(){var t=[],r=0,e={getBuffer:function(){return t},getAt:function(r){var e=Math.floor(r/8);return 1==(t[e]>>>7-r%8&1)},put:function(t,r){for(var n=0;n<r;n+=1)e.putBit(1==(t>>>r-n-1&1))},getLengthInBits:function(){return r},putBit:function(e){var n=Math.floor(r/8);t.length<=n&&t.push(0),e&&(t[n]|=128>>>r%8),r+=1}};return e},M=function(t){var r=a,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+2<r.length;)t.put(o(r.substring(n,n+3)),10),n+=3;n<r.length&&(r.length-n==1?t.put(o(r.substring(n,n+1)),4):r.length-n==2&&t.put(o(r.substring(n,n+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return n},x=function(t){var r=u,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+1<r.length;)t.put(45*o(r.charAt(n))+o(r.charAt(n+1)),11),n+=2;n<r.length&&t.put(o(r.charAt(n)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return n},m=function(r){var e=f,n=t.stringToBytes(r),o={getMode:function(){return e},getLength:function(t){return n.length},write:function(t){for(var r=0;r<n.length;r+=1)t.put(n[r],8)}};return o},L=function(r){var e=c,n=t.stringToBytesFuncs.SJIS;if(!n)throw"sjis not supported.";!function(){var t=n("友");if(2!=t.length||38726!=(t[0]<<8|t[1]))throw"sjis not supported."}();var o=n(r),i={getMode:function(){return e},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return i},D=function(){var t=[],r={writeByte:function(r){t.push(255&r)},writeShort:function(t){r.writeByte(t),r.writeByte(t>>>8)},writeBytes:function(t,e,n){e=e||0,n=n||t.length;for(var o=0;o<n;o+=1)r.writeByte(t[o+e])},writeString:function(t){for(var e=0;e<t.length;e+=1)r.writeByte(t.charCodeAt(e))},toByteArray:function(){return t},toString:function(){var r="";r+="[";for(var e=0;e<t.length;e+=1)e>0&&(r+=","),r+=t[e];return r+="]"}};return r},S=function(t){var r=t,e=0,n=0,o=0,i={read:function(){for(;o<8;){if(e>=r.length){if(0==o)return-1;throw"unexpected end of file./"+o}var t=r.charAt(e);if(e+=1,"="==t)return o=0,-1;t.match(/^\s$/)||(n=n<<6|a(t.charCodeAt(0)),o+=6)}var i=n>>>o-8&255;return o-=8,i}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return i},I=function(t,r,e){for(var n=function(t,r){var e=t,n=r,o=new Array(t*r),i={setPixel:function(t,r,n){o[r*e+t]=n},write:function(t){t.writeString("GIF87a"),t.writeShort(e),t.writeShort(n),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(e),t.writeShort(n),t.writeByte(0);var r=a(2);t.writeByte(2);for(var o=0;r.length-o>255;)t.writeByte(255),t.writeBytes(r,o,255),o+=255;t.writeByte(r.length-o),t.writeBytes(r,o,r.length-o),t.writeByte(0),t.writeString(";")}},a=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,i=u(),a=0;a<r;a+=1)i.add(String.fromCharCode(a));i.add(String.fromCharCode(r)),i.add(String.fromCharCode(e));var f,c,g,l=D(),h=(f=l,c=0,g=0,{write:function(t,r){if(t>>>r!=0)throw"length over";for(;c+r>=8;)f.writeByte(255&(t<<c|g)),r-=8-c,t>>>=8-c,g=0,c=0;g|=t<<c,c+=r},flush:function(){c>0&&f.writeByte(g)}});h.write(r,n);var s=0,v=String.fromCharCode(o[s]);for(s+=1;s<o.length;){var d=String.fromCharCode(o[s]);s+=1,i.contains(v+d)?v+=d:(h.write(i.indexOf(v),n),i.size()<4095&&(i.size()==1<<n&&(n+=1),i.add(v+d)),v=d)}return h.write(i.indexOf(v),n),h.write(e,n),h.flush(),l.toByteArray()},u=function(){var t={},r=0,e={add:function(n){if(e.contains(n))throw"dup key:"+n;t[n]=r,r+=1},size:function(){return r},indexOf:function(r){return t[r]},contains:function(r){return void 0!==t[r]}};return e};return i}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=D();n.write(a);for(var u=function(){var t=0,r=0,e=0,n="",o={},i=function(t){n+=String.fromCharCode(a(63&t))},a=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return o.writeByte=function(n){for(t=t<<8|255&n,r+=8,e+=1;r>=6;)i(t>>>r-6),r-=6},o.flush=function(){if(r>0&&(i(t<<6-r),t=0,r=0),e%3!=0)for(var o=3-e%3,a=0;a<o;a+=1)n+="="},o.toString=function(){return n},o}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return t}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||n>=57344?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}(function(){return qrcode});</script>
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
@@ -1621,12 +1668,119 @@ html { -webkit-tap-highlight-color: transparent; }
   let dlgDeck = null, dlgI = 0, dlgAlt = null; // dlgAlt: the "Also played" version shown (index in alt), or null
   // Save button: the phone's share sheet (one tap: Save Image), else a download; long-press / right-click stay as a fallback
   const LINK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4L11.6 6"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1.6-1.6"/></svg>';
-  // Share link (Nov 13): the deck and list on this site (#<deck>/<list>, list 1 = #<deck>). Phones: the share sheet; else copy.
+  // ===== Permanent share link (Nov 13): the link holds the in-game deck code, so it never changes =====
+  // "#x=<token>" (see packShare below). The deck code is the same as in the QR (20 cards + energy;
+  // format of ptcgp-deckcode: trainer segment, Pokémon segment, energy ids). cards.json: card id <-> in-game number.
+  const EN_IDS = ["grass", "fire", "water", "lightning", "psychic", "fighting", "darkness", "metal"];
+  let CMAP = null;
+  const loadCardMap = () => CMAP || (CMAP = fetch("cards.json").then((r) => { if (!r.ok) throw new Error("cards"); return r.json(); }).then((j) => {
+    const byId = new Map(), byNr = new Map(), alt = new Map();
+    for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n }); (alt.get(nr) || alt.set(nr, []).get(nr)).push(id); }
+    return { byId, byNr, alt };
+  }).catch((e) => { CMAP = null; throw e; }));
+  const b64url = (s) => s.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  const unb64url = (s) => { s = s.replace(/-/g, "+").replace(/_/g, "/"); return s + "===".slice((s.length + 3) % 4); };
+  function deckCode(cards, energy, M) { // cards: [{id, c}], energy: ["fire", ...]
+    const nrs = [];
+    for (const c of cards) { const nr = M.byId.get(c.id); if (nr == null) return null; for (let k = 0; k < c.c; k++) nrs.push(nr); }
+    const en = (energy || []).map((e) => EN_IDS.indexOf(e) + 1).filter((x) => x > 0).slice(0, 3);
+    if (nrs.length !== 20 || !en.length) return null;
+    const bytes = [];
+    for (const g of [nrs.filter((n) => n >= 1e5).sort((a, b) => a - b), nrs.filter((n) => n < 1e5).sort((a, b) => a - b)]) {
+      bytes.push(g.length); for (const nr of g) { const v = nr * 10; bytes.push((v >> 16) & 255, (v >> 8) & 255, v & 255); }
+    }
+    bytes.push(en.length, ...en);
+    return btoa(String.fromCharCode(...bytes));
+  }
+  function parseCode(code) { // -> {nrs: [...], energy: [...]} or null
+    try {
+      const raw = Array.from(atob(code), (ch) => ch.charCodeAt(0)); let i = 0; const nrs = [];
+      for (let s = 0; s < 2; s++) { const n = raw[i++]; for (let k = 0; k < n; k++) { nrs.push(((raw[i] << 16) | (raw[i + 1] << 8) | raw[i + 2]) / 10); i += 3; } }
+      const ne = raw[i++] || 0, energy = raw.slice(i, i + ne).map((x) => EN_IDS[x - 1]).filter(Boolean);
+      return nrs.length === 20 && nrs.every((n) => Number.isInteger(n) && n > 0) ? { nrs, energy } : null;
+    } catch (err) { return null; }
+  }
+  function codeFromNrs(nrs, energy) { // the game's deck code from 20 in-game numbers + energy names
+    const en = (energy || []).map((e) => EN_IDS.indexOf(e) + 1).filter((x) => x > 0).slice(0, 3), bytes = [];
+    for (const g of [nrs.filter((n) => n >= 1e5).sort((a, b) => a - b), nrs.filter((n) => n < 1e5).sort((a, b) => a - b)]) {
+      bytes.push(g.length); for (const nr of g) { const v = nr * 10; bytes.push((v >> 16) & 255, (v >> 8) & 255, v & 255); }
+    }
+    bytes.push(en.length, ...en);
+    return btoa(String.fromCharCode(...bytes));
+  }
+  // ---- Short, opaque share token (Nov 13): "#x=<token>". All parts in one packed, scrambled block with a check value,
+  // so a changed character gives "broken link" (it stops hand edits; the method is in this page, so it is no real
+  // signature). Layout (bits), version 2: version 4 | share day 15 (days since 2024-01-01) | day played 15 (0 = none) |
+  // W 6 | L 6 | T 6 | place 14 | players 14 | deck id length 6 + 6 bits per char | energies 2 + 3 each |
+  // unique cards 5 + (count 2 + nr 21) each | source 1 (+ Limitless tournament id 96 + player id length 5 + 7 bits per
+  // char) | check 32.
+  const SLUG_A = "-0123456789abcdefghijklmnopqrstuvwxyz", EPOCH = Date.UTC(2024, 0, 1), TK_SALT = 0x5eed2c1d;
+  function fnv(bytes) { let h = 0x811c9dc5 ^ TK_SALT; for (const b of bytes) { h ^= b; h = Math.imul(h, 16777619) >>> 0; } return h >>> 0; }
+  function keyStream(n) { let x = 0x9e3779b9; const out = []; for (let i = 0; i < n; i++) { x ^= x << 13; x >>>= 0; x ^= x >>> 17; x ^= x << 5; x >>>= 0; out.push(x & 255); } return out; }
+  function packShare(o) { // o = {nrs: [20], energy: [..], k, day (Date), w, l, t, pl, pn}
+    const bits = []; const put = (v, n) => { for (let i = n - 1; i >= 0; i--) bits.push((v >>> i) & 1); };
+    const dd = (t) => Math.max(0, Math.min(32767, Math.round((t - EPOCH) / 864e5)));
+    put(2, 4); put(dd(o.day), 15); put(o.played ? dd(o.played) : 0, 15);
+    put(o.w ?? 63, 6); put(o.l ?? 63, 6); put(o.t ?? 63, 6); put(o.pl || 0, 14); put(o.pn || 0, 14);
+    const k = [...String(o.k || "").toLowerCase()].filter((c) => SLUG_A.includes(c)).slice(0, 63); put(k.length, 6); k.forEach((c) => put(SLUG_A.indexOf(c), 6));
+    const en = o.energy.map((e) => EN_IDS.indexOf(e) + 1).filter((x) => x > 0).slice(0, 3); put(en.length, 2); en.forEach((x) => put(x, 3));
+    const cnt = new Map(); o.nrs.forEach((n) => cnt.set(n, (cnt.get(n) || 0) + 1));
+    const u = [...cnt].sort((a, b) => a[0] - b[0]); if (u.length > 31 || u.some(([, c]) => c > 4)) return null;
+    put(u.length, 5); u.forEach(([n, c]) => { put(c - 1, 2); put(n >= 1e6 ? n - 1e6 + (1 << 20) : n, 21); });
+    const src = /^[0-9a-f]{24}$/.test(o.tid || "") && /^[\x20-\x7e]{1,31}$/.test(o.pid || "");
+    put(src ? 1 : 0, 1);
+    if (src) { for (let i = 0; i < 24; i += 2) put(parseInt(o.tid.slice(i, i + 2), 16), 8); put(o.pid.length, 5); [...o.pid].forEach((c) => put(c.charCodeAt(0), 7)); }
+    while (bits.length % 8) bits.push(0);
+    const by = []; for (let i = 0; i < bits.length; i += 8) by.push(parseInt(bits.slice(i, i + 8).join(""), 2));
+    const h = fnv(by); by.push(h >>> 24, (h >>> 16) & 255, (h >>> 8) & 255, h & 255);
+    const ks = keyStream(by.length), sc = by.map((b, i) => b ^ ks[i]);
+    return b64url(btoa(String.fromCharCode(...sc)));
+  }
+  function unpackShare(tok) { // -> {nrs, energy, k, day, w, l, t, pl, pn} or null (broken or changed)
+    try {
+      const raw = Array.from(atob(unb64url(tok)), (ch) => ch.charCodeAt(0)); if (raw.length < 12) return null;
+      const ks = keyStream(raw.length), by = raw.map((b, i) => b ^ ks[i]), body = by.slice(0, -4);
+      const h = ((by[by.length - 4] << 24) | (by[by.length - 3] << 16) | (by[by.length - 2] << 8) | by[by.length - 1]) >>> 0;
+      if (fnv(body) !== h) return null;
+      let pos = 0; const get = (n) => { let v = 0; for (let i = 0; i < n; i++, pos++) v = (v << 1) | ((body[pos >> 3] >> (7 - (pos & 7))) & 1); return v >>> 0; };
+      if (get(4) !== 2) return null;
+      const o = { day: EPOCH + get(15) * 864e5 }, pd = get(15); o.played = pd ? EPOCH + pd * 864e5 : 0;
+      Object.assign(o, { w: get(6), l: get(6), t: get(6), pl: get(14), pn: get(14) });
+      const kl = get(6); o.k = Array.from({ length: kl }, () => SLUG_A[get(6)] || "").join("");
+      const ne = get(2); o.energy = Array.from({ length: ne }, () => EN_IDS[get(3) - 1]).filter(Boolean);
+      const nu = get(5); o.nrs = [];
+      for (let i = 0; i < nu; i++) { const c = get(2) + 1, v = get(21), n = v >= (1 << 20) ? v - (1 << 20) + 1e6 : v; for (let j = 0; j < c; j++) o.nrs.push(n); }
+      if (get(1)) { o.tid = Array.from({ length: 12 }, () => get(8).toString(16).padStart(2, "0")).join(""); const pl = get(5); o.pid = Array.from({ length: pl }, () => String.fromCharCode(get(7))).join(""); }
+      if (pos > body.length * 8 || o.nrs.length !== 20 || !o.energy.length) return null;
+      return o;
+    } catch (err) { return null; }
+  }
+  function packCode(code) { // the QR of a deck code, as "<n>:<base64>" (the format the page draws)
+    const q = qrcode(0, "M"); q.addData(code, "Byte"); q.make();
+    const n = q.getModuleCount(), by = new Uint8Array((n * n + 7) >> 3);
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) { const k = r * n + c; by[k >> 3] |= 128 >> (k & 7); }
+    return `${n}:${btoa(String.fromCharCode(...by))}`;
+  }
+  const ymd = () => new Date().toISOString().slice(0, 10).replace(/-/g, "");
+  let shareUrl = null; // prepared when the QR panel opens (the share sheet must open in the tap itself)
   const siteBase = () => /pocketmetaqr\.com$/.test(location.hostname) ? "https://pocketmetaqr.com/" : location.origin + location.pathname;
+  async function prepShare(d, i, ak) {
+    shareUrl = null;
+    const v = await listFor(d, i), a = ak == null ? null : (v.alt || [])[ak];
+    let cards = (v.cards || []).map((c) => ({ id: c.id, c: c.c }));
+    if (a) { for (const o of a.out) { const x = cards.find((c) => c.id === o.id); if (x) x.c -= o.c; } for (const n of a.in) { const x = cards.find((c) => c.id === n.id); if (x) x.c += n.c; else cards.push({ id: n.id, c: n.c }); } cards = cards.filter((c) => c.c > 0); }
+    const M = await loadCardMap().catch(() => null), code = M && deckCode(cards, v.energy || d.energy, M);
+    if (dlgDeck !== d || dlgI !== i || dlgAlt !== ak) return;
+    const src = a || v, pm = /(\d+)\D+of\s+(\d+)/.exec(src.pl || ""); // score and place of the list (or the version)
+    const pc = code && parseCode(code), sc = /^(\d+)-(\d+)-(\d+)$/.exec(src.sc || "");
+    const tok = pc && packShare({ nrs: pc.nrs, energy: pc.energy, k: d.deckId || d.id, day: Date.now(), played: src.dt ? Date.parse(src.dt + "T00:00:00Z") : 0, tid: src.tid, pid: src.pid, w: sc ? +sc[1] : 63, l: sc ? +sc[2] : 63, t: sc ? +sc[3] : 63, pl: pm ? +pm[1] : 0, pn: pm ? +pm[2] : 0 });
+    shareUrl = tok ? `${siteBase()}#x=${tok}`
+      : siteBase() + "#" + d.id + (i > 0 ? "/" + (i + 1) : ""); // no code (a card not in the map): the deck link
+  }
   async function shareLink(e) {
     e.stopPropagation();
     if (!dlgDeck) return;
-    const d = dlgDeck, url = siteBase() + "#" + d.id + (dlgI > 0 ? "/" + (dlgI + 1) : ""), lab = e.target.closest(".qslink").querySelector("span");
+    const d = dlgDeck, url = shareUrl || siteBase() + "#" + d.id + (dlgI > 0 ? "/" + (dlgI + 1) : ""), lab = e.target.closest(".qslink").querySelector("span");
     track("share-link");
     if (TOUCH && navigator.share) {
       try { await navigator.share({ title: d.name + " \u2013 Pocket Meta QR", url }); return; }
@@ -1638,6 +1792,109 @@ html { -webkit-tap-highlight-color: transparent; }
     if (ok) { lab.textContent = "Link copied"; setTimeout(() => { if (lab.isConnected) lab.textContent = TOUCH ? "Share link" : "Copy link"; }, 1800); }
     else qmsgEl().textContent = url;
   }
+  // ---- The shared-link view ----
+  const sameDeck = (a, b) => a && b && a.nrs.length === b.nrs.length && [...a.nrs].sort((x, y) => x - y).join() === [...b.nrs].sort((x, y) => x - y).join() && [...a.energy].sort().join() === [...b.energy].sort().join();
+  const deckNameOf = (id) => { const d = data && (data.decks.find((x) => x.id === id) || (data.nolist || []).find((x) => x.id === id)); if (d) return d.name;
+    return String(id || "").split("-").filter((w) => w && !/^[a-z]{1,2}\d+[a-z]?$/.test(w) && w !== "p").map((w) => w === "ex" ? "ex" : w[0].toUpperCase() + w.slice(1)).join(" ") || "Pok\u00e9mon TCG Pocket deck"; };
+  let shBlob = null, shName = "";
+  // Shared list (Nov 13, option A): it looks like a list on the site: 20 cards (a tap zooms), Energy, Score (from the
+  // link), Today (the deck's share and win today, and if this list is still a top list), the small QR. A tap on the
+  // small QR shows the big QR (as the QR panel); its × goes back to the cards.
+  let SH = null; // {p, code, dk, name, when, packed, M, today: {k, d}}
+  async function openShared(h) {
+    const o = unpackShare(h.replace(/^x=/, ""));
+    if (!o) { toast("This link is broken or was changed"); track("shared-bad"); return; }
+    // Sense checks: a part that makes no sense is left out (score, place, date); the deck id must fit the cards (below)
+    const now = Date.now(), dayOk = o.day >= Date.UTC(2024, 9, 30) && o.day <= now + 2 * 864e5;
+    const scOk = o.w < 63 && o.l < 63 && o.t < 63 && o.w + o.l + o.t > 0 && o.w + o.l + o.t <= 40;
+    const plOk = o.pl > 0 && o.pn >= 2 && o.pl <= o.pn && o.pn <= 10000;
+    const p = { k: o.k, t: dayOk ? new Date(o.day).toISOString().slice(0, 10).replace(/-/g, "") : "", s: scOk ? `${o.w}-${o.l}-${o.t}` : "", p: plOk ? `${o.pl}-${o.pn}` : "" };
+    const playedOk = o.played >= Date.UTC(2024, 9, 30) && o.played <= (dayOk ? o.day : now) + 864e5;
+    const dk = { nrs: o.nrs, energy: o.energy }, code = codeFromNrs(o.nrs, o.energy);
+    track("shared-open");
+    const t = /^\d{8}$/.test(p.t || "") ? new Date(`${p.t.slice(0, 4)}-${p.t.slice(4, 6)}-${p.t.slice(6)}T00:00:00Z`) : null;
+    const fmtDay = (ms) => { const D = new Date(ms); return D.toLocaleDateString(undefined, { month: "short", day: "numeric", year: D.getUTCFullYear() !== new Date().getUTCFullYear() ? "numeric" : undefined, timeZone: "UTC" }); };
+    const ago = (ms) => { const n = Math.floor((Date.UTC(...(() => { const N = new Date(); return [N.getUTCFullYear(), N.getUTCMonth(), N.getUTCDate()]; })()) - ms) / 864e5);
+      return n <= 0 ? "today" : n === 1 ? "yesterday" : n < 7 ? `${n} days ago` : n < 60 ? `${Math.floor(n / 7)} week${n < 14 ? "" : "s"} ago` : n < 730 ? `${Math.floor(n / 30)} months ago` : `${Math.floor(n / 365)} years ago`; };
+    const when = t ? (["today", "yesterday"].includes(ago(+t)) ? ago(+t) : `${fmtDay(+t)} \u00b7 ${ago(+t)}`) : ""; // "today", "yesterday", "Oct 2 \u00b7 6 weeks ago"
+    const srcUrl = o.tid && o.pid ? `https://play.limitlesstcg.com/tournament/${o.tid}/player/${encodeURIComponent(o.pid)}/decklist` : "";
+    SH = { p, code, dk, name: deckNameOf(p.k), when, played: playedOk ? fmtDay(o.played) : "", src: srcUrl, packed: packCode(code), M: null, today: null };
+    shName = (p.k || "shared-list") + ".png"; shBlob = null;
+    { const c = document.createElement("canvas"), img = new Image(); img.onload = () => { c.width = img.width; c.height = img.height; c.getContext("2d").drawImage(img, 0, 0); c.toBlob((b) => { shBlob = b; }); }; img.src = qrPng(SH.packed, "#ffffff"); }
+    $("shv").hidden = false; document.documentElement.style.overflow = "hidden";
+    shCards();
+    SH.M = await loadCardMap().catch(() => null);
+    { const d0 = data && (data.decks.find((x) => x.id === p.k) || (data.nolist || []).find((x) => x.id === p.k));
+      const art = d0 && SH.M ? (d0.art || []).map((id) => SH.M.byId.get(id)) : [];
+      if (d0 && SH.M && art.some((nr) => nr == null || !dk.nrs.includes(nr))) { p.k = ""; SH.name = "Pok\u00e9mon TCG Pocket deck"; } } // a deck name that does not fit the cards
+    shCards();
+    let d = p.k && data && data.decks.find((x) => x.id === p.k);
+    if (!d && data && data.more) { await loadMore().catch(() => null); d = data.decks.find((x) => x.id === p.k); }
+    const nl = !d && p.k && data && [...(data.nolist || []), ...((MORE && MORE.nolist) || [])].find((x) => x.id === p.k);
+    if (nl) SH.today = { d: null, nl, k: -1 };
+    else if (d) { let k = -1; try { const L = await listsOf(d); k = SH.M ? L.findIndex((v) => sameDeck(parseCode(deckCode((v.cards || []).map((c) => ({ id: c.id, c: c.c })), v.energy || d.energy, SH.M) || ""), dk)) : -1; } catch (err) {} SH.today = { d, k }; }
+    else SH.today = { d: null, k: -1 };
+    track(SH.today.d ? (SH.today.k >= 0 ? "shared-same" : "shared-changed") : "shared-gone");
+    if (!$("shv").hidden && $("shBox").dataset.mode === "cards") shCards();
+  }
+  function shHead() { return `<button class="shlink shshare" type="button" aria-label="${TOUCH ? "Share link" : "Copy link"}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg></button><p class="shk">Shared list${SH.when ? " \u00b7 " + SH.when : ""}</p><h3 id="shT">${esc(SH.name)}</h3>`; }
+  function shCards() {
+    const box = $("shBox"), M = SH.M, dk = SH.dk, T = SH.today;
+    box.dataset.mode = "cards";
+    const order = [...dk.nrs.filter((n) => n < 1e5), ...dk.nrs.filter((n) => n >= 1e5)];
+    const cards = order.map((nr) => { const c = M && M.byNr.get(nr), n = c ? c.n : "";
+      return c ? `<img src="c/${c.id}.webp" data-zid="${c.id}" alt="${esc(n)}" title="${esc(n)}" width="150" height="209" tabindex="0" role="button" onerror="this.outerHTML='<span class=&quot;shn&quot;>'+this.alt+'</span>'">` : `<span class="shn"></span>`; }).join("");
+    const en = dk.energy.map((e) => `<img src="e/${e}.webp" alt="${cap(e)}" title="${cap(e)}" width="28" height="28">`).join("");
+    const ord = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th");
+    const pp = /^(\d+)-(\d+)$/.exec(SH.p.p || ""), place = pp ? `${ord(+pp[1])} of ${pp[2]}` : "";
+    const x = T && (T.d || T.nl), num = (v) => `${(+v).toFixed(1)}%`;
+    const today = !T ? `<div class="ev">\u2026</div>` : !x ? `<div class="ev">Not in the meta now</div>`
+      : `<div class="ev"><b>${num(x.share)}</b> share \u00b7 <b>${num(x.win)}</b> win</div><div class="tdst">${T.d && T.k >= 0 ? "Still a top list" : "Not a top list now"}</div>`;
+    box.innerHTML = `${shHead()}
+      <div class="shslide"><div class="cards">${cards}</div>
+      <div class="sfoot"><div class="info">
+        <div class="tile t-en"><span class="tl">Energy</span><div class="energy">${en}</div></div>
+        ${SH.src ? `<a class="tile t-sc tlink" href="${SH.src}" target="_blank" rel="noopener" aria-label="Score: the original list on Limitless">` : `<div class="tile t-sc">`}${SH.src ? `<svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>` : ""}<span class="tl">Score${SH.played ? ` \u00b7 ${SH.played}` : ""}</span><div class="sc"><span>${esc(SH.p.s || "\u2013")}</span>${place ? `<span class="pill pl">${place}</span>` : ""}</div>${SH.src ? "</a>" : "</div>"}
+        ${T && T.d ? `<button class="tile t-ev t-td tlink shtoday" type="button" data-k="${Math.max(0, T.k)}" aria-label="Open this deck on the site"><svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><span class="tl">This deck today</span>${today}</button>` : `<div class="tile t-ev t-td"><span class="tl">This deck today</span>${today}</div>`}</div>
+        <div class="qcol"><button class="qr shqr" type="button" aria-label="Show the QR code"><img src="${qrPng(SH.packed)}" alt="QR code for ${esc(SH.name)}" width="128" height="128"><span class="qcap">${TOUCH ? `${EXPAND}Tap to save` : `${SCAN}Scan in game`}</span></button></div>
+      </div></div>
+      <div class="shfoot"><button class="qclose shx" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>`;
+  }
+  function shQR() {
+    const box = $("shBox"); box.dataset.mode = "qr"; track("shared-qr");
+    box.innerHTML = `${shHead()}
+      <div class="qsbox"><div class="qsrow"><img class="qsimg" src="${qrPng(SH.packed, "#eef5f9")}" alt="QR code for ${esc(SH.name)}" width="240" height="240"></div>
+      <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><button class="qslink shlink" type="button">${LINK_ICON}<span>${TOUCH ? "Share link" : "Copy link"}</span></button></div>
+      <div class="shfoot"><button class="qclose shback" type="button" aria-label="Back to the cards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button><button class="qsave shsave" type="button">${SAVE_ICON}${TOUCH ? "Save" : "Download"}</button></div><p class="qmsg" id="shMsg" role="status"></p>`;
+  }
+  function closeShared() {
+    $("shv").hidden = true; document.documentElement.style.overflow = ""; $("shBox").innerHTML = "";
+    if (location.hash.startsWith("#x=")) history.replaceState(null, "", location.pathname + location.search);
+  }
+  $("shv").addEventListener("click", async (e) => {
+    if (e.target === $("shv") || e.target.closest(".shx")) { closeShared(); return; }
+    if (e.target.closest(".shqr")) { shQR(); return; }
+    const zc = e.target.closest("img[data-zid]"); if (zc) { track("shared-card"); openCardId(zc.dataset.zid, zc.alt); return; }
+    const sl = e.target.closest(".shlink");
+    if (sl) { const lab = sl.querySelector("span"), url = location.href; track("shared-relink");
+      if (TOUCH && navigator.share) { try { await navigator.share({ title: SH.name + " \u2013 Pocket Meta QR", url }); return; } catch (err) { if (err && err.name === "AbortError") return; } }
+      let ok = false; try { await navigator.clipboard.writeText(url); ok = true; } catch (err) {}
+      if (!lab) { toast(ok ? "Link copied" : "Copy the address from the address bar"); return; }
+      lab.textContent = ok ? "Link copied" : "Copy the address"; setTimeout(() => { if (lab.isConnected) lab.textContent = TOUCH ? "Share link" : "Copy link"; }, 1800); return; }
+    if (e.target.closest(".shback")) { shCards(); return; }
+    const td = e.target.closest(".shtoday");
+    if (td) { const id = SH && SH.p.k, k = +td.dataset.k; closeShared(); track("shared-today"); if (id && $(id)) openAt(id, k); return; }
+    if (e.target.closest(".shsave")) {
+      track("shared-save");
+      if (!shBlob) { $("shMsg").textContent = "The image is not ready. Try again."; return; }
+      const file = new File([shBlob], shName, { type: "image/png" });
+      if (TOUCH && navigator.canShare && navigator.canShare({ files: [file] })) { try { await navigator.share({ files: [file] }); return; } catch (err) { if (err && err.name === "AbortError") return; } }
+      if (window.claude && window.claude.use) { const dl = await dlCap; if (dl) { try { await dl.save({ filename: shName, data: shBlob }); } catch (err) {} return; } }
+      const u = URL.createObjectURL(shBlob), a = document.createElement("a"); a.href = u; a.download = shName; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000);
+    }
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("shv").hidden && !cdlg.open) closeShared(); });
+  $("shv").addEventListener("keydown", (e) => { const z = e.target.closest && e.target.closest("img[data-zid]"); if (z && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openCardId(z.dataset.zid, z.alt); } });
   const SAVE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>';
   // claude.ai downloads capability (null when this view cannot save); resolved once, used on click
   const dlCap = window.claude && window.claude.use ? Promise.resolve(window.claude.use("downloads")).catch(() => null) : Promise.resolve(null);
@@ -1697,6 +1954,7 @@ html { -webkit-tap-highlight-color: transparent; }
     ipop.classList.remove("wide"); ipop.classList.add("qsheet"); qsAnchor = anchor;
     placeTip(); // again, with the QR panel's own width and height
     card(d, i, ak).catch(() => {}); // prepare the saved image
+    prepShare(d, i, ak).catch(() => {}); // and the permanent share link
   }
 
   const placeholder = (d) => `
@@ -2622,7 +2880,8 @@ html { -webkit-tap-highlight-color: transparent; }
     if (!d || !p || k >= (d.nv || 1)) return;
     setTimeout(() => { const vars = p.querySelector(".vars"), sl = p.querySelectorAll(".slide"); if (openId === id && sl[k]) vars.scrollTo({ left: sl[k].offsetLeft - sl[0].offsetLeft, behavior: "auto" }); }, 60);
   }
-  window.addEventListener("hashchange", () => { const [id, k] = hashParts(); if (!data || !id || id === openId) return;
+  window.addEventListener("hashchange", () => { if (location.hash.startsWith("#x=")) { if (data) openShared(location.hash.slice(1)); return; }
+    const [id, k] = hashParts(); if (!data || !id || id === openId) return;
     if ($(id)) openAt(id, k); else if (id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); openAt(id, k); } }); });
   $("list").addEventListener("click", (e) => {
     // Nov 12: the faded rows and the link are one "read more" area: a tap shows all smaller decks (no deck opens)
@@ -2668,7 +2927,7 @@ html { -webkit-tap-highlight-color: transparent; }
   function evDeck(e, v, k) { // a list as a 1-list "deck" (so slideBody, the QR panel and the saved image work as for decks)
     const dk = (EV.decks && EV.decks[v.deck]) || {};
     return { ...v, id: `${v.deck}-${e.tid}-${v.pl}`, name: dk.name || v.deck, art: dk.art || [], rank: v.pl, nv: 1, pl: v.place, ev: e.name, dt: e.dt,
-      evt: `${ordN(v.pl)} of ${e.players} · ${e.name}`, deckName: dk.name || v.deck, k };
+      evt: `${ordN(v.pl)} of ${e.players} · ${e.name}`, deckName: dk.name || v.deck, k, tid: e.tid, deckId: v.deck }; // tid + deckId: for the share link
   }
   function evSlide(e, v, k) {
     const d = evDeck(e, v, k);
@@ -2794,8 +3053,10 @@ html { -webkit-tap-highlight-color: transparent; }
       renderList(); watchMore();
       setupFilter();
       podFit(); podGrow();
-      const [id, hk] = hashParts();
-      if (id && $(id)) openAt(id, hk); // shared link: open that deck (and list); otherwise all rows start closed
+      const shared = location.hash.startsWith("#x=");
+      const [id, hk] = shared ? [""] : hashParts();
+      if (shared) openShared(location.hash.slice(1)); // a permanent link: the shared list over the page
+      else if (id && $(id)) openAt(id, hk); // shared link: open that deck (and list); otherwise all rows start closed
       else if (id && id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); openAt(id, hk); } });
       let t0 = null; try { t0 = localStorage.getItem("pmq-tab"); } catch (err) {}
       if (id === "events" || (!(id && $(id)) && t0 === "events")) setTab("events", false);
