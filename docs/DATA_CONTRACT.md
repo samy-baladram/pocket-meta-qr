@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 17 (Nov 13, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 18 (Nov 13, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,10 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 18 (user decision, Nov 13): **simpler new set day.** The 7-day window holds the tournaments of the last
+  7 days of **all sets**; on a new set day the old set's events leave it day by day. `set`/`setName`/`setRelease`
+  = the newest set that Limitless lists (it changes when Limitless lists the new set, usually on the release day or
+  up to about 1 day later). `next` is **not written**; `rk0`/`nw` are written as always (no gap at a set change).
 - Version 17 (request R15 of the UI chat): new set day. `data.json` gets **`setRelease`** (release day of `set`) and,
   while a new set has fewer than 3 tournaments on the site, **`next`** (the old set is still shown). `rk0`/`nw` are
   left out on all decks when the build 24 h earlier showed another set (see "New set").
@@ -107,9 +111,9 @@ Use the same word in new docs and UI notes.
 | Field | Type | Meaning |
 |---|---|---|
 | `updatedAt` | ISO time | build time |
-| `set`, `setName` | string | the shown set (the window never goes back before its release). Normally the newest set; see "New set" |
+| `set`, `setName` | string | the current set: the newest set that Limitless lists (v18: the window can also hold events of the set before it, in the first 7 days of a set) |
 | `setRelease` | date | **new in v17.** release day of `set` (`YYYY-MM-DD`) |
-| `next` | object or absent | **new in v17.** `{set, setName, release}` of a new set that is out but has fewer than 3 tournaments on the site; then `set` is still the old set, with its last 7 days (`span` ends on the day before `next.release`). Absent otherwise |
+| `next` | — | **v17 only, not written since v18** (the page can keep reading it; it is always absent) |
 | `window` | string | **new in v4.** `"7d"` = last 7 days up to the build day (other values: `"set"`, `"3d"`) |
 | `format` | string | always `standard` |
 | `span` | [date, date] | first and last tournament day in the window (`YYYY-MM-DD`) |
@@ -126,7 +130,7 @@ Use the same word in new docs and UI notes.
 |---|---|---|
 | `id` | string | Limitless archetype slug, e.g. `mega-charizard-y-ex-b1a-entei-ex-a4a` |
 | `rank` | int | position by players (1 = most); can skip numbers (the missing ranks are in `nolist`) |
-| `rk0` | int or absent | **new in v16.** the deck's rank 24 h before this build (`updatedAt` − 24 h), same rules (see "Rank 24 h ago"); `0` = not in the list then (under 0.2 % share or no entries). Written on every deck, except (v17) on all decks when the build 24 h earlier showed another set |
+| `rk0` | int | **new in v16.** the deck's rank 24 h before this build (`updatedAt` − 24 h), same rules (see "Rank 24 h ago"); `0` = not in the list then (under 0.2 % share or no entries). Always written (v17 left it out across a set change; v18 does not) |
 | `nw` | 1 or absent | **new in v16.** new in the list: its first time in the list (0.2 % share or more) since the set release was less than 72 h before this build, and more than 72 h after the release. The page shows NEW and ignores `rk0` then |
 | `name` | string | display name, e.g. `Mega Charizard Y ex Entei ex` (same as Limitless) |
 | `count` | int | players with this deck in the window |
@@ -186,20 +190,19 @@ Every `in`/`out` card id has a `c/` image. The version's energy is always the li
 needs another type, the build log says so (none on Nov 9). The QR check decodes every `alt` QR before deploy. Example UI text: "Also played: −1 Red Card +1 Soothing Shore
 (2 top players, best 15th of 203)".
 
-### New set (new in v17)
+### New set day (v18, user decision Nov 13; replaces the v17 rule)
 
-The shown set at a time T (`pipeline/setrule.py`):
-- the newest set (not a promo set) released on or before T's day;
-- but while it has **fewer than 3** complete tournaments on the site (`at` <= T), and the set before it has data on
-  the site, the old set is still shown: its last 7 days (window up to the day before the new release), with `next`.
-- From the 3rd tournament of the new set: the new set, window from its release (`setRelease`), no `next`.
-- `rk0` and `nw`: left out on **all** decks of `data.json` and `more.json` when the set shown 24 h earlier was another
-  one (the page then shows the rank only). From the next day on: as normal, inside the new set.
-- NEW (`nw`) is not given in the first 72 h after the set became the shown set (its release, or the time of its 3rd
-  tournament when the old set was held back).
-- `events.json` / `t/`: the same set and window as `data.json`.
-- Dry run (Nov 13, fake set C2 released Nov 12): with 0, 1 and 2 C2 tournaments the output is C1 (span Nov 5-11) with
-  `next`, all `rk0` = rank (frozen list); with 3, it is C2, `setRelease` 2026-11-12, no `next`, no `rk0`/`nw`.
+- The window = the tournaments of the last 7 days, of **all sets**. On a new set day nothing special happens: the old
+  set's events stay in the window and leave it day by day, the new set's events come in.
+- `set`, `setName`, `setRelease` = the newest set that Limitless lists. Limitless adds a new set on its release day
+  or up to about 1 day later (B4b Sep 30: listed the same day; B4a Aug 27: the next morning), so the name can change
+  some hours after the release.
+- `rk0`/`nw` as always. NEW: the first-time search starts 7 days before the current set's release, so decks that
+  carry over from the old set are not NEW; a deck that first enters the list after that is NEW for 72 h.
+- No `next`. Note for the page: in the first 7 days of a set, `summary.tournaments` counts the events of both sets.
+- Card data: a new set's cards need the newer card packages (`pokemon-tcg-pocket-database` for the game ids of the
+  QR codes, `pokemon-tcg-pocket-cards` for names and images). Until they are updated in the repo, lists with new cards
+  have no QR (the build logs "no game id").
 
 ### Rank 24 h ago and NEW (new in v16)
 
@@ -208,8 +211,8 @@ the raw files are written once, so no stored history is needed). "The list at ti
 shown: the current set's tournaments with `at` <= T and a day in the 7 days that end on T's date (UTC); share as for
 `share` (every deck of an entry counts, multi-deck too); decks with 0.2 % share or more; rank by players, then id.
 - `rk0` = the deck's rank in the list at `updatedAt` − 24 h (0 when not in it).
-- `nw` = the first T since the set release (checked at every tournament `at` and every midnight UTC, the only times
-  the list can change) at which the deck is in the list, is less than 72 h ago and more than 72 h after the release.
+- `nw` = the first T since 7 days before the current set's release (checked at every tournament `at` and every
+  midnight UTC, the only times the list can change) at which the deck is in the list, is less than 72 h ago.
 - Note: the site's history starts with the first fetch on Nov 8, 2026 (all tournaments before it have `at` = Nov 8),
   so a "first time" is never before Nov 8 for set C1.
 - Checked Nov 12: `rk0` of all 57 decks equals the ranks of a build from the repo data of 24 h earlier.

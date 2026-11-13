@@ -41,10 +41,10 @@ The round links come from the pairings page itself. The last link is the top cut
 - Current set: the newest set (not a promo set) with a release date of today or earlier. Each run reads
   the set list, so a new set starts a new window automatically. Each tournament gets the set that was
   current on its day.
-- New set day (decision Nov 13, 2026, request R15): the site keeps showing the old set (its last 7 days, with
-  `next` in data.json) until the new set has 3 complete tournaments on the site (`pipeline/setrule.py`); then the new
-  set, with no rank changes (`rk0`/`nw`) for the first 24 h. In the first week of a new set the scraper also looks 7
-  days back, so old-set events that ended after the release are still fetched.
+- New set day (user decision Nov 13, 2026; replaces request R15's hold rule): no special rule. The 7-day window holds
+  the tournaments of the last 7 days of all sets, so the old set's events leave it day by day; the set name is the
+  newest set that Limitless lists. In the first week of a new set the scraper also looks 7 days back, so old-set
+  events that ended after the release are still fetched.
 - Backfill: from the release of the current set (C1 Dual Fusion, 2026-10-29). About 40 tournaments.
   `--since YYYY-MM-DD` overrides the start date.
 
@@ -136,8 +136,8 @@ The pairings do not say which deck a player used in a match. Thus:
 
 ### 4.6 Windows
 - Set: tournaments with `set` = the current set code (for example `C1`), see section 2.
-- Last 7 days (`7d`) and last 3 days (`3d`): the days up to the build day, current set only (in the first days
-  of a set, the window starts at its release).
+- Last 7 days (`7d`) and last 3 days (`3d`): the days up to the build day, all sets (decision Nov 13, 2026: on a
+  new set day the old set's events leave the window day by day).
 - **The page uses the 7-day window** (decision Nov 9, 2026: the meta changes fast; the Limitless deck table uses
   the whole set). Deck table, share, win rate and the shown lists all come from the last 7 days.
 - A deck is shown when its share in the 7-day window is 0.5 % or more (max 40).

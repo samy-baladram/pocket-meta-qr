@@ -7,11 +7,10 @@ definition fix needs only a new build. The file is not committed (.gitignore).
 
 Base tables : sets, tournaments, entries, entry_decks, matches, decklists, decklist_cards
 Computed    : archetype_stats (window, archetype, ...), matchups (window, deck, opp, ...)
-Windows     : "set" (tournaments of the current set), "7d" and "3d" (last N days up to --ref, current set only)
+Windows     : "set" (tournaments of the current set), "7d" and "3d" (last N days up to --ref, all sets: on a new set
+              day the old set's events leave the window day by day; decision Nov 13, 2026)
 """
 import argparse, glob, json, os, sqlite3, sys
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from setrule import MIN_EVENTS, shown_set
 from collections import defaultdict
 from datetime import date, datetime, timedelta, timezone
 
@@ -189,28 +188,16 @@ def build(data, ref, top):
     db.executemany("INSERT INTO sets VALUES (?,?,?,?,?)",
                    [(s["code"], s["name"], s["release"], s["cards"], int(s["code"] == cur)) for s in sets["sets"]])
     n = load_raw(db, data)
-    # R15 (Nov 13, 2026): the shown set. The newest set, or the set before it while the new one has fewer than
-    # setrule.MIN_EVENTS tournaments on the site (then its last 7 days, and "next" names the new set).
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    T = now if ref >= now[:10] else f"{ref}T23:59:59Z"
-    tours = db.execute("SELECT set_code, fetched_at FROM tournaments").fetchall()
-    shown = shown_set(sets["sets"], tours, T) if sets["sets"] else None
-    nxt = None
-    if shown:
-        cur, ref, nxt = shown["set"], shown["ref"], shown["next"]
-        if nxt:
-            print(f"new set {nxt['set']} ({nxt['release']}) has fewer than {MIN_EVENTS} tournaments: "
-                  f"showing {cur} (window up to {ref})")
     cur_tids = {r[0]: r[1] for r in db.execute("SELECT id, day FROM tournaments WHERE set_code = ?", (cur,))}
+    all_tids = {r[0]: r[1] for r in db.execute("SELECT id, day FROM tournaments")}
     windows = {"set": set(cur_tids)}
     for days in (7, 3):
         start = (date.fromisoformat(ref) - timedelta(days=days - 1)).isoformat()
-        windows[f"{days}d"] = {t for t, d in cur_tids.items() if start <= d <= ref}
+        windows[f"{days}d"] = {t for t, d in all_tids.items() if start <= d <= ref}
     for w, tids in windows.items():
         compute(db, w, tids)
     built = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    db.executemany("INSERT INTO meta VALUES (?,?)", [("built_at", built), ("ref", ref), ("current_set", cur or ""),
-                    ("next_set", json.dumps(nxt) if nxt else ""), ("set_start", shown["start"] if shown else "")] +
+    db.executemany("INSERT INTO meta VALUES (?,?)", [("built_at", built), ("ref", ref), ("current_set", cur or "")] +
                    [(f"tournaments_{w}", str(len(t))) for w, t in windows.items()])
     db.commit()
     report(db, cur, windows, top)

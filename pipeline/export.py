@@ -19,8 +19,6 @@ Events: the lists of each event's top 25 % (8..32 places), or the count the even
 import argparse, json, os, sqlite3, sys
 from collections import defaultdict
 from datetime import date as Date, datetime, timedelta, timezone
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from setrule import shown_set
 
 MIN_SHARE = 0.5   # % of all decks in the window (data.json)
 MORE_SHARE = 0.2  # % for the "Show more decks" file (more.json, R9)
@@ -52,11 +50,17 @@ def main():
         tids = [r[0] for r in db.execute("SELECT id FROM tournaments WHERE set_code = ?", (cur,))]
     else:
         days = int(a.window[:-1])
+        # All sets (decision Nov 13, 2026): on a new set day the old set's events leave the window day by day.
         tids = [r[0] for r in db.execute(
-            "SELECT id FROM tournaments WHERE set_code = ? AND day > date(?, ?)", (cur, meta["ref"], f"-{days} days"))]
+            "SELECT id FROM tournaments WHERE day > date(?, ?)", (meta["ref"], f"-{days} days"))]
     q = ",".join("?" * len(tids))
     summary = db.execute(f"SELECT COUNT(*), SUM(players), MIN(day), MAX(day) FROM tournaments WHERE id IN ({q})", tids).fetchone()
     matches = db.execute(f"SELECT COUNT(*) FROM matches WHERE special IS NULL AND b IS NOT NULL AND tid IN ({q})", tids).fetchone()[0]
+
+    # Lists for energy votes and art samples: the current set, or the last 7 days (old-set decks in a new set's first
+    # week). For one set (as now) this is the current set.
+    SCOPE = "(t.set_code = ? OR t.day > date(?, '-7 days'))"
+    scope = (cur, meta["ref"])
 
     def lists_of(tid, pid):
         out = []
@@ -72,9 +76,9 @@ def main():
     def energy_votes(arch):
         return [lists_of(tid, pid) for tid, pid in db.execute("""
             SELECT DISTINCT d.tid, d.pid FROM entry_decks d JOIN tournaments t ON t.id = d.tid
-            WHERE d.archetype = ? AND t.set_code = ?
+            WHERE d.archetype = ? AND """ + SCOPE + """
               AND EXISTS (SELECT 1 FROM decklists x WHERE x.tid = d.tid AND x.pid = d.pid AND x.energy IS NOT NULL)""",
-            (arch, cur))]
+            (arch, *scope))]
 
     decks = []
     for k, (arch, players, share, w, l, t, win) in enumerate(db.execute(
@@ -104,9 +108,9 @@ def main():
             # R10 (Nov 11, 2026): no list in the window -> the deck is a "nolist" row. For its art and energy: the newest
             # decklist page of the deck in the current set (any event, also multi-deck); build.mjs falls back to the slug.
             row = db.execute("""SELECT d.tid, d.pid FROM entry_decks d JOIN tournaments t ON t.id = d.tid
-                                WHERE d.archetype = ? AND t.set_code = ?
+                                WHERE d.archetype = ? AND """ + SCOPE + """
                                   AND EXISTS (SELECT 1 FROM decklists x WHERE x.tid = d.tid AND x.pid = d.pid)
-                                ORDER BY t.date DESC LIMIT 1""", (arch, cur)).fetchone()
+                                ORDER BY t.date DESC LIMIT 1""", (arch, *scope)).fetchone()
             deck["sample"] = lists_of(*row) if row else []
         decks.append(deck)
 
@@ -115,25 +119,16 @@ def main():
     # with a public decklist, in place order. build.mjs makes the energy, art and QR (same rules as the deck lists).
     # R14 (Nov 13, 2026): rank 24 h ago (rk0) and "new in the list" (nw), from the times the tournaments reached the
     # site (fetched_at: the raw files are written once, so no stored history is needed).
-    # list_at(T) = the deck list as a build at time T would have made it: the current set's tournaments with
+    # list_at(T) = the deck list as a build at time T would have made it: the tournaments (all sets) with
     # fetched_at <= T and a day in the 7 days that end on T's date (UTC); share as in build_db.py (every deck of an
     # entry counts 1, also multi-deck); decks with share >= MORE_SHARE; rank = players high first, then archetype.
-    trows = db.execute("SELECT id, day, fetched_at FROM tournaments WHERE set_code = ? AND fetched_at IS NOT NULL",
-                       (cur,)).fetchall()
+    trows = db.execute("SELECT id, day, fetched_at FROM tournaments WHERE fetched_at IS NOT NULL").fetchall()
     arch_rows = defaultdict(list)
-    for tid, arch in db.execute("SELECT d.tid, d.archetype FROM entry_decks d JOIN tournaments t ON t.id = d.tid "
-                                "WHERE t.set_code = ?", (cur,)):
+    for tid, arch in db.execute("SELECT tid, archetype FROM entry_decks"):
         arch_rows[tid].append(arch)
 
-    # R15: the set shown at T (setrule.py). list_at(T) is None when T showed another set (or none).
-    sets_list = [{"code": c, "name": n, "release": rel} for c, n, rel in db.execute("SELECT code, name, release FROM sets")]
-    tours = db.execute("SELECT set_code, fetched_at FROM tournaments").fetchall()
-
     def list_at(T):
-        sh = shown_set(sets_list, tours, T)
-        if not sh or sh["set"] != cur:
-            return None
-        day = sh["ref"]
+        day = T[:10]
         lo = (Date.fromisoformat(day) - timedelta(days=WINDOW_DAYS - 1)).isoformat()
         n = defaultdict(int)
         for tid, tday, fetched in trows:
@@ -147,15 +142,16 @@ def main():
 
     now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     t0 = (datetime.now(timezone.utc) - timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    rank0 = list_at(t0)          # None: 24 h ago the site showed another set (R15c) -> no rk0 / nw
-    # First time in the list since the set release: the list changes only when a tournament reaches the site or when
-    # the window moves at midnight UTC, so those times are enough.
+    rank0 = list_at(t0)
+    # First time in the list, searched from 7 days before the current set's release (so the decks that carry over from
+    # the old set are not "new"). The list changes only when a tournament reaches the site or when the window moves at
+    # midnight UTC, so those times are enough.
     release = (db.execute("SELECT release FROM sets WHERE code = ?", (cur,)).fetchone() or [None])[0]
-    # The time from which the set is shown (its release, or later when the old set was held back, R15b).
-    rel_iso = meta.get("set_start") or (f"{release}T00:00:00Z" if release else "0000")
+    rel_iso = (f"{(Date.fromisoformat(release) - timedelta(days=WINDOW_DAYS)).isoformat()}T00:00:00Z"
+               if release else "0000")
     points = {f for _, _, f in trows if f >= rel_iso}
     if release:
-        d0 = Date.fromisoformat(release)
+        d0 = Date.fromisoformat(rel_iso[:10])
         while d0.isoformat() <= now_iso[:10]:
             points.add(f"{d0.isoformat()}T00:00:00Z")
             d0 += timedelta(days=1)
@@ -163,13 +159,9 @@ def main():
     for T in sorted(p for p in points if p <= now_iso):
         for arch in list_at(T) or {}:
             first.setdefault(arch, T)
-    new_after = max((datetime.now(timezone.utc) - timedelta(hours=72)).strftime("%Y-%m-%dT%H:%M:%SZ"),
-                    (datetime.fromisoformat(rel_iso.replace("Z", "+00:00")) + timedelta(hours=72)).strftime("%Y-%m-%dT%H:%M:%SZ")
-                    if release else now_iso)
+    new_after = (datetime.now(timezone.utc) - timedelta(hours=72)).strftime("%Y-%m-%dT%H:%M:%SZ")
     for d in decks:
         d["first"] = first.get(d["id"])   # for the build log and checks (not written to the site)
-        if rank0 is None:
-            continue                      # R15c: set change in the last 24 h: no rk0, no nw
         d["rk0"] = rank0.get(d["id"], 0)
         if (d["first"] or "") > new_after:
             d["nw"] = 1
@@ -208,9 +200,9 @@ def main():
     samples = {}
     for arch in sorted(used - shown):
         row = db.execute("""SELECT d.tid, d.pid FROM entry_decks d JOIN tournaments t ON t.id = d.tid
-                            WHERE d.archetype = ? AND t.set_code = ? AND t.multi_deck = 0
+                            WHERE d.archetype = ? AND """ + SCOPE + """ AND t.multi_deck = 0
                               AND EXISTS (SELECT 1 FROM decklists x WHERE x.tid = d.tid AND x.pid = d.pid)
-                            ORDER BY t.date DESC LIMIT 1""", (arch, cur)).fetchone()
+                            ORDER BY t.date DESC LIMIT 1""", (arch, *scope)).fetchone()
         samples[arch] = {"lists": lists_of(*row) if row else [], "votes": energy_votes(arch)}
 
     out = {
@@ -219,8 +211,7 @@ def main():
         "summary": {"tournaments": summary[0], "players": summary[1] or 0, "matches": matches},
         "span": [summary[2], summary[3]] if summary[2] else None,
         "decks": decks,
-        # R15: release day of the shown set; "next" = the new set while it has too few tournaments (setrule.py).
-        "setRelease": release, **({"next": json.loads(meta["next_set"])} if meta.get("next_set") else {}),
+        "setRelease": release,   # R15a: release day of the current set (the newest set Limitless lists)
         # R14 check values: the rank time 24 h ago and the deck list at build time by the same rule (must equal decks).
         "rk0At": t0, "newAfter": new_after, "rankNowCheck": rank_now,
         # R13c: the last time a tournament of the window (multi-deck too) was added = the largest fetched_at.

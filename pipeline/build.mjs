@@ -328,8 +328,8 @@ const data = { updatedAt: new Date().toISOString(), set: input.set, setName: inp
   decks: decks.filter((d) => !moreIds.has(d.id)), more: moreIds.size,
   nolist: nolist.filter((x) => !x.more).map(({ more, from, ...x }) => x),
   ...(input.changedAt ? { changedAt: input.changedAt } : {}),
-  // R15: release day of the shown set; next = the new set while it has fewer than 3 tournaments (old set shown).
-  ...(input.setRelease ? { setRelease: input.setRelease } : {}), ...(input.next ? { next: input.next } : {}) };
+  // R15a: release day of the current set (the newest set Limitless lists).
+  ...(input.setRelease ? { setRelease: input.setRelease } : {}) };
 // R13b (Nov 12, 2026): the single-deck event of the window that reached the site last (largest at, then latest ts).
 {
   const ev = [...(input.events || [])].filter((e) => e.at)
@@ -488,8 +488,7 @@ const nvars = decks.reduce((a, d) => a + d.nv, 0);
 { // R14 summary: rank changes against 24 h ago
   const all = [...decks, ...nolist], up = all.filter((d) => d.rk0 && d.rk0 > d.rank).length;
   const down = all.filter((d) => d.rk0 && d.rk0 < d.rank).length, same = all.filter((d) => d.rk0 === d.rank).length;
-  if (!all.some((d) => d.rk0 != null)) console.log("rank 24 h ago: none (the shown set changed in the last 24 h, R15c)");
-  else console.log(`rank 24 h ago (rk0, ${input.rk0At}): ${up} up, ${down} down, ${same} same, ` +
+  console.log(`rank 24 h ago (rk0, ${input.rk0At}): ${up} up, ${down} down, ${same} same, ` +
     `${all.filter((d) => !d.rk0).length} not in the list then; new (nw): ` +
     (all.filter((d) => d.nw).map((d) => `${d.rank} ${d.name}`).join("; ") || "none"));
 }
