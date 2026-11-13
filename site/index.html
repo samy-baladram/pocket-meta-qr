@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794549879-73f1 -->
+<!-- ui: artifact version 1794552749-015e -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -146,14 +146,13 @@ footer a { color: var(--muted); }
 @media (hover: hover) { .fbtns .fabout:hover { text-decoration: underline; text-underline-offset: 3px; } } #homeBtn[hidden] { display: none; }
 .fsrc, .fleg { margin: 0; max-width: 640px; }
 .fleg { font-size: var(--fs-xs); opacity: 0.85; }
-.fsite { font-weight: 700; color: var(--acc-ink); letter-spacing: 0.01em; }
+.fsite { font-weight: 700; color: var(--ink); letter-spacing: 0.01em; } /* not a link: ink, not blue */
 /* About & FAQ (in the info popover / sheet): long, so it scrolls inside */
 .about { max-height: min(64vh, 560px); overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; margin: 0 -4px; padding: 0 4px; }
 .about h4 { margin: 12px 0 3px; font-size: var(--fs-m); color: var(--ink); }
 .about p { margin: 0 0 4px; }
 .about .afine { margin-top: 12px; font-size: var(--fs-xs); }
 .ipop.sheet .about { max-height: 62vh; }
-.ipop .qsite, .qsite { margin: 2px 0 0; font-size: var(--fs-xs); font-weight: 700; color: var(--acc-ink); letter-spacing: 0.02em; }
 
 /* ===== Header: blue band, tilted light ribbon with a slanted title, section title, flat stat tiles ===== */
 .hdr { position: relative; display: block; padding: 0; --rot: -5deg; --slope: 8.75vw; } /* brand angle (same as the saved QR image); --slope = tan(rot) x 100vw */
@@ -224,7 +223,7 @@ footer a { color: var(--muted); }
   font-size: var(--fs-s); line-height: 1.4; color: var(--ink); background: linear-gradient(var(--acc-bg), var(--acc-bg)), var(--surface); border: 1px solid var(--acc-line); }
 .hdr .nset[hidden] { display: none; }
 .nset svg { flex: none; width: 15px; height: 15px; margin-top: 1px; color: var(--acc-ink); }
-.nset b { color: var(--acc-ink); }
+.nset b { color: var(--ink); } /* Nov 13: blue bold reads as a link: bold ink only */
 /* Share link (QR panel): a quiet text button under the steps */
 .qslink { appearance: none; margin: 2px 0 0; padding: 4px 10px; border: 0; border-radius: 999px; background: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
   font: inherit; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.02em; color: var(--acc-ink); }
@@ -604,6 +603,8 @@ html { -webkit-tap-highlight-color: transparent; }
 .dot.l1.hot::before { background: var(--hot-mark); }
 .l1 svg { width: 0.85em; height: 0.85em; display: block; flex: none; color: var(--acc-mark); }
 .cname .l1 { color: inherit; } /* on the dark full-screen view */
+/* Nov 13: red/blue only on the list dot and the "vs Hot" button; in headings and text the label is plain bold (blue bold reads as a link) */
+.qsl .l1, .qsl .l1.hot, .ipop h3 .l1, .ipop h3 .l1.hot, .ipop p .l1, .ipop p .l1.hot { color: var(--ink); }
 /* The tab on list 1's top edge (same place as "N cards differ" on the other lists): cyan tint, not a button */
 .dnote.l1tab { color: var(--acc-ink); font-weight: 700; padding-right: 6px; border: 1.5px solid var(--acc-line); /* a thin blue outline, so the tint does not blend into the card */
   background: linear-gradient(var(--acc-bg), var(--acc-bg)), var(--surface); }
@@ -734,7 +735,7 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Save: a raised surface pill, like the cards */
 .qsave { display: inline-flex; align-items: center; gap: var(--sp-2); padding: 10px 18px; border: 0; border-radius: 999px; cursor: pointer;
   background: var(--surface); color: var(--ink); font-weight: 700; font-size: var(--fs-l); line-height: 1;
-  box-shadow: var(--raised), var(--bevel), 0 4px 12px rgba(var(--sh), 0.3); }
+  box-shadow: var(--raised), var(--bevel); } /* Nov 13: the same raised shadow as the panels and cards (the extra dark drop was too strong) */
 .qsave svg { width: 18px; height: 18px; display: block; stroke-width: 2; color: var(--accent); }
 .qsave:active { transform: scale(0.97); }
 .qsave:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
@@ -751,7 +752,7 @@ html { -webkit-tap-highlight-color: transparent; }
 /* QR sheet */
 .ipop.qsheet.float { width: min(340px, calc(100vw - 24px)); }
 .qsbox { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 12px 14px; border-radius: 16px; background: var(--qs-bg);
-  box-shadow: inset 0 1px 3px rgba(var(--sh), 0.12); text-align: center; }
+  box-shadow: var(--fin-sh); text-align: center; } /* Nov 13: the search pill's pressed-in shadow (was too weak) */
 .qst { margin: 0; align-self: stretch; padding: 5px 10px; border-radius: 999px; background: var(--surface); box-shadow: var(--raised-sm), var(--bevel);
   font-weight: 600; font-size: var(--fs-m); color: var(--ink); }
 .qsdeck { margin: 2px 0 0; display: flex; flex-direction: column; align-items: center; gap: 1px; line-height: 1.25; }
@@ -2769,13 +2770,11 @@ html { -webkit-tap-highlight-color: transparent; }
     .then((j) => {
       data = normQ(j);
       // Artifact preview only: sample rank changes until the R14 data exists (never on the live site)
-      // Demo of the new-set note, off the live site only: ?demo=set0 (new set out, no events yet), ?demo=set1 (early data)
+      // Demo of the new-set note, off the live site only: ?demo=set (a set released 2 days ago; contract v18)
       const demo = !/pocketmetaqr\.com$/.test(location.hostname) && (new URLSearchParams(location.search).get("demo") || "");
-      if (demo === "set0") { data.next = { set: "C2", setName: "Sample Set", release: data.updatedAt.slice(0, 10) }; data.decks.forEach((d) => { d.rk0 = d.rank; delete d.nw; }); } // v17: the frozen old list, rk0 = rank
-      if (demo === "set1") { data.setRelease = new Date(Date.parse(data.updatedAt) - 2 * 864e5).toISOString().slice(0, 10); if (data.summary) data.summary.tournaments = 4;
-        if (data.span) data.span[0] = data.setRelease; data.decks.forEach((d) => { delete d.rk0; delete d.nw; }); data.noTrendDemo = 1; }
+      if (demo === "set") { data.setRelease = new Date(Date.parse(data.updatedAt) - 2 * 864e5).toISOString().slice(0, 10); data.setName = "Sample Set"; data.set = "C2"; }
       renderSetNote();
-      if (!data.noTrendDemo && !/pocketmetaqr\.com$/.test(location.hostname) && !data.decks.some((d) => "rk0" in d)) {
+      if (!/pocketmetaqr\.com$/.test(location.hostname) && !data.decks.some((d) => "rk0" in d)) {
         const S = [0, -1, 1, -2, 1, 0, -5, 3, -1, 2, 0, -3]; data.decks.forEach((d, k) => { if (k < S.length) d.rk0 = d.rank + S[k]; else d.rk0 = d.rank; });
         if (data.decks[8]) { delete data.decks[8].rk0; data.decks[8].nw = 1; }
       }
@@ -2904,32 +2903,29 @@ html { -webkit-tap-highlight-color: transparent; }
   function seenDecks() {
     const top = data.decks.slice(0, 10).map((d) => d.id);
     if (KEEP) (KEEP.d || []).forEach((id) => top.includes(id) && NEWD.add(id));
-    const sameSet = !SEEN || !SEEN.set || SEEN.set === data.set; // a new set: everything is new, so no "since" pill
-    if (sameSet && SEEN && SEEN.u && SEEN.u !== data.updatedAt && SEEN.t10) top.forEach((id) => { if (!SEEN.t10.includes(id)) NEWD.add(id); });
-    saveSeen({ u: data.updatedAt, t10: top, set: data.set }); keepNew(); renderSince();
+    if (SEEN && SEEN.u && SEEN.u !== data.updatedAt && SEEN.t10) top.forEach((id) => { if (!SEEN.t10.includes(id)) NEWD.add(id); });
+    saveSeen({ u: data.updatedAt, t10: top }); keepNew(); renderSince();
   }
   function seenEvents() {
     if (!EV || !EV.events) return;
     const ids = EV.events.map((e) => e.tid);
     if (KEEP) (KEEP.e || []).forEach((id) => ids.includes(id) && NEWE.add(id));
-    if (SEEN && SEEN.ev && SEEN.u !== data.updatedAt && (!SEEN.set || SEEN.set === data.set)) ids.forEach((id) => { if (!SEEN.ev.includes(id)) NEWE.add(id); });
+    if (SEEN && SEEN.ev && SEEN.u !== data.updatedAt) ids.forEach((id) => { if (!SEEN.ev.includes(id)) NEWE.add(id); });
     saveSeen({ ev: ids }); keepNew(); renderSince();
     if (NEWE.size && !$("evl").hidden) renderEvents(); // the tab is already open: add the tags
   }
-  // ===== New set (request R15) =====
-  // data.next = {set, setName, release}: a new set is out, but it has no events yet, so the page still shows the old set.
-  // data.setRelease = the current set's release day: in its first 7 days, or with fewer than 10 events, the data is early.
+  // ===== New set (contract v18, Nov 13) =====
+  // The 7-day window holds all sets: in a new set's first days it still has events from before the release.
+  // While the window starts before data.setRelease, a note says so (the ranks can change fast).
   function renderSetNote() {
-    const el = $("nset"), day = (s) => new Date(s + "T00:00:00Z").toLocaleDateString(undefined, { month: "short", day: "numeric", timeZone: "UTC" });
+    const el = $("nset"), D = (t) => new Date(t).toLocaleDateString(undefined, { month: "short", day: "numeric", timeZone: "UTC" });
     const ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>';
     let t = "";
-    const nx = data.next, old = esc(data.setName || data.set || "the last set");
-    if (nx && nx.release) {
-      const today = nx.release === new Date().toISOString().slice(0, 10);
-      t = `<b>New set: ${esc(nx.setName || nx.set)}</b> came out ${today ? "today" : day(nx.release)}. Until its first events, these are the final decks of ${old}.`;
-    } else if (data.setRelease) {
-      const age = (Date.parse(data.updatedAt) - Date.parse(data.setRelease + "T00:00:00Z")) / 864e5, ev = data.summary ? data.summary.tournaments : 0;
-      if (age < 7 || ev < 10) t = `<b>Early data</b> for ${old}: ${ev} event${ev === 1 ? "" : "s"} since ${day(data.setRelease)}. The ranks can change fast.`;
+    const rel = data.setRelease && Date.parse(data.setRelease + "T00:00:00Z"), now = Date.parse(data.updatedAt);
+    const start = data.span ? Date.parse(data.span[0] + "T00:00:00Z") : now - 6 * 864e5;
+    if (rel && rel <= now && (start < rel || now - rel < 6 * 864e5)) { // the window still reaches back before the release
+      const today = data.setRelease === new Date(now).toISOString().slice(0, 10);
+      t = `<b>New set: ${esc(data.setName || data.set)}</b> came out ${today ? "today" : D(rel)}. Until ${D(rel + 6 * 864e5)}, the numbers also include events from before it.`;
     }
     el.innerHTML = t ? ICON + `<span>${t}</span>` : "";
     el.hidden = !t;
