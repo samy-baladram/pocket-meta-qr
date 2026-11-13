@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794607336-fa5d -->
+<!-- ui: artifact version 1794609184-751f -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -202,7 +202,7 @@ footer a { color: var(--muted); }
 .hdr .live { position: relative; z-index: 1; margin: 3px 2px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; color: var(--muted); font-size: var(--fs-s); line-height: 1.4; }
 .hdr .live b { color: var(--ink); font-weight: 600; }
 /* Explicit resets, no all-unset: the deploy minifier (csso) moves rules in front of it and they get lost (Nov 12) */
-.live .lchk { appearance: none; margin: 0; background: none; font: inherit; text-align: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 9px; border-radius: 999px;
+.live .lchk { appearance: none; margin: 0; background: none; font-family: inherit; line-height: inherit; text-align: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 9px; border-radius: 999px;
   border: 1.5px solid var(--pill-line); color: var(--ink); font-size: var(--fs-s); line-height: 1.4; } /* info level: outline, no shadow */
 .live .lchk b { font-weight: 700; } .live .lchk .mu { color: var(--muted); }
 .live .lchk .lch { width: 6px; height: 10px; flex: none; color: var(--muted); }
@@ -215,7 +215,7 @@ footer a { color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { .ldot.g::after { animation: none; } }
 /* "Since your last visit" pill (tap: the Events tab) and the NEW tags */
 .hdr .since { position: relative; z-index: 1; margin: 8px 0 0; }
-.since .sinb { appearance: none; margin: 0; font: inherit; text-align: inherit; cursor: pointer; display: inline-flex; max-width: 100%; box-sizing: border-box; align-items: center; gap: 8px; padding: 6px 8px 6px 12px; border-radius: 999px; font-size: var(--fs-s); color: var(--ink);
+.since .sinb { appearance: none; margin: 0; font-family: inherit; line-height: inherit; text-align: inherit; cursor: pointer; display: inline-flex; max-width: 100%; box-sizing: border-box; align-items: center; gap: 8px; padding: 6px 8px 6px 12px; border-radius: 999px; font-size: var(--fs-s); color: var(--ink);
   background: linear-gradient(var(--acc-bg), var(--acc-bg)), var(--surface); border: 1px solid var(--acc-line); }
 .since .sinb b { color: var(--acc-ink); }
 .since .shci svg { display: inline-block; width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; color: var(--acc-ink); }
@@ -243,7 +243,7 @@ footer a { color: var(--muted); }
 .shnow { margin: 12px 0 0; font-size: var(--fs-s); color: var(--muted); line-height: 1.4; }
 .shnow b { color: var(--ink); }
 .shbtns { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 12px; margin-top: 12px; }
-.shtoday { appearance: none; border: 0; background: none; padding: 6px 4px; cursor: pointer; font: inherit; font-size: var(--fs-m); font-weight: 700; color: var(--acc-ink); }
+.shtoday { appearance: none; border: 0; background: none; padding: 6px 4px; cursor: pointer; font-family: inherit; line-height: inherit; font-size: var(--fs-m); font-weight: 700; color: var(--acc-ink); }
 /* Shared list: tappable tiles (raised, with a corner icon) and a share icon at the top right */
 .tile.tlink { position: relative; display: block; color: inherit; text-decoration: none; text-align: left; font: inherit; border: 0; cursor: pointer;
   background: var(--surface); box-shadow: var(--raised-sm), var(--bevel); }
@@ -271,7 +271,7 @@ footer a { color: var(--muted); }
 /* Deck filter chips (Nov 13): beveled (raised) text buttons, like the energy buttons; the chosen one: the same dark pressed fill */
 .fdk { flex: 1 1 100%; display: flex; flex-wrap: nowrap; justify-content: space-between; gap: 6px; margin: 0 12px 14px; padding: 3px 2px; overflow: visible; } /* visible: the button shadows are not cut */
 .fdk::-webkit-scrollbar { display: none; }
-.fdc { appearance: none; flex: 1 1 auto; margin: 0; font: inherit; font-size: var(--fs-s); font-weight: 600; padding: 7px 8px; border-radius: 999px; cursor: pointer;
+.fdc { appearance: none; flex: 1 1 auto; margin: 0; font-family: inherit; line-height: inherit; font-size: var(--fs-s); font-weight: 600; padding: 7px 8px; border-radius: 999px; cursor: pointer;
   background: var(--surface); box-shadow: var(--raised-sm), var(--bevel); color: var(--ink); border: 0; white-space: nowrap; }
 .fdc[aria-pressed="true"] { background: var(--fch-on); box-shadow: var(--fch-on-sh); color: #ffffff; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .fdc[aria-pressed="true"] { color: #141b24; } }
@@ -282,7 +282,7 @@ footer a { color: var(--muted); }
 /* "Without" on a card result: decks that do not use the card */
 .sgrow { display: flex; align-items: center; gap: 6px; }
 .sgrow .sg { flex: 1 1 auto; min-width: 0; }
-.sgw { appearance: none; flex: none; margin: 0 8px 0 0; font: inherit; font-size: var(--fs-xs); font-weight: 700; padding: 5px 10px; border-radius: 999px; cursor: pointer;
+.sgw { appearance: none; flex: none; margin: 0 8px 0 0; font-family: inherit; line-height: inherit; font-size: var(--fs-xs); font-weight: 700; padding: 5px 10px; border-radius: 999px; cursor: pointer;
   background: var(--surface); color: var(--muted); border: 0; box-shadow: var(--raised-sm), var(--bevel); }
 /* Shared list sheet (Nov 13): compact bottom sheet; left: cards + Share link, right: tiles + the QR at the bottom */
 .pdtop { align-items: stretch !important; }
@@ -335,11 +335,11 @@ footer a { color: var(--muted); }
 .shslide .cards img { cursor: zoom-in; }
 /* Share link (QR panel): a quiet text button under the steps */
 .qslink { appearance: none; margin: 2px 0 0; padding: 4px 10px; border: 0; border-radius: 999px; background: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
-  font: inherit; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.02em; color: var(--acc-ink); }
+  font-family: inherit; line-height: inherit; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.02em; color: var(--acc-ink); }
 .qslink svg { width: 13px; height: 13px; display: block; }
 .qslink:hover { background: var(--acc-bg); }
 .qslink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.since .sinx { appearance: none; margin: 0; border: 0; background: none; font: inherit; text-align: inherit; padding: 0; cursor: pointer; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
+.since .sinx { appearance: none; margin: 0; border: 0; background: none; font-family: inherit; line-height: inherit; text-align: inherit; padding: 0; cursor: pointer; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
 .since .sinx:focus-visible, .since .sinb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .newb { display: inline-block; margin-left: 6px; padding: 0 5px; border-radius: 4px; font-size: 10px; font-weight: 800; letter-spacing: 0.04em; line-height: 16px; vertical-align: 2px;
   color: #fff; background: var(--accent); }
@@ -371,7 +371,7 @@ footer a { color: var(--muted); }
 .fsearch svg { position: absolute; left: 10px; width: 16px; height: 16px; color: var(--muted); pointer-events: none; stroke-width: 2; }
 /* 16px text: smaller text makes iOS zoom the page when the field gets focus */
 .fsearch input { width: 100%; height: 36px; padding: 0 10px 0 32px; border: 0; border-radius: var(--r-box); background: var(--well); color: var(--ink);
-  font: inherit; font-size: 1rem; outline: none; }
+  font-family: inherit; line-height: inherit; font-size: 1rem; outline: none; }
 .fsearch input::placeholder { color: var(--muted); }
 .fsearch input { padding-right: 34px; }
 .fsearch input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; display: none; }
@@ -642,7 +642,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
   box-shadow: var(--pop-sh); overflow: hidden; animation: apopIn 0.16s ease-out; } /* highlighted: the panel, not the QR */
 .ttabs { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; flex: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
 .ttabs:empty { display: none; }
-.ttabs button { height: 24px; border: 0; border-radius: 0; background: none; color: var(--muted); font: inherit; font-size: 12px; font-weight: 500; line-height: 1; cursor: pointer; }
+.ttabs button { height: 24px; border: 0; border-radius: 0; background: none; color: var(--muted); font-family: inherit; line-height: inherit; font-size: 12px; font-weight: 500; line-height: 1; cursor: pointer; }
 .ttabs button[aria-selected="false"] { opacity: 0.5; } /* the other tab: quieter */
 .ttabs button:first-child { border-top-left-radius: calc(var(--r-tile) - 2px); } /* the panel's own corners end the strip */
 .ttabs button:last-child { border-top-right-radius: calc(var(--r-tile) - 2px); }
@@ -790,7 +790,7 @@ html { -webkit-tap-highlight-color: transparent; }
   padding: 8px 14px; border-radius: 999px; background: var(--surface); color: var(--ink); font-size: var(--fs-m); font-weight: 600; white-space: nowrap;
   border: 1px solid var(--line-strong); box-shadow: 0 6px 20px rgba(var(--sh), 0.18); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
-.toast.newp { pointer-events: auto; cursor: pointer; font: inherit; font-size: var(--fs-m); font-weight: 600; } /* "New data · Refresh" (browser tab) */
+.toast.newp { pointer-events: auto; cursor: pointer; font-family: inherit; line-height: inherit; font-size: var(--fs-m); font-weight: 600; } /* "New data · Refresh" (browser tab) */
 .toast.newp b { color: var(--acc-ink); }
 .hsteps { margin: 8px 0; padding-left: 20px; } .hsteps li { margin: 4px 0; }
 /* "Below the cut" (bc lists): amber, a caution and not an error */
@@ -819,7 +819,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .sfoot .pill.us:has(.ii[aria-expanded="true"]) { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); }
 .sfoot .pill.us .ii[aria-expanded="true"]::before { display: none; } /* the pill shows the open state */
 .sp { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 9px; border: 1.5px solid var(--pill-line); border-radius: 999px;
-  background: var(--surface); color: var(--ink); font: inherit; font-size: var(--fs-xs); font-weight: 600; white-space: nowrap; cursor: pointer; }
+  background: var(--surface); color: var(--ink); font-family: inherit; line-height: inherit; font-size: var(--fs-xs); font-weight: 600; white-space: nowrap; cursor: pointer; }
 @media (hover: hover) { .sp:hover { border-color: var(--muted); } }
 .sp[aria-expanded="true"] { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); }
 .sp .pstar, .sp .psad, .sp .sppl { width: 13px; height: 13px; flex: none; }
@@ -1055,7 +1055,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .ipop.float.wide { width: min(360px, calc(100vw - 24px)); }
 /* "Also played (N)": an outlined pill button (like the "differs" tab); it opens the 1-card changes in the info popover */
 .altb { display: inline-flex; align-items: center; gap: 3px; padding: 0 7px 0 8px; border: 1.5px solid var(--pill-line); border-radius: 999px; cursor: pointer;
-  background: var(--surface); color: var(--ink); font-size: var(--fs-xs); font-weight: 600; line-height: 1.5; white-space: nowrap; }
+  background: var(--surface); color: var(--ink); font-size: var(--fs-xs); font-weight: 600; line-height: 1.5; white-space: nowrap; height: 26px; } /* same height as the other pills */
 @media (hover: hover) { .altb:hover { border-color: var(--muted); } }
 .slide .cmpb.ctop { position: absolute; top: -10px; right: 12px; z-index: 2; border-color: var(--muted); box-shadow: 0 1px 3px rgba(var(--sh), 0.18); } /* Nov 14: on the deck's top right edge, a clearer outline */
 .slide .cmpb.ctop[aria-expanded="true"] { z-index: 7; }
@@ -1289,7 +1289,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .moreb { position: relative; z-index: 4; display: flex; cursor: pointer; }
 .moreb.over { margin-top: -40px; }
 .moreb.over::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 34px; pointer-events: none; background: linear-gradient(180deg, transparent, var(--bg)); }
-.morelink { appearance: none; margin: 0; padding: 8px 14px; border: 0; font: inherit; cursor: pointer; width: 100%; min-height: 54px;
+.morelink { appearance: none; margin: 0; padding: 8px 14px; border: 0; font-family: inherit; line-height: inherit; cursor: pointer; width: 100%; min-height: 54px;
   display: grid; grid-template-columns: auto auto; justify-content: center; align-content: center; align-items: center; column-gap: 4px; row-gap: 1px;
   border-radius: var(--r-card); background: var(--surface); box-shadow: var(--raised), var(--bevel); color: var(--acc-ink); font-size: var(--fs-m); }
 .morelink b { font-weight: 700; }
