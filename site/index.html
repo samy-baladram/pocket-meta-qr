@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794567474-2d6b -->
+<!-- ui: artifact version 1794569555-086e -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -250,6 +250,22 @@ footer a { color: var(--muted); }
 .tile.tlink:active { transform: scale(0.98); }
 .tile.tlink .tic { position: absolute; top: 6px; right: 6px; width: 11px; height: 11px; color: var(--muted); }
 .tile.tlink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Deck filter chips (Nov 13): beveled (raised) text buttons, like the energy buttons; the chosen one: the same dark pressed fill */
+.fdk { flex: 1 1 100%; display: flex; flex-wrap: nowrap; justify-content: space-between; gap: 6px; margin: 0 12px 14px; padding: 3px 2px; overflow: visible; } /* visible: the button shadows are not cut */
+.fdk::-webkit-scrollbar { display: none; }
+.fdc { appearance: none; flex: 1 1 auto; margin: 0; font: inherit; font-size: var(--fs-s); font-weight: 600; padding: 7px 8px; border-radius: 999px; cursor: pointer;
+  background: var(--surface); box-shadow: var(--raised-sm), var(--bevel); color: var(--ink); border: 0; white-space: nowrap; }
+.fdc[aria-pressed="true"] { background: var(--fch-on); box-shadow: var(--fch-on-sh); color: #ffffff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .fdc[aria-pressed="true"] { color: #141b24; } }
+:root[data-theme="dark"] .fdc[aria-pressed="true"] { color: #141b24; }
+.fdc:disabled { opacity: 0.4; cursor: default; }
+@media (max-width: 380px) { .fdk { margin-inline: 10px; gap: 4px; } .fdc { padding-inline: 6px; } }
+.fdc:focus-visible, .sgw:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* "Without" on a card result: decks that do not use the card */
+.sgrow { display: flex; align-items: center; gap: 6px; }
+.sgrow .sg { flex: 1 1 auto; min-width: 0; }
+.sgw { appearance: none; flex: none; margin: 0 8px 0 0; font: inherit; font-size: var(--fs-xs); font-weight: 700; padding: 5px 10px; border-radius: 999px; cursor: pointer;
+  background: var(--surface); color: var(--muted); border: 0; box-shadow: var(--raised-sm), var(--bevel); }
 /* Shared list sheet (Nov 13): compact bottom sheet; left: cards + Share link, right: tiles + the QR at the bottom */
 .pdtop { align-items: stretch !important; }
 .pdmain { display: flex; flex-direction: column; justify-content: center; gap: 6px; }
@@ -382,11 +398,10 @@ footer a { color: var(--muted); }
 .filt .ech img { width: 26px; height: 26px; opacity: 1; filter: none; }
 .filt .ech[aria-pressed="true"] { background: var(--fch-on); box-shadow: var(--fch-on-sh); }
 @media (max-width: 380px) { .filt .fen { padding-inline: 10px; gap: 2px; } .filt .ech { width: 32px; height: 32px; } .filt .ech img { width: 24px; height: 24px; } }
-/* Nov 13: the energy types sit in one pressed-in bar (like the search pill), the chips are flat in it: the whole bar
-   reads as one big tap area. The chosen type: the dark pressed disc (as before). */
-.filt .fen { width: auto; flex-basis: auto; flex: 1 1 100%; margin: 12px 12px 14px; padding: 4px 6px; gap: 2px; border-radius: 999px; background: var(--fin-bg); box-shadow: var(--fin-sh); overflow-x: auto; }
-.filt .ech { background: none; box-shadow: none; }
-@media (max-width: 380px) { .filt .fen { margin-inline: 10px; padding-inline: 4px; } }
+/* Nov 13 (later): no band; every energy type is its own beveled (raised) button; the chosen one: the dark pressed disc */
+.filt .fen { width: auto; flex-basis: auto; flex: 1 1 100%; margin: 12px 12px 10px; padding: 3px 2px; gap: 4px; justify-content: space-between; overflow: visible; }
+.filt .ech { background: var(--surface); box-shadow: var(--raised-sm), var(--bevel); }
+@media (max-width: 380px) { .filt .fen { margin-inline: 10px; } }
 /* Search suggestions: decks (2 icon cards, name, share and win) and cards (thumbnail, name, decks that use it);
    with an empty box: "Popular cards" (cards in many decks, but not the staples that almost every deck plays) */
 .fsug { flex-basis: 100%; display: flex; flex-direction: column; gap: 1px; max-height: min(52vh, 420px); overflow-y: auto; overscroll-behavior: contain; margin: -2px -4px 0; }
@@ -1281,6 +1296,7 @@ html { -webkit-tap-highlight-color: transparent; }
         <input id="fq" type="search" placeholder="Search a deck or card" autocomplete="off" enterkeyhint="search" aria-label="Search decks by deck or card name" aria-controls="fsug"><button class="fsx" id="fqx" type="button" aria-label="Clear the search" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></button></label>
       <div class="fsug" id="fsug" role="listbox" aria-label="Suggestions"></div>
       <div class="fen" id="fen" role="group" aria-label="Filter by energy"></div>
+      <div class="fdk" id="fdk" role="group" aria-label="Filter by deck"></div>
     </div>
   </div>
   </div>
@@ -2713,14 +2729,25 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   });
   // ===== Search + energy filter: hides decks that do not match (ranks stay as they are) =====
   const ENERGY_ORDER = ["grass", "fire", "water", "lightning", "psychic", "fighting", "darkness", "metal"];
-  const fstate = { q: "", en: new Set(), card: null }; // card: a card id picked from the suggestions (exact card, not by name)
+  const fstate = { q: "", en: new Set(), card: null, dk: new Set(), without: null }; // dk: deck chips; without: a card id the decks must not use // card: a card id picked from the suggestions (exact card, not by name)
   function setupFilter() {
     // All 8 energy types, always (so Metal shows too). A type with no deck in the meta right now can still be chosen:
     // the result line then says so ("No Metal decks in the meta right now").
     $("fen").innerHTML = ENERGY_ORDER.map((e) =>
       `<button class="ech" type="button" data-e="${e}" aria-pressed="false" title="${cap(e)}"><img src="e/${e}.webp" alt="${cap(e)}" width="22" height="22"></button>`).join("");
+    $("fdk").innerHTML = [["noex", "No ex", "Decks whose main list has no Pok\u00e9mon ex"], ["two", "2 energy", "Decks with two energy types"],
+      ["rise", "Rising", "Up in rank in the last 24 hours, or new in the list"], ["new", `New ${esc(data.set || "set")} cards`, `Decks that use a card from ${esc(data.setName || data.set || "the newest set")}`]]
+      .map(([k, t, tip]) => `<button class="fdc" type="button" data-k="${k}" aria-pressed="false" title="${tip}"${k === "rise" && !hasTrend() ? " disabled" : ""}>${t}</button>`).join("");
     $("filtBtn").hidden = false;
   }
+  // Deck chips (Nov 13): facts of each deck's main list (list 1), so the result is the same for everyone
+  const isEx = (n) => /(^|\s)ex$/i.test(String(n || "").trim());
+  const DK = {
+    noex: (d) => !(d.cards || []).some((c) => isEx(c.n)),
+    two: (d) => (d.energy || []).length >= 2,
+    rise: (d) => !!d.nw || ("rk0" in d && (d.rk0 === 0 || d.rk0 > d.rank)),
+    new: (d) => { const pre = String(data.set || "").toLowerCase() + "-"; return !!pre.length && (d.cards || []).some((c) => c.id.startsWith(pre)); },
+  };
   // Dropdown: the filter button opens and closes it; a tap outside or Esc closes it (the filter stays on)
   const setDrop = (on) => {
     $("filt").hidden = !on;
@@ -2734,7 +2761,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   $("fq").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); $("fq").blur(); setDrop(false); } });
   function applyFilter() {
     const q = fstate.q.trim().toLowerCase(), pickC = fstate.card ? searchIndex().cards.find((c) => c.id === fstate.card) : null;
-    const act0 = !!q || !!fstate.card || fstate.en.size > 0; // a filter is on: the smaller decks count too
+    const pickW = fstate.without ? searchIndex().cards.find((c) => c.id === fstate.without) : null;
+    const act0 = !!q || !!fstate.card || fstate.en.size > 0 || fstate.dk.size > 0 || !!fstate.without; // a filter is on: the smaller decks count too
     let n = 0, nMore = 0, peek = 0;
     data.decks.forEach((d) => {
       const sec = $(d.id);
@@ -2743,7 +2771,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
         : !q || norm(d.name).includes(norm(q)) || [...deckCards(d).values()].some((n) => norm(n).includes(norm(q)));
       const okE = [...fstate.en].every((e) => (d.energy || []).includes(e)); // every chosen energy
       const pk = !!d._more && !moreShown && !act0 && peek < PEEK && ++peek > 0; // a faded preview row
-      const ok = okQ && okE, vis = ok && (!d._more || moreShown || act0 || pk);
+      const okD = [...fstate.dk].every((k) => DK[k](d)) && (!fstate.without || !(pickW ? pickW.decks.has(d.id) : deckCards(d).has(fstate.without)));
+      const ok = okQ && okE && okD, vis = ok && (!d._more || moreShown || act0 || pk);
       sec.classList.toggle("peek", pk); sec.classList.toggle("peek2", pk && peek === 2);
       sec.hidden = !vis;
       if (vis && d._more) nMore++;
@@ -2764,13 +2793,14 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       }
       if (!vis && openId === d.id) { if (history.state && history.state.deck) history.back(); else closeOpen(); }
     });
-    const active = !!q || !!fstate.card || fstate.en.size > 0;
+    const active = act0;
     $("fnone").hidden = !active;
     const used = new Set(data.decks.flatMap((d) => d.energy || [])), none = [...fstate.en].filter((e) => !used.has(e));
     const pc = pickC;
     setPickStyle(pickC ? pickC.id : null);
     document.querySelector(".podium")?.classList.toggle("pk", !!pickC);
-    $("fnoneTxt").textContent = pc && n ? `${n} deck${n > 1 ? "s" : ""} use${n > 1 ? "" : "s"} ${pc.n}${pc.dup ? " " + pc.id.split("-")[0].toUpperCase() : ""}.`
+    const wn = pickW ? `${pickW.n}${pickW.dup ? " " + pickW.id.split("-")[0].toUpperCase() : ""}` : "";
+    $("fnoneTxt").textContent = pickW && n ? `${n} deck${n > 1 ? "s" : ""} without ${wn}.` : pc && n ? `${n} deck${n > 1 ? "s" : ""} use${n > 1 ? "" : "s"} ${pc.n}${pc.dup ? " " + pc.id.split("-")[0].toUpperCase() : ""}.`
       : n ? `Showing ${n} of ${data.decks.length + (MORE ? 0 : data.more || 0)} decks.`
       : none.length ? `No ${none.map(cap).join(" or ")} decks in the meta right now (last 7 days).` : "No decks match.";
     $("fdot").hidden = !active;
@@ -2780,9 +2810,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     document.querySelectorAll(".acc.ghost").forEach((g) => { g.hidden = act0 || (!!g.dataset.more && !moreShown); }); // no lists: not in filter results
   }
   let fqT = null;
-  $("fq").addEventListener("input", (e) => { fstate.q = e.target.value; fstate.card = null; $("fqx").hidden = !e.target.value; renderSug(); clearTimeout(fqT); fqT = setTimeout(applyFilter, 120); });
+  $("fq").addEventListener("input", (e) => { fstate.q = e.target.value; fstate.card = null; fstate.without = null; $("fqx").hidden = !e.target.value; renderSug(); clearTimeout(fqT); fqT = setTimeout(applyFilter, 120); });
   // Clear (×) in the field: empties the search and any picked card; the energy chips stay
-  $("fqx").addEventListener("click", (e) => { e.preventDefault(); fstate.q = ""; fstate.card = null; $("fq").value = ""; $("fqx").hidden = true; renderSug(); applyFilter(); $("fq").focus(); });
+  $("fqx").addEventListener("click", (e) => { e.preventDefault(); fstate.q = ""; fstate.card = null; fstate.without = null; $("fq").value = ""; $("fqx").hidden = true; renderSug(); applyFilter(); $("fq").focus(); });
   $("fen").addEventListener("click", (e) => {
     const b = e.target.closest(".ech");
     if (!b) return;
@@ -2791,9 +2821,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     on ? fstate.en.add(b.dataset.e) : fstate.en.delete(b.dataset.e);
     applyFilter();
   });
+  $("fdk").addEventListener("click", (e) => {
+    const b = e.target.closest(".fdc");
+    if (!b || b.disabled) return;
+    const on = b.getAttribute("aria-pressed") !== "true";
+    b.setAttribute("aria-pressed", String(on));
+    on ? fstate.dk.add(b.dataset.k) : fstate.dk.delete(b.dataset.k);
+    if (on) track("filter-" + b.dataset.k);
+    applyFilter();
+  });
   $("fclear").addEventListener("click", () => {
-    fstate.q = ""; fstate.en.clear(); fstate.card = null; $("fq").value = ""; $("fqx").hidden = true; renderSug();
-    document.querySelectorAll(".ech").forEach((b) => b.setAttribute("aria-pressed", "false"));
+    fstate.q = ""; fstate.en.clear(); fstate.card = null; fstate.dk.clear(); fstate.without = null; $("fq").value = ""; $("fqx").hidden = true; renderSug();
+    document.querySelectorAll(".ech, .fdc").forEach((b) => b.setAttribute("aria-pressed", "false"));
     applyFilter();
   });
 
@@ -2869,18 +2908,25 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     $("fsug").innerHTML = (decks.length ? `<span class="sgh">Decks</span>` + decks.map((d) => `<button class="sg" type="button" role="option" data-deck="${d.id}">
         <span class="sgi">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="150" height="209" loading="lazy">`).join("")}</span>
         <span class="sgt"><b>${hl(d.name, q)}</b><small>#${d.rank} · ${pct(d.share)} share · ${pct(d.win)} win</small></span></button>`).join("") : "")
-      + (cards.length ? `<span class="sgh">Cards</span>` + cards.map((c) => `<button class="sg" type="button" role="option" data-card="${c.id}">
+      + (cards.length ? `<span class="sgh">Cards</span>` + cards.map((c) => `<div class="sgrow"><button class="sg" type="button" role="option" data-card="${c.id}">
         <span class="sgi one"><img src="c/${c.id}.webp" alt="" width="150" height="209" loading="lazy"></span>
-        <span class="sgt"><b>${hl(c.n, q)}${sgSet(c)}</b><small>${c.staple ? "in almost every deck" : `in ${c.decks.size} deck${c.decks.size > 1 ? "s" : ""}${c.u ? ` \u00b7 ${c.u} top player${c.u > 1 ? "s" : ""}` : ""}`}</small></span></button>`).join("") : "")
+        <span class="sgt"><b>${hl(c.n, q)}${sgSet(c)}</b><small>${c.staple ? "in almost every deck" : `in ${c.decks.size} deck${c.decks.size > 1 ? "s" : ""}${c.u ? ` \u00b7 ${c.u} top player${c.u > 1 ? "s" : ""}` : ""}`}</small></span></button><button class="sgw" type="button" data-without="${c.id}" aria-label="Decks without ${esc(c.n)}">Without</button></div>`).join("") : "")
       || `<span class="sgh">No deck or card found</span>`;
   }
   $("fsug").addEventListener("click", (e) => {
+    const w = e.target.closest("[data-without]");
+    if (w) { // "Without": the decks that do not use this card
+      const c = searchIndex().cards.find((x) => x.id === w.dataset.without); if (!c) return;
+      track("search-without"); fstate.without = c.id; fstate.card = null; fstate.q = "";
+      $("fq").value = "Without " + c.n + (c.dup ? " " + c.id.split("-")[0].toUpperCase() : ""); $("fqx").hidden = false;
+      renderSug(); applyFilter(); setDrop(false); return;
+    }
     const b = e.target.closest("[data-deck], [data-card]");
     if (!b) return;
     track(b.dataset.deck ? "search-deck" : "search-card");
     if (b.dataset.deck) {
       // A deck: clear the search and open that deck
-      fstate.q = ""; fstate.card = null; $("fq").value = ""; $("fqx").hidden = true; applyFilter(); setDrop(false);
+      fstate.q = ""; fstate.card = null; fstate.without = null; $("fq").value = ""; $("fqx").hidden = true; applyFilter(); setDrop(false);
       const id = b.dataset.deck, dk = data.decks.find((x) => x.id === id);
       if (dk && dk._more && !moreShown) { moreShown = true; applyFilter(); }
       if (id !== openId) open(id);
@@ -2888,7 +2934,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     }
     // A card: show only the decks that play this exact card
     const c = searchIndex().cards.find((x) => x.id === b.dataset.card);
-    fstate.card = c.id; fstate.q = c.n; $("fq").value = c.n + (c.dup ? " " + c.id.split("-")[0].toUpperCase() : ""); $("fqx").hidden = false;
+    fstate.without = null; fstate.card = c.id; fstate.q = c.n; $("fq").value = c.n + (c.dup ? " " + c.id.split("-")[0].toUpperCase() : ""); $("fqx").hidden = false;
     renderSug(); applyFilter(); setDrop(false);
   });
   // Arrow keys: from the field into the suggestions and back
