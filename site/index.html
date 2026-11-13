@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794586832-b30d -->
+<!-- ui: artifact version 1794588653-d2cf -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -259,7 +259,8 @@ footer a { color: var(--muted); }
 :root[data-theme="dark"] .psad { color: #a78bfa; }
 .psad.ph3 { width: 0.9em; height: 0.9em; vertical-align: -0.08em; }
 .ptxt.bcx .ii { margin-left: 2px; }
-.usrow .ptxt + .pill.us { margin-left: -4px; }
+.usrow .ptxt + .pill.us { margin-left: 0; }
+.usrow .ptxt .psep { display: none; } /* the pill has its own outline: no dot before it */
 .pill.ppl { display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; padding: 1px 7px 1px 5px; border-radius: 999px; background: #ffffff; color: var(--ink); font-size: 0.76em; font-weight: 600; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pill.ppl { background: #2a3442; } }
 :root[data-theme="dark"] .pill.ppl { background: #2a3442; }
@@ -573,7 +574,7 @@ footer a { color: var(--muted); }
 .apanel.fit .vars, .apanel:not(:has(.slide + .slide)) .vars { justify-content: center; } /* fewer lists than fit in view (iPad, desktop): centered */
 /* Lists per view: phone 1, phone landscape 2, iPad portrait 3, iPad landscape 4, desktop 5 (3+ need a screen taller than a landscape phone) */
 .vars { --per: 1; --vgap: 14px; display: flex; gap: var(--vgap); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
-  padding: calc(var(--sp-2) + 3px) var(--edge) var(--sp-3); scroll-padding-inline: var(--edge); } /* 11px on top: room for the swap button on the list's top edge */
+  padding: calc(var(--sp-2) + 10px) var(--edge) var(--sp-3); scroll-padding-inline: var(--edge); } /* 18px on top: the swap button on the list's top edge stays clear of the deck stats pill */
 .vars::-webkit-scrollbar { display: none; }
 @media (min-width: 600px) { .vars { --per: 2; } }
 @media (min-width: 840px) and (min-height: 501px) { .apanel .vars { --per: 3; } } /* 3 lists from 840px (was 740: too narrow lists) */
@@ -812,6 +813,11 @@ html { -webkit-tap-highlight-color: transparent; }
 .sfoot > .usrow { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; margin-top: 2px; } /* Nov 14: 2px more room under the tiles */
 .sfoot .us { justify-self: start; border-radius: 999px; white-space: normal; background: none;
   color: var(--muted); font-size: var(--fs-xs); font-weight: 500; padding: 0 2px; line-height: 1.5; }
+.sfoot .pill.us { display: inline-flex; align-items: center; gap: 2px; padding: 0 5px 0 8px; border: 1.5px solid var(--pill-line); background: var(--surface);
+  color: var(--ink); cursor: pointer; } /* Nov 14: top players + win %: an outlined pill (like "+ N tweaks"); a tap anywhere opens its ⓘ */
+@media (hover: hover) { .sfoot .pill.us:hover { border-color: var(--muted); } }
+.sfoot .pill.us:has(.ii[aria-expanded="true"]) { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); }
+.sfoot .pill.us .ii[aria-expanded="true"]::before { display: none; } /* the pill shows the open state */
 .sfoot .us.top { display: inline-flex; align-items: center; background: var(--acc-bg); color: var(--acc-ink); font-weight: 600; padding: 1px 9px; }
 .info { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sp-2); align-content: center; font-variant-numeric: tabular-nums; }
 .tile { min-width: 0; padding: 6px var(--sp-2); border-radius: var(--r-tile); background: var(--tile); }
@@ -2921,6 +2927,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   document.addEventListener("click", (e) => { if (altOpen && !e.target.closest(".apop2, .apop3, .qcol, #iPop, #cPop, dialog, .anew")) closeAlts(); });
   addEventListener("resize", () => closeAlts());
   addEventListener("scroll", (e) => { if (altOpen && e.target instanceof Element && e.target.classList.contains("vars") && Math.abs(e.target.scrollLeft - altOpen.x0) > 30) closeAlts(); }, { capture: true, passive: true }); // another list swiped in
+  // Nov 14: a tap anywhere on the top-player pill opens its ⓘ
+  addEventListener("click", (e) => { const p = e.target.closest && e.target.closest(".sfoot .pill.us"); if (!p || e.target.closest(".ii")) return;
+    const b = p.querySelector(".ii"); if (b) { e.preventDefault(); e.stopPropagation(); setTimeout(() => b.click(), 0); } }, true); // window capture: before the page's own handlers
   // Capture phase: the "i" inside a deck row must not open or close the deck
   document.addEventListener("click", (e) => {
     const ab = e.target.closest(".altb");
