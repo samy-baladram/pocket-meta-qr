@@ -275,7 +275,7 @@ for (const [rank, d] of input.decks.entries()) {
     const x = await noListInfo(d, name);
     if (!x.art.length) problems.push(`${id}: nolist row without art`);
     x.art.forEach((a) => images.add(a));
-    nolist.push({ rank: rank + 1, rk0: d.rk0 ?? 0, ...(d.nw ? { nw: 1 } : {}), id, name, count, share, win, art: x.art,
+    nolist.push({ rank: rank + 1, ...(d.rk0 != null ? { rk0: d.rk0 } : {}), ...(d.nw ? { nw: 1 } : {}), id, name, count, share, win, art: x.art,
       energy: x.energy, more: !!d.more, from: x.from });
     continue;
   }
@@ -317,7 +317,7 @@ for (const [rank, d] of input.decks.entries()) {
     altIn: vars.flatMap((v) => (v.alt || []).flatMap((a) => a.in.map((c) => c.id))) });
   const { art, ...best } = vars[0];
   // R14: rk0 = rank 24 h before this build (0 = not in the list then); nw = first time in the list in the last 72 h.
-  decks.push({ id, rank: rank + 1, rk0: d.rk0 ?? 0, ...(d.nw ? { nw: 1 } : {}), name, count, share, w, l, t, win, art,
+  decks.push({ id, rank: rank + 1, ...(d.rk0 != null ? { rk0: d.rk0 } : {}), ...(d.nw ? { nw: 1 } : {}), name, count, share, w, l, t, win, art,
     nv: vars.length, ...best });
   if (d.more) moreIds.add(id);
 }
@@ -327,7 +327,9 @@ const data = { updatedAt: new Date().toISOString(), set: input.set, setName: inp
   window: input.window, span: input.span, summary: input.summary,
   decks: decks.filter((d) => !moreIds.has(d.id)), more: moreIds.size,
   nolist: nolist.filter((x) => !x.more).map(({ more, from, ...x }) => x),
-  ...(input.changedAt ? { changedAt: input.changedAt } : {}) };
+  ...(input.changedAt ? { changedAt: input.changedAt } : {}),
+  // R15: release day of the shown set; next = the new set while it has fewer than 3 tournaments (old set shown).
+  ...(input.setRelease ? { setRelease: input.setRelease } : {}), ...(input.next ? { next: input.next } : {}) };
 // R13b (Nov 12, 2026): the single-deck event of the window that reached the site last (largest at, then latest ts).
 {
   const ev = [...(input.events || [])].filter((e) => e.at)
@@ -486,7 +488,8 @@ const nvars = decks.reduce((a, d) => a + d.nv, 0);
 { // R14 summary: rank changes against 24 h ago
   const all = [...decks, ...nolist], up = all.filter((d) => d.rk0 && d.rk0 > d.rank).length;
   const down = all.filter((d) => d.rk0 && d.rk0 < d.rank).length, same = all.filter((d) => d.rk0 === d.rank).length;
-  console.log(`rank 24 h ago (rk0, ${input.rk0At}): ${up} up, ${down} down, ${same} same, ` +
+  if (!all.some((d) => d.rk0 != null)) console.log("rank 24 h ago: none (the shown set changed in the last 24 h, R15c)");
+  else console.log(`rank 24 h ago (rk0, ${input.rk0At}): ${up} up, ${down} down, ${same} same, ` +
     `${all.filter((d) => !d.rk0).length} not in the list then; new (nw): ` +
     (all.filter((d) => d.nw).map((d) => `${d.rank} ${d.name}`).join("; ") || "none"));
 }

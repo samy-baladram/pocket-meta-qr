@@ -16,9 +16,11 @@ Rows  : per deck, all its top-player finishes in the window (--rows 0) or the be
 Events: the lists of each event's top 25 % (8..32 places), or the count the event got before (index "dl": a fixed
         16 before Nov 9, 2026), as before R11 (the Latest Events tab does not change).
 """
-import argparse, json, os, sqlite3
+import argparse, json, os, sqlite3, sys
 from collections import defaultdict
 from datetime import date as Date, datetime, timedelta, timezone
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from setrule import shown_set
 
 MIN_SHARE = 0.5   # % of all decks in the window (data.json)
 MORE_SHARE = 0.2  # % for the "Show more decks" file (more.json, R9)
@@ -123,8 +125,15 @@ def main():
                                 "WHERE t.set_code = ?", (cur,)):
         arch_rows[tid].append(arch)
 
+    # R15: the set shown at T (setrule.py). list_at(T) is None when T showed another set (or none).
+    sets_list = [{"code": c, "name": n, "release": rel} for c, n, rel in db.execute("SELECT code, name, release FROM sets")]
+    tours = db.execute("SELECT set_code, fetched_at FROM tournaments").fetchall()
+
     def list_at(T):
-        day = T[:10]
+        sh = shown_set(sets_list, tours, T)
+        if not sh or sh["set"] != cur:
+            return None
+        day = sh["ref"]
         lo = (Date.fromisoformat(day) - timedelta(days=WINDOW_DAYS - 1)).isoformat()
         n = defaultdict(int)
         for tid, tday, fetched in trows:
@@ -138,11 +147,12 @@ def main():
 
     now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     t0 = (datetime.now(timezone.utc) - timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    rank0 = list_at(t0)
+    rank0 = list_at(t0)          # None: 24 h ago the site showed another set (R15c) -> no rk0 / nw
     # First time in the list since the set release: the list changes only when a tournament reaches the site or when
     # the window moves at midnight UTC, so those times are enough.
     release = (db.execute("SELECT release FROM sets WHERE code = ?", (cur,)).fetchone() or [None])[0]
-    rel_iso = f"{release}T00:00:00Z" if release else "0000"
+    # The time from which the set is shown (its release, or later when the old set was held back, R15b).
+    rel_iso = meta.get("set_start") or (f"{release}T00:00:00Z" if release else "0000")
     points = {f for _, _, f in trows if f >= rel_iso}
     if release:
         d0 = Date.fromisoformat(release)
@@ -151,14 +161,16 @@ def main():
             d0 += timedelta(days=1)
     first = {}
     for T in sorted(p for p in points if p <= now_iso):
-        for arch in list_at(T):
+        for arch in list_at(T) or {}:
             first.setdefault(arch, T)
     new_after = max((datetime.now(timezone.utc) - timedelta(hours=72)).strftime("%Y-%m-%dT%H:%M:%SZ"),
                     (datetime.fromisoformat(rel_iso.replace("Z", "+00:00")) + timedelta(hours=72)).strftime("%Y-%m-%dT%H:%M:%SZ")
                     if release else now_iso)
     for d in decks:
-        d["rk0"] = rank0.get(d["id"], 0)
         d["first"] = first.get(d["id"])   # for the build log and checks (not written to the site)
+        if rank0 is None:
+            continue                      # R15c: set change in the last 24 h: no rk0, no nw
+        d["rk0"] = rank0.get(d["id"], 0)
         if (d["first"] or "") > new_after:
             d["nw"] = 1
     rank_now = list_at(now_iso)
@@ -207,6 +219,8 @@ def main():
         "summary": {"tournaments": summary[0], "players": summary[1] or 0, "matches": matches},
         "span": [summary[2], summary[3]] if summary[2] else None,
         "decks": decks,
+        # R15: release day of the shown set; "next" = the new set while it has too few tournaments (setrule.py).
+        "setRelease": release, **({"next": json.loads(meta["next_set"])} if meta.get("next_set") else {}),
         # R14 check values: the rank time 24 h ago and the deck list at build time by the same rule (must equal decks).
         "rk0At": t0, "newAfter": new_after, "rankNowCheck": rank_now,
         # R13c: the last time a tournament of the window (multi-deck too) was added = the largest fetched_at.

@@ -492,7 +492,9 @@ def run(args):
         sets = parse_sets(f.get(SETS_URL))
         cur = current_set(sets, now()[:10])
         save(os.path.join(data, "sets.json"), {"updated": now(), "current": cur["code"], "sets": sets}, indent=1)
-        since = args.since or cur["release"]
+        # R15 (Nov 13, 2026): in the first week of a new set, also look 7 days back, so old-set events that started
+        # before the release and ended after it are still fetched (they keep the old set: ev_set below).
+        since = args.since or min(cur["release"], (date.fromisoformat(now()[:10]) - timedelta(days=WINDOW_DAYS)).isoformat())
         print(f"current set: {cur['code']} {cur['name']} (released {cur['release']}); since {since}")
         items = parse_list(f.get(f"/tournaments/completed?game=POCKET&format=STANDARD&platform=all&type=all&show={LIST_SIZE}"))
         todo = [it for it in reversed(items)  # oldest first, so a capped run leaves the newest for later

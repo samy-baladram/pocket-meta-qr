@@ -41,6 +41,10 @@ The round links come from the pairings page itself. The last link is the top cut
 - Current set: the newest set (not a promo set) with a release date of today or earlier. Each run reads
   the set list, so a new set starts a new window automatically. Each tournament gets the set that was
   current on its day.
+- New set day (decision Nov 13, 2026, request R15): the site keeps showing the old set (its last 7 days, with
+  `next` in data.json) until the new set has 3 complete tournaments on the site (`pipeline/setrule.py`); then the new
+  set, with no rank changes (`rk0`/`nw`) for the first 24 h. In the first week of a new set the scraper also looks 7
+  days back, so old-set events that ended after the release are still fetched.
 - Backfill: from the release of the current set (C1 Dual Fusion, 2026-10-29). About 40 tournaments.
   `--since YYYY-MM-DD` overrides the start date.
 
