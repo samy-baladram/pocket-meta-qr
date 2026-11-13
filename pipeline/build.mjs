@@ -351,8 +351,8 @@ for (const [rank, d] of input.decks.entries()) {
     v.nx = c.rep.members.length;   // R17b: finishes with exactly this list
     v.rec = c.rep.rec;             // R17b: their combined [w, l, t]
     v.grec = c.rec;                // R18c: the combined [w, l, t] of the whole group (exact copies + tweaks)
-    // R18c: the top 5 finishes with exactly this list, best place first: [place, players, w, l, t, day].
-    if (v.nx >= 2) v.fin = [...c.rep.members].sort((a, b) => a.idx - b.idx).slice(0, 5)
+    // R18c, R19 (Nov 14, 2026): ALL finishes with exactly this list, best place first: [place, players, w, l, t, day].
+    if (v.nx >= 2) v.fin = [...c.rep.members].sort((a, b) => a.idx - b.idx)
       .map((x) => [...placeOf(x.row.pl), ...x.rec, x.row.dt]);
     const alt = changes(c);
     if (alt.length) v.alt = await Promise.all(alt.map((a) => altVersion(a, v, name, problems, id)));

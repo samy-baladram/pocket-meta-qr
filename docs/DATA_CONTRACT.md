@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 21 (Nov 13, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 22 (Nov 14, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,8 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 22 (request R19 of the UI chat): `fin` holds **all** finishes with exactly the list (length = `nx`), not
+  only the top 5. About +2.4 KB in data.json.
 - Version 21 (request R18 of the UI chat): fewer, clearer lists. A group holds versions up to **2 cards** apart
   ("tweaks", `alt[].k` = 1 or 2); a group after list 1 is shown only with 2+ top players, or 1 top player in the top
   8 of an event with 32+ players. New per list: **`grec`** (the group's combined record) and **`fin`** (the top 5
@@ -183,7 +185,7 @@ The list's `ev`, `pl`, `sc`, `dt`, energy, QR, `tid`, `pid` come from the repres
 | `of` | int | all the deck's finishes with a readable list in the window (also those of groups that are not shown). UI: "top players". `0` on a `bc` list |
 | `bc` | 1 or absent | **new in v13.** "below the cut": the deck has no top player (W > L) in the window, so this is its best-placed finish (smallest place / players) with any record. Then it is the deck's only list (`nv` 1), `nu` = `of` = 0, no `alt`; `pl`, `sc`, `ev`, `dt`, energy and QR as for any list. The deck is not in `search.json` |
 | `grec` | [w, l, t] | **new in v21.** the combined record of all finishes of the group (exact copies + tweaks) = `rec` + the sum of `alt[].rec`. Absent on `bc` lists |
-| `fin` | array or absent | **new in v21.** the top 5 finishes with exactly this list, best place (place / players) first: `[[place, players, w, l, t, "YYYY-MM-DD"], ...]`. Only when `nx` >= 2 |
+| `fin` | array or absent | **new in v21.** the finishes with exactly this list, best place (place / players) first: `[[place, players, w, l, t, "YYYY-MM-DD"], ...]`. v22: **all** of them (length = `nx`; v21: the top 5). The sum of the records = `rec`. Only when `nx` >= 2 |
 | `nx` | int | **new in v20.** finishes with exactly this list (the exact copies). Always `nu` = `nx` + the sum of `alt[].u`. Absent on `bc` lists |
 | `rec` | [w, l, t] | **new in v20.** the combined record of the `nx` finishes (match wins, losses, ties). Absent on `bc` lists |
 | `alt` | array or absent | **new in v7.** the distinct 1-card changes inside the group (see below). Absent when the group has only exact copies |
