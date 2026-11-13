@@ -12,6 +12,7 @@ on:
       - site/index.html
       - static/**
       - pipeline/build_db.py
+      - pipeline/setrule.py
       - pipeline/export.py
       - pipeline/build.mjs
       - pipeline/common.mjs
