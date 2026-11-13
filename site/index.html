@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794588653-d2cf -->
+<!-- ui: artifact version 1794607336-fa5d -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -818,6 +818,53 @@ html { -webkit-tap-highlight-color: transparent; }
 @media (hover: hover) { .sfoot .pill.us:hover { border-color: var(--muted); } }
 .sfoot .pill.us:has(.ii[aria-expanded="true"]) { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); }
 .sfoot .pill.us .ii[aria-expanded="true"]::before { display: none; } /* the pill shows the open state */
+.sp { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 9px; border: 1.5px solid var(--pill-line); border-radius: 999px;
+  background: var(--surface); color: var(--ink); font: inherit; font-size: var(--fs-xs); font-weight: 600; white-space: nowrap; cursor: pointer; }
+@media (hover: hover) { .sp:hover { border-color: var(--muted); } }
+.sp[aria-expanded="true"] { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); }
+.sp .pstar, .sp .psad, .sp .sppl { width: 13px; height: 13px; flex: none; }
+.sp .spm { color: var(--muted); font-weight: 500; }
+.sh3 { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; }
+.sh3 svg { width: 17px; height: 17px; flex: none; }
+.ssub { margin: 0 0 12px; color: var(--muted); }
+.snote { margin: 12px 0 0; color: var(--muted); font-size: var(--fs-xs); }
+.sgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0 12px; }
+.stile { background: var(--tile); border-radius: 10px; padding: 8px 10px; }
+.stile b { display: block; font-size: 22px; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.stile b small { font-size: 13px; color: var(--muted); font-weight: 600; }
+.stile span { font-size: var(--fs-xs); color: var(--muted); }
+.sbars { display: grid; gap: 7px; margin: 4px 0 10px; }
+.sbr { display: grid; grid-template-columns: 48px 1fr 26px; align-items: center; gap: 8px; font-variant-numeric: tabular-nums; }
+.sbr.me { font-weight: 700; }
+.sbar { display: flex; height: 10px; border-radius: 5px; background: var(--tile); overflow: hidden; }
+.sbar i { display: block; height: 100%; }
+.sbar i.x { background: #7f97ab; } .sbar i.t { background: #c9d6e0; }
+.sbr.me .sbar i.x { background: #e8b52e; } .sbr.me .sbar i.t { background: #f3dc9a; }
+.slg { display: flex; align-items: center; gap: 5px; margin: 0 0 4px; font-size: var(--fs-xs); color: var(--muted); }
+.slg i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; }
+.slg i.x { background: #e8b52e; } .slg i.t { background: #f3dc9a; margin-left: 8px; } .slg i.g { background: #e8b52e; border-radius: 50%; }
+.slg.sl2 span { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; }
+.swk { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin: 2px 0 10px; align-items: end; } /* all day labels on one line */
+.swd { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 10.5px; color: var(--muted); }
+.swd.last { color: var(--ink); font-weight: 600; }
+.sdots { display: flex; flex-direction: column-reverse; gap: 2px; min-height: 44px; }
+.sdots i { width: 9px; height: 9px; border-radius: 50%; background: #bcd6f5; } /* other results: light blue (silver stays apart) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sdots i:not([class]) { background: #34507a; } }
+:root[data-theme="dark"] .sdots i:not([class]) { background: #34507a; }
+.sdots i.q, .slg i.q { background: #2f7de1; }
+.sdots i.p1, .slg i.p1 { background: linear-gradient(135deg, #fbe07a, #d39a1c); } .sdots i.p2, .slg i.p2 { background: linear-gradient(135deg, #f4f7fb, #8f9db0); } .sdots i.p3, .slg i.p3 { background: linear-gradient(135deg, #f7c79c, #c4703a); }
+.slg i.m { width: 9px; height: 9px; border-radius: 50%; margin-right: -1px; } .slg i.m + i.m { margin-left: 2px; } .slg i.q { border-radius: 50%; width: 9px; height: 9px; margin-left: 8px; }
+.fins .md { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-left: 6px; vertical-align: 0; }
+.tg8 { display: inline-flex; align-items: center; height: 17px; margin-left: 6px; padding: 0 6px; border-radius: 999px; background: #e6f0fd; color: #1f62c0; font-size: 10.5px; font-weight: 700; vertical-align: 1px; }
+.swl { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 6px; }
+.swl i { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-size: 10px; font-weight: 700; font-style: normal; }
+.swl .w { background: #3fae6a; color: #fff; } .swl .l, .swl .t { background: var(--line); color: var(--muted); }
+.swl .f { border: 2px dashed #8b5cf6; color: #8b5cf6; }
+.saway { margin: 4px 0 2px; } .saway b { color: #8b5cf6; }
+.sev { margin: 0 0 4px; color: var(--muted); font-size: var(--fs-xs); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tg8 { background: #1d3150; color: #8cbcff; } :root:not([data-theme="light"]) .saway b, :root:not([data-theme="light"]) .swl .f { color: #a78bfa; border-color: #a78bfa; } }
+:root[data-theme="dark"] .tg8 { background: #1d3150; color: #8cbcff; }
+:root[data-theme="dark"] .saway b, :root[data-theme="dark"] .swl .f { color: #a78bfa; border-color: #a78bfa; }
 .sfoot .us.top { display: inline-flex; align-items: center; background: var(--acc-bg); color: var(--acc-ink); font-weight: 600; padding: 1px 9px; }
 .info { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sp-2); align-content: center; font-variant-numeric: tabular-nums; }
 .tile { min-width: 0; padding: 6px var(--sp-2); border-radius: var(--r-tile); background: var(--tile); }
@@ -1535,6 +1582,36 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // "Below the cut" (R11, data bc: 1): a deck with no top player shows the list of its best-placed player, with an amber tab and an ⓘ
   // Nov 14: "Below the cut" is a quiet line in the top-player row (like "Popular now"): only the purple sad face is colored
   const SAD_I = '<svg class="psad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><circle cx="8.8" cy="10" r="0.6" fill="currentColor"/><circle cx="15.2" cy="10" r="0.6" fill="currentColor"/><path d="M8.2 16.4a5 5 0 0 1 7.6 0"/></svg>'; // line style
+  // Nov 14: the 3 pills under a list: type (Popular / Below the cut), top players, tweaks. Each type / players pill opens
+  // a short sheet: bars and tiles, few words.
+  const PPL_I = '<svg class="sppl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>';
+  const sTile = (big, sub, small) => `<div class="stile"><b>${big}${small ? ` <small>${small}</small>` : ""}</b><span>${sub}</span></div>`;
+  const fTag = (p, of) => p <= 3 ? `<span class="md p${p}" aria-label="${ordF(p)} place"></span>` : of && p / of <= 0.25 ? '<span class="tg8">Top 25%</span>' : "";
+  const fCls = (p, of) => p <= 3 ? ` class="p${p}"` : of && p / of <= 0.25 ? ' class="q"' : "";
+  const popSheet = (d) => { const L = (d.lists || [d]).slice(0, 4), mx = Math.max(...L.map((x) => x.nu || 1));
+    return `<h3 class="sh3">${STAR_I}Popular now</h3><p class="ssub">The list most top players build from.</p><div class="sbars">${L.map((x, k) => { const nx = nxOf(x), nu = x.nu || nx;
+      return `<div class="sbr${k ? "" : " me"}"><span>List ${k + 1}</span><span class="sbar"><i class="x" style="width:${(100 * nx / mx).toFixed(1)}%"></i><i class="t" style="width:${(100 * (nu - nx) / mx).toFixed(1)}%"></i></span><span>${nu}</span></div>`; }).join("")}</div>
+      <p class="slg"><i class="x"></i>exact list <i class="t"></i>with 1\u20132 card tweaks</p><p class="snote">Most used is not always the best: compare the win rates.</p>`; };
+  const tpSheet = (v) => { const ex = nxOf(v), tw = (v.nu || ex) - ex;
+    const f = v.fin && v.fin.length ? v.fin : v.pl ? [[...((String(v.pl).match(/\d+/g) || [0, 0]).slice(0, 2).map(Number)), ...(v.rec || [0, 0, 0]), v.dt || ""]] : [];
+    const sp = (data && data.span) || [], d0 = sp[0] ? new Date(sp[0] + "T00:00:00Z") : null;
+    const days = d0 ? Array.from({ length: 7 }, (_, k) => new Date(+d0 + k * 864e5).toISOString().slice(0, 10)) : [];
+    const wk = days.length && f.length ? `<p class="slg sl2">Results this week <span><i class="m p1"></i><i class="m p2"></i><i class="m p3"></i>1st\u20133rd <i class="q"></i>top 25%</span></p><div class="swk">${days.map((dy, k) => `<div class="swd${k === 6 ? " last" : ""}"><span class="sdots">${f.filter((r) => r[5] === dy).sort((a, b) => b[0] - a[0]).map((r) => `<i${fCls(r[0], r[1])}></i>`).join("")}</span>${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}</div>`).join("")}</div>` : "";
+    const row = ([p, of, w, l, t, dt]) => `<li><span class="fpl">${ordF(p)} <span>of ${of}</span>${fTag(p, of)}</span><span class="fsc">${w}-${l}-${t}</span><span class="fdt">${dt ? MON[+dt.slice(5, 7) - 1] + " " + +dt.slice(8) : ""}</span></li>`;
+    return `<h3 class="sh3">${PPL_I}Top players</h3><div class="sgrid">${sTile(ex, `this exact list${v.rec && ex > 1 ? ` \u00b7 ${wrPct(v.rec)}% win` : ""}`, `/ ${v.of}`)}${tw > 0 ? sTile(ex + tw, `with tweaks${v.grec ? ` \u00b7 ${wrPct(v.grec)}% win` : ""}`) : ""}</div>${wk}
+      <ol class="fins">${f.slice(0, 5).map(row).join("")}</ol>${f.length > 5 ? `<details class="fmore"><summary>+ ${f.length - 5} more</summary><ol class="fins">${f.slice(5).map(row).join("")}</ol></details>` : ex > f.length ? `<p class="fmore">+ ${ex - f.length} more</p>` : ""}
+      <p class="snote">Top player: more wins than losses at an event this week.</p>`; };
+  const bcSheet = (v, d) => { const [w, l, t] = String(v.sc || "0-0-0").split("-").map(Number), k = Math.floor((l - w) / 2) + 1;
+    const dots = w + l <= 16 ? `<div class="swl">${"<i class=\"w\">W</i>".repeat(w)}${"<i class=\"f\">W</i>".repeat(Math.max(0, k))}${"<i class=\"l\">L</i>".repeat(Math.max(0, l - k))}${"<i class=\"t\">T</i>".repeat(t || 0)}</div>` : "";
+    return `<h3 class="sh3">${SAD_I}Below the cut</h3><p class="ssub">No one with this deck had a winning record this week. This is its best-placed list.</p>${dots}
+      <p class="saway">${esc(v.sc || "")}${v.pl ? `, ${esc(v.pl)}` : ""}${k > 0 ? ` \u00b7 <b>${k} match${k > 1 ? "es" : ""} away</b> from a winning record` : ""}</p>${v.ev ? `<p class="sev">${esc(v.ev)}${v.dt ? ` \u00b7 ${MON[+v.dt.slice(5, 7) - 1]} ${+v.dt.slice(8)}` : ""}</p>` : ""}
+      <div class="sgrid">${d.count != null ? sTile(d.count, "players this week") : ""}${d.win != null ? sTile(Math.round(d.win) + "%", "deck win rate") : ""}</div><p class="snote">A starting point, not a proven list.</p>`; };
+  addEventListener("click", async (e) => { const b = e.target.closest && e.target.closest(".sp[data-sk]"); if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    const slide = b.closest(".slide"), d = data.decks.find((x) => x.id === openId); if (!slide || !d) return;
+    const v = await listFor(d, +slide.dataset.i); if (!v) return;
+    const k = b.dataset.sk; track("sheet-" + k);
+    showTip(b, k === "pop" ? popSheet(d) : k === "bc" ? bcSheet(v, d) : tpSheet(v)); }, true);
   const bcLine = (v) => `<span class="ptxt bcx">${SAD_I}<b>Below the cut</b>${ii("below the cut", bcTip(v))}</span>`;
   const bcTip = (v) => `<h3>${SAD_I.replace('class="psad"', 'class="psad ph3"')} Below the cut</h3><p>No player of this deck won more matches than they lost in the last 7 days, so it has no top-player list.</p><p>This is the list of its best-placed player${v.pl ? `: <b>${esc(v.pl)}</b>` : ""}${v.sc ? `, record <b>${esc(v.sc)}</b>` : ""}. A starting point, not a proven list.</p>`;
   const bcTab = (v) => `<span class="dnote bctab">&#9888; Below the cut${ii("below the cut", `<h3>&#9888; Below the cut</h3><p>No player of this deck won more matches than they lost in the last 7 days, so it has no top-player list.</p><p>This is the list of its best-placed player${v.pl ? `: <b>${esc(v.pl)}</b>` : ""}${v.sc ? `, record <b>${esc(v.sc)}</b>` : ""}. A starting point, not a proven list.</p>`)}</span>`;
@@ -1550,7 +1627,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           <div class="tile t-ev"><span class="tl">Event</span><div class="ev" title="${esc(v.ev || "")}">${v.dt ? `<span class="dt">${fmtDate(v.dt)}</span> \u00b7 ` : ""}${esc(v.ev || "\u2013")}</div></div>
         </div>
         ${(() => { const cmp = curCmp; curCmp = ""; const pop = i === 0 && curDeck && !curDeck.evt && popular(curDeck);
-          return v.bc || usedBy(v) || altBtn(v) || cmp ? `<div class="usrow">${v.bc ? bcLine(v) : ""}${usedBy(v) ? `${pop ? `<span class="ptxt">${STAR_I}<b>Popular now</b><span class="psep"> \u00b7</span></span>` : ""}<span class="pill us">${nxOf(v)}/${v.of} <span class="ustop">top </span>players${nxOf(v) > 1 && v.rec ? `<span class="uwr"> \u00b7 ${wrPct(v.rec)}% win</span>` : ""}${ii("top players", usedTip(v, pop))}</span>` : ""}${cmp}${altBtn(v, i)}</div>` : ""; })()}`;
+          return v.bc || usedBy(v) || altBtn(v) || cmp ? `<div class="usrow">${v.bc ? `<button class="sp spt" type="button" data-sk="bc" aria-haspopup="dialog">${SAD_I}Below the cut</button>` : ""}${usedBy(v) ? `${pop ? `<button class="sp spt" type="button" data-sk="pop" aria-haspopup="dialog">${STAR_I}Popular</button>` : ""}<button class="sp spn" type="button" data-sk="tp" aria-haspopup="dialog" aria-label="Top players: ${nxOf(v)} of ${v.of}${nxOf(v) > 1 && v.rec ? `, ${wrPct(v.rec)}% win` : ""}">${PPL_I}${nxOf(v)}/${v.of}${nxOf(v) > 1 && v.rec ? `<span class="spm"> \u00b7 ${wrPct(v.rec)}%</span>` : ""}</button>` : ""}${cmp}${altBtn(v, i)}</div>` : ""; })()}`;
   // Legend icon: a tiny card with the same corner tag as the marked cards
   const MARK_ICON = '<svg viewBox="0 0 8 11" aria-hidden="true"><rect x="0" y="0" width="8" height="11" rx="1.2" fill="currentColor" opacity="0.45"/><path d="M3.2 0H6.8A1.2 1.2 0 0 1 8 1.2V4.8Z" fill="var(--mark)" stroke="var(--mark-edge)" stroke-width="0.9" stroke-linejoin="round"/></svg>';
   const CARET = '<svg class="dcar" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 4 2.5 2.5L7.5 4"/></svg>';
@@ -2927,9 +3004,6 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   document.addEventListener("click", (e) => { if (altOpen && !e.target.closest(".apop2, .apop3, .qcol, #iPop, #cPop, dialog, .anew")) closeAlts(); });
   addEventListener("resize", () => closeAlts());
   addEventListener("scroll", (e) => { if (altOpen && e.target instanceof Element && e.target.classList.contains("vars") && Math.abs(e.target.scrollLeft - altOpen.x0) > 30) closeAlts(); }, { capture: true, passive: true }); // another list swiped in
-  // Nov 14: a tap anywhere on the top-player pill opens its ⓘ
-  addEventListener("click", (e) => { const p = e.target.closest && e.target.closest(".sfoot .pill.us"); if (!p || e.target.closest(".ii")) return;
-    const b = p.querySelector(".ii"); if (b) { e.preventDefault(); e.stopPropagation(); setTimeout(() => b.click(), 0); } }, true); // window capture: before the page's own handlers
   // Capture phase: the "i" inside a deck row must not open or close the deck
   document.addEventListener("click", (e) => {
     const ab = e.target.closest(".altb");
