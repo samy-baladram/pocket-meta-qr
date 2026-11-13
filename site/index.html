@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794569555-086e -->
+<!-- ui: artifact version 1794585554-7b7b -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -250,6 +250,23 @@ footer a { color: var(--muted); }
 .tile.tlink:active { transform: scale(0.98); }
 .tile.tlink .tic { position: absolute; top: 6px; right: 6px; width: 11px; height: 11px; color: var(--muted); }
 .tile.tlink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Nov 13: "Popular now" (plain text, only the star in gold) and the place pill in the Score tile (Latest Events) */
+.ptxt { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-xs); color: var(--ink); line-height: 1.5; }
+.ptxt b { font-weight: 700; } .ptxt .psep { color: var(--muted); }
+.pstar { width: 12px; height: 12px; flex: none; color: #e8b52e; }
+.psad { width: 12px; height: 12px; flex: none; color: #8b5cf6; } /* "below the cut": a purple sad face (a warning sign was too strong) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .psad { color: #a78bfa; } }
+:root[data-theme="dark"] .psad { color: #a78bfa; }
+.psad.ph3 { width: 0.9em; height: 0.9em; vertical-align: -0.08em; }
+.ptxt.bcx .ii { margin-left: 2px; }
+.usrow .ptxt + .pill.us { margin-left: -4px; }
+.pill.ppl { display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; padding: 1px 7px 1px 5px; border-radius: 999px; background: #ffffff; color: var(--ink); font-size: 0.76em; font-weight: 600; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pill.ppl { background: #2a3442; } }
+:root[data-theme="dark"] .pill.ppl { background: #2a3442; }
+.ppl .md { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.md.p1 { background: linear-gradient(135deg, #fbe07a, #d39a1c); } .md.p2 { background: linear-gradient(135deg, #c9dbf3, #6585ba); } .md.p3 { background: linear-gradient(135deg, #f7c79c, #c4703a); }
+/* Filter on: the top 3 as plain rows (display: contents keeps the list's own spacing) */
+.podflat { display: contents; }
 /* Deck filter chips (Nov 13): beveled (raised) text buttons, like the energy buttons; the chosen one: the same dark pressed fill */
 .fdk { flex: 1 1 100%; display: flex; flex-wrap: nowrap; justify-content: space-between; gap: 6px; margin: 0 12px 14px; padding: 3px 2px; overflow: visible; } /* visible: the button shadows are not cut */
 .fdk::-webkit-scrollbar { display: none; }
@@ -547,7 +564,7 @@ footer a { color: var(--muted); }
 }
 
 /* ===== Open deck: the lists are big raised cards in a strip that runs to both screen edges ===== */
-.apanel { position: relative; display: flex; flex-direction: column; gap: 12px; padding: 6px 0 0; /* Nov 12: 6px (was 12): the row head to the list card is 14px */
+.apanel { position: relative; display: flex; flex-direction: column; gap: 12px; padding: 6px 0 0; /* Nov 12: 6px (was 12): the row head to the list card is 14px */ /* Nov 12: 6px (was 12): the row head to the list card is 14px */
   --edge: calc((100vw - min(960px, 100vw - 32px)) / 2); /* the page gutter beside the content */
   margin-inline: calc(-1 * var(--edge)); }
 .apanel[hidden] { display: none; }
@@ -556,7 +573,7 @@ footer a { color: var(--muted); }
 .apanel.fit .vars, .apanel:not(:has(.slide + .slide)) .vars { justify-content: center; } /* fewer lists than fit in view (iPad, desktop): centered */
 /* Lists per view: phone 1, phone landscape 2, iPad portrait 3, iPad landscape 4, desktop 5 (3+ need a screen taller than a landscape phone) */
 .vars { --per: 1; --vgap: 14px; display: flex; gap: var(--vgap); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
-  padding: var(--sp-2) var(--edge) var(--sp-3); scroll-padding-inline: var(--edge); } /* 8px on top: room for the "differs" tab */
+  padding: calc(var(--sp-2) + 3px) var(--edge) var(--sp-3); scroll-padding-inline: var(--edge); } /* 11px on top: room for the swap button on the list's top edge */
 .vars::-webkit-scrollbar { display: none; }
 @media (min-width: 600px) { .vars { --per: 2; } }
 @media (min-width: 840px) and (min-height: 501px) { .apanel .vars { --per: 3; } } /* 3 lists from 840px (was 740: too narrow lists) */
@@ -589,12 +606,15 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
    8px right and down. Tap outside closes it. ===== */
 .cards img.arep { opacity: 0.3; }
 .anew { position: absolute; z-index: 3; pointer-events: none; animation: anewIn 0.22s ease-out;
-  -webkit-mask-image: linear-gradient(180deg, #000 25%, transparent 100%); mask-image: linear-gradient(180deg, #000 25%, transparent 100%); } /* its bottom 75% fades out */
+  --tanh: linear-gradient(180deg, rgba(0,0,0,1) 25%, rgba(0,0,0,0.97) 34%, rgba(0,0,0,0.9) 44%, rgba(0,0,0,0.74) 53%, rgba(0,0,0,0.5) 62%, rgba(0,0,0,0.26) 72%, rgba(0,0,0,0.1) 81%, rgba(0,0,0,0.03) 91%, transparent 100%);
+  -webkit-mask-image: var(--tanh); mask-image: var(--tanh); } /* its bottom 75% fades out on a tanh curve: a soft start, a quick middle, a long soft tail */
 .anew img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; pointer-events: auto; } /* no shadow: it would not fade */
 .cards img.arep0 { opacity: 0; }
-.aback { position: absolute; z-index: 2; pointer-events: none; opacity: 0.3; clip-path: inset(0 0 50% 0); } /* the old card: faded, its bottom half cut */
+.aback { position: absolute; z-index: 2; pointer-events: none; filter: brightness(0.7); clip-path: inset(0 0 80% 0); } /* the old card: 30% darker, only its top 20% (the name) shows */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .aback { filter: brightness(0.6); } } /* dark: 40% darker */
+:root[data-theme="dark"] .aback { filter: brightness(0.6); }
 .aback img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; }
-@keyframes anewIn { from { transform: translateY(-25%); opacity: 0; } }
+@keyframes anewIn { from { transform: translateY(-20%); opacity: 0; } }
 .apop2 { position: absolute; z-index: 6; left: 8px; right: 8px; bottom: var(--ab, 30px); border-radius: 12px; background: var(--surface); box-shadow: var(--pop-sh);
   display: flex; flex-direction: column; animation: apopIn 0.16s ease-out; }
 .slide .altb[aria-expanded="true"] { position: relative; z-index: 7; } /* the button that opened the popover stays above its shadow */
@@ -617,7 +637,54 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .ait .aqr svg { width: 26px; height: 26px; }
 .ait .ast { grid-column: 1 / -1; margin-top: 5px; font-size: var(--fs-xs); color: var(--muted); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ait .ast b { color: var(--ink); }
-.adots2 { display: flex; justify-content: center; gap: 4px; padding: 0 0 8px; }
+.apop3 { position: absolute; z-index: 6; display: flex; flex-direction: column; border-radius: var(--r-tile); background: var(--surface);
+  box-shadow: var(--pop-sh); overflow: hidden; animation: apopIn 0.16s ease-out; } /* highlighted: the panel, not the QR */
+.ttabs { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; flex: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+.ttabs:empty { display: none; }
+.ttabs button { height: 24px; border: 0; border-radius: 0; background: none; color: var(--muted); font: inherit; font-size: 12px; font-weight: 500; line-height: 1; cursor: pointer; }
+.ttabs button[aria-selected="false"] { opacity: 0.5; } /* the other tab: quieter */
+.ttabs button:first-child { border-top-left-radius: calc(var(--r-tile) - 2px); } /* the panel's own corners end the strip */
+.ttabs button:last-child { border-top-right-radius: calc(var(--r-tile) - 2px); }
+.ttabs button[aria-selected="true"] { background: var(--tile); color: var(--ink); font-weight: 600; box-shadow: inset 0 2px 3px rgba(var(--sh), 0.16); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ttabs button[aria-selected="true"] { box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5); } }
+:root[data-theme="dark"] .ttabs button[aria-selected="true"] { box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5); }
+.tcar { --iw: 168px; --cw: 42px; flex: none; display: flex; gap: 6px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
+  padding: 0 calc(50% - var(--iw) / 2); align-items: center; }
+.apop3.one .tcar { --cw: 46px; --iw: 182px; }
+.apop3 { justify-content: space-between; }
+.apop3 .tbody { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 3px 0; min-height: 0; }
+.tcar::-webkit-scrollbar { display: none; }
+.tw { flex: 0 0 var(--iw); scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  opacity: 0.4; transform: scale(0.9); transition: opacity 0.2s, transform 0.2s; cursor: pointer; }
+.tw.on { opacity: 1; transform: none; }
+.tw .tsw { display: flex; align-items: center; gap: 5px; }
+.tw .tstk { display: flex; }
+.tw .tstk img { width: var(--cw); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); }
+.tw .tstk img + img { margin-left: calc(var(--cw) * -0.25); } /* the 2nd card covers 25% of the 1st */
+.tw.on .tstk img { cursor: zoom-in; }
+.tw .achev { display: grid; place-items: center; color: var(--muted); }
+.tw .achev svg { width: 9px; height: 12px; }
+.tw .ast { font-size: var(--fs-xs); line-height: 1.5; color: var(--muted); white-space: nowrap; }
+.tw .ast b { color: var(--ink); }
+.tdots { display: flex; justify-content: center; align-items: center; gap: 4px; min-height: 5px; padding-top: 5px; }
+@container (max-width: 300px) { /* narrow list columns (3 per view on wide screens): smaller cards, so the panel content fits */
+  .tcar { --cw: 34px; --iw: 136px; } .apop3.one .tcar { --cw: 38px; --iw: 150px; }
+  .ttabs button { height: 22px; font-size: 11px; } .tw .tsw { gap: 3px; } }
+.tdots i { width: 5px; height: 5px; border-radius: 3px; background: var(--line-strong); transition: width 0.2s, background 0.2s; }
+.tdots i.on { width: 12px; background: var(--acc-ink); }
+.adots2 { display: flex; justify-content: center; align-items: center; gap: 4px; padding: 0 0 8px; }
+.adots2 .adl { font-size: 11px; color: var(--muted); margin: 0 4px; }
+.adots2 .adsep { width: 1px; height: 10px; background: var(--line-strong); margin: 0 6px; }
+.ait.k2 { row-gap: 6px; }
+.ait.k2 .aqr { grid-row: 1 / 3; align-self: center; }
+.ipop h4 { margin: 10px 0 0; font-size: var(--fs-s, 14px); font-weight: 700; color: var(--ink); }
+.pill.us .uwr { color: var(--muted); }
+.fins { list-style: none; margin: 4px 0 0; padding: 0; }
+.fins li { display: grid; grid-template-columns: 1fr auto 52px; gap: 10px; padding: 5px 0; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.fins li:first-child { border-top: 0; }
+.fins .fpl span, .fins .fdt { color: var(--muted); }
+.fins .fdt { text-align: right; }
+.fmore { margin: 2px 0 0; color: var(--muted); font-size: var(--fs-xs); }
 /* Swap with the Hot / Top list: the Hot card › this list's card, names under them (one line; a long name slides) */
 .acar.asw { display: block; padding: 10px 10px 8px; scroll-snap-type: none; }
 .aswl { display: flex; align-items: flex-start; gap: 6px; width: max-content; margin: 0 auto; }
@@ -717,7 +784,8 @@ html { -webkit-tap-highlight-color: transparent; }
   background: linear-gradient(var(--bc-bg), var(--bc-bg)), var(--surface); }
 .dnote.bctab .ii { color: inherit; width: 11px; height: 11px; }
 .dnote.bctab .ii svg { width: 11px; height: 11px; }
-.asub .bcn { display: block; color: var(--bc-ink); font-weight: 600; white-space: nowrap; font-size: var(--fs-s); }
+.asub .bcn { display: flex; align-items: center; gap: 4px; color: var(--muted); font-weight: 600; white-space: nowrap; font-size: var(--fs-s); }
+.asub .bcn .psad { width: 1em; height: 1em; }
 /* "Used by N of M top players": plain muted text; on list 1 a light cyan tint */
 /* Row under the tiles: "Used by" pill + "Also played (N)" button */
 /* Compare mode */
@@ -920,7 +988,13 @@ html { -webkit-tap-highlight-color: transparent; }
 .altb { display: inline-flex; align-items: center; gap: 3px; padding: 0 7px 0 8px; border: 1.5px solid var(--pill-line); border-radius: 999px; cursor: pointer;
   background: var(--surface); color: var(--ink); font-size: var(--fs-xs); font-weight: 600; line-height: 1.5; white-space: nowrap; }
 @media (hover: hover) { .altb:hover { border-color: var(--muted); } }
+.slide .cmpb.ctop { position: absolute; top: -10px; right: 12px; z-index: 2; border-color: var(--muted); box-shadow: 0 1px 3px rgba(var(--sh), 0.18); } /* Nov 14: on the deck's top right edge, a clearer outline */
+.slide .cmpb.ctop[aria-expanded="true"] { z-index: 7; }
+.cmpb.ctop[aria-expanded="true"] { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); }
+.apop2.atop { bottom: auto; top: var(--at, 30px); } /* the swap popover opens under the top-right button */
+.apop2.atop .parr2 { bottom: auto; top: -5px; box-shadow: -3px -3px 5px rgba(var(--sh), 0.12); }
 .altb[aria-expanded="true"] .dcar { transform: rotate(180deg); }
+.altb[aria-expanded="true"] { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); } /* open: the button is highlighted; the panel has only its shadow */
 .altb .dcar { width: 8px; height: 8px; opacity: 0.8; transition: transform var(--t-fast); }
 /* QR button of a version: raised, the logo glyph + "QR" */
 .aqr { grid-column: 2; grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 46px; height: 46px;
@@ -1366,9 +1440,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     root.dataset.theme = next;
     try { localStorage.setItem("pmq-theme", next); } catch (e) {}
     paintBtn();
-    repaintQR?.();
+    repaintQR?.(); repaintPh?.();
   });
-  darkMq.addEventListener?.("change", () => { paintBtn(); repaintQR?.(); });
+  darkMq.addEventListener?.("change", () => { paintBtn(); repaintQR?.(); repaintPh?.(); });
   paintBtn();
 
   let data = null, openId = null, io = null;
@@ -1394,30 +1468,49 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     : `<button class="ii" type="button" aria-label="About ${esc(label)}" aria-expanded="false" data-tip="${esc(tip)}">${II_SVG}</button>`;
   const scoreTip = (v) => `<h3>Score</h3><p>The match record (<b>wins-losses-ties</b>) of the player who used this list${v.sc ? `: <b>${esc(v.sc)}</b>` : ""}${v.pl ? `, and their place: <b>${esc(v.pl)}</b>` : ""}.</p>`;
   const altSum = (v) => (v.alt || []).reduce((a, x) => a + (x.u || 0), 0);
-  const usedTip = (v) => { const ch = altSum(v), ex = v.nu - ch;
+  const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const ordF = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th","st","nd","rd"][n % 10] || "th");
+  const recTxt = (r) => r ? `${r[0]}-${r[1]}-${r[2]}` : "";
+  const wrPct = (r) => { const n = r ? r[0] + r[1] + r[2] : 0; return n ? Math.round(100 * (r[0] + 0.5 * r[2]) / n) : null; };
+  const finRows = (f, n) => f && f.length ? `<ol class="fins">${f.map(([p, of, w, l, t, dt]) => `<li><span class="fpl">${ordF(p)} <span>of ${of}</span></span><span class="fsc">${w}-${l}-${t}</span><span class="fdt">${MON[+dt.slice(5, 7) - 1]} ${+dt.slice(8)}</span></li>`).join("")}</ol>${n > f.length ? `<p class="fmore">+ ${n - f.length} more</p>` : ""}` : "";
+  const usedTip = (v, pop) => { const ch = altSum(v), ex = nxOf(v);
     return `<h3>Top players</h3><p>A <b>top player</b> won more matches than they lost (ties do not count) at a single-deck event in the last 7 days.</p>
-    <p><b>${v.of}</b> top players used this deck; <b>${v.nu}</b> used this list${ch ? ` (${ex} exactly, ${ch} with 1 card changed)` : ""}.</p>`; };
+    <p><b>${v.of}</b> top players used this deck; <b>${ex}</b> used exactly this list${v.rec ? ` (together <b>${recTxt(v.rec)}</b>, ${wrPct(v.rec)}% win)` : ""}${ch ? `, and <b>${ch}</b> more with 1 or 2 cards changed (\u201ctweaks\u201d${v.grec ? `; all ${v.nu} together ${recTxt(v.grec)}, ${wrPct(v.grec)}%` : ""})` : ""}.</p>
+    ${v.fin && v.fin.length > 1 ? `<h4>Results with exactly this list</h4>${finRows(v.fin, ex)}` : ""}
+    ${pop ? `<p><b>Popular now</b>: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.</p>` : ""}`; };
   // Each version has a small QR button (logo glyph + "QR"); it opens the full-screen QR view for that version (data: alt[k].qr)
   const QR_GLYPH = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="currentColor"><path d="M2.009 6A4.8 4.8 0 0 1 11.491 6H9.448A2.8 2.8 0 0 0 4.052 6ZM2.009 7.5A4.8 4.8 0 0 0 11.491 7.5H9.448A2.8 2.8 0 0 1 4.052 7.5Z"/><circle cx="6.75" cy="6.75" r="1.785"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></svg>';
   const tName = (c) => c.n + (curDup.has(c.n) ? " " + c.id.split("-")[0].toUpperCase() : ""); // plain-text name (+ set code when needed)
   const altName = (a) => `\u2212${a.out.map(tName).join(", ")} +${a.in.map(tName).join(", ")}`;
-  const altBtn = (v, i) => (v.alt && v.alt.length ? `<button class="altb" type="button" aria-expanded="false" aria-label="Also played: ${v.alt.length} one-card change${v.alt.length > 1 ? "s" : ""}" data-cids="${v.alt.flatMap((a) => a.in.map((c) => c.id)).join(" ")}">+ Also played ${v.alt.length}${CARET}</button>` : "");
+  const altBtn = (v, i) => (v.alt && v.alt.length ? `<button class="altb" type="button" aria-expanded="false" aria-label="${v.alt.length} tweak${v.alt.length > 1 ? "s" : ""}: 1 or 2 cards changed" data-cids="${v.alt.flatMap((a) => a.in.map((c) => c.id)).join(" ")}">+ ${v.alt.length} tweak${v.alt.length > 1 ? "s" : ""}${CARET}</button>` : "");
   const STAR = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 .8l1.6 3.3 3.6.5-2.6 2.5.6 3.6L6 9l-3.2 1.7.6-3.6L.8 4.6l3.6-.5z" fill="currentColor"/></svg>';
   const FIRE = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6.2.8c.3 1.7-.6 2.6-1.4 3.5C4 5.2 3.1 6.2 3.1 7.7A2.9 2.9 0 0 0 6 10.9a2.9 2.9 0 0 0 2.9-3.1c0-1-.4-1.8-.9-2.4.1.8-.2 1.5-.8 1.7.3-2-.2-4.5-1-6.3z" fill="currentColor"/></svg>'; // "Hot" mark, filled (a star means rarity in the game)
   const UPM = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.2 10.6 6.4H7.6V10.8H4.4V6.4H1.4Z" fill="currentColor"/></svg>'; // "Top" mark (decks under 2% share)
   // List 1's name: "Hot list" (red, fire) for decks with 2% share or more; "Top list" (blue, up arrow) for smaller decks
-  const isHot = (d) => ((d && d.share) || 0) >= 2;
-  const L1n = (d) => (isHot(d) ? "hot list" : "top list"), L1s = (d) => (isHot(d) ? "Hot" : "Top");
-  const L1 = (d) => `<span class="l1${isHot(d) ? " hot" : ""}">${isHot(d) ? "Hot list" : "Top list"}</span>`;
+  // Nov 13 (R17): no "Hot list" / "Top list" anymore; list 1 is "List 1", and "Popular now" when it passes popular()
+  const isHot = () => false;
+  const L1n = () => "list 1", L1s = () => "List 1";
+  const L1 = () => `<span class="l1">List 1</span>`;
+  // Exact copies of a list (R17 nx; older data: the group minus its 1-card versions)
+  const nxOf = (v) => (v && v.nx != null ? v.nx : Math.max(0, ((v && v.nu) || 0) - (v && v.alt ? v.alt.reduce((a, x) => a + (x.u || 0), 0) : 0)));
+  // "Popular now" (Nov 13): list 1 played exactly by 3+ top players, and by 2+ more than list 2. Needs list 2 (loaded with v/).
+  const popular = (d) => { const L = d && d.lists, n1 = nxOf(L ? L[0] : d);
+    if ((d.nv || 1) > 1 && !L) return false;
+    const n2 = L && L[1] ? nxOf(L[1]) : 0; return n1 >= 3 && n1 >= n2 + 2; };
+  const STAR_I = '<svg class="pstar" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.7 5.9 6.4.7-4.8 4.4 1.3 6.3L12 17l-5.6 3.1 1.3-6.3L2.9 9.4l6.4-.7z"/></svg>';
   // List 1's tab: "Most played" when a top player count decides the order, else "Best place" (all lists used once: the data order = best place first)
   const l1Tab = (L0) => {
     const most = (L0.nu || 0) >= 2;
     const tip = most
       ? `<h3>${L1(curDeck)}: most played</h3><p>The ${L1n(curDeck)} is the list that the most top players used: <b>${L0.nu} of ${L0.of}</b>.</p><p class="inote">The other lists compare their cards with it. Lists with the same count are sorted by their best place.</p>`
       : `<h3>${L1(curDeck)}: best place</h3><p>No list was used by more than 1 top player, so the ${L1n(curDeck)} is the list with the best place${L0.pl ? `: <b>${esc(L0.pl)}</b>` : ""}.</p><p class="inote">A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.</p>`;
-    return `<span class="dnote l1tab${isHot(curDeck) ? " hot" : ""}">${isHot(curDeck) ? FIRE : UPM}${L1s(curDeck)}</span>`; // no ⓘ: the "Used by" ⓘ explains it
+    return ""; // Nov 13: no tab on list 1; "Popular now" sits in the top-player line
   };
   // "Below the cut" (R11, data bc: 1): a deck with no top player shows the list of its best-placed player, with an amber tab and an ⓘ
+  // Nov 14: "Below the cut" is a quiet line in the top-player row (like "Popular now"): only the purple sad face is colored
+  const SAD_I = '<svg class="psad" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><circle cx="8.6" cy="10" r="1.45" fill="#fff"/><circle cx="15.4" cy="10" r="1.45" fill="#fff"/><path d="M7.8 16.9a5.2 5.2 0 0 1 8.4 0" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/></svg>';
+  const bcLine = (v) => `<span class="ptxt bcx">${SAD_I}<b>Below the cut</b>${ii("below the cut", bcTip(v))}</span>`;
+  const bcTip = (v) => `<h3>${SAD_I.replace('class="psad"', 'class="psad ph3"')} Below the cut</h3><p>No player of this deck won more matches than they lost in the last 7 days, so it has no top-player list.</p><p>This is the list of its best-placed player${v.pl ? `: <b>${esc(v.pl)}</b>` : ""}${v.sc ? `, record <b>${esc(v.sc)}</b>` : ""}. A starting point, not a proven list.</p>`;
   const bcTab = (v) => `<span class="dnote bctab">&#9888; Below the cut${ii("below the cut", `<h3>&#9888; Below the cut</h3><p>No player of this deck won more matches than they lost in the last 7 days, so it has no top-player list.</p><p>This is the list of its best-placed player${v.pl ? `: <b>${esc(v.pl)}</b>` : ""}${v.sc ? `, record <b>${esc(v.sc)}</b>` : ""}. A starting point, not a proven list.</p>`)}</span>`;
   let spanTxt = ""; // the data window as text ("Nov 3 – 8"), set when data.json loads
   const SWAP_I = '<svg class="swi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.2 6.2A5.4 5.4 0 0 0 3.4 5"/><path d="M3.2 2.6 3.4 5l2.4-.3"/><path d="M2.8 9.8A5.4 5.4 0 0 0 12.6 11"/><path d="m12.8 13.4-.2-2.4-2.4.3"/></svg>'; // two curved arrows in a circle: "swapped"
@@ -1427,10 +1520,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const info = (v, energyHtml, i = -1) => `
         <div class="info">
           <div class="tile t-en"><span class="tl">Energy</span><div class="energy">${energyHtml}</div></div>
-          <div class="tile t-sc"><span class="tl">Score${i === 0 ? ii("Score", scoreTip(v)) : ""}</span><div class="sc"><span>${esc(v.sc || "\u2013")}</span>${v.pl ? `<span class="pill pl">${esc(v.pl)}</span>` : ""}</div></div>
+          <div class="tile t-sc"><span class="tl">Score${i === 0 ? ii("Score", scoreTip(v)) : ""}</span><div class="sc"><span>${esc(v.sc || "\u2013")}</span>${v.plm ? `<span class="pill ppl">${v.plm <= 3 ? `<span class="md p${v.plm}"></span>` : ""}${esc(v.pl || "")}</span>` : v.pl ? `<span class="pill pl">${esc(v.pl)}</span>` : ""}</div></div>
           <div class="tile t-ev"><span class="tl">Event</span><div class="ev" title="${esc(v.ev || "")}">${v.dt ? `<span class="dt">${fmtDate(v.dt)}</span> \u00b7 ` : ""}${esc(v.ev || "\u2013")}</div></div>
         </div>
-        ${(() => { const cmp = curCmp; curCmp = ""; return usedBy(v) || altBtn(v) || cmp ? `<div class="usrow">${usedBy(v) ? `<span class="pill us">${v.nu}/${v.of} <span class="ustop">top </span>players${ii("top players", usedTip(v))}</span>` : ""}${cmp}${altBtn(v, i)}</div>` : ""; })()}`;
+        ${(() => { const cmp = curCmp; curCmp = ""; const pop = i === 0 && curDeck && !curDeck.evt && popular(curDeck);
+          return v.bc || usedBy(v) || altBtn(v) || cmp ? `<div class="usrow">${v.bc ? bcLine(v) : ""}${usedBy(v) ? `${pop ? `<span class="ptxt">${STAR_I}<b>Popular now</b><span class="psep"> \u00b7</span></span>` : ""}<span class="pill us">${nxOf(v)}/${v.of} <span class="ustop">top </span>players${nxOf(v) > 1 && v.rec ? `<span class="uwr"> \u00b7 ${wrPct(v.rec)}% win</span>` : ""}${ii("top players", usedTip(v, pop))}</span>` : ""}${cmp}${altBtn(v, i)}</div>` : ""; })()}`;
   // Legend icon: a tiny card with the same corner tag as the marked cards
   const MARK_ICON = '<svg viewBox="0 0 8 11" aria-hidden="true"><rect x="0" y="0" width="8" height="11" rx="1.2" fill="currentColor" opacity="0.45"/><path d="M3.2 0H6.8A1.2 1.2 0 0 1 8 1.2V4.8Z" fill="var(--mark)" stroke="var(--mark-edge)" stroke-width="0.9" stroke-linejoin="round"/></svg>';
   const CARET = '<svg class="dcar" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 4 2.5 2.5L7.5 4"/></svg>';
@@ -1465,7 +1559,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       outTxt = outs.map(chip).join("");
     }
     return `
-      ${v.bc ? bcTab(v) : i === 0 && d.lists && d.lists.length > 1 ? l1Tab(v) : ""}
+      ${v.bc ? "" : i === 0 && d.lists && d.lists.length > 1 ? l1Tab(v) : ""}${(() => { const c = curCmp; curCmp = ""; return c.replace('class="altb cmpb"', 'class="altb cmpb ctop"'); })()}
       <div class="cards"${outTxt ? ` data-out="${esc(outTxt)}"` : ""}>${copies.map((c, k) => { const img = `<img data-n="${esc(c.n)}"${dif[k] ? ' data-dif="1"' : ""} ${i === 0 ? 'fetchpriority="high" ' : ""}tabindex="0" role="button" src="c/${c.id}.webp" alt="${esc(c.n)}${dif[k] ? ` (not in the ${L1n(d)})` : ""}" width="150" height="209">`;
         return img; }).join("")}</div>
       <div class="sfoot">
@@ -1546,6 +1640,37 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const qrImg = (svg) => { const n = qrSvgs.indexOf(svg) < 0 ? qrSvgs.push(svg) - 1 : qrSvgs.indexOf(svg); return `data-q="${n}" src="${qrPng(svg)}"`; };
   // Theme change: draw the open QR codes again with the new background.
   const repaintQR = () => document.querySelectorAll(".qr img[data-q]").forEach((im) => { im.src = qrPng(qrSvgs[+im.dataset.q]); });
+  // Nov 14: a card image that does not load (c/ or z/) becomes a gray card with its name: an SVG made here, so the <img> stays
+  // (size, taps, zoom, highlight and the swap preview keep working). One capture listener for every place that shows cards.
+  const phSvg = (name, id) => {
+    const dk = isDark(), bg = dk ? "#26303a" : "#dfe6eb", band = dk ? "#2e3945" : "#d2dbe2", line = dk ? "#3a4654" : "#c3cfd8",
+      ink = dk ? "#c9d4dc" : "#3c4a56", mut = dk ? "#7f8f9c" : "#7a8995";
+    const words = String(name || "?").split(/\s+/), lines = [];
+    for (const w of words) { const l = lines[lines.length - 1]; if (l && (l + " " + w).length <= 11) lines[lines.length - 1] = l + " " + w; else lines.push(w); }
+    const L = lines.slice(0, 4), fs = L.length > 2 || L.some((x) => x.length > 9) ? 17 : 20, y0 = 112 - (L.length - 1) * fs * 0.6;
+    const x = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]).replace(/[^\x20-\x7e]/g, (c) => `&#${c.codePointAt(0)};`);
+    const code = id ? id.replace(/^p([a-z])-/, "P-$1-").toUpperCase().replace(/-0*(\d+)$/, " \u00b7 $1") : "";
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 209"><rect width="150" height="209" rx="6" fill="${bg}"/>` +
+      `<path d="M6 0h138a6 6 0 0 1 6 6v28H0V6a6 6 0 0 1 6-6z" fill="${band}"/>` +
+      `<rect x="4.5" y="4.5" width="141" height="200" rx="4" fill="none" stroke="${line}" stroke-width="1.5"/>` +
+      `<g font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" text-anchor="middle">` +
+      L.map((t, k) => `<text x="75" y="${(y0 + k * fs * 1.2).toFixed(1)}" font-size="${fs}" font-weight="700" fill="${ink}">${x(t)}</text>`).join("") +
+      (code ? `<text x="75" y="190" font-size="12" font-weight="600" fill="${mut}">${x(code)}</text>` : "") + `</g></svg>`;
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  };
+  document.addEventListener("error", (e) => {
+    const im = e.target;
+    if (!(im instanceof HTMLImageElement)) return;
+    const m = /(?:^|\/)c\/([a-z0-9]+-\d+)\.webp(?:$|\?)/.exec(im.getAttribute("src") || ""); // c/ only: a missing z/ first tries c/ (handler below)
+    if (!m) return;
+    e.stopPropagation(); // the img's own onerror (old fallbacks) does not run
+    let name = (im.dataset.n || im.dataset.cn || im.alt || "").replace(/\s*\((?:in|out|not in [^)]*)\)\s*$/, "");
+    if (!name) for (const d of (typeof data !== "undefined" && data && data.decks) || []) { const c = (d.cards || []).find((x) => x.id === m[1]); if (c) { name = c.n; break; } }
+    im.dataset.ph = m[1]; im.dataset.phn = name; im.src = phSvg(name, m[1]);
+  }, true);
+  document.addEventListener("load", (e) => { const im = e.target; // a reused <img> (the zoom) that loads a real card again
+    if (im instanceof HTMLImageElement && im.dataset.ph && !im.src.startsWith("data:")) { delete im.dataset.ph; delete im.dataset.phn; } }, true);
+  const repaintPh = () => document.querySelectorAll("img[data-ph]").forEach((im) => { im.src = phSvg(im.dataset.phn, im.dataset.ph); });
 
   const loadImg = (src) => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; });
   const rrect = (x, l, t, w, h, r) => { x.beginPath(); x.roundRect(l, t, w, h, r); };
@@ -2119,10 +2244,14 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       return j;
     }).catch(() => { moreP = null; return null; }));
   }
+  const podTop = () => (data.decks.length > 3 ? data.decks.filter((d) => !d._more).slice(0, 3) : []);
   function renderList() {
-    // Top 3: podium tiles (same section/button/panel structure as a row, so open/close work the same way).
-    const top = data.decks.length > 3 ? data.decks.slice(0, 3) : [];
-    const podium = top.length ? `<div class="podium">${top.map((d, k) => `
+    const top = podTop();
+    $("list").innerHTML = podiumHTML(top) + withGhosts(data.decks.slice(top.length), data.nolist, top.length ? top[top.length - 1].rank : 0, false) + moreBoxHTML();
+  }
+  // Top 3: podium tiles (same section/button/panel structure as a row, so open/close work the same way).
+  function podiumHTML(top) {
+    return top.length ? `<div class="podium">${top.map((d, k) => `
       <section class="acc pod" id="${d.id}" style="${bandStyle(d)}">
         <button class="arow pcard" type="button" data-id="${d.id}" aria-expanded="false" aria-controls="p-${d.id}" aria-label="Rank ${d.rank}: ${esc(d.name)}">
           ${rbHTML(d, k + 1)}
@@ -2134,15 +2263,22 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
         </button>
         <div class="apanel" id="p-${d.id}" hidden></div>
       </section>`).join("")}</div>` : ""; // the "Ranks 4\u2013N" label is left out for now
-    $("list").innerHTML = podium + withGhosts(data.decks.slice(top.length), data.nolist, top.length ? top[top.length - 1].rank : 0, false) + moreBoxHTML();
   }
-  const rowHTML = (d) => `
+  // While a filter is on, the top 3 are plain rows (with their podium rank badge), so the results read as one list (Nov 13)
+  function setPodFlat(on) {
+    const pod = document.querySelector(".podium"), flat = document.querySelector(".podflat"), top = podTop();
+    if (on ? !pod : !flat) return;
+    if (openId && top.some((d) => d.id === openId)) closeOpen();
+    if (on) pod.outerHTML = `<div class="podflat">${top.map((d, k) => rowHTML(d, k + 1)).join("")}</div>`;
+    else { flat.outerHTML = podiumHTML(top); podFit(); podGrow(); }
+  }
+  const rowHTML = (d, pod = 0) => `
       <section class="acc" id="${d.id}" style="${bandStyle(d)}">
         <button class="arow" type="button" data-id="${d.id}" aria-expanded="false" aria-controls="p-${d.id}">
-          ${rbHTML(d, 0)}
+          ${rbHTML(d, pod)}
           <span class="icons${d.art.length === 1 ? " one" : ""}">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>
           <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, d.name.length)}">${esc(d.name)}${NEWD.has(d.id) ? '<span class="newb" title="New in the top 10 since your last visit">NEW</span>' : ""}</span>
-            <span class="asub"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win${d.bc ? ' <span class="bcn" title="No top player: the list is from below the cut">&#9888; below the cut</span>' : ""}
+            <span class="asub"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win${d.bc ? ` <span class="bcn" title="No top player: the list is from below the cut">${SAD_I}below the cut</span>` : ""}
               <span class="sm"><span class="sep">&middot; </span><span class="nw">${d.count} players</span> <span class="nw">&middot; ${d.w}-${d.l}-${d.t}</span></span></span></span>
           ${dpill(d)}
         </button>
@@ -2249,7 +2385,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       if (openId !== d.id || !s0 || !s0.isConnected) return;
       // list 1 is drawn at once from data.json; draw it again only when another list is the most played
       if (L[0] !== d) { s0.innerHTML = slideBody(L[0], d, 0); fitScores(s0); }
-      else if (L.length > 1 && !s0.querySelector(".l1tab, .bctab")) { curDeck = d; s0.insertAdjacentHTML("afterbegin", l1Tab(d)); }
+      else if (L.length > 1) { s0.innerHTML = slideBody(L[0], d, 0); fitScores(s0); } // "Popular now" needs list 2
     }).catch(() => {});
     if (n > 1) wireCarousel(p, d, n);
     if (fstate.card && n > 1) jumpToCard(p, d, fstate.card);
@@ -2355,7 +2491,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const cdlg = $("cardDlg");
 
   const deckOf = (img) => data.decks.find((x) => x.id === img.closest(".acc")?.id);
-  const cardId = (img) => (img.getAttribute("src").match(/c\/([^/]+)\.webp/) || [])[1] || "";
+  const cardId = (img) => img.dataset.ph || (img.getAttribute("src").match(/c\/([^/]+)\.webp/) || [])[1] || "";
   function openCard(img) {
     const n = img.dataset.n || img.alt, grid = img.closest(".cards"), cid = cardId(img);
     const count = [...grid.querySelectorAll(":scope > img")].filter((x) => cardId(x) === cid).length;
@@ -2504,8 +2640,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     <h4>Where does the data come from?</h4><p>Public Standard events with 8 or more players on <a href="https://play.limitlesstcg.com/tournaments?game=POCKET" target="_blank" rel="noopener">Limitless TCG</a>, from the last 7 days only, because the meta changes fast. The numbers are computed here, so they can differ a little from other sites.</p>
     <h4>What is in Latest Events?</h4><p>The tournaments of the last 7 days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.</p>
     <h4>What is a &ldquo;top player&rdquo;?</h4><p>A player with more wins than losses at a single-deck event.</p>
-    <h4>What does &ldquo;&#9888; Below the cut&rdquo; mean?</h4><p>No player of that deck had a winning record, so the page shows its best-placed player&rsquo;s list: a starting point, not a proven list.</p>
-    <h4>What are the Hot list and the Top list?</h4><p>List 1 of a deck is the list that the most top players used. For decks with 2% share or more it is the <b>Hot list</b>, for smaller decks the <b>Top list</b>. The other lists show which cards they swap.</p>
+    <h4>What does &ldquo;Below the cut&rdquo; mean?</h4><p>No player of that deck had a winning record, so the page shows its best-placed player&rsquo;s list: a starting point, not a proven list.</p>
+    <h4>How are the lists chosen?</h4><p>List 1 of a deck is the list that the most top players used. A list that only 1 or 2 cards differ from is a <b>tweak</b> of it (&ldquo;+ N tweaks&rdquo;, each with its own QR code). A list with 3 or more different cards is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. <b>&#9733; Popular now</b> marks a list 1 that clearly more top players used exactly than any other list.</p>
     <h4>Why is the win rate different from other sites?</h4><p>Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.</p>
     <h4>Can I use it like an app?</h4><p>Yes: tap <b>Add to Home Screen</b> at the bottom of the page for the steps.</p>
     <h4>Is it free?</h4><p>Yes: no ads and no sign-up. ${GC ? "No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter)." : "No tracking."} This browser keeps only your theme and the last tab you used.</p>
@@ -2570,16 +2706,19 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     g.querySelectorAll("img.arep0").forEach((x) => x.classList.remove("arep0"));
     if (!p) return;
     for (const q of [].concat(p)) {
-      const reps = [...g.querySelectorAll(`:scope > img[src="c/${q.slot}.webp"]:not(.arep0)`)], r = reps[reps.length - 1]; // the last free copy
+      const reps = [...g.querySelectorAll(`:scope > img[src="c/${q.slot}.webp"]:not(.arep0), :scope > img[data-ph="${q.slot}"]:not(.arep0)`)], r = reps[reps.length - 1]; // the last free copy
       if (!r) continue;
       r.classList.add("arep0");
       const box = (cls, c, dy) => { const n = document.createElement("span"); n.className = cls;
         n.style.cssText = `left:${r.offsetLeft}px;top:${r.offsetTop + dy}px;width:${r.offsetWidth}px`;
         n.innerHTML = `<img src="c/${c.id}.webp" data-n="${esc(c.n)}" alt="${esc(c.n)}" width="150" height="209">`; g.append(n); };
       box("aback", q.back, 0);
-      box("anew", q.front, Math.round(r.offsetHeight * 0.25)); // 25% of a card lower
+      box("anew", q.front, Math.round(r.offsetHeight * 0.2)); // 20% of a card lower: it starts where the old card's strip ends
     }
   }
+  // A tweak's swaps as pairs, one per copy: [{ out, in }]
+  const altPairs = (a) => { const ex = (L) => L.flatMap((c) => Array.from({ length: c.c || 1 }, () => c)), o = ex(a.out), n = ex(a.in);
+    return n.map((c, k) => ({ in: c, out: o[k] })).filter((x) => x.out); };
   // The swaps of list i against list 1, as pairs (one per copy): [{ out: list-1 card, in: this list's card }]
   function swapPairs(v, L0) {
     const cnt = (L) => L.cards.reduce((m, c) => m.set(c.id, (m.get(c.id) || 0) + c.c), new Map()), names = new Map();
@@ -2594,6 +2733,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     o.btn.setAttribute("aria-expanded", "false");
     o.slide.classList.remove("aon"); o.slide.closest(".vars")?.classList.remove("afocus");
     o.pop.remove();
+    if (o.restore) o.restore();
     altPreview(o.slide, null);
   }
   async function toggleAlts(btn) {
@@ -2605,24 +2745,27 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (!v || !btn.isConnected) return;
     const L0 = d.lists ? d.lists[0] : d, pairs = sw ? swapPairs(v, L0) : null, items0 = sw ? pairs : v.alt || [];
     if (!items0.length) return;
+    if (!sw) { track("also-played"); tweakPanel(btn, slide, d, i, v); return; }
     track(sw ? "compare" : "also-played");
     curDup = dupNames(d);
     const pop = document.createElement("div");
     pop.className = "apop2";
     const nm = (c, cls) => `<span class="anm${cls}"><span>${esc(tName(c))}</span></span>`;
-    pop.innerHTML = `<span class="parr2" aria-hidden="true"></span><div class="acar" role="listbox" aria-label="${sw ? `Cards swapped vs the ${L1n(d)}` : "Also played: 1-card changes"}">${sw ? `<div class="aswl${pairs.length >= 3 ? " tight" : ""}" lang="en">${pairs.map((x) => `<span class="asc"><img class="ao" src="c/${x.out.id}.webp" data-cid="${x.out.id}" data-cn="${esc(x.out.n)}" alt="${esc(x.out.n)}" width="150" height="209">${nm(x.out, "")}</span>`).join("")}
+    pop.innerHTML = `<span class="parr2" aria-hidden="true"></span><div class="acar" role="listbox" aria-label="${sw ? `Cards swapped vs the ${L1n(d)}` : "Tweaks: 1 or 2 cards changed"}">${sw ? `<div class="aswl${pairs.length >= 3 ? " tight" : ""}" lang="en">${pairs.map((x) => `<span class="asc"><img class="ao" src="c/${x.out.id}.webp" data-cid="${x.out.id}" data-cn="${esc(x.out.n)}" alt="${esc(x.out.n)}" width="150" height="209">${nm(x.out, "")}</span>`).join("")}
         <span class="achev">${ACHEV}</span>${pairs.map((x) => `<span class="asc"><img src="c/${x.in.id}.webp" data-cid="${x.in.id}" data-cn="${esc(x.in.n)}" alt="${esc(x.in.n)}" width="150" height="209">${nm(x.in, " in")}</span>`).join("")}</div>` : v.alt.map((a, k) => `
-      <div class="ait" role="option" data-k="${k}" aria-label="${esc(altName(a))}">
-        <img class="ao" src="c/${a.out[0].id}.webp" data-cid="${a.out[0].id}" data-cn="${esc(a.out[0].n)}" alt="${esc(a.out[0].n)} (out)" title="\u2212${esc(tName(a.out[0]))}" width="150" height="209">
-        <span class="achev">${ACHEV}</span>
-        <img src="c/${a.in[0].id}.webp" data-cid="${a.in[0].id}" data-cn="${esc(a.in[0].n)}" alt="${esc(a.in[0].n)} (in)" title="+${esc(tName(a.in[0]))}" width="150" height="209">
+      <div class="ait${altPairs(a).length > 1 ? " k2" : ""}" role="option" data-k="${k}" aria-label="${esc(altName(a))}">
+        ${altPairs(a).map((x, r) => `<img class="ao" style="grid-row:${r + 1}" src="c/${x.out.id}.webp" data-cid="${x.out.id}" data-cn="${esc(x.out.n)}" alt="${esc(x.out.n)} (out)" title="\u2212${esc(tName(x.out))}" width="150" height="209">
+        <span class="achev" style="grid-row:${r + 1}">${ACHEV}</span>
+        <img style="grid-row:${r + 1}" src="c/${x.in.id}.webp" data-cid="${x.in.id}" data-cn="${esc(x.in.n)}" alt="${esc(x.in.n)} (in)" title="+${esc(tName(x.in))}" width="150" height="209">`).join("")}
         ${a.qr ? `<button class="aqr" type="button" data-k="${k}" aria-label="QR code for this version">${QR_GLYPH}QR</button>` : "<span></span>"}
-        <span class="ast"><b>${a.u}</b> top player${a.u > 1 ? "s" : ""}${a.pl ? ` \u00b7 best ${esc(a.pl)}` : ""}</span>
-      </div>`).join("")}</div>${!sw && items0.length > 1 ? `<div class="adots2">${items0.map(() => "<i></i>").join("")}</div>` : ""}`;
+        <span class="ast"><b>${a.u}</b> player${a.u > 1 ? "s" : ""}${a.pl ? ` \u00b7 best ${esc(a.pl)}` : ""}</span>
+      </div>`).join("")}</div>${!sw && items0.length > 1 ? (() => { const n1 = items0.filter((a) => altPairs(a).length < 2).length, n2 = items0.length - n1;
+        return `<div class="adots2">${n1 ? `<span class="adl">1 card</span>${"<i></i>".repeat(n1)}` : ""}${n1 && n2 ? '<span class="adsep"></span>' : ""}${n2 ? `${"<i></i>".repeat(n2)}<span class="adl">2 cards</span>` : ""}</div>`; })() : ""}`;
     slide.append(pop);
     // above the pill row, the arrow on the button
     const sr = slide.getBoundingClientRect(), br = btn.getBoundingClientRect();
     pop.style.setProperty("--ab", (sr.bottom - br.top + 9) + "px");
+    if (btn.classList.contains("ctop")) { pop.classList.add("atop"); pop.style.bottom = "auto"; pop.style.top = (br.bottom - sr.top + 9) + "px"; } // under the top-right button
     pop.style.setProperty("--ax", Math.max(18, Math.min(br.left + br.width / 2 - sr.left - 8, sr.width - 34)) + "px");
     // Swaps on wider screens: the popover grows to fit the whole row (no scrolling), centered on the button, on screen
     if (sw && matchMedia("(min-width: 600px)").matches) {
@@ -2644,7 +2787,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       items.forEach((el, j) => { el.classList.toggle("on", j === k); el.setAttribute("aria-selected", String(j === k)); });
       pop.querySelectorAll(".adots2 i").forEach((el, j) => el.classList.toggle("on", j === k));
       const x = items0[k];
-      altPreview(slide, { slot: x.out[0].id, back: x.out[0], front: x.in[0] });
+      altPreview(slide, altPairs(x).map((p) => ({ slot: p.out.id, back: p.out, front: p.in })));
     };
     car.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(() => {
       const mid = car.scrollLeft + car.clientWidth / 2;
@@ -2671,8 +2814,65 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     }
     choose(0);
   }
+  // Nov 13 mock: tweaks panel. It covers the tiles (fixed size: the .info box); the deck's own QR shows the chosen tweak's QR.
+  function tweakPanel(btn, slide, d, i, v) {
+    curDup = dupNames(d);
+    const info = slide.querySelector(".sfoot .info"), qcol = slide.querySelector(".sfoot .qcol"), qb = qcol && qcol.querySelector(".qr"), qim = qb && qb.querySelector("img");
+    if (!info) return;
+    const sr = slide.getBoundingClientRect(), ir = info.getBoundingClientRect(), MAXT = 6;
+    const all = v.alt.map((a, k) => ({ a, k, n: altPairs(a).length > 1 ? 2 : 1 }));
+    // 5+ tweaks: split into "1 card" / "2 cards" tabs (6 each at most); fewer: one carousel, 1-card tweaks first
+    const G = all.length >= 5 ? [1, 2].map((n) => ({ n, items: all.filter((x) => x.n === n).slice(0, MAXT) })).filter((g) => g.items.length) : [{ n: 0, items: all }];
+    const stk = (cs, cls) => `<span class="tstk">${cs.map((c) => `<img${cls} src="c/${c.id}.webp" data-cid="${c.id}" data-cn="${esc(c.n)}" alt="${esc(c.n)}" title="${esc(tName(c))}" width="150" height="209">`).join("")}</span>`;
+    const pop = document.createElement("div");
+    pop.className = "apop3";
+    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top}px;width:${ir.width}px;height:${ir.height}px`;
+    if (G.length < 2) pop.classList.add("one");
+    pop.innerHTML = `<div class="ttabs" role="tablist" aria-label="Cards changed">${G.length < 2 ? "" : G.map((g, j) => `<button type="button" role="tab" data-g="${j}" aria-selected="${j === 0}">${g.n} card${g.n > 1 ? "s" : ""}</button>`).join("")}</div>
+      <div class="tbody"><div class="tcar" role="listbox"></div><div class="tdots"></div></div>`;
+    slide.append(pop);
+    const q0 = qim ? qim.getAttribute("src") : "", q0n = qim ? qim.dataset.q : "";
+    altOpen = { btn, pop, slide, d, i, x0: slide.closest(".vars")?.scrollLeft || 0,
+      restore: () => { if (qim) { qim.src = q0; qim.dataset.q = q0n; delete qb.dataset.ak; } } };
+    btn.setAttribute("aria-expanded", "true");
+    slide.classList.add("aon"); slide.closest(".vars")?.classList.add("afocus");
+    const car = pop.querySelector(".tcar"), dots = pop.querySelector(".tdots");
+    let items = [], list = [], cur = -1, t = null, lastK = -1;
+    const choose = (j) => {
+      if (j === cur || !altOpen || altOpen.pop !== pop) return;
+      const dir = j > cur ? 1 : -1; cur = j;
+      items.forEach((el, x) => { el.classList.toggle("on", x === j); el.setAttribute("aria-selected", String(x === j)); });
+      dots.querySelectorAll("i").forEach((el, x) => el.classList.toggle("on", x === j));
+      const { a, k } = list[j];
+      altPreview(slide, altPairs(a).map((p) => ({ slot: p.out.id, back: p.out, front: p.in })));
+      if (qim && a.qr && k !== lastK) { lastK = k; qb.dataset.ak = k;
+        const n = qrSvgs.indexOf(a.qr) < 0 ? qrSvgs.push(a.qr) - 1 : qrSvgs.indexOf(a.qr); qim.dataset.q = n; qim.src = qrPng(a.qr); }
+    };
+    const show = (g) => {
+      pop.querySelectorAll(".ttabs button").forEach((b) => b.setAttribute("aria-selected", String(+b.dataset.g === g)));
+      list = G[g].items; cur = -1;
+      car.setAttribute("aria-label", G[g].n ? `Tweaks: ${G[g].n} card${G[g].n > 1 ? "s" : ""} changed` : "Tweaks: 1 or 2 cards changed");
+      car.innerHTML = list.map(({ a, k }) => { const P = altPairs(a);
+        return `<div class="tw" role="option" data-k="${k}" aria-label="${esc(altName(a))}"><span class="tsw">${stk(P.map((x) => x.out), "")}<span class="achev">${ACHEV}</span>${stk(P.map((x) => x.in), "")}</span>
+          <span class="ast"><b>${a.u}</b> player${a.u > 1 ? "s" : ""}${a.pl ? ` \u00b7 ${esc(a.pl)}` : ""}</span></div>`; }).join("");
+      dots.innerHTML = list.length > 1 ? list.map(() => "<i></i>").join("") : "";
+      items = [...car.querySelectorAll(".tw")]; car.scrollLeft = 0; choose(0);
+    };
+    pop.querySelector(".ttabs").addEventListener("click", (e) => { const b = e.target.closest("button[data-g]"); if (b) show(+b.dataset.g); });
+    car.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(() => {
+      const mid = car.scrollLeft + car.clientWidth / 2; let best = 0, bd = 1e9;
+      items.forEach((el, j) => { const dd = Math.abs(el.offsetLeft + el.offsetWidth / 2 - mid); if (dd < bd) { bd = dd; best = j; } });
+      choose(best); }, 60); }, { passive: true });
+    car.addEventListener("click", (e) => {
+      const it = e.target.closest(".tw"); if (!it) return;
+      const im = e.target.closest("img[data-cid]");
+      if (im && it.classList.contains("on")) { openCardId(im.dataset.cid, im.dataset.cn); return; }
+      it.scrollIntoView({ behavior: reduced ? "auto" : "smooth", inline: "center", block: "nearest" });
+    });
+    show(0);
+  }
   // Tap outside closes it (not a tap in the card zoom, the QR panel or a card popup that it opened)
-  document.addEventListener("click", (e) => { if (altOpen && !e.target.closest(".apop2, #iPop, #cPop, dialog, .anew")) closeAlts(); });
+  document.addEventListener("click", (e) => { if (altOpen && !e.target.closest(".apop2, .apop3, .qcol, #iPop, #cPop, dialog, .anew")) closeAlts(); });
   addEventListener("resize", () => closeAlts());
   addEventListener("scroll", (e) => { if (altOpen && e.target instanceof Element && e.target.classList.contains("vars") && Math.abs(e.target.scrollLeft - altOpen.x0) > 30) closeAlts(); }, { capture: true, passive: true }); // another list swiped in
   // Capture phase: the "i" inside a deck row must not open or close the deck
@@ -2714,7 +2914,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (qb) {
       const d = data.decks.find((x) => x.id === openId);
       if (!d) return;
-      openQRSheet(qb, d, +qb.dataset.i);
+      openQRSheet(qb, d, +qb.dataset.i, qb.dataset.ak ? +qb.dataset.ak : null);
       return;
     }
     const row = e.target.closest(".arow");
@@ -2763,6 +2963,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const q = fstate.q.trim().toLowerCase(), pickC = fstate.card ? searchIndex().cards.find((c) => c.id === fstate.card) : null;
     const pickW = fstate.without ? searchIndex().cards.find((c) => c.id === fstate.without) : null;
     const act0 = !!q || !!fstate.card || fstate.en.size > 0 || fstate.dk.size > 0 || !!fstate.without; // a filter is on: the smaller decks count too
+    setPodFlat(act0);
     let n = 0, nMore = 0, peek = 0;
     data.decks.forEach((d) => {
       const sec = $(d.id);
@@ -2798,6 +2999,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const used = new Set(data.decks.flatMap((d) => d.energy || [])), none = [...fstate.en].filter((e) => !used.has(e));
     const pc = pickC;
     setPickStyle(pickC ? pickC.id : null);
+    if (!pickC && fstate.dk.has("new")) { // "New <set> cards": the new cards stand out in the lists, the others fade (as a picked card)
+      const pre = String(data.set || "").toLowerCase() + "-";
+      pickStyle.textContent = `.cards img:not([src^="c/${pre}"]):not([data-ph^="${pre}"]) { opacity: 0.25; transition: opacity 0.2s; }`;
+    }
     document.querySelector(".podium")?.classList.toggle("pk", !!pickC);
     const wn = pickW ? `${pickW.n}${pickW.dup ? " " + pickW.id.split("-")[0].toUpperCase() : ""}` : "";
     $("fnoneTxt").textContent = pickW && n ? `${n} deck${n > 1 ? "s" : ""} without ${wn}.` : pc && n ? `${n} deck${n > 1 ? "s" : ""} use${n > 1 ? "" : "s"} ${pc.n}${pc.dup ? " " + pc.id.split("-")[0].toUpperCase() : ""}.`
@@ -2842,7 +3047,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     L.forEach((v, k) => { if ((v.cards || []).some((c) => c.id === id)) ls.push(k + 1); else if ((v.alt || []).some((a) => a.in.some((c) => c.id === id))) al.push(k + 1); });
     const parts = [];
     if (ls.length) parts.push(`${ls.length > 1 ? "lists" : "list"} ${ls.join(", ")}`);
-    if (al.length) parts.push(`\u201cAlso played\u201d of ${al.map((k) => (k === 1 ? "the " + L1n(d) : "list " + k)).join(", ")}`);
+    if (al.length) parts.push(`a tweak of ${al.map((k) => (k === 1 ? "the " + L1n(d) : "list " + k)).join(", ")}`);
     return parts.length ? "in " + parts.join(" and ") : "";
   }
   // On open: scroll to the first list that has the card (its copies and the "Also played" button are highlighted by CSS)
@@ -2858,7 +3063,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const pickStyle = document.createElement("style");
   document.head.append(pickStyle);
   // Spotlight: the other cards fade, so the picked card stands out (no outline: the card popup uses the outline)
-  const setPickStyle = (id) => { pickStyle.textContent = id ? `.cards img:not([src="c/${id}.webp"]) { opacity: 0.25; transition: opacity 0.2s; }
+  const setPickStyle = (id) => { pickStyle.textContent = id ? `.cards img:not([src="c/${id}.webp"]):not([data-ph="${id}"]) { opacity: 0.25; transition: opacity 0.2s; }
     .cards img.hl { opacity: 1; }
     .altb:not(.cmpb)[data-cids~="${id}"] { border-color: var(--acc-mark); box-shadow: 0 0 0 1px var(--acc-mark); }
     .cmpb { display: none !important; }` : ""; if (id) closeAlts(); }; // a picked card: no "swap vs Hot/Top" buttons
@@ -3033,7 +3238,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   function evSlide(e, v, k) {
     const d = evDeck(e, v, k);
-    return `${placeTab(v.pl)}${slideBody({ ...d, pl: null }, d, -1)}`;
+    return slideBody({ ...d, plm: v.pl }, d, -1); // Nov 13: the place is in the Score tile (pill with a medal dot), no tab
   }
   // The Event tile (the row already names the event) shows the deck and the player
   function evTile(sl, v) {
