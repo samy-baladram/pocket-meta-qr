@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794562760-6956 -->
+<!-- ui: artifact version 1794564394-53e5 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -250,9 +250,35 @@ footer a { color: var(--muted); }
 .tile.tlink:active { transform: scale(0.98); }
 .tile.tlink .tic { position: absolute; top: 6px; right: 6px; width: 11px; height: 11px; color: var(--muted); }
 .tile.tlink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.shshare { position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; padding: 0; line-height: 0; -webkit-appearance: none; appearance: none; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
-  background: var(--surface); color: var(--muted); box-shadow: var(--raised-sm), var(--bevel); }
-.shshare svg { width: 17px; height: 17px; display: block; }
+/* Shared list sheet (Nov 13): compact bottom sheet; left: cards + Share link, right: tiles + the QR at the bottom */
+.pdtop { align-items: stretch !important; }
+.pdmain { display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+.pdlink { align-self: center; margin: 2px 0 0 !important; font-size: var(--fs-s) !important; }
+.pdside { justify-content: space-between; }
+.shv { background: rgba(var(--sh), 0.22); }
+.shbox { width: 100% !important; max-width: 460px; max-height: 88vh; border-radius: 22px 22px 0 0 !important; padding: 8px 12px calc(4px + env(safe-area-inset-bottom)) !important;
+  box-shadow: var(--sheet-sh) !important; animation: shUp 0.28s cubic-bezier(.2,.8,.2,1); }
+@media (min-width: 600px) { .shbox { border-radius: 22px !important; } }
+@keyframes shUp { from { transform: translateY(100%); } to { transform: none; } }
+.shbox::before { content: ""; display: block; width: 36px; height: 4px; border-radius: 2px; background: var(--line-strong); margin: 0 auto 8px; }
+.shbox h3 { margin: 0 40px 8px; font-size: var(--fs-m); }
+.shbox .shk { font-size: var(--fs-xs); }
+.shslide.pd { margin-top: 2px; }
+.pdtop { display: grid; grid-template-columns: minmax(0, 1fr) 148px; gap: 8px; align-items: center; }
+.pdtop .cards { gap: 3px; margin: 0 !important; }
+.pdside { display: flex; flex-direction: column; gap: 6px; }
+.pdside .qcol .qr { width: 100%; }
+.pdside .info { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px; }
+.pdside .tile { padding: 4px 7px; }
+.pdside .tile .tl { font-size: 10px; }
+.pdside .tile.t-en .energy img { width: 18px; height: 18px; }
+.pdside .tile .sc { font-size: var(--fs-s); gap: 2px; flex-wrap: wrap; }
+.pdside .tile .sc .pill { font-size: 9px; padding: 0 3px; }
+.pdside .t-td { grid-column: 1 / -1 !important; }
+.pdside .t-td .ev { font-size: var(--fs-s); } .pdside .t-td .tdst { font-size: 10px; margin-top: 0; }
+.pdside .tile.tlink .tic { top: 4px; right: 4px; width: 9px; height: 9px; }
+.pdfoot .qclose { margin: 8px 0 4px !important; width: 38px !important; height: 38px !important; }
+.pdfoot .qclose svg { width: 22px !important; height: 22px !important; }
 /* Shared list (option A) */
 .shslide { margin-top: 10px; text-align: left; }
 .shslide .cards { margin-bottom: 8px; }
@@ -1841,7 +1867,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     track(SH.today.d ? (SH.today.k >= 0 ? "shared-same" : "shared-changed") : "shared-gone");
     if (!$("shv").hidden && $("shBox").dataset.mode === "cards") shCards();
   }
-  function shHead() { return `<button class="shlink shshare" type="button" aria-label="${TOUCH ? "Share link" : "Copy link"}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg></button><p class="shk">Shared list${SH.when ? " \u00b7 " + SH.when : ""}</p><h3 id="shT">${esc(SH.name)}</h3>`; }
+  function shHead() { return `<p class="shk">Shared list${SH.when ? " \u00b7 " + SH.when : ""}</p><h3 id="shT">${esc(SH.name)}</h3>`; }
   function shCards() {
     const box = $("shBox"), M = SH.M, dk = SH.dk, T = SH.today;
     box.dataset.mode = "cards";
@@ -1853,16 +1879,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const pp = /^(\d+)-(\d+)$/.exec(SH.p.p || ""), place = pp ? `${ord(+pp[1])} of ${pp[2]}` : "";
     const x = T && (T.d || T.nl), num = (v) => `${(+v).toFixed(1)}%`;
     const today = !T ? `<div class="ev">\u2026</div>` : !x ? `<div class="ev">Not in the meta now</div>`
-      : `<div class="ev"><b>${num(x.share)}</b> share \u00b7 <b>${num(x.win)}</b> win</div><div class="tdst">${T.d && T.k >= 0 ? "Still a top list" : "Not a top list now"}</div>`;
+      : `<div class="ev"><b>${num(x.share)}</b> \u00b7 <b>${num(x.win)}</b> win</div><div class="tdst">${T.d && T.k >= 0 ? "Still a top list" : "Not a top list now"}</div>`;
     box.innerHTML = `${shHead()}
-      <div class="shslide"><div class="cards">${cards}</div>
-      <div class="sfoot"><div class="info">
-        <div class="tile t-en"><span class="tl">Energy</span><div class="energy">${en}</div></div>
+      <div class="shslide pd"><div class="pdtop"><div class="pdmain"><div class="cards">${cards}</div><button class="qslink shlink pdlink" type="button">${LINK_ICON}<span>${TOUCH ? "Share link" : "Copy link"}</span></button></div><div class="pdside"><div class="info"><div class="tile t-en"><span class="tl">Energy</span><div class="energy">${en}</div></div>
         ${SH.src ? `<a class="tile t-sc tlink" href="${SH.src}" target="_blank" rel="noopener" aria-label="Score: the original list on Limitless">` : `<div class="tile t-sc">`}${SH.src ? `<svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>` : ""}<span class="tl">Score${SH.played ? ` \u00b7 ${SH.played}` : ""}</span><div class="sc"><span>${esc(SH.p.s || "\u2013")}</span>${place ? `<span class="pill pl">${place}</span>` : ""}</div>${SH.src ? "</a>" : "</div>"}
-        ${T && T.d ? `<button class="tile t-ev t-td tlink shtoday" type="button" data-k="${Math.max(0, T.k)}" aria-label="Open this deck on the site"><svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><span class="tl">This deck today</span>${today}</button>` : `<div class="tile t-ev t-td"><span class="tl">This deck today</span>${today}</div>`}</div>
-        <div class="qcol"><button class="qr shqr" type="button" aria-label="Show the QR code"><img src="${qrPng(SH.packed)}" alt="QR code for ${esc(SH.name)}" width="128" height="128"><span class="qcap">${TOUCH ? `${EXPAND}Tap to save` : `${SCAN}Scan in game`}</span></button></div>
-      </div></div>
-      <div class="shfoot"><button class="qclose shx" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>`;
+        ${T && T.d ? `<button class="tile t-ev t-td tlink shtoday" type="button" data-k="${Math.max(0, T.k)}" aria-label="Open this deck on the site"><svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><span class="tl">Today</span>${today}</button>` : `<div class="tile t-ev t-td"><span class="tl">Today</span>${today}</div>`}</div><div class="qcol"><button class="qr shqr" type="button" aria-label="Show the QR code"><img src="${qrPng(SH.packed)}" alt="QR code for ${esc(SH.name)}" width="128" height="128"><span class="qcap">${TOUCH ? `${EXPAND}Tap to save` : `${SCAN}Scan in game`}</span></button></div></div></div></div>
+      <div class="shfoot pdfoot"><button class="qclose shx" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>`;
   }
   function shQR() {
     const box = $("shBox"); box.dataset.mode = "qr"; track("shared-qr");
@@ -1914,6 +1936,14 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     }
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("shv").hidden && !cdlg.open) closeShared(); });
+  // Swipe down on the sheet (when it is scrolled to the top) closes it, like the game's sheets
+  { const bx = $("shBox"); let y0 = null, dy = 0;
+    bx.addEventListener("touchstart", (e) => { if (bx.scrollTop > 0 || e.touches.length > 1) { y0 = null; return; } y0 = e.touches[0].clientY; dy = 0; bx.style.transition = "none"; }, { passive: true });
+    bx.addEventListener("touchmove", (e) => { if (y0 == null) return; dy = Math.max(0, e.touches[0].clientY - y0); bx.style.transform = dy ? `translateY(${dy}px)` : ""; }, { passive: true });
+    const end = () => { if (y0 == null) return; y0 = null; bx.style.transition = "transform 0.2s ease";
+      if (dy > 80) { bx.style.transform = "translateY(100%)"; track("shared-swipe"); setTimeout(() => { bx.style.transform = ""; bx.style.transition = ""; closeShared(); }, 200); }
+      else bx.style.transform = ""; };
+    bx.addEventListener("touchend", end); bx.addEventListener("touchcancel", end); }
   $("shv").addEventListener("keydown", (e) => { const z = e.target.closest && e.target.closest("img[data-zid]"); if (z && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openCardId(z.dataset.zid, z.alt); } });
   const SAVE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>';
   // claude.ai downloads capability (null when this view cannot save); resolved once, used on click
