@@ -7,7 +7,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { createRequire } from "node:module";
 import { Resvg } from "@resvg/resvg-js";
 import jsQR from "jsqr";
-import { parseDeckCode, getCardDeckBuilderNr } from "ptcgp-deckcode";
+import { parseDeckCode, createDeckCode, getCardDeckBuilderNr } from "ptcgp-deckcode";
 import { findCard } from "./common.mjs";
 const require = createRequire(import.meta.url);
 
@@ -86,6 +86,22 @@ if (existsSync(`${site}/t`)) for (const f of readdirSync(`${site}/t`)) {
   t.lists.forEach((x) => lists.push({ where: `event ${t.tid} place ${x.pl}`, list: x, ev: true }));
 }
 
+// R16a (Nov 13, 2026): the page makes share links from cards.json. For every list the deck code made from cards.json
+// (card id -> game number, in the list's card order, with the list's energy) must be the same text as the QR's code.
+const NR = new Map();
+if (existsSync(`${site}/cards.json`))
+  for (const [nr, id] of JSON.parse(readFileSync(`${site}/cards.json`, "utf8")).c) NR.set(id, nr);
+let cardsOk = 0;
+const viaCards = (list) => {
+  const nrs = [];
+  for (const c of list.cards) {
+    const nr = NR.get(c.id);
+    if (nr == null) throw new Error(`cards.json has no number for ${c.id}`);
+    for (let k = 0; k < c.c; k++) nrs.push(nr);
+  }
+  return createDeckCode(nrs, list.energy);
+};
+
 let ok = 0, none = 0;
 const bad = [];
 for (const { where, list } of lists) {
@@ -99,6 +115,11 @@ for (const { where, list } of lists) {
     const energy = p.energy ?? p.energyTypes ?? null;
     if (Array.isArray(energy) && JSON.stringify([...energy].sort()) !== JSON.stringify([...list.energy].sort()))
       throw new Error(`energy differs: QR ${energy.join("+")} vs ${list.energy.join("+")}`);
+    if (NR.size) {
+      const mine = viaCards(list);
+      if (mine !== code) throw new Error(`cards.json code differs: ${mine} vs QR ${code}`);
+      cardsOk++;
+    }
     ok++;
   } catch (e) {
     bad.push(`${where}: ${e.message}`);
@@ -106,6 +127,7 @@ for (const { where, list } of lists) {
 }
 const nAlt = lists.filter((x) => x.alt).length, nEv = lists.filter((x) => x.ev).length;
 console.log(`QR check: ${ok} of ${lists.length} QR codes (${lists.length - nAlt - nEv} lists + ${nAlt} alt versions + ${nEv} event lists) decoded and ` +
-  `equal to the deck; ${none} without QR; ${bad.length} failed`);
+  `equal to the deck; ${none} without QR; ${bad.length} failed` +
+  (NR.size ? `; cards.json code = QR code: ${cardsOk}` : "; no cards.json"));
 bad.forEach((b) => console.log("  FAIL", b));
 process.exit(bad.length ? 1 : 0);

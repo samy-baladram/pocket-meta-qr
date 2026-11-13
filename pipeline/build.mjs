@@ -16,6 +16,11 @@ const QRCode = require("qrcode"); // the QR library that ptcgp-deckcode uses (de
 const MAX_VARIATIONS = 10;  // lists kept per deck (the page shows them as a carousel with 1 dot per list)
 const NEAR = 1;             // lists that differ by this many cards or fewer count as the same list
 const PD = new Map(require("pokemon-tcg-pocket-cards/data/v5/cards.min.json").map((c) => [c.id, c]));
+// R16b (Nov 13, 2026): tid + pid of a finish (row.key = "<tid>/<pid>") for the page's link to the Limitless decklist.
+const src = (row) => {
+  const [tid, pid] = String(row?.key || "").split("/");
+  return /^[0-9a-f]{24}$/.test(tid) && pid ? { tid, pid } : {};
+};
 const pdId = (set, num) => `${set.toLowerCase().replace(/^p-/, "p")}-${String(num).padStart(3, "0")}`;
 const LETTER = { G: "grass", R: "fire", W: "water", L: "lightning", P: "psychic", F: "fighting", D: "darkness", M: "metal" };
 
@@ -175,6 +180,7 @@ async function altVersion(a, v, name, problems, id) {
   }
   altLog[a.q ? "qr" : "none"]++;
   a.sc = a.row.sc; a.ev = a.row.ev; a.dt = a.row.dt;
+  Object.assign(a, src(a.row));   // R16b: tid + pid of that best finish
   delete a.row;
   return a;
 }
@@ -292,6 +298,7 @@ for (const [rank, d] of input.decks.entries()) {
   for (const c of chosen) {
     const v = await variation(name, c.list, problems, id, c.energy, vote);
     v.ev = c.row.ev; v.pl = c.row.pl; v.sc = c.row.sc; v.dt = c.row.dt;
+    Object.assign(v, src(c.row));   // R16b: tid + pid of the representative finish (Limitless decklist link)
     if (d.bc) {
       // R11b (Nov 11, 2026): "below the cut": the deck has no top player (W > L) in the window, so its only list is
       // its best-placed finish. Not a top player: nu = of = 0, no alt.
@@ -416,7 +423,7 @@ const eventLog = { events: 0, lists: 0, qr: 0, none: 0 };
         e.deck ? energyVote(name, votesOf.get(e.deck)) : null);
       if (e.deck) await deckInfo(e.deck);
       v.cards.forEach((c) => images.add(c.id));
-      lists.push({ pl: e.pl, place: e.place, deck: e.deck, sc: e.sc, p: e.p, energy: v.energy,
+      lists.push({ pl: e.pl, place: e.place, deck: e.deck, sc: e.sc, p: e.p, pid: e.pid, energy: v.energy,
         ...(v.eg ? { eg: v.eg } : {}), cards: v.cards, q: v.q });
       eventLog[v.q ? "qr" : "none"]++;
     }
@@ -479,8 +486,34 @@ for (const id of [...images].sort()) {
   }
 }
 writeFileSync("site/packs.json", JSON.stringify(packsOut));
+// R16c (Nov 13, 2026): keep the images of every card in every stored decklist (input.allCards), not only today's
+// cards, so old share links still show their cards. Rebuilt from the data, so a lost image cache only costs time.
+const keepImg = new Set(images);
+for (const [set, num] of input.allCards || []) { const id = pdId(set, num); if (PD.has(id)) keepImg.add(id); }
+
+// R16a (Nov 13, 2026): site/cards.json = card id <-> in-game deck number, for the page's share links.
+// One row per print with a number; the "display print" of each number carries the name: the print the site's
+// lists use (it has a c/ image), else the lowest rarity, then the oldest release.
+{
+  const RANK = { "◊": 1, "◊◊": 2, "◊◊◊": 3, "◊◊◊◊": 4 }, rows = [], base = new Map();
+  for (const c of PD.values()) {
+    const [s, n] = c.id.split("-");
+    const set = /^p[a-z]$/.test(s) ? `P-${s[1].toUpperCase()}` : s[0].toUpperCase() + s.slice(1);
+    const nr = getCardDeckBuilderNr(findCard(set, +n));
+    if (nr == null) continue;
+    rows.push([nr, c.id, c.name]);
+    const rk = [keepImg.has(c.id) ? 0 : 1, RANK[c.rarity] ?? 9, c.release_date || "9999", c.id];
+    const b = base.get(nr);
+    if (!b || rk.join("|") < b.rk.join("|")) base.set(nr, { id: c.id, rk });
+  }
+  rows.sort((a, b) => a[0] - b[0] || a[1].localeCompare(b[1]));
+  writeFileSync("site/cards.json", JSON.stringify({ v: 1,
+    c: rows.map(([nr, id, n]) => (base.get(nr).id === id ? [nr, id, n] : [nr, id])) }));
+  console.log(`cards.json: ${rows.length} prints, ${base.size} game numbers, ` +
+    `${[...base.values()].filter((b) => keepImg.has(b.id)).length} display prints with an image; images kept: ${keepImg.size}`);
+}
 writeFileSync("images.json", JSON.stringify({
-  cards: [...images].map((id) => ({ id, url: PD.get(id)?.image })),
+  cards: [...keepImg].map((id) => ({ id, url: PD.get(id)?.image })),
   art: [...new Set(decks.flatMap((d) => d.art))],
   packs: [...packImg].map(([id, url]) => ({ id, url })),
 }));

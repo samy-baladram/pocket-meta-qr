@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 18 (Nov 13, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 19 (Nov 13, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 19 (request R16 of the UI chat): permanent share links. New file **`cards.json`** (card id <-> in-game deck
+  number); new fields **`tid`** + **`pid`** (the Limitless decklist of the finish) on every list, `alt` entry and
+  `t/` list (`pid` only); the `c/` and `z/` images of every card in every stored decklist stay on the site.
 - Version 18 (user decision, Nov 13): **simpler new set day.** The 7-day window holds the tournaments of the last
   7 days of **all sets**; on a new set day the old set's events leave it day by day. `set`/`setName`/`setRelease`
   = the newest set that Limitless lists (it changes when Limitless lists the new set, usually on the release day or
@@ -89,6 +92,7 @@ Use the same word in new docs and UI notes.
 | `more.json` | **new in v11.** the decks with 0.2 % <= share < 0.5 % and at least 1 list (see below) | when "Show more decks" is tapped, or a search result points to one of its decks |
 | `events.json` | **new in v10.** the single-deck events of the window, newest first, with winner and top 8 (see below) | when the events tab opens |
 | `t/<tid>.json` | **new in v10.** the public lists of 1 event, in place order, with QR (see below) | when an event opens |
+| `cards.json` | **new in v19.** card id <-> in-game deck number, for share links (see below). About 100 KB (32 KB gzip) | when a link is shared or opened |
 | `e/<energy>.webp` | energy icon, 48 px (`grass`, `fire`, `water`, `lightning`, `psychic`, `fighting`, `darkness`, `metal`) | per energy |
 
 `cardId` = lower-case set + 3-digit number, for example `b1a-014`, `c1-127`, `pa-007` (promo A).
@@ -158,6 +162,7 @@ page shows the 10 groups with the most top players (`nu`), then the better best 
 | `pl` | string | place, e.g. `1st of 273` |
 | `sc` | string | record W-L-T, e.g. `11-1-2` |
 | `dt` | date | tournament day `YYYY-MM-DD` |
+| `tid`, `pid` | string | **new in v19.** Limitless tournament id (24 hex characters) and player id of the finish that gives `ev`/`pl`/`sc`/`dt`. Link: `https://play.limitlesstcg.com/tournament/<tid>/player/<pid>/decklist`. Also on `bc` lists. Absent only for a list without a decklist page (none today) |
 | `nu` | int | finishes in the group: exact copies + 1-card changes. UI: "top players" (see "UI words"). `0` on a `bc` list |
 | `of` | int | all the deck's finishes with a readable list in the window (also those of groups that are not shown). UI: "top players". `0` on a `bc` list |
 | `bc` | 1 or absent | **new in v13.** "below the cut": the deck has no top player (W > L) in the window, so this is its best-placed finish (smallest place / players) with any record. Then it is the deck's only list (`nv` 1), `nu` = `of` = 0, no `alt`; `pl`, `sc`, `ev`, `dt`, energy and QR as for any list. The deck is not in `search.json` |
@@ -184,6 +189,7 @@ page shows the 10 groups with the most top players (`nu`), then the better best 
 | `sc` | **new in v8.** record W-L-T of the best finish with this change |
 | `ev` | **new in v8.** tournament name of that finish |
 | `dt` | **new in v8.** tournament day of that finish (`YYYY-MM-DD`) |
+| `tid`, `pid` | **new in v19.** the Limitless decklist of that finish (same as on a list) |
 
 Sorted by `u` (high first), then best place. Always: `nu` = exact copies + the sum of all `u`.
 Every `in`/`out` card id has a `c/` image. The version's energy is always the list's energy; when an added Pokémon
@@ -320,7 +326,30 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 | `deck` | archetype id (name, art, energy in `events.json` `decks`) |
 | `sc` | record W-L-T |
 | `p` | the player's name as Limitless shows it (public) |
+| `pid` | **new in v19.** the Limitless player id (the decklist link uses the file's `tid`) |
 | `energy`, `eg`, `cards`, `q` | same rules as a list in `data.json` (energy shown on the page, else `eg: 2` the deck's most common Limitless energy, else `eg: 1` attack costs; QR decoded before deploy). Every card id has a `c/` image and is in `packs.json` |
+
+## cards.json (new in v19)
+
+```json
+{ "v": 1, "c": [[1018, "a1-001", "Bulbasaur"], [1018, "a1-227"], [1019, "a1-002", "Ivysaur"]] }
+```
+
+| Field | Meaning |
+|---|---|
+| `c` | one row per card print that has an in-game deck number: `[nr, cardId, name?]`, sorted by `nr`, then `cardId` |
+| `nr` | the game's deck builder number (`getCardDeckBuilderNr`, the same as in the QR codes). Several prints (alt arts, reprints) share 1 `nr` |
+| `name` | only on the **display print** of each `nr`: the print that the site's lists use (it has a `c/` image), else the lowest rarity (◊ first), then the oldest release |
+
+Rebuilt on every build from the card packages. Checked before deploy: for every list, `alt` version and event list,
+the deck code made from `cards.json` (card ids -> `nr` in the list's card order, the list's energy) is the same text
+as the code inside its QR.
+
+## Images (v19)
+
+`c/` and `z/` keep the images of **every card in every stored decklist** (all events since the set's backfill, also
+lists not shown), not only today's cards. So an old share link still shows its cards. Nov 13: 438 cards, `c/` 8 MB,
+`z/` 15 MB. Every display print in `cards.json` that a stored list uses has an image.
 
 ## search.json (new in v9)
 

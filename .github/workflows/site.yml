@@ -87,7 +87,7 @@ jobs:
       - name: Assemble the site
         run: |
           rm -rf public && mkdir public
-          mkdir -p site/v site/t && cp -r site/data.json site/packs.json site/search.json site/events.json site/more.json site/v site/t site/c site/z site/p site/e public/
+          mkdir -p site/v site/t && cp -r site/data.json site/packs.json site/search.json site/events.json site/more.json site/cards.json site/v site/t site/c site/z site/p site/e public/
           rm -f public/c/.width public/p/.width
           node pipeline/page.mjs site/index.html public/index.html
           # Static files from the UI chat (R7a): favicon, app icons, manifest, link preview image, robots.txt,

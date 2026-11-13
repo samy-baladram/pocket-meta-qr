@@ -103,7 +103,8 @@ for energy, cid in ENERGY_CARD.items():
     except Exception as e:
         failed.append(f"energy {energy}: {e}")
 
-# Remove files of cards and packs that are no longer on the site (their sources stay in cache/).
+# Remove files of cards and packs that are not in images.json (their sources stay in cache/). Since R16c (Nov 13, 2026)
+# images.json lists every card of every stored decklist, so card images of old lists stay for old share links.
 keep = {"c": set(urls), "z": set(urls), "p": {pk["id"] for pk in spec.get("packs", [])}}
 removed = 0
 for folder, ids in keep.items():

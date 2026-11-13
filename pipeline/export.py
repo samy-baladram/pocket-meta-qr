@@ -211,6 +211,8 @@ def main():
         "summary": {"tournaments": summary[0], "players": summary[1] or 0, "matches": matches},
         "span": [summary[2], summary[3]] if summary[2] else None,
         "decks": decks,
+        # R16c: every card of every stored decklist (its images stay on the site for old share links).
+        "allCards": db.execute("SELECT DISTINCT set_code, num FROM decklist_cards ORDER BY 1, 2").fetchall(),
         "setRelease": release,   # R15a: release day of the current set (the newest set Limitless lists)
         # R14 check values: the rank time 24 h ago and the deck list at build time by the same rule (must equal decks).
         "rk0At": t0, "newAfter": new_after, "rankNowCheck": rank_now,

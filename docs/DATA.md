@@ -172,6 +172,8 @@ The pairings do not say which deck a player used in a match. Thus:
 - Rank change (decision Nov 13, request R14): `rk0` = rank 24 h before the build, `nw` = first time in the list less than
   72 h ago (not in the first 72 h of a set). Both are computed from the tournaments' `fetched_at` ("the list as a build
   at time T would have made it"), see DATA_CONTRACT.md "Rank 24 h ago and NEW".
+- Share links (decision Nov 13, request R16): `cards.json` maps card ids to in-game deck numbers; lists carry the
+  `tid`/`pid` of their Limitless decklist; card images of every stored decklist stay on the site.
 - Cards are compared by card id (set + number). Limitless decklists use 1 standard print per card (checked Nov 9:
   989 decklists, 361 card ids, no ☆/Crown print, no card with 2 prints of the same function); `build.mjs`
   reports a problem if a deck ever has 2 prints of the same card.
