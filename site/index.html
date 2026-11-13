@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794532085-9669 -->
+<!-- ui: artifact version 1794536777-12df -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1061,12 +1061,13 @@ html { -webkit-tap-highlight-color: transparent; }
 .rb.solo .rn { padding: 0 4px; min-width: 22px; }
 .rb.rb.solo:not(.pm) .rn { padding: 0 5px; } .rb.rb.solo.pm .rn { padding: 0 6px; } /* rank only (no change): the same space on both sides (rows 5px, podium 6px) */
 .rb .rsep { display: block; flex: none; width: 1px; margin: 4px 0; border-radius: 1px; background: #d3dbe4; }
-.rb .dl { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; min-width: 12px; padding: 0 3px; font-size: 9px; font-weight: 900; line-height: 1; }
+.rb .dl { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; min-width: 12px; padding: 0 3px; font-size: 9px; font-weight: 900; line-height: 1; }
 .rb .dl svg { width: 6px; height: 4px; display: block; }
-.rb .dl.dn svg { margin-top: 1px; }
 .rb .dl.dn { transform: translateY(-1px); } /* the number and its down arrow, 1px up (the extra line above made the pair sit low) */ /* the digits sit high in their line box: the down arrow needs 1px more */
-.rb .dl.up { color: #1f9d55; } .rb .dl.dn { color: #d6345a; } .rb .dl.eq { color: #9aa6b6; font-size: 11px; font-weight: 600; }
-.rb .dl.nw { color: var(--acc-ink); font-size: 7px; letter-spacing: 0.02em; }
+.rb .dl.up { color: #1f9d55; } .rb .dl.dn { color: #d6345a; } .rb .dl.up, .rb .dl.dn { font-weight: 800; } .rb .dl.eq { color: #9aa6b6; font-size: 11px; font-weight: 600; }
+.rb .dl.nw { color: #c08200; font-weight: 800; font-size: 7px; letter-spacing: 0.02em; } /* bright gold, 3.3:1 on the white badge */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rb .dl.nw { color: #ffd166; } } /* 8.9:1 on the dark badge */
+:root[data-theme="dark"] .rb .dl.nw { color: #ffd166; }
 .arow[aria-expanded="true"] .rb { transform: scale(0.85); }
 .rb::after { content: ""; position: absolute; inset: -6px; } /* a larger tap area */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rb { background: #2a3242; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
@@ -1081,7 +1082,8 @@ html { -webkit-tap-highlight-color: transparent; }
 .rb:not(.pm) .dl { font-size: 8px; padding: 0 3px 0 2px; } .rb:not(.pm) .dl svg { width: 5px; height: 3.5px; } .rb:not(.pm) .dl.eq { font-size: 10px; }
 .rb:not(.pm) .rsep { margin: 3px 0; }
 /* The tip of the badge: the change in its color */
-.ipop p b.tup { color: #3f8a60; } .ipop p b.tdn { color: #b8566c; } .ipop p b.teq { color: var(--muted); } .ipop p b.tnw { color: var(--acc-ink); }
+.ipop p b.tup { color: #3f8a60; } .ipop p b.tdn { color: #b8566c; } .ipop p b.teq { color: var(--muted); } .ipop p b.tnw { color: #c08200; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ipop p b.tnw { color: #ffd166; } } :root[data-theme="dark"] .ipop p b.tnw { color: #ffd166; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ipop p b.tup { color: #7fbf9b; } :root:not([data-theme="light"]) .ipop p b.tdn { color: #e392a5; } }
 :root[data-theme="dark"] .ipop p b.tup { color: #7fbf9b; } :root[data-theme="dark"] .ipop p b.tdn { color: #e392a5; }
 /* Podium: the same badge with a crown just above the number and a light gold / silver / bronze tint (top-left light) */
@@ -1161,7 +1163,7 @@ html { -webkit-tap-highlight-color: transparent; }
   <header class="hdr">
     <div class="hband" aria-hidden="true"></div>
     <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to dark mode"></button>
-    <div class="ribbon"><span class="rlogo" aria-hidden="true"><svg viewBox="0 0 24 24" overflow="visible"><defs><linearGradient id="rlGrad" gradientUnits="userSpaceOnUse" x1="0" y1="2" x2="0" y2="22"><stop offset="0" style="stop-color:var(--rl-a)"/><stop offset="1" style="stop-color:var(--rl-b)"/></linearGradient></defs><g transform="skewX(-12) translate(2.5 0)"><g fill="none" stroke="url(#rlGrad)" stroke-width="2"><rect x="2.95" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="url(#rlGrad)"><rect x="4.9" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></g></svg></span><h1>Pocket Meta QR</h1></div>
+    <div class="ribbon"><span class="rlogo" aria-hidden="true"><svg viewBox="0 0 24 24" overflow="visible"><defs><linearGradient id="rlGrad" gradientUnits="userSpaceOnUse" x1="0" y1="2" x2="0" y2="22"><stop offset="0" style="stop-color:var(--rl-a)"/><stop offset="1" style="stop-color:var(--rl-b)"/></linearGradient></defs><g transform="skewX(-12) translate(2.5 0)"><g fill="none" stroke="url(#rlGrad)" stroke-width="2"><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="url(#rlGrad)"><path d="M2.009 6A4.8 4.8 0 0 1 11.491 6H9.448A2.8 2.8 0 0 0 4.052 6ZM2.009 7.5A4.8 4.8 0 0 0 11.491 7.5H9.448A2.8 2.8 0 0 1 4.052 7.5Z"/><circle cx="6.75" cy="6.75" r="1.785"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></g></svg></span><h1>Pocket Meta QR</h1></div>
     <div class="hrow">
     <h2 class="hsec">This week&rsquo;s Pok&eacute;mon TCG Pocket decks</h2>
     </div>
@@ -1285,7 +1287,7 @@ html { -webkit-tap-highlight-color: transparent; }
     return `<h3>Top players</h3><p>A <b>top player</b> won more matches than they lost (ties do not count) at a single-deck event in the last 7 days.</p>
     <p><b>${v.of}</b> top players used this deck; <b>${v.nu}</b> used this list${ch ? ` (${ex} exactly, ${ch} with 1 card changed)` : ""}.</p>`; };
   // Each version has a small QR button (logo glyph + "QR"); it opens the full-screen QR view for that version (data: alt[k].qr)
-  const QR_GLYPH = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="2.95" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="currentColor"><rect x="4.9" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></svg>';
+  const QR_GLYPH = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="currentColor"><path d="M2.009 6A4.8 4.8 0 0 1 11.491 6H9.448A2.8 2.8 0 0 0 4.052 6ZM2.009 7.5A4.8 4.8 0 0 0 11.491 7.5H9.448A2.8 2.8 0 0 1 4.052 7.5Z"/><circle cx="6.75" cy="6.75" r="1.785"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></svg>';
   const tName = (c) => c.n + (curDup.has(c.n) ? " " + c.id.split("-")[0].toUpperCase() : ""); // plain-text name (+ set code when needed)
   const altName = (a) => `\u2212${a.out.map(tName).join(", ")} +${a.in.map(tName).join(", ")}`;
   const altBtn = (v, i) => (v.alt && v.alt.length ? `<button class="altb" type="button" aria-expanded="false" aria-label="Also played: ${v.alt.length} one-card change${v.alt.length > 1 ? "s" : ""}" data-cids="${v.alt.flatMap((a) => a.in.map((c) => c.id)).join(" ")}">+ Also played ${v.alt.length}${CARET}</button>` : "");
@@ -1488,8 +1490,11 @@ html { -webkit-tap-highlight-color: transparent; }
     x.save(); x.translate(lx + 6, ly); x.transform(1, 0, Math.tan(-12 * Math.PI / 180), 1, 0, 0); x.scale(LS, LS);
     const lg = x.createLinearGradient(0, 2, 0, 22); lg.addColorStop(0, "#1fc1f6"); lg.addColorStop(1, "#2aa2f2");
     x.strokeStyle = lg; x.fillStyle = lg; x.lineWidth = 2;
-    [[2.95, 2.95], [13.45, 2.95], [2.95, 13.45]].forEach(([a, b]) => { rrect(x, a, b, 7.6, 7.6, 1.9); x.stroke(); });
-    [[4.9, 4.9], [15.4, 4.9], [4.9, 15.4]].forEach(([a, b]) => { rrect(x, a, b, 3.4, 3.4, 0.75); x.fill(); });
+    [[13.45, 2.95], [2.95, 13.45]].forEach(([a, b]) => { rrect(x, a, b, 7.6, 7.6, 1.9); x.stroke(); });
+    [[15.4, 4.9], [4.9, 15.4]].forEach(([a, b]) => { rrect(x, a, b, 3.4, 3.4, 0.75); x.fill(); });
+    // Top left finder = Pokéball: a ring cut by a level gap, with a round button (same path as the page glyph)
+    x.fill(new Path2D("M2.009 6A4.8 4.8 0 0 1 11.491 6H9.448A2.8 2.8 0 0 0 4.052 6ZM2.009 7.5A4.8 4.8 0 0 0 11.491 7.5H9.448A2.8 2.8 0 0 1 4.052 7.5Z"));
+    x.beginPath(); x.arc(6.75, 6.75, 1.785, 0, 2 * Math.PI); x.fill();
     [[14.5, 14.5], [20, 14.5], [17.25, 17.25], [14.5, 20], [20, 20]].forEach(([a, b]) => { x.beginPath(); x.arc(a, b, 1.5, 0, 2 * Math.PI); x.fill(); });
     x.restore();
     x.fillStyle = "#5d6b80"; x.font = F(800, 52); x.textBaseline = "middle";
