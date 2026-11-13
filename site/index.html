@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794585554-7b7b -->
+<!-- ui: artifact version 1794586832-b30d -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -666,6 +666,15 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .tw .achev svg { width: 9px; height: 12px; }
 .tw .ast { font-size: var(--fs-xs); line-height: 1.5; color: var(--muted); white-space: nowrap; }
 .tw .ast b { color: var(--ink); }
+.apop3.swp { justify-content: center; }
+.swsc { overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; padding: 6px; }
+.swsc::-webkit-scrollbar { display: none; }
+.swin { display: flex; flex-direction: column; align-items: center; gap: 2px; width: max-content; min-width: 100%; }
+.swr { display: flex; gap: 3px; }
+.swr img { width: var(--cw, 30px); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); cursor: zoom-in; }
+.swr.out img { filter: grayscale(0.35) brightness(0.92); } /* list 1's cards: a bit quieter */
+.swch { display: block; color: var(--muted); line-height: 0; }
+.swch svg { width: 12px; height: 7px; display: block; }
 .tdots { display: flex; justify-content: center; align-items: center; gap: 4px; min-height: 5px; padding-top: 5px; }
 @container (max-width: 300px) { /* narrow list columns (3 per view on wide screens): smaller cards, so the panel content fits */
   .tcar { --cw: 34px; --iw: 136px; } .apop3.one .tcar { --cw: 38px; --iw: 150px; }
@@ -685,6 +694,13 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .fins .fpl span, .fins .fdt { color: var(--muted); }
 .fins .fdt { text-align: right; }
 .fmore { margin: 2px 0 0; color: var(--muted); font-size: var(--fs-xs); }
+details.fmore { margin: 0 0 8px; color: inherit; font-size: inherit; } /* the extra rows look like the first 5 */
+details.fmore > summary { display: inline-flex; align-items: center; margin-top: 4px; padding: 1px 9px; font-size: var(--fs-xs); border: 1.5px solid var(--pill-line); border-radius: 999px;
+  background: var(--surface); color: var(--ink); font-weight: 600; cursor: pointer; list-style: none; }
+details.fmore > summary::-webkit-details-marker { display: none; }
+details.fmore[open] > summary { display: none; } /* open: the rest of the rows follow the first 5 */
+details.fmore .fins { margin-top: 0; }
+details.fmore .fins li:first-child { border-top: 1px solid var(--line); }
 /* Swap with the Hot / Top list: the Hot card › this list's card, names under them (one line; a long name slides) */
 .acar.asw { display: block; padding: 10px 10px 8px; scroll-snap-type: none; }
 .aswl { display: flex; align-items: flex-start; gap: 6px; width: max-content; margin: 0 auto; }
@@ -793,7 +809,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .cmpb .l1 { gap: 1px; }
 .cmpb .swi { width: 12px; height: 12px; display: block; flex: none; }
 .cmpb .cdi { width: 12px; height: 12px; display: block; flex: none; margin: 0 -1px 0 -1px; color: var(--muted); transform: scaleX(-1); } /* close to the number, mirrored */
-.sfoot > .usrow { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
+.sfoot > .usrow { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; margin-top: 2px; } /* Nov 14: 2px more room under the tiles */
 .sfoot .us { justify-self: start; border-radius: 999px; white-space: normal; background: none;
   color: var(--muted); font-size: var(--fs-xs); font-weight: 500; padding: 0 2px; line-height: 1.5; }
 .sfoot .us.top { display: inline-flex; align-items: center; background: var(--acc-bg); color: var(--acc-ink); font-weight: 600; padding: 1px 9px; }
@@ -1472,7 +1488,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const ordF = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th","st","nd","rd"][n % 10] || "th");
   const recTxt = (r) => r ? `${r[0]}-${r[1]}-${r[2]}` : "";
   const wrPct = (r) => { const n = r ? r[0] + r[1] + r[2] : 0; return n ? Math.round(100 * (r[0] + 0.5 * r[2]) / n) : null; };
-  const finRows = (f, n) => f && f.length ? `<ol class="fins">${f.map(([p, of, w, l, t, dt]) => `<li><span class="fpl">${ordF(p)} <span>of ${of}</span></span><span class="fsc">${w}-${l}-${t}</span><span class="fdt">${MON[+dt.slice(5, 7) - 1]} ${+dt.slice(8)}</span></li>`).join("")}</ol>${n > f.length ? `<p class="fmore">+ ${n - f.length} more</p>` : ""}` : "";
+  // Results: 5 rows; with all rows in the data (R19), "+ N more" opens the rest in place (<details>, no script); else a count
+  const finLi = (f) => `<ol class="fins">${f.map(([p, of, w, l, t, dt]) => `<li><span class="fpl">${ordF(p)} <span>of ${of}</span></span><span class="fsc">${w}-${l}-${t}</span><span class="fdt">${MON[+dt.slice(5, 7) - 1]} ${+dt.slice(8)}</span></li>`).join("")}</ol>`;
+  const finRows = (f, n) => !f || !f.length ? "" : finLi(f.slice(0, 5)) + (f.length > 5
+    ? `<details class="fmore"><summary>+ ${f.length - 5} more</summary>${finLi(f.slice(5))}</details>`
+    : n > f.length ? `<p class="fmore">+ ${n - f.length} more</p>` : "");
   const usedTip = (v, pop) => { const ch = altSum(v), ex = nxOf(v);
     return `<h3>Top players</h3><p>A <b>top player</b> won more matches than they lost (ties do not count) at a single-deck event in the last 7 days.</p>
     <p><b>${v.of}</b> top players used this deck; <b>${ex}</b> used exactly this list${v.rec ? ` (together <b>${recTxt(v.rec)}</b>, ${wrPct(v.rec)}% win)` : ""}${ch ? `, and <b>${ch}</b> more with 1 or 2 cards changed (\u201ctweaks\u201d${v.grec ? `; all ${v.nu} together ${recTxt(v.grec)}, ${wrPct(v.grec)}%` : ""})` : ""}.</p>
@@ -1508,7 +1528,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   };
   // "Below the cut" (R11, data bc: 1): a deck with no top player shows the list of its best-placed player, with an amber tab and an ⓘ
   // Nov 14: "Below the cut" is a quiet line in the top-player row (like "Popular now"): only the purple sad face is colored
-  const SAD_I = '<svg class="psad" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><circle cx="8.6" cy="10" r="1.45" fill="#fff"/><circle cx="15.4" cy="10" r="1.45" fill="#fff"/><path d="M7.8 16.9a5.2 5.2 0 0 1 8.4 0" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/></svg>';
+  const SAD_I = '<svg class="psad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><circle cx="8.8" cy="10" r="0.6" fill="currentColor"/><circle cx="15.2" cy="10" r="0.6" fill="currentColor"/><path d="M8.2 16.4a5 5 0 0 1 7.6 0"/></svg>'; // line style
   const bcLine = (v) => `<span class="ptxt bcx">${SAD_I}<b>Below the cut</b>${ii("below the cut", bcTip(v))}</span>`;
   const bcTip = (v) => `<h3>${SAD_I.replace('class="psad"', 'class="psad ph3"')} Below the cut</h3><p>No player of this deck won more matches than they lost in the last 7 days, so it has no top-player list.</p><p>This is the list of its best-placed player${v.pl ? `: <b>${esc(v.pl)}</b>` : ""}${v.sc ? `, record <b>${esc(v.sc)}</b>` : ""}. A starting point, not a proven list.</p>`;
   const bcTab = (v) => `<span class="dnote bctab">&#9888; Below the cut${ii("below the cut", `<h3>&#9888; Below the cut</h3><p>No player of this deck won more matches than they lost in the last 7 days, so it has no top-player list.</p><p>This is the list of its best-placed player${v.pl ? `: <b>${esc(v.pl)}</b>` : ""}${v.sc ? `, record <b>${esc(v.sc)}</b>` : ""}. A starting point, not a proven list.</p>`)}</span>`;
@@ -2746,6 +2766,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const L0 = d.lists ? d.lists[0] : d, pairs = sw ? swapPairs(v, L0) : null, items0 = sw ? pairs : v.alt || [];
     if (!items0.length) return;
     if (!sw) { track("also-played"); tweakPanel(btn, slide, d, i, v); return; }
+    track("compare"); swapPanel(btn, slide, d, i, pairs); return;
     track(sw ? "compare" : "also-played");
     curDup = dupNames(d);
     const pop = document.createElement("div");
@@ -2870,6 +2891,31 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       it.scrollIntoView({ behavior: reduced ? "auto" : "smooth", inline: "center", block: "nearest" });
     });
     show(0);
+  }
+  // Nov 14: the "N vs List 1" swaps in the same fixed panel as the tweaks (over the tiles): list-1 cards, a chevron down,
+  // this list's cards; the card size fits the panel (height first, then width; a long row scrolls). All swaps show in the grid.
+  function swapPanel(btn, slide, d, i, pairs) {
+    curDup = dupNames(d);
+    const info = slide.querySelector(".sfoot .info");
+    if (!info) return;
+    const sr = slide.getBoundingClientRect(), ir = info.getBoundingClientRect();
+    const row = (cs, cls) => cs.map((c) => `<img${cls} src="c/${c.id}.webp" data-cid="${c.id}" data-cn="${esc(c.n)}" alt="${esc(c.n)}" title="${esc(tName(c))}" width="150" height="209">`).join("");
+    const pop = document.createElement("div");
+    pop.className = "apop3 swp";
+    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top}px;width:${ir.width}px;height:${ir.height}px`;
+    pop.innerHTML = `<div class="swsc" role="group" aria-label="Cards swapped vs ${esc(L1n(d))}"><div class="swin"><div class="swr out">${row(pairs.map((x) => x.out), ' class="ao"')}</div>
+      <span class="swch" aria-hidden="true"><svg viewBox="0 0 14 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 2 5 5 5-5"/></svg></span>
+      <div class="swr">${row(pairs.map((x) => x.in), "")}</div></div></div>`;
+    slide.append(pop);
+    // card width: the 2 rows + chevron fill the height; narrower when the row would be wider than the panel (min 22 px, then it scrolls)
+    const n = pairs.length, H = pop.clientHeight - 12 - 7 - 4, W = pop.clientWidth - 12, g = 3;
+    const cw = Math.max(22, Math.min(Math.floor((H / 2) * 150 / 209), Math.floor((W - (n - 1) * g) / n), 46));
+    pop.style.setProperty("--cw", cw + "px");
+    altOpen = { btn, pop, slide, d, i, x0: slide.closest(".vars")?.scrollLeft || 0 };
+    btn.setAttribute("aria-expanded", "true");
+    slide.classList.add("aon"); slide.closest(".vars")?.classList.add("afocus");
+    altPreview(slide, pairs.map((x) => ({ slot: x.in.id, back: x.out, front: x.in })));
+    pop.addEventListener("click", (e) => { const im = e.target.closest("img[data-cid]"); if (im) openCardId(im.dataset.cid, im.dataset.cn); });
   }
   // Tap outside closes it (not a tap in the card zoom, the QR panel or a card popup that it opened)
   document.addEventListener("click", (e) => { if (altOpen && !e.target.closest(".apop2, .apop3, .qcol, #iPop, #cPop, dialog, .anew")) closeAlts(); });
