@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 20 (Nov 13, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 21 (Nov 13, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,10 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 21 (request R18 of the UI chat): fewer, clearer lists. A group holds versions up to **2 cards** apart
+  ("tweaks", `alt[].k` = 1 or 2); a group after list 1 is shown only with 2+ top players, or 1 top player in the top
+  8 of an event with 32+ players. New per list: **`grec`** (the group's combined record) and **`fin`** (the top 5
+  finishes with exactly the list). `alt` sorted by `k` first.
 - Version 20 (request R17 of the UI chat): each list group is represented by its **most-played version** (was: its
   best-placed finish), so list 1 is the list that the most top players used ("Popular now"). New fields **`nx`**
   (finishes with exactly this list) and **`rec`** (`[w, l, t]` of those finishes) per list, and **`rec`** per `alt`.
@@ -154,9 +158,12 @@ A list is the representative of a **group** (v20, request R17): the group's **mo
 1. All top-player finishes of the deck are counted by exact version (the 20 cards by card id): `n` finishes, their
    combined record, their best place (place / players).
 2. Versions are read by `n` (high first), then win rate ((W + 0.5·T) / (W + L + T), as in the deck table), then best
-   place; a version joins the first group whose representative is 1 card swap or less away, else it starts a group
-   and represents it. So no `alt` has more finishes than its list's `nx`.
-3. Groups are sorted by `nu` (high first), then the group's win rate, then its best place; the page shows the first 10.
+   place; a version joins the first group whose representative is **2 cards or less** away (v21; was 1), else it
+   starts a group and represents it. So no `alt` has more finishes than its list's `nx`, and every 2 shown lists of a
+   deck are 3+ cards apart.
+3. Groups are sorted by `nu` (high first), then the group's win rate, then its best place. Shown (v21): list 1
+   always; then each group with **2+ top players** (`nu` >= 2), or with 1 top player whose finish is in the **top 8**
+   of an event with **32+ players**; at most 10. Groups not shown still count in `of` and in `search.json`.
 The list's `ev`, `pl`, `sc`, `dt`, energy, QR, `tid`, `pid` come from the representative version's best finish.
 (Until v19: the representative was the group's best-placed finish, so list 1 could be a version that few used.)
 
@@ -175,6 +182,8 @@ The list's `ev`, `pl`, `sc`, `dt`, energy, QR, `tid`, `pid` come from the repres
 | `nu` | int | finishes in the group: exact copies + 1-card changes. UI: "top players" (see "UI words"). `0` on a `bc` list |
 | `of` | int | all the deck's finishes with a readable list in the window (also those of groups that are not shown). UI: "top players". `0` on a `bc` list |
 | `bc` | 1 or absent | **new in v13.** "below the cut": the deck has no top player (W > L) in the window, so this is its best-placed finish (smallest place / players) with any record. Then it is the deck's only list (`nv` 1), `nu` = `of` = 0, no `alt`; `pl`, `sc`, `ev`, `dt`, energy and QR as for any list. The deck is not in `search.json` |
+| `grec` | [w, l, t] | **new in v21.** the combined record of all finishes of the group (exact copies + tweaks) = `rec` + the sum of `alt[].rec`. Absent on `bc` lists |
+| `fin` | array or absent | **new in v21.** the top 5 finishes with exactly this list, best place (place / players) first: `[[place, players, w, l, t, "YYYY-MM-DD"], ...]`. Only when `nx` >= 2 |
 | `nx` | int | **new in v20.** finishes with exactly this list (the exact copies). Always `nu` = `nx` + the sum of `alt[].u`. Absent on `bc` lists |
 | `rec` | [w, l, t] | **new in v20.** the combined record of the `nx` finishes (match wins, losses, ties). Absent on `bc` lists |
 | `alt` | array or absent | **new in v7.** the distinct 1-card changes inside the group (see below). Absent when the group has only exact copies |
@@ -192,7 +201,8 @@ The list's `ev`, `pl`, `sc`, `dt`, energy, QR, `tid`, `pid` come from the repres
 
 | Field | Meaning |
 |---|---|
-| `in` | cards that the change has and the shown list does not ({id, n, c}; with the 1-card rule: 1 card) |
+| `in` | cards that the change has and the shown list does not ({id, n, c}; v21: up to 2 cards: 2 different cards, or 1 card with `c: 2`) |
+| `k` | **new in v21.** cards changed: 1 or 2 (= the sum of `in[].c` = the sum of `out[].c`) |
 | `out` | cards of the shown list that the change does not have |
 | `u` | finishes ("top players") with exactly this change |
 | `pl` | the best place among them (same format as `pl`) |
@@ -203,7 +213,8 @@ The list's `ev`, `pl`, `sc`, `dt`, energy, QR, `tid`, `pid` come from the repres
 | `dt` | **new in v8.** tournament day of that finish (`YYYY-MM-DD`) |
 | `tid`, `pid` | **new in v19.** the Limitless decklist of that finish (same as on a list) |
 
-Sorted by `u` (high first), then best place. Always: `nu` = exact copies + the sum of all `u`.
+Sorted by `k` (1 first), then `u` (high first), then win rate, then best place (v21; until v20: `u`, then best place).
+Always: `nu` = exact copies + the sum of all `u`.
 Every `in`/`out` card id has a `c/` image. The version's energy is always the list's energy; when an added Pokémon
 needs another type, the build log says so (none on Nov 9). The QR check decodes every `alt` QR before deploy. Example UI text: "Also played: −1 Red Card +1 Soothing Shore
 (2 top players, best 15th of 203)".

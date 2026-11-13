@@ -14,7 +14,10 @@ const require = createRequire(import.meta.url);
 const QRCode = require("qrcode"); // the QR library that ptcgp-deckcode uses (deckCodeToSVG = QRCode.toString)
 
 const MAX_VARIATIONS = 10;  // lists kept per deck (the page shows them as a carousel with 1 dot per list)
-const NEAR = 1;             // lists that differ by this many cards or fewer count as the same list
+const NEAR = 2;             // R18: lists that differ by this many cards or fewer are 1 group (the others: "tweaks")
+// R18b (Nov 13, 2026): a group after list 1 is shown only with SHOW_MIN_PLAYERS+ top players, or with 1 top player
+// whose finish is in the top SHOW_TOP of an event with SHOW_MIN_EVENT+ players. MAX_VARIATIONS stays the hard limit.
+const SHOW_MIN_PLAYERS = 2, SHOW_TOP = 8, SHOW_MIN_EVENT = 32;
 const PD = new Map(require("pokemon-tcg-pocket-cards/data/v5/cards.min.json").map((c) => [c.id, c]));
 // R16b (Nov 13, 2026): tid + pid of a finish (row.key = "<tid>/<pid>") for the page's link to the Limitless decklist.
 const src = (row) => {
@@ -132,7 +135,7 @@ function makeQR(list, energy, problems, id) {
   return packQR(code);
 }
 
-// R2 (Nov 9, 2026): the distinct 1-card changes inside a group, compared with its representative (the shown list).
+// R2 (Nov 9, 2026), R18 (Nov 13): the distinct 1- or 2-card changes ("tweaks") inside a group, compared with its representative.
 //   in  = cards the change has and the shown list does not; out = cards of the shown list that the change does not have.
 //   u   = finishes with that change; pl = the best place among them (members come best place first).
 // Sorted by u (high first), then best place. Exact copies are not listed, so nu = exact copies + sum of u.
@@ -140,6 +143,8 @@ function makeQR(list, energy, problems, id) {
 const rec3 = (sc) => String(sc).split("-").map(Number);
 const addRec = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
 const winRate = ([w, l, t]) => (w + l + t ? (w + 0.5 * t) / (w + l + t) : 0);
+// R18: "4th of 69" -> [4, 69].
+const placeOf = (pl) => { const m = String(pl).match(/^(\d+)\D+of (\d+)/); return m ? [+m[1], +m[2]] : [Infinity, 0]; };
 function changes(g) {
   const by = new Map();
   g.members.forEach((x, order) => {
@@ -153,10 +158,13 @@ function changes(g) {
     const key = JSON.stringify([ins.map((c) => [c.id, c.c]).sort(), outs.map((c) => [c.id, c.c]).sort()]);
     const e = by.get(key);
     if (e) { e.u++; e.rec = addRec(e.rec, x.rec); }
-    else by.set(key, { in: ins, out: outs, u: 1, pl: x.row.pl, order, row: x.row, rec: [...x.rec] });
+    else by.set(key, { in: ins, out: outs, k: ins.reduce((t, c) => t + c.c, 0), u: 1, pl: x.row.pl, order, row: x.row,
+      rec: [...x.rec] });
   });
-  // R17: rec = [w, l, t] of the u finishes (R17b).
-  return [...by.values()].sort((a, b) => b.u - a.u || a.order - b.order).map(({ order, ...a }) => a);
+  // R17: rec = [w, l, t] of the u finishes. R18: k = cards changed (1 or 2); sort by k, then u, then win rate, then
+  // best place.
+  return [...by.values()].sort((a, b) => a.k - b.k || b.u - a.u || winRate(b.rec) - winRate(a.rec) || a.order - b.order)
+    .map(({ order, ...a }) => a);
 }
 
 // R5 (Nov 9, 2026): a QR code for each alt version. Its list is exact: the shown list - out + in (1-card rule).
@@ -308,13 +316,22 @@ for (const [rank, d] of input.decks.entries()) {
     continue;
   }
   printGuard(id, groups.flatMap((g) => g.members.map((x) => x.list)), problems);
-  // Step 3: most top players first; then the group's win rate; then its best place.
-  const chosen = groups.map((g, i) => ({ ...g, used: g.members.length, i }))
-    .sort((a, b) => b.used - a.used || winRate(b.rec) - winRate(a.rec) || a.bestIdx - b.bestIdx)
-    .slice(0, MAX_VARIATIONS);
-  if (groups.length > MAX_VARIATIONS) dropped.push(`${id}: ${groups.length} groups, kept ${MAX_VARIATIONS} ` +
-    `(smallest kept: ${chosen.at(-1).used} top players; largest dropped: ${Math.max(...groups.map((g) => g.members.length)
-      .filter((_, i) => !chosen.some((c) => c.i === i)))})`);
+  // Step 3: most top players first; then the group's win rate; then its best place. R18b: show list 1 always, then the
+  // groups that pass the show rule, at most MAX_VARIATIONS.
+  const sorted = groups.map((g, i) => ({ ...g, used: g.members.length, i }))
+    .sort((a, b) => b.used - a.used || winRate(b.rec) - winRate(a.rec) || a.bestIdx - b.bestIdx);
+  const showable = (g) => {
+    if (g.used >= SHOW_MIN_PLAYERS) return true;
+    const [place, players] = placeOf(g.members[0].row.pl);
+    return place <= SHOW_TOP && players >= SHOW_MIN_EVENT;
+  };
+  const chosen = [], notShown = [];
+  for (const [k, g] of sorted.entries()) {
+    if (chosen.length < MAX_VARIATIONS && (k === 0 || showable(g))) chosen.push(g);
+    else notShown.push(g);
+  }
+  if (notShown.length) dropped.push(`${id}: kept ${chosen.length} of ${sorted.length} groups; not shown: ` +
+    notShown.map((g) => `${g.used} (${g.members[0].row.sc}, ${g.members[0].row.pl})`).join(", "));
 
   const vote = energyVote(name, d.votes);
   const vars = [];
@@ -333,6 +350,10 @@ for (const [rank, d] of input.decks.entries()) {
     v.of = of;     // all finishes with a readable list (also those of groups that are not kept)
     v.nx = c.rep.members.length;   // R17b: finishes with exactly this list
     v.rec = c.rep.rec;             // R17b: their combined [w, l, t]
+    v.grec = c.rec;                // R18c: the combined [w, l, t] of the whole group (exact copies + tweaks)
+    // R18c: the top 5 finishes with exactly this list, best place first: [place, players, w, l, t, day].
+    if (v.nx >= 2) v.fin = [...c.rep.members].sort((a, b) => a.idx - b.idx).slice(0, 5)
+      .map((x) => [...placeOf(x.row.pl), ...x.rec, x.row.dt]);
     const alt = changes(c);
     if (alt.length) v.alt = await Promise.all(alt.map((a) => altVersion(a, v, name, problems, id)));
     vars.push(v);

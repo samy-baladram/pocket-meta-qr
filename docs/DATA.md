@@ -161,6 +161,10 @@ The pairings do not say which deck a player used in a match. Thus:
   not its best-placed finish: versions are read by finishes (high first), then win rate, then best place, and a
   version joins the first group within 1 card swap; groups are sorted by finishes, then win rate, then best place.
   Each list has `nx` (exact copies) and `rec` (their combined record); each `alt` has `rec`.
+- Tweaks and show rule (decision Nov 13, 2026, request R18): a group holds versions up to 2 cards apart ("tweaks");
+  after list 1 a group is shown only with 2+ top players, or 1 top player in the top 8 of a 32+ player event
+  (`SHOW_MIN_PLAYERS`, `SHOW_TOP`, `SHOW_MIN_EVENT` in build.mjs); at most 10. Lists get `grec` and `fin` (top 5
+  finishes with exactly the list); tweaks get `k`.
 - Each `alt` version also gets a QR code (decision Nov 9, request R5): the shown list - out + in, with the shown
   list's energy, and the record, event and day of its best finish. Checked before deploy like the lists' QRs.
 - Card index for the search (decision Nov 9, request R6): `search.json` lists every card on the page with, per deck,
