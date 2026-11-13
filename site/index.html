@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794536777-12df -->
+<!-- ui: artifact version 1794549879-73f1 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -219,6 +219,18 @@ footer a { color: var(--muted); }
 .since .sinb { appearance: none; margin: 0; border: 0; background: none; font: inherit; color: inherit; text-align: inherit; cursor: pointer; display: inline-flex; max-width: 100%; box-sizing: border-box; align-items: center; gap: 8px; padding: 6px 8px 6px 12px; border-radius: 999px; font-size: var(--fs-s); color: var(--ink);
   background: linear-gradient(var(--acc-bg), var(--acc-bg)), var(--surface); border: 1px solid var(--acc-line); }
 .since .sinb b { color: var(--acc-ink); }
+/* New-set note (Nov 13): a flat info line, not a button. "New set out, no events yet" / "Early data" */
+.hdr .nset { position: relative; z-index: 1; margin: 8px 0 0; display: flex; align-items: flex-start; gap: 8px; padding: 7px 12px; border-radius: 12px;
+  font-size: var(--fs-s); line-height: 1.4; color: var(--ink); background: linear-gradient(var(--acc-bg), var(--acc-bg)), var(--surface); border: 1px solid var(--acc-line); }
+.hdr .nset[hidden] { display: none; }
+.nset svg { flex: none; width: 15px; height: 15px; margin-top: 1px; color: var(--acc-ink); }
+.nset b { color: var(--acc-ink); }
+/* Share link (QR panel): a quiet text button under the steps */
+.qslink { appearance: none; margin: 2px 0 0; padding: 4px 10px; border: 0; border-radius: 999px; background: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
+  font: inherit; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.02em; color: var(--acc-ink); }
+.qslink svg { width: 13px; height: 13px; display: block; }
+.qslink:hover { background: var(--acc-bg); }
+.qslink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .since .sinx { appearance: none; margin: 0; border: 0; background: none; font: inherit; color: inherit; text-align: inherit; padding: 0; cursor: pointer; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
 .since .sinx:focus-visible, .since .sinb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .newb { display: inline-block; margin-left: 6px; padding: 0 5px; border-radius: 4px; font-size: 10px; font-weight: 800; letter-spacing: 0.04em; line-height: 16px; vertical-align: 2px;
@@ -1169,6 +1181,7 @@ html { -webkit-tap-highlight-color: transparent; }
     </div>
     <div class="mline"><p class="meta" id="meta">Loading&hellip;</p>
     <p class="live" id="live" hidden></p></div>
+    <p class="nset" id="nset" role="note" hidden></p>
     <p class="since" id="since" hidden></p>
   </header>
 
@@ -1606,6 +1619,24 @@ html { -webkit-tap-highlight-color: transparent; }
   }
   let dlgDeck = null, dlgI = 0, dlgAlt = null; // dlgAlt: the "Also played" version shown (index in alt), or null
   // Save button: the phone's share sheet (one tap: Save Image), else a download; long-press / right-click stay as a fallback
+  const LINK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4L11.6 6"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1.6-1.6"/></svg>';
+  // Share link (Nov 13): the deck and list on this site (#<deck>/<list>, list 1 = #<deck>). Phones: the share sheet; else copy.
+  const siteBase = () => /pocketmetaqr\.com$/.test(location.hostname) ? "https://pocketmetaqr.com/" : location.origin + location.pathname;
+  async function shareLink(e) {
+    e.stopPropagation();
+    if (!dlgDeck) return;
+    const d = dlgDeck, url = siteBase() + "#" + d.id + (dlgI > 0 ? "/" + (dlgI + 1) : ""), lab = e.target.closest(".qslink").querySelector("span");
+    track("share-link");
+    if (TOUCH && navigator.share) {
+      try { await navigator.share({ title: d.name + " \u2013 Pocket Meta QR", url }); return; }
+      catch (err) { if (err && err.name === "AbortError") return; }
+    }
+    let ok = false;
+    try { await navigator.clipboard.writeText(url); ok = true; } catch (err) {}
+    if (!ok) { try { const t = document.createElement("textarea"); t.value = url; t.style.cssText = "position:fixed;opacity:0"; document.body.append(t); t.select(); ok = document.execCommand("copy"); t.remove(); } catch (err) {} }
+    if (ok) { lab.textContent = "Link copied"; setTimeout(() => { if (lab.isConnected) lab.textContent = TOUCH ? "Share link" : "Copy link"; }, 1800); }
+    else qmsgEl().textContent = url;
+  }
   const SAVE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>';
   // claude.ai downloads capability (null when this view cannot save); resolved once, used on click
   const dlCap = window.claude && window.claude.use ? Promise.resolve(window.claude.use("downloads")).catch(() => null) : Promise.resolve(null);
@@ -1651,7 +1682,7 @@ html { -webkit-tap-highlight-color: transparent; }
     return `<div class="qsbox">
       <p class="qsdeck"><b>${esc(d.name)}</b>${name ? `<span class="qsl">${name}</span>` : ""}</p>
       <div class="qsrow"><img class="qsimg" src="${qrPng(svg, "#eef5f9")}" alt="QR code for ${esc(d.name)}" width="240" height="240"></div>
-      <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><p class="qsite">pocketmetaqr.com</p></div>
+      <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><button class="qslink" type="button">${LINK_ICON}<span>${TOUCH ? "Share link" : "Copy link"}</span></button></div>
       <button class="qsave qssave" type="button">${SAVE_ICON}${TOUCH ? "Save image" : "Download image"}</button><p class="qmsg" id="qsMsg" role="status"></p>`;
   }
   async function openQRSheet(anchor, d, i, ak = null) {
@@ -2150,6 +2181,7 @@ html { -webkit-tap-highlight-color: transparent; }
     <p class="afine">Made by <a href="https://www.reddit.com/user/Myxas_/" target="_blank" rel="noopener">u/Myxas_</a>.</p></div>`;
   ipop.addEventListener("click", (e) => {
     if (e.target.closest(".qssave")) saveQR(e);
+    if (e.target.closest(".qslink")) shareLink(e);
   });
   let tipBtn = null, tipAt = 0; // tipAt: open time (a scroll just after the click, e.g. the browser bringing the button into view, does not close it)
   function placeTip() {
@@ -2580,8 +2612,17 @@ html { -webkit-tap-highlight-color: transparent; }
     if (!ipop.hidden && !st.tip && !FLOAT) hideTip(true);
     // An open deck has no history entry anymore, so going back (closing a popup) must not close it
   });
-  window.addEventListener("hashchange", () => { const id = location.hash.slice(1); if (!data || !id || id === openId) return;
-    if ($(id)) open(id); else if (id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); open(id); } }); });
+  // "#<deck>/<list>": open the deck at that list (a shared link); list numbers start at 1
+  const hashParts = () => { const [id, k] = decodeURIComponent(location.hash.slice(1)).split("/"); return [id, Math.max(0, (parseInt(k, 10) || 1) - 1)]; };
+  function openAt(id, k) {
+    open(id);
+    if (!k) return;
+    const d = data.decks.find((x) => x.id === id), p = $(id) && $(id).querySelector(".apanel");
+    if (!d || !p || k >= (d.nv || 1)) return;
+    setTimeout(() => { const vars = p.querySelector(".vars"), sl = p.querySelectorAll(".slide"); if (openId === id && sl[k]) vars.scrollTo({ left: sl[k].offsetLeft - sl[0].offsetLeft, behavior: "auto" }); }, 60);
+  }
+  window.addEventListener("hashchange", () => { const [id, k] = hashParts(); if (!data || !id || id === openId) return;
+    if ($(id)) openAt(id, k); else if (id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); openAt(id, k); } }); });
   $("list").addEventListener("click", (e) => {
     // Nov 12: the faded rows and the link are one "read more" area: a tap shows all smaller decks (no deck opens)
     if (e.target.closest(".acc.peek")) { e.preventDefault(); e.stopPropagation(); moreShown = true; track("more-decks-row"); applyFilter(); return; }
@@ -2728,7 +2769,13 @@ html { -webkit-tap-highlight-color: transparent; }
     .then((j) => {
       data = normQ(j);
       // Artifact preview only: sample rank changes until the R14 data exists (never on the live site)
-      if (!/pocketmetaqr\.com$/.test(location.hostname) && !data.decks.some((d) => "rk0" in d)) {
+      // Demo of the new-set note, off the live site only: ?demo=set0 (new set out, no events yet), ?demo=set1 (early data)
+      const demo = !/pocketmetaqr\.com$/.test(location.hostname) && (new URLSearchParams(location.search).get("demo") || "");
+      if (demo === "set0") { data.next = { set: "C2", setName: "Sample Set", release: data.updatedAt.slice(0, 10) }; data.decks.forEach((d) => { d.rk0 = d.rank; delete d.nw; }); } // v17: the frozen old list, rk0 = rank
+      if (demo === "set1") { data.setRelease = new Date(Date.parse(data.updatedAt) - 2 * 864e5).toISOString().slice(0, 10); if (data.summary) data.summary.tournaments = 4;
+        if (data.span) data.span[0] = data.setRelease; data.decks.forEach((d) => { delete d.rk0; delete d.nw; }); data.noTrendDemo = 1; }
+      renderSetNote();
+      if (!data.noTrendDemo && !/pocketmetaqr\.com$/.test(location.hostname) && !data.decks.some((d) => "rk0" in d)) {
         const S = [0, -1, 1, -2, 1, 0, -5, 3, -1, 2, 0, -3]; data.decks.forEach((d, k) => { if (k < S.length) d.rk0 = d.rank + S[k]; else d.rk0 = d.rank; });
         if (data.decks[8]) { delete data.decks[8].rk0; data.decks[8].nw = 1; }
       }
@@ -2748,9 +2795,9 @@ html { -webkit-tap-highlight-color: transparent; }
       renderList(); watchMore();
       setupFilter();
       podFit(); podGrow();
-      const id = location.hash.slice(1);
-      if (id && $(id)) open(id); // shared link: open that deck; otherwise all rows start closed
-      else if (id && id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); open(id); } });
+      const [id, hk] = hashParts();
+      if (id && $(id)) openAt(id, hk); // shared link: open that deck (and list); otherwise all rows start closed
+      else if (id && id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); openAt(id, hk); } });
       let t0 = null; try { t0 = localStorage.getItem("pmq-tab"); } catch (err) {}
       if (id === "events" || (!(id && $(id)) && t0 === "events")) setTab("events", false);
       // After a home-screen refresh (see below): back to the old scroll place when no deck was open, and a short "Updated" note
@@ -2857,16 +2904,35 @@ html { -webkit-tap-highlight-color: transparent; }
   function seenDecks() {
     const top = data.decks.slice(0, 10).map((d) => d.id);
     if (KEEP) (KEEP.d || []).forEach((id) => top.includes(id) && NEWD.add(id));
-    if (SEEN && SEEN.u && SEEN.u !== data.updatedAt && SEEN.t10) top.forEach((id) => { if (!SEEN.t10.includes(id)) NEWD.add(id); });
-    saveSeen({ u: data.updatedAt, t10: top }); keepNew(); renderSince();
+    const sameSet = !SEEN || !SEEN.set || SEEN.set === data.set; // a new set: everything is new, so no "since" pill
+    if (sameSet && SEEN && SEEN.u && SEEN.u !== data.updatedAt && SEEN.t10) top.forEach((id) => { if (!SEEN.t10.includes(id)) NEWD.add(id); });
+    saveSeen({ u: data.updatedAt, t10: top, set: data.set }); keepNew(); renderSince();
   }
   function seenEvents() {
     if (!EV || !EV.events) return;
     const ids = EV.events.map((e) => e.tid);
     if (KEEP) (KEEP.e || []).forEach((id) => ids.includes(id) && NEWE.add(id));
-    if (SEEN && SEEN.ev && SEEN.u !== data.updatedAt) ids.forEach((id) => { if (!SEEN.ev.includes(id)) NEWE.add(id); });
+    if (SEEN && SEEN.ev && SEEN.u !== data.updatedAt && (!SEEN.set || SEEN.set === data.set)) ids.forEach((id) => { if (!SEEN.ev.includes(id)) NEWE.add(id); });
     saveSeen({ ev: ids }); keepNew(); renderSince();
     if (NEWE.size && !$("evl").hidden) renderEvents(); // the tab is already open: add the tags
+  }
+  // ===== New set (request R15) =====
+  // data.next = {set, setName, release}: a new set is out, but it has no events yet, so the page still shows the old set.
+  // data.setRelease = the current set's release day: in its first 7 days, or with fewer than 10 events, the data is early.
+  function renderSetNote() {
+    const el = $("nset"), day = (s) => new Date(s + "T00:00:00Z").toLocaleDateString(undefined, { month: "short", day: "numeric", timeZone: "UTC" });
+    const ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>';
+    let t = "";
+    const nx = data.next, old = esc(data.setName || data.set || "the last set");
+    if (nx && nx.release) {
+      const today = nx.release === new Date().toISOString().slice(0, 10);
+      t = `<b>New set: ${esc(nx.setName || nx.set)}</b> came out ${today ? "today" : day(nx.release)}. Until its first events, these are the final decks of ${old}.`;
+    } else if (data.setRelease) {
+      const age = (Date.parse(data.updatedAt) - Date.parse(data.setRelease + "T00:00:00Z")) / 864e5, ev = data.summary ? data.summary.tournaments : 0;
+      if (age < 7 || ev < 10) t = `<b>Early data</b> for ${old}: ${ev} event${ev === 1 ? "" : "s"} since ${day(data.setRelease)}. The ranks can change fast.`;
+    }
+    el.innerHTML = t ? ICON + `<span>${t}</span>` : "";
+    el.hidden = !t;
   }
   function renderSince() {
     const el = $("since"), ne = NEWE.size, nd = NEWD.size;
