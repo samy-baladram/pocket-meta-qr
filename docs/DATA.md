@@ -39,7 +39,7 @@ The round links come from the pairings page itself. The last link is the top cut
   Compared on the 34 C1 events: +46 % requests for about 2x the decks with 20 usable finishes (a fixed top 32
   needs +93 % for a little more).
 - Current set: the newest set (not a promo set) with a release date of today or earlier. Each run reads
-  the set list, so a new set starts a new window automatically. Each tournament gets the set that was
+  the set list, so the set name changes automatically. Each tournament gets the set that was
   current on its day.
 - New set day (user decision Nov 13, 2026; replaces request R15's hold rule): no special rule. The 7-day window holds
   the tournaments of the last 7 days of all sets, so the old set's events leave it day by day; the set name is the
