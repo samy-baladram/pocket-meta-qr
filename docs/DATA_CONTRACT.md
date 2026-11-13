@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 19 (Nov 13, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 20 (Nov 13, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 20 (request R17 of the UI chat): each list group is represented by its **most-played version** (was: its
+  best-placed finish), so list 1 is the list that the most top players used ("Popular now"). New fields **`nx`**
+  (finishes with exactly this list) and **`rec`** (`[w, l, t]` of those finishes) per list, and **`rec`** per `alt`.
 - Version 19 (request R16 of the UI chat): permanent share links. New file **`cards.json`** (card id <-> in-game deck
   number); new fields **`tid`** + **`pid`** (the Limitless decklist of the finish) on every list, `alt` entry and
   `t/` list (`pid` only); the `c/` and `z/` images of every card in every stored decklist stay on the site.
@@ -147,9 +150,15 @@ Use the same word in new docs and UI notes.
 
 ### list (list 1 in `data.json`, lists 2..`nv` in `v/<id>.json`)
 
-A list is the representative of a **group**: the group's best-placed finish. All finishes of the deck are grouped
-first (best place first; a finish joins the first group whose representative is 1 card swap or less away). The
-page shows the 10 groups with the most top players (`nu`), then the better best place, in that order.
+A list is the representative of a **group** (v20, request R17): the group's **most-played version**.
+1. All top-player finishes of the deck are counted by exact version (the 20 cards by card id): `n` finishes, their
+   combined record, their best place (place / players).
+2. Versions are read by `n` (high first), then win rate ((W + 0.5·T) / (W + L + T), as in the deck table), then best
+   place; a version joins the first group whose representative is 1 card swap or less away, else it starts a group
+   and represents it. So no `alt` has more finishes than its list's `nx`.
+3. Groups are sorted by `nu` (high first), then the group's win rate, then its best place; the page shows the first 10.
+The list's `ev`, `pl`, `sc`, `dt`, energy, QR, `tid`, `pid` come from the representative version's best finish.
+(Until v19: the representative was the group's best-placed finish, so list 1 could be a version that few used.)
 
 | Field | Type | Meaning |
 |---|---|---|
@@ -166,6 +175,8 @@ page shows the 10 groups with the most top players (`nu`), then the better best 
 | `nu` | int | finishes in the group: exact copies + 1-card changes. UI: "top players" (see "UI words"). `0` on a `bc` list |
 | `of` | int | all the deck's finishes with a readable list in the window (also those of groups that are not shown). UI: "top players". `0` on a `bc` list |
 | `bc` | 1 or absent | **new in v13.** "below the cut": the deck has no top player (W > L) in the window, so this is its best-placed finish (smallest place / players) with any record. Then it is the deck's only list (`nv` 1), `nu` = `of` = 0, no `alt`; `pl`, `sc`, `ev`, `dt`, energy and QR as for any list. The deck is not in `search.json` |
+| `nx` | int | **new in v20.** finishes with exactly this list (the exact copies). Always `nu` = `nx` + the sum of `alt[].u`. Absent on `bc` lists |
+| `rec` | [w, l, t] | **new in v20.** the combined record of the `nx` finishes (match wins, losses, ties). Absent on `bc` lists |
 | `alt` | array or absent | **new in v7.** the distinct 1-card changes inside the group (see below). Absent when the group has only exact copies |
 
 `alt` entry:
@@ -187,6 +198,7 @@ page shows the 10 groups with the most top players (`nu`), then the better best 
 | `pl` | the best place among them (same format as `pl`) |
 | `q` | (v14; `qr` SVG in v8-v13) packed QR of this version: the shown list's `cards` - `out` + `in`, with the shown list's `energy` (same SVG options and decode check as a list's `qr`); null when no code was possible |
 | `sc` | **new in v8.** record W-L-T of the best finish with this change |
+| `rec` | **new in v20.** `[w, l, t]`, the combined record of the `u` finishes with this change (`nx` is not written: it equals `u`) |
 | `ev` | **new in v8.** tournament name of that finish |
 | `dt` | **new in v8.** tournament day of that finish (`YYYY-MM-DD`) |
 | `tid`, `pid` | **new in v19.** the Limitless decklist of that finish (same as on a list) |

@@ -136,6 +136,10 @@ function makeQR(list, energy, problems, id) {
 //   in  = cards the change has and the shown list does not; out = cards of the shown list that the change does not have.
 //   u   = finishes with that change; pl = the best place among them (members come best place first).
 // Sorted by u (high first), then best place. Exact copies are not listed, so nu = exact copies + sum of u.
+// R17 helpers: a record "W-L-T" as [w, l, t], the sum of 2 records, and the win rate (deck-table rule).
+const rec3 = (sc) => String(sc).split("-").map(Number);
+const addRec = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+const winRate = ([w, l, t]) => (w + l + t ? (w + 0.5 * t) / (w + l + t) : 0);
 function changes(g) {
   const by = new Map();
   g.members.forEach((x, order) => {
@@ -148,9 +152,10 @@ function changes(g) {
     if (!ins.length && !outs.length) return; // exact copy
     const key = JSON.stringify([ins.map((c) => [c.id, c.c]).sort(), outs.map((c) => [c.id, c.c]).sort()]);
     const e = by.get(key);
-    if (e) e.u++;
-    else by.set(key, { in: ins, out: outs, u: 1, pl: x.row.pl, order, row: x.row });
+    if (e) { e.u++; e.rec = addRec(e.rec, x.rec); }
+    else by.set(key, { in: ins, out: outs, u: 1, pl: x.row.pl, order, row: x.row, rec: [...x.rec] });
   });
+  // R17: rec = [w, l, t] of the u finishes (R17b).
   return [...by.values()].sort((a, b) => b.u - a.u || a.order - b.order).map(({ order, ...a }) => a);
 }
 
@@ -258,12 +263,15 @@ mkdirSync("site/v", { recursive: true });
 for (const [rank, d] of input.decks.entries()) {
   const { id, count, share, w, l, t, win } = d;
   const name = deckName(id);
-  // R1 (Nov 9, 2026). Step 1: group ALL finishes. Rows come best finish first; a list joins the first group whose
-  // representative (the group's best-placed finish) is NEAR card swaps or less away, else it starts a new group.
-  // Step 2 (below): keep the MAX_VARIATIONS groups with the most finishes ("top players"), then by best place.
-  const groups = [];
+  // R17 (Nov 13, 2026): the most-played version represents each group (was R1: the best-placed finish).
+  // Step 1: read ALL finishes (rows come best place first) and count the exact versions (the 20 cards by card id):
+  //   n = finishes with that version, rec = their combined W-L-T, best = the index of its best-placed finish.
+  // Step 2: versions by n (high first), then win rate (deck-table rule), then best place; a version joins the first
+  //   group whose representative is NEAR card swaps or less away, else it starts a group and represents it.
+  // Step 3 (below): groups by nu, then the group's win rate, then best place; keep MAX_VARIATIONS.
+  const members = [];
   let of = 0;
-  for (const row of d.rows) {
+  for (const [idx, row] of d.rows.entries()) {
     const cands = row.lists.map((x) => ({ l: toList(x.cards), energy: x.energy }))
       .filter((x) => x.l.reduce((a, c) => a + c.count, 0) === 20);
     if (!cands.length) { problems.push(`${id}: no valid list for ${row.key}`); continue; }
@@ -271,11 +279,25 @@ for (const [rank, d] of input.decks.entries()) {
     const pick = cands.map((x) => ({ ...x, score: attackers(name, x.l).length })).sort((a, b) => b.score - a.score)[0];
     if (pick.score === 0) { problems.push(`${id}: no list on ${row.key} matches the deck name "${name}"`); continue; }
     of++;
-    const m = counts(pick.l), member = { m, list: pick.l, row };
-    const g = groups.find((c) => swaps(c.m, m) <= NEAR);
-    if (g) g.members.push(member);
-    else groups.push({ list: pick.l, energy: pick.energy, m, row, members: [member] });
+    members.push({ m: counts(pick.l), list: pick.l, energy: pick.energy, row, idx, rec: rec3(row.sc) });
   }
+  const versions = new Map();
+  for (const x of members) {
+    const key = [...x.m].sort(([a], [b]) => a.localeCompare(b)).join(";");
+    const v = versions.get(key);
+    if (v) { v.members.push(x); v.rec = addRec(v.rec, x.rec); }
+    else versions.set(key, { m: x.m, best: x, members: [x], rec: [...x.rec] });
+  }
+  const order = [...versions.values()].sort((a, b) => b.members.length - a.members.length ||
+    winRate(b.rec) - winRate(a.rec) || a.best.idx - b.best.idx);
+  const groups = [];
+  for (const v of order) {
+    const g = groups.find((c) => swaps(c.m, v.m) <= NEAR);
+    if (g) { g.members.push(...v.members); g.rec = addRec(g.rec, v.rec); g.bestIdx = Math.min(g.bestIdx, v.best.idx); }
+    else groups.push({ list: v.best.list, energy: v.best.energy, m: v.m, row: v.best.row, rep: v,
+      members: [...v.members], rec: [...v.rec], bestIdx: v.best.idx });
+  }
+  groups.forEach((g) => g.members.sort((a, b) => a.idx - b.idx));   // best place first (alt pl/sc = best finish)
   if (!groups.length) {
     waiting++;
     const x = await noListInfo(d, name);
@@ -286,9 +308,10 @@ for (const [rank, d] of input.decks.entries()) {
     continue;
   }
   printGuard(id, groups.flatMap((g) => g.members.map((x) => x.list)), problems);
-  // Step 2: most top players first; on a tie the group with the better best place (= the earlier group).
+  // Step 3: most top players first; then the group's win rate; then its best place.
   const chosen = groups.map((g, i) => ({ ...g, used: g.members.length, i }))
-    .sort((a, b) => b.used - a.used || a.i - b.i).slice(0, MAX_VARIATIONS);
+    .sort((a, b) => b.used - a.used || winRate(b.rec) - winRate(a.rec) || a.bestIdx - b.bestIdx)
+    .slice(0, MAX_VARIATIONS);
   if (groups.length > MAX_VARIATIONS) dropped.push(`${id}: ${groups.length} groups, kept ${MAX_VARIATIONS} ` +
     `(smallest kept: ${chosen.at(-1).used} top players; largest dropped: ${Math.max(...groups.map((g) => g.members.length)
       .filter((_, i) => !chosen.some((c) => c.i === i)))})`);
@@ -308,6 +331,8 @@ for (const [rank, d] of input.decks.entries()) {
     }
     v.nu = c.used; // finishes ("top players") in the group: exact copies + 1-card changes
     v.of = of;     // all finishes with a readable list (also those of groups that are not kept)
+    v.nx = c.rep.members.length;   // R17b: finishes with exactly this list
+    v.rec = c.rep.rec;             // R17b: their combined [w, l, t]
     const alt = changes(c);
     if (alt.length) v.alt = await Promise.all(alt.map((a) => altVersion(a, v, name, problems, id)));
     vars.push(v);

@@ -157,6 +157,10 @@ The pairings do not say which deck a player used in a match. Thus:
   (best relative place first; a finish joins the first group whose representative, the group's best-placed
   finish, is 1 card swap or less away). The 10 groups with the most finishes are shown (tie: the better best
   place). Each shown list carries `alt`: its distinct 1-card changes, with count and best place.
+- Lists since Nov 13, 2026 (request R17): each group is represented by its **most-played version** (exact 20 cards),
+  not its best-placed finish: versions are read by finishes (high first), then win rate, then best place, and a
+  version joins the first group within 1 card swap; groups are sorted by finishes, then win rate, then best place.
+  Each list has `nx` (exact copies) and `rec` (their combined record); each `alt` has `rec`.
 - Each `alt` version also gets a QR code (decision Nov 9, request R5): the shown list - out + in, with the shown
   list's energy, and the record, event and day of its best finish. Checked before deploy like the lists' QRs.
 - Card index for the search (decision Nov 9, request R6): `search.json` lists every card on the page with, per deck,
