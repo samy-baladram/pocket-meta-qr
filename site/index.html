@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794657304-ef75 -->
+<!-- ui: artifact version 1794657916-a4ab -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2774,6 +2774,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Popover (not bottom sheet) on anything larger than a phone, also on touch (iPad); hover-to-open stays mouse only
   const FLOAT = HOVER || matchMedia("(min-width: 761px)").matches;
   const cpop = $("cPop"), cscrim = $("cScrim");
+  document.body.append(cpop); // Nov 14: out of .wrap (its own stacking layer), so the card sheet can sit above the shared list
   let PK = null, pkP = null, popImg = null, pinned = false, showT = 0, hideT = 0;
   const loadPacks = () => pkP || (pkP = fetch("packs.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).then((j) => (PK = j)).catch(() => null));
   const fdate = (s) => (s ? new Date(s + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "");
