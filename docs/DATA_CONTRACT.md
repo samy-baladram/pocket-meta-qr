@@ -10,6 +10,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 26 (request R23, user decision, Nov 14, 2026): top player = **W − L >= 2 only** (the top 25 % part of v25
+  is off: `TOP_PCT = 0` in `pipeline/export.py`). Everything else as in v25 (`bc: 2` = a winning record W > L but no
+  finish with W − L >= 2; `bc: 1` = no winning record; `bn`).
 - Version 25 (request R22 of the UI chat, approved by the user): stricter **top player**: **W − L >= 2, or a place in
   the top 25 %** of the event (was W > L). All top-player numbers use it (`nu`, `of`, groups, `alt`, `fin`,
   `search.json`). `bc` gets a 2nd value: **`bc: 2` = "close"** (no top player, but a winning record: its best finish

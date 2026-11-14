@@ -24,7 +24,7 @@ from datetime import date as Date, datetime, timedelta, timezone
 MIN_SHARE = 0.5   # % of all decks in the window (data.json)
 MORE_SHARE = 0.2  # % for the "Show more decks" file (more.json, R9)
 WINDOW_DAYS = 7   # the page's window (7d), also for rk0 / nw (R14)
-TOP_MIN_NET, TOP_PCT = 2, 0.25   # R22 (Nov 14, 2026): top player = W - L >= 2 or a place in the top 25 % of the event
+TOP_MIN_NET, TOP_PCT = 2, 0      # R23 (Nov 14, 2026, user): top player = W - L >= 2 only (TOP_PCT 0 turns the top 25 % part off; R22 had 0.25)
 MAX_DECKS = 40
 MAX_ROWS = 0      # finishes read per deck; 0 = all (build.mjs keeps up to 10 distinct lists from them)
 EVENT_SHARE, EVENT_MIN, EVENT_MAX = 0.25, 8, 32   # lists per event in the Latest Events tab (t/<tid>.json)
