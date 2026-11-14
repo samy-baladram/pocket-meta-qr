@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794633786-d7e1 -->
+<!-- ui: artifact version 1794654687-3592 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -707,17 +707,23 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .swk .sdots { margin-right: 8px; }
 .slg.sl3 { justify-content: flex-end; margin-top: -4px; } .slg.sl3 b { font-size: 8.5px; color: var(--muted); margin: 0 4px 0 2px; }
 .slg i.ld { width: 9px; height: 9px; border-radius: 50%; background: #bcd6f5; } .slg i.ld + b + i.ld { margin-left: 6px; }
-.fscr { max-height: 260px; overflow: auto; margin-top: 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overscroll-behavior: contain; }
+.fscr { max-height: 237px; overflow: auto; margin-top: 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overscroll-behavior: contain; }
 .fscr.nos { border-bottom: 0; }
 .fscr .fins { margin: 0; }
 .fsec { position: sticky; top: 0; z-index: 1; margin: 0; padding: 5px 8px; background: var(--tile); font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.fins .fch2 { color: var(--ink); }
+.fins .fch2 { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fins .fch2, .fins .fen { display: block; } /* tweak rows: the change, then the event on its own line */
+
+
 
 .fins li.frow { grid-template-columns: 1fr auto 52px 10px; cursor: pointer; }
 @media (hover: hover) { .fins li.frow:hover { background: var(--hover); } }
 .fins .fch { color: var(--muted); text-align: right; }
 .fins li:first-child { border-top: 0; }
 .fins .fpl span, .fins .fdt { color: var(--muted); }
+.fins .fpl .fch2 { color: var(--ink); } .fins .fpl .cm, .fins .fpl .cp { font-weight: 800; margin-right: 1px; } .fins .fpl .cm { color: #d6345a; } .fins .fpl .cp { color: #1f9d55; } /* tweak rows: red minus, green plus */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .fins .fpl .cm { color: #ff8fa8; } :root:not([data-theme="light"]) .fins .fpl .cp { color: #5fd38f; } }
+:root[data-theme="dark"] .fins .fpl .cm { color: #ff8fa8; } :root[data-theme="dark"] .fins .fpl .cp { color: #5fd38f; }
 .fins .fdt { text-align: right; }
 .fmore { margin: 2px 0 0; color: var(--muted); font-size: var(--fs-xs); }
 details.fmore { margin: 0 0 8px; color: inherit; font-size: inherit; } /* the extra rows look like the first 5 */
@@ -854,6 +860,47 @@ html { -webkit-tap-highlight-color: transparent; }
 .ssub { margin: 0 0 12px; color: var(--muted); }
 .snote { margin: 12px 0 0; color: var(--muted); font-size: var(--fs-xs); }
 .sgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0 12px; }
+
+/* Nov 14: deck stats pill is a button; folded results; green / red rank arrows */
+.dpill.dpb { pointer-events: auto; cursor: pointer; align-items: center; gap: 4px; border-color: var(--pill-line); }
+.arow[aria-expanded="true"] > .dpill.dpb { display: inline-flex; }
+.dpb .spch { width: 7px; height: 10px; flex: none; color: var(--muted); margin-left: 2px; }
+.dpb[aria-expanded="true"] { border-color: var(--sel); }
+.st3 .tup, .st3 .tdn { display: inline-flex; align-items: center; gap: 3px; }
+.st3 .tup, .fdc .fup { color: #1f9d55; } .st3 .tdn { color: #d6345a; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .st3 .tup, :root:not([data-theme="light"]) .fdc .fup { color: #5fd38f; } :root:not([data-theme="light"]) .st3 .tdn { color: #ff8fa8; } }
+:root[data-theme="dark"] .st3 .tup, :root[data-theme="dark"] .fdc .fup { color: #5fd38f; } :root[data-theme="dark"] .st3 .tdn { color: #ff8fa8; }
+.st3 .tup svg, .st3 .tdn svg { width: 8px; height: 6px; }
+.st3 b i { font-style: normal; } .st3 .lw { opacity: 0.6; }
+.snotes { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; font-size: var(--fs-xs); color: var(--muted); }
+.snotes li::before { content: "\00b7  "; }
+.sfold { margin: 0 0 4px; }
+.sfold > summary { list-style: none; display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 10px; background: var(--tile); cursor: pointer; }
+.sfold > summary::-webkit-details-marker { display: none; }
+.sfold > summary > span:first-child { display: grid; min-width: 0; }
+.sfold > summary b { font-size: var(--fs-s, 13px); color: var(--ink); }
+.sfold > summary > span:first-child > span { font-size: var(--fs-xs); color: var(--muted); }
+.sspk { margin-left: auto; display: flex; align-items: flex-end; gap: 2px; height: 16px; flex: none; }
+.sspk i { width: 4px; border-radius: 1px; background: var(--acc-mark); }
+.sdn { width: 10px; height: 7px; flex: none; color: var(--muted); transition: transform var(--t-fast, 0.15s); }
+.sfold[open] > summary { margin-bottom: 10px; } .sfold[open] .sdn { transform: rotate(180deg); }
+.fdc .fup { display: inline-flex; margin-right: 4px; vertical-align: 1px; } .fdc .fup svg { width: 8px; height: 6px; }
+/* Nov 14: stats pill = one number + chevron; sheet top = hero + share bar + 3 tiles */
+.sp .spch { width: 7px; height: 10px; margin-left: 1px; flex: none; color: var(--muted); }
+.sp:active { transform: scale(0.97); }
+.shero { margin: 6px 0 0; text-align: center; color: var(--muted); }
+.shero b { font-size: 34px; font-weight: 800; line-height: 1; color: var(--ink); }
+.shero small { font-size: 15px; font-weight: 600; }
+.shero span { display: block; margin-top: 4px; font-size: var(--fs-xs); }
+.sbar { height: 6px; margin: 10px 24px 3px; border-radius: 3px; background: var(--tile); overflow: hidden; }
+.sbar i { display: block; height: 100%; border-radius: 3px; background: var(--acc-mark); }
+.sbl { margin: 0 24px; font-size: 10.5px; color: var(--muted); text-align: left; }
+.st3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 6px; margin: 12px 0; }
+.st3 > div { padding: 8px 4px; border-radius: 10px; background: var(--tile); text-align: center; min-width: 0; }
+.st3 b { display: block; font-size: 18px; line-height: 1.1; color: var(--ink); }
+.st3 span { display: block; margin-top: 2px; font-size: 10.5px; color: var(--muted); }
+.st3 em { display: block; margin-top: 3px; font-size: 10.5px; font-style: normal; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
 .stile { background: var(--tile); border-radius: 10px; padding: 8px 10px; }
 .stile b { display: block; font-size: 22px; line-height: 1.15; font-variant-numeric: tabular-nums; }
 .stile b small { font-size: 13px; color: var(--muted); font-weight: 600; }
@@ -1621,6 +1668,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Nov 14: the 3 pills under a list: type (Popular / Below the cut), top players, tweaks. Each type / players pill opens
   // a short sheet: bars and tiles, few words.
   const PPL_I = '<svg class="sppl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>';
+  const SPCH = '<svg class="spch" viewBox="0 0 8 10" aria-hidden="true"><path d="M2 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'; // "opens a sheet"
+  // Nov 14: sheet top = hero number + share bar + 3 tiles (big value, label, detail)
+  const sHero = (n, of, txt, bar, barTxt) => `<div class="shero"><b>${n}</b>${of != null ? ` <small>of ${of}</small>` : ""}<span>${txt}</span></div>${bar != null ? `<div class="sbar"><i style="width:${Math.max(2, Math.min(100, bar)).toFixed(1)}%"></i></div><p class="sbl">${barTxt}</p>` : ""}`;
+  const sT3 = (L) => `<div class="st3">${L.filter(Boolean).map(([b, s, e]) => `<div><b>${b}</b><span>${s}</span>${e ? `<em>${e}</em>` : ""}</div>`).join("")}</div>`;
   const sTile = (big, sub, small) => `<div class="stile"><b>${big}${small ? ` <small>${small}</small>` : ""}</b><span>${sub}</span></div>`;
   const fTag = (p, of) => p <= 3 ? `<span class="md p${p}" aria-label="${ordF(p)} place"></span>` : of && p / of <= 0.25 ? '<span class="tg8">Top 25%</span>' : "";
   const fCls = (p, of) => p <= 3 ? ` class="p${p}"` : of && p / of <= 0.25 ? ' class="q"' : "";
@@ -1632,12 +1683,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const shortEv = (n) => {
     let s = String(n)
       .replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200B}-\u{200D}]/gu, " ")
-      .replace(/[【\[(][^】\])]*[】\])]/g, " ");
-    const parts = s.split(/\s*(?:\|{1,2}|︱|•|\/\/)\s*|:\s+(?=.*[$€£]|.*\d\s?(?:usd|€|\$))|\s[-–—]\s?(?=.*(?:[$€£]|\d\s?\$|\bFAs?\b|\bprize|\bC\d\b))|-(?=[$€£]|FAs?\b)/i);
+      .replace(/[\u3010\[(][^\u3011\])]*[\u3011\])]/g, " ");
+    const parts = s.split(/\s*(?:\|{1,2}|\uFE31|\u2022|\/\/)\s*|:\s+(?=.*[$\u20AC\u00A3]|.*\d\s?(?:usd|\u20AC|\$))|\s[-\u2013\u2014]\s?(?=.*(?:[$\u20AC\u00A3]|\d\s?\$|\bFAs?\b|\bprize|\bC\d\b))|-(?=[$\u20AC\u00A3]|FAs?\b)/i);
     s = parts.find((p) => (p.match(/\p{L}/gu) || []).length >= 4) || parts[0];
-    s = s.replace(/pok[eé]mon\s+tcg\s+pocket|tcg\s+pocket|pok[eé]mon\s+tcg|\btcg\b/gi, " ")
+    s = s.replace(/pok[e\u00E9]mon\s+tcg\s+pocket|tcg\s+pocket|pok[e\u00E9]mon\s+tcg|\btcg\b/gi, " ")
       .replace(/\b(standard|tournament)\b/gi, " ")
-      .replace(/[$€£]\s?\d+\S*|\b\d+\s?(?:[$€£]|usd)|\+\s?FAs?|\bFAs?\b|card prizes?|\bprize pool\b|\bupdate (?:your )?game\b|\b[a-z]?\s?series legal\b|!+/gi, " ")
+      .replace(/[$\u20AC\u00A3]\s?\d+\S*|\b\d+\s?(?:[$\u20AC\u00A3]|usd)|\+\s?FAs?|\bFAs?\b|card prizes?|\bprize pool\b|\bupdate (?:your )?game\b|\b[a-z]?\s?series legal\b|!+/gi, " ")
       .replace(/^the\s/i, "").replace(/[-|:,.+&\s]+$/g, "").replace(/^[-|:,.+\s#]+/, "").replace(/\s{2,}/g, " ").trim();
     if (/[a-z]/.test(s) === false || (s.match(/\b[A-Z]{4,}\b/g) || []).length >= 2)
       s = s.replace(/\b([A-Z])([A-Z]{3,})\b/g, (m, a, b) => a + b.toLowerCase());
@@ -1645,7 +1696,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   };
   // R21: tweak results (alt[].fin) join the dot chart (a small 1 / 2 = cards changed) and the scroll list (sections)
   const tpSheet = (v) => { const ex = nxOf(v), tw = (v.nu || ex) - ex;
-    const f = v.fin && v.fin.length ? v.fin : v.pl ? [[...((String(v.pl).match(/\d+/g) || [0, 0]).slice(0, 2).map(Number)), ...(v.rec || [0, 0, 0]), v.dt || ""]] : [];
+    const f = v.fin && v.fin.length ? v.fin : v.pl ? [[...((String(v.pl).match(/\d+/g) || [0, 0]).slice(0, 2).map(Number)), ...(v.rec || [0, 0, 0]), v.dt || "", ...(v.tid && v.pid ? [v.tid, v.pid] : [])]] : [];
+    v._f = f; // the rows as shown (1 player: built from the list's own best finish, with its event and player)
     const A = (v.alt || []).flatMap((a, i) => (a.fin || []).map((r, j) => ({ r, k: a.k || 1, key: `a${i}.${j}`, a })));
     const all = [...f.map((r, j) => ({ r, k: 0, key: `x${j}` })), ...A];
     const sp = (data && data.span) || [], d0 = sp[0] ? new Date(sp[0] + "T00:00:00Z") : null;
@@ -1654,9 +1706,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const wk = days.length && all.length ? `<p class="slg sl2">Results this week <span><i class="m p1"></i><i class="m p2"></i><i class="m p3"></i>1st\u20133rd <i class="q"></i>top 25%</span></p>${hasT ? '<p class="slg sl3"><span><i class="ld"></i><b>1</b>1-card tweak <i class="ld"></i><b>2</b>2-card tweak</span></p>' : ""}<div class="swk">${days.map((dy, k) => `<div class="swd${k === 6 ? " last" : ""}"><span class="sdots">${all.filter((x) => x.r[5] === dy).sort((a, b) => b.r[0] / b.r[1] - a.r[0] / a.r[1]).map((x) => `<i${fCls(x.r[0], x.r[1])}>${x.k ? `<b>${x.k}</b>` : ""}</i>`).join("")}</span>${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}</div>`).join("")}</div>` : "";
     // R20: rows with an event (tid) and player (pid): the event name under the place, and a tap opens that player's list
     const evN = (tid) => (EV && EV.events || []).find((x) => x.tid === tid)?.name || "";
-    const chg = (a) => `\u2212${(a.out || []).map((c) => (c.c > 1 ? c.c + " " : "") + esc(c.n)).join(" \u2212")} +${(a.in || []).map((c) => (c.c > 1 ? c.c + " " : "") + esc(c.n)).join(" +")}`;
+    const chgO = (a) => (a.out || []).map((c) => `<span class="cm">\u2212</span>${c.c > 1 ? c.c + " " : ""}${esc(c.n)}`).join(" ");
+    const chgI = (a) => (a.in || []).map((c) => `<span class="cp">+</span>${c.c > 1 ? c.c + " " : ""}${esc(c.n)}`).join(" ");
+    const chg = (a) => `${chgO(a)} ${chgI(a)}`;
     const row = ({ r: [p, of, w, l, t, dt, tid, pid], key, a }) => { const en = tid && evN(tid) ? esc(shortEv(evN(tid))) : "";
-      const sub = a ? `<span class="fch2">${chg(a)}</span>${en ? " \u00b7 " + en : ""}` : en;
+      const two = a && (a.k === 2 || (a.in || []).reduce((s, c) => s + (c.c || 1), 0) > 1); // 2 cards changed: minus line, then plus line
+      const sub = a ? `${two ? `<span class="fch2">${chgO(a)}</span><span class="fch2">${chgI(a)}</span>` : `<span class="fch2">${chg(a)}</span>`}${en ? `<span class="fen">${en}</span>` : ""}` : en;
       return `<li${tid && pid ? ` class="frow" data-r="${key}" role="button" tabindex="0"` : ""}><span class="fpl">${ordF(p)} <span>of ${of}</span>${fTag(p, of)}${sub ? `<span class="fev">${sub}</span>` : ""}</span><span class="fsc">${w}-${l}-${t}</span><span class="fdt">${dt ? MON[+dt.slice(5, 7) - 1] + " " + +dt.slice(8) : ""}</span>${tid && pid ? '<span class="fch" aria-hidden="true">\u203a</span>' : ""}</li>`; };
     const nP = new Set(all.map((x) => x.r[7]).filter(Boolean)).size, nE = new Set(all.map((x) => x.r[6]).filter(Boolean)).size;
     const spread = nP && all.length > 1 ? `<p class="sspread"><b>${all.length}</b> results \u00b7 <b>${nP}</b> player${nP > 1 ? "s" : ""} \u00b7 <b>${nE}</b> event${nE > 1 ? "s" : ""}</p>` : "";
@@ -1665,13 +1720,21 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const exRows = f.map((r, j) => ({ r, key: `x${j}` }));
     const list = hasT ? `<div class="fscr">${sec("Exact list", exRows)}${sec("1 card changed", ord(A.filter((x) => x.k === 1)))}${sec("2 cards changed", ord(A.filter((x) => x.k === 2)))}</div>`
       : `<div class="fscr nos"><ol class="fins">${exRows.map(row).join("")}</ol></div>${ex > f.length ? `<p class="fmore">+ ${ex - f.length} more</p>` : ""}`;
-    return `<h3 class="sh3">${PPL_I}Top players</h3><div class="sgrid">${sTile(ex, `this exact list${v.rec && ex > 1 ? ` \u00b7 ${wrPct(v.rec)}% win` : ""}`, `/ ${v.of}`)}${tw > 0 ? sTile(ex + tw, `with tweaks${v.grec ? ` \u00b7 ${wrPct(v.grec)}% win` : ""}`) : ""}</div>${spread}${wk}
-      ${list}<p class="snote">Top player: more wins than losses at an event this week.</p>`; };
+    const b0 = f[0], rc = v.rec || [0, 0, 0];
+    const top = sHero(ex, v.of, `top player${ex > 1 ? "s use" : " uses"} exactly this list`, v.of ? ex / v.of * 100 : null, v.of ? `${Math.round(ex / v.of * 100)}% of the deck\u2019s ${v.of} top players` : "")
+      + sT3([[wrPct(rc) + "%", "win rate", rc.join("-")], b0 ? [ordF(b0[0]), "best place", `of ${b0[1]}${b0[5] ? ` \u00b7 ${MON[+b0[5].slice(5, 7) - 1]} ${+b0[5].slice(8)}` : ""}`] : null,
+        tw > 0 ? [ex + tw, "with tweaks", v.grec ? `${wrPct(v.grec)}% win` : ""] : nE ? [nE, `event${nE > 1 ? "s" : ""}`, "this week"] : null]);
+    const spk = days.map((dy) => all.filter((x) => x.r[5] === dy).length), mx = Math.max(1, ...spk);
+    const fold = all.length > 1 ? `<details class="sfold"><summary><span><b>Results this week</b><span>${all.length} results \u00b7 chart by day and full list</span></span><span class="sspk" aria-hidden="true">${spk.map((n) => `<i style="height:${n ? Math.max(2, Math.round(n / mx * 16)) : 1}px"></i>`).join("")}</span><svg class="sdn" viewBox="0 0 10 7" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>${wk}${list}</details>` : `${wk}${list}`;
+    return `<h3 class="sh3">${PPL_I}Top players</h3>${top}${fold}<p class="snote">Top player: more wins than losses at an event this week.</p>`; };
   const bcSheet = (v, d) => { const [w, l, t] = String(v.sc || "0-0-0").split("-").map(Number), k = Math.floor((l - w) / 2) + 1;
     const dots = w + l <= 16 ? `<div class="swl">${"<i class=\"w\">W</i>".repeat(w)}${"<i class=\"f\">W</i>".repeat(Math.max(0, k))}${"<i class=\"l\">L</i>".repeat(Math.max(0, l - k))}${"<i class=\"t\">T</i>".repeat(t || 0)}</div>` : "";
     return `<h3 class="sh3">${SAD_I}Below the cut</h3><p class="ssub">No one with this deck had a winning record this week. This is its best-placed list.</p>${dots}
       <p class="saway">${esc(v.sc || "")}${v.pl ? `, ${esc(v.pl)}` : ""}${k > 0 ? ` \u00b7 <b>${k} match${k > 1 ? "es" : ""} away</b> from a winning record` : ""}</p>${v.ev ? `<p class="sev">${esc(v.ev)}${v.dt ? ` \u00b7 ${MON[+v.dt.slice(5, 7) - 1]} ${+v.dt.slice(8)}` : ""}</p>` : ""}
       <div class="sgrid">${d.count != null ? sTile(d.count, "players this week") : ""}${d.win != null ? sTile(Math.round(d.win) + "%", "deck win rate") : ""}</div><p class="snote">A starting point, not a proven list.</p>`; };
+  addEventListener("click", (e) => { const b = e.target.closest && e.target.closest(".dpb[data-dk]"); if (!b) return;
+    e.preventDefault(); e.stopPropagation(); const d = data.decks.find((x) => x.id === b.dataset.dk); if (!d) return;
+    track("sheet-deck"); showTip(b, dkSheet(d)); }, true);
   addEventListener("click", async (e) => { const b = e.target.closest && e.target.closest(".sp[data-sk]"); if (!b) return;
     e.preventDefault(); e.stopPropagation();
     const slide = b.closest(".slide"), d = data.decks.find((x) => x.id === openId); if (!slide || !d) return;
@@ -1683,7 +1746,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   let tpCtx = null;
   async function openResult(key) {
     const { d, v } = tpCtx || {}; if (!v) return;
-    const m = /^a(\d+)\.(\d+)$/.exec(key), a = m && (v.alt || [])[+m[1]], f = a ? a.fin && a.fin[+m[2]] : v.fin && v.fin[+String(key).slice(1)]; if (!f) return;
+    const m = /^a(\d+)\.(\d+)$/.exec(key), a = m && (v.alt || [])[+m[1]], f = a ? a.fin && a.fin[+m[2]] : (v._f || v.fin || [])[+String(key).slice(1)]; if (!f) return;
     let cards = (v.cards || []).map((c) => ({ id: c.id, c: c.c }));
     if (a) { for (const o of a.out || []) { const x = cards.find((c) => c.id === o.id); if (x) x.c -= o.c || 1; }
       for (const i of a.in || []) { const x = cards.find((c) => c.id === i.id); if (x) x.c += i.c || 1; else cards.push({ id: i.id, c: i.c || 1 }); }
@@ -1712,7 +1775,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           <div class="tile t-ev"><span class="tl">Event</span><div class="ev" title="${esc(v.ev || "")}">${v.dt ? `<span class="dt">${fmtDate(v.dt)}</span> \u00b7 ` : ""}${esc(v.ev || "\u2013")}</div></div>
         </div>
         ${(() => { const cmp = curCmp; curCmp = ""; const pop = i === 0 && curDeck && !curDeck.evt && popular(curDeck);
-          return v.bc || usedBy(v) || altBtn(v) || cmp ? `<div class="usrow">${v.bc ? `<button class="sp spt" type="button" data-sk="bc" aria-haspopup="dialog">${SAD_I}Below the cut</button>` : ""}${cmp}${usedBy(v) ? `${pop ? `<button class="sp spt" type="button" data-sk="pop" aria-haspopup="dialog">${STAR_I}Popular</button>` : ""}<button class="sp spn" type="button" data-sk="tp" aria-haspopup="dialog" aria-label="Top players: ${nxOf(v)} of ${v.of}${nxOf(v) > 1 && v.rec ? `, ${wrPct(v.rec)}% win` : ""}">${PPL_I}${nxOf(v)}/${v.of}${nxOf(v) > 1 && v.rec ? `<span class="spm"> \u00b7 ${wrPct(v.rec)}%</span>` : ""}</button>` : ""}${altBtn(v, i)}</div>` : ""; })()}`;
+          return v.bc || usedBy(v) || altBtn(v) || cmp ? `<div class="usrow">${v.bc ? `<button class="sp spt" type="button" data-sk="bc" aria-haspopup="dialog">${SAD_I}Below the cut</button>` : ""}${cmp}${usedBy(v) ? `${pop ? `<button class="sp spt" type="button" data-sk="pop" aria-haspopup="dialog">${STAR_I}Popular</button>` : ""}<button class="sp spn" type="button" data-sk="tp" aria-haspopup="dialog" aria-label="Top players: ${nxOf(v)} of ${v.of}">${PPL_I}${nxOf(v)} player${nxOf(v) > 1 ? "s" : ""}${SPCH}</button>` : ""}${altBtn(v, i)}</div>` : ""; })()}`;
   // Legend icon: a tiny card with the same corner tag as the marked cards
   const MARK_ICON = '<svg viewBox="0 0 8 11" aria-hidden="true"><rect x="0" y="0" width="8" height="11" rx="1.2" fill="currentColor" opacity="0.45"/><path d="M3.2 0H6.8A1.2 1.2 0 0 1 8 1.2V4.8Z" fill="var(--mark)" stroke="var(--mark-edge)" stroke-width="0.9" stroke-linejoin="round"/></svg>';
   const CARET = '<svg class="dcar" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 4 2.5 2.5L7.5 4"/></svg>';
@@ -2365,7 +2428,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       <dt>${d.count}<span>players</span></dt><dd>entries with this deck</dd>
       <dt>${d.w}-${d.l}-${d.t}<span>record</span></dt><dd>all match wins, losses and ties of this deck</dd>
     </dl>`;
-  const dpill = (d) => `<span class="dpill"><b>${pct(d.share)}</b> share &middot; <span${d.count < 30 ? ' class="lw"' : ""}><b>${pct(d.win)}</b> win</span> &middot; <b>${d.count}</b> players &middot; <b>${d.w}-${d.l}-${d.t}</b>${ii("these numbers", deckTip(d), true)}</span>`;
+  // Nov 14: the deck stats pill is one button (share + win + ›); the rest is in its sheet (hero + tiles, like Top players)
+  const dpill = (d) => `<span class="dpill dpb" role="button" tabindex="0" data-dk="${esc(d.id)}" aria-haspopup="dialog" aria-label="Deck stats: ${pct(d.share)} share, ${pct(d.win)} win"><b>${pct(d.share)}</b> share &middot; <span${d.count < 30 ? ' class="lw"' : ""}><b>${pct(d.win)}</b> win</span>${SPCH}</span>`; // a span: the pill sits inside the row's own <button>
+  const dkSheet = (d) => { const tot = d.share ? Math.round(d.count / (d.share / 100)) : 0, was = d.rk0, mv = was ? was - d.rank : null;
+    const rk = d.rank ? [`#${d.rank}`, "rank", d.nw ? '<span class="tup">NEW</span>' : !hasTrend() || !("rk0" in d) ? "" : !was ? '<span class="tup">new in the list</span>' : mv > 0 ? `<span class="tup">${RB_UP} ${mv} in 24 h</span>` : mv < 0 ? `<span class="tdn">${RB_DN} ${-mv} in 24 h</span>` : "no change in 24 h"] : null;
+    return `<h3 class="sh3">${esc(d.name)}</h3>${sHero(pct(d.share), null, "of all decks played in the last 7 days", d.share, tot ? `${d.count} of ${tot.toLocaleString("en-US")} players` : "")}
+      ${sT3([[`<i${d.count < 30 ? ' class="lw"' : ""}>${pct(d.win)}</i>`, "win rate", `${d.w}-${d.l}-${d.t}`], [d.count, "players", "this week"], rk])}
+      <ul class="snotes"><li>A tie counts as half a win. Mirror matches are not counted.</li>${d.count < 30 ? "<li>Faded win rate: fewer than 30 players, so it is less certain.</li>" : ""}</ul>`; };
   // ===== Rank badge (R14, Nov 13): rank | grey line | the change vs 24 h earlier (stacked arrow and number). A tap on it
   // explains the change. Podium: the same badge with a crown and a gold / silver / bronze tint.
   // Data (R14): d.rk0 = the rank 24 h earlier (0 = not in the list then), d.nw = 1 for a deck new in the list this set
@@ -2438,7 +2507,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     $("list").innerHTML = podiumHTML(top) + withGhosts(data.decks.slice(top.length), data.nolist, top.length ? top[top.length - 1].rank : 0, false) + moreBoxHTML();
   }
   // Top 3: podium tiles (same section/button/panel structure as a row, so open/close work the same way).
+  // Nov 14: the podium is off for now: the top 3 are plain rows (with their podium rank badge), as with a filter on
+  const PODIUM = false;
   function podiumHTML(top) {
+    if (!PODIUM) return top.length ? `<div class="podflat">${top.map((d, k) => rowHTML(d, k + 1)).join("")}</div>` : "";
     return top.length ? `<div class="podium">${top.map((d, k) => `
       <section class="acc pod" id="${d.id}" style="${bandStyle(d)}">
         <button class="arow pcard" type="button" data-id="${d.id}" aria-expanded="false" aria-controls="p-${d.id}" aria-label="Rank ${d.rank}: ${esc(d.name)}">
@@ -2454,6 +2526,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   // While a filter is on, the top 3 are plain rows (with their podium rank badge), so the results read as one list (Nov 13)
   function setPodFlat(on) {
+    if (!PODIUM) return;
     const pod = document.querySelector(".podium"), flat = document.querySelector(".podflat"), top = podTop();
     if (on ? !pod : !flat) return;
     if (openId && top.some((d) => d.id === openId)) closeOpen();
@@ -3161,7 +3234,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       `<button class="ech" type="button" data-e="${e}" aria-pressed="false" title="${cap(e)}"><img src="e/${e}.webp" alt="${cap(e)}" width="22" height="22"></button>`).join("");
     $("fdk").innerHTML = [["noex", "No ex", "Decks whose main list has no Pok\u00e9mon ex"], ["two", "2 energy", "Decks with two energy types"],
       ["rise", "Rising", "Up in rank in the last 24 hours, or new in the list"], ["new", `New ${esc(data.set || "set")} cards`, `Decks that use a card from ${esc(data.setName || data.set || "the newest set")}`]]
-      .map(([k, t, tip]) => `<button class="fdc" type="button" data-k="${k}" aria-pressed="false" title="${tip}"${k === "rise" && !hasTrend() ? " disabled" : ""}>${t}</button>`).join("");
+      .map(([k, t, tip]) => `<button class="fdc" type="button" data-k="${k}" aria-pressed="false" title="${tip}"${k === "rise" && !hasTrend() ? " disabled" : ""}>${k === "rise" ? `<span class="fup">${RB_UP}</span>` : ""}${t}</button>`).join("");
     $("filtBtn").hidden = false;
   }
   // Deck chips (Nov 13): facts of each deck's main list (list 1), so the result is the same for everyone
@@ -3437,7 +3510,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     return iso === f(t) ? "Today" : iso === f(y) ? "Yesterday" : fmtDate(iso); };
   const placeTab = (pl) => pl <= 3 ? `<span class="dnote ptab p${pl}"><span class="pm" aria-hidden="true"></span>${ordN(pl)} place</span>`
     : `<span class="dnote ptab">${pl <= 4 ? "Top 4" : pl <= 8 ? "Top 8" : pl <= 16 ? "Top 16" : "Top 32"}</span>`;
-  function renderEvents() {
+  // Nov 14: start loading an event's lists on press (before the click), and the first 3 events when the tab is drawn
+  addEventListener("pointerdown", (e) => { const r = e.target.closest && e.target.closest(".arow[data-tid]"); if (r) loadT(r.dataset.tid).catch(() => {}); }, { passive: true, capture: true });
+  const evPre = () => { const go = () => (EV && EV.events || []).slice(0, 3).forEach((x) => loadT(x.tid).catch(() => {}));
+    if ("requestIdleCallback" in window) requestIdleCallback(go, { timeout: 1500 }); else setTimeout(go, 300); };
+  function renderEvents() { evPre();
     const box = $("evl");
     if (!EV || !EV.events || !EV.events.length) { box.innerHTML = '<div class="empty">No events in the last 7 days yet.</div>'; return; }
     let day = "";
@@ -3490,8 +3567,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     sec.classList.add("snap"); sec.querySelector(".arow").setAttribute("aria-expanded", "true");
     void sec.offsetHeight; requestAnimationFrame(() => requestAnimationFrame(() => sec.classList.remove("snap")));
     p.classList.add("evp");
+    // Nov 14: no placeholder flash. The lists are prefetched (row press, first events), so the panel opens with them, like a
+    // deck; the placeholder shows only when the file takes more than 350 ms
     p.innerHTML = `<div class="vwrap"><div class="vars"><div class="slide evs">${placeholder()}</div></div></div>`;
-    p.hidden = false;
+    p.hidden = true;
+    const slow = setTimeout(() => { if (evOpen && evOpen.tid === tid && p.hidden) p.hidden = false; }, 350);
     if (matchMedia("(max-width: 599px)").matches) { // phones: the opened event goes to the top, under the tab bar (like a deck)
       const top = sec.getBoundingClientRect().top + scrollY - padTop() - 8;
       tail.style.height = "0px";
@@ -3500,8 +3580,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       scrollTo({ top, behavior: reduced ? "auto" : "smooth" });
     }
     let T;
-    try { T = await loadT(tid); } catch (err) { if (evOpen && evOpen.tid === tid) p.querySelector(".slide").innerHTML = '<p class="note">The lists did not load. Close and open the event again.</p>'; return; }
+    try { T = await loadT(tid); } catch (err) { clearTimeout(slow); if (evOpen && evOpen.tid === tid) { p.hidden = false; p.querySelector(".slide").innerHTML = '<p class="note">The lists did not load. Close and open the event again.</p>'; } return; }
+    clearTimeout(slow);
     if (!evOpen || evOpen.tid !== tid) return;
+    p.hidden = false;
     const L = T.lists.filter((v) => v.pl <= 8).slice(0, 8), n = L.length; // the top 8 only
     evOpen.T = { lists: L };
     if (!n) { p.querySelector(".slide").innerHTML = '<p class="note">No public lists for this event.</p>'; return; }
