@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794619417-2b9a -->
+<!-- ui: artifact version 1794622819-b2b4 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -699,6 +699,12 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .pill.us .uwr { color: var(--muted); }
 .fins { list-style: none; margin: 4px 0 0; padding: 0; }
 .fins li { display: grid; grid-template-columns: 1fr auto 52px; gap: 10px; padding: 5px 0; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.sspread { margin: 0 0 10px; font-size: var(--fs-xs); color: var(--muted); } .sspread b { color: var(--ink); }
+.fins .fev { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; color: var(--muted); margin-top: 1px; }
+.fins .fpl { min-width: 0; }
+.fins li.frow { grid-template-columns: 1fr auto 52px 10px; cursor: pointer; }
+@media (hover: hover) { .fins li.frow:hover { background: var(--hover); } }
+.fins .fch { color: var(--muted); text-align: right; }
 .fins li:first-child { border-top: 0; }
 .fins .fpl span, .fins .fdt { color: var(--muted); }
 .fins .fdt { text-align: right; }
@@ -1614,9 +1620,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const sp = (data && data.span) || [], d0 = sp[0] ? new Date(sp[0] + "T00:00:00Z") : null;
     const days = d0 ? Array.from({ length: 7 }, (_, k) => new Date(+d0 + k * 864e5).toISOString().slice(0, 10)) : [];
     const wk = days.length && f.length ? `<p class="slg sl2">Results this week <span><i class="m p1"></i><i class="m p2"></i><i class="m p3"></i>1st\u20133rd <i class="q"></i>top 25%</span></p><div class="swk">${days.map((dy, k) => `<div class="swd${k === 6 ? " last" : ""}"><span class="sdots">${f.filter((r) => r[5] === dy).sort((a, b) => b[0] - a[0]).map((r) => `<i${fCls(r[0], r[1])}></i>`).join("")}</span>${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}</div>`).join("")}</div>` : "";
-    const row = ([p, of, w, l, t, dt]) => `<li><span class="fpl">${ordF(p)} <span>of ${of}</span>${fTag(p, of)}</span><span class="fsc">${w}-${l}-${t}</span><span class="fdt">${dt ? MON[+dt.slice(5, 7) - 1] + " " + +dt.slice(8) : ""}</span></li>`;
-    return `<h3 class="sh3">${PPL_I}Top players</h3><div class="sgrid">${sTile(ex, `this exact list${v.rec && ex > 1 ? ` \u00b7 ${wrPct(v.rec)}% win` : ""}`, `/ ${v.of}`)}${tw > 0 ? sTile(ex + tw, `with tweaks${v.grec ? ` \u00b7 ${wrPct(v.grec)}% win` : ""}`) : ""}</div>${wk}
-      <ol class="fins">${f.slice(0, 5).map(row).join("")}</ol>${f.length > 5 ? `<details class="fmore"><summary>+ ${f.length - 5} more</summary><ol class="fins">${f.slice(5).map(row).join("")}</ol></details>` : ex > f.length ? `<p class="fmore">+ ${ex - f.length} more</p>` : ""}
+    // R20: rows with an event (tid) and player (pid): the event name under the place, and a tap opens that player's list
+    const evN = (tid) => (EV && EV.events || []).find((x) => x.tid === tid)?.name || "";
+    const row = ([p, of, w, l, t, dt, tid, pid], k) => `<li${tid && pid ? ` class="frow" data-r="${k}" role="button" tabindex="0"` : ""}><span class="fpl">${ordF(p)} <span>of ${of}</span>${fTag(p, of)}${tid && evN(tid) ? `<span class="fev">${esc(evN(tid))}</span>` : ""}</span><span class="fsc">${w}-${l}-${t}</span><span class="fdt">${dt ? MON[+dt.slice(5, 7) - 1] + " " + +dt.slice(8) : ""}</span>${tid && pid ? '<span class="fch" aria-hidden="true">\u203a</span>' : ""}</li>`;
+    const nP = new Set(f.map((r) => r[7]).filter(Boolean)).size, nE = new Set(f.map((r) => r[6]).filter(Boolean)).size;
+    const spread = nP && f.length > 1 ? `<p class="sspread"><b>${f.length}</b> results \u00b7 <b>${nP}</b> player${nP > 1 ? "s" : ""} \u00b7 <b>${nE}</b> event${nE > 1 ? "s" : ""}</p>` : "";
+    return `<h3 class="sh3">${PPL_I}Top players</h3><div class="sgrid">${sTile(ex, `this exact list${v.rec && ex > 1 ? ` \u00b7 ${wrPct(v.rec)}% win` : ""}`, `/ ${v.of}`)}${tw > 0 ? sTile(ex + tw, `with tweaks${v.grec ? ` \u00b7 ${wrPct(v.grec)}% win` : ""}`) : ""}</div>${spread}${wk}
+      <ol class="fins">${f.slice(0, 5).map(row).join("")}</ol>${f.length > 5 ? `<details class="fmore"><summary>+ ${f.length - 5} more</summary><ol class="fins">${f.slice(5).map((r, k) => row(r, k + 5)).join("")}</ol></details>` : ex > f.length ? `<p class="fmore">+ ${ex - f.length} more</p>` : ""}
       <p class="snote">Top player: more wins than losses at an event this week.</p>`; };
   const bcSheet = (v, d) => { const [w, l, t] = String(v.sc || "0-0-0").split("-").map(Number), k = Math.floor((l - w) / 2) + 1;
     const dots = w + l <= 16 ? `<div class="swl">${"<i class=\"w\">W</i>".repeat(w)}${"<i class=\"f\">W</i>".repeat(Math.max(0, k))}${"<i class=\"l\">L</i>".repeat(Math.max(0, l - k))}${"<i class=\"t\">T</i>".repeat(t || 0)}</div>` : "";
@@ -1628,7 +1638,21 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const slide = b.closest(".slide"), d = data.decks.find((x) => x.id === openId); if (!slide || !d) return;
     const v = await listFor(d, +slide.dataset.i); if (!v) return;
     const k = b.dataset.sk; track("sheet-" + k);
+    if (k === "tp") { await loadEvents(); tpCtx = { d, v }; }
     showTip(b, k === "pop" ? popSheet(d) : k === "bc" ? bcSheet(v, d) : tpSheet(v)); }, true);
+  // R20: a result row opens the list sheet of that player's finish (the shared-list sheet: cards, QR, ↗ Limitless decklist)
+  let tpCtx = null;
+  async function openResult(r) {
+    const { d, v } = tpCtx || {}, f = v && v.fin && v.fin[r]; if (!f) return;
+    const M = await loadCardMap().catch(() => null), code = M && deckCode((v.cards || []).map((c) => ({ id: c.id, c: c.c })), v.energy || d.energy, M), pc = code && parseCode(code);
+    if (!pc) return;
+    const tok = packShare({ nrs: pc.nrs, energy: pc.energy, k: d.deckId || d.id, day: Date.now(), played: f[5] ? Date.parse(f[5] + "T00:00:00Z") : 0, tid: f[6], pid: f[7], w: f[2], l: f[3], t: f[4], pl: f[0], pn: f[1] });
+    const ev = (EV && EV.events || []).find((x) => x.tid === f[6]);
+    track("result-open"); hideTip();
+    openShared("x=" + tok, { label: `${ordF(f[0])} of ${f[1]}${ev ? " \u00b7 " + ev.name : ""}` });
+  }
+  addEventListener("click", (e) => { const li = e.target.closest && e.target.closest("#iPop .frow"); if (!li) return; e.preventDefault(); openResult(+li.dataset.r); });
+  addEventListener("keydown", (e) => { const li = e.target.closest && e.target.closest("#iPop .frow"); if (li && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openResult(+li.dataset.r); } });
   const bcLine = (v) => `<span class="ptxt bcx">${SAD_I}<b>Below the cut</b>${ii("below the cut", bcTip(v))}</span>`;
   const bcTip = (v) => `<h3>${SAD_I.replace('class="psad"', 'class="psad ph3"')} Below the cut</h3><p>No player of this deck won more matches than they lost in the last 7 days, so it has no top-player list.</p><p>This is the list of its best-placed player${v.pl ? `: <b>${esc(v.pl)}</b>` : ""}${v.sc ? `, record <b>${esc(v.sc)}</b>` : ""}. A starting point, not a proven list.</p>`;
   const bcTab = (v) => `<span class="dnote bctab">&#9888; Below the cut${ii("below the cut", `<h3>&#9888; Below the cut</h3><p>No player of this deck won more matches than they lost in the last 7 days, so it has no top-player list.</p><p>This is the list of its best-placed player${v.pl ? `: <b>${esc(v.pl)}</b>` : ""}${v.sc ? `, record <b>${esc(v.sc)}</b>` : ""}. A starting point, not a proven list.</p>`)}</span>`;
@@ -2097,7 +2121,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // link), Today (the deck's share and win today, and if this list is still a top list), the small QR. A tap on the
   // small QR shows the big QR (as the QR panel); its × goes back to the cards.
   let SH = null; // {p, code, dk, name, when, packed, M, today: {k, d}}
-  async function openShared(h) {
+  async function openShared(h, opt) {
     const o = unpackShare(h.replace(/^x=/, ""));
     if (!o) { toast("This link is broken or was changed"); track("shared-bad"); return; }
     // Sense checks: a part that makes no sense is left out (score, place, date); the deck id must fit the cards (below)
@@ -2107,15 +2131,15 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const p = { k: o.k, t: dayOk ? new Date(o.day).toISOString().slice(0, 10).replace(/-/g, "") : "", s: scOk ? `${o.w}-${o.l}-${o.t}` : "", p: plOk ? `${o.pl}-${o.pn}` : "" };
     const playedOk = o.played >= Date.UTC(2024, 9, 30) && o.played <= (dayOk ? o.day : now) + 864e5;
     const dk = { nrs: o.nrs, energy: o.energy }, code = codeFromNrs(o.nrs, o.energy);
-    track("shared-open");
-    try { localStorage.setItem("pmq-shared", JSON.stringify({ h: "x=" + h.replace(/^x=/, ""), n: deckNameOf(o.k), at: Date.now() })); } catch (err) {}
+    if (!opt) track("shared-open");
+    if (!opt) try { localStorage.setItem("pmq-shared", JSON.stringify({ h: "x=" + h.replace(/^x=/, ""), n: deckNameOf(o.k), at: Date.now() })); } catch (err) {}
     const t = /^\d{8}$/.test(p.t || "") ? new Date(`${p.t.slice(0, 4)}-${p.t.slice(4, 6)}-${p.t.slice(6)}T00:00:00Z`) : null;
     const fmtDay = (ms) => { const D = new Date(ms); return D.toLocaleDateString(undefined, { month: "short", day: "numeric", year: D.getUTCFullYear() !== new Date().getUTCFullYear() ? "numeric" : undefined, timeZone: "UTC" }); };
     const ago = (ms) => { const n = Math.floor((Date.UTC(...(() => { const N = new Date(); return [N.getUTCFullYear(), N.getUTCMonth(), N.getUTCDate()]; })()) - ms) / 864e5);
       return n <= 0 ? "today" : n === 1 ? "yesterday" : n < 7 ? `${n} days ago` : n < 60 ? `${Math.floor(n / 7)} week${n < 14 ? "" : "s"} ago` : n < 730 ? `${Math.floor(n / 30)} months ago` : `${Math.floor(n / 365)} years ago`; };
     const when = t ? (["today", "yesterday"].includes(ago(+t)) ? ago(+t) : `${fmtDay(+t)} \u00b7 ${ago(+t)}`) : ""; // "today", "yesterday", "Oct 2 \u00b7 6 weeks ago"
     const srcUrl = o.tid && o.pid ? `https://play.limitlesstcg.com/tournament/${o.tid}/player/${encodeURIComponent(o.pid)}/decklist` : "";
-    SH = { p, code, dk, name: deckNameOf(p.k), when, played: playedOk ? fmtDay(o.played) : "", src: srcUrl, packed: packCode(code), M: null, today: null };
+    SH = { label: opt && opt.label, p, code, dk, name: deckNameOf(p.k), when, played: playedOk ? fmtDay(o.played) : "", src: srcUrl, packed: packCode(code), M: null, today: null };
     shName = (p.k || "shared-list") + ".png"; shBlob = null;
     { const c = document.createElement("canvas"), img = new Image(); img.onload = () => { c.width = img.width; c.height = img.height; c.getContext("2d").drawImage(img, 0, 0); c.toBlob((b) => { shBlob = b; }); }; img.src = qrPng(SH.packed, "#ffffff"); }
     $("shv").hidden = false; document.documentElement.style.overflow = "hidden"; $("shChip").hidden = true;
@@ -2134,7 +2158,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     track(SH.today.d ? (SH.today.k >= 0 ? "shared-same" : "shared-changed") : "shared-gone");
     if (!$("shv").hidden && $("shBox").dataset.mode === "cards") shCards();
   }
-  function shHead() { return `<p class="shk">Shared list${SH.when ? " \u00b7 " + SH.when : ""}</p><h3 id="shT">${esc(SH.name)}<span class="shen">${SH.dk.energy.map((e) => `<img src="e/${e}.webp" alt="${cap(e)}" title="${cap(e)}" width="20" height="20">`).join("")}</span></h3>`; }
+  function shHead() { return `<p class="shk">${SH.label ? esc(SH.label) : `Shared list${SH.when ? " \u00b7 " + SH.when : ""}`}</p><h3 id="shT">${esc(SH.name)}<span class="shen">${SH.dk.energy.map((e) => `<img src="e/${e}.webp" alt="${cap(e)}" title="${cap(e)}" width="20" height="20">`).join("")}</span></h3>`; }
   function shCards() {
     const box = $("shBox"), M = SH.M, dk = SH.dk, T = SH.today;
     box.dataset.mode = "cards";
