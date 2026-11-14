@@ -368,6 +368,12 @@
    "path": "raw/2026/11/6adfaf4022fd412b92a4d7e5.json",
    "players": 242,
    "rule": "wl1"
+  },
+  "6af70355b2fccaf0272d0d65": {
+   "date": "2026-11-13T21:00:00Z",
+   "path": "raw/2026/11/6af70355b2fccaf0272d0d65.json",
+   "players": 41,
+   "rule": "wl1"
   }
  },
  "skipped": {
