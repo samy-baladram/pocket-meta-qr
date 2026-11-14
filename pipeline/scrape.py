@@ -23,11 +23,13 @@ RETRY_WAIT = (10, 30)      # backoff on HTTP 429 / 5xx
 LIST_SIZE = 150            # rows read from the completed-tournaments list
 MIN_PLAYERS = 8
 # Decklists fetched per tournament (decision Nov 11, 2026, request R11):
-#   single-deck events: every placed player with a winning record (W > L; ties do not count) = a "top player";
+#   single-deck events: every placed player with a winning record (W > L; ties do not count), and (R22, rule wl2)
+#   every player in the top 25 %. A "top player" (R22) is W - L >= 2 or top 25 %; W > L also gives the "close" lists;
 #   multi-deck events (lists used only for energy votes): the old rule, top 25 % of the players, at least 8, at most 32.
 # Before Nov 11 it was the top-25 % rule for all events (and a fixed top 16 before Nov 9); those lists stay.
 DECKLIST_SHARE, DECKLIST_MIN, DECKLIST_MAX = 0.25, 8, 32
-DECKLIST_RULE = "wl1"      # index["done"][tid]["rule"]: the rule already queued for that event
+DECKLIST_RULE = "wl2"      # index["done"][tid]["rule"]: the rule already queued for that event (wl1: W > L only)
+TOP_PCT = 0.25             # R22 (Nov 14, 2026): also the top 25 % (a top player can have W - L < 2 there)
 # "Below the cut" (R11b): for a deck with BELOW_CUT_SHARE % or more of the 7-day window and no top player there, the
 # list of its best-placed player (single-deck events). The page shows decks from 0.2 %; 0.1 % gives a margin.
 BELOW_CUT_SHARE, WINDOW_DAYS = 0.1, 7
@@ -42,7 +44,7 @@ def decklist_pids(raw):
     ranked = sorted((e for e in raw["entries"] if e["has_list"] and e["place"] is not None), key=lambda e: e["place"])
     if raw["multi_deck"]:
         return [e["pid"] for e in ranked[:decklist_count(raw["players"])]]
-    return [e["pid"] for e in ranked if e["w"] > e["l"]]
+    return [e["pid"] for e in ranked if e["w"] > e["l"] or e["place"] <= raw["players"] * TOP_PCT]
 SKIP_PHRASES = ("special rules", "special rule", "suspended cards", "suspended card")
 RAW_VERSION = 1
 

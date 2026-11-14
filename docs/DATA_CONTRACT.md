@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 24 (Nov 14, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 25 (Nov 14, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,10 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 25 (request R22 of the UI chat, approved by the user): stricter **top player**: **W − L >= 2, or a place in
+  the top 25 %** of the event (was W > L). All top-player numbers use it (`nu`, `of`, groups, `alt`, `fin`,
+  `search.json`). `bc` gets a 2nd value: **`bc: 2` = "close"** (no top player, but a winning record: its best finish
+  with W > L); `bc: 1` = below the cut (as before). New **`bn`** on `bc` lists.
 - Version 24 (request R21 of the UI chat): every `alt` entry (tweak) has **`fin`**: all its `u` finishes, same row
   format as a list's `fin`. About +15 KB in total (+3 KB gzip).
 - Version 23 (request R20 of the UI chat): each `fin` row has 8 values: + `tid` and `pid` of that finish (the
@@ -79,15 +83,18 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - Version 3: up to **10 lists** per deck (`nv` 1..10) from the deck's **20 best finishes** (`of` max 20);
   finishes are ranked by place relative to the event size (5th of 547 before 2nd of 153).
 
-## UI words (Nov 9, 2026; top player rule changed Nov 11, v13)
+## UI words (Nov 9, 2026; top player rule changed Nov 11, v13, and Nov 14, v25)
 
 "Finish" in this contract is NOT the Limitless meaning ("top finishes" on a Limitless deck page = all shown placings,
-whole set, all events). Our finish = one player's place with a **winning record (W > L)** at a single-deck event in
-the last 7 days, with a public decklist (until v12: a top-25 % place). The page calls it a **top player**:
+whole set, all events). Our finish = one player's place at a single-deck event in the last 7 days, with a public
+decklist, that is a **top player**: **W − L >= 2** (ties do not count), **or a place in the top 25 %** of the event
+(place <= players × 0.25; 10th of 40 passes, 11th of 40 does not). Until v24: W > L; until v12: a top-25 % place.
 - pill: "Used by `nu` of `of` top players" (was "Played in N of M finishes")
-- ⓘ text (UI chat to update): "A top player won more matches than they lost at a single-deck event in the last
-  7 days." (until v12: "placed in the top 25% ... at least 8 and at most 32 players per event").
-- "Below the cut" (`bc: 1`): the deck's best-placed player when the deck has no top player; not a top player.
+- ⓘ text (UI chat to update): the v25 rule above, for example "A top player won at least 2 more matches than they
+  lost, or placed in the top 25%, at a single-deck event in the last 7 days."
+- "Close" (`bc: 2`): the deck has no top player, but a player with a winning record (W > L); the shown list is the
+  best of those. Not a top player.
+- "Below the cut" (`bc: 1`): the deck's best-placed player when the deck has no player with a winning record.
 - footer: "up to 10 lists per deck, from the decklists of top players"
 Use the same word in new docs and UI notes.
 
@@ -187,7 +194,8 @@ The list's `ev`, `pl`, `sc`, `dt`, energy, QR, `tid`, `pid` come from the repres
 | `tid`, `pid` | string | **new in v19.** Limitless tournament id (24 hex characters) and player id of the finish that gives `ev`/`pl`/`sc`/`dt`. Link: `https://play.limitlesstcg.com/tournament/<tid>/player/<pid>/decklist`. Also on `bc` lists. Absent only for a list without a decklist page (none today) |
 | `nu` | int | finishes in the group: exact copies + 1-card changes. UI: "top players" (see "UI words"). `0` on a `bc` list |
 | `of` | int | all the deck's finishes with a readable list in the window (also those of groups that are not shown). UI: "top players". `0` on a `bc` list |
-| `bc` | 1 or absent | **new in v13.** "below the cut": the deck has no top player (W > L) in the window, so this is its best-placed finish (smallest place / players) with any record. Then it is the deck's only list (`nv` 1), `nu` = `of` = 0, no `alt`; `pl`, `sc`, `ev`, `dt`, energy and QR as for any list. The deck is not in `search.json` |
+| `bc` | 1, 2 or absent | **new in v13; 2 new in v25.** The deck has no top player in the window, so this is its only list (`nv` 1), `nu` = `of` = 0, no `alt`/`nx`/`rec`/`grec`/`fin`; `pl`, `sc`, `ev`, `dt`, `tid`, `pid`, energy and QR as for any list; the deck is not in `search.json`. **`bc: 2` "close"**: the deck has a finish with a winning record (W > L): its best-placed one. **`bc: 1` "below the cut"**: no winning record: its best-placed finish with any record |
+| `bn` | int | **new in v25, only on `bc` lists.** the deck's finishes in the window with a winning record (W > L) and a list; `0` on `bc: 1` |
 | `grec` | [w, l, t] | **new in v21.** the combined record of all finishes of the group (exact copies + tweaks) = `rec` + the sum of `alt[].rec`. Absent on `bc` lists |
 | `fin` | array or absent | **new in v21.** the finishes with exactly this list, best place (place / players) first: `[[place, players, w, l, t, "YYYY-MM-DD", "tid", "pid"], ...]`. v22: **all** of them (length = `nx`; v21: the top 5). v23: + `tid`, `pid` of the finish (link `https://play.limitlesstcg.com/tournament/<tid>/player/<pid>/decklist`; left out, 6 values, when there is no decklist page: none today; the event name is in `events.json` by `tid`). The first row is the list's own finish (same `tid`/`pid` as the list). The sum of the records = `rec`. Only when `nx` >= 2 |
 | `nx` | int | **new in v20.** finishes with exactly this list (the exact copies). Always `nu` = `nx` + the sum of `alt[].u`. Absent on `bc` lists |
@@ -424,7 +432,8 @@ and the card `pack` field.
 - Window: the last 7 days of tournaments of the current set (Standard; not events with "special rules" or "suspended cards";
   8 players or more).
 - Lists come from single-deck events only. Best finish = smallest place / players (then place, then newer).
-  Top player (v13) = a winning record (W > L) at a single-deck event; the pipeline fetches all their decklists.
+  Top player (v25) = **W − L >= 2, or a place in the top 25 %** of a single-deck event (ties do not count; until v24:
+  W > L). The pipeline fetches every decklist with W > L or a top-25 % place.
   A deck without a top player gets 1 "below the cut" list (`bc`).
 - Lists that differ by 1 card or less count as the same list (`nu`); the shown lists are the groups with the most
   top players.

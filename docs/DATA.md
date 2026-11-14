@@ -31,6 +31,9 @@ The round links come from the pairings page itself. The last link is the top cut
   data", and the run shows a warning with the tournament id. A standings table without name or record still stops
   the run (a layout change).
 - Keep multi-deck tournaments, with the flag `multi_deck: true` (see 4.4).
+- Top player (decision Nov 14, 2026, request R22): **W − L >= 2, or a place in the top 25 %** of the event. Decks
+  without a top player: "close" (`bc: 2`, its best finish with W > L) or "below the cut" (`bc: 1`). The scraper
+  fetches every decklist with W > L or a top-25 % place (rule `wl2`; on the switch, 15 extra pages for the set).
 - Decklists (decision Nov 11, 2026, request R11): in single-deck events, every placed player with a **winning
   record (W > L; ties count neither way)** = a "top player" (index rule `wl1`; on the switch, the extra lists of the
   current set were queued once: 622 pages). Multi-deck events keep the top-25 % rule below (their lists are only used

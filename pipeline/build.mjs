@@ -346,9 +346,10 @@ for (const [rank, d] of input.decks.entries()) {
     v.ev = c.row.ev; v.pl = c.row.pl; v.sc = c.row.sc; v.dt = c.row.dt;
     Object.assign(v, src(c.row));   // R16b: tid + pid of the representative finish (Limitless decklist link)
     if (d.bc) {
-      // R11b (Nov 11, 2026): "below the cut": the deck has no top player (W > L) in the window, so its only list is
+      // R11b (Nov 11, 2026), R22 (Nov 14): the deck has no top player in the window, so its only list is its best
+      // finish with W > L ("close", bc 2) or else its best finish (bc 1). Earlier text: the only list is
       // its best-placed finish. Not a top player: nu = of = 0, no alt.
-      v.bc = 1; v.nu = 0; v.of = 0;
+      v.bc = d.bc === 2 ? 2 : 1; v.bn = d.bn ?? 0; v.nu = 0; v.of = 0;   // R22: bc 2 = close, bn = W > L finishes
       vars.push(v);
       continue;
     }
