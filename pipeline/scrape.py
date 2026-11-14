@@ -547,7 +547,7 @@ def run(args):
         # Decklists. Old-format lists (no energy) are fetched again.
         n_more = queue_more_places(data, index, cur["release"])
         if n_more:
-            print(f"{n_more} more decklists queued (decklist rule {DECKLIST_RULE}: W > L in single-deck events)")
+            print(f"{n_more} more decklists queued (decklist rule {DECKLIST_RULE}: W > L or top 25 % in single-deck events)")
         n_bc = queue_below_cut(data, index, now()[:10])
         if n_bc:
             print(f"{n_bc} below-the-cut decklists queued (decks with {BELOW_CUT_SHARE} % or more and no top player)")
