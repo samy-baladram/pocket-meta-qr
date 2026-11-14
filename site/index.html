@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794609184-751f -->
+<!-- ui: artifact version 1794618674-e1cc -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -202,7 +202,7 @@ footer a { color: var(--muted); }
 .hdr .live { position: relative; z-index: 1; margin: 3px 2px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; color: var(--muted); font-size: var(--fs-s); line-height: 1.4; }
 .hdr .live b { color: var(--ink); font-weight: 600; }
 /* Explicit resets, no all-unset: the deploy minifier (csso) moves rules in front of it and they get lost (Nov 12) */
-.live .lchk { appearance: none; margin: 0; background: none; font-family: inherit; line-height: inherit; text-align: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 9px; border-radius: 999px;
+.live .lchk { appearance: none; margin: 0; background: none; font-family: inherit; text-align: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 9px; border-radius: 999px;
   border: 1.5px solid var(--pill-line); color: var(--ink); font-size: var(--fs-s); line-height: 1.4; } /* info level: outline, no shadow */
 .live .lchk b { font-weight: 700; } .live .lchk .mu { color: var(--muted); }
 .live .lchk .lch { width: 6px; height: 10px; flex: none; color: var(--muted); }
@@ -339,7 +339,7 @@ footer a { color: var(--muted); }
 .qslink svg { width: 13px; height: 13px; display: block; }
 .qslink:hover { background: var(--acc-bg); }
 .qslink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.since .sinx { appearance: none; margin: 0; border: 0; background: none; font-family: inherit; line-height: inherit; text-align: inherit; padding: 0; cursor: pointer; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
+.since .sinx { appearance: none; margin: 0; border: 0; background: none; font-family: inherit; text-align: inherit; padding: 0; cursor: pointer; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
 .since .sinx:focus-visible, .since .sinb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .newb { display: inline-block; margin-left: 6px; padding: 0 5px; border-radius: 4px; font-size: 10px; font-weight: 800; letter-spacing: 0.04em; line-height: 16px; vertical-align: 2px;
   color: #fff; background: var(--accent); }
@@ -574,7 +574,7 @@ footer a { color: var(--muted); }
 .apanel.fit .vars, .apanel:not(:has(.slide + .slide)) .vars { justify-content: center; } /* fewer lists than fit in view (iPad, desktop): centered */
 /* Lists per view: phone 1, phone landscape 2, iPad portrait 3, iPad landscape 4, desktop 5 (3+ need a screen taller than a landscape phone) */
 .vars { --per: 1; --vgap: 14px; display: flex; gap: var(--vgap); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
-  padding: calc(var(--sp-2) + 10px) var(--edge) var(--sp-3); scroll-padding-inline: var(--edge); } /* 18px on top: the swap button on the list's top edge stays clear of the deck stats pill */
+  padding: var(--sp-2) var(--edge) var(--sp-3); scroll-padding-inline: var(--edge); } /* 8px on top (no button on the top edge now) */
 .vars::-webkit-scrollbar { display: none; }
 @media (min-width: 600px) { .vars { --per: 2; } }
 @media (min-width: 840px) and (min-height: 501px) { .apanel .vars { --per: 3; } } /* 3 lists from 840px (was 740: too narrow lists) */
@@ -639,29 +639,33 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .ait .ast { grid-column: 1 / -1; margin-top: 5px; font-size: var(--fs-xs); color: var(--muted); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ait .ast b { color: var(--ink); }
 .apop3 { position: absolute; z-index: 6; display: flex; flex-direction: column; border-radius: var(--r-tile); background: var(--surface);
-  box-shadow: var(--pop-sh); overflow: hidden; animation: apopIn 0.16s ease-out; } /* highlighted: the panel, not the QR */
-.ttabs { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; flex: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+  box-shadow: 0 2px 6px rgba(var(--sh), 0.16), 0 0 0 1px rgba(var(--sh), 0.06); overflow: visible; animation: apopIn 0.16s ease-out; } /* highlighted: the panel, not the QR */
+.ttabs { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; flex: none; margin: 0; padding: 0; border-bottom: 0; }
 .ttabs:empty { display: none; }
-.ttabs button { height: 24px; border: 0; border-radius: 0; background: none; color: var(--muted); font-family: inherit; line-height: inherit; font-size: 12px; font-weight: 500; line-height: 1; cursor: pointer; }
-.ttabs button[aria-selected="false"] { opacity: 0.5; } /* the other tab: quieter */
+.ttabs button { height: 26px; border: 0; border-radius: 0; background: none; color: var(--muted); font-family: inherit; font-size: 12px; font-weight: 500; line-height: 1; cursor: pointer; }
+.ttabs button[aria-selected="false"] { opacity: 0.6; } /* the other tab: quieter */
 .ttabs button:first-child { border-top-left-radius: calc(var(--r-tile) - 2px); } /* the panel's own corners end the strip */
 .ttabs button:last-child { border-top-right-radius: calc(var(--r-tile) - 2px); }
-.ttabs button[aria-selected="true"] { background: var(--tile); color: var(--ink); font-weight: 600; box-shadow: inset 0 2px 3px rgba(var(--sh), 0.16); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ttabs button[aria-selected="true"] { box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5); } }
-:root[data-theme="dark"] .ttabs button[aria-selected="true"] { box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5); }
-.tcar { --iw: 168px; --cw: 42px; flex: none; display: flex; gap: 6px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
-  padding: 0 calc(50% - var(--iw) / 2); align-items: center; }
-.apop3.one .tcar { --cw: 46px; --iw: 182px; }
-.apop3 { justify-content: space-between; }
-.apop3 .tbody { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 3px 0; min-height: 0; }
+.ttabs button[aria-selected="true"] { background: none; color: var(--ink); font-weight: 600; } /* the chosen tab: a short blue mark under the word */
+.ttabs button { position: relative; padding-bottom: 3px; }
+.ttabs button[aria-selected="true"]::after { content: ""; position: absolute; left: 50%; bottom: 3px; width: 16px; height: 3px; margin-left: -8px; border-radius: 2px; background: var(--acc-mark); }
+
+
+.tcar { --iw: 170px; --cw: 42px; flex: none; display: flex; gap: 4px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
+  padding: 4px calc(50% - var(--iw) / 2) 8px; align-items: center; } /* room for the cards' shadow (a scroll box clips it) */
+.apop3.one .tcar { --cw: 50px; --iw: 196px; }
+.apop3 { justify-content: space-between; background: var(--tile); } /* the panel is darker; the tweak cards are lighter (surface) */
+.apop3 .tbody { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0; min-height: 0; }
 .tcar::-webkit-scrollbar { display: none; }
 .tw { flex: 0 0 var(--iw); scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px;
-  opacity: 0.4; transform: scale(0.9); transition: opacity 0.2s, transform 0.2s; cursor: pointer; }
+  transform: scale(0.96); transition: opacity 0.2s, transform 0.2s; cursor: pointer; }
 .tw.on { opacity: 1; transform: none; }
+.tw { background: var(--surface); border-radius: 10px; padding: 6px 0 5px; box-shadow: 0 1px 5px rgba(var(--sh), 0.3); } /* each tweak is a card you can swipe */
 .tw .tsw { display: flex; align-items: center; gap: 5px; }
 .tw .tstk { display: flex; }
 .tw .tstk img { width: var(--cw); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); }
-.tw .tstk img + img { margin-left: calc(var(--cw) * -0.25); } /* the 2nd card covers 25% of the 1st */
+.tw .tstk img + img { margin-left: calc(var(--cw) * -0.4); margin-top: 7px; } /* the 2nd card covers 40% of the 1st, 7px lower */
+.tw .tstk { align-items: flex-start; }
 .tw.on .tstk img { cursor: zoom-in; }
 .tw .achev { display: grid; place-items: center; color: var(--muted); }
 .tw .achev svg { width: 9px; height: 12px; }
@@ -670,18 +674,21 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .apop3.swp { justify-content: center; }
 .swsc { overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; padding: 6px; }
 .swsc::-webkit-scrollbar { display: none; }
-.swin { display: flex; flex-direction: column; align-items: center; gap: 2px; width: max-content; min-width: 100%; }
+.swin { display: flex; flex-direction: column; align-items: center; gap: 7px; width: max-content; min-width: 100%; }
 .swr { display: flex; gap: 3px; }
 .swr img { width: var(--cw, 30px); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); cursor: zoom-in; }
 .swr.out img { filter: grayscale(0.35) brightness(0.92); } /* list 1's cards: a bit quieter */
 .swch { display: block; color: var(--muted); line-height: 0; }
 .swch svg { width: 12px; height: 7px; display: block; }
-.tdots { display: flex; justify-content: center; align-items: center; gap: 4px; min-height: 5px; padding-top: 5px; }
+.tdots { position: absolute; left: 50%; top: calc(100% + 6px); transform: translateX(-50%); z-index: 1; display: flex; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 999px; background: rgba(12, 18, 26, 0.62); }
+.tdots:empty { display: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tdots { background: rgba(255, 255, 255, 0.2); } }
+:root[data-theme="dark"] .tdots { background: rgba(255, 255, 255, 0.2); }
 @container (max-width: 300px) { /* narrow list columns (3 per view on wide screens): smaller cards, so the panel content fits */
   .tcar { --cw: 34px; --iw: 136px; } .apop3.one .tcar { --cw: 38px; --iw: 150px; }
   .ttabs button { height: 22px; font-size: 11px; } .tw .tsw { gap: 3px; } }
-.tdots i { width: 5px; height: 5px; border-radius: 3px; background: var(--line-strong); transition: width 0.2s, background 0.2s; }
-.tdots i.on { width: 12px; background: var(--acc-ink); }
+.tdots i { width: 5px; height: 5px; border-radius: 3px; opacity: 0.55; background: #fff !important; transition: width 0.2s, opacity 0.2s; }
+.tdots i.on { opacity: 1; width: 12px; background: var(--acc-ink); }
 .adots2 { display: flex; justify-content: center; align-items: center; gap: 4px; padding: 0 0 8px; }
 .adots2 .adl { font-size: 11px; color: var(--muted); margin: 0 4px; }
 .adots2 .adsep { width: 1px; height: 10px; background: var(--line-strong); margin: 0 6px; }
@@ -741,7 +748,7 @@ details.fmore .fins li:first-child { border-top: 1px solid var(--line); }
 /* Card fade: a card image that is not loaded yet fades in when it is ready (see dealGrid) */
 .cards img.dealt { animation: cardIn 0.18s ease-out both; } /* until it loads, the slot shows the card's grey background */
 @keyframes cardIn { from { opacity: 0.35; } }
-.cards img.hl { position: relative; z-index: 2; } /* the copies of the card in the popup (no outline) */
+.cards img.hl { outline: 2px solid var(--accent); outline-offset: 1px; position: relative; z-index: 2; } /* all copies of the card in the popup */
 html { -webkit-tap-highlight-color: transparent; }
 .cards img, .ait img, .aswl img, .cbox img { -webkit-user-select: none; user-select: none; }
 /* Not in list 1: a corner tag. A bright blue triangle on the card's top-right corner, with a ring-color line along its diagonal
@@ -818,8 +825,8 @@ html { -webkit-tap-highlight-color: transparent; }
 @media (hover: hover) { .sfoot .pill.us:hover { border-color: var(--muted); } }
 .sfoot .pill.us:has(.ii[aria-expanded="true"]) { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); }
 .sfoot .pill.us .ii[aria-expanded="true"]::before { display: none; } /* the pill shows the open state */
-.sp { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 9px; border: 1.5px solid var(--pill-line); border-radius: 999px;
-  background: var(--surface); color: var(--ink); font-family: inherit; line-height: inherit; font-size: var(--fs-xs); font-weight: 600; white-space: nowrap; cursor: pointer; }
+.sp { display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; border: 1.5px solid var(--pill-line); border-radius: 999px;
+  background: var(--surface); color: var(--ink); font-family: inherit; line-height: inherit; font-size: 11.5px; font-weight: 600; white-space: nowrap; cursor: pointer; }
 @media (hover: hover) { .sp:hover { border-color: var(--muted); } }
 .sp[aria-expanded="true"] { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); }
 .sp .pstar, .sp .psad, .sp .sppl { width: 13px; height: 13px; flex: none; }
@@ -935,6 +942,12 @@ html { -webkit-tap-highlight-color: transparent; }
 .dot::after { content: ""; position: absolute; inset: -6px -3px; } /* larger invisible tap area */
 .dot[aria-current="true"]::before { width: 14px; background: var(--muted); } /* the lists in view: a longer dot */
 .dot.l1::before { background: var(--acc-mark); } /* list 1: always the vivid blue */
+/* Nov 14: deck lists get numbered tabs ("List 1  2  3"); the current one is filled. Events keep the dots. */
+.ldots { gap: 4px; bottom: 6px; }
+.ldots .dot { width: auto; min-width: 20px; height: 18px; padding: 0 5px; border-radius: 999px; font-family: inherit; line-height: 1; font-size: 10.5px; font-weight: 600; color: var(--muted); }
+.ldots .dot::before { display: none; }
+.ldots .dot[aria-current="true"] { background: var(--muted); color: var(--surface); }
+.vwrap:has(.ldots) .vars { padding-bottom: calc(var(--sp-3) + 20px); } /* room for the tabs under the lists */
 .dot:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 50%; }
 
 /* ===== Full-screen views: QR (with Save) and card zoom ===== */
@@ -1012,12 +1025,15 @@ html { -webkit-tap-highlight-color: transparent; }
 .cpop .parr { position: absolute; top: 40px; width: 14px; height: 14px; background: var(--surface); transform: rotate(45deg); }
 .cpop .parr.l { left: -7px; box-shadow: -1px 1px 0 rgba(var(--sh), 0.09); }
 .cpop .parr.r { right: -7px; box-shadow: 1px -1px 0 rgba(var(--sh), 0.09); }
-.cpop .sbody { position: relative; display: flex; gap: 14px; align-items: flex-start; }
+.cpop .sbody { position: relative; display: flex; gap: 14px; align-items: stretch; }
 .cpop .zc { flex: none; width: 138px; height: auto; aspect-ratio: 367 / 512; padding: 0; border: 0; background: var(--line); border-radius: 7px; cursor: zoom-in;
   box-shadow: 0 4px 12px rgba(var(--sh), 0.3); overflow: hidden; }
 .cpop.float .zc { width: 150px; }
+.cpop .zc { position: relative; }
+.cpop .zic { position: absolute; right: 6px; bottom: 6px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: rgba(12, 18, 26, 0.6); color: #fff; } /* full screen: an icon on the card */
+.cpop .zic svg { width: 16px; height: 16px; }
 .cpop .zc img { width: 100%; height: 100%; display: block; }
-.cpop .pinfo { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 8px; padding-top: 2px; }
+.cpop .pinfo { min-width: 0; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding-bottom: 2px; } /* the details sit at the bottom, level with the card */
 .cpop .pn { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px; font-size: var(--fs-xl); line-height: 1.2; }
 .cpop .pn b { font-weight: 700; }
 .cpop .cnt { color: var(--muted); font-weight: 600; font-size: var(--fs-m); }
@@ -1055,7 +1071,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .ipop.float.wide { width: min(360px, calc(100vw - 24px)); }
 /* "Also played (N)": an outlined pill button (like the "differs" tab); it opens the 1-card changes in the info popover */
 .altb { display: inline-flex; align-items: center; gap: 3px; padding: 0 7px 0 8px; border: 1.5px solid var(--pill-line); border-radius: 999px; cursor: pointer;
-  background: var(--surface); color: var(--ink); font-size: var(--fs-xs); font-weight: 600; line-height: 1.5; white-space: nowrap; height: 26px; } /* same height as the other pills */
+  background: var(--surface); color: var(--ink); font-weight: 600; line-height: 1.5; white-space: nowrap; height: 28px; font-size: 11.5px; } /* same height and size as the other pills */
 @media (hover: hover) { .altb:hover { border-color: var(--muted); } }
 .slide .cmpb.ctop { position: absolute; top: -10px; right: 12px; z-index: 2; border-color: var(--muted); box-shadow: 0 1px 3px rgba(var(--sh), 0.18); } /* Nov 14: on the deck's top right edge, a clearer outline */
 .slide .cmpb.ctop[aria-expanded="true"] { z-index: 7; }
@@ -1103,7 +1119,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .lvleg span { display: inline-flex; align-items: center; gap: 5px; } .lvleg .ldot { width: 7px; height: 7px; } .lvleg .ldot::after { display: none; }
 /* Sheets (touch), game "Sort" style: centered title over a soft divider, a round close button at the bottom center */
 .cpop .sx { display: none; }
-.cpop.sheet .sx { display: grid; place-items: center; width: 44px; height: 44px; margin: 8px auto 22px; /* higher, like the game */ padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+.cpop.sheet .sx { display: grid; place-items: center; width: 44px; height: 44px; margin: 16px auto 12px; /* balanced above and below */ padding: 0; border: 0; border-radius: 50%; cursor: pointer;
   background: var(--surface); color: #7b8798; box-shadow: var(--raised), var(--bevel); }
 .cpop.sheet .sx svg { width: 28px; height: 28px; display: block; stroke-width: 1.4; }
 .ipop.sheet h3 { text-align: center; padding-bottom: 10px; margin-bottom: 10px; box-shadow: 0 6px 6px -6px var(--line-strong); }
@@ -1627,7 +1643,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           <div class="tile t-ev"><span class="tl">Event</span><div class="ev" title="${esc(v.ev || "")}">${v.dt ? `<span class="dt">${fmtDate(v.dt)}</span> \u00b7 ` : ""}${esc(v.ev || "\u2013")}</div></div>
         </div>
         ${(() => { const cmp = curCmp; curCmp = ""; const pop = i === 0 && curDeck && !curDeck.evt && popular(curDeck);
-          return v.bc || usedBy(v) || altBtn(v) || cmp ? `<div class="usrow">${v.bc ? `<button class="sp spt" type="button" data-sk="bc" aria-haspopup="dialog">${SAD_I}Below the cut</button>` : ""}${usedBy(v) ? `${pop ? `<button class="sp spt" type="button" data-sk="pop" aria-haspopup="dialog">${STAR_I}Popular</button>` : ""}<button class="sp spn" type="button" data-sk="tp" aria-haspopup="dialog" aria-label="Top players: ${nxOf(v)} of ${v.of}${nxOf(v) > 1 && v.rec ? `, ${wrPct(v.rec)}% win` : ""}">${PPL_I}${nxOf(v)}/${v.of}${nxOf(v) > 1 && v.rec ? `<span class="spm"> \u00b7 ${wrPct(v.rec)}%</span>` : ""}</button>` : ""}${cmp}${altBtn(v, i)}</div>` : ""; })()}`;
+          return v.bc || usedBy(v) || altBtn(v) || cmp ? `<div class="usrow">${v.bc ? `<button class="sp spt" type="button" data-sk="bc" aria-haspopup="dialog">${SAD_I}Below the cut</button>` : ""}${cmp}${usedBy(v) ? `${pop ? `<button class="sp spt" type="button" data-sk="pop" aria-haspopup="dialog">${STAR_I}Popular</button>` : ""}<button class="sp spn" type="button" data-sk="tp" aria-haspopup="dialog" aria-label="Top players: ${nxOf(v)} of ${v.of}${nxOf(v) > 1 && v.rec ? `, ${wrPct(v.rec)}% win` : ""}">${PPL_I}${nxOf(v)}/${v.of}${nxOf(v) > 1 && v.rec ? `<span class="spm"> \u00b7 ${wrPct(v.rec)}%</span>` : ""}</button>` : ""}${altBtn(v, i)}</div>` : ""; })()}`;
   // Legend icon: a tiny card with the same corner tag as the marked cards
   const MARK_ICON = '<svg viewBox="0 0 8 11" aria-hidden="true"><rect x="0" y="0" width="8" height="11" rx="1.2" fill="currentColor" opacity="0.45"/><path d="M3.2 0H6.8A1.2 1.2 0 0 1 8 1.2V4.8Z" fill="var(--mark)" stroke="var(--mark-edge)" stroke-width="0.9" stroke-linejoin="round"/></svg>';
   const CARET = '<svg class="dcar" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 4 2.5 2.5L7.5 4"/></svg>';
@@ -1658,11 +1674,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const ins = diff(mine, base), outs = diff(base, mine);
       const chip = ([id, k]) => `<span class="chip" role="button" tabindex="0" data-cid="${id}" data-cn="${esc(names.get(id))}"><img src="c/${id}.webp" alt="" width="150" height="209">${cName({ id, n: names.get(id) })}${k > 1 ? ` <span class="x">&times;${k}</span>` : ""}</span>`;
       // ⇄ N vs ★1: opens the In / Out popover and fades every card except the changed ones (this list: added; List 1: removed)
-      curCmp = `<button class="altb cmpb" type="button" aria-expanded="false" aria-label="${nd} change${nd > 1 ? "s" : ""} versus the ${L1n(d)}">${SWAP_I}${nd}${CARDS_I}vs <span class="l1${isHot(d) ? " hot" : ""}">${L1s(d)}</span>${CARET}</button>`;
+      curCmp = `<button class="altb cmpb" type="button" aria-expanded="false" aria-label="${nd} card${nd > 1 ? "s" : ""} changed versus list 1">${SWAP_I}${nd} vs List 1</button>`; // Nov 14: in the pill row (first place)
       outTxt = outs.map(chip).join("");
     }
     return `
-      ${v.bc ? "" : i === 0 && d.lists && d.lists.length > 1 ? l1Tab(v) : ""}${(() => { const c = curCmp; curCmp = ""; return c.replace('class="altb cmpb"', 'class="altb cmpb ctop"'); })()}
+      ${v.bc ? "" : i === 0 && d.lists && d.lists.length > 1 ? l1Tab(v) : ""}
       <div class="cards"${outTxt ? ` data-out="${esc(outTxt)}"` : ""}>${copies.map((c, k) => { const img = `<img data-n="${esc(c.n)}"${dif[k] ? ' data-dif="1"' : ""} ${i === 0 ? 'fetchpriority="high" ' : ""}tabindex="0" role="button" src="c/${c.id}.webp" alt="${esc(c.n)}${dif[k] ? ` (not in the ${L1n(d)})` : ""}" width="150" height="209">`;
         return img; }).join("")}</div>
       <div class="sfoot">
@@ -2481,7 +2497,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
         ${n > 1 ? `<button class="chev-btn prev" type="button" aria-label="Previous list" hidden>${CHEV_L}</button>
         <button class="chev-btn next" type="button" aria-label="Next list">${CHEV_R}</button>` : ""}
       </div>
-      ${n > 1 ? `<div class="dots" role="group" aria-label="Lists">${Array.from({ length: n }, (_, i) => `<button class="dot${i === 0 ? " l1" + (isHot(d) ? " hot" : "") : ""}" type="button" data-i="${i}" aria-label="Show list ${i + 1} of ${n}${i === 0 ? " (" + L1n(d) + ")" : ""}" aria-current="${i === 0}"></button>`).join("")}</div>` : ""}`;
+      ${n > 1 ? `<div class="dots ldots" role="group" aria-label="Lists">${Array.from({ length: n }, (_, i) => `<button class="dot${i === 0 ? " l1" + (isHot(d) ? " hot" : "") : ""}" type="button" data-i="${i}" aria-label="Show list ${i + 1} of ${n}${i === 0 ? " (" + L1n(d) + ")" : ""}" aria-current="${i === 0}">${i === 0 ? "List 1" : i + 1}</button>`).join("")}</div>` : ""}`;
     p.hidden = false;
     if (n > 1 && !d.lists) listsOf(d).then((L) => { // first open: list 1 (the most played) comes from the order
       const s0 = p.querySelector('.slide[data-i="0"]');
@@ -2630,8 +2646,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const [code, num] = id.split("-"), set = PK && PK.sets[code];
     const ps = `${set ? esc(set.name) + " \u00b7 " : ""}${esc((code || "").toUpperCase())} ${esc(num || "")}`;
     const dif = img.dataset.dif ? `<p class="pdif"><span><b>Not in the ${L1n(deckOf(img))}</b>${grid.dataset.out ? ` \u00b7 ${(grid.dataset.out.match(/class="chip"/g) || []).length > 1 ? `${L1n(deckOf(img))} has` : "replaces"}<span class="pout">${grid.dataset.out}</span>` : ""}</span></p>` : "";
-    return `<div class="sbody"><div class="zcol"><button class="zc" type="button" aria-label="Show ${esc(n)} full screen"><img src="z/${id}.webp" alt="${esc(n)}" width="367" height="512"></button>
-      <p class="shint">${HOVER ? "Click for full screen" : "Tap for full screen"}</p></div>
+    return `<div class="sbody"><div class="zcol"><button class="zc" type="button" aria-label="Show ${esc(n)} full screen"><img src="z/${id}.webp" alt="${esc(n)}" width="367" height="512"><span class="zic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></span></button></div>
       <div class="pinfo"><p class="pn"><b>${esc(n)}${(() => { const dk = data.decks.find((x) => x.id === img.closest(".acc")?.id); return dk && dupNames(dk).has(n) ? setTag(id) : ""; })()}</b>${count > 1 ? `<span class="cnt">&times;${count}</span>` : ""}</p><p class="ps">${ps}</p>${packBox(id)}${dif}</div></div>`;
   }
   function placePop() {
@@ -2930,10 +2945,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const stk = (cs, cls) => `<span class="tstk">${cs.map((c) => `<img${cls} src="c/${c.id}.webp" data-cid="${c.id}" data-cn="${esc(c.n)}" alt="${esc(c.n)}" title="${esc(tName(c))}" width="150" height="209">`).join("")}</span>`;
     const pop = document.createElement("div");
     pop.className = "apop3";
-    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top}px;width:${ir.width}px;height:${ir.height}px`;
+    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top - 8}px;width:${ir.width}px;height:${ir.height + 10}px`;
     if (G.length < 2) pop.classList.add("one");
     pop.innerHTML = `<div class="ttabs" role="tablist" aria-label="Cards changed">${G.length < 2 ? "" : G.map((g, j) => `<button type="button" role="tab" data-g="${j}" aria-selected="${j === 0}">${g.n} card${g.n > 1 ? "s" : ""}</button>`).join("")}</div>
-      <div class="tbody"><div class="tcar" role="listbox"></div><div class="tdots"></div></div>`;
+      <div class="tbody"><div class="tcar" role="listbox"></div></div><div class="tdots"></div>`;
     slide.append(pop);
     const q0 = qim ? qim.getAttribute("src") : "", q0n = qim ? qim.dataset.q : "";
     altOpen = { btn, pop, slide, d, i, x0: slide.closest(".vars")?.scrollLeft || 0,
@@ -2985,13 +3000,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const row = (cs, cls) => cs.map((c) => `<img${cls} src="c/${c.id}.webp" data-cid="${c.id}" data-cn="${esc(c.n)}" alt="${esc(c.n)}" title="${esc(tName(c))}" width="150" height="209">`).join("");
     const pop = document.createElement("div");
     pop.className = "apop3 swp";
-    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top}px;width:${ir.width}px;height:${ir.height}px`;
+    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top - 8}px;width:${ir.width}px;height:${ir.height + 10}px`;
     pop.innerHTML = `<div class="swsc" role="group" aria-label="Cards swapped vs ${esc(L1n(d))}"><div class="swin"><div class="swr out">${row(pairs.map((x) => x.out), ' class="ao"')}</div>
       <span class="swch" aria-hidden="true"><svg viewBox="0 0 14 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 2 5 5 5-5"/></svg></span>
       <div class="swr">${row(pairs.map((x) => x.in), "")}</div></div></div>`;
     slide.append(pop);
     // card width: the 2 rows + chevron fill the height; narrower when the row would be wider than the panel (min 22 px, then it scrolls)
-    const n = pairs.length, H = pop.clientHeight - 12 - 7 - 4, W = pop.clientWidth - 12, g = 3;
+    const n = pairs.length, H = pop.clientHeight - 12 - 7 - 14, W = pop.clientWidth - 12, g = 3;
     const cw = Math.max(22, Math.min(Math.floor((H / 2) * 150 / 209), Math.floor((W - (n - 1) * g) / n), 46));
     pop.style.setProperty("--cw", cw + "px");
     altOpen = { btn, pop, slide, d, i, x0: slide.closest(".vars")?.scrollLeft || 0 };
@@ -3026,7 +3041,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }, { capture: true, passive: true });
   addEventListener("resize", () => { if (FLOAT) hideTip(); });
   function cardClick(ci) {
-    if (!cpop.hidden && popImg === ci) { hidePop(); return; } // the same card again: close
+    if (!cpop.hidden && popImg && (popImg === ci || cardId(popImg) === cardId(ci))) { hidePop(); return; } // the same card (any copy) again: close
     if (FLOAT) { pinned = true; showPop(ci); return; }
     showPop(ci);
   }
