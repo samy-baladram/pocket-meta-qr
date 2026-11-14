@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794618674-e1cc -->
+<!-- ui: artifact version 1794619417-2b9a -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -682,8 +682,9 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .swch svg { width: 12px; height: 7px; display: block; }
 .tdots { position: absolute; left: 50%; top: calc(100% + 6px); transform: translateX(-50%); z-index: 1; display: flex; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 999px; background: rgba(12, 18, 26, 0.62); }
 .tdots:empty { display: none; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tdots { background: rgba(255, 255, 255, 0.2); } }
-:root[data-theme="dark"] .tdots { background: rgba(255, 255, 255, 0.2); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tdots { background: rgba(255, 255, 255, 0.32); } :root:not([data-theme="light"]) .tw { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1); } }
+:root[data-theme="dark"] .tdots { background: rgba(255, 255, 255, 0.32); }
+:root[data-theme="dark"] .tw { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1); } /* dark: a faint white edge so the tweak card shows */
 @container (max-width: 300px) { /* narrow list columns (3 per view on wide screens): smaller cards, so the panel content fits */
   .tcar { --cw: 34px; --iw: 136px; } .apop3.one .tcar { --cw: 38px; --iw: 150px; }
   .ttabs button { height: 22px; font-size: 11px; } .tw .tsw { gap: 3px; } }
@@ -943,7 +944,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .dot[aria-current="true"]::before { width: 14px; background: var(--muted); } /* the lists in view: a longer dot */
 .dot.l1::before { background: var(--acc-mark); } /* list 1: always the vivid blue */
 /* Nov 14: deck lists get numbered tabs ("List 1  2  3"); the current one is filled. Events keep the dots. */
-.ldots { gap: 4px; bottom: 6px; }
+.ldots { gap: 4px; bottom: 3px; }
 .ldots .dot { width: auto; min-width: 20px; height: 18px; padding: 0 5px; border-radius: 999px; font-family: inherit; line-height: 1; font-size: 10.5px; font-weight: 600; color: var(--muted); }
 .ldots .dot::before { display: none; }
 .ldots .dot[aria-current="true"] { background: var(--muted); color: var(--surface); }
