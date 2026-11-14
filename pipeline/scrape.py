@@ -173,16 +173,23 @@ def parse_details(html):
 RECORD = re.compile(r"(\d+)\s*-\s*(\d+)(?:\s*-\s*(\d+))?")
 
 
+class NoDeckData(Exception):
+    """The standings have no deck column: the organizer did not track decks (Nov 14, 2026: first seen)."""
+
+
 def parse_standings(html):
-    """Standings table -> list of entries (spec 3.1). Columns are found by header name."""
+    """Standings table -> list of entries (spec 3.1). Columns are found by header name.
+    Raises NoDeckData when the table is a normal standings table (name + record) without a deck column."""
     tb = soup(html).find("table", class_="striped")
     if not tb:
         raise ParseError("standings: no table.striped")
     rows = tb.find_all("tr")
     head = [text(c).lower() for c in rows[0].find_all(["th", "td"])]
     col = {name: head.index(name) for name in ("name", "points", "record", "deck", "list") if name in head}
-    if not {"name", "record", "deck"} <= col.keys():
+    if not {"name", "record"} <= col.keys():
         raise ParseError(f"standings: unexpected header {head}")
+    if "deck" not in col:
+        raise NoDeckData(f"standings header {head}")
     entries = []
     for tr in rows[1:]:
         tds = tr.find_all("td")
@@ -410,7 +417,13 @@ def fetch_tournament(f, item, set_code):
     det = parse_details(f.get(f"/tournament/{tid}/details"))
     if det["skip"]:
         return None, f"rules: {det['skip']}"
-    entries = parse_standings(f.get(f"/tournament/{tid}/standings"))
+    try:
+        entries = parse_standings(f.get(f"/tournament/{tid}/standings"))
+    except NoDeckData as e:
+        # No archetypes and no decklists: nothing for share, win rate or lists. Skipped (like special rules), with a
+        # warning in the run summary so that a site-wide layout change would still be noticed.
+        print(f"::warning title=No deck data::{tid} ({item.get('name', '')}): {e}; skipped")
+        return None, "no deck data"
     first = f.get(f"/tournament/{tid}/pairings?round=1")
     links = parse_round_links(first) or [(1, "1")]
     rounds = []

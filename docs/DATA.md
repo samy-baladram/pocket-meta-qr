@@ -26,7 +26,10 @@ The round links come from the pairings page itself. The last link is the top cut
 
 - Game Pokémon TCG Pocket, format Standard (`format=STANDARD` in the list URL).
 - Skip a tournament (decision Nov 8, 2026: these are not Standard events, keep the rule as it is) when its details text has "special rules", "suspended card(s)" (same rule as
-  `tcg-deck-analyzer`), or when it has fewer than 8 players.
+  `tcg-deck-analyzer`), or when it has fewer than 8 players. Also skipped (Nov 14, 2026): a tournament whose
+  standings have no deck column (the organizer did not track decks: no archetypes, no lists); index reason "no deck
+  data", and the run shows a warning with the tournament id. A standings table without name or record still stops
+  the run (a layout change).
 - Keep multi-deck tournaments, with the flag `multi_deck: true` (see 4.4).
 - Decklists (decision Nov 11, 2026, request R11): in single-deck events, every placed player with a **winning
   record (W > L; ties count neither way)** = a "top player" (index rule `wl1`; on the switch, the extra lists of the
