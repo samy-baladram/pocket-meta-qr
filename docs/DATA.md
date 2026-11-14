@@ -165,7 +165,7 @@ The pairings do not say which deck a player used in a match. Thus:
   after list 1 a group is shown only with 2+ top players, or 1 top player in the top 8 of a 32+ player event
   (`SHOW_MIN_PLAYERS`, `SHOW_TOP`, `SHOW_MIN_EVENT` in build.mjs); at most 10. Lists get `grec` and `fin` (all
   finishes with exactly the list, since Nov 14, request R19; top 5 before; each row with its `tid`/`pid`
-  since request R20); tweaks get `k`.
+  since request R20); tweaks get `k`, and `fin` with all their finishes (request R21).
 - Each `alt` version also gets a QR code (decision Nov 9, request R5): the shown list - out + in, with the shown
   list's energy, and the record, event and day of its best finish. Checked before deploy like the lists' QRs.
 - Card index for the search (decision Nov 9, request R6): `search.json` lists every card on the page with, per deck,

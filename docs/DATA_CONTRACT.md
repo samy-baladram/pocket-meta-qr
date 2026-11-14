@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 23 (Nov 14, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 24 (Nov 14, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,8 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 24 (request R21 of the UI chat): every `alt` entry (tweak) has **`fin`**: all its `u` finishes, same row
+  format as a list's `fin`. About +15 KB in total (+3 KB gzip).
 - Version 23 (request R20 of the UI chat): each `fin` row has 8 values: + `tid` and `pid` of that finish (the
   player's Limitless decklist). About +9 KB (2 KB gzip).
 - Version 22 (request R19 of the UI chat): `fin` holds **all** finishes with exactly the list (length = `nx`), not
@@ -213,6 +215,7 @@ The list's `ev`, `pl`, `sc`, `dt`, energy, QR, `tid`, `pid` come from the repres
 | `q` | (v14; `qr` SVG in v8-v13) packed QR of this version: the shown list's `cards` - `out` + `in`, with the shown list's `energy` (same SVG options and decode check as a list's `qr`); null when no code was possible |
 | `sc` | **new in v8.** record W-L-T of the best finish with this change |
 | `rec` | **new in v20.** `[w, l, t]`, the combined record of the `u` finishes with this change (`nx` is not written: it equals `u`) |
+| `fin` | **new in v24.** all `u` finishes with exactly this tweak, best place first, rows as a list's `fin`: `[place, players, w, l, t, "YYYY-MM-DD", "tid", "pid"]` (also when `u` = 1). The first row is the entry's `pl`/`sc`/`dt`/`tid`/`pid`; the records add up to `rec`. For a list: `nu` = its exact finishes (`nx`) + the sum of `alt[].fin` lengths |
 | `ev` | **new in v8.** tournament name of that finish |
 | `dt` | **new in v8.** tournament day of that finish (`YYYY-MM-DD`) |
 | `tid`, `pid` | **new in v19.** the Limitless decklist of that finish (same as on a list) |

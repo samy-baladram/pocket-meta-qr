@@ -145,6 +145,11 @@ const addRec = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
 const winRate = ([w, l, t]) => (w + l + t ? (w + 0.5 * t) / (w + l + t) : 0);
 // R18: "4th of 69" -> [4, 69].
 const placeOf = (pl) => { const m = String(pl).match(/^(\d+)\D+of (\d+)/); return m ? [+m[1], +m[2]] : [Infinity, 0]; };
+// R18c/R19/R20: a finish as a fin row [place, players, w, l, t, day, tid, pid] (tid/pid only with a decklist page).
+function finRow(x) {
+  const t = src(x.row);
+  return [...placeOf(x.row.pl), ...x.rec, x.row.dt, ...(t.tid ? [t.tid, t.pid] : [])];
+}
 function changes(g) {
   const by = new Map();
   g.members.forEach((x, order) => {
@@ -157,9 +162,10 @@ function changes(g) {
     if (!ins.length && !outs.length) return; // exact copy
     const key = JSON.stringify([ins.map((c) => [c.id, c.c]).sort(), outs.map((c) => [c.id, c.c]).sort()]);
     const e = by.get(key);
-    if (e) { e.u++; e.rec = addRec(e.rec, x.rec); }
+    // R21 (Nov 14, 2026): fin = all u finishes of the tweak (members come best place first), as a list's fin.
+    if (e) { e.u++; e.rec = addRec(e.rec, x.rec); e.fin.push(finRow(x)); }
     else by.set(key, { in: ins, out: outs, k: ins.reduce((t, c) => t + c.c, 0), u: 1, pl: x.row.pl, order, row: x.row,
-      rec: [...x.rec] });
+      rec: [...x.rec], fin: [finRow(x)] });
   });
   // R17: rec = [w, l, t] of the u finishes. R18: k = cards changed (1 or 2); sort by k, then u, then win rate, then
   // best place.
@@ -353,7 +359,7 @@ for (const [rank, d] of input.decks.entries()) {
     v.grec = c.rec;                // R18c: the combined [w, l, t] of the whole group (exact copies + tweaks)
     // R18c, R19 (Nov 14, 2026): ALL finishes with exactly this list, best place first: [place, players, w, l, t, day].
     if (v.nx >= 2) v.fin = [...c.rep.members].sort((a, b) => a.idx - b.idx)
-      .map((x) => { const t = src(x.row); return [...placeOf(x.row.pl), ...x.rec, x.row.dt, ...(t.tid ? [t.tid, t.pid] : [])]; });
+      .map(finRow);
     // R20 (Nov 14, 2026): + tid, pid of each finish (the page links the player's Limitless decklist).
     const alt = changes(c);
     if (alt.length) v.alt = await Promise.all(alt.map((a) => altVersion(a, v, name, problems, id)));
