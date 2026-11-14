@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794654687-3592 -->
+<!-- ui: artifact version 1794657304-ef75 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -772,7 +772,8 @@ details.fmore .fins li:first-child { border-top: 1px solid var(--line); }
 /* Card fade: a card image that is not loaded yet fades in when it is ready (see dealGrid) */
 .cards img.dealt { animation: cardIn 0.18s ease-out both; } /* until it loads, the slot shows the card's grey background */
 @keyframes cardIn { from { opacity: 0.35; } }
-.cards img.hl { outline: 2px solid var(--accent); outline-offset: 1px; position: relative; z-index: 2; } /* all copies of the card in the popup */
+.cards img.hl, .tstk img.hl, .swr img.hl, .astk img.hl { outline: 2px solid var(--accent); outline-offset: 1px; position: relative; z-index: 2; }
+#cPop { z-index: 62; } /* the card sheet is always the top sheet (above Top players and the shared list) */ /* all copies of the card in the popup */
 html { -webkit-tap-highlight-color: transparent; }
 .cards img, .ait img, .aswl img, .cbox img { -webkit-user-select: none; user-select: none; }
 /* Not in list 1: a corner tag. A bright blue triangle on the card's top-right corner, with a ring-color line along its diagonal
@@ -2249,6 +2250,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     SH = { label: opt && opt.label, p, code, dk, name: deckNameOf(p.k), when, played: playedOk ? fmtDay(o.played) : "", src: srcUrl, packed: packCode(code), M: null, today: null };
     shName = (p.k || "shared-list") + ".png"; shBlob = null;
     { const c = document.createElement("canvas"), img = new Image(); img.onload = () => { c.width = img.width; c.height = img.height; c.getContext("2d").drawImage(img, 0, 0); c.toBlob((b) => { shBlob = b; }); }; img.src = qrPng(SH.packed, "#ffffff"); }
+    if ($("shv").hidden && !(history.state && history.state.sh)) pushH({ ...(history.state || {}), sh: 1 }, "", location.href); // Back closes the list (only)
     $("shv").hidden = false; document.documentElement.style.overflow = "hidden"; $("shChip").hidden = true;
     shCards();
     SH.M = await loadCardMap().catch(() => null);
@@ -2291,7 +2293,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><button class="qslink shlink" type="button">${LINK_ICON}<span>${TOUCH ? "Share link" : "Copy link"}</span></button></div>
       <div class="shfoot"><button class="qclose shback" type="button" aria-label="Back to the cards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button><button class="qsave shsave" type="button">${SAVE_ICON}${TOUCH ? "Save" : "Download"}</button></div><p class="qmsg" id="shMsg" role="status"></p>`;
   }
-  function closeShared() {
+  let shBack = false;
+  function closeShared(fromHistory) {
+    if ($("shv").hidden) return;
+    if (fromHistory !== true && history.state && history.state.sh) { if (!shBack) { shBack = true; history.back(); } return; } // the popstate handler closes it (once: 2 swipe handlers)
+    shBack = false;
+    if (!cpop.hidden) hidePop(true);
     $("shv").hidden = true; document.documentElement.style.overflow = ""; $("shBox").innerHTML = "";
     if (location.hash.startsWith("#x=")) history.replaceState(null, "", location.pathname + location.search);
     renderShChip();
@@ -2312,9 +2319,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   });
   $("shChip").addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches(".sinb")) { e.preventDefault(); e.target.click(); } });
   $("shv").addEventListener("click", async (e) => {
+    if (!cpop.hidden && !e.target.closest("#cPop, img[data-zid]")) return; // a tap outside the card sheet closes only the card sheet
     if (e.target === $("shv") || e.target.closest(".shx")) { closeShared(); return; }
     if (e.target.closest(".shqr")) { shQR(); return; }
-    const zc = e.target.closest("img[data-zid]"); if (zc) { track("shared-card"); openCardId(zc.dataset.zid, zc.alt); return; }
+    const zc = e.target.closest("img[data-zid]"); if (zc) { track("shared-card"); cardClick(zc); return; }
     const sl = e.target.closest(".shlink");
     if (sl) { const lab = sl.querySelector("span"), url = location.href; track("shared-relink");
       if (TOUCH && navigator.share) { try { await navigator.share({ title: SH.name + " \u2013 Pocket Meta QR", url }); return; } catch (err) { if (err && err.name === "AbortError") return; } }
@@ -2333,7 +2341,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const u = URL.createObjectURL(shBlob), a = document.createElement("a"); a.href = u; a.download = shName; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000);
     }
   });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("shv").hidden && !cdlg.open) closeShared(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("shv").hidden && !cdlg.open && cpop.hidden) closeShared(); });
   // Swipe down on the sheet (when it is scrolled to the top) closes it, like the game's sheets
   { const bx = $("shBox"); let y0 = null, dy = 0;
     bx.addEventListener("touchstart", (e) => { if (bx.scrollTop > 0 || e.touches.length > 1) { y0 = null; return; } y0 = e.touches[0].clientY; dy = 0; bx.style.transition = "none"; }, { passive: true });
@@ -2342,7 +2350,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       if (dy > 80) { bx.style.transform = "translateY(100%)"; track("shared-swipe"); setTimeout(() => { bx.style.transform = ""; bx.style.transition = ""; closeShared(); }, 200); }
       else bx.style.transform = ""; };
     bx.addEventListener("touchend", end); bx.addEventListener("touchcancel", end); }
-  $("shv").addEventListener("keydown", (e) => { const z = e.target.closest && e.target.closest("img[data-zid]"); if (z && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openCardId(z.dataset.zid, z.alt); } });
+  $("shv").addEventListener("keydown", (e) => { const z = e.target.closest && e.target.closest("img[data-zid]"); if (z && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); cardClick(z); return; openCardId(z.dataset.zid, z.alt); } });
   const SAVE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>';
   // claude.ai downloads capability (null when this view cannot save); resolved once, used on click
   const dlCap = window.claude && window.claude.use ? Promise.resolve(window.claude.use("downloads")).catch(() => null) : Promise.resolve(null);
@@ -2752,6 +2760,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const cdlg = $("cardDlg");
 
   const deckOf = (img) => data.decks.find((x) => x.id === img.closest(".acc")?.id);
+  const cGrp = (img) => img.closest(".cards, .tstk, .swr, .astk") || img.parentElement; // Nov 14: one card sheet for every card tap
   const cardId = (img) => img.dataset.ph || (img.getAttribute("src").match(/c\/([^/]+)\.webp/) || [])[1] || "";
   function openCard(img) {
     const n = img.dataset.n || img.alt, grid = img.closest(".cards"), cid = cardId(img);
@@ -2783,7 +2792,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     return `<div class="pack"><span class="pks n${Math.min(ps.length, 3)}">${imgs}</span><span class="pt"><span class="pl">${label}</span><b>${esc(ps.map((p) => p.name).join(" or "))}</b><span class="psub">${esc(sub)}</span></span></div>`;
   }
   function popHTML(img) {
-    const n = img.dataset.n || img.alt, grid = img.closest(".cards"), id = cardId(img);
+    const n = img.dataset.n || img.alt, grid = cGrp(img), id = cardId(img);
     const count = [...grid.querySelectorAll(":scope > img")].filter((x) => cardId(x) === id).length;
     const [code, num] = id.split("-"), set = PK && PK.sets[code];
     const ps = `${set ? esc(set.name) + " \u00b7 " : ""}${esc((code || "").toUpperCase())} ${esc(num || "")}`;
@@ -2806,10 +2815,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   function showPop(img) {
     clearTimeout(hideT); clearTimeout(showT);
-    if (popImg) popImg.closest(".cards")?.querySelectorAll("img.hl").forEach((x) => x.classList.remove("hl"));
+    if (popImg) cGrp(popImg)?.querySelectorAll("img.hl").forEach((x) => x.classList.remove("hl"));
     popImg = img;
     const cid = cardId(img), fill = () => { if (popImg === img) { $("cPopIn").innerHTML = popHTML(img); placePop(); } };
-    img.closest(".cards").querySelectorAll(":scope > img").forEach((x) => cardId(x) === cid && x.classList.add("hl"));
+    cGrp(img).querySelectorAll(":scope > img").forEach((x) => cardId(x) === cid && x.classList.add("hl"));
     fill();
     if (!PK) loadPacks().then(fill);
     if (cpop.hidden) {
@@ -2828,7 +2837,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     clearTimeout(showT); clearTimeout(hideT);
     if (cpop.hidden) return;
     if (!FLOAT && !fromHistory && history.state && history.state.cpop) { history.back(); return; } // the popstate handler closes it
-    if (popImg) popImg.closest(".cards")?.querySelectorAll("img.hl").forEach((x) => x.classList.remove("hl"));
+    if (popImg) cGrp(popImg)?.querySelectorAll("img.hl").forEach((x) => x.classList.remove("hl"));
     if (popImg && cpop.contains(document.activeElement)) popImg.focus({ preventScroll: true });
     popImg = null; pinned = false;
     cpop.classList.remove("on"); cscrim.classList.remove("on");
@@ -2891,7 +2900,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Sheets close without a history step here (the back entry is dropped), so the tapped action is not undone.
   const dropState = (k) => { const st = { ...(history.state || {}) }; if (st[k]) { delete st[k]; history.replaceState(st, "", location.href); } };
   document.addEventListener("click", (e) => {
-    if (cpop.hidden || cdlg.open || e.target.closest("#cPop, .cards img")) return;
+    if (cpop.hidden || cdlg.open || e.target.closest("#cPop, .cards img, .tstk img, .swr img, .astk img")) return;
     if (FLOAT) hidePop(); else { dropState("cpop"); hidePop(true); }
   });
   // ---- Info points (and "Also played"): one popover (mouse: beside the "i"; touch: bottom sheet). A tap on the same "i" or outside closes it. ----
@@ -3073,7 +3082,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const it = e.target.closest(".ait, .aswl");
       if (!it) return;
       const im = e.target.closest("img[data-cid]");
-      if (im && (sw || it.classList.contains("on"))) { openCardId(im.dataset.cid, im.dataset.cn); return; } // a card of the chosen change: open it
+      if (im && (sw || it.classList.contains("on"))) { cardClick(im); return; } // a card of the chosen change: open it
       if (!sw) it.scrollIntoView({ behavior: reduced ? "auto" : "smooth", inline: "center", block: "nearest" });
     });
     // long names slide sideways (one line; not in the swap row, where they wrap)
@@ -3138,7 +3147,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     car.addEventListener("click", (e) => {
       const it = e.target.closest(".tw"); if (!it) return;
       const im = e.target.closest("img[data-cid]");
-      if (im && it.classList.contains("on")) { openCardId(im.dataset.cid, im.dataset.cn); return; }
+      if (im && it.classList.contains("on")) { cardClick(im); return; }
       it.scrollIntoView({ behavior: reduced ? "auto" : "smooth", inline: "center", block: "nearest" });
     });
     show(0);
@@ -3166,7 +3175,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     btn.setAttribute("aria-expanded", "true");
     slide.classList.add("aon"); slide.closest(".vars")?.classList.add("afocus");
     altPreview(slide, pairs.map((x) => ({ slot: x.in.id, back: x.out, front: x.in })));
-    pop.addEventListener("click", (e) => { const im = e.target.closest("img[data-cid]"); if (im) openCardId(im.dataset.cid, im.dataset.cn); });
+    pop.addEventListener("click", (e) => { const im = e.target.closest("img[data-cid]"); if (im) cardClick(im); });
   }
   // Tap outside closes it (not a tap in the card zoom, the QR panel or a card popup that it opened)
   document.addEventListener("click", (e) => { if (altOpen && !e.target.closest(".apop2, .apop3, .qcol, #iPop, #cPop, dialog, .anew")) closeAlts(); });
@@ -3183,7 +3192,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (e.target.closest(".rbt")) track("rank-tip");
     const b = e.target.closest(".ii, .altb, .fabout, .lchk, .rbt");
     if (b) { e.preventDefault(); e.stopPropagation(); showTip(b); return; }
-    if (!ipop.hidden && !e.target.closest("#iPop, dialog, #shv")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
+    if (!ipop.hidden && !e.target.closest("#iPop, #cPop, dialog, #shv")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
   }, true);
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !ipop.hidden && $("shv").hidden) hideTip();
@@ -3472,6 +3481,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const st = history.state || {};
     if (cdlg.open && !st.card) cdlg.close();
     if (!cpop.hidden && !st.cpop && !FLOAT) hidePop(true);
+    if (!$("shv").hidden && !st.sh) closeShared(true);
     if (!ipop.hidden && !st.tip && !FLOAT) hideTip(true);
     // An open deck has no history entry anymore, so going back (closing a popup) must not close it
   });
