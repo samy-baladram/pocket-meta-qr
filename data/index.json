@@ -356,6 +356,18 @@
    "path": "raw/2026/11/6af6909d00d53a11f5b92aa7.json",
    "players": 103,
    "rule": "wl1"
+  },
+  "6ae60598ae67092a4073fd96": {
+   "date": "2026-11-12T18:00:00Z",
+   "path": "raw/2026/11/6ae60598ae67092a4073fd96.json",
+   "players": 247,
+   "rule": "wl1"
+  },
+  "6adfaf4022fd412b92a4d7e5": {
+   "date": "2026-11-13T19:00:00Z",
+   "path": "raw/2026/11/6adfaf4022fd412b92a4d7e5.json",
+   "players": 242,
+   "rule": "wl1"
   }
  },
  "skipped": {
@@ -365,7 +377,8 @@
   "6ae62ff5ae67092a4074000c": "rules: special rules",
   "6ae1781b22fd412b92a4e823": "rules: suspended cards",
   "6ad98b70115c12b73a5a9732": "rules: suspended cards",
-  "6af23fcee99f3235a75e52e1": "rules: suspended cards"
+  "6af23fcee99f3235a75e52e1": "rules: suspended cards",
+  "6ae9d877e94eae0f94746544": "no deck data"
  },
  "decklists": {}
 }
