@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794628128-d0a0 -->
+<!-- ui: artifact version 1794633786-d7e1 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -226,9 +226,9 @@ footer a { color: var(--muted); }
 .nset svg { flex: none; width: 15px; height: 15px; margin-top: 1px; color: var(--acc-ink); }
 .nset b { color: var(--ink); } /* Nov 13: blue bold reads as a link: bold ink only */
 /* Shared-link view (Nov 13): a list from a permanent link; a bottom sheet on phones, a centered box on larger screens */
-.shv { position: fixed; inset: 0; z-index: 60; display: flex; align-items: flex-end; justify-content: center; background: rgba(var(--sh), 0.28); }
+.shv { position: fixed; inset: 0; z-index: 60; overscroll-behavior: contain; display: flex; align-items: flex-end; justify-content: center; background: rgba(var(--sh), 0.28); }
 .shv[hidden] { display: none; }
-.shbox { position: relative; box-sizing: border-box; width: 100%; max-height: 92vh; overflow: auto; padding: 16px 12px calc(8px + env(safe-area-inset-bottom));
+.shbox { position: relative; box-sizing: border-box; width: 100%; max-height: 92vh; overflow: auto; overscroll-behavior: contain; padding: 16px 12px calc(8px + env(safe-area-inset-bottom));
   border-radius: 20px 20px 0 0; background: var(--surface); color: var(--ink); box-shadow: var(--sheet-sh); text-align: center; outline: none; }
 @media (min-width: 600px) { .shv { align-items: center; } .shbox { border-radius: 20px; box-shadow: var(--pop-sh); padding-bottom: 8px; width: 420px; } }
 .shk { margin: 0; font-size: var(--fs-s); color: var(--muted); }
@@ -653,13 +653,13 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 
 .tcar { --iw: 170px; --cw: 42px; flex: none; display: flex; gap: 4px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
   padding: 4px calc(50% - var(--iw) / 2) 8px; align-items: center; } /* room for the cards' shadow (a scroll box clips it) */
-.apop3.one .tcar { --cw: 50px; --iw: 196px; }
+.apop3.one .tbody { justify-content: center; } /* no tabs: same card size as with tabs, centered in the panel */
 .apop3 { justify-content: space-between; background: var(--tile); } /* the panel is darker; the tweak cards are lighter (surface) */
 .apop3 .tbody { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0; min-height: 0; }
 .tcar::-webkit-scrollbar { display: none; }
 .tw { flex: 0 0 var(--iw); scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px;
-  transform: scale(0.96); transition: opacity 0.2s, transform 0.2s; cursor: pointer; }
-.tw.on { opacity: 1; transform: none; }
+  transition: opacity 0.2s; cursor: pointer; } /* same size on and off focus (no scale) */
+.tw.on { opacity: 1; }
 .tw { background: var(--surface); border-radius: 10px; padding: 6px 0 5px; box-shadow: 0 1px 5px rgba(var(--sh), 0.3); } /* each tweak is a card you can swipe */
 .tw .tsw { display: flex; align-items: center; gap: 5px; }
 .tw .tstk { display: flex; }
@@ -686,7 +686,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 :root[data-theme="dark"] .tdots { background: rgba(255, 255, 255, 0.32); }
 :root[data-theme="dark"] .tw { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1); } /* dark: a faint white edge so the tweak card shows */
 @container (max-width: 300px) { /* narrow list columns (3 per view on wide screens): smaller cards, so the panel content fits */
-  .tcar { --cw: 34px; --iw: 136px; } .apop3.one .tcar { --cw: 38px; --iw: 150px; }
+  .tcar { --cw: 34px; --iw: 136px; }
   .ttabs button { height: 22px; font-size: 11px; } .tw .tsw { gap: 3px; } }
 .tdots i { width: 5px; height: 5px; border-radius: 3px; opacity: 0.55; background: #fff !important; transition: width 0.2s, opacity 0.2s; }
 .tdots i.on { opacity: 1; width: 12px; background: var(--acc-ink); }
@@ -707,7 +707,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .swk .sdots { margin-right: 8px; }
 .slg.sl3 { justify-content: flex-end; margin-top: -4px; } .slg.sl3 b { font-size: 8.5px; color: var(--muted); margin: 0 4px 0 2px; }
 .slg i.ld { width: 9px; height: 9px; border-radius: 50%; background: #bcd6f5; } .slg i.ld + b + i.ld { margin-left: 6px; }
-.fscr { max-height: 300px; overflow: auto; margin-top: 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overscroll-behavior: contain; }
+.fscr { max-height: 260px; overflow: auto; margin-top: 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overscroll-behavior: contain; }
 .fscr.nos { border-bottom: 0; }
 .fscr .fins { margin: 0; }
 .fsec { position: sticky; top: 0; z-index: 1; margin: 0; padding: 5px 8px; background: var(--tile); font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
@@ -1692,7 +1692,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (!pc) return;
     const tok = packShare({ nrs: pc.nrs, energy: pc.energy, k: d.deckId || d.id, day: Date.now(), played: f[5] ? Date.parse(f[5] + "T00:00:00Z") : 0, tid: f[6], pid: f[7], w: f[2], l: f[3], t: f[4], pl: f[0], pn: f[1] });
     const ev = (EV && EV.events || []).find((x) => x.tid === f[6]);
-    track(a ? "result-open-tweak" : "result-open"); hideTip();
+    track(a ? "result-open-tweak" : "result-open"); // the Top players sheet stays open under the list (closing the list returns to it)
     openShared("x=" + tok, { label: `${ordF(f[0])} of ${f[1]}${ev ? " \u00b7 " + ev.name : ""}` });
   }
   addEventListener("click", (e) => { const li = e.target.closest && e.target.closest("#iPop .frow"); if (!li) return; e.preventDefault(); openResult(li.dataset.r); });
@@ -2769,10 +2769,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !cpop.hidden && !cdlg.open) hidePop(); });
   // Sheet: swipe down to close
   // (both sheets: the card popup and the info / "Also played" sheet)
+  // Pull down to close a sheet. Inside a scroll box (results list, about text, the shared list) the sheet moves only
+  // when that box is at its top; the page behind never moves (no scroll chaining, no pull-to-refresh).
+  const SCR = ".about, .fscr, .shbox";
   function swipeClose(el, hide) {
-    let sy = null, sdy = 0;
-    el.addEventListener("touchstart", (e) => { if (FLOAT || e.target.closest(".about")) return; sy = e.touches[0].clientY; sdy = 0; el.style.transition = "none"; }, { passive: true });
-    el.addEventListener("touchmove", (e) => { if (sy == null) return; sdy = Math.max(0, e.touches[0].clientY - sy); el.style.transform = `translateY(${sdy}px)`; }, { passive: true });
+    let sy = null, sdy = 0, box = null;
+    el.addEventListener("touchstart", (e) => { if (FLOAT) return; box = e.target.closest(SCR); sy = e.touches[0].clientY; sdy = 0; el.style.transition = "none"; }, { passive: true });
+    el.addEventListener("touchmove", (e) => { if (sy == null) return;
+      const y = e.touches[0].clientY;
+      if (box && box.scrollTop > 0) { sy = y; return; } // the box scrolls first; the sheet follows only from the box's top
+      sdy = Math.max(0, y - sy);
+      if (sdy > 0 && e.cancelable) e.preventDefault(); // no page bounce under the sheet
+      el.style.transform = sdy ? `translateY(${sdy}px)` : ""; }, { passive: false });
     el.addEventListener("touchcancel", () => { if (sy == null) return; sy = null; el.style.transition = ""; el.style.transform = ""; }); // e.g. an app switch mid-swipe
     el.addEventListener("touchend", () => {
       if (sy == null) return; sy = null; el.style.transition = "";
@@ -2781,6 +2789,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   swipeClose(cpop, () => hidePop());
   swipeClose($("iPop"), () => hideTip());
+  swipeClose($("shBox"), () => { $("shBox").style.transform = ""; closeShared(); });
+  // The shared list: the backdrop never scrolls the page
+  $("shv").addEventListener("touchmove", (e) => { if (!e.target.closest(".shbox") && e.cancelable) e.preventDefault(); }, { passive: false });
   // Mouse: hover shows it after a short delay; leaving the card and the popover hides it; a click pins it
   if (HOVER) {
     $("list").addEventListener("pointerover", (e) => {
@@ -3099,13 +3110,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (e.target.closest(".rbt")) track("rank-tip");
     const b = e.target.closest(".ii, .altb, .fabout, .lchk, .rbt");
     if (b) { e.preventDefault(); e.stopPropagation(); showTip(b); return; }
-    if (!ipop.hidden && !e.target.closest("#iPop, dialog")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
+    if (!ipop.hidden && !e.target.closest("#iPop, dialog, #shv")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
   }, true);
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !ipop.hidden) hideTip();
+    if (e.key === "Escape" && !ipop.hidden && $("shv").hidden) hideTip();
   }, true);
   addEventListener("scroll", (e) => {
-    if (!FLOAT || ipop.hidden || (e.target instanceof Element && e.target.closest("#iPop"))) return;
+    if (!FLOAT || ipop.hidden || (e.target instanceof Element && e.target.closest("#iPop, #shv"))) return;
     if (Date.now() - tipAt < 400) placeTip(); else hideTip();
   }, { capture: true, passive: true });
   addEventListener("resize", () => { if (FLOAT) hideTip(); });
