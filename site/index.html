@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794661540-62b9 -->
+<!-- ui: artifact version 1794662327-06c9 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1645,7 +1645,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     ? `<details class="fmore"><summary>+ ${f.length - 5} more</summary>${finLi(f.slice(5))}</details>`
     : n > f.length ? `<p class="fmore">+ ${n - f.length} more</p>` : "");
   const usedTip = (v, pop) => { const ch = altSum(v), ex = nxOf(v);
-    return `<h3>Top players</h3><p>A <b>top player</b> won at least 2 more matches than they lost (ties do not count), or placed in the top 25%, at a single-deck event in the last 7 days.</p>
+    return `<h3>Top players</h3><p>A <b>top player</b> won at least 2 more matches than they lost (ties do not count) at a single-deck event in the last 7 days.</p>
     <p><b>${v.of}</b> top players used this deck; <b>${ex}</b> used exactly this list${v.rec ? ` (together <b>${recTxt(v.rec)}</b>, ${wrPct(v.rec)}% win)` : ""}${ch ? `, and <b>${ch}</b> more with 1 or 2 cards changed (\u201ctweaks\u201d${v.grec ? `; all ${v.nu} together ${recTxt(v.grec)}, ${wrPct(v.grec)}%` : ""})` : ""}.</p>
     ${v.fin && v.fin.length > 1 ? `<h4>Results with exactly this list</h4>${finRows(v.fin, ex)}` : ""}
     ${pop ? `<p><b>Popular now</b>: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.</p>` : ""}`; };
@@ -1715,7 +1715,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     return s.length >= 3 ? s : String(n).slice(0, 24);
   };
   // R21: tweak results (alt[].fin) join the dot chart (a small 1 / 2 = cards changed) and the scroll list (sections)
-  const TOP_PCT = 0.25, TOP_RULE = "A top result: at least 2 more wins than losses, or a top 25% place, at an event this week."; // R22
+  const TOP_PCT = 0.25, TOP_RULE = "A top result: at least 2 more wins than losses at an event this week."; // Nov 14: the top 25 % part is dropped (user) // R22
   const tpSheet = (v) => { const ex = nxOf(v), tw = (v.nu || ex) - ex;
     const f = v.fin && v.fin.length ? v.fin : v.pl ? [[...((String(v.pl).match(/\d+/g) || [0, 0]).slice(0, 2).map(Number)), ...(v.rec || [0, 0, 0]), v.dt || "", ...(v.tid && v.pid ? [v.tid, v.pid] : [])]] : [];
     v._f = f; // the rows as shown (1 player: built from the list's own best finish, with its event and player)
@@ -1747,7 +1747,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
         tw > 0 ? [ex + tw, "with tweaks", v.grec ? `${wrPct(v.grec)}% win` : ""] : nE ? [nE, `event${nE > 1 ? "s" : ""}`, "this week"] : null]);
     const spk = days.map((dy) => all.filter((x) => x.r[5] === dy).length), mx = Math.max(1, ...spk);
     const fold = all.length > 1 ? `<details class="sfold"><summary><span><b>Results this week</b><span>${all.length} results \u00b7 chart by day and full list</span></span><span class="sspk" aria-hidden="true">${spk.map((n) => `<i style="height:${n ? Math.max(2, Math.round(n / mx * 16)) : 1}px"></i>`).join("")}</span><svg class="sdn" viewBox="0 0 10 7" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>${wk}${list}</details>` : `${wk}${list}`;
-    return `<h3 class="sh3">${PPL_I}Top players</h3>${top}${fold}<p class="snote">Top player: at least 2 more wins than losses, or a top 25% place, at an event this week.</p>`; };
+    return `<h3 class="sh3">${PPL_I}Top players</h3>${top}${fold}<p class="snote">Top player: at least 2 more wins than losses at an event this week.</p>`; };
   const bcSheet = (v, d) => { const [w, l] = String(v.sc || "0-0-0").split("-").map(Number), n = w - l, k = Math.max(1, Math.ceil((2 - n) / 2));
     const pm = /^(\d+)\D+(\d+)/.exec(String(v.pl || "")), pl = pm ? +pm[1] : 0, of = pm ? +pm[2] : 0, need = Math.floor(of * TOP_PCT);
     const X = '<span class="cx" aria-hidden="true"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2 2 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>';
@@ -1757,7 +1757,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     return `<h3 class="sh3">${bcI(v)}${bcN(v)}</h3><p class="ssub">${sub}</p>
       <div class="bchero ${un ? "un" : "nr"}"><small>${un ? "Best finish" : "Best-placed finish"}</small><b>${esc(v.sc || "")}</b><span>${[v.pl ? esc(v.pl) : "", v.ev ? esc(shortEv(v.ev)) : "", v.dt ? `${MON[+v.dt.slice(5, 7) - 1]} ${+v.dt.slice(8)}` : ""].filter(Boolean).join(" \u00b7 ")}</span></div>
       <ul class="bchk"><li>${X}<div><b>2+ more wins than losses</b><span>has ${n > 0 ? "+" : n < 0 ? "\u2212" : ""}${Math.abs(n)} \u00b7 ${k} more win${k > 1 ? "s" : ""} in place of ${k > 1 ? "losses" : "a loss"}</span></div></li>
-        ${of ? `<li>${X}<div><b>Top 25% place</b><span>${esc(v.pl)} \u00b7 ${need >= 1 ? `needs ${ordF(need)} or better` : "too few players for a top 25% place"}</span></div></li>` : ""}</ul>
+</ul>
       ${sT3([[bn, `winning record${bn === 1 ? "" : "s"}`, "this week"], d.count != null ? [d.count, "players", "this week"] : null, d.win != null ? [pct(d.win), "deck win rate", d.w != null ? `${d.w}-${d.l}-${d.t}` : ""] : null])}
       <p class="snote">${TOP_RULE}${un ? " This list has not shown that yet." : ""}</p>`; };
   addEventListener("click", (e) => { const b = e.target.closest && e.target.closest(".dpb[data-dk]"); if (!b) return;
@@ -2947,7 +2947,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     <h4>How do I import a deck?</h4><p>Open a deck, tap its QR code and save the image. In the game: <b>My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image</b>. On a computer, you can also point the game&rsquo;s camera at the screen.</p>
     <h4>Where does the data come from?</h4><p>Public Standard events with 8 or more players on <a href="https://play.limitlesstcg.com/tournaments?game=POCKET" target="_blank" rel="noopener">Limitless TCG</a>, from the last 7 days only, because the meta changes fast. The numbers are computed here, so they can differ a little from other sites.</p>
     <h4>What is in Latest Events?</h4><p>The tournaments of the last 7 days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.</p>
-    <h4>What is a &ldquo;top player&rdquo;?</h4><p>A player with at least 2 more wins than losses, or a place in the top 25%, at a single-deck event.</p>
+    <h4>What is a &ldquo;top player&rdquo;?</h4><p>A player with at least 2 more wins than losses at a single-deck event.</p>
     <h4>What do &ldquo;Unproven&rdquo; and &ldquo;No top result&rdquo; mean?</h4><p>The deck has no top player this week. <b>Unproven</b>: some players won more than they lost, but none reached a top result; the page shows the best of them. <b>No top result</b>: no player won more than they lost; the page shows the best-placed list. Both are a starting point, not a proven list.</p>
     <h4>How are the lists chosen?</h4><p>List 1 of a deck is the list that the most top players used. A list that only 1 or 2 cards differ from is a <b>tweak</b> of it (&ldquo;+ N tweaks&rdquo;, each with its own QR code). A list with 3 or more different cards is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. <b>&#9733; Popular now</b> marks a list 1 that clearly more top players used exactly than any other list.</p>
     <h4>Why is the win rate different from other sites?</h4><p>Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.</p>
