@@ -5,7 +5,7 @@
 Each run first reads the set list (pocket.limitlesstcg.com/cards). The current set = the newest set with a
 release date of today or earlier. --since defaults to its release date. data/sets.json keeps the list.
 Per new tournament: details, standings, every pairings round (Swiss + top cut) -> data/raw/YYYY/MM/<tid>.json.
-Then decklists of the top players (R11: W > L in single-deck events) and "below the cut" lists -> data/decklists/<tid>.json ({pid: [{"i": builder code, "e": energy or null}]},
+Then decklists of the top players (R11, R22: W > L or top 25 % in single-deck events) and "below the cut" lists -> data/decklists/<tid>.json ({pid: [{"i": builder code, "e": energy or null}]},
 kept forever; lists stored in the old format without energy are fetched again).
 The run stops at --max-requests; the next run continues. It exits with code 1 when a page does not parse.
 """
