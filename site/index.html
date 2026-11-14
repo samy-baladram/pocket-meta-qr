@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794622819-b2b4 -->
+<!-- ui: artifact version 1794628128-d0a0 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -702,6 +702,17 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .sspread { margin: 0 0 10px; font-size: var(--fs-xs); color: var(--muted); } .sspread b { color: var(--ink); }
 .fins .fev { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; color: var(--muted); margin-top: 1px; }
 .fins .fpl { min-width: 0; }
+/* R21: tweak dots (a small 1 / 2 right of the dot), legend, scroll list with sticky sections */
+.sdots i b { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); line-height: 1; font-size: 8.5px; font-weight: 700; font-style: normal; color: var(--muted); }
+.swk .sdots { margin-right: 8px; }
+.slg.sl3 { justify-content: flex-end; margin-top: -4px; } .slg.sl3 b { font-size: 8.5px; color: var(--muted); margin: 0 4px 0 2px; }
+.slg i.ld { width: 9px; height: 9px; border-radius: 50%; background: #bcd6f5; } .slg i.ld + b + i.ld { margin-left: 6px; }
+.fscr { max-height: 300px; overflow: auto; margin-top: 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overscroll-behavior: contain; }
+.fscr.nos { border-bottom: 0; }
+.fscr .fins { margin: 0; }
+.fsec { position: sticky; top: 0; z-index: 1; margin: 0; padding: 5px 8px; background: var(--tile); font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.fins .fch2 { color: var(--ink); }
+
 .fins li.frow { grid-template-columns: 1fr auto 52px 10px; cursor: pointer; }
 @media (hover: hover) { .fins li.frow:hover { background: var(--hover); } }
 .fins .fch { color: var(--muted); text-align: right; }
@@ -862,9 +873,11 @@ html { -webkit-tap-highlight-color: transparent; }
 .swd { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 10.5px; color: var(--muted); }
 .swd.last { color: var(--ink); font-weight: 600; }
 .sdots { display: flex; flex-direction: column-reverse; gap: 2px; min-height: 44px; }
-.sdots i { width: 9px; height: 9px; border-radius: 50%; background: #bcd6f5; } /* other results: light blue (silver stays apart) */
+.sdots i { position: relative; width: 9px; height: 9px; border-radius: 50%; background: #bcd6f5; } /* other results: light blue (silver stays apart) */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sdots i:not([class]) { background: #34507a; } }
 :root[data-theme="dark"] .sdots i:not([class]) { background: #34507a; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .slg i.ld { background: #34507a; } }
+:root[data-theme="dark"] .slg i.ld { background: #34507a; }
 .sdots i.q, .slg i.q { background: #2f7de1; }
 .sdots i.p1, .slg i.p1 { background: linear-gradient(135deg, #fbe07a, #d39a1c); } .sdots i.p2, .slg i.p2 { background: linear-gradient(135deg, #f4f7fb, #8f9db0); } .sdots i.p3, .slg i.p3 { background: linear-gradient(135deg, #f7c79c, #c4703a); }
 .slg i.m { width: 9px; height: 9px; border-radius: 50%; margin-right: -1px; } .slg i.m + i.m { margin-left: 2px; } .slg i.q { border-radius: 50%; width: 9px; height: 9px; margin-left: 8px; }
@@ -954,7 +967,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .ldots .dot { width: auto; min-width: 20px; height: 18px; padding: 0 5px; border-radius: 999px; font-family: inherit; line-height: 1; font-size: 10.5px; font-weight: 600; color: var(--muted); }
 .ldots .dot::before { display: none; }
 .ldots .dot[aria-current="true"] { background: var(--muted); color: var(--surface); }
-.vwrap:has(.ldots) .vars { padding-bottom: calc(var(--sp-3) + 20px); } /* room for the tabs under the lists */
+.vwrap:has(.ldots) .vars { padding-bottom: calc(var(--sp-3) + 23px); } /* room for the tabs under the lists */
 .dot:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 50%; }
 
 /* ===== Full-screen views: QR (with Save) and card zoom ===== */
@@ -1615,19 +1628,45 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     return `<h3 class="sh3">${STAR_I}Popular now</h3><p class="ssub">The list most top players build from.</p><div class="sbars">${L.map((x, k) => { const nx = nxOf(x), nu = x.nu || nx;
       return `<div class="sbr${k ? "" : " me"}"><span>List ${k + 1}</span><span class="sbar"><i class="x" style="width:${(100 * nx / mx).toFixed(1)}%"></i><i class="t" style="width:${(100 * (nu - nx) / mx).toFixed(1)}%"></i></span><span>${nu}</span></div>`; }).join("")}</div>
       <p class="slg"><i class="x"></i>exact list <i class="t"></i>with 1\u20132 card tweaks</p><p class="snote">Most used is not always the best: compare the win rates.</p>`; };
+  // Nov 14: short event names in rows (prize text, emojis, "Pokémon TCG Pocket" out); the full name stays in the opened sheet
+  const shortEv = (n) => {
+    let s = String(n)
+      .replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200B}-\u{200D}]/gu, " ")
+      .replace(/[【\[(][^】\])]*[】\])]/g, " ");
+    const parts = s.split(/\s*(?:\|{1,2}|︱|•|\/\/)\s*|:\s+(?=.*[$€£]|.*\d\s?(?:usd|€|\$))|\s[-–—]\s?(?=.*(?:[$€£]|\d\s?\$|\bFAs?\b|\bprize|\bC\d\b))|-(?=[$€£]|FAs?\b)/i);
+    s = parts.find((p) => (p.match(/\p{L}/gu) || []).length >= 4) || parts[0];
+    s = s.replace(/pok[eé]mon\s+tcg\s+pocket|tcg\s+pocket|pok[eé]mon\s+tcg|\btcg\b/gi, " ")
+      .replace(/\b(standard|tournament)\b/gi, " ")
+      .replace(/[$€£]\s?\d+\S*|\b\d+\s?(?:[$€£]|usd)|\+\s?FAs?|\bFAs?\b|card prizes?|\bprize pool\b|\bupdate (?:your )?game\b|\b[a-z]?\s?series legal\b|!+/gi, " ")
+      .replace(/^the\s/i, "").replace(/[-|:,.+&\s]+$/g, "").replace(/^[-|:,.+\s#]+/, "").replace(/\s{2,}/g, " ").trim();
+    if (/[a-z]/.test(s) === false || (s.match(/\b[A-Z]{4,}\b/g) || []).length >= 2)
+      s = s.replace(/\b([A-Z])([A-Z]{3,})\b/g, (m, a, b) => a + b.toLowerCase());
+    return s.length >= 3 ? s : String(n).slice(0, 24);
+  };
+  // R21: tweak results (alt[].fin) join the dot chart (a small 1 / 2 = cards changed) and the scroll list (sections)
   const tpSheet = (v) => { const ex = nxOf(v), tw = (v.nu || ex) - ex;
     const f = v.fin && v.fin.length ? v.fin : v.pl ? [[...((String(v.pl).match(/\d+/g) || [0, 0]).slice(0, 2).map(Number)), ...(v.rec || [0, 0, 0]), v.dt || ""]] : [];
+    const A = (v.alt || []).flatMap((a, i) => (a.fin || []).map((r, j) => ({ r, k: a.k || 1, key: `a${i}.${j}`, a })));
+    const all = [...f.map((r, j) => ({ r, k: 0, key: `x${j}` })), ...A];
     const sp = (data && data.span) || [], d0 = sp[0] ? new Date(sp[0] + "T00:00:00Z") : null;
     const days = d0 ? Array.from({ length: 7 }, (_, k) => new Date(+d0 + k * 864e5).toISOString().slice(0, 10)) : [];
-    const wk = days.length && f.length ? `<p class="slg sl2">Results this week <span><i class="m p1"></i><i class="m p2"></i><i class="m p3"></i>1st\u20133rd <i class="q"></i>top 25%</span></p><div class="swk">${days.map((dy, k) => `<div class="swd${k === 6 ? " last" : ""}"><span class="sdots">${f.filter((r) => r[5] === dy).sort((a, b) => b[0] - a[0]).map((r) => `<i${fCls(r[0], r[1])}></i>`).join("")}</span>${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}</div>`).join("")}</div>` : "";
+    const hasT = A.length > 0;
+    const wk = days.length && all.length ? `<p class="slg sl2">Results this week <span><i class="m p1"></i><i class="m p2"></i><i class="m p3"></i>1st\u20133rd <i class="q"></i>top 25%</span></p>${hasT ? '<p class="slg sl3"><span><i class="ld"></i><b>1</b>1-card tweak <i class="ld"></i><b>2</b>2-card tweak</span></p>' : ""}<div class="swk">${days.map((dy, k) => `<div class="swd${k === 6 ? " last" : ""}"><span class="sdots">${all.filter((x) => x.r[5] === dy).sort((a, b) => b.r[0] / b.r[1] - a.r[0] / a.r[1]).map((x) => `<i${fCls(x.r[0], x.r[1])}>${x.k ? `<b>${x.k}</b>` : ""}</i>`).join("")}</span>${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}</div>`).join("")}</div>` : "";
     // R20: rows with an event (tid) and player (pid): the event name under the place, and a tap opens that player's list
     const evN = (tid) => (EV && EV.events || []).find((x) => x.tid === tid)?.name || "";
-    const row = ([p, of, w, l, t, dt, tid, pid], k) => `<li${tid && pid ? ` class="frow" data-r="${k}" role="button" tabindex="0"` : ""}><span class="fpl">${ordF(p)} <span>of ${of}</span>${fTag(p, of)}${tid && evN(tid) ? `<span class="fev">${esc(evN(tid))}</span>` : ""}</span><span class="fsc">${w}-${l}-${t}</span><span class="fdt">${dt ? MON[+dt.slice(5, 7) - 1] + " " + +dt.slice(8) : ""}</span>${tid && pid ? '<span class="fch" aria-hidden="true">\u203a</span>' : ""}</li>`;
-    const nP = new Set(f.map((r) => r[7]).filter(Boolean)).size, nE = new Set(f.map((r) => r[6]).filter(Boolean)).size;
-    const spread = nP && f.length > 1 ? `<p class="sspread"><b>${f.length}</b> results \u00b7 <b>${nP}</b> player${nP > 1 ? "s" : ""} \u00b7 <b>${nE}</b> event${nE > 1 ? "s" : ""}</p>` : "";
+    const chg = (a) => `\u2212${(a.out || []).map((c) => (c.c > 1 ? c.c + " " : "") + esc(c.n)).join(" \u2212")} +${(a.in || []).map((c) => (c.c > 1 ? c.c + " " : "") + esc(c.n)).join(" +")}`;
+    const row = ({ r: [p, of, w, l, t, dt, tid, pid], key, a }) => { const en = tid && evN(tid) ? esc(shortEv(evN(tid))) : "";
+      const sub = a ? `<span class="fch2">${chg(a)}</span>${en ? " \u00b7 " + en : ""}` : en;
+      return `<li${tid && pid ? ` class="frow" data-r="${key}" role="button" tabindex="0"` : ""}><span class="fpl">${ordF(p)} <span>of ${of}</span>${fTag(p, of)}${sub ? `<span class="fev">${sub}</span>` : ""}</span><span class="fsc">${w}-${l}-${t}</span><span class="fdt">${dt ? MON[+dt.slice(5, 7) - 1] + " " + +dt.slice(8) : ""}</span>${tid && pid ? '<span class="fch" aria-hidden="true">\u203a</span>' : ""}</li>`; };
+    const nP = new Set(all.map((x) => x.r[7]).filter(Boolean)).size, nE = new Set(all.map((x) => x.r[6]).filter(Boolean)).size;
+    const spread = nP && all.length > 1 ? `<p class="sspread"><b>${all.length}</b> results \u00b7 <b>${nP}</b> player${nP > 1 ? "s" : ""} \u00b7 <b>${nE}</b> event${nE > 1 ? "s" : ""}</p>` : "";
+    const ord = (L) => L.slice().sort((x, y) => x.r[0] / x.r[1] - y.r[0] / y.r[1] || x.r[0] - y.r[0]);
+    const sec = (t, L) => L.length ? `<h5 class="fsec">${t} \u00b7 ${L.length}</h5><ol class="fins">${L.map(row).join("")}</ol>` : "";
+    const exRows = f.map((r, j) => ({ r, key: `x${j}` }));
+    const list = hasT ? `<div class="fscr">${sec("Exact list", exRows)}${sec("1 card changed", ord(A.filter((x) => x.k === 1)))}${sec("2 cards changed", ord(A.filter((x) => x.k === 2)))}</div>`
+      : `<div class="fscr nos"><ol class="fins">${exRows.map(row).join("")}</ol></div>${ex > f.length ? `<p class="fmore">+ ${ex - f.length} more</p>` : ""}`;
     return `<h3 class="sh3">${PPL_I}Top players</h3><div class="sgrid">${sTile(ex, `this exact list${v.rec && ex > 1 ? ` \u00b7 ${wrPct(v.rec)}% win` : ""}`, `/ ${v.of}`)}${tw > 0 ? sTile(ex + tw, `with tweaks${v.grec ? ` \u00b7 ${wrPct(v.grec)}% win` : ""}`) : ""}</div>${spread}${wk}
-      <ol class="fins">${f.slice(0, 5).map(row).join("")}</ol>${f.length > 5 ? `<details class="fmore"><summary>+ ${f.length - 5} more</summary><ol class="fins">${f.slice(5).map((r, k) => row(r, k + 5)).join("")}</ol></details>` : ex > f.length ? `<p class="fmore">+ ${ex - f.length} more</p>` : ""}
-      <p class="snote">Top player: more wins than losses at an event this week.</p>`; };
+      ${list}<p class="snote">Top player: more wins than losses at an event this week.</p>`; };
   const bcSheet = (v, d) => { const [w, l, t] = String(v.sc || "0-0-0").split("-").map(Number), k = Math.floor((l - w) / 2) + 1;
     const dots = w + l <= 16 ? `<div class="swl">${"<i class=\"w\">W</i>".repeat(w)}${"<i class=\"f\">W</i>".repeat(Math.max(0, k))}${"<i class=\"l\">L</i>".repeat(Math.max(0, l - k))}${"<i class=\"t\">T</i>".repeat(t || 0)}</div>` : "";
     return `<h3 class="sh3">${SAD_I}Below the cut</h3><p class="ssub">No one with this deck had a winning record this week. This is its best-placed list.</p>${dots}
@@ -1642,17 +1681,22 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     showTip(b, k === "pop" ? popSheet(d) : k === "bc" ? bcSheet(v, d) : tpSheet(v)); }, true);
   // R20: a result row opens the list sheet of that player's finish (the shared-list sheet: cards, QR, ↗ Limitless decklist)
   let tpCtx = null;
-  async function openResult(r) {
-    const { d, v } = tpCtx || {}, f = v && v.fin && v.fin[r]; if (!f) return;
-    const M = await loadCardMap().catch(() => null), code = M && deckCode((v.cards || []).map((c) => ({ id: c.id, c: c.c })), v.energy || d.energy, M), pc = code && parseCode(code);
+  async function openResult(key) {
+    const { d, v } = tpCtx || {}; if (!v) return;
+    const m = /^a(\d+)\.(\d+)$/.exec(key), a = m && (v.alt || [])[+m[1]], f = a ? a.fin && a.fin[+m[2]] : v.fin && v.fin[+String(key).slice(1)]; if (!f) return;
+    let cards = (v.cards || []).map((c) => ({ id: c.id, c: c.c }));
+    if (a) { for (const o of a.out || []) { const x = cards.find((c) => c.id === o.id); if (x) x.c -= o.c || 1; }
+      for (const i of a.in || []) { const x = cards.find((c) => c.id === i.id); if (x) x.c += i.c || 1; else cards.push({ id: i.id, c: i.c || 1 }); }
+      cards = cards.filter((c) => c.c > 0); }
+    const M = await loadCardMap().catch(() => null), code = M && deckCode(cards, v.energy || d.energy, M), pc = code && parseCode(code);
     if (!pc) return;
     const tok = packShare({ nrs: pc.nrs, energy: pc.energy, k: d.deckId || d.id, day: Date.now(), played: f[5] ? Date.parse(f[5] + "T00:00:00Z") : 0, tid: f[6], pid: f[7], w: f[2], l: f[3], t: f[4], pl: f[0], pn: f[1] });
     const ev = (EV && EV.events || []).find((x) => x.tid === f[6]);
-    track("result-open"); hideTip();
+    track(a ? "result-open-tweak" : "result-open"); hideTip();
     openShared("x=" + tok, { label: `${ordF(f[0])} of ${f[1]}${ev ? " \u00b7 " + ev.name : ""}` });
   }
-  addEventListener("click", (e) => { const li = e.target.closest && e.target.closest("#iPop .frow"); if (!li) return; e.preventDefault(); openResult(+li.dataset.r); });
-  addEventListener("keydown", (e) => { const li = e.target.closest && e.target.closest("#iPop .frow"); if (li && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openResult(+li.dataset.r); } });
+  addEventListener("click", (e) => { const li = e.target.closest && e.target.closest("#iPop .frow"); if (!li) return; e.preventDefault(); openResult(li.dataset.r); });
+  addEventListener("keydown", (e) => { const li = e.target.closest && e.target.closest("#iPop .frow"); if (li && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openResult(li.dataset.r); } });
   const bcLine = (v) => `<span class="ptxt bcx">${SAD_I}<b>Below the cut</b>${ii("below the cut", bcTip(v))}</span>`;
   const bcTip = (v) => `<h3>${SAD_I.replace('class="psad"', 'class="psad ph3"')} Below the cut</h3><p>No player of this deck won more matches than they lost in the last 7 days, so it has no top-player list.</p><p>This is the list of its best-placed player${v.pl ? `: <b>${esc(v.pl)}</b>` : ""}${v.sc ? `, record <b>${esc(v.sc)}</b>` : ""}. A starting point, not a proven list.</p>`;
   const bcTab = (v) => `<span class="dnote bctab">&#9888; Below the cut${ii("below the cut", `<h3>&#9888; Below the cut</h3><p>No player of this deck won more matches than they lost in the last 7 days, so it has no top-player list.</p><p>This is the list of its best-placed player${v.pl ? `: <b>${esc(v.pl)}</b>` : ""}${v.sc ? `, record <b>${esc(v.sc)}</b>` : ""}. A starting point, not a proven list.</p>`)}</span>`;
