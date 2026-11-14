@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 25 (Nov 14, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 27 (Nov 15, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 27 (request R24 of the UI chat): new file **`stats.json`** for the deck sheet: per deck the 7-day trend
+  (share, win rate, rank, players), the matchups against the 10 decks with the highest share, and the card usage of
+  its top players. About 29 KB (7 KB gzip). No other file changes. See "stats.json".
 - Version 26 (request R23, user decision, Nov 14, 2026): top player = **W − L >= 2 only** (the top 25 % part of v25
   is off: `TOP_PCT = 0` in `pipeline/export.py`). Everything else as in v25 (`bc: 2` = a winning record W > L but no
   finish with W − L >= 2; `bc: 1` = no winning record; `bn`).
@@ -116,6 +119,7 @@ Use the same word in new docs and UI notes.
 | `events.json` | **new in v10.** the single-deck events of the window, newest first, with winner and top 8 (see below) | when the events tab opens |
 | `t/<tid>.json` | **new in v10.** the public lists of 1 event, in place order, with QR (see below) | when an event opens |
 | `cards.json` | **new in v19.** card id <-> in-game deck number, for share links (see below). About 100 KB (32 KB gzip) | when a link is shared or opened |
+| `stats.json` | **new in v27.** per deck: 7-day trend, matchups against the top 10 decks, card usage of its top players (see below). About 29 KB (7 KB gzip) | when a deck sheet opens the first time |
 | `e/<energy>.webp` | energy icon, 48 px (`grass`, `fire`, `water`, `lightning`, `psychic`, `fighting`, `darkness`, `metal`) | per energy |
 
 `cardId` = lower-case set + 3-digit number, for example `b1a-014`, `c1-127`, `pa-007` (promo A).
@@ -391,6 +395,36 @@ as the code inside its QR.
 `c/` and `z/` keep the images of **every card in every stored decklist** (all events since the set's backfill, also
 lists not shown), not only today's cards. So an old share link still shows its cards. Nov 13: 438 cards, `c/` 8 MB,
 `z/` 15 MB. Every display print in `cards.json` that a stored list uses has an image.
+
+## stats.json (new in v27)
+
+```json
+{ "v": 1,
+  "days": ["2026-11-08", "...", "2026-11-14"],
+  "top": ["mega-charizard-y-ex-b1a-entei-ex-a4a", "..."],
+  "d": { "<deckId>": {
+    "tr": { "s": [8, 8.3, 8.5, 9.5, 10.2, 10.3, 11.2], "w": [46.3, 47.5, 48.1, 50.1, 51.4, 52, 52],
+            "r": [1, 1, 1, 1, 1, 1, 1], "n": [353, 366, 374, 389, 416, 421, 398] },
+    "mu": [["mega-lucario-ex-b3-lucario-a2", 29, 32, 2], ["suicune-ex-a4a-baxcalibur-b2a", 23, 53, 5]],
+    "cu": [["a4a-010", 64, 2], ["c1-018", 64, 1.3], ["b4-155", 42, 1]] } } }
+```
+
+| Field | Meaning |
+|---|---|
+| `days` | the 7 trend days (UTC, oldest first); the last = the build day (the `ref` of the `7d` window) |
+| `top` | the 10 decks with the highest share now (the order of `data.json`), the opponents of `mu` |
+| `d` | 1 entry per deck in `data.json` and `more.json` (`decks` and `nolist`) |
+| `tr` | trend, 1 value per day of `days`, for the **7-day window that ends on that day** (all tournaments known at build time; same rules as `share`, `win`, `rank`, `count`). So the last values = the deck's `share` (`s`, 1 decimal), `win` (`w`, 1 decimal), `rank` (`r`) and `count` (`n`) |
+| `tr.s` / `tr.w` | share % / win rate %, 1 decimal; `null` = no players that day (`w`: or no matches) |
+| `tr.r` | rank in the list that day (0.2 % share or more, players high first); `0` = not in the list |
+| `tr.n` | players of the deck in that window; `null` = none. The page fades days with few players (under 30) |
+| `mu` | absent or `[[oppId, w, l, t], ...]`: this deck's record against each `top` deck (not itself) with **10+ games** (`MU_MIN` in `pipeline/export.py`), in `top` order. Same rules as `win`: single-deck events, real matches, no mirrors. Win rate = (w + 0.5·t) / (w + l + t) |
+| `cu` | absent on `bc` and `nolist` decks; else `[[cardId, players, avg], ...]`, players high first (then avg): every card that any of the deck's top players played (the `of` finishes). `players` = top players with the card (`players` = `of`: core card, in every list); `avg` = average copies among them (1 decimal). A card = all prints with the **same name and text** (ability, trainer text, attacks with cost and damage; PocketDecks card data), so an alternate art does not split the count; same name with another text (2 different "Pikachu ex") = 2 rows. `cardId` = the `cards.json` display print of its most-played print; every `cardId` has a `c/` image and is in `packs.json` |
+
+Checked on the first build (Nov 14 data): every deck's last `tr` values equal `share` / `win` / `rank` / `count`; every
+`mu` opponent is in `top`, no row under 10 games, the sums are at most the deck's `w`/`l`/`t`; the `cu` cards with
+`players` = `of` are in every top-player list; no 2 rows of 1 card. Limitless lists use 1 print per card, so no row
+merges 2 prints today (the rule is ready for alternate arts).
 
 ## search.json (new in v9)
 

@@ -7,13 +7,16 @@ Window: last 7 days by default (decision Nov 9, 2026: the meta changes fast); on
 Decks : archetypes with share >= MIN_SHARE in the window (max MAX_DECKS), most players first (data.json), then
         (R9, Nov 11, 2026) the archetypes with MORE_SHARE <= share < MIN_SHARE, flag "more" (more.json, loaded on tap).
 Rows  : per deck, all its top-player finishes in the window (--rows 0) or the best N: single-deck tournaments, a
-        decklist, and a top-player result: W - L >= 2 or a place in the top 25 % of the event (request R22, Nov 14,
-        2026; was W > L, request R11):
+        decklist, and a top-player result: W - L >= 2 (request R23, Nov 14, 2026; R22 also had "or a place in the
+        top 25 %"; R11 had W > L):
         best place relative to the event size first (place / players: 3rd of 547 before 1st of 12),
         then the better place, then the newer event.
         Multi-deck tournaments are not used for the shown lists (same rule as the win rate, docs/DATA.md 4.4).
         A deck with no top-player finish gets 1 row: its best-placed finish with W > L ("close", bc 2), else its
         best-placed single-deck finish with a decklist (any record; "below the cut", bc 1). A deck with neither is a "nolist" row (R10).
+Stats : (R24, Nov 15, 2026) per deck the 7-day trend (share, win rate, rank, players for the 7-day windows that end
+        on each of the last 7 days; build_db.py windows "7d@<day>") and the matchups against the TOP_MU decks with the
+        highest share (MU_MIN+ games, no mirrors, single-deck events) -> build.mjs writes site/stats.json.
 Events: the lists of each event's top 25 % (8..32 places), or the count the event got before (index "dl": a fixed
         16 before Nov 9, 2026), as before R11 (the Latest Events tab does not change).
 """
@@ -26,6 +29,8 @@ MORE_SHARE = 0.2  # % for the "Show more decks" file (more.json, R9)
 WINDOW_DAYS = 7   # the page's window (7d), also for rk0 / nw (R14)
 TOP_MIN_NET, TOP_PCT = 2, 0      # R23 (Nov 14, 2026, user): top player = W - L >= 2 only (TOP_PCT 0 turns the top 25 % part off; R22 had 0.25)
 MAX_DECKS = 40
+TREND_DAYS = 7    # R24: days in the stats.json trend (same as build_db.py)
+TOP_MU, MU_MIN = 10, 10   # R24: matchups against the TOP_MU decks with the highest share, with MU_MIN+ games
 MAX_ROWS = 0      # finishes read per deck; 0 = all (build.mjs keeps up to 10 distinct lists from them)
 EVENT_SHARE, EVENT_MIN, EVENT_MAX = 0.25, 8, 32   # lists per event in the Latest Events tab (t/<tid>.json)
 
@@ -42,7 +47,7 @@ def main():
     ap.add_argument("--window", default="7d", choices=["set", "7d", "3d"])
     ap.add_argument("--rows", type=int, default=MAX_ROWS, help="finishes per deck; 0 = all")
     ap.add_argument("--top-rule", choices=["wl", "net2"], default="net2",
-                    help="top player: net2 = W - L >= TOP_MIN_NET or top TOP_PCT (R22, default); wl = W > L (R11)")
+                    help="top player: net2 = W - L >= TOP_MIN_NET or top TOP_PCT (R22/R23, default); wl = W > L (R11)")
     a = ap.parse_args()
 
     db = sqlite3.connect(os.path.join(a.data, "meta.db"))
@@ -181,6 +186,38 @@ def main():
             d["nw"] = 1
     rank_now = list_at(now_iso)
 
+    # R24 (Nov 15, 2026): trend for stats.json. Day k = the 7-day window that ends on that day (UTC); the last day = ref
+    # (the page's window "7d"). Same rules as the deck table: share, win rate, rank (share >= MORE_SHARE, players high
+    # first, then archetype; 0 = not in the list), n = players of the deck. null = the deck has no players that window.
+    ref = Date.fromisoformat(meta["ref"])
+    days = [(ref - timedelta(days=k)).isoformat() for k in range(TREND_DAYS - 1, -1, -1)]
+    trend_win = {}
+    for day in days:
+        w_name = a.window if day == meta["ref"] else f"7d@{day}"
+        rows_d = db.execute("SELECT archetype, players, share, win_rate FROM archetype_stats WHERE window = ? "
+                            "ORDER BY players DESC, archetype", (w_name,)).fetchall()
+        rk = {x[0]: i + 1 for i, x in enumerate(r for r in rows_d if r[2] >= MORE_SHARE)}
+        trend_win[day] = ({x[0]: x for x in rows_d}, rk)
+    for d in decks:
+        tr = {"s": [], "w": [], "r": [], "n": []}
+        for day in days:
+            st, rk = trend_win[day]
+            x = st.get(d["id"])
+            tr["s"].append(round(x[2], 1) if x else None)
+            tr["w"].append(round(x[3], 1) if x and x[3] is not None else None)
+            tr["r"].append(rk.get(d["id"], 0))
+            tr["n"].append(x[1] if x else None)
+        d["tr"] = tr
+    # R24: matchups against the TOP_MU decks with the highest share now (the deck table order), from the matchups table
+    # (single-deck events, real matches); mirrors out; only MU_MIN+ games.
+    top_mu = [d["id"] for d in decks[:TOP_MU]]
+    for d in decks:
+        d["mu"] = [[o, w, l, t] for o, w, l, t in db.execute(
+            f"SELECT opp, w, l, t FROM matchups WHERE window = ? AND deck = ? AND opp != deck "
+            f"AND opp IN ({','.join('?' * len(top_mu))}) AND w + l + t >= ?",
+            (a.window, d["id"], *top_mu, MU_MIN))]
+        d["mu"].sort(key=lambda m: top_mu.index(m[0]))
+
     events, used = [], set()
     dl = {t: i.get("dl", 0) for t, i in json.load(open(os.path.join(a.data, "index.json"))).get("done", {}).items()}
     for tid, name, date, day, players, fetched in db.execute(
@@ -233,6 +270,7 @@ def main():
         # R13c: the last time a tournament of the window (multi-deck too) was added = the largest fetched_at.
         "changedAt": db.execute(f"SELECT MAX(fetched_at) FROM tournaments WHERE id IN ({q})", tids).fetchone()[0],
         "events": events,
+        "trendDays": days, "top": top_mu,   # R24 (stats.json)
         "samples": samples,
     }
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)

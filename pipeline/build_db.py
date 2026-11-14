@@ -9,10 +9,14 @@ Base tables : sets, tournaments, entries, entry_decks, matches, decklists, deckl
 Computed    : archetype_stats (window, archetype, ...), matchups (window, deck, opp, ...)
 Windows     : "set" (tournaments of the current set), "7d" and "3d" (last N days up to --ref, all sets: on a new set
               day the old set's events leave the window day by day; decision Nov 13, 2026)
+              R24 (Nov 15, 2026): "7d@YYYY-MM-DD" = the 7-day window that ends on that day, for the TREND_DAYS - 1 days
+              before --ref (the trend in stats.json; the last trend day is "7d" itself).
 """
 import argparse, glob, json, os, sqlite3, sys
 from collections import defaultdict
 from datetime import date, datetime, timedelta, timezone
+
+TREND_DAYS = 7   # R24: days in the stats.json trend (export.py reads the "7d@<day>" windows)
 
 SCHEMA = """
 CREATE TABLE sets (code TEXT PRIMARY KEY, name TEXT, release TEXT, cards INTEGER, current INTEGER);
@@ -194,6 +198,10 @@ def build(data, ref, top):
     for days in (7, 3):
         start = (date.fromisoformat(ref) - timedelta(days=days - 1)).isoformat()
         windows[f"{days}d"] = {t for t, d in all_tids.items() if start <= d <= ref}
+    for k in range(1, TREND_DAYS):   # R24: the 7-day windows that end on the days before ref
+        end = date.fromisoformat(ref) - timedelta(days=k)
+        start = (end - timedelta(days=6)).isoformat()
+        windows[f"7d@{end.isoformat()}"] = {t for t, d in all_tids.items() if start <= d <= end.isoformat()}
     for w, tids in windows.items():
         compute(db, w, tids)
     built = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -210,7 +218,7 @@ def report(db, cur, windows, top):
     one = lambda sql, *a: db.execute(sql, a).fetchone()
     t = one("SELECT COUNT(*), SUM(players), SUM(multi_deck), SUM(record_diffs > 0), MIN(day), MAX(day) FROM tournaments WHERE set_code = ?", cur)
     print(f"set {cur}: {t[0]} tournaments ({t[2] or 0} multi-deck), {t[1] or 0} players, {t[4]} .. {t[5]}")
-    print(f"window sizes: " + ", ".join(f"{w} {len(v)}" for w, v in windows.items()))
+    print(f"window sizes: " + ", ".join(f"{w} {len(v)}" for w, v in windows.items() if "@" not in w))
     bad = db.execute("SELECT id, record_diffs, players FROM tournaments WHERE record_diffs > 0 ORDER BY record_diffs DESC LIMIT 5").fetchall()
     print(f"record check: {t[3] or 0} tournaments with differences" + (f", worst: {bad}" if bad else ""))
     dl = one("SELECT COUNT(*), SUM(cards = 20), SUM(energy IS NOT NULL) FROM decklists")

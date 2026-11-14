@@ -25,6 +25,15 @@ const src = (row) => {
   return /^[0-9a-f]{24}$/.test(tid) && pid ? { tid, pid } : {};
 };
 const pdId = (set, num) => `${set.toLowerCase().replace(/^p-/, "p")}-${String(num).padStart(3, "0")}`;
+// R24 (Nov 15, 2026): 1 card = same name and same text (ability, trainer text, attacks with cost and damage), so 2 prints
+// (alternate art, reprint) count as 1 card in stats.json "cu". Unknown print: its own id.
+const cardKey = (id) => {
+  const c = PD.get(id);
+  if (!c) return id;
+  const at = Object.values(c.attacks || {}).filter((x) => x && x.name).map((x) => [x.cost, x.name, x.damage, x.effect]);
+  return JSON.stringify([c.name, c.ability?.exists ? [c.ability.name, c.ability.effect] : null, c.card_text || null, at]);
+};
+const usage = new Map();   // R24: deck id -> Map(card key -> {players, copies, prints: Map(print id -> players)})
 const LETTER = { G: "grass", R: "fire", W: "water", L: "lightning", P: "psychic", F: "fighting", D: "darkness", M: "metal" };
 
 function colored(card) {
@@ -295,6 +304,23 @@ for (const [rank, d] of input.decks.entries()) {
     of++;
     members.push({ m: counts(pick.l), list: pick.l, energy: pick.energy, row, idx, rec: rec3(row.sc) });
   }
+  if (!d.bc) {   // R24: card usage of the deck's top players (1 per finish with a readable list = "of")
+    const u = new Map();
+    for (const x of members) {
+      const mine = new Map();
+      for (const [pid, n] of x.m) {
+        const k = cardKey(pid), e = mine.get(k) || { n: 0, prints: [] };
+        e.n += n; e.prints.push(pid); mine.set(k, e);
+      }
+      for (const [k, e] of mine) {
+        const c = u.get(k) || { players: 0, copies: 0, prints: new Map() };
+        c.players++; c.copies += e.n;
+        e.prints.forEach((pid) => c.prints.set(pid, (c.prints.get(pid) || 0) + 1));
+        u.set(k, c);
+      }
+    }
+    usage.set(id, { of: members.length, u });
+  }
   const versions = new Map();
   for (const x of members) {
     const key = [...x.m].sort(([a], [b]) => a.localeCompare(b)).join(";");
@@ -508,6 +534,70 @@ function attackersArt(name, cards) {
   return at.length ? at : null;
 }
 
+const displayOf = new Map(), statsLog = { prints: {} };
+// R16c (Nov 13, 2026): keep the images of every card in every stored decklist (input.allCards), not only today's
+// cards, so old share links still show their cards. Rebuilt from the data, so a lost image cache only costs time.
+const keepImg = new Set(images);
+for (const [set, num] of input.allCards || []) { const id = pdId(set, num); if (PD.has(id)) keepImg.add(id); }
+
+// R16a (Nov 13, 2026): site/cards.json = card id <-> in-game deck number, for the page's share links.
+// One row per print with a number; the "display print" of each number carries the name: the print the site's
+// lists use (it has a c/ image), else the lowest rarity, then the oldest release.
+{
+  const RANK = { "◊": 1, "◊◊": 2, "◊◊◊": 3, "◊◊◊◊": 4 }, rows = [], base = new Map();
+  for (const c of PD.values()) {
+    const [s, n] = c.id.split("-");
+    const set = /^p[a-z]$/.test(s) ? `P-${s[1].toUpperCase()}` : s[0].toUpperCase() + s.slice(1);
+    const nr = getCardDeckBuilderNr(findCard(set, +n));
+    if (nr == null) continue;
+    rows.push([nr, c.id, c.name]);
+    const rk = [keepImg.has(c.id) ? 0 : 1, RANK[c.rarity] ?? 9, c.release_date || "9999", c.id];
+    const b = base.get(nr);
+    if (!b || rk.join("|") < b.rk.join("|")) base.set(nr, { id: c.id, rk });
+  }
+  for (const [nr, b] of base) displayOf.set(nr, b.id);   // R24: display print per game number
+  rows.sort((a, b) => a[0] - b[0] || a[1].localeCompare(b[1]));
+  writeFileSync("site/cards.json", JSON.stringify({ v: 1,
+    c: rows.map(([nr, id, n]) => (base.get(nr).id === id ? [nr, id, n] : [nr, id])) }));
+  console.log(`cards.json: ${rows.length} prints, ${base.size} game numbers, ` +
+    `${[...base.values()].filter((b) => keepImg.has(b.id)).length} display prints with an image; images kept: ${keepImg.size}`);
+}
+// R24 (Nov 15, 2026): site/stats.json for the deck sheet (loaded on the first open): per deck the 7-day trend (export.py),
+// the matchups against the top decks (export.py) and the card usage of its top players ("cu": [display print id,
+// players, average copies among them], players high first). A card = all prints with the same name and text; its id =
+// the cards.json display print of its most-played print. The ids join the image set (c/ image, packs.json).
+{
+  const nrOf = (pid) => {
+    const [s, n] = pid.split("-");
+    const set = /^p[a-z]$/.test(s) ? `P-${s[1].toUpperCase()}` : s[0].toUpperCase() + s.slice(1);
+    return getCardDeckBuilderNr(findCard(set, +n));
+  };
+  const out = { v: 1, days: input.trendDays, top: input.top, d: {} };
+  let merged = 0;
+  for (const d of input.decks) {
+    const e = { tr: d.tr };
+    if (d.mu?.length) e.mu = d.mu;
+    const us = usage.get(d.id);
+    if (us && us.of) {
+      e.cu = [...us.u.values()].map((c) => {
+        const main = [...c.prints].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0][0];
+        const nr = nrOf(main), disp = (nr != null && displayOf.get(nr)) || main;
+        if (c.prints.size > 1) merged++;
+        images.add(disp);
+        return [disp, c.players, Math.round((c.copies / c.players) * 10) / 10, [...c.prints.keys()]];
+      }).sort((a, b) => b[1] - a[1] || b[2] - a[2] || a[0].localeCompare(b[0]));
+      statsLog.prints[d.id] = e.cu.filter((c) => c[3].length > 1).map((c) => `${c[0]} <- ${c[3].join("+")}`);
+      e.cu = e.cu.map(([id, n, avg]) => [id, n, avg]);
+    }
+    out.d[d.id] = e;
+  }
+  writeFileSync("site/stats.json", JSON.stringify(out));
+  statsLog.merged = merged;
+  console.log(`stats.json: ${Object.keys(out.d).length} decks, ${input.trendDays[0]} .. ${input.trendDays.at(-1)}, top ${out.top.length}; ` +
+    `${Object.values(out.d).filter((x) => x.mu).length} with matchups, ${Object.values(out.d).filter((x) => x.cu).length} with card usage, ` +
+    `${merged} card rows from 2+ prints; ${JSON.stringify(out).length} bytes`);
+}
+
 // Booster packs of the cards on the site (PocketDecks expansions.json) -> site/packs.json + images.json "packs".
 // A card from "Shared(<set>)" is in every pack of its set. Single-pack sets: the card's pack is the set name.
 // Promo "packs" without an image (shop, missions, ...) use the promo set logo (promo-a, promo-b) when it exists.
@@ -540,32 +630,6 @@ for (const id of [...images].sort()) {
   }
 }
 writeFileSync("site/packs.json", JSON.stringify(packsOut));
-// R16c (Nov 13, 2026): keep the images of every card in every stored decklist (input.allCards), not only today's
-// cards, so old share links still show their cards. Rebuilt from the data, so a lost image cache only costs time.
-const keepImg = new Set(images);
-for (const [set, num] of input.allCards || []) { const id = pdId(set, num); if (PD.has(id)) keepImg.add(id); }
-
-// R16a (Nov 13, 2026): site/cards.json = card id <-> in-game deck number, for the page's share links.
-// One row per print with a number; the "display print" of each number carries the name: the print the site's
-// lists use (it has a c/ image), else the lowest rarity, then the oldest release.
-{
-  const RANK = { "◊": 1, "◊◊": 2, "◊◊◊": 3, "◊◊◊◊": 4 }, rows = [], base = new Map();
-  for (const c of PD.values()) {
-    const [s, n] = c.id.split("-");
-    const set = /^p[a-z]$/.test(s) ? `P-${s[1].toUpperCase()}` : s[0].toUpperCase() + s.slice(1);
-    const nr = getCardDeckBuilderNr(findCard(set, +n));
-    if (nr == null) continue;
-    rows.push([nr, c.id, c.name]);
-    const rk = [keepImg.has(c.id) ? 0 : 1, RANK[c.rarity] ?? 9, c.release_date || "9999", c.id];
-    const b = base.get(nr);
-    if (!b || rk.join("|") < b.rk.join("|")) base.set(nr, { id: c.id, rk });
-  }
-  rows.sort((a, b) => a[0] - b[0] || a[1].localeCompare(b[1]));
-  writeFileSync("site/cards.json", JSON.stringify({ v: 1,
-    c: rows.map(([nr, id, n]) => (base.get(nr).id === id ? [nr, id, n] : [nr, id])) }));
-  console.log(`cards.json: ${rows.length} prints, ${base.size} game numbers, ` +
-    `${[...base.values()].filter((b) => keepImg.has(b.id)).length} display prints with an image; images kept: ${keepImg.size}`);
-}
 writeFileSync("images.json", JSON.stringify({
   cards: [...keepImg].map((id) => ({ id, url: PD.get(id)?.image })),
   art: [...new Set(decks.flatMap((d) => d.art))],
