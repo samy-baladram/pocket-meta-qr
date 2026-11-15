@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794721061-325e -->
+<!-- ui: artifact version 1794722746-0901 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -317,8 +317,7 @@ footer a { color: var(--muted); }
 .pdside .tile { min-height: 50px; box-sizing: border-box; }
 .pdside .tile .sc { font-size: var(--fs-m) !important; }
 .pdside .tile.tlink .tic { top: 4px; right: 4px; width: 9px; height: 9px; }
-.pdfoot .qclose { margin: 8px 0 4px !important; width: 38px !important; height: 38px !important; }
-.pdfoot .qclose svg { width: 22px !important; height: 22px !important; }
+.pdfoot .qclose { margin: 8px 0 4px !important; } /* Nov 15: the same size as every close button (44px, 28px ×) */
 /* Shared list (option A) */
 .shslide { margin-top: 10px; text-align: left; }
 .shslide .cards { margin-bottom: 8px; }
@@ -1123,9 +1122,9 @@ html { -webkit-tap-highlight-color: transparent; }
 .qclose svg { width: 28px; height: 28px; stroke-width: 1.4; }
 .qclose { color: #7b8798; } /* a soft grey ×, like the game */ /* game style: a round close button at the bottom center */
 /* Game style (Nov 12): no ring; light from the top left (white edge), shadow to the bottom right */
-.qclose { box-shadow: -2px -2px 2px #ffffff, -4px -4px 10px rgba(255, 255, 255, 0.7), 3px 4px 4px rgba(var(--sh), 0.25), 5px 7px 14px rgba(var(--sh), 0.30); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .qclose { box-shadow: -2px -2px 2px rgba(255, 255, 255, 0.14), -4px -4px 10px rgba(255, 255, 255, 0.06), 3px 4px 4px rgba(0, 0, 0, 0.45), 5px 7px 14px rgba(0, 0, 0, 0.55); } }
-:root[data-theme="dark"] .qclose { box-shadow: -2px -2px 2px rgba(255, 255, 255, 0.14), -4px -4px 10px rgba(255, 255, 255, 0.06), 3px 4px 4px rgba(0, 0, 0, 0.45), 5px 7px 14px rgba(0, 0, 0, 0.55); }
+.qclose, .cpop.sheet .sx { box-shadow: -2px -2px 2px #ffffff, -4px -4px 10px rgba(255, 255, 255, 0.7), 3px 4px 4px rgba(var(--sh), 0.25), 5px 7px 14px rgba(var(--sh), 0.30); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .qclose, :root:not([data-theme="light"]) .cpop.sheet .sx { box-shadow: -2px -2px 2px rgba(255, 255, 255, 0.14), -4px -4px 10px rgba(255, 255, 255, 0.06), 3px 4px 4px rgba(0, 0, 0, 0.45), 5px 7px 14px rgba(0, 0, 0, 0.55); } }
+:root[data-theme="dark"] .qclose, :root[data-theme="dark"] .cpop.sheet .sx { box-shadow: -2px -2px 2px rgba(255, 255, 255, 0.14), -4px -4px 10px rgba(255, 255, 255, 0.06), 3px 4px 4px rgba(0, 0, 0, 0.45), 5px 7px 14px rgba(0, 0, 0, 0.55); }
 #cardDlg:focus { outline: none; } /* the dialog takes the focus on open, so the close button shows no ring until the keyboard moves to it */
 .qmsg { margin: 0; min-height: 1.2em; color: var(--dlg-ink); font-size: var(--fs-m); }
 .qmsg:empty { display: none; }
@@ -1174,7 +1173,7 @@ html { -webkit-tap-highlight-color: transparent; }
   box-shadow: var(--sheet-sh); transform: translateY(105%); transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1); touch-action: none; }
 .cpop.sheet.on { transform: none; }
 .cpop.sheet .sbody { max-width: 480px; margin: 0 auto; }
-.cpop.float { width: min(500px, calc(100vw - 24px)); padding: 12px; border-radius: 12px;
+.cpop.float { width: min(400px, calc(100vw - 24px)); padding: 12px; border-radius: 12px;
   box-shadow: var(--pop-sh); opacity: 0; transition: opacity 0.12s; }
 .cpop.float.on { opacity: 1; }
 .cpop .grab { display: block; width: 52px; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--accent) 22%, var(--line)); margin: 0 auto 12px; }
@@ -1191,15 +1190,11 @@ html { -webkit-tap-highlight-color: transparent; }
 .cpop .zic svg { width: 16px; height: 16px; }
 .cpop .zc img { width: 100%; height: 100%; display: block; }
 
-/* Nov 15: card sheet: the card text as large as our smallest text (~10 px = card 310 px wide). Phones: card on top, details under it.
-   Tablets / desktop (popover): 2 columns, card 300 px. No full-screen icon. */
-.cpop .zic { display: none; } .cpop .zc { cursor: default; }
-.cpop.sheet .sbody { flex-direction: column; align-items: center; gap: 12px; }
-.cpop.sheet .zc { width: min(310px, 100%); border-radius: 12px; }
-.cpop.sheet .pinfo { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 12px; row-gap: 2px; padding: 0; }
-.cpop.sheet .pinfo > * { grid-column: 1; } .cpop.sheet .pinfo .pack { grid-column: 2; grid-row: 1 / span 3; padding: 6px 10px 6px 6px; } .cpop.sheet .pinfo .pk { height: 56px; }
-.cpop.float .zc { width: 300px; border-radius: 12px; }
-.cpop.float .pinfo { flex: 1; min-width: 150px; } .cpop.float .pack { flex-direction: column; align-items: flex-start; }
+/* Nov 15: card sheet: 2 columns again (the 367px zoom image looked soft at 300px+), the card as wide as a 120px details column
+   allows (phone 390px: ~224px); full screen again from the card */
+.cpop .zcol { width: calc(100% - 134px); max-width: 260px; } .cpop .zc, .cpop.float .zc { width: 100%; }
+.cpop .zic { display: none; } .cpop .zc { cursor: default; } /* no full-screen icon for now */
+.cpop .pinfo { min-width: 120px; } .cpop .pack { flex-direction: column; align-items: flex-start; gap: 6px; } /* narrow column: the pack image above its text */
 .cpop .pinfo { min-width: 0; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding-bottom: 2px; } /* the details sit at the bottom, level with the card */
 .cpop .pn { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px; font-size: var(--fs-xl); line-height: 1.2; }
 .cpop .pn b { font-weight: 700; }
@@ -1287,7 +1282,7 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Sheets (touch), game "Sort" style: centered title over a soft divider, a round close button at the bottom center */
 .cpop .sx { display: none; }
 .cpop.sheet .sx { display: grid; place-items: center; width: 44px; height: 44px; margin: 16px auto 12px; /* balanced above and below */ padding: 0; border: 0; border-radius: 50%; cursor: pointer;
-  background: var(--surface); color: #7b8798; box-shadow: var(--raised), var(--bevel); }
+  background: var(--surface); color: #7b8798; } /* Nov 15: shadow = the round close buttons' (.qclose), below */
 .cpop.sheet .sx svg { width: 28px; height: 28px; display: block; stroke-width: 1.4; }
 .ipop.sheet h3 { text-align: center; padding-bottom: 10px; margin-bottom: 10px; box-shadow: 0 6px 6px -6px var(--line-strong); }
 .cpop .zcol { flex: none; display: flex; flex-direction: column; align-items: center; gap: 6px; }
@@ -3068,7 +3063,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const done = () => { if (!popImg) { cpop.hidden = true; cscrim.hidden = true; } };
     if (reduced || FLOAT) done(); else setTimeout(done, 240);
   }
-  // Nov 15: the card is large enough to read (text ~10 px), so no full-screen step; a tap on the card does nothing
+  // Nov 15: no full-screen view for now (the zoom image is only a bit bigger and looks soft); a tap on the card does nothing
   // (a tap outside a sheet does not close it: swipe down, the × or back, like the game)
   document.addEventListener("click", (e) => { const x = e.target.closest(".sx"); if (!x) return; e.stopPropagation(); x.dataset.close === "iPop" ? hideTip() : hidePop(); }, true);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !cpop.hidden && !cdlg.open) hidePop(); });
