@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794751256-8ab3 -->
+<!-- ui: artifact version 1794753195-3aa3 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -322,14 +322,14 @@ footer a { color: var(--muted); }
 .pdside .tile { min-height: 50px; box-sizing: border-box; }
 .pdside .tile .sc { font-size: var(--fs-m) !important; }
 .pdside .tile.tlink .tic { top: 4px; right: 4px; width: 9px; height: 9px; }
-.pdfoot .qclose { margin: 8px 0 4px !important; } /* Nov 15: the same size as every close button (44px, 28px ×) */
+.pdfoot .qclose { margin: 8px 0 24px !important; } /* Nov 15: 28px above the screen edge, like the sheet close button */ /* Nov 15: the same size as every close button (44px, 28px ×) */
 /* Shared list (option A) */
 .shslide { margin-top: 10px; text-align: left; }
 .shslide .cards { margin-bottom: 8px; }
 .shslide .cards img, .shslide .cards .shn { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 4px; }
 .shslide .cards .shn { display: grid; place-items: center; background: var(--tile); font-size: 9px; color: var(--muted); }
 .shfoot { position: relative; display: flex; justify-content: center; align-items: center; margin-top: 2px; }
-.shfoot .qclose { margin: 10px 0 6px; }
+.shfoot .qclose { margin: 10px 0 24px; }
 .shfoot .shsave { position: absolute; right: 0; top: 50%; transform: translateY(-50%); padding: 9px 16px; font-size: var(--fs-m); }
 .shfoot .shsave:active { transform: translateY(-50%) scale(0.97); }
 .shbox .shnow { margin: 8px 0 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 14px; }
@@ -943,7 +943,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .mub em { position: absolute; left: 50%; top: -3px; bottom: -3px; border-left: 1.5px solid var(--muted); opacity: 0.6; }
 .mup { font-weight: 700; text-align: right; } .mug { font-size: 10.5px; color: var(--muted); text-align: right; } .musep { margin: 0; text-align: center; line-height: 1; color: var(--muted); }
 .lsv .mdot { fill: var(--muted); opacity: 0.55; } .lsv .mdot.lfd { opacity: 0.25; } .lsv .mme { fill: var(--acc-mark); stroke: var(--surface); stroke-width: 1.5; } .lsv .mme0 { fill: var(--acc-mark); opacity: 0.18; }
-.cug { display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 5px; margin: 0 0 8px; }
+.cug { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); /* Nov 15: about the size of a core deck card, on every width */ gap: 5px; margin: 0 0 8px; }
 .cug figure { margin: 0; } .cug img { display: block; width: 100%; height: auto; border-radius: 3px; cursor: pointer; }
 .cug figcaption { position: relative; margin-top: 3px; height: 14px; overflow: hidden; border-radius: 3px; background: var(--tile); font-size: 9.5px; text-align: center; color: var(--ink); }
 .cug figcaption i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--acc-mark); opacity: 0.35; } .cug figcaption b { position: relative; font-weight: 700; }
@@ -1030,7 +1030,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .edh { display: grid; grid-template-columns: 30px minmax(0, 1fr) 64px 46px; gap: 8px; font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 2px 0 2px; } .edh span:nth-child(n+3) { text-align: right; }
 .edk { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 30px minmax(0, 1fr) 64px 46px; align-items: center; gap: 8px; padding: 3px 6px 3px 4px; margin: 3px 0; border-radius: 8px; font-size: 12.5px; color: var(--ink); cursor: pointer;
   background: linear-gradient(90deg, rgba(var(--acc-rgb, 43,155,234), 0.16) var(--w), transparent var(--w)); }
-.edl .edk:nth-child(n+6) { display: none; } .edl.all .edk { display: grid; }
+.edl { max-height: 196px; overflow-y: auto; overscroll-behavior: contain; } /* Nov 15: all decks, about 5.5 rows, scroll for more */
 .edall { all: unset; cursor: pointer; display: block; margin: 6px 0 2px; padding: 6px 4px; font-size: var(--fs-xs); font-weight: 600; color: var(--acc-ink, #1d6eb9); }
 .edi { display: flex; } .edi img { width: 15px; height: 21px; border-radius: 2px; object-fit: cover; margin-right: -3px; }
 .edn { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } .edb { display: block; margin-top: 4px; height: 5px; border-radius: 3px; background: var(--tile); overflow: hidden; } .edb i { display: block; height: 100%; background: var(--acc-mark); border-radius: 3px; }
@@ -1300,6 +1300,13 @@ a.dkev { text-decoration: none; }
 .us.top .ii { color: inherit; }
 .ipop.float { width: min(300px, calc(100vw - 24px)); overscroll-behavior: contain; }
 .ipop.float.wide { width: min(360px, calc(100vw - 24px)); }
+/* Nov 15: popover width by content and screen: tips 300 / 320, stats sheets 420 / 680 (2 columns of folds from 1200px) */
+.ipop.float.stat { width: min(420px, calc(100vw - 24px)); } .ipop.float.stat .ibody { max-width: none; }
+@media (min-width: 1200px) {
+  .ipop.float { width: 320px; } .ipop.float.wide { width: 380px; }
+  .ipop.float.stat { width: 680px; }
+  .ipop.float.stat .fgr { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; align-items: start; }
+}
 /* "Also played (N)": an outlined pill button (like the "differs" tab); it opens the 1-card changes in the info popover */
 .altb { display: inline-flex; align-items: center; gap: 3px; padding: 0 7px 0 8px; border: 1.5px solid var(--pill-line); border-radius: 999px; cursor: pointer;
   background: var(--surface); color: var(--ink); font-weight: 600; line-height: 1.5; white-space: nowrap; height: 28px; font-size: 11.5px; } /* same height and size as the other pills */
@@ -1352,7 +1359,7 @@ a.dkev { text-decoration: none; }
 .cpop .sx { display: none; }
 .cpop.sheet .sx { display: grid; place-items: center; width: 44px; height: 44px; margin: 16px auto 12px; /* balanced above and below */ padding: 0; border: 0; border-radius: 50%; cursor: pointer;
   background: var(--surface); color: #7b8798; box-shadow: var(--raised), var(--sxbev); } /* Nov 15: back to the raised shadow (contrast) */
-.ipop.sheet > .sx { position: sticky; bottom: 4px; z-index: 2; } /* Nov 15: floats at the bottom while a tall sheet scrolls */
+.ipop.sheet > .sx { position: sticky; bottom: 12px; z-index: 2; } /* Nov 15: floats at the bottom while a tall sheet scrolls */
 .cpop.sheet .sx svg { width: 28px; height: 28px; display: block; stroke-width: 1.4; }
 .ipop.sheet h3 { text-align: center; padding-bottom: 10px; margin-bottom: 10px; box-shadow: 0 6px 6px -6px var(--line-strong); }
 .cpop .zcol { flex: none; display: flex; flex-direction: column; align-items: center; gap: 6px; }
@@ -2623,7 +2630,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const html = qsHTML(d, v, i, ak);
     if (!ipop.hidden && tipBtn) { tipBtn.setAttribute("aria-expanded", "false"); tipBtn = anchor; }
     // the anchor keeps its own content (the "Also played" button must still open "Also played")
-    if (ipop.hidden || tipBtn !== anchor) { tipBtn = null; showTip(anchor, html); } else $("iPopIn").innerHTML = html;
+    if (ipop.hidden || tipBtn !== anchor) { tipBtn = null; showTip(anchor, html); } else { $("iPopIn").innerHTML = html; fGroup($("iPopIn")); }
     ipop.classList.remove("wide"); ipop.classList.add("qsheet"); qsAnchor = anchor;
     placeTip(); // again, with the QR panel's own width and height
     card(d, i, ak).catch(() => {}); // prepare the saved image
@@ -2718,7 +2725,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const top = `<div class="dk3"><div><span>Share</span><b>${pct(d.share)}</b><i class="dkm">${tr ? lineSvg(tr.s, { w: 84, h: 16, span: 4, cls: "lsh", fw: 1, z: 1 }) : ""}</i><small class="dkd">${sD == null ? "" : Math.abs(sD) < 0.3 ? `steady in ${tr.s.length} days` : `<span class="${sD > 0 ? "tup" : "tdn"}">${sD > 0 ? "\u25b2" : "\u25bc"}${Math.abs(sD).toFixed(1)}</span> in ${tr.s.length} days`}</small></div>
       <div${few ? ' class="lw"' : ""}><span>Win rate</span><b>${pct(d.win)}${hw != null ? `<small class="wpm">\u00b1${hw.toFixed(1)}</small>` : ""}</b><i class="dkm">${wBar}</i>${verd}</div>
       <div><span>Rank</span><b>#${d.rank} ${rkTxt}</b><i class="dkm dko">of ${nDk} decks</i><small>${d.count} players</small></div></div>`;
-    const fold = (t, pv, body) => `<details class="sfold dkf"><summary><b>${t}</b><span class="dpv">${pv}</span>${CHD}</summary><div class="dfb">${body}</div></details>`;
+    const fold = (t, pv, body, open) => `<details class="sfold dkf"${open ? " open" : ""}><summary><b>${t}</b><span class="dpv">${pv}</span>${CHD}</summary><div class="dfb">${body}</div></details>`;
     // 1. matchups
     const mu = (S.mu || []).map(([o, w, l, t]) => ({ o, w, l, t, g: w + l + t, p: (w + t / 2) / (w + l + t) * 100 })).sort((a, b) => b.p - a.p);
     const muRow = (m) => { const dlt = m.p - 50, wd = Math.min(50, Math.abs(dlt) * 2);
@@ -2778,7 +2785,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           ${rare ? `<p class="dhint">+ ${rare} more card${rare > 1 ? "s" : ""} played by under 10%</p>` : ""}`;
         cuPv = `${cells.length} core \u00b7 ${nf} flex`; } }
     return `<h3 class="sh3">${esc(d.name)}</h3>${top}
-      ${fold("Matchups", muPv, muBody)}${trOk ? fold("7-day trend", `share ${dTxt(trD(tr.s)) || "steady"} \u00b7 win ${dTxt(trD(tr.w)) || "steady"}`, trBody) : ""}
+      ${fold("Matchups", muPv, muBody, 1)}${trOk ? fold("7-day trend", `share ${dTxt(trD(tr.s)) || "steady"} \u00b7 win ${dTxt(trD(tr.w)) || "steady"}`, trBody, 1) : ""}
       ${fold("Meta map", `<b class="mqh">${myQ}</b>${d.count < 30 ? " (few players)" : ""}`, `<p class="dhint">Decks with 30+ players ${winWk()}: share against win rate. Lines: the median share and 50% win rate.</p>${mapSvg}`)}
       ${cuBody ? fold("Cards", cuPv, cuBody) : ""}
       ${(EV && EV.events || []).some((e) => (e.top || []).some(([id]) => id === d.id)) ? `<button class="dkev" type="button" data-evd="${esc(d.id)}">Events with this deck in the top 8 <b>${(EV.events || []).filter((e) => (e.top || []).some(([id]) => id === d.id)).length}</b>${SPCH}</button>` : ""}
@@ -3201,7 +3208,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // (both sheets: the card popup and the info / "Also played" sheet)
   // Pull down to close a sheet. Inside a scroll box (results list, about text, the shared list) the sheet moves only
   // when that box is at its top; the page behind never moves (no scroll chaining, no pull-to-refresh).
-  const SCR = ".about, .fscr, .shbox";
+  const SCR = ".about, .fscr, .shbox, .edl";
   function swipeClose(el, hide) {
     let sy = null, sdy = 0, box = null, lock = false, ly = 0;
     el.addEventListener("touchstart", (e) => { if (FLOAT) return; box = e.target.closest(SCR); sy = ly = e.touches[0].clientY; sdy = 0; el.style.transition = "none";
@@ -3299,15 +3306,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     a.className = "parr " + (below ? "t" : "b");
     a.style.left = Math.max(12, Math.min(cx - x - 7, w - 26)) + "px";
   }
+  // Nov 15: the folds of a sheet go in one box (.fgr): 2 columns in the wide popover (1200px+), one column elsewhere
+  function fGroup(box) { const ds = [...box.querySelectorAll(":scope > details.sfold")]; if (ds.length < 2) return;
+    const g = document.createElement("div"); g.className = "fgr"; ds[0].before(g); ds.forEach((d) => g.append(d)); }
   function showTip(btn, html) { // html: content to show instead of the button's own (the QR panel)
     if (tipBtn === btn) { hideTip(); return; }
     if (!cpop.hidden) hidePop(true);
     if (tipBtn) tipBtn.setAttribute("aria-expanded", "false");
     tipBtn = btn; btn.setAttribute("aria-expanded", "true"); tipAt = Date.now();
     track(btn.classList.contains("cmpb") ? "compare" : btn.classList.contains("fabout") ? "about" : btn.classList.contains("altb") ? "also-played" : "info");
-    $("iPopIn").innerHTML = html ?? btn.dataset.tip;
+    $("iPopIn").innerHTML = html ?? btn.dataset.tip; fGroup($("iPopIn"));
     if (ipop.hidden) {
-      ipop.className = "cpop ipop " + (FLOAT ? "float" : "sheet") + (btn.matches(".altb, .fabout") ? " wide" : "");
+      ipop.className = "cpop ipop " + (FLOAT ? "float" : "sheet") + (btn.matches(".altb, .fabout") ? " wide" : "") + ($("iPopIn").querySelector(".sh3, .dk3") ? " stat" : "");
       ipop.style.transform = "";
       ipop.hidden = false;
       if (!FLOAT) { cscrim.hidden = false; pushH({ ...(history.state || {}), tip: 1 }, "", location.href); }
@@ -3939,7 +3949,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const mx = Math.max(1, ...dk.map((x) => x[1]));
     const dkRow = ([id, c]) => { const m = meta[id], u = up(id, c);
       return `<button type="button" class="edk" data-go="${esc(id)}" style="--w:${(c / mx * 100).toFixed(0)}%"><span class="edi">${art(id).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="20" height="28">`).join("")}</span><span class="edn">${esc(dn(id))}</span><span class="edc"><b>${c}</b> <small>${ordF(best[id])}</small></span><span class="edm${u ? " up" : ""}">${m != null ? `${u ? "\u25b2 " : ""}${m < 10 ? m.toFixed(1) : Math.round(m)}%` : "new"}</span></button>`; };
-    const deckBody = n ? `<div class="edh"><span></span><span>Deck</span><span>Lists</span><span>Meta</span></div><div class="edl">${dk.map(dkRow).join("")}</div>${dk.length > 5 ? `<button type="button" class="edall">Show all ${dk.length} decks <b>\u203a</b></button>` : ""}<p class="dhint">\u25b2 = at least 2&times; its meta share in this event's top ${n}.</p>` : `<p class="dnone">No lists stored for this event.</p>`;
+    const deckBody = n ? `<div class="edh"><span></span><span>Deck</span><span>Lists</span><span>Meta</span></div><div class="edl">${dk.map(dkRow).join("")}</div><p class="dhint">\u25b2 = at least 2&times; its meta share in this event's top ${n}.</p>` : `<p class="dnone">No lists stored for this event.</p>`;
     const rec = Ls.map((l) => { const [a, b] = String(l.sc || "0-0").split("-").map(Number); return { w: a, l: b, pl: l.pl }; });
     const byW = {}; rec.forEach((r) => { (byW[r.w] = byW[r.w] || []).push(r); });
     const wk = Object.keys(byW).map(Number).sort((a, b) => b - a);
@@ -3950,7 +3960,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const enP = ens.slice(0, 3).map(([x, c]) => `<img src="e/${x}.webp" alt="" width="14" height="14">`).join("");
     return `<h3 class="sh3">${esc(shortEv(e.name))}</h3>${top}
       ${fold(`Decks in the top ${n}`, `${ups.length ? `<span class="g">${ups.length} \u25b2</span> ` : ""}${enP}`, deckBody, true).replace("</summary>", `${enL}</summary>`)}
-      ${n >= 8 ? fold("Records", `${wk[wk.length - 1]}\u2013${wk[0]} wins`, recBody) : ""}
+      ${n >= 8 ? fold("Records", `${wk[wk.length - 1]}\u2013${wk[0]} wins`, recBody, true) : ""}
       <a class="dkev" href="${esc(e.url)}" target="_blank" rel="noopener">Full standings on Limitless <b>\u2197</b></a>`; }
   addEventListener("click", async (ev) => { const b = ev.target.closest && ev.target.closest(".epb[data-ek]"); if (!b) return;
     ev.preventDefault(); ev.stopPropagation(); const e = (EV.events || []).find((x) => x.tid === b.dataset.ek); if (!e) return;
