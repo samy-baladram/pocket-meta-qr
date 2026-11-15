@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794737717-bebc -->
+<!-- ui: artifact version 1794750225-56cb -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -113,6 +113,10 @@ body {
 }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; /* the status bar strip (home-screen app): the banner gradient */
   background: linear-gradient(90deg, var(--band-bot), var(--band-mid) 33%, var(--band-mid2) 67%, var(--band-top)); }
+/* Nov 15: wide screens: the whole page scales up in steps (like browser zoom), so text and cards are not at phone size */
+@media (min-width: 1440px) { html { zoom: 1.15; } }
+@media (min-width: 1800px) { html { zoom: 1.3; } }
+@media (min-width: 2400px) { html { zoom: 1.5; } }
 .wrap { position: relative; z-index: 1; max-width: 960px; /* a ranked list reads best at this width; the open deck strip still runs full width */ margin: 0 auto; display: flex; flex-direction: column; gap: var(--sp-4); }
 button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; } /* no grey flash on tap */
 button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
@@ -1732,8 +1736,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Where a deck sits after the scroll: its row (or the podium) this many px below the screen top
   const anchorOf = (sec) => { const pod = sec.classList.contains("pod"); return { box: pod ? sec.parentElement : sec, gap: pod ? 18 : 8 }; };
   let barHold = 0; // Nov 15: until this time, the tab band does not hide (see the band code)
+  // Nov 15: wide screens zoom the page (html zoom): positions are worked out in CSS px of the page.
+  // k = rect px per CSS px (the zoom where getBoundingClientRect is zoomed, 1 where it is not); the viewport in CSS px = inner size / zoom
+  const ZK = () => { const z = parseFloat(getComputedStyle(document.documentElement).zoom) || 1; if (z === 1) return { z: 1, k: 1 };
+    const b = document.body, k = b.offsetWidth ? b.getBoundingClientRect().width / b.offsetWidth : 1; return { z, k: k || 1 }; };
+  const cssR = (r, k) => k === 1 ? r : { left: r.left / k, right: r.right / k, top: r.top / k, bottom: r.bottom / k, width: r.width / k, height: r.height / k };
   const padTop = () => { const b = document.getElementById("tbar"); barHold = Date.now() + 900; if (b) b.classList.remove("bhid"); // the page is about to scroll by itself: keep the band
-    return (parseFloat(getComputedStyle(document.documentElement).paddingTop) || 0) + (b?.offsetHeight || 0); }; // + the sticky tab bar
+    return ((parseFloat(getComputedStyle(document.documentElement).paddingTop) || 0) + (b?.offsetHeight || 0)) * ZK().k; }; // + the sticky tab bar; in rect/scroll px (Nov 15: zoom)
   // Extra space under the footer, only while needed, so a deck near the end of the list can also reach the top
   const tail = document.createElement("div");
   tail.setAttribute("aria-hidden", "true");
@@ -3006,7 +3015,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const top = box.getBoundingClientRect().top + scrollY - padTop() - gap;
       tail.style.height = "0px";
       const max = document.documentElement.scrollHeight - innerHeight;
-      if (top > max) tail.style.height = Math.ceil(top - max) + "px";
+      if (top > max) tail.style.height = Math.ceil((top - max) / ZK().k) + "px";
       scrollTo({ top, behavior: reduced ? "auto" : "smooth" });
     } else {
       // No auto-scroll: keep the clicked row where it was, even if an open deck above it just closed.
@@ -3141,7 +3150,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   function placePop() {
     if (!FLOAT || !popImg) return;
-    const r = popImg.getBoundingClientRect(), w = cpop.offsetWidth, h = cpop.offsetHeight, vw = innerWidth, vh = innerHeight, g = 12;
+    const Z = ZK(), r = cssR(popImg.getBoundingClientRect(), Z.k), w = cpop.offsetWidth, h = cpop.offsetHeight, vw = innerWidth / Z.z, vh = innerHeight / Z.z, g = 12;
     const right = vw - r.right >= r.left; // the side with more room
     let x = right ? r.right + g : r.left - g - w;
     x = Math.max(8, Math.min(x, vw - w - 8));
@@ -3277,11 +3286,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   let tipBtn = null, tipAt = 0; // tipAt: open time (a scroll just after the click, e.g. the browser bringing the button into view, does not close it)
   function placeTip() {
     if (!FLOAT || !tipBtn) return;
-    const r = tipBtn.getBoundingClientRect(), w = ipop.offsetWidth, h = ipop.offsetHeight, g = 10, cx = r.left + r.width / 2;
-    const fitB = innerHeight - r.bottom >= h + g + 8, fitA = r.top >= h + g + 8;
-    const below = fitB || (!fitA && innerHeight - r.bottom >= r.top); // the side that fits, else the side with more room
-    const x = Math.max(8, Math.min(cx - w / 2, innerWidth - w - 8));
-    const y = Math.max(8, Math.min(below ? r.bottom + g : r.top - g - h, innerHeight - h - 8)); // always fully on screen
+    const Z = ZK(), VW = innerWidth / Z.z, VH = innerHeight / Z.z;
+    const r = cssR(tipBtn.getBoundingClientRect(), Z.k), w = ipop.offsetWidth, h = ipop.offsetHeight, g = 10, cx = r.left + r.width / 2;
+    const fitB = VH - r.bottom >= h + g + 8, fitA = r.top >= h + g + 8;
+    const below = fitB || (!fitA && VH - r.bottom >= r.top); // the side that fits, else the side with more room
+    const x = Math.max(8, Math.min(cx - w / 2, VW - w - 8));
+    const y = Math.max(8, Math.min(below ? r.bottom + g : r.top - g - h, VH - h - 8)); // always fully on screen
     ipop.style.left = x + "px"; ipop.style.top = y + "px";
     const a = ipop.querySelector(".parr");
     a.className = "parr " + (below ? "t" : "b");
@@ -3388,15 +3398,15 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
         return `<div class="adots2">${n1 ? `<span class="adl">1 card</span>${"<i></i>".repeat(n1)}` : ""}${n1 && n2 ? '<span class="adsep"></span>' : ""}${n2 ? `${"<i></i>".repeat(n2)}<span class="adl">2 cards</span>` : ""}</div>`; })() : ""}`;
     slide.append(pop);
     // above the pill row, the arrow on the button
-    const sr = slide.getBoundingClientRect(), br = btn.getBoundingClientRect();
+    const Z = ZK(), sr = cssR(slide.getBoundingClientRect(), Z.k), br = cssR(btn.getBoundingClientRect(), Z.k);
     pop.style.setProperty("--ab", (sr.bottom - br.top + 9) + "px");
     if (btn.classList.contains("ctop")) { pop.classList.add("atop"); pop.style.bottom = "auto"; pop.style.top = (br.bottom - sr.top + 9) + "px"; } // under the top-right button
     pop.style.setProperty("--ax", Math.max(18, Math.min(br.left + br.width / 2 - sr.left - 8, sr.width - 34)) + "px");
     // Swaps on wider screens: the popover grows to fit the whole row (no scrolling), centered on the button, on screen
     if (sw && matchMedia("(min-width: 600px)").matches) {
-      const row = pop.querySelector(".aswl"), w = Math.min(row.scrollWidth + 22, innerWidth - 24), cx = br.left + br.width / 2;
+      const row = pop.querySelector(".aswl"), w = Math.min(row.scrollWidth + 22, innerWidth / Z.z - 24), cx = br.left + br.width / 2;
       if (w > sr.width - 16) {
-        const L = Math.max(12, Math.min(cx - w / 2, innerWidth - 12 - w));
+        const L = Math.max(12, Math.min(cx - w / 2, innerWidth / Z.z - 12 - w));
         pop.style.left = (L - sr.left) + "px"; pop.style.right = "auto"; pop.style.width = w + "px";
         pop.style.setProperty("--ax", (cx - L) + "px");
       }
@@ -3444,7 +3454,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     curDup = dupNames(d);
     const info = slide.querySelector(".sfoot .info"), qcol = slide.querySelector(".sfoot .qcol"), qb = qcol && qcol.querySelector(".qr"), qim = qb && qb.querySelector("img");
     if (!info) return;
-    const sr = slide.getBoundingClientRect(), ir = info.getBoundingClientRect(), MAXT = 6;
+    const zk = ZK().k, sr = cssR(slide.getBoundingClientRect(), zk), ir = cssR(info.getBoundingClientRect(), zk), MAXT = 6;
     const all = v.alt.map((a, k) => ({ a, k, n: altPairs(a).length > 1 ? 2 : 1 }));
     // 5+ tweaks: split into "1 card" / "2 cards" tabs (6 each at most); fewer: one carousel, 1-card tweaks first
     const G = all.length >= 5 ? [1, 2].map((n) => ({ n, items: all.filter((x) => x.n === n).slice(0, MAXT) })).filter((g) => g.items.length) : [{ n: 0, items: all }];
@@ -3502,7 +3512,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     curDup = dupNames(d);
     const info = slide.querySelector(".sfoot .info");
     if (!info) return;
-    const sr = slide.getBoundingClientRect(), ir = info.getBoundingClientRect();
+    const zk = ZK().k, sr = cssR(slide.getBoundingClientRect(), zk), ir = cssR(info.getBoundingClientRect(), zk);
     const row = (cs, cls) => cs.map((c) => `<img${cls} src="c/${c.id}.webp" data-cid="${c.id}" data-cn="${esc(c.n)}" alt="${esc(c.n)}" title="${esc(tName(c))}" width="150" height="209">`).join("");
     const pop = document.createElement("div");
     pop.className = "apop3 swp";
@@ -3844,8 +3854,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     close(id);
     openId = null;
     history.replaceState(null, "", location.pathname + location.search);
-    const body = document.documentElement.scrollHeight - th;
-    tail.style.height = Math.max(0, Math.ceil(y0 + innerHeight - body)) + "px";
+    const zk = ZK().k, body = document.documentElement.scrollHeight - th * zk;
+    tail.style.height = Math.max(0, Math.ceil((y0 + innerHeight - body) / zk)) + "px";
     if (Math.abs(scrollY - y0) > 1) scrollTo(0, y0);
     // Simple close: the page stays where it is. Only when the row is above the screen (closed from deep in the deck)
     // put it back at the top, at once (no animation).
@@ -4040,7 +4050,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const top = sec.getBoundingClientRect().top + scrollY - padTop() - 8;
       tail.style.height = "0px";
       const max = document.documentElement.scrollHeight - innerHeight;
-      if (top > max) tail.style.height = Math.ceil(top - max) + "px";
+      if (top > max) tail.style.height = Math.ceil((top - max) / ZK().k) + "px";
       scrollTo({ top, behavior: reduced ? "auto" : "smooth" });
     }
     let T;
