@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794726633-1e46 -->
+<!-- ui: artifact version 1794737717-bebc -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -816,6 +816,16 @@ html { -webkit-tap-highlight-color: transparent; }
 .dnote.l1tab > svg { width: 11px; height: 11px; color: var(--acc-mark); }
 .dnote.l1tab .ii { color: inherit; width: 11px; height: 11px; }
 .dnote.l1tab .ii svg { width: 11px; height: 11px; }
+
+/* Nov 15: top notices (notice()): a card that drops in from the top; tap = act, swipe up = hide, 6 s */
+.ntc { position: fixed; left: 50%; top: calc(10px + env(safe-area-inset-top, 0px)); z-index: 70; box-sizing: border-box; width: min(420px, calc(100% - 24px));
+  display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 16px; background: var(--surface); color: var(--ink); font-size: var(--fs-m); line-height: 1.3;
+  box-shadow: 0 8px 28px rgba(var(--sh), 0.22), 0 1px 3px rgba(var(--sh), 0.12); border: 1px solid var(--line-strong); cursor: pointer; touch-action: none;
+  transform: translate(-50%, calc(-100% - 24px)); transition: transform 0.32s cubic-bezier(.2, .8, .2, 1); }
+.ntc.on { transform: translate(-50%, 0); }
+.ntc .ntx { flex: 1; min-width: 0; } .ntc small { display: block; font-size: var(--fs-xs); color: var(--muted); font-weight: 500; } .ntc b { color: var(--acc-ink); }
+.ntc .nch { width: 8px; height: 12px; flex: none; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .ntc { transition: none; } }
 /* "Updated" note after a home-screen refresh: a small pill at the top, fades in and out */
 .toast { position: fixed; left: 50%; top: calc(12px + env(safe-area-inset-top, 0px)); z-index: 60; transform: translate(-50%, -8px); opacity: 0;
   padding: 8px 14px; border-radius: 999px; background: var(--surface); color: var(--ink); font-size: var(--fs-m); font-weight: 600; white-space: nowrap;
@@ -901,7 +911,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .fdc .fup { display: inline-flex; margin-right: 4px; vertical-align: 1px; } .fdc .fup svg { width: 8px; height: 6px; }
 
 /* R24 (Nov 15): deck sheet: 3 top cards with sparklines, folds (matchups, trend, meta map, cards); pill share sparkline */
-.dpb .psk { display: inline-flex; margin-left: 3px; } .dpb .psk:empty { display: none; }
+.dpb .psk { display: inline-flex; margin-left: 0; } .dpb .psk:empty { display: none; }
 .lsv { display: block; overflow: visible; } .lsv .lln { fill: none; stroke-width: 1.7; stroke-linejoin: round; stroke-linecap: round; }
 .lsv.lsh .lln, .dpb .lsv .lln { stroke: var(--acc-mark); } .lsv.lsh circle, .dpb .lsv circle { fill: var(--acc-mark); }
 .lsv.lwn .lln { stroke: #1f9d55; } .lsv.lwn circle { fill: #1f9d55; }
@@ -934,6 +944,10 @@ html { -webkit-tap-highlight-color: transparent; }
 .cug figcaption { position: relative; margin-top: 3px; height: 14px; overflow: hidden; border-radius: 3px; background: var(--tile); font-size: 9.5px; text-align: center; color: var(--ink); }
 .cug figcaption i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--acc-mark); opacity: 0.35; } .cug figcaption b { position: relative; font-weight: 700; }
 .cug img.hl { outline: 2px solid var(--accent); outline-offset: 1px; }
+.cug.cud { grid-template-columns: repeat(5, 1fr); gap: 4px; width: 70%; margin-inline: auto; } /* Nov 15: the core deck, 5 x 4 */
+.cug .cfx { aspect-ratio: 150 / 209; display: grid; place-items: center; border-radius: 4px; border: 1.5px dashed var(--line-strong); background: var(--tile); }
+.cug .cfx span { font-size: 10.5px; font-weight: 700; color: var(--muted); }
+.cug .cx1 { position: relative; } .cug .cx1 em { position: absolute; top: 2px; right: 2px; z-index: 1; font-style: normal; font-size: 9px; font-weight: 800; line-height: 1; padding: 2px 3px; border-radius: 4px; background: var(--acc-mark); color: #fff; pointer-events: none; }
 
 /* R25: window part of the meta line; "Days" row in the trend */
 .mwin { display: inline-flex; align-items: center; gap: 3px; } .mwin .ii { margin-left: 1px; } .mwin .wearly { color: #a3670a; }
@@ -975,6 +989,32 @@ html { -webkit-tap-highlight-color: transparent; }
 .tbar.bhid { transform: translateY(calc(-100% - 6px)); }
 @media (prefers-reduced-motion: reduce) { .tbar { transition: none; } }
 
+
+
+/* Nov 15: meta map with 4 named parts */
+.mmap .mq1 { fill: #1f9d55; opacity: 0.07; } .mmap .mq2 { fill: #1f9d55; opacity: 0.03; }
+.mmap .mqt { font-size: 9.5px; font-weight: 700; fill: var(--muted); opacity: 0.8; } .mmap .mnm { font-size: 9.5px; fill: var(--ink); opacity: 0.75; }
+.mmap .mdot { cursor: pointer; } .mmap .mdot.on { fill: var(--acc-ink, #1d6eb9); opacity: 1; }
+.mmtip { margin: 2px 0 0; min-height: 1.3em; font-size: var(--fs-xs); color: var(--muted); text-align: center; } .mmtip b { color: var(--ink); }
+.dpv .mqh { color: var(--ink); font-weight: 700; }
+/* Nov 15: trend redesign: pill change number, share change line, win rate range bar, one trend chart */
+.pdl i { font-style: normal; font-size: 0.72em; margin-right: 1px; position: relative; top: -0.08em; }
+.dpb .psk .pdl { margin-left: 0; font-size: 0.9em; }
+.dpill.dpb, .evr .arow > .dpill.epb { background: var(--surface); } /* Nov 15: the same color as the other pills */
+.pdl { margin-left: 0; font-size: 0.86em; font-weight: 700; } .pdl.up { color: #1f9d55; } .pdl.dn { color: #d6345a; }
+.dk3 small.dkd { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .dk3 small.dkd span { font-weight: 700; }
+.dk3 b small.wpm { margin: 0 0 0 1px; font-size: 11px; font-weight: 600; color: var(--muted); align-self: baseline; }
+.dk3 b { align-items: baseline; } .dk3 b .tup, .dk3 b .tdn { align-self: center; }
+.dk3 .dkm { display: flex; align-items: center; height: 18px; margin: 3px 0 2px; font-style: normal; } .dk3 .dkm > svg { width: 100%; height: 16px; }
+.dk3 .dko { font-size: 10.5px; color: var(--muted); }
+.dk3 em.wv { margin-top: auto; }
+.wci { position: relative; display: block; flex: 1; height: 10px; border-radius: 5px; background: rgba(var(--sh), 0.08); }
+.wci i { position: absolute; top: 2px; bottom: 2px; border-radius: 3px; background: #2fa866; opacity: 0.45; } .wci u { position: absolute; z-index: 2; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; text-decoration: none; background: repeating-linear-gradient(to bottom, var(--ink) 0 2px, transparent 2px 4px); opacity: 0.55; } /* Nov 15: a drawn dashed line (a thin dashed border did not show on some phones) */
+.wci s { position: absolute; top: 1px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: #1f9d55; }
+.dk3 em.wv { font-style: normal; font-size: 10.5px; font-weight: 700; color: var(--muted); } .dk3 em.wv.g { color: #1f9d55; } .dk3 em.wv.r { color: #d6345a; }
+.tsay { margin: 0 0 8px; font-size: var(--fs-s, 13px); line-height: 1.45; color: var(--ink); } .tsay b { font-weight: 700; }
+.tch .wch { fill: var(--acc-ink, #1d6eb9); font-weight: 700; } .dpv .pdl { margin-left: 2px; }
+.tch .tbar2 { fill: var(--acc-mark); opacity: 0.35; } .tch .tbar2.tl { opacity: 0.85; } .tch .tbar2.lfd { opacity: 0.15; } .tch .tcl { font-weight: 700; }
 /* Nov 15: events: "added" line, "Just added", event stats pill + sheet */
 .evsub2 { color: var(--muted); } .evadd { color: var(--acc-ink, #1d6eb9); font-weight: 600; }
 .evjust { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin: 0 0 6px; font-size: var(--fs-xs); color: var(--muted); }
@@ -1496,6 +1536,7 @@ a.dkev { text-decoration: none; }
 .morelink { appearance: none; margin: 0; padding: 8px 14px; border: 0; font-family: inherit; line-height: inherit; cursor: pointer; width: 100%; min-height: 54px;
   display: grid; grid-template-columns: auto auto; justify-content: center; align-content: center; align-items: center; column-gap: 4px; row-gap: 1px;
   border-radius: var(--r-card); background: var(--surface); box-shadow: var(--raised), var(--bevel); color: var(--acc-ink); font-size: var(--fs-m); }
+@supports (background: color-mix(in srgb, red 50%, transparent)) { .morelink { background: color-mix(in srgb, var(--surface) 50%, transparent); } } /* Nov 15: the panel at 50 %, the text stays full */
 .morelink b { font-weight: 700; }
 .morelink .mcar { width: 10px; height: 10px; }
 .morelink span { grid-column: 1 / -1; color: var(--muted); font-weight: 500; font-size: var(--fs-xs); }
@@ -1884,9 +1925,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   if ("requestIdleCallback" in window) requestIdleCallback(() => loadStats(), { timeout: 4000 }); else setTimeout(() => loadStats(), 2500); // a function, not loadStats itself: it is declared further down (Safari has no requestIdleCallback, so this line ran first and stopped the page)
   addEventListener("click", async (e) => { const b = e.target.closest && e.target.closest(".dpb[data-dk]"); if (!b) return;
     e.preventDefault(); e.stopPropagation(); const d = [...data.decks, ...((MORE && MORE.decks) || [])].find((x) => x.id === b.dataset.dk); if (!d) return;
-    track("sheet-deck"); const [st, M] = await Promise.all([loadStats(), loadCardMap().catch(() => null)]); showTip(b, dkSheet(d, st, M)); }, true);
+    track("sheet-deck"); const [st, M, V] = await Promise.all([loadStats(), loadCardMap().catch(() => null), d.nv > 1 && !d.bc ? loadExtra(d.id).catch(() => null) : null]); showTip(b, dkSheet(d, st, M, V)); }, true);
   // a card in the deck sheet's Cards fold opens the card sheet
   $("iPop").addEventListener("click", (e) => { const g = e.target.closest(".dkev[data-evd]"); if (g) { const id = g.dataset.evd; hideTip(); setTab("events"); evDk = id; filtMode(true); renderEvents(); scrollTo({ top: $("evl").getBoundingClientRect().top + scrollY - 80, behavior: "smooth" }); track("deck-to-events"); } });
+  $("iPop").addEventListener("click", (e) => { const c = e.target.closest && e.target.closest(".mmap [data-mm]"); if (!c) return; // Nov 15: meta map dot -> its numbers
+    const [n, s, w, k] = c.dataset.mm.split("|"), svg = c.closest("svg"); svg.querySelectorAll(".mdot.on").forEach((x) => x.classList.remove("on")); if (c.classList.contains("mdot")) c.classList.add("on");
+    svg.nextElementSibling.innerHTML = `<b>${n}</b> \u00b7 ${s} share \u00b7 ${w} win \u00b7 ${k} players`; });
   $("iPop").addEventListener("click", (e) => { const im = e.target.closest("img[data-cu]"); if (im) { e.stopPropagation(); cardClick(im); } });
   addEventListener("click", async (e) => { const b = e.target.closest && e.target.closest(".sp[data-sk]"); if (!b) return;
     e.preventDefault(); e.stopPropagation();
@@ -2469,7 +2513,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   function renderShChip() {
     const el = $("shChip"); let v = null;
     try { v = JSON.parse(localStorage.getItem("pmq-shared") || "null"); } catch (err) {}
-    if (!v || !v.h || Date.now() - v.at > 7 * 864e5 || !$("shv").hidden) { el.hidden = true; return; }
+    el.hidden = true; let seen = false; try { seen = !!sessionStorage.getItem("pmq-sh-n"); sessionStorage.setItem("pmq-sh-n", "1"); } catch (err) {}
+    if (seen || !v || !v.h || Date.now() - v.at > 7 * 864e5 || !$("shv").hidden) return; // Nov 15: a top notice, once per tab
+    notice(`<small>Shared with you</small><b>${esc(v.n || "a deck")}</b> &middot; open again`, () => { track("shared-chip"); openShared(v.h); }); return;
     el.innerHTML = `<span class="sinb" role="button" tabindex="0"><span class="shci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>Shared list: <b>${esc(v.n || "a deck")}</b> &rsaquo;</span><button class="sinx" type="button" aria-label="Forget this shared list">&times;</button></span>`;
     el.hidden = false;
   }
@@ -2609,6 +2655,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (xs.length < 3) return "";
     let lo = Math.min(...xs.map((x) => x[1])), hi = Math.max(...xs.map((x) => x[1]));
     if (o.ref != null) { lo = Math.min(lo, o.ref); hi = Math.max(hi, o.ref); }
+    if (o.z) { lo = 0; hi = Math.max(hi * 1.1, o.span); } // Nov 15: from 0, so a small change looks small
     if (hi - lo < o.span) { const m = (hi + lo) / 2; lo = m - o.span / 2; hi = m + o.span / 2; }
     const X = (i) => P + i * (W - 2 * P) / (vals.length - 1), Y = (v) => H - (o.bot || P) - (v - lo) / (hi - lo) * (H - (o.bot || P) - (o.top || P));
     let segs = [], cur = []; vals.forEach((v, i) => { if (v == null) { if (cur.length) segs.push(cur); cur = []; } else cur.push(`${X(i).toFixed(1)},${Y(v).toFixed(1)}`); }); if (cur.length) segs.push(cur);
@@ -2621,18 +2668,47 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (o.lastTxt) { const L = xs[xs.length - 1]; s += `<text x="${X(L[0]).toFixed(1)}" y="${(Y(L[1]) - 7).toFixed(1)}" text-anchor="end" class="lvt">${o.lastTxt}</text>`; }
     if (o.days) s += o.days.map((t, i) => `<text x="${X(i).toFixed(1)}" y="${H - 2}" text-anchor="middle" class="ltx">${t}</text>`).join("");
     return `<svg class="lsv ${o.cls || ""}" viewBox="0 0 ${W} ${H}" width="${o.fw ? "100%" : W}" height="${o.fw ? "auto" : H}" aria-hidden="true">${s}</svg>`; }
-  const pSpark = (id) => { const t = trOf(id); return t ? lineSvg(t.s, { w: 26, h: 12, span: 4, cls: "lsh" }) : ""; }; // share, min span 4 points
+  // Nov 15: the share change in the trend days (first to last point), not a line: "▲3.7" / "▼1.2"; under 0.3 points: nothing
+  const trD = (a) => { const v = (a || []).filter((x) => x != null); return v.length >= 2 ? v[v.length - 1] - v[0] : null; };
+  const dTxt = (x, u) => x == null ? "" : Math.abs(x) < 0.3 ? "" : `<span class="pdl ${x > 0 ? "up" : "dn"}"><i>${x > 0 ? "\u25b2" : "\u25bc"}</i>${Math.abs(x).toFixed(1)}${u || ""}</span>`;
+  const pSpark = (id) => { const t = trOf(id); return t ? dTxt(trD(t.s)) : ""; };
   // Nov 14: the deck stats pill is one button (share + win + ›); the rest is in its sheet (hero + tiles, like Top players)
-  const dpill = (d) => `<span class="dpill dpb" role="button" tabindex="0" data-dk="${esc(d.id)}" aria-haspopup="dialog" aria-label="Deck stats: ${pct(d.share)} share, ${pct(d.win)} win"><b>${pct(d.share)}</b> share<span class="psk" data-sk="${esc(d.id)}">${pSpark(d.id)}</span> &middot; <span${d.count < 30 ? ' class="lw"' : ""}><b>${pct(d.win)}</b> win</span>${SPCH}</span>`;
-  const dkSheet = (d, st, M) => { const S = st && st.d && st.d[d.id] || {}, tr = S.tr, few = d.count < 30;
+  const dpill = (d) => `<span class="dpill dpb" role="button" tabindex="0" data-dk="${esc(d.id)}" aria-haspopup="dialog" aria-label="Deck stats: ${pct(d.share)} share, ${pct(d.win)} win"><b>${pct(d.share)}</b><span class="psk" data-sk="${esc(d.id)}">${pSpark(d.id)}</span> share &middot; <span${d.count < 30 ? ' class="lw"' : ""}><b>${pct(d.win)}</b> win</span>${SPCH}</span>`;
+  // Nov 15: the trend in one sentence, then one chart: win rate (line, 50 % dashed) above, share (bars, from 0) below
+  const trSay = (t) => { const f = (a) => { const v = a.map((x, i) => [x, i]).filter((x) => x[0] != null); return v.length ? [v[0][0], v[v.length - 1][0]] : null; };
+    const s = f(t.s), w = f(t.w), r = f(t.r.map((x) => x || null)); if (!s) return "";
+    const mv = (a, th, u) => Math.abs(a[1] - a[0]) < th ? `stayed near <b>${a[1].toFixed(1)}${u}</b>` : `went ${a[1] > a[0] ? "up" : "down"} from ${a[0].toFixed(1)}${u} to <b>${a[1].toFixed(1)}${u}</b>`;
+    return `<p class="tsay">Share ${mv(s, 0.3, "%")}. Win rate ${w ? mv(w, 1, "%") : "has no data"}.${r ? ` Rank ${r[0] === r[1] ? `stayed <b>#${r[1]}</b>` : `went from #${r[0]} to <b>#${r[1]}</b>`}.` : ""}</p>`; };
+  const trChart = (t, days, fade) => { const W = 340, P = 16, n = t.s.length, X = (i) => 58 + i * (W - 58 - P - 8) / (n - 1); // a left gutter for the labels
+    const wv = t.w.filter((x) => x != null), wl = Math.min(45, Math.floor((Math.min(...wv) - 1) / 5) * 5), wh = Math.max(55, Math.ceil((Math.max(...wv) + 1) / 5) * 5);
+    const WY = (v) => 14 + (wh - v) / (wh - wl) * 56, sm = Math.max(...t.s.filter((x) => x != null), 1), SY = (v) => 142 - v / sm * 44;
+    let s = `<text x="${P}" y="9" class="ltx tcl">Win rate</text><line x1="42" x2="${W - P}" y1="${WY(50).toFixed(1)}" y2="${WY(50).toFixed(1)}" class="lref"/><text x="${P}" y="${(WY(50) + 3).toFixed(1)}" class="ltx">50%</text>`;
+    const pts = t.w.map((v, i) => v == null ? null : `${X(i).toFixed(1)},${WY(v).toFixed(1)}`).filter(Boolean);
+    s += `<polyline points="${pts.join(" ")}" class="lln"/>` + t.w.map((v, i) => v == null ? "" : `<circle cx="${X(i).toFixed(1)}" cy="${WY(v).toFixed(1)}" r="${i === n - 1 ? 3 : 2.2}"${fade && fade[i] ? ' class="lfd"' : ""}/>${i === 0 || i === n - 1 ? `<text x="${X(i).toFixed(1)}" y="${(WY(v) - 6).toFixed(1)}" text-anchor="middle" class="lvt">${v.toFixed(1)}</text>` : ""}`).join("");
+    s += `<text x="${P}" y="86" class="ltx tcl">Share</text>` + t.s.map((v, i) => v == null ? "" : `<rect x="${(X(i) - 11).toFixed(1)}" y="${SY(v).toFixed(1)}" width="22" height="${(142 - SY(v)).toFixed(1)}" rx="3" class="tbar2${fade && fade[i] ? " lfd" : ""}${i === n - 1 ? " tl" : ""}"/><text x="${X(i).toFixed(1)}" y="${(SY(v) - 3).toFixed(1)}" text-anchor="middle" class="ltx${i === n - 1 ? " lvt" : ""}">${v.toFixed(1)}</text>`).join("");
+    s += days.map((d, i) => `<text x="${X(i).toFixed(1)}" y="156" text-anchor="middle" class="ltx">${d}</text>`).join("");
+    s += `<text x="${P}" y="176" class="ltx tcl">Rank</text>` + t.r.map((r, i) => `<text x="${X(i).toFixed(1)}" y="176" text-anchor="middle" class="lvt">${r ? "#" + r : "\u2013"}</text>`).join("");
+    if (t.wd && t.wd.some((x) => x && x !== 7)) s += `<text x="${P}" y="192" class="ltx tcl">Days</text>` + t.wd.map((x, i) => `<text x="${X(i).toFixed(1)}" y="192" text-anchor="middle" class="ltx${i && x !== t.wd[i - 1] ? " wch" : ""}">${x || "\u2013"}</text>`).join("");
+    const H = t.wd && t.wd.some((x) => x && x !== 7) ? 198 : 182;
+    return `<svg class="lsv lwn tch" viewBox="0 0 ${W} ${H}" width="100%" aria-hidden="true">${s}</svg>`; };
+  const dkSheet = (d, st, M, V) => { const S = st && st.d && st.d[d.id] || {}, tr = S.tr, few = d.count < 30;
     const was = d.rk0, mv = was ? was - d.rank : null, CHD = '<svg class="sdn" viewBox="0 0 10 7" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     const nameOf = (id) => { const x = [...data.decks, ...((MORE && MORE.decks) || []), ...((data.nolist) || [])].find((y) => y.id === id); return x ? x.name : id; };
     const fadeN = tr && tr.n ? tr.n.map((n) => n != null && n < 30) : null;
     const rkTxt = !hasTrend() || !("rk0" in d) ? "" : !was ? '<span class="tup">new</span>' : mv > 0 ? `<span class="tup">${RB_UP}${mv}</span>` : mv < 0 ? `<span class="tdn">${RB_DN}${-mv}</span>` : "";
     // top: 3 cards (share + sparkline, win rate + sparkline, rank)
-    const top = `<div class="dk3"><div><span>Share</span><b>${pct(d.share)}</b>${tr ? lineSvg(tr.s, { w: 84, h: 20, span: 4, cls: "lsh", fw: 1 }) : ""}</div>
-      <div${few ? ' class="lw"' : ""}><span>Win rate</span><b>${pct(d.win)}</b>${tr ? lineSvg(tr.w, { w: 84, h: 20, span: 10, cls: "lwn", fw: 1 }) : ""}</div>
-      <div><span>Rank</span><b>#${d.rank} ${rkTxt}</b><small>${d.count} players</small></div></div>`;
+    // Nov 15: share = the change in the trend days + a line from 0; win rate = its likely range (80 %) against 50 %
+    const g = (d.w || 0) + (d.l || 0) + (d.t || 0), pw = d.win / 100, hw = g ? 128 * Math.sqrt(pw * (1 - pw) / g) : null; // 80 % range (z = 1.28): "promising or not", not proof
+    const lo = hw != null ? d.win - hw : null, hi = hw != null ? d.win + hw : null;
+    const verd = hw == null ? "" : lo > 50 ? '<em class="wv g">Above 50%</em>' : hi < 50 ? '<em class="wv r">Below 50%</em>' : '<em class="wv">Close to 50%</em>';
+    const sc0 = Math.min(40, Math.floor(((lo ?? 50) - 2) / 5) * 5), sc1 = Math.max(60, Math.ceil(((hi ?? 50) + 2) / 5) * 5), SX = (v) => ((v - sc0) / (sc1 - sc0) * 100).toFixed(1);
+    const wBar = hw == null ? "" : `<span class="wci" title="Likely range: ${lo.toFixed(1)}\u2013${hi.toFixed(1)}%"><i style="left:${SX(lo)}%;width:${(SX(hi) - SX(lo)).toFixed(1)}%"></i><u style="left:${SX(50)}%"></u><s style="left:${SX(d.win)}%"></s></span>`;
+    const sD = tr ? trD(tr.s) : null;
+    // Nov 15: the 3 cards share one layout: label / number / a middle line (line, range bar, "of N") / a bottom line
+    const nDk = [...data.decks, ...((MORE && MORE.decks) || [])].length;
+    const top = `<div class="dk3"><div><span>Share</span><b>${pct(d.share)}</b><i class="dkm">${tr ? lineSvg(tr.s, { w: 84, h: 16, span: 4, cls: "lsh", fw: 1, z: 1 }) : ""}</i><small class="dkd">${sD == null ? "" : Math.abs(sD) < 0.3 ? `steady in ${tr.s.length} days` : `<span class="${sD > 0 ? "tup" : "tdn"}">${sD > 0 ? "\u25b2" : "\u25bc"}${Math.abs(sD).toFixed(1)}</span> in ${tr.s.length} days`}</small></div>
+      <div${few ? ' class="lw"' : ""}><span>Win rate</span><b>${pct(d.win)}${hw != null ? `<small class="wpm">\u00b1${hw.toFixed(1)}</small>` : ""}</b><i class="dkm">${wBar}</i>${verd}</div>
+      <div><span>Rank</span><b>#${d.rank} ${rkTxt}</b><i class="dkm dko">of ${nDk} decks</i><small>${d.count} players</small></div></div>`;
     const fold = (t, pv, body) => `<details class="sfold dkf"><summary><b>${t}</b><span class="dpv">${pv}</span>${CHD}</summary><div class="dfb">${body}</div></details>`;
     // 1. matchups
     const mu = (S.mu || []).map(([o, w, l, t]) => ({ o, w, l, t, g: w + l + t, p: (w + t / 2) / (w + l + t) * 100 })).sort((a, b) => b.p - a.p);
@@ -2643,24 +2719,35 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const muPv = mu.length ? (mu.length < 2 ? `${Math.round(mu[0].p)}% vs ${esc(nameOf(mu[0].o)).split(" ")[0]}` : `<span class="g">best ${Math.round(mu[0].p)}%</span> \u00b7 <span class="r">worst ${Math.round(mu[mu.length - 1].p)}%</span>`) : "not enough games";
     // 2. trend
     const days = st && st.days ? st.days.map((x, i) => i === 0 ? `${MON[+x.slice(5, 7) - 1]} ${+x.slice(8)}` : String(+x.slice(8))) : [];
-    const trBody = tr ? `<p class="dhint">Each point = that day\u2019s window (7\u201314 days, wider when there are few events). Faded: under 30 players.${tr.wd && tr.wd.some((x) => x && x !== 7) ? " Days = how many days that window had." : ""}</p>
-      <p class="dcl">Share</p>${lineSvg(tr.s, { w: 340, h: 82, span: 4, cls: "lsh", fw: 1, dots: 1, area: 1, days, bot: 14, top: 14, pad: 14, fade: fadeN, lastTxt: pct(d.share) })}
-      <p class="dcl">Win rate</p>${lineSvg(tr.w, { w: 340, h: 82, span: 10, cls: "lwn", fw: 1, dots: 1, area: 1, days, bot: 14, top: 14, pad: 14, ref: 50, refTxt: "50%", fade: fadeN, lastTxt: pct(d.win) })}
-      <p class="drk"><span>Rank</span>${tr.r.map((r) => `<b>${r || "\u2013"}</b>`).join("")}</p>${tr.wd && tr.wd.some((x) => x && x !== 7) ? `<p class="drk dwd"><span>Days</span>${tr.wd.map((x, i) => `<b${i && x !== tr.wd[i - 1] ? ' class="wch"' : ""}>${x || "\u2013"}</b>`).join("")}</p>` : ""}` : "";
+    const trBody = tr ? `${trSay(tr)}${trChart(tr, days, fadeN)}<p class="dhint">Each day = the window that ends on that day (7\u201314 days, wider when there are few events), so the numbers move slowly. Faded: under 30 players.${tr.wd && tr.wd.some((x) => x && x !== 7) ? " Days = how many days that window had." : ""}</p>` : "";
     const trOk = tr && tr.s.filter((x) => x != null).length >= 3;
-    // 3. meta map: every deck, share (log) against win rate
-    const all = [...data.decks, ...((MORE && MORE.decks) || [])].filter((x) => x.share > 0 && x.win != null);
-    const mapSvg = (() => { const W = 340, H = 190, x0 = Math.log(Math.max(0.15, Math.min(...all.map((x) => x.share)) * 0.8)), x1 = Math.log(Math.max(...all.map((x) => x.share)) * 1.2);
-      const wl = Math.min(40, ...all.map((x) => x.win)), wh = Math.max(60, ...all.map((x) => x.win));
-      const X = (s) => 30 + (Math.log(s) - x0) / (x1 - x0) * (W - 40), Y = (v) => H - 20 - (v - wl) / (wh - wl) * (H - 30);
-      let s = `<line x1="30" x2="${W - 6}" y1="${Y(50).toFixed(1)}" y2="${Y(50).toFixed(1)}" class="lref"/><text x="32" y="${(Y(50) - 3).toFixed(1)}" class="ltx">50% win</text>`;
-      for (const v of [40, 50, 60]) if (v >= wl && v <= wh) s += `<text x="26" y="${(Y(v) + 3).toFixed(1)}" text-anchor="end" class="ltx">${v}%</text>`;
-      for (const v of [0.5, 1, 2, 5, 10, 20]) if (Math.log(v) > x0 && Math.log(v) < x1) s += `<text x="${X(v).toFixed(1)}" y="${H - 6}" text-anchor="middle" class="ltx">${v}%</text>`;
-      s += `<text x="30" y="10" class="ltx">win rate \u2191</text>`;
-      for (const x of all) if (x.id !== d.id) s += `<circle cx="${X(x.share).toFixed(1)}" cy="${Y(x.win).toFixed(1)}" r="${x.count < 30 ? 2.6 : 4}" class="mdot${x.count < 30 ? " lfd" : ""}"><title>${esc(x.name)}: ${pct(x.share)} share, ${pct(x.win)} win</title></circle>`;
-      const cx = X(d.share), cy = Y(d.win); s += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="11" class="mme0"/><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="5.5" class="mme"/><text x="${(cx > W / 2 ? cx - 10 : cx + 10).toFixed(1)}" y="${(cy - 9).toFixed(1)}" text-anchor="${cx > W / 2 ? "end" : "start"}" class="lvt">This deck</text>`;
-      return `<svg class="lsv" viewBox="0 0 ${W} ${H}" width="100%" aria-hidden="true">${s}</svg>`; })();
-    const above = all.filter((x) => x.share > d.share && x.win > d.win).length;
+    // 3. meta map (Nov 15): decks with 30+ players (and this deck), share (sqrt scale) against win rate, 4 named parts:
+    // split at the median share and at 50 %; names on the most played decks; a tap on a dot shows its numbers
+    const all = [...data.decks, ...((MORE && MORE.decks) || [])].filter((x) => x.share > 0 && x.win != null && (x.count >= 30 || x.id === d.id));
+    const big = all.filter((x) => x.count >= 30).map((x) => x.share).sort((a, b) => a - b), med = big.length ? big[Math.floor(big.length / 2)] : d.share;
+    const QN = (x) => x.share >= med ? (x.win >= 50 ? "Popular + winning" : "Popular, weak") : (x.win >= 50 ? "Hidden gem" : "Niche");
+    const shortN = (n) => { const w = n.replace(/ ex\b/g, "").split(" "); const s = w.slice(0, w[0] === "Mega" ? 2 : 1).join(" "); return s.length > 14 ? s.slice(0, 13) + "\u2026" : s; };
+    let box0; const mapSvg = (() => { const W = 340, H = 210, L = 34, R = 8, T = 8, B = 20, sm = Math.max(...all.map((x) => x.share)) * 1.06;
+      const wv = all.map((x) => x.win), wl = Math.min(46, Math.floor(Math.min(...wv) / 2) * 2), wh = Math.max(54, Math.ceil(Math.max(...wv) / 2) * 2);
+      const X = (s) => L + Math.sqrt(s / sm) * (W - L - R), Y = (v) => T + (wh - v) / (wh - wl) * (H - T - B);
+      const qx = X(med), qy = Y(50);
+      let s = `<rect x="${qx.toFixed(1)}" y="${T}" width="${(W - R - qx).toFixed(1)}" height="${(qy - T).toFixed(1)}" class="mq1"/><rect x="${L}" y="${T}" width="${(qx - L).toFixed(1)}" height="${(qy - T).toFixed(1)}" class="mq2"/>`;
+      s += `<line x1="${L}" x2="${W - R}" y1="${qy.toFixed(1)}" y2="${qy.toFixed(1)}" class="lref"/><line x1="${qx.toFixed(1)}" x2="${qx.toFixed(1)}" y1="${T}" y2="${H - B}" class="lref"/>`;
+      s += `<text x="${W - R - 4}" y="${T + 11}" text-anchor="end" class="mqt">Popular + winning</text><text x="${L + 4}" y="${T + 11}" class="mqt">Hidden gem</text><text x="${W - R - 4}" y="${H - B - 5}" text-anchor="end" class="mqt">Popular, weak</text><text x="${L + 4}" y="${H - B - 5}" class="mqt">Niche</text>`;
+      for (let v = wl; v <= wh; v += wh - wl > 12 ? 4 : 2) s += `<text x="${L - 4}" y="${(Y(v) + 3).toFixed(1)}" text-anchor="end" class="ltx">${v}%</text>`;
+      for (const v of [0.5, 1, 2, 5, 10, 20]) if (v < sm) s += `<text x="${X(v).toFixed(1)}" y="${H - 6}" text-anchor="middle" class="ltx">${v}%</text>`;
+      { const cx = X(d.share), cy = Y(d.win), lf = cx > W / 2; box0 = [lf ? cx - 64 : cx + 6, cy - 20, lf ? cx - 6 : cx + 64, cy - 6]; }
+      const named = new Set([...all].filter((x) => x.id !== d.id).sort((a, b) => b.share - a.share).slice(0, 4).map((x) => x.id));
+      const box = [[W - R - 96, T, W - R, T + 14], [L, T, L + 66, T + 14], [W - R - 74, H - B - 16, W - R, H - B], [L, H - B - 16, L + 40, H - B]]; // corner names
+      box.push(box0); const free = (b) => !box.some((o) => b[0] < o[2] && b[2] > o[0] && b[1] < o[3] && b[3] > o[1]);
+      all.forEach((x, i) => { if (x.id === d.id) return; const cx = X(x.share), cy = Y(x.win);
+        s += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="4.5" class="mdot" data-mm="${esc(x.name)}|${pct(x.share)}|${pct(x.win)}|${x.count}"/>`;
+        const tw = shortN(x.name).length * 5.2, lf = cx > W - 70, bx = [lf ? cx - 7 - tw : cx + 7, cy - 6, lf ? cx - 7 : cx + 7 + tw, cy + 6];
+        if (named.has(x.id) && free(bx)) box.push(bx); else named.delete(x.id);
+        if (named.has(x.id)) s += `<text x="${(cx > W - 70 ? cx - 7 : cx + 7).toFixed(1)}" y="${(cy + 3).toFixed(1)}" text-anchor="${cx > W - 70 ? "end" : "start"}" class="mnm">${esc(shortN(x.name))}</text>`; });
+      const cx = X(d.share), cy = Y(d.win); s += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="11" class="mme0"/><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="5.5" class="mme" data-mm="${esc(d.name)}|${pct(d.share)}|${pct(d.win)}|${d.count}"/><text x="${(cx > W / 2 ? cx - 10 : cx + 10).toFixed(1)}" y="${(cy - 9).toFixed(1)}" text-anchor="${cx > W / 2 ? "end" : "start"}" class="lvt">This deck</text>`;
+      return `<svg class="lsv mmap" viewBox="0 0 ${W} ${H}" width="100%">${s}</svg><p class="mmtip">Tap a dot to see the deck.</p>`; })();
+    const above = all.filter((x) => x.share > d.share && x.win > d.win).length, myQ = QN(d);
     // 4. cards (top players only)
     const of = d.of || 0, cu = (S.cu || []).filter((c) => of);
     const cName = (id) => { try { const nr = M && M.byId.get(id), x = nr != null && M.byNr.get(nr); return x ? x.n : ""; } catch { return ""; } };
@@ -2668,14 +2755,22 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     let cuBody = "", cuPv = "";
     if (!d.bc && cu.length) {
       if (of < 3) { cuBody = `<p class="dhint">Cards of the ${of} top player${of > 1 ? "s" : ""} (too few for core and flex).</p><div class="cug">${cu.map((c) => cImg(c, `\u00d7${c[2]}`)).join("")}</div>`; cuPv = `${cu.length} cards`; }
-      else { const core = cu.filter((c) => c[1] / of >= 0.9), flex = cu.filter((c) => c[1] / of < 0.9 && c[1] / of >= 0.1), rare = cu.length - core.length - flex.length;
-        cuBody = `<p class="dhint">Core: in almost every list (90%+ of the ${of} top players)</p><div class="cug">${core.map((c) => cImg(c, `\u00d7${c[2]}`)).join("")}</div>
-          ${flex.length ? `<p class="dhint">Flex: share of top players who play it</p><div class="cug">${flex.map((c) => cImg(c, `<i style="width:${Math.round(c[1] / of * 100)}%"></i><b>${Math.round(c[1] / of * 100)}%</b>`)).join("")}</div>` : ""}
+      else { // Nov 15: a 20-card deck (5 x 4): the core copies + "Flex" slots; the extra copies of core cards are flex options
+        // core order = the order in list 1, then list 2 (Nov 15); same card = same id or same name (another print)
+        const ord = new Map(); [d.cards, V && V[0] && V[0].cards].forEach((cs, li) => (cs || []).forEach((c, i) => { const k = li * 100 + i; if (!ord.has(c.id)) ord.set(c.id, k); if (!ord.has("n:" + c.n)) ord.set("n:" + c.n, k); }));
+        const oK = (id) => ord.get(id) ?? ord.get("n:" + cName(id)) ?? 999;
+        const core = cu.filter((c) => c[1] / of >= 0.9).sort((a, b) => oK(a[0]) - oK(b[0])), cells = [], ex = [];
+        core.forEach((c) => { const base = Math.max(1, Math.floor(c[2] + 0.05)), x = (c[2] - base) * c[1] / of; // x = share of top players with one more copy
+          for (let k = 0; k < base && cells.length < 20; k++) cells.push(c); if (x >= 0.1) ex.push([c[0], Math.round(x * of), c[2], 1]); });
+        const nf = 20 - cells.length, flex = [...cu.filter((c) => c[1] / of < 0.9 && c[1] / of >= 0.1), ...ex].sort((a, b) => b[1] - a[1]), rare = cu.filter((c) => c[1] / of < 0.1).length;
+        const pc = (c) => Math.round(c[1] / of * 100);
+        cuBody = `<p class="dhint">Core: in 90%+ of the ${of} top players' lists. Flex: the open slots.</p><div class="cug cud">${cells.map((c) => `<figure><img src="c/${c[0]}.webp" alt="${esc(cName(c[0]))}" data-cu="1" loading="lazy" width="56" height="78"></figure>`).join("")}${'<figure class="cfx"><span>Flex</span></figure>'.repeat(nf)}</div>
+          ${flex.length ? `<p class="dhint">Flex options: share of top players who play it${ex.length ? ". <b>+1</b> = one more copy of a core card" : ""}</p><div class="cug">${flex.map((c) => cImg(c, `<i style="width:${pc(c)}%"></i><b>${pc(c)}%</b>`).replace("<figure>", c[3] ? '<figure class="cx1"><em>+1</em>' : "<figure>")).join("")}</div>` : ""}
           ${rare ? `<p class="dhint">+ ${rare} more card${rare > 1 ? "s" : ""} played by under 10%</p>` : ""}`;
-        cuPv = `${core.length} core \u00b7 ${flex.length} flex`; } }
+        cuPv = `${cells.length} core \u00b7 ${nf} flex`; } }
     return `<h3 class="sh3">${esc(d.name)}</h3>${top}
-      ${fold("Matchups", muPv, muBody)}${trOk ? fold("7-day trend", lineSvg(tr.s, { w: 44, h: 14, span: 4, cls: "lsh" }) + lineSvg(tr.w, { w: 44, h: 14, span: 10, cls: "lwn" }), trBody) : ""}
-      ${fold("Meta map", above ? `${above} deck${above > 1 ? "s" : ""} more played + stronger` : "none more played + stronger", `<p class="dhint">Every deck ${winWk()}: share (log scale) against win rate. Small, faded dots: under 30 players.</p>${mapSvg}`)}
+      ${fold("Matchups", muPv, muBody)}${trOk ? fold("7-day trend", `share ${dTxt(trD(tr.s)) || "steady"} \u00b7 win ${dTxt(trD(tr.w)) || "steady"}`, trBody) : ""}
+      ${fold("Meta map", `<b class="mqh">${myQ}</b>${d.count < 30 ? " (few players)" : ""}`, `<p class="dhint">Decks with 30+ players ${winWk()}: share against win rate. Lines: the median share and 50% win rate.</p>${mapSvg}`)}
       ${cuBody ? fold("Cards", cuPv, cuBody) : ""}
       ${(EV && EV.events || []).some((e) => (e.top || []).some(([id]) => id === d.id)) ? `<button class="dkev" type="button" data-evd="${esc(d.id)}">Events with this deck in the top 8 <b>${(EV.events || []).filter((e) => (e.top || []).some(([id]) => id === d.id)).length}</b>${SPCH}</button>` : ""}
       <ul class="snotes"><li>Share, win rate, rank and matchups count all players; Cards counts the top players. A tie is half a win; mirror matches are not counted.</li>${few ? "<li>Faded win rate: fewer than 30 players, so it moves a lot.</li>" : ""}</ul>`; };
@@ -3849,6 +3944,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     track("sheet-event"); showTip(b, await evSheet(e)); }, true);
   $("iPop").addEventListener("click", (ev) => { const a = ev.target.closest(".edall"); if (a) { a.previousElementSibling.classList.add("all"); a.remove(); return; } });
   $("iPop").addEventListener("click", (ev) => { const r = ev.target.closest(".edk[data-go]"); if (!r) return; const id = r.dataset.go; hideTip(); setTab("decks"); location.hash = id; track("event-to-deck"); });
+  const SHOW_JUST = false; // Nov 15: the "Just added" chips are off (the rows show "added N h ago")
   let evWin = "", evQ = "", evMin = 0, evDk = ""; // Nov 15: event filters: winner chip, search text, min players, a deck in the top 8 (from the deck sheet)
   $("evl").addEventListener("click", (e) => {
     const c = e.target.closest(".evwc"); if (c) { evWin = evWin === c.dataset.wd ? "" : c.dataset.wd; track("events-win-chip");
@@ -3885,7 +3981,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       ${tw.length > 1 ? `<p class="evwl">Most wins</p><div class="evwins">${tw.map((t) => `<button class="evwc${evWin === t.w.deck ? " on" : ""}" type="button" data-wd="${esc(t.w.deck)}" aria-pressed="${evWin === t.w.deck}">${(t.w.art || []).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="20" height="28" loading="lazy">`).join("")}<span>${esc(t.w.name)}</span><b>\u00d7${t.n}</b></button>`).join("")}</div>` : ""}
       ${anyF ? `<p class="evnote">${L.length ? `${L.length} event${L.length > 1 ? "s" : ""}` : "No events"}${evWin ? ` won by ${esc((wins[evWin] || {}).w ? wins[evWin].w.name : "")}` : ""}${evDk ? ` with ${esc(dn(evDk))} in the top 8` : ""}${evMin ? ` with ${evMin}+ players` : ""}${q && !evDk ? ` for &ldquo;${esc(evQ.trim())}&rdquo;` : ""} &middot; <button class="evclr" type="button">Show all events</button></p>` : ""}`;
     const justL = just.length && !anyF ? `<p class="evjust"><b>Just added</b>${just.map((e) => `<button type="button" data-go="${e.tid}">${esc(shortEv(e.name))} <span>${addAgo(e.at)}</span></button>`).join("")}</p>` : "";
-    box.innerHTML = strip + (just.length === 1 && L[0] === just[0] ? "" : justL) + L.map((e) => {
+    box.innerHTML = strip + (SHOW_JUST && !(just.length === 1 && L[0] === just[0]) ? justL : "") + L.map((e) => {
       const w = e.win;
       const ld = locDay(e), head = ld !== day ? `<h3 class="evday" id="evd-${ld}">${evDay((day = ld))}</h3>` : "";
       const fresh = e.at && agoH(e.at) < 24 ? ` \u00b7 <span class="evadd">added ${addAgo(e.at)}</span>` : "";
@@ -4094,6 +4190,23 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const STANDALONE = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
   const RET_MIN = 15 * 6e4, OLD = 60 * 6e4;
   let hidAt = 0, checking = false;
+  // Nov 15: temporary notices drop in from the top (like a phone notification): a tap acts, they hide by themselves
+  // after 6 s, a swipe up hides them at once. One at a time (a queue). No × button and no space taken in the page.
+  const NQ = []; let nOn = null;
+  function notice(html, onTap, ms) { NQ.push({ html, onTap, ms: ms || 6000 }); if (!nOn) nNext(); }
+  function nNext() { const q = NQ.shift(); if (!q) { nOn = null; return; }
+    const n = document.createElement("div"); n.className = "ntc"; n.setAttribute("role", "status"); n.tabIndex = 0;
+    n.innerHTML = `<span class="ntx">${q.html}</span>${q.onTap ? '<svg class="nch" viewBox="0 0 8 12" aria-hidden="true"><path d="M2 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' : ""}`;
+    document.body.appendChild(n); nOn = n;
+    let t = setTimeout(go, q.ms), sy = null, dy = 0, done = false;
+    function go() { if (done) return; done = true; clearTimeout(t); n.style.transform = ""; n.classList.remove("on"); setTimeout(() => { n.remove(); setTimeout(nNext, 250); }, 320); }
+    requestAnimationFrame(() => requestAnimationFrame(() => n.classList.add("on")));
+    n.addEventListener("click", () => { if (Math.abs(dy) > 6) return; go(); if (q.onTap) q.onTap(); });
+    n.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); n.click(); } else if (e.key === "Escape") go(); });
+    n.addEventListener("touchstart", (e) => { sy = e.touches[0].clientY; dy = 0; clearTimeout(t); n.style.transition = "none"; }, { passive: true });
+    n.addEventListener("touchmove", (e) => { if (sy == null) return; dy = e.touches[0].clientY - sy; n.style.transform = `translate(-50%, ${Math.min(0, dy)}px)`; if (e.cancelable) e.preventDefault(); }, { passive: false });
+    n.addEventListener("touchend", () => { n.style.transition = ""; sy = null; if (dy < -24) go(); else { n.style.transform = ""; t = setTimeout(go, 3000); } });
+    n.addEventListener("pointerenter", () => clearTimeout(t)); n.addEventListener("pointerleave", () => { if (!done) t = setTimeout(go, 2500); }); }
   function toast(msg) {
     const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); t.textContent = msg;
     document.body.appendChild(t); requestAnimationFrame(() => t.classList.add("on"));
@@ -4198,11 +4311,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   function renderSince() {
     const el = $("since"), ne = NEWE.size, nd = NEWD.size;
-    let off = false; try { off = sessionStorage.getItem("pmq-since-x") === data.updatedAt; } catch (err) {}
-    if ((!ne && !nd) || off) { el.hidden = true; return; }
+    el.hidden = true; // Nov 15: a top notice now, once per data update in this tab
+    let off = false; try { off = sessionStorage.getItem("pmq-since-x") === data.updatedAt; sessionStorage.setItem("pmq-since-x", data.updatedAt); } catch (err) {}
+    if ((!ne && !nd) || off) return;
     const parts = [ne ? `<b>+${ne} event${ne > 1 ? "s" : ""}</b>` : "", nd ? `<b>${nd} new deck${nd > 1 ? "s" : ""}</b> in the top 10` : ""].filter(Boolean);
-    el.innerHTML = `<span class="sinb" role="button" tabindex="0"><span>Since your last visit: ${parts.join(" &middot; ")}</span><button class="sinx" type="button" aria-label="Hide">&times;</button></span>`;
-    el.hidden = false;
+    notice(`<small>Since your last visit</small>${parts.join(" &middot; ")}`, () => { track("since-pill");
+      if (NEWE.size) setTab("events"); else { const r = [...NEWD].map((id) => $(id)).find(Boolean); if (r) r.scrollIntoView({ block: "center" }); } });
   }
   $("since").addEventListener("click", (e) => {
     if (e.target.closest(".sinx")) { try { sessionStorage.setItem("pmq-since-x", data.updatedAt); } catch (err) {} $("since").hidden = true; return; }
