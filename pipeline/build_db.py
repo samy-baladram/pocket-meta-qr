@@ -9,14 +9,17 @@ Base tables : sets, tournaments, entries, entry_decks, matches, decklists, deckl
 Computed    : archetype_stats (window, archetype, ...), matchups (window, deck, opp, ...)
 Windows     : "set" (tournaments of the current set), "7d" and "3d" (last N days up to --ref, all sets: on a new set
               day the old set's events leave the window day by day; decision Nov 13, 2026)
-              R24 (Nov 15, 2026): "7d@YYYY-MM-DD" = the 7-day window that ends on that day, for the TREND_DAYS - 1 days
-              before --ref (the trend in stats.json; the last trend day is "7d" itself).
+              R25 (Nov 15, 2026): "adaptive" = the page's window (pipeline/window.py: 7, 10 or 14 days, not before the
+              current set's release); "ad@YYYY-MM-DD" = the adaptive window of that day, for the TREND_DAYS - 1 days
+              before --ref (the stats.json trend; R24 had fixed 7-day windows "7d@<day>"). meta "win:<window>" = the
+              window as JSON (start, end, wd, step, wr, players, floor; "adaptive" also wch, bige).
 """
 import argparse, glob, json, os, sqlite3, sys
+from window import window_for, window_info
 from collections import defaultdict
 from datetime import date, datetime, timedelta, timezone
 
-TREND_DAYS = 7   # R24: days in the stats.json trend (export.py reads the "7d@<day>" windows)
+TREND_DAYS = 7   # R24: days in the stats.json trend (R25: export.py reads the "ad@<day>" windows)
 
 SCHEMA = """
 CREATE TABLE sets (code TEXT PRIMARY KEY, name TEXT, release TEXT, cards INTEGER, current INTEGER);
@@ -198,17 +201,28 @@ def build(data, ref, top):
     for days in (7, 3):
         start = (date.fromisoformat(ref) - timedelta(days=days - 1)).isoformat()
         windows[f"{days}d"] = {t for t, d in all_tids.items() if start <= d <= ref}
-    for k in range(1, TREND_DAYS):   # R24: the 7-day windows that end on the days before ref
-        end = date.fromisoformat(ref) - timedelta(days=k)
-        start = (end - timedelta(days=6)).isoformat()
-        windows[f"7d@{end.isoformat()}"] = {t for t, d in all_tids.items() if start <= d <= end.isoformat()}
+    # R25: the adaptive window of ref and of the TREND_DAYS - 1 days before it (all tournaments known now).
+    tourns = db.execute("SELECT id, day, players, multi_deck FROM tournaments").fetchall()
+    releases = [r[0] for r in db.execute("SELECT release FROM sets")]
+    wins = {"adaptive": window_info(ref, tourns, releases)}
+    for k in range(1, TREND_DAYS):
+        day = (date.fromisoformat(ref) - timedelta(days=k)).isoformat()
+        wins[f"ad@{day}"] = window_for(day, tourns, releases)
+    for name, w in wins.items():
+        windows[name] = {t for t, d in all_tids.items() if w["start"] <= d <= w["end"]}
     for w, tids in windows.items():
         compute(db, w, tids)
     built = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     db.executemany("INSERT INTO meta VALUES (?,?)", [("built_at", built), ("ref", ref), ("current_set", cur or "")] +
-                   [(f"tournaments_{w}", str(len(t))) for w, t in windows.items()])
+                   [(f"tournaments_{w}", str(len(t))) for w, t in windows.items()] +
+                   [(f"win:{n}", json.dumps(w)) for n, w in wins.items()])
     db.commit()
     report(db, cur, windows, top)
+    w = wins["adaptive"]
+    print(f"adaptive window: {w['start']} .. {w['end']} ({w['wd']} days, step {w['step']}, {w['players']} players"
+          f"{', ' + w['wr'] if w['wr'] else ''}{', length changed' if w.get('wch') else ''}; floor {w['floor']})")
+    if w.get("bige"):
+        print(f"::notice title=Big event::{w['bige'][0]} has {w['bige'][1]} % of the window's players")
     db.close()
     os.replace(tmp, path)
     print(f"wrote {path} ({os.path.getsize(path) // 1024} KB) from {n} tournament files")

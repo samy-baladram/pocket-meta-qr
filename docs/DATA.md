@@ -147,9 +147,14 @@ The pairings do not say which deck a player used in a match. Thus:
 - Set: tournaments with `set` = the current set code (for example `C1`), see section 2.
 - Last 7 days (`7d`) and last 3 days (`3d`): the days up to the build day, all sets (decision Nov 13, 2026: on a
   new set day the old set's events leave the window day by day).
-- **The page uses the 7-day window** (decision Nov 9, 2026: the meta changes fast; the Limitless deck table uses
-  the whole set). Deck table, share, win rate and the shown lists all come from the last 7 days.
-- A deck is shown when its share in the 7-day window is 0.5 % or more (max 40).
+- **The page uses the adaptive window** (request R25, user decisions Nov 15, 2026; `pipeline/window.py`; window name
+  `adaptive` in meta.db): 7, 10 or 14 days up to the build day, the first length with 1,500+ single-deck players
+  (counted on complete days, so the length changes only at midnight UTC), 1,800 to get shorter, never before the
+  current set's release (once the new set has 1 finished single-deck event). Deck table, share, win rate, the shown
+  lists, events and stats all use it. Before: the last 7 days (Nov 9 decision; all sets since Nov 13).
+  `ad@<day>` = the adaptive window of an earlier day (stats.json trend). The scraper's below-the-cut queue looks 14
+  days back (the longest window).
+- A deck is shown when its share in the window is 0.5 % or more (max 40).
 - "Show more decks" (decision Nov 11, request R9): the decks with 0.2 % <= share < 0.5 % that have at least 1 list
   go to `more.json` (same deck format, loaded on tap), with their lists in `v/` and their cards in `search.json`.
   `data.json` only gets the count (`more`).

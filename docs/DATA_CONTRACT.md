@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 27 (Nov 15, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 28 (Nov 15, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,11 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 28 (request R25 of the UI chat, approved by the user Nov 15): **adaptive window** of 7, 10 or 14 days,
+  never before the current set's release (see "Window"). `window` = `"adaptive"`; new top-level fields in `data.json`:
+  **`wd`**, **`wr`**, **`wch`**, **`bige`**; new **`tr.wd`** in `stats.json`. Every number that used the 7-day window
+  uses this window (`share`, `win`, rank, `rk0`/`nw`, lists, `alt`, `fin`, `bc`/`bn`, `search.json`, `events.json`, `t/`,
+  `stats.json`). Replaces the v18 rule (all sets in a rolling 7 days). Today (Nov 15): 7 days, no change in the numbers.
 - Version 27 (request R24 of the UI chat): new file **`stats.json`** for the deck sheet: per deck the 7-day trend
   (share, win rate, rank, players), the matchups against the 10 decks with the highest share, and the card usage of
   its top players. About 29 KB (7 KB gzip). No other file changes. See "stats.json".
@@ -132,7 +137,8 @@ Use the same word in new docs and UI notes.
   "set": "C1",
   "setName": "Dual Fusion",
   "format": "standard",
-  "window": "7d",
+  "window": "adaptive",
+  "wd": 7,
   "span": ["2026-11-02", "2026-11-08"],
   "summary": { "tournaments": 34, "players": 4478, "matches": 12228 },
   "decks": [ <deck>, ... ]
@@ -145,9 +151,13 @@ Use the same word in new docs and UI notes.
 | `set`, `setName` | string | the current set: the newest set that Limitless lists (v18: the window can also hold events of the set before it, in the first 7 days of a set) |
 | `setRelease` | date | **new in v17.** release day of `set` (`YYYY-MM-DD`) |
 | `next` | — | **v17 only, not written since v18** (the page can keep reading it; it is always absent) |
-| `window` | string | **new in v4.** `"7d"` = last 7 days up to the build day (other values: `"set"`, `"3d"`) |
+| `window` | string | **new in v4.** v28: `"adaptive"` = the adaptive window (see "Window"); until v27 `"7d"` (last 7 days) |
+| `wd` | int | **new in v28.** the window length in days, 1 to 14 (under 7 only in the first days of a set) |
+| `wr` | string or absent | **new in v28.** why `wd` is not 7: `"late"` (widened: too few players), `"early"` (cut at the set release) |
+| `wch` | 1 or absent | **new in v28.** the window start moved by more than 1 day since yesterday (the length changed, or a new set day): days came in or went out at once, so the page hides the 24 h rank arrows. Absent when the window only grew by today (first days of a set) or moved by 1 day |
+| `bige` | [tid, %] or absent | **new in v28.** the biggest single-deck event of the window, when it has more than 25 % of the window's players (single-deck players). Also logged in the build (notice "Big event") |
 | `format` | string | always `standard` |
-| `span` | [date, date] | first and last tournament day in the window (`YYYY-MM-DD`) |
+| `span` | [date, date] | first and last tournament day in the window (`YYYY-MM-DD`); inside the `wd` days that end on the build day |
 | `summary` | object | **new.** tournaments, players (entries) and played matches in the window |
 | `decks` | array | most players first, max 40, share >= 0.5 % |
 | `more` | int | **new in v11.** number of decks in `more.json`; `0` = no button |
@@ -241,7 +251,25 @@ Every `in`/`out` card id has a `c/` image. The version's energy is always the li
 needs another type, the build log says so (none on Nov 9). The QR check decodes every `alt` QR before deploy. Example UI text: "Also played: −1 Red Card +1 Soothing Shore
 (2 top players, best 15th of 203)".
 
-### New set day (v18, user decision Nov 13; replaces the v17 rule)
+### Window (v28, request R25, user decisions Nov 15; replaces the v18 rule below)
+
+Code: `pipeline/window.py`. For the build day D (UTC):
+1. **FLOOR** = the release day of the newest set with release <= D **that has at least 1 finished single-deck event on
+   or after its release** (user, Nov 15: on a new set day the old set's window stays until the first new-set event is on
+   the site, so the deck table is never empty). The window never starts before FLOOR.
+2. Lengths **`WINDOW_STEPS = [7, 10, 14]`**: the first length with at least **`MIN_PLAYERS = 1500`** players (players
+   of single-deck events); none: 14. **Stable day:** a length's players are counted on the same number of complete
+   days, ending the day before D (D is still filling up), so the length is fixed for the whole day and can change only
+   at midnight UTC. (Without it, the window would widen every night, when D starts empty, and shrink again in the day.)
+3. **Hysteresis:** a length shorter than the day before's needs `MIN_PLAYERS × SHORTER_FACTOR` (1.2: 1,800) players.
+   The day before's length comes from the same rule (a chain from FLOOR), so no state is stored.
+4. Window = the `wd` days that end on D, not before FLOOR (`wd` = the length, or fewer early in a set).
+- Calibration (Nov 15, our data, all sub-windows Oct 29 – Nov 15): at 1,500 single-deck players, median **19** decks with
+  30+ players (lowest 14); about 15 decks at about 1,200 players. The user kept 1,500.
+- `rk0`/`nw`: "the list at time T" uses the window a build at T would have used (the rule with the tournaments known
+  at T). `summary.players` counts all events of the window (multi-deck too), so it can be higher than the rule's count.
+
+### New set day (v18, user decision Nov 13; replaced by "Window" in v28)
 
 - The window = the tournaments of the last 7 days, of **all sets**. On a new set day nothing special happens: the old
   set's events stay in the window and leave it day by day, the new set's events come in.
@@ -411,13 +439,14 @@ lists not shown), not only today's cards. So an old share link still shows its c
 
 | Field | Meaning |
 |---|---|
-| `days` | the 7 trend days (UTC, oldest first); the last = the build day (the `ref` of the `7d` window) |
+| `days` | the 7 trend days (UTC, oldest first); the last = the build day |
 | `top` | the 10 decks with the highest share now (the order of `data.json`), the opponents of `mu` |
 | `d` | 1 entry per deck in `data.json` and `more.json` (`decks` and `nolist`) |
-| `tr` | trend, 1 value per day of `days`, for the **7-day window that ends on that day** (all tournaments known at build time; same rules as `share`, `win`, `rank`, `count`). So the last values = the deck's `share` (`s`, 1 decimal), `win` (`w`, 1 decimal), `rank` (`r`) and `count` (`n`) |
+| `tr` | trend, 1 value per day of `days`, for **that day's window** (v28: the adaptive window of that day, by the same rule; v27: the 7-day window that ends on that day; all tournaments known at build time; same rules as `share`, `win`, `rank`, `count`). So the last values = the deck's `share` (`s`, 1 decimal), `win` (`w`, 1 decimal), `rank` (`r`) and `count` (`n`) |
 | `tr.s` / `tr.w` | share % / win rate %, 1 decimal; `null` = no players that day (`w`: or no matches) |
 | `tr.r` | rank in the list that day (0.2 % share or more, players high first); `0` = not in the list |
 | `tr.n` | players of the deck in that window; `null` = none. The page fades days with few players (under 30) |
+| `tr.wd` | **new in v28.** the window length (days) of each trend day, so the page can mark the days where it changed |
 | `mu` | absent or `[[oppId, w, l, t], ...]`: this deck's record against each `top` deck (not itself) with **10+ games** (`MU_MIN` in `pipeline/export.py`), in `top` order. Same rules as `win`: single-deck events, real matches, no mirrors. Win rate = (w + 0.5·t) / (w + l + t) |
 | `cu` | absent on `bc` and `nolist` decks; else `[[cardId, players, avg], ...]`, players high first (then avg): every card that any of the deck's top players played (the `of` finishes). `players` = top players with the card (`players` = `of`: core card, in every list); `avg` = average copies among them (1 decimal). A card = all prints with the **same name and text** (ability, trainer text, attacks with cost and damage; PocketDecks card data), so an alternate art does not split the count; same name with another text (2 different "Pikachu ex") = 2 rows. `cardId` = the `cards.json` display print of its most-played print; every `cardId` has a `c/` image and is in `packs.json` |
 
@@ -466,7 +495,7 @@ and the card `pack` field.
 
 ## Definitions (from docs/DATA.md in the repo)
 
-- Window: the last 7 days of tournaments of the current set (Standard; not events with "special rules" or "suspended cards";
+- Window (v28): 7, 10 or 14 days up to the build day, not before the current set's release (see "Window"; Standard; not events with "special rules" or "suspended cards";
   8 players or more).
 - Lists come from single-deck events only. Best finish = smallest place / players (then place, then newer).
   Top player (v25) = **W − L >= 2, or a place in the top 25 %** of a single-deck event (ties do not count; until v24:

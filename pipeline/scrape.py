@@ -33,6 +33,7 @@ TOP_PCT = 0.25             # R22 (Nov 14, 2026): also the top 25 % (a top player
 # "Below the cut" (R11b): for a deck with BELOW_CUT_SHARE % or more of the 7-day window and no top player there, the
 # list of its best-placed player (single-deck events). The page shows decks from 0.2 %; 0.1 % gives a margin.
 BELOW_CUT_SHARE, WINDOW_DAYS = 0.1, 7
+BELOW_CUT_DAYS = 14   # R25: the longest adaptive window (pipeline/window.py WINDOW_STEPS[-1])
 
 
 def decklist_count(players):
@@ -368,10 +369,10 @@ def queue_more_places(data, index, since):
 
 
 def queue_below_cut(data, index, today):
-    """R11b: decks of the 7-day window with BELOW_CUT_SHARE % or more of all decks and no top player (W > L, placed,
+    """R11b: decks of the last BELOW_CUT_DAYS days (R25: the longest adaptive window; was 7 days) with BELOW_CUT_SHARE % or more of all decks and no top player (W > L, placed,
     single-deck event): queue the list of the deck's best-placed player (place / players, then place, then newer).
     Share as in build_db.py: every deck of an entry counts (multi-deck entries count once per deck)."""
-    lo = (date.fromisoformat(today) - timedelta(days=WINDOW_DAYS)).isoformat()
+    lo = (date.fromisoformat(today) - timedelta(days=BELOW_CUT_DAYS)).isoformat()
     count, top, best = {}, set(), {}
     for tid, info in index["done"].items():
         if info["date"][:10] <= lo:

@@ -416,7 +416,14 @@ const data = { updatedAt: new Date().toISOString(), set: input.set, setName: inp
   nolist: nolist.filter((x) => !x.more).map(({ more, from, ...x }) => x),
   ...(input.changedAt ? { changedAt: input.changedAt } : {}),
   // R15a: release day of the current set (the newest set Limitless lists).
-  ...(input.setRelease ? { setRelease: input.setRelease } : {}) };
+  ...(input.setRelease ? { setRelease: input.setRelease } : {}),
+  // R25 (Nov 15, 2026): adaptive window: wd = length in days, wr = "late" (widened) / "early" (cut at the set release),
+  // wch = 1 when the window start moved by more than 1 day since yesterday, bige = [tid, %] of a big event.
+  ...(input.win ? { wd: input.win.wd, ...(input.win.wr ? { wr: input.win.wr } : {}), ...(input.win.wch ? { wch: 1 } : {}),
+    ...(input.win.bige ? { bige: input.win.bige } : {}) } : {}) };
+if (input.win) console.log(`window: ${input.win.start} .. ${input.win.end}, wd ${input.win.wd}` +
+  `${input.win.wr ? ` (${input.win.wr})` : ""}${input.win.wch ? ", changed (wch)" : ""}, ${input.win.players} players` +
+  (input.win.bige ? `; big event ${input.win.bige[0]}: ${input.win.bige[1]} % of the players` : ""));
 // R13b (Nov 12, 2026): the single-deck event of the window that reached the site last (largest at, then latest ts).
 {
   const ev = [...(input.events || [])].filter((e) => e.at)

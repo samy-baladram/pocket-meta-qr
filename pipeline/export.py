@@ -2,8 +2,10 @@
 
   python pipeline/export.py [--data DIR] [--out FILE] [--window 7d] [--rows 0]
 
-Window: last 7 days by default (decision Nov 9, 2026: the meta changes fast); only tournaments of the current
-        set, so in the first 7 days of a set the window starts at the set release.
+Window: "adaptive" by default (request R25, Nov 15, 2026; pipeline/window.py): 7, 10 or 14 days up to the build day,
+        the first with MIN_PLAYERS players (hysteresis to get shorter), never before the current set's release (the
+        release counts once the new set has 1 finished single-deck event). Was: the last 7 days (Nov 9; all sets
+        since Nov 13). The other windows ("7d", "3d", "set") still work for tests.
 Decks : archetypes with share >= MIN_SHARE in the window (max MAX_DECKS), most players first (data.json), then
         (R9, Nov 11, 2026) the archetypes with MORE_SHARE <= share < MIN_SHARE, flag "more" (more.json, loaded on tap).
 Rows  : per deck, all its top-player finishes in the window (--rows 0) or the best N: single-deck tournaments, a
@@ -21,6 +23,7 @@ Events: the lists of each event's top 25 % (8..32 places), or the count the even
         16 before Nov 9, 2026), as before R11 (the Latest Events tab does not change).
 """
 import argparse, json, os, sqlite3, sys
+from window import window_for
 from collections import defaultdict
 from datetime import date as Date, datetime, timedelta, timezone
 
@@ -44,7 +47,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default="data")
     ap.add_argument("--out", default="build/input.json")
-    ap.add_argument("--window", default="7d", choices=["set", "7d", "3d"])
+    ap.add_argument("--window", default="adaptive", choices=["adaptive", "set", "7d", "3d"])
     ap.add_argument("--rows", type=int, default=MAX_ROWS, help="finishes per deck; 0 = all")
     ap.add_argument("--top-rule", choices=["wl", "net2"], default="net2",
                     help="top player: net2 = W - L >= TOP_MIN_NET or top TOP_PCT (R22/R23, default); wl = W > L (R11)")
@@ -55,7 +58,10 @@ def main():
     cur = meta["current_set"]
     set_name = (db.execute("SELECT name FROM sets WHERE code = ?", (cur,)).fetchone() or [""])[0]
     # Tournaments of the window: the same rule as build_db.py (set = current set; 7d/3d = last days up to ref).
-    if a.window == "set":
+    awin = json.loads(meta.get("win:adaptive", "null")) if a.window == "adaptive" else None
+    if a.window == "adaptive":
+        tids = [r[0] for r in db.execute("SELECT id FROM tournaments WHERE day BETWEEN ? AND ?", (awin["start"], awin["end"]))]
+    elif a.window == "set":
         tids = [r[0] for r in db.execute("SELECT id FROM tournaments WHERE set_code = ?", (cur,))]
     else:
         days = int(a.window[:-1])
@@ -141,16 +147,21 @@ def main():
     # list_at(T) = the deck list as a build at time T would have made it: the tournaments (all sets) with
     # fetched_at <= T and a day in the 7 days that end on T's date (UTC); share as in build_db.py (every deck of an
     # entry counts 1, also multi-deck); decks with share >= MORE_SHARE; rank = players high first, then archetype.
-    trows = db.execute("SELECT id, day, fetched_at FROM tournaments WHERE fetched_at IS NOT NULL").fetchall()
+    trows = db.execute("SELECT id, day, fetched_at, players, multi_deck FROM tournaments WHERE fetched_at IS NOT NULL").fetchall()
+    releases = [r[0] for r in db.execute("SELECT release FROM sets")]
     arch_rows = defaultdict(list)
     for tid, arch in db.execute("SELECT tid, archetype FROM entry_decks"):
         arch_rows[tid].append(arch)
 
     def list_at(T):
         day = T[:10]
-        lo = (Date.fromisoformat(day) - timedelta(days=WINDOW_DAYS - 1)).isoformat()
+        if a.window == "adaptive":   # R25: the adaptive window a build at T would have used (tournaments known at T)
+            w = window_for(day, [(t, d, p, m) for t, d, f, p, m in trows if f <= T], releases)
+            lo = w["start"]
+        else:
+            lo = (Date.fromisoformat(day) - timedelta(days=WINDOW_DAYS - 1)).isoformat()
         n = defaultdict(int)
-        for tid, tday, fetched in trows:
+        for tid, tday, fetched, _, _ in trows:
             if fetched <= T and lo <= tday <= day:
                 for arch in arch_rows[tid]:
                     n[arch] += 1
@@ -168,7 +179,7 @@ def main():
     release = (db.execute("SELECT release FROM sets WHERE code = ?", (cur,)).fetchone() or [None])[0]
     rel_iso = (f"{(Date.fromisoformat(release) - timedelta(days=WINDOW_DAYS)).isoformat()}T00:00:00Z"
                if release else "0000")
-    points = {f for _, _, f in trows if f >= rel_iso}
+    points = {f for _, _, f, _, _ in trows if f >= rel_iso}
     if release:
         d0 = Date.fromisoformat(rel_iso[:10])
         while d0.isoformat() <= now_iso[:10]:
@@ -191,9 +202,12 @@ def main():
     # first, then archetype; 0 = not in the list), n = players of the deck. null = the deck has no players that window.
     ref = Date.fromisoformat(meta["ref"])
     days = [(ref - timedelta(days=k)).isoformat() for k in range(TREND_DAYS - 1, -1, -1)]
-    trend_win = {}
+    trend_win, trend_wd = {}, []
     for day in days:
-        w_name = a.window if day == meta["ref"] else f"7d@{day}"
+        # R25: each day's point uses that day's adaptive window ("ad@<day>"; R24: fixed 7 days "7d@<day>").
+        w_name = a.window if day == meta["ref"] else (f"ad@{day}" if a.window == "adaptive" else f"7d@{day}")
+        wj = json.loads(meta.get(f"win:{w_name}", "null") or "null")
+        trend_wd.append(wj["wd"] if wj else None)
         rows_d = db.execute("SELECT archetype, players, share, win_rate FROM archetype_stats WHERE window = ? "
                             "ORDER BY players DESC, archetype", (w_name,)).fetchall()
         rk = {x[0]: i + 1 for i, x in enumerate(r for r in rows_d if r[2] >= MORE_SHARE)}
@@ -207,6 +221,8 @@ def main():
             tr["w"].append(round(x[3], 1) if x and x[3] is not None else None)
             tr["r"].append(rk.get(d["id"], 0))
             tr["n"].append(x[1] if x else None)
+        if a.window == "adaptive":
+            tr["wd"] = trend_wd   # R25: the window length of each trend day
         d["tr"] = tr
     # R24: matchups against the TOP_MU decks with the highest share now (the deck table order), from the matchups table
     # (single-deck events, real matches); mirrors out; only MU_MIN+ games.
@@ -271,6 +287,8 @@ def main():
         "changedAt": db.execute(f"SELECT MAX(fetched_at) FROM tournaments WHERE id IN ({q})", tids).fetchone()[0],
         "events": events,
         "trendDays": days, "top": top_mu,   # R24 (stats.json)
+        # R25: the adaptive window (data.json wd, wr, wch, bige; the check values start, end, players, floor).
+        "win": awin,
         "samples": samples,
     }
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
