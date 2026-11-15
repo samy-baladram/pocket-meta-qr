@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794750225-56cb -->
+<!-- ui: artifact version 1794751256-8ab3 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1298,7 +1298,7 @@ a.dkev { text-decoration: none; }
 .ii[aria-expanded="true"] { opacity: 1; color: var(--sel); }
 .ii[aria-expanded="true"]::before { content: ""; position: absolute; inset: -3px; border-radius: 50%; background: var(--sel-bg); } /* open: a faint round tint, like the selected Also played item */
 .us.top .ii { color: inherit; }
-.ipop.float { width: min(300px, calc(100vw - 24px)); }
+.ipop.float { width: min(300px, calc(100vw - 24px)); overscroll-behavior: contain; }
 .ipop.float.wide { width: min(360px, calc(100vw - 24px)); }
 /* "Also played (N)": an outlined pill button (like the "differs" tab); it opens the 1-card changes in the info popover */
 .altb { display: inline-flex; align-items: center; gap: 3px; padding: 0 7px 0 8px; border: 1.5px solid var(--pill-line); border-radius: 999px; cursor: pointer;
@@ -3287,6 +3287,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   function placeTip() {
     if (!FLOAT || !tipBtn) return;
     const Z = ZK(), VW = innerWidth / Z.z, VH = innerHeight / Z.z;
+    ipop.style.maxHeight = Math.floor(VH - 16) + "px"; // Nov 15: a tall popover scrolls inside (a page scroll closes it)
+    ipop.style.overflowY = ipop.scrollHeight > ipop.clientHeight + 1 ? "auto" : ""; // only then (the arrow shows on short ones)
     const r = cssR(tipBtn.getBoundingClientRect(), Z.k), w = ipop.offsetWidth, h = ipop.offsetHeight, g = 10, cx = r.left + r.width / 2;
     const fitB = VH - r.bottom >= h + g + 8, fitA = r.top >= h + g + 8;
     const below = fitB || (!fitA && VH - r.bottom >= r.top); // the side that fits, else the side with more room
@@ -3556,6 +3558,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (Date.now() - tipAt < 400) placeTip(); else hideTip();
   }, { capture: true, passive: true });
   addEventListener("resize", () => { if (FLOAT) hideTip(); });
+  ipop.addEventListener("toggle", () => { if (FLOAT && !ipop.hidden) placeTip(); }, true); // a fold opened or closed: keep the popover on screen
   function cardClick(ci) {
     if (!cpop.hidden && popImg && (popImg === ci || cardId(popImg) === cardId(ci))) { hidePop(); return; } // the same card (any copy) again: close
     if (FLOAT) { pinned = true; showPop(ci); return; }
