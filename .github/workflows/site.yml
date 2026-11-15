@@ -13,6 +13,7 @@ on:
       - static/**
       - pipeline/build_db.py
       - pipeline/export.py
+      - pipeline/window.py
       - pipeline/build.mjs
       - pipeline/common.mjs
       - pipeline/images.py
