@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794720093-d2f4 -->
+<!-- ui: artifact version 1794721061-325e -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -969,6 +969,11 @@ html { -webkit-tap-highlight-color: transparent; }
 .tptw { margin: 6px 2px 2px; font-size: var(--fs-xs); color: var(--muted); }
 .fscr .fins li { padding-left: 8px; padding-right: 6px; } .fins li.cur { background: var(--tile); box-shadow: inset 3px 0 0 var(--acc-mark); }
 .swk.hlon .sdots i { transition: transform 0.15s; } .swk.hlon .sdots i.cur { /* only the current dot: a ring (the others keep their color) */ opacity: 1; transform: scale(1.35); box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--acc-ink, #1d6eb9); z-index: 1; }
+
+/* Nov 15: the tab band hides while scrolling down, back on scrolling up */
+.tbar { transition: transform 0.25s ease; }
+.tbar.bhid { transform: translateY(calc(-100% - 6px)); }
+@media (prefers-reduced-motion: reduce) { .tbar { transition: none; } }
 /* Nov 14: stats pill = one number + chevron; sheet top = hero + share bar + 3 tiles */
 .sp .spch { width: 7px; height: 10px; margin-left: 1px; flex: none; color: var(--muted); }
 .sp:active { transform: scale(0.97); }
@@ -1549,10 +1554,11 @@ html { -webkit-tap-highlight-color: transparent; }
 .evs .t-dk small { display: block; font-size: var(--fs-xs); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* Winner crown over the first card icon (the 1st place medal's crown) */
-.arow > .wcrown { position: absolute; z-index: 4; left: 21px; top: 5px; width: 15px; height: 11.5px; overflow: visible; fill: #e8b52e; stroke: #fff8e1; stroke-width: 1.8;
-  stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 0.5px 0.5px rgba(var(--sh), 0.16)); transform: rotate(-9deg); transition: transform var(--t-slow) ease; }
+.arow > .wcrown { position: absolute; z-index: 0; left: 21px; top: 5px; width: 15px; height: 11.5px; overflow: visible; fill: #e8b52e; stroke: #fff8e1; stroke-width: 1.8;
+  stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1.5px rgba(var(--sh), 0.35)); transform: rotate(-9deg); transition: transform var(--t-slow) ease; }
 .wcrown .cb { fill: none; stroke: #fff8e1; stroke-width: 0.7; stroke-linecap: round; }
 .arow[aria-expanded="true"] > .wcrown { display: none; } /* open: no crown */
+.evr .arow > .icons { z-index: 1; } /* Nov 15: the crown (with its shadow) sits behind the card images */
 @media (min-width: 1024px) { .arow > .wcrown { left: 26px; top: 5px; width: 18px; height: 13.5px; } }
 /* Dark: like the dark medal crown (darker gold, outline in the dark card color) */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .wcrown, :root:not([data-theme="light"]) .wcrown .cb { stroke: #283145; }
@@ -1663,7 +1669,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const pushH = (...a) => { if (BACK_CLOSES) history.pushState(...a); };
   // Where a deck sits after the scroll: its row (or the podium) this many px below the screen top
   const anchorOf = (sec) => { const pod = sec.classList.contains("pod"); return { box: pod ? sec.parentElement : sec, gap: pod ? 18 : 8 }; };
-  const padTop = () => (parseFloat(getComputedStyle(document.documentElement).paddingTop) || 0) + (document.getElementById("tbar")?.offsetHeight || 0); // + the sticky tab bar
+  let barHold = 0; // Nov 15: until this time, the tab band does not hide (see the band code)
+  const padTop = () => { const b = document.getElementById("tbar"); barHold = Date.now() + 900; if (b) b.classList.remove("bhid"); // the page is about to scroll by itself: keep the band
+    return (parseFloat(getComputedStyle(document.documentElement).paddingTop) || 0) + (b?.offsetHeight || 0); }; // + the sticky tab bar
   // Extra space under the footer, only while needed, so a deck near the end of the list can also reach the top
   const tail = document.createElement("div");
   tail.setAttribute("aria-hidden", "true");
@@ -4086,6 +4094,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     saveSeen({ ev: ids }); keepNew(); renderSince();
     if (NEWE.size && !$("evl").hidden) renderEvents(); // the tab is already open: add the tags
   }
+
+  // Nov 15: the tab band slides away while scrolling down, and comes back on scrolling up (after 12px in one direction).
+  // It stays: near the top, with the filter open or on, and for 0.9 s after the page scrolls by itself (padTop: a deck or event
+  // opening counts the band's height, so it must stay there).
+  (() => { const bar = $("tbar"); let y0 = scrollY, run = 0, base = 0;
+    const set = (on) => { if (on && (!$("filt").hidden || $("filtBtn").classList.contains("fon"))) on = false; bar.classList.toggle("bhid", on); };
+    addEventListener("scroll", () => { const y = scrollY, dy = y - y0; y0 = y;
+      if (Date.now() < barHold) { run = 0; return; }
+      if (!base) base = bar.getBoundingClientRect().top + y; // where the band starts to stick
+      if (y < base + 60) { run = 0; set(false); return; }
+      run = (Math.sign(dy) === Math.sign(run) ? run : 0) + dy;
+      if (run > 12) set(true); else if (run < -12) set(false); }, { passive: true }); })();
   // ===== New set (contract v18, Nov 13) =====
   // The 7-day window holds all sets: in a new set's first days it still has events from before the release.
   // While the window starts before data.setRelease, a note says so (the ranks can change fast).
