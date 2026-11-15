@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794715861-1b73 -->
+<!-- ui: artifact version 1794720093-d2f4 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -655,7 +655,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
   padding: 4px calc(50% - var(--iw) / 2) 8px; align-items: center; } /* room for the cards' shadow (a scroll box clips it) */
 .apop3.one .tbody { justify-content: center; } /* no tabs: same card size as with tabs, centered in the panel */
 .apop3 { justify-content: space-between; background: var(--tile); } /* the panel is darker; the tweak cards are lighter (surface) */
-.apop3 .tbody { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0; min-height: 0; }
+.apop3 .tbody { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 0 5px; min-height: 0; } /* Nov 15: the 5px extra at the bottom stays free for the dots */
 .tcar::-webkit-scrollbar { display: none; }
 .tw { flex: 0 0 var(--iw); scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px;
   transition: opacity 0.2s; cursor: pointer; } /* same size on and off focus (no scale) */
@@ -664,7 +664,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .tw .tsw { display: flex; align-items: center; gap: 5px; }
 .tw .tstk { display: flex; }
 .tw .tstk img { width: var(--cw); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); }
-.tw .tstk img + img { margin-left: calc(var(--cw) * -0.4); margin-top: 7px; } /* the 2nd card covers 40% of the 1st, 7px lower */
+.tw .tstk img + img { margin-left: calc(var(--cw) * -0.4); margin-top: 4px; } /* the 2nd card covers 40% of the 1st, 4px lower (Nov 15: was 7px; 2-card tweaks were tight) */
 .tw .tstk { align-items: flex-start; }
 .tw.on .tstk img { cursor: zoom-in; }
 .tw .achev { display: grid; place-items: center; color: var(--muted); }
@@ -680,16 +680,15 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .swr.out img { filter: grayscale(0.35) brightness(0.92); } /* list 1's cards: a bit quieter */
 .swch { display: block; color: var(--muted); line-height: 0; }
 .swch svg { width: 12px; height: 7px; display: block; }
-.tdots { position: absolute; left: 50%; top: calc(100% + 6px); transform: translateX(-50%); z-index: 1; display: flex; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 999px; background: rgba(12, 18, 26, 0.62); }
+.tdots { position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); z-index: 1; display: flex; align-items: center; gap: 4px; padding: 0; } /* Nov 15: inside the panel, no background (it covered the pills under the panel) */
 .tdots:empty { display: none; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tdots { background: rgba(255, 255, 255, 0.32); } :root:not([data-theme="light"]) .tw { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1); } }
-:root[data-theme="dark"] .tdots { background: rgba(255, 255, 255, 0.32); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tw { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1); } }
 :root[data-theme="dark"] .tw { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1); } /* dark: a faint white edge so the tweak card shows */
 @container (max-width: 300px) { /* narrow list columns (3 per view on wide screens): smaller cards, so the panel content fits */
   .tcar { --cw: 34px; --iw: 136px; }
   .ttabs button { height: 22px; font-size: 11px; } .tw .tsw { gap: 3px; } }
-.tdots i { width: 5px; height: 5px; border-radius: 3px; opacity: 0.55; background: #fff !important; transition: width 0.2s, opacity 0.2s; }
-.tdots i.on { opacity: 1; width: 12px; background: var(--acc-ink); }
+.tdots i { width: 4px; height: 4px; border-radius: 2px; opacity: 0.45; background: var(--muted) !important; transition: width 0.2s, opacity 0.2s; }
+.tdots i.on { opacity: 1; width: 10px; background: var(--acc-mark) !important; }
 .adots2 { display: flex; justify-content: center; align-items: center; gap: 4px; padding: 0 0 8px; }
 .adots2 .adl { font-size: 11px; color: var(--muted); margin: 0 4px; }
 .adots2 .adsep { width: 1px; height: 10px; background: var(--line-strong); margin: 0 6px; }
@@ -1100,7 +1099,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .ldots .dot { width: auto; min-width: 20px; height: 18px; padding: 0 5px; border-radius: 999px; font-family: inherit; line-height: 1; font-size: 10.5px; font-weight: 600; color: var(--muted); }
 .ldots .dot::before { display: none; }
 .ldots .dot[aria-current="true"] { background: var(--muted); color: var(--surface); }
-.vwrap:has(.ldots) .vars { padding-bottom: calc(var(--sp-3) + 23px); } /* room for the tabs under the lists */
+.vwrap:has(.ldots) .vars { padding-bottom: calc(var(--sp-3) + 28px); } /* room for the tabs under the lists */
 .dot:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 50%; }
 
 /* ===== Full-screen views: QR (with Save) and card zoom ===== */
@@ -1170,7 +1169,7 @@ html { -webkit-tap-highlight-color: transparent; }
   box-shadow: var(--sheet-sh); transform: translateY(105%); transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1); touch-action: none; }
 .cpop.sheet.on { transform: none; }
 .cpop.sheet .sbody { max-width: 480px; margin: 0 auto; }
-.cpop.float { width: min(380px, calc(100vw - 24px)); padding: 12px; border-radius: 12px;
+.cpop.float { width: min(500px, calc(100vw - 24px)); padding: 12px; border-radius: 12px;
   box-shadow: var(--pop-sh); opacity: 0; transition: opacity 0.12s; }
 .cpop.float.on { opacity: 1; }
 .cpop .grab { display: block; width: 52px; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--accent) 22%, var(--line)); margin: 0 auto 12px; }
@@ -1181,11 +1180,21 @@ html { -webkit-tap-highlight-color: transparent; }
 .cpop .sbody { position: relative; display: flex; gap: 14px; align-items: stretch; }
 .cpop .zc { flex: none; width: 138px; height: auto; aspect-ratio: 367 / 512; padding: 0; border: 0; background: var(--line); border-radius: 7px; cursor: zoom-in;
   box-shadow: 0 4px 12px rgba(var(--sh), 0.3); overflow: hidden; }
-.cpop.float .zc { width: 150px; }
+/* (Nov 15: the popover card width is set below: 300px) */
 .cpop .zc { position: relative; }
 .cpop .zic { position: absolute; right: 6px; bottom: 6px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: rgba(12, 18, 26, 0.6); color: #fff; } /* full screen: an icon on the card */
 .cpop .zic svg { width: 16px; height: 16px; }
 .cpop .zc img { width: 100%; height: 100%; display: block; }
+
+/* Nov 15: card sheet: the card text as large as our smallest text (~10 px = card 310 px wide). Phones: card on top, details under it.
+   Tablets / desktop (popover): 2 columns, card 300 px. No full-screen icon. */
+.cpop .zic { display: none; } .cpop .zc { cursor: default; }
+.cpop.sheet .sbody { flex-direction: column; align-items: center; gap: 12px; }
+.cpop.sheet .zc { width: min(310px, 100%); border-radius: 12px; }
+.cpop.sheet .pinfo { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 12px; row-gap: 2px; padding: 0; }
+.cpop.sheet .pinfo > * { grid-column: 1; } .cpop.sheet .pinfo .pack { grid-column: 2; grid-row: 1 / span 3; padding: 6px 10px 6px 6px; } .cpop.sheet .pinfo .pk { height: 56px; }
+.cpop.float .zc { width: 300px; border-radius: 12px; }
+.cpop.float .pinfo { flex: 1; min-width: 150px; } .cpop.float .pack { flex-direction: column; align-items: flex-start; }
 .cpop .pinfo { min-width: 0; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding-bottom: 2px; } /* the details sit at the bottom, level with the card */
 .cpop .pn { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px; font-size: var(--fs-xl); line-height: 1.2; }
 .cpop .pn b { font-weight: 700; }
@@ -3051,7 +3060,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const done = () => { if (!popImg) { cpop.hidden = true; cscrim.hidden = true; } };
     if (reduced || FLOAT) done(); else setTimeout(done, 240);
   }
-  cpop.addEventListener("click", (e) => { if (e.target.closest(".zc") && popImg) openCard(popImg); });
+  // Nov 15: the card is large enough to read (text ~10 px), so no full-screen step; a tap on the card does nothing
   // (a tap outside a sheet does not close it: swipe down, the × or back, like the game)
   document.addEventListener("click", (e) => { const x = e.target.closest(".sx"); if (!x) return; e.stopPropagation(); x.dataset.close === "iPop" ? hideTip() : hidePop(); }, true);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !cpop.hidden && !cdlg.open) hidePop(); });
@@ -3314,7 +3323,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const stk = (cs, cls) => `<span class="tstk">${cs.map((c) => `<img${cls} src="c/${c.id}.webp" data-cid="${c.id}" data-cn="${esc(c.n)}" alt="${esc(c.n)}" title="${esc(tName(c))}" width="150" height="209">`).join("")}</span>`;
     const pop = document.createElement("div");
     pop.className = "apop3";
-    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top - 8}px;width:${ir.width}px;height:${ir.height + 10}px`;
+    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top - 8}px;width:${ir.width}px;height:${ir.height + 15}px`; // Nov 15: 5px more at the bottom (room for the dots)
     if (G.length < 2) pop.classList.add("one");
     pop.innerHTML = `<div class="ttabs" role="tablist" aria-label="Cards changed">${G.length < 2 ? "" : G.map((g, j) => `<button type="button" role="tab" data-g="${j}" aria-selected="${j === 0}">${g.n} card${g.n > 1 ? "s" : ""}</button>`).join("")}</div>
       <div class="tbody"><div class="tcar" role="listbox"></div></div><div class="tdots"></div>`;
@@ -3369,7 +3378,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const row = (cs, cls) => cs.map((c) => `<img${cls} src="c/${c.id}.webp" data-cid="${c.id}" data-cn="${esc(c.n)}" alt="${esc(c.n)}" title="${esc(tName(c))}" width="150" height="209">`).join("");
     const pop = document.createElement("div");
     pop.className = "apop3 swp";
-    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top - 8}px;width:${ir.width}px;height:${ir.height + 10}px`;
+    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top - 8}px;width:${ir.width}px;height:${ir.height + 15}px`; // Nov 15: 5px more at the bottom (room for the dots)
     pop.innerHTML = `<div class="swsc" role="group" aria-label="Cards swapped vs ${esc(L1n(d))}"><div class="swin"><div class="swr out">${row(pairs.map((x) => x.out), ' class="ao"')}</div>
       <span class="swch" aria-hidden="true"><svg viewBox="0 0 14 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 2 5 5 5-5"/></svg></span>
       <div class="swr">${row(pairs.map((x) => x.in), "")}</div></div></div>`;
