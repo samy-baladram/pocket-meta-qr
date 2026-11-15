@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794722746-0901 -->
+<!-- ui: artifact version 1794726633-1e46 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -60,6 +60,7 @@
   --raised: -2px -2px 5px rgba(var(--sh), 0.04), 0 0 10px rgba(var(--sh), 0.075),
     3px 5px 5px rgba(var(--sh), 0.075), 6px 8px 15px rgba(var(--sh), 0.075); /* game: twice as wide, lighter (Nov 12) */
   --raised-sm: 0 0 10px rgba(var(--sh), 0.075), 3px 5px 5px rgba(var(--sh), 0.075);
+  --sxbev: inset 1px 1px 1px rgba(255, 255, 255, 0.12); /* Nov 15: the sheet close button's light edge, very soft */
   --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.8); /* Nov 12: top and left light edge only (game), no dark bottom-right edge */
   /* Radius: card > box > tile */
   --r-card: 12px; --r-box: 10px; --r-tile: 8px;
@@ -85,7 +86,7 @@
     --rib-shadow: 0 10px 20px rgba(0, 0, 0, 0.55), 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
     --raised: -2px -2px 4px rgba(var(--sh), 0.16), 0 0 8px rgba(var(--sh), 0.24), 2px 4px 4px rgba(var(--sh), 0.26), 4px 6px 12px rgba(var(--sh), 0.18);
     --raised-sm: 0 0 8px rgba(var(--sh), 0.24), 2px 4px 4px rgba(var(--sh), 0.26);
-    --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.05);
+    --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.05); --sxbev: inset 1px 1px 1px rgba(255, 255, 255, 0.03);
   }
 }
 :root[data-theme="dark"] {
@@ -99,7 +100,7 @@
   --rib-shadow: 0 10px 20px rgba(0, 0, 0, 0.55), 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   --raised: -2px -2px 4px rgba(var(--sh), 0.16), 0 0 8px rgba(var(--sh), 0.24), 2px 4px 4px rgba(var(--sh), 0.26), 4px 6px 12px rgba(var(--sh), 0.18);
   --raised-sm: 0 0 8px rgba(var(--sh), 0.24), 2px 4px 4px rgba(var(--sh), 0.26);
-  --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.05);
+  --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.05); --sxbev: inset 1px 1px 1px rgba(255, 255, 255, 0.03);
 }
 
 /* ===== Page ===== */
@@ -973,6 +974,30 @@ html { -webkit-tap-highlight-color: transparent; }
 .tbar { transition: transform 0.25s ease; }
 .tbar.bhid { transform: translateY(calc(-100% - 6px)); }
 @media (prefers-reduced-motion: reduce) { .tbar { transition: none; } }
+
+/* Nov 15: events: "added" line, "Just added", event stats pill + sheet */
+.evsub2 { color: var(--muted); } .evadd { color: var(--acc-ink, #1d6eb9); font-weight: 600; }
+.evjust { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin: 0 0 6px; font-size: var(--fs-xs); color: var(--muted); }
+.evjust b { color: var(--ink); margin-right: 2px; } .evjust button { border: 1.5px solid var(--pill-line); border-radius: 999px; background: var(--surface); padding: 3px 9px; font: inherit; color: var(--ink); cursor: pointer; } .evjust button span { color: var(--acc-ink, #1d6eb9); }
+.evr .arow > .dpill.epb { display: none; } .evr .arow[aria-expanded="true"] > .dpill.epb { display: inline-flex; pointer-events: auto; cursor: pointer; align-items: center; gap: 4px; border-color: var(--pill-line); }
+.esub { margin: -4px 0 10px; font-size: var(--fs-xs); color: var(--muted); }
+.epb .spch { width: 7px; height: 10px; flex: none; color: var(--muted); margin-left: 1px; }
+.ek3 > div > b.g { color: #1f9d55; } .ek3 small.eup { display: flex; gap: 3px; } .eup img { width: 14px; height: 20px; border-radius: 2px; object-fit: cover; } .ek3 small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.edh { display: grid; grid-template-columns: 30px minmax(0, 1fr) 64px 46px; gap: 8px; font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 2px 0 2px; } .edh span:nth-child(n+3) { text-align: right; }
+.edk { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 30px minmax(0, 1fr) 64px 46px; align-items: center; gap: 8px; padding: 3px 6px 3px 4px; margin: 3px 0; border-radius: 8px; font-size: 12.5px; color: var(--ink); cursor: pointer;
+  background: linear-gradient(90deg, rgba(var(--acc-rgb, 43,155,234), 0.16) var(--w), transparent var(--w)); }
+.edl .edk:nth-child(n+6) { display: none; } .edl.all .edk { display: grid; }
+.edall { all: unset; cursor: pointer; display: block; margin: 6px 0 2px; padding: 6px 4px; font-size: var(--fs-xs); font-weight: 600; color: var(--acc-ink, #1d6eb9); }
+.edi { display: flex; } .edi img { width: 15px; height: 21px; border-radius: 2px; object-fit: cover; margin-right: -3px; }
+.edn { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } .edb { display: block; margin-top: 4px; height: 5px; border-radius: 3px; background: var(--tile); overflow: hidden; } .edb i { display: block; height: 100%; background: var(--acc-mark); border-radius: 3px; }
+.edc { text-align: right; white-space: nowrap; } .edc small { font-size: 10.5px; color: var(--muted); } .edm { font-size: 11.5px; color: var(--muted); text-align: right; white-space: nowrap; } .edm.up { color: #1f9d55; font-weight: 700; }
+.erec { display: flex; flex-direction: column; gap: 3px; } .erec > div { display: flex; align-items: center; gap: 8px; } .erec b { width: 16px; text-align: right; font-size: 10.5px; color: var(--muted); }
+.erd { display: flex; flex-wrap: wrap; gap: 3px; } .erd i { width: 9px; height: 9px; border-radius: 50%; background: var(--tile); box-shadow: inset 0 0 0 1px var(--pill-line); } .erd i.t8 { background: var(--acc-mark); box-shadow: none; }
+.dkf > summary:has(.eenb) { position: relative; } .dpv img { width: 14px; height: 14px; vertical-align: -2px; margin-left: 1px; }
+.eenb { position: absolute; left: 14px; right: 14px; bottom: 5px; display: flex; height: 4px; border-radius: 2px; overflow: hidden; gap: 1px; opacity: .85; } .eenb i { display: block; }
+.e-grass { background: #4caf50; } .e-fire { background: #f05a28; } .e-water { background: #2b9bea; } .e-lightning { background: #f5c518; } .e-psychic { background: #a865c9; } .e-fighting { background: #c0703a; } .e-darkness { background: #3d4a5c; } .e-metal { background: #9aa7b1; } .e-dragon { background: #b8962e; }
+.eenl { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 6px; font-size: var(--fs-xs); color: var(--ink); } .eenl span { display: inline-flex; align-items: center; gap: 3px; }
+a.dkev { text-decoration: none; }
 /* Nov 14: stats pill = one number + chevron; sheet top = hero + share bar + 3 tiles */
 .sp .spch { width: 7px; height: 10px; margin-left: 1px; flex: none; color: var(--muted); }
 .sp:active { transform: scale(0.97); }
@@ -1122,9 +1147,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .qclose svg { width: 28px; height: 28px; stroke-width: 1.4; }
 .qclose { color: #7b8798; } /* a soft grey ×, like the game */ /* game style: a round close button at the bottom center */
 /* Game style (Nov 12): no ring; light from the top left (white edge), shadow to the bottom right */
-.qclose, .cpop.sheet .sx { box-shadow: -2px -2px 2px #ffffff, -4px -4px 10px rgba(255, 255, 255, 0.7), 3px 4px 4px rgba(var(--sh), 0.25), 5px 7px 14px rgba(var(--sh), 0.30); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .qclose, :root:not([data-theme="light"]) .cpop.sheet .sx { box-shadow: -2px -2px 2px rgba(255, 255, 255, 0.14), -4px -4px 10px rgba(255, 255, 255, 0.06), 3px 4px 4px rgba(0, 0, 0, 0.45), 5px 7px 14px rgba(0, 0, 0, 0.55); } }
-:root[data-theme="dark"] .qclose, :root[data-theme="dark"] .cpop.sheet .sx { box-shadow: -2px -2px 2px rgba(255, 255, 255, 0.14), -4px -4px 10px rgba(255, 255, 255, 0.06), 3px 4px 4px rgba(0, 0, 0, 0.45), 5px 7px 14px rgba(0, 0, 0, 0.55); }
+.qclose { box-shadow: var(--raised), var(--sxbev); } /* Nov 15: the same as the sheet close button */
 #cardDlg:focus { outline: none; } /* the dialog takes the focus on open, so the close button shows no ring until the keyboard moves to it */
 .qmsg { margin: 0; min-height: 1.2em; color: var(--dlg-ink); font-size: var(--fs-m); }
 .qmsg:empty { display: none; }
@@ -1172,6 +1195,8 @@ html { -webkit-tap-highlight-color: transparent; }
 .cpop.sheet { left: 0; right: 0; bottom: 0; padding: 8px 16px calc(16px + env(safe-area-inset-bottom)); border-radius: 18px 18px 0 0;
   box-shadow: var(--sheet-sh); transform: translateY(105%); transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1); touch-action: none; }
 .cpop.sheet.on { transform: none; }
+.ipop.sheet { max-height: calc(100vh - 72px); } @supports (height: 100dvh) { .ipop.sheet { max-height: calc(100dvh - 72px); } } /* clear of the tab band */
+.ipop.sheet { overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; } /* Nov 15: a tall sheet scrolls inside */
 .cpop.sheet .sbody { max-width: 480px; margin: 0 auto; }
 .cpop.float { width: min(400px, calc(100vw - 24px)); padding: 12px; border-radius: 12px;
   box-shadow: var(--pop-sh); opacity: 0; transition: opacity 0.12s; }
@@ -1282,7 +1307,8 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Sheets (touch), game "Sort" style: centered title over a soft divider, a round close button at the bottom center */
 .cpop .sx { display: none; }
 .cpop.sheet .sx { display: grid; place-items: center; width: 44px; height: 44px; margin: 16px auto 12px; /* balanced above and below */ padding: 0; border: 0; border-radius: 50%; cursor: pointer;
-  background: var(--surface); color: #7b8798; } /* Nov 15: shadow = the round close buttons' (.qclose), below */
+  background: var(--surface); color: #7b8798; box-shadow: var(--raised), var(--sxbev); } /* Nov 15: back to the raised shadow (contrast) */
+.ipop.sheet > .sx { position: sticky; bottom: 4px; z-index: 2; } /* Nov 15: floats at the bottom while a tall sheet scrolls */
 .cpop.sheet .sx svg { width: 28px; height: 28px; display: block; stroke-width: 1.4; }
 .ipop.sheet h3 { text-align: center; padding-bottom: 10px; margin-bottom: 10px; box-shadow: 0 6px 6px -6px var(--line-strong); }
 .cpop .zcol { flex: none; display: flex; flex-direction: column; align-items: center; gap: 6px; }
@@ -3073,11 +3099,15 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // when that box is at its top; the page behind never moves (no scroll chaining, no pull-to-refresh).
   const SCR = ".about, .fscr, .shbox";
   function swipeClose(el, hide) {
-    let sy = null, sdy = 0, box = null;
-    el.addEventListener("touchstart", (e) => { if (FLOAT) return; box = e.target.closest(SCR); sy = e.touches[0].clientY; sdy = 0; el.style.transition = "none"; }, { passive: true });
+    let sy = null, sdy = 0, box = null, lock = false, ly = 0;
+    el.addEventListener("touchstart", (e) => { if (FLOAT) return; box = e.target.closest(SCR); sy = ly = e.touches[0].clientY; sdy = 0; el.style.transition = "none";
+      lock = el.scrollTop > 0 || (box && box.scrollTop > 0); }, { passive: true }); // Nov 15: a swipe that starts in scrolled content only scrolls it, never closes
     el.addEventListener("touchmove", (e) => { if (sy == null) return;
-      const y = e.touches[0].clientY;
-      if (box && box.scrollTop > 0) { sy = y; return; } // the box scrolls first; the sheet follows only from the box's top
+      const y = e.touches[0].clientY, up = y < ly; ly = y;
+      // Nov 15: the page behind never scrolls: stop the move at the sheet's ends (iOS chains it to the page)
+      const sc = box && box.scrollHeight > box.clientHeight ? box : el;
+      if (e.cancelable && (sc.scrollHeight <= sc.clientHeight + 1 ? sc === el : up ? sc.scrollTop + sc.clientHeight >= sc.scrollHeight - 1 : sc.scrollTop <= 0 && lock)) e.preventDefault();
+      if (lock || el.scrollTop > 0 || (box && box.scrollTop > 0)) { sy = y; return; } // the content scrolls first; the sheet follows only from its top, in a new swipe
       sdy = Math.max(0, y - sy);
       if (sdy > 0 && e.cancelable) e.preventDefault(); // no page bounce under the sheet
       el.style.transform = sdy ? `translateY(${sdy}px)` : ""; }, { passive: false });
@@ -3767,6 +3797,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const evTlist = new Map();
   const loadT = (tid) => { if (!evTlist.has(tid)) evTlist.set(tid, fetch(`t/${tid}.json`).then((r) => { if (!r.ok) throw new Error(r.status); return r.json().then(normQ); }).catch((e) => { evTlist.delete(tid); throw e; })); return evTlist.get(tid); };
   const ordN = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th");
+  // Nov 15: an event's day = its start in the viewer's own time zone; "added N h ago" = when it reached the site (after it ended)
+  const locDay = (e) => { if (!e.ts) return e.dt; const d = new Date(e.ts); return new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); };
+  const agoH = (iso) => (Date.now() - Date.parse(iso)) / 36e5;
+  const addAgo = (iso) => { const hh = agoH(iso); return hh < 1 ? `${Math.max(1, Math.round(hh * 60))} min ago` : hh < 24 ? `${Math.round(hh)} h ago` : `${Math.round(hh / 24)} d ago`; };
+  const tLoc = (iso) => new Date(iso).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
   const evDay = (iso) => { const t = new Date(), y = new Date(Date.now() - 864e5), f = (d) => new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); // the viewer's own date
     return iso === f(t) ? "Today" : iso === f(y) ? "Yesterday" : fmtDate(iso); };
   const placeTab = (pl) => pl <= 3 ? `<span class="dnote ptab p${pl}"><span class="pm" aria-hidden="true"></span>${ordN(pl)} place</span>`
@@ -3775,6 +3810,45 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   addEventListener("pointerdown", (e) => { const r = e.target.closest && e.target.closest(".arow[data-tid]"); if (r) loadT(r.dataset.tid).catch(() => {}); }, { passive: true, capture: true });
   const evPre = () => { const go = () => (EV && EV.events || []).slice(0, 3).forEach((x) => loadT(x.tid).catch(() => {}));
     if ("requestIdleCallback" in window) requestIdleCallback(go, { timeout: 1500 }); else setTimeout(go, 300); };
+  // Nov 15: the event stats pill and sheet (from events.json + the event's top lists t/<tid>.json)
+  async function evSheet(e) { let T = null; try { T = await loadT(e.tid); } catch (err) {}
+    const Ls = (T && T.lists) || [], n = Ls.length, dn = (id) => (EV.decks && EV.decks[id] && EV.decks[id].name) || id, art = (id) => (EV.decks && EV.decks[id] && EV.decks[id].art) || [];
+    const meta = {}; [...data.decks, ...((MORE && MORE.decks) || [])].forEach((d) => { meta[d.id] = d.share; });
+    const cnt = {}; Ls.forEach((l) => { cnt[l.deck] = (cnt[l.deck] || 0) + 1; });
+    const dk = Object.entries(cnt).sort((a, b) => b[1] - a[1] || (meta[b[0]] || 0) - (meta[a[0]] || 0));
+    const w = e.win, CHD = '<svg class="sdn" viewBox="0 0 10 7" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const best = {}; Ls.forEach((l) => { if (!best[l.deck] || l.pl < best[l.deck]) best[l.deck] = l.pl; });
+    dk.sort((a, b) => b[1] - a[1] || best[a[0]] - best[b[0]]);
+    const up = (id, c) => meta[id] != null && c / n * 100 >= meta[id] * 2 && c >= 2;
+    const ups = dk.filter(([id, c]) => up(id, c));
+    const evs = (EV.events || []), big = evs.filter((x) => x.players > e.players).length + 1;
+    const when = `${e.ts ? `Started ${tLoc(e.ts)}` : fmtDate(e.dt)}${e.at ? ` &middot; added ${addAgo(e.at)}, after it ended` : ""}`;
+    const top = `<p class="esub">${when}</p><div class="dk3 ek3">
+      <div><span>Players</span><b>${e.players}</b><small>${big === 1 ? "biggest" : `#${big}`} of ${evs.length} events</small></div>
+      <div><span>Decks</span><b>${dk.length}</b><small>in the top ${n}</small></div>
+      <div><span>Above meta</span><b class="${ups.length ? "g" : ""}">${ups.length ? `${ups.length} \u25b2` : "0"}</b><small>2&times; meta share</small></div></div>`;
+    const fold = (t, pv, body, open) => `<details class="sfold dkf"${open ? " open" : ""}><summary><b>${t}</b><span class="dpv">${pv}</span>${CHD}</summary><div class="dfb">${body}</div></details>`;
+    const mx = Math.max(1, ...dk.map((x) => x[1]));
+    const dkRow = ([id, c]) => { const m = meta[id], u = up(id, c);
+      return `<button type="button" class="edk" data-go="${esc(id)}" style="--w:${(c / mx * 100).toFixed(0)}%"><span class="edi">${art(id).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="20" height="28">`).join("")}</span><span class="edn">${esc(dn(id))}</span><span class="edc"><b>${c}</b> <small>${ordF(best[id])}</small></span><span class="edm${u ? " up" : ""}">${m != null ? `${u ? "\u25b2 " : ""}${m < 10 ? m.toFixed(1) : Math.round(m)}%` : "new"}</span></button>`; };
+    const deckBody = n ? `<div class="edh"><span></span><span>Deck</span><span>Lists</span><span>Meta</span></div><div class="edl">${dk.map(dkRow).join("")}</div>${dk.length > 5 ? `<button type="button" class="edall">Show all ${dk.length} decks <b>\u203a</b></button>` : ""}<p class="dhint">\u25b2 = at least 2&times; its meta share in this event's top ${n}.</p>` : `<p class="dnone">No lists stored for this event.</p>`;
+    const rec = Ls.map((l) => { const [a, b] = String(l.sc || "0-0").split("-").map(Number); return { w: a, l: b, pl: l.pl }; });
+    const byW = {}; rec.forEach((r) => { (byW[r.w] = byW[r.w] || []).push(r); });
+    const wk = Object.keys(byW).map(Number).sort((a, b) => b - a);
+    const recBody = `<div class="erec">${wk.map((k) => `<div><b>${k}</b><span class="erd">${byW[k].sort((a, b) => a.pl - b.pl).map((r) => `<i${r.pl <= 8 ? ' class="t8"' : ""} title="${ordF(r.pl)}: ${r.w}-${r.l}"></i>`).join("")}</span></div>`).join("")}</div><p class="dhint">One row per number of wins, one dot per player. Blue: the top 8.</p>`;
+    const en = {}; Ls.forEach((l) => { const x = (l.energy || [])[0]; if (x) en[x] = (en[x] || 0) + 1; });
+    const ens = Object.entries(en).sort((a, b) => b[1] - a[1]);
+    const enL = ens.length ? `<span class="eenb" title="Energy in the top ${n}">${ens.map(([x, c]) => `<i class="e-${x}" style="flex:${c}" title="${cap(x)}: ${Math.round(c / n * 100)}%"></i>`).join("")}</span>` : "";
+    const enP = ens.slice(0, 3).map(([x, c]) => `<img src="e/${x}.webp" alt="" width="14" height="14">`).join("");
+    return `<h3 class="sh3">${esc(shortEv(e.name))}</h3>${top}
+      ${fold(`Decks in the top ${n}`, `${ups.length ? `<span class="g">${ups.length} \u25b2</span> ` : ""}${enP}`, deckBody, true).replace("</summary>", `${enL}</summary>`)}
+      ${n >= 8 ? fold("Records", `${wk[wk.length - 1]}\u2013${wk[0]} wins`, recBody) : ""}
+      <a class="dkev" href="${esc(e.url)}" target="_blank" rel="noopener">Full standings on Limitless <b>\u2197</b></a>`; }
+  addEventListener("click", async (ev) => { const b = ev.target.closest && ev.target.closest(".epb[data-ek]"); if (!b) return;
+    ev.preventDefault(); ev.stopPropagation(); const e = (EV.events || []).find((x) => x.tid === b.dataset.ek); if (!e) return;
+    track("sheet-event"); showTip(b, await evSheet(e)); }, true);
+  $("iPop").addEventListener("click", (ev) => { const a = ev.target.closest(".edall"); if (a) { a.previousElementSibling.classList.add("all"); a.remove(); return; } });
+  $("iPop").addEventListener("click", (ev) => { const r = ev.target.closest(".edk[data-go]"); if (!r) return; const id = r.dataset.go; hideTip(); setTab("decks"); location.hash = id; track("event-to-deck"); });
   let evWin = "", evQ = "", evMin = 0, evDk = ""; // Nov 15: event filters: winner chip, search text, min players, a deck in the top 8 (from the deck sheet)
   $("evl").addEventListener("click", (e) => {
     const c = e.target.closest(".evwc"); if (c) { evWin = evWin === c.dataset.wd ? "" : c.dataset.wd; track("events-win-chip");
@@ -3785,7 +3859,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       return; }
     if (e.target.closest(".evclr")) { evWin = ""; evQ = ""; evMin = 0; evDk = ""; $("fq").value = ""; filtMode(true); renderEvents(); return; }
     const bar = e.target.closest(".evbars i[data-day]"); if (bar) { const t = $("evd-" + bar.dataset.day); if (t) t.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
-    const bg = e.target.closest(".evbig[data-go]"); if (bg && bg.dataset.go) { const t = $("ev-" + bg.dataset.go); if (t) { t.scrollIntoView({ behavior: "smooth", block: "center" }); t.querySelector(".arow").click(); } } });
+    const bg = e.target.closest(".evbig[data-go], .evjust [data-go]"); if (bg && bg.dataset.go) { const t = $("ev-" + bg.dataset.go); if (t) { t.scrollIntoView({ behavior: "smooth", block: "center" }); t.querySelector(".arow").click(); } } });
   function renderEvents() { evPre();
     const box = $("evl");
     if (!EV || !EV.events || !EV.events.length) { box.innerHTML = `<div class="empty">No events ${winLast()} yet.</div>`; return; }
@@ -3803,20 +3877,24 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const big = all.reduce((a, e) => (!a || e.players > a.players ? e : a), null), pl = all.reduce((s, e) => s + (e.players || 0), 0);
     const wins = {}; all.forEach((e) => { if (e.win) { const k = e.win.deck; (wins[k] = wins[k] || { n: 0, w: e.win }).n++; } });
     const tw = Object.values(wins).sort((a, b) => b.n - a.n).slice(0, 4);
-    const skipTip = skip > 0 ? ii("events not listed", `<h3>Events not listed</h3><p>${skip} multi-deck event${skip > 1 ? "s" : ""} (players bring more than one deck) ${skip > 1 ? "are" : "is"} not listed: their results do not show which deck won each match.</p>`, true) : "";
+    const skipTip = ii("events", `<h3>Events</h3><p>An event shows here <b>after it ends</b>, usually a few hours after it starts. It is listed under the day it was played (your time), so a new event can show under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.</p>${skip > 0 ? `<p>${skip} multi-deck event${skip > 1 ? "s" : ""} (players bring more than one deck) ${skip > 1 ? "are" : "is"} not listed: their results do not show which deck won each match.</p>` : ""}`, true);
+    const just = all.filter((e) => e.at && agoH(e.at) < 12).sort((a, b) => Date.parse(b.at) - Date.parse(a.at)).slice(0, 3);
     const strip = `<div class="evsum"><div><span>Events${skipTip}</span><b>${all.length}</b><span class="evbars" aria-hidden="true">${per.map((n, k) => `<i data-day="${dys[k]}" style="height:${n ? Math.max(3, Math.round(n / mx * 18)) : 1}px" title="${evDay(dys[k])}: ${n}"></i>`).join("")}</span></div>
       <div><span>Players</span><b>${pl.toLocaleString("en-US")}</b><small>${winLast().replace(/^in /, "")}</small></div>
       <div class="evbig" role="button" tabindex="0" data-go="${big ? big.tid : ""}"><span>Biggest</span><b>${big ? big.players : "\u2013"}</b><small>${big ? esc(shortEv(big.name)) : ""}</small></div></div>
       ${tw.length > 1 ? `<p class="evwl">Most wins</p><div class="evwins">${tw.map((t) => `<button class="evwc${evWin === t.w.deck ? " on" : ""}" type="button" data-wd="${esc(t.w.deck)}" aria-pressed="${evWin === t.w.deck}">${(t.w.art || []).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="20" height="28" loading="lazy">`).join("")}<span>${esc(t.w.name)}</span><b>\u00d7${t.n}</b></button>`).join("")}</div>` : ""}
       ${anyF ? `<p class="evnote">${L.length ? `${L.length} event${L.length > 1 ? "s" : ""}` : "No events"}${evWin ? ` won by ${esc((wins[evWin] || {}).w ? wins[evWin].w.name : "")}` : ""}${evDk ? ` with ${esc(dn(evDk))} in the top 8` : ""}${evMin ? ` with ${evMin}+ players` : ""}${q && !evDk ? ` for &ldquo;${esc(evQ.trim())}&rdquo;` : ""} &middot; <button class="evclr" type="button">Show all events</button></p>` : ""}`;
-    box.innerHTML = strip + L.map((e) => {
+    const justL = just.length && !anyF ? `<p class="evjust"><b>Just added</b>${just.map((e) => `<button type="button" data-go="${e.tid}">${esc(shortEv(e.name))} <span>${addAgo(e.at)}</span></button>`).join("")}</p>` : "";
+    box.innerHTML = strip + (just.length === 1 && L[0] === just[0] ? "" : justL) + L.map((e) => {
       const w = e.win;
-      const head = e.dt !== day ? `<h3 class="evday" id="evd-${e.dt}">${evDay((day = e.dt))}</h3>` : "";
+      const ld = locDay(e), head = ld !== day ? `<h3 class="evday" id="evd-${ld}">${evDay((day = ld))}</h3>` : "";
+      const fresh = e.at && agoH(e.at) < 24 ? ` \u00b7 <span class="evadd">added ${addAgo(e.at)}</span>` : "";
       return `${head}<section class="acc evr" id="ev-${e.tid}" style="${w ? bandStyle(w) : ""}">
         <button class="arow" type="button" data-tid="${e.tid}" aria-expanded="false" aria-controls="evp-${e.tid}">
           <span class="icons${w && w.art && w.art.length === 1 ? " one" : ""}">${(w && w.art ? w.art : []).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>${w ? `<svg class="wcrown" viewBox="0 0 18 14" aria-hidden="true"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg>` : ""}
           <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, shortEv(e.name).length)}" title="${esc(e.name)}">${esc(shortEv(e.name))}${NEWE.has(e.tid) ? '<span class="newb" title="New since your last visit">NEW</span>' : ""}</span>
-            <span class="evsub">${e.players} players${(() => { const hit = hitOf(e); return hit ? ` \u00b7 <span class="evhit"><b>${ordF(hit.p)}</b> ${esc(dn(hit.id))}</span>` : w ? ` \u00b7 won by <span class="evwn">${esc(w.name)}</span>` : ""; })()}</span></span>
+            <span class="evsub">${e.players} players${(() => { const hit = hitOf(e); return hit ? ` \u00b7 <span class="evhit"><b>${ordF(hit.p)}</b> ${esc(dn(hit.id))}</span>` : fresh; })()}</span></span>
+          <span class="dpill epb" role="button" tabindex="0" data-ek="${e.tid}" aria-haspopup="dialog" aria-label="Event stats"><b>Event stats</b>${SPCH}</span>
         </button>
         <div class="apanel" id="evp-${e.tid}" hidden></div>
       </section>`;
