@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794800113-ba00 -->
+<!-- ui: artifact version 1794824401-e836 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -559,9 +559,9 @@ footer a { color: var(--muted); }
   .acc:not(.pod) > .arow > .dpill { position: relative !important; grid-column: 2; grid-row: 2; justify-self: start; align-self: start;
     bottom: auto; left: auto; right: auto; transform: none; box-shadow: none; z-index: 2; }
 }
-/* Wide screens (1024px+, the row is up to 960px wide): the pill sits next to the deck name on the same line, a bit bigger */
-@media (min-width: 1024px) {
-  .acc:not(.pod) > .arow[aria-expanded="true"] { grid-template-columns: auto auto minmax(0, 1fr); column-gap: 16px; }
+/* 620px+ (Nov 16, was 1024px): the pill sits next to the deck name on the same line, a bit bigger */
+@media (min-width: 620px) {
+  .acc:not(.pod) > .arow[aria-expanded="true"] { grid-template-columns: auto minmax(0, max-content) auto; justify-content: start; column-gap: 16px; }
   .acc:not(.pod) > .arow[aria-expanded="true"] > .icons { grid-row: auto; }
   .acc:not(.pod) > .arow[aria-expanded="true"] > .atext { align-self: center; padding-right: 0; }
   .acc:not(.pod) > .arow > .dpill { grid-column: 3; grid-row: 1; align-self: center; margin-right: 8px;
@@ -578,10 +578,11 @@ footer a { color: var(--muted); }
 .apanel.fit .vars, .apanel:not(:has(.slide + .slide)) .vars { justify-content: center; } /* fewer lists than fit in view (iPad, desktop): centered */
 /* Lists per view: phone 1, phone landscape 2, iPad portrait 3, iPad landscape 4, desktop 5 (3+ need a screen taller than a landscape phone) */
 .vars { --per: 1; --vgap: 14px; display: flex; gap: var(--vgap); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
-  padding: var(--sp-2) var(--edge) var(--sp-3); scroll-padding-inline: var(--edge); } /* 8px on top (no button on the top edge now) */
+  --sw: min(480px, 100vw - 32px); --sedge: calc((100vw - var(--sw)) / 2); /* Nov 16: the list strip's own width (phones: max 480px) */
+  padding: var(--sp-2) var(--sedge) var(--sp-3); scroll-padding-inline: var(--sedge); } /* 8px on top (no button on the top edge now) */
 .vars::-webkit-scrollbar { display: none; }
-@media (min-width: 600px) { .vars { --per: 2; } }
-@media (min-width: 840px) and (min-height: 501px) { .apanel .vars { --per: 3; } } /* 3 lists from 840px (was 740: too narrow lists) */
+@media (min-width: 600px) { .vars { --per: 2; --sw: min(1200px, 100vw - 32px); } } /* Nov 16: the strip can be wider than the 960px column (max 1200px) */
+@media (min-width: 900px) and (min-height: 501px) { .apanel .vars { --per: 3; } } /* 3 lists from 900px (Nov 16, was 840: lists of at least 280px) */
 /* (the content is at most 960px wide, so 3 lists per view stays the most; each list is about 310px) */
 @media (min-width: 600px) { .vars .slide.away { opacity: 0.2; } .vars .slide { transition: opacity 0.2s; } } /* lists beyond the ones in view */
 @media (min-width: 600px) { .vars.afocus .slide:not(.aon) { opacity: 0.2; } } /* Nov 12: "Also played" or a swap view is open: the other lists fade */
@@ -846,7 +847,8 @@ html { -webkit-tap-highlight-color: transparent; }
   background: linear-gradient(var(--bc-bg), var(--bc-bg)), var(--surface); }
 .dnote.bctab .ii { color: inherit; width: 11px; height: 11px; }
 .dnote.bctab .ii svg { width: 11px; height: 11px; }
-.asub .bcn { display: flex; align-items: center; gap: 4px; color: var(--muted); font-weight: 600; white-space: nowrap; font-size: var(--fs-s); }
+.asub:has(.bcn) { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px; } .asub .bcn { order: 2; } /* phones: after the numbers */
+.asub .bcn { display: inline-flex; align-self: center; align-items: center; gap: 4px; color: var(--muted); font-weight: 600; white-space: nowrap; font-size: var(--fs-s); }
 .asub .bcn .psad { width: 1em; height: 1em; }
 /* R22: Unproven = muted amber, No top result = slate gray (factual, not an error) */
 .psad.pun { color: #a3670a; } .psad.pnr { color: #6b7785; }
@@ -877,8 +879,8 @@ html { -webkit-tap-highlight-color: transparent; }
 @media (hover: hover) { .sfoot .pill.us:hover { border-color: var(--muted); } }
 .sfoot .pill.us:has(.ii[aria-expanded="true"]) { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); }
 .sfoot .pill.us .ii[aria-expanded="true"]::before { display: none; } /* the pill shows the open state */
-.sp { display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; border: 1.5px solid var(--pill-line); border-radius: 999px;
-  background: var(--surface); color: var(--ink); font-family: inherit; line-height: inherit; font-size: 11.5px; font-weight: 600; white-space: nowrap; cursor: pointer; }
+.sp { display: inline-flex; align-items: center; gap: 5px; height: var(--pbh, 28px); padding: 0 10px; border: 1.5px solid var(--pill-line); border-radius: 999px;
+  background: var(--surface); color: var(--ink); font-family: inherit; line-height: inherit; font-size: var(--pbf, 11.5px); font-weight: 600; white-space: nowrap; cursor: pointer; }
 @media (hover: hover) { .sp:hover { border-color: var(--muted); } }
 .sp[aria-expanded="true"] { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); }
 .sp .pstar, .sp .psad, .sp .sppl { width: 13px; height: 13px; flex: none; }
@@ -974,6 +976,57 @@ html { -webkit-tap-highlight-color: transparent; }
 .evsum .evbars { display: flex; align-items: flex-end; gap: 2px; height: 18px; margin-top: 2px; } .evbars i { flex: 1; max-width: 8px; border-radius: 1px; background: var(--acc-mark); cursor: pointer; }
 .evbig { cursor: pointer; }
 
+
+/* Nov 16: wide rows (620px+): rank badge centered in a left column (also with a ▲▼ change), bigger card icons further
+   right that pop out about 8px above the row, a longer slanted band, a lower row; opening a deck does not change the badge
+   or the icons. Latest Events rows: the same, without the rank column (the crown sits on the first card). */
+@media (min-width: 620px) {
+  .list { gap: calc(var(--sp-3) + 5px); }
+  .acc:not(.pod) > .arow { min-height: 58px; padding-top: 6px; padding-bottom: 6px; padding-left: 66px; --bw: 250px; --ox: 0px; }
+  .acc:not(.pod) > .arow .rb, .acc:not(.pod) > .arow[aria-expanded="true"] .rb { left: 33px; top: 50%; transform: translate(-50%, -50%); }
+  .acc.evr > .arow { padding-left: 18px; --bw: 200px; }
+  .acc.evr > .arow > .wcrown { left: 22px; top: 0; }
+  .acc:not(.pod) > .arow .icons { --iw: 128px; margin-top: -46px; margin-bottom: -6px; padding-top: 40px; clip-path: inset(0 -30px 0 -40px); }
+  .acc:not(.pod) > .arow .icons, .acc:not(.pod) > .arow[aria-expanded="false"] .icons {
+    -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 22px), transparent 100%); mask-image: linear-gradient(180deg, #000 calc(100% - 22px), transparent 100%); }
+  .acc:not(.pod) > .arow .icons img { width: 72px; top: 34px; }
+  .acc:not(.pod) > .arow .icons img:first-child,
+  .acc:not(.pod) > .arow[aria-expanded="false"] .icons img:first-child { left: 16px; transform: rotate(-9deg); }
+  .acc:not(.pod) > .arow .icons img:nth-child(2),
+  .acc:not(.pod) > .arow[aria-expanded="false"] .icons img:nth-child(2) { left: 66px; top: 31px; transform: rotate(9deg); }
+  .acc:not(.pod) > .arow .icons.one img:first-child,
+  .acc:not(.pod) > .arow[aria-expanded="false"] .icons.one img:first-child { left: 42px; transform: rotate(-5deg); }
+  .acc:not(.pod) > .arow[aria-expanded="true"] { grid-template-columns: auto minmax(0, max-content) auto; justify-content: start; }
+  .atext { flex-direction: row; flex-wrap: wrap; align-items: baseline; column-gap: 14px; } /* name and numbers on one line */
+  .arow[aria-expanded="false"] .atext .asub { margin-left: auto; padding-right: 6px; } /* Nov 16: closed row: the numbers on the right */
+  .arow[aria-expanded="false"] .asub .bcn { order: 0; margin-right: 4px; } /* the label left of the numbers */
+  .acc:not(.pod) > .arow[aria-expanded="true"] > .atext { min-width: 0; } .acc:not(.pod) > .arow[aria-expanded="true"] .aname { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+@media (min-width: 620px) and (max-width: 1023px) { /* tablets: the open name stays the normal size and the pill is compact, so both fit on one line */
+  .acc:not(.pod) > .arow[aria-expanded="true"] .aname { font-size: var(--fs-xl); }
+  .acc:not(.pod) > .arow[aria-expanded="true"] { column-gap: 12px; } .acc:not(.pod) > .arow > .dpill { padding: 3px 10px; font-size: var(--fs-xs); margin-right: 4px; }
+  .aname { -webkit-line-clamp: 1; max-width: 100%; }
+}
+
+
+/* Nov 16: one size for all pill buttons (Stats / Event stats on the open row, Top players, tweaks, vs List 1): --pbh / --pbf */
+:root { --pbh: 28px; --pbf: 11.5px; }
+@media (min-width: 1024px) { :root { --pbh: 30px; --pbf: 12px; } }
+@media (min-width: 620px) {
+  html .acc:not(.pod) > .arow > .dpill { box-sizing: border-box; height: var(--pbh); padding: 0 12px; font-size: var(--pbf); line-height: 1; margin-right: 8px; }
+}
+/* Nov 16 (html.cen, always on): 2+ lists per view: list 1 starts in the middle; the list in focus is clear, its neighbours fade
+   out with a mask toward the screen edges (in place of the 20 % opacity) */
+@media (min-width: 600px) {
+  /* focus mask: the center list 100 %; a quick, smooth drop, then a long tail to 0 at 400px on each side */
+  html.cen .vars { --cmask: linear-gradient(90deg, rgba(0,0,0,0) 0, rgba(0,0,0,0) calc(50% - var(--mh) - 400px), rgba(0,0,0,0.006) calc(50% - var(--mh) - 350px), rgba(0,0,0,0.017) calc(50% - var(--mh) - 300px), rgba(0,0,0,0.037) calc(50% - var(--mh) - 250px), rgba(0,0,0,0.076) calc(50% - var(--mh) - 200px), rgba(0,0,0,0.099) calc(50% - var(--mh) - 180px), rgba(0,0,0,0.129) calc(50% - var(--mh) - 160px), rgba(0,0,0,0.168) calc(50% - var(--mh) - 140px), rgba(0,0,0,0.218) calc(50% - var(--mh) - 120px), rgba(0,0,0,0.282) calc(50% - var(--mh) - 100px), rgba(0,0,0,0.364) calc(50% - var(--mh) - 80px), rgba(0,0,0,0.413) calc(50% - var(--mh) - 70px), rgba(0,0,0,0.469) calc(50% - var(--mh) - 60px), rgba(0,0,0,0.532) calc(50% - var(--mh) - 50px), rgba(0,0,0,0.604) calc(50% - var(--mh) - 40px), rgba(0,0,0,0.685) calc(50% - var(--mh) - 30px), rgba(0,0,0,0.777) calc(50% - var(--mh) - 20px), rgba(0,0,0,0.882) calc(50% - var(--mh) - 10px), rgba(0,0,0,1) calc(50% - var(--mh) - 0px), rgba(0,0,0,1) calc(50% + var(--mh) + 0px), rgba(0,0,0,0.882) calc(50% + var(--mh) + 10px), rgba(0,0,0,0.777) calc(50% + var(--mh) + 20px), rgba(0,0,0,0.685) calc(50% + var(--mh) + 30px), rgba(0,0,0,0.604) calc(50% + var(--mh) + 40px), rgba(0,0,0,0.532) calc(50% + var(--mh) + 50px), rgba(0,0,0,0.469) calc(50% + var(--mh) + 60px), rgba(0,0,0,0.413) calc(50% + var(--mh) + 70px), rgba(0,0,0,0.364) calc(50% + var(--mh) + 80px), rgba(0,0,0,0.282) calc(50% + var(--mh) + 100px), rgba(0,0,0,0.218) calc(50% + var(--mh) + 120px), rgba(0,0,0,0.168) calc(50% + var(--mh) + 140px), rgba(0,0,0,0.129) calc(50% + var(--mh) + 160px), rgba(0,0,0,0.099) calc(50% + var(--mh) + 180px), rgba(0,0,0,0.076) calc(50% + var(--mh) + 200px), rgba(0,0,0,0.037) calc(50% + var(--mh) + 250px), rgba(0,0,0,0.017) calc(50% + var(--mh) + 300px), rgba(0,0,0,0.006) calc(50% + var(--mh) + 350px), rgba(0,0,0,0) calc(50% + var(--mh) + 400px), rgba(0,0,0,0) 100%); } /* Nov 16 (user curve 2): a fast exponential-like drop from the center list's edge (50 % at about 48px), a long soft tail to 0 at 400px */
+  html.cen .vars { --slw: calc((var(--sw) - (var(--per) - 1) * var(--vgap)) / var(--per)); --mh: calc(var(--slw) / 2);
+    padding-inline: calc(50vw - var(--mh)); scroll-padding-inline: 0;
+    -webkit-mask-image: var(--cmask);
+            mask-image: var(--cmask); }
+  html.cen .vars .slide { scroll-snap-align: center; flex-basis: var(--slw); } html.cen .vars .slide.away { opacity: 1; }
+  html.cen .apanel.fit .vars { justify-content: flex-start; }
+}
 /* Nov 16: "Top 10" card above the deck list */
 .t10 { margin: 2px var(--sp-3, 12px) 10px; padding: 10px 12px 8px; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 3px rgba(var(--sh), 0.12); }
 .t10h { margin: 0 0 4px; font-size: var(--fs-s, 13px); font-weight: 700; color: var(--ink); }
@@ -993,10 +1046,13 @@ html { -webkit-tap-highlight-color: transparent; }
 .t10s polyline { fill: none; stroke-width: 1.5; stroke-linejoin: round; } .t10z { margin: 4px 0; font-size: 11px; color: var(--muted); }
 .t10f { margin: 4px 0 0; font-size: 10px; color: var(--muted); }
 .t10i:hover, .t10m:hover, .t10i:focus-visible, .t10m:focus-visible { background: var(--tile); }
-@media (min-width: 761px) { .t10st { justify-content: space-between; overflow: visible; } .t10mv { gap: 24px; } }
+@media (min-width: 761px) { .t10st { gap: 12px; margin-right: -12px; padding-right: 12px; } .t10mv { gap: 24px; } } /* Nov 16: wide: bigger icons, the strip scrolls inside the card (no overflow) */
 
 /* Nov 16: flat info boxes (no shadow) for the Top 10 card and the Latest Events top cards; wide: full names, larger icons */
-.t10 { background: var(--tile); box-shadow: none; } .evsum > div { background: var(--tile); box-shadow: none; }
+.t10 { background: var(--flat, var(--tile)); box-shadow: none; } .evsum > div { background: var(--flat, var(--tile)); box-shadow: none; }
+/* Nov 16: dark mode: these flat boxes are a bit brighter than the page (was darker, hard to see) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --flat: #1c2530; } }
+:root[data-theme="dark"] { --flat: #1c2530; }
 .t10i:hover, .t10m:hover, .t10i:focus-visible, .t10m:focus-visible { background: rgba(var(--sh), 0.07); }
 .t10mv { border-top-color: rgba(var(--sh), 0.12); }
 .t10ln { display: none; }
@@ -1010,10 +1066,59 @@ html { -webkit-tap-highlight-color: transparent; }
 .evgo .spch { width: 8px; height: 12px; }
 @media (min-width: 761px) {
   .t10ln { display: inline; } .t10sh { display: none; }
-  .t10 .t10i .t2c { zoom: 1.3; } .t10 .t10m .t2c { zoom: 1.35; }
+  .t10 .t10i .t2c { zoom: 1.75; } .t10 .t10m .t2c { zoom: 1.35; } .t10i b { font-size: 15px; }
   .t10i b { font-size: 14px; } .t10n { font-size: 13px; } .t10x { font-size: 11px; }
   .t10mv { gap: 32px; } .t10m { column-gap: 10px; padding: 4px; }
 }
+
+/* Nov 16: Rising / Falling, one format on all screens: icon | full name (up to 2 lines) + "#rank · from -> to" | the change ("▲3.7 pts").
+   600px+: a sparkline between the text and the change. A divider between the 2 columns. */
+.t10g, .t10c { display: none; }
+.t10mv { gap: 0; padding-top: 8px; } .t10mv > div { min-width: 0; } .t10mv > div + div { border-left: 1px solid rgba(var(--sh), 0.12); padding-left: 8px; } .t10mv > div:first-child { padding-right: 8px; }
+.t10k { display: flex; align-items: center; gap: 4px; margin: 0 0 3px; font-size: 12px; letter-spacing: .02em; } .t10k i { font-style: normal; font-size: 8.5px; }
+.t10m { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "ic nm d" "ic mt d"; column-gap: 7px; row-gap: 1px; padding: 4px 2px; }
+.t10m + .t10m { margin-top: 2px; }
+.t10m .t10n { white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-height: 1.2; align-self: end; font-size: 12px; }
+.t10x { align-self: start; overflow: hidden; text-overflow: ellipsis; } .t10x b { color: var(--ink); font-weight: 700; }
+.t10d { display: flex; grid-area: d; flex-direction: column; align-items: flex-end; line-height: 1.05; } .t10d .pdl { font-size: 15px; font-weight: 800; } .t10d .pdl i { font-size: 9px; margin-right: 1px; }
+.t10d small { font-size: 9.5px; color: var(--muted); }
+@media (max-width: 599px) { /* phones: the "#rank · from -> to" line runs under the change too; a smaller icon gives the name more room */
+  .t10m { grid-template-areas: "ic nm d" "ic mt mt"; column-gap: 6px; } .t10m .t2c { zoom: 0.86; } .t10d { align-self: center; }
+  .t10m .t10n { font-size: 11.5px; } .t10d .pdl { font-size: 14px; } }
+@media (min-width: 600px) {
+  .t10mv { padding-top: 10px; } .t10mv > div + div { padding-left: 16px; } .t10mv > div:first-child { padding-right: 16px; }
+  .t10k { font-size: 12.5px; gap: 5px; } .t10k i { font-size: 9px; }
+  .t10m { grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "ic nm g d" "ic mt g d"; column-gap: 10px; padding: 5px 4px; }
+  .t10m .t10n { font-size: 12.5px; } .t10x { font-size: 10.5px; }
+  .t10g { display: block; grid-area: g; width: 56px; height: auto; } .t10g polyline { fill: none; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
+  .t10d .pdl { font-size: 16px; } .t10d .pdl i { font-size: 10px; margin-right: 2px; } .t10d small { font-size: 10px; }
+}
+@media (min-width: 761px) { .t10m .t10n { font-size: 13px; } .t10x { font-size: 11px; } }
+@media (min-width: 1100px) { .t10g { width: 80px; } .t10m { column-gap: 14px; } .t10mv > div + div { padding-left: 20px; } .t10mv > div:first-child { padding-right: 20px; } }
+
+/* Nov 16: a section label between the Top 10 card and the deck list (the same style as "MOST WINS"); 620px+: "share · win" over the numbers */
+.lsh { display: flex; align-items: baseline; justify-content: space-between; margin: 0 4px 6px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.lsh[hidden] { display: none; } .lsh b { font-weight: 700; } .lshc { display: none; text-transform: none; letter-spacing: 0; font-weight: 500; }
+@media (min-width: 620px) { .lsh { margin: 6px 4px 10px; } .lshc { display: inline; margin-right: 12px; } }
+
+
+/* Nov 16: wide screens: the title and its stats line ("C1 Dual Fusion · 20 events · Nov 9 – 14 · ● 29 h ago") on one line, the stats on the right */
+@media (min-width: 761px) {
+  .hline { display: flex; align-items: center; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; }
+  .hline { margin-top: 44px; } .hline .hrow { min-width: 0; margin-top: 0; } .hline .mline { justify-content: flex-end; margin-top: 0; }
+}
+
+/* Nov 16: "New in <set>": up to 20 cards (2+ top players), most played first; a box of 1 row + 20 % of the next cards that scrolls; the top-player count on each card */
+.sgo { text-transform: none; letter-spacing: 0; font-weight: 500; }
+.sgs { overflow-y: auto; overscroll-behavior: contain; padding-top: 4px; } /* a straight cut (no fade): row 2 shows 20 % of its cards */
+.sgc .sgcw { position: relative; display: block; overflow: visible; -webkit-line-clamp: none; font-size: inherit; line-height: 0; }
+.sgu { position: absolute; right: 2px; bottom: 2px; display: inline-flex; align-items: center; gap: 2px; padding: 1px 4px 1px 3px; border-radius: 6px; background: rgba(12, 18, 26, 0.72); color: #fff;
+  font-style: normal; font-size: 9px; font-weight: 700; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.sgu svg { width: 9px; height: 9px; }
+
+/* Nov 16: no jump while loading: the Top 10 card keeps its space until stats.json arrives; the "Loading decks" box fills the screen (the footer stays below) */
+.t10.t10wait { min-height: 395px; } @media (max-width: 599px) { .t10.t10wait { min-height: 385px; } } @media (max-width: 420px) { .t10.t10wait { min-height: 370px; } }
+#list > .empty:only-child { min-height: 100vh; }
 /* Nov 16: wider screens: each summary card has 2 columns (label + number left; day bars / note right), like the stats sheets */
 @media (min-width: 761px) {
   .evsum { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
@@ -1028,6 +1133,14 @@ html { -webkit-tap-highlight-color: transparent; }
 .evwc { flex: none; display: inline-flex; align-items: center; gap: 5px; min-height: 40px; padding: 3px 10px 3px 5px; border: 1.5px solid var(--pill-line); border-radius: 12px; background: var(--surface); font-family: inherit; font-size: 12px; color: var(--ink); cursor: pointer; }
 .evwc img { width: 16px; height: 22px; border-radius: 2px; object-fit: cover; margin-right: -2px; } .evwc span { max-width: 104px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.2; text-align: left; font-size: 11.5px; } /* the deck name on up to 2 lines, then cut */ .evwc b { color: var(--muted); }
 .evwc.on { border-color: var(--sel); background: var(--tile); }
+/* Nov 16: wide screens: "Most wins" chips get more room: taller, larger card icons and text, wider names, more space between and around */
+@media (min-width: 761px) {
+  .evwl { margin: 8px 0 -2px; font-size: 11px; }
+  .evwins { gap: 10px; margin: 0 0 14px; padding: 4px 0; flex-wrap: wrap; overflow: visible; } /* all chips show (they wrap), no cut chip at the edge */
+  .evwc { min-height: 56px; gap: 8px; padding: 5px 14px 5px 8px; border-radius: 14px; font-size: 13px; }
+  .evwc img { width: 24px; height: 33px; border-radius: 3px; margin-right: -4px; }
+  .evwc span { max-width: 170px; font-size: 13px; } .evwc b { font-size: 13px; margin-left: 4px; }
+}
 .evclr { border: 0; padding: 0; background: none; font: inherit; color: var(--acc-ink, #1d6eb9); text-decoration: underline; cursor: pointer; }
 .evsub .evwn { color: var(--ink); }
 .evsub .evhit { color: var(--ink); } .evsub .evhit b { font-weight: 800; }
@@ -1309,7 +1422,7 @@ a.dkev { text-decoration: none; }
 .cpop.sheet { left: 0; right: 0; bottom: 0; padding: 8px 16px calc(16px + env(safe-area-inset-bottom)); border-radius: 18px 18px 0 0;
   box-shadow: var(--sheet-sh); transform: translateY(105%); transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1); touch-action: none; }
 .cpop.sheet.on { transform: none; }
-.ipop.sheet { max-height: calc(100vh - 72px); } @supports (height: 100dvh) { .ipop.sheet { max-height: calc(100dvh - 72px); } } /* clear of the tab band */
+.ipop.sheet { max-height: min(calc(100vh - 72px), 80vh); } @supports (height: 100dvh) { .ipop.sheet { max-height: min(calc(100dvh - 72px), 80dvh); } } /* Nov 16: 80 % of the screen (clear of the tab band): a tall sheet scrolls inside */
 .ipop.sheet { overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; } /* Nov 15: a tall sheet scrolls inside */
 .cpop.sheet .sbody { max-width: 480px; margin: 0 auto; }
 .cpop.float { width: min(400px, calc(100vw - 24px)); padding: 12px; border-radius: 12px;
@@ -1317,6 +1430,7 @@ a.dkev { text-decoration: none; }
 .cpop.float.on { opacity: 1; }
 .cpop .grab { display: block; width: 52px; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--accent) 22%, var(--line)); margin: 0 auto 12px; }
 .cpop.float .grab, .cpop.sheet .parr { display: none; }
+.cpop .parr, .apop2 .parr2 { display: none !important; } /* Nov 16: no arrow on any popup (a big popup can cover its button) */
 .cpop .parr { position: absolute; top: 40px; width: 14px; height: 14px; background: var(--surface); transform: rotate(45deg); }
 .cpop .parr.l { left: -7px; box-shadow: -1px 1px 0 rgba(var(--sh), 0.09); }
 .cpop .parr.r { right: -7px; box-shadow: 1px -1px 0 rgba(var(--sh), 0.09); }
@@ -1372,24 +1486,29 @@ a.dkev { text-decoration: none; }
 .ipop.float.wide { width: min(360px, calc(100vw - 24px)); }
 /* Nov 15: popover width by content and screen: tips 300 / 320, stats sheets 420 / 680 (2 columns of folds from 1200px) */
 .ipop.float.stat { width: min(420px, calc(100vw - 24px)); } .ipop.float.stat .ibody { max-width: none; }
-@media (min-width: 1200px) {
-  .ipop.float { width: 320px; } .ipop.float.wide { width: 380px; }
-  .ipop.float.stat { width: 680px; }
-  .ipop.float.stat .fgr { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; align-items: start; }
+@media (min-width: 1200px) { .ipop.float { width: 320px; } .ipop.float.wide { width: 380px; } }
+/* Nov 16: the stats sheets (deck stats, top players, event stats) get 2 columns from 620px (was 1200px), as a popover (761px+) or a bottom sheet;
+   the popover is 720 / 780px wide, and the content is a bit larger (zoom 1.06 / 1.1) */
+@media (min-width: 620px) { .ipop.float.stat { width: min(720px, calc(100vw - 32px)); } }
+@media (min-width: 1200px) { .ipop.float.stat { width: 780px; } }
+@media (min-width: 620px) { .ipop.stat .ibody { zoom: 1.06; } }
+@media (min-width: 1200px) { .ipop.stat .ibody { zoom: 1.1; } }
+@media (min-width: 620px) {
+  .ipop.stat .fgr { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; align-items: start; }
   /* Nov 16: in the wide sheet each top card has 2 columns: label + number left, the line / bar and its note right */
-  .ipop.float.stat .dk3 { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .ipop.stat .dk3 { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
   /* left: label / number / note; right: the chart, bar or text spans all rows, centered (Nov 16) */
-  .ipop.float.stat .dk3 > div { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto auto; column-gap: 14px; row-gap: 1px; align-content: center; padding: 9px 12px; }
-  .ipop.float.stat .dk3 > div > span { grid-area: 1 / 1; } .ipop.float.stat .dk3 > div > b { grid-area: 2 / 1; font-size: 22px; }
-  .ipop.float.stat .dk3 > div > small, .ipop.float.stat .dk3 > div > em { grid-area: 3 / 1; margin: 0; }
-  .ipop.float.stat .dk3 > div > .dkm { grid-area: 1 / 2 / 4 / 3; margin: 0; height: 44px; align-self: center; }
-  .ipop.float.stat .dk3 .dkm > svg.lwid { display: block; height: 44px; } .ipop.float.stat .dk3 .dkm > svg.lnar { display: none; }
-  .ipop.float.stat .dk3 .wci { height: 14px; border-radius: 7px; } .ipop.float.stat .dk3 .wci s { width: 10px; height: 10px; margin-left: -5px; top: 2px; }
-  .ipop.float.stat .dk3 > div > small:only-of-type:not(.dkd):not(:nth-child(4)) { grid-area: 1 / 2 / 4 / 3; align-self: center; }
+  .ipop.stat .dk3 > div { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto auto; column-gap: 14px; row-gap: 1px; align-content: center; padding: 9px 12px; }
+  .ipop.stat .dk3 > div > span { grid-area: 1 / 1; } .ipop.stat .dk3 > div > b { grid-area: 2 / 1; font-size: 22px; }
+  .ipop.stat .dk3 > div > small, .ipop.stat .dk3 > div > em { grid-area: 3 / 1; margin: 0; }
+  .ipop.stat .dk3 > div > .dkm { grid-area: 1 / 2 / 4 / 3; margin: 0; height: 44px; align-self: center; }
+  .ipop.stat .dk3 .dkm > svg.lwid { display: block; height: 44px; } .ipop.stat .dk3 .dkm > svg.lnar { display: none; }
+  .ipop.stat .dk3 .wci { height: 14px; border-radius: 7px; } .ipop.stat .dk3 .wci s { width: 10px; height: 10px; margin-left: -5px; top: 2px; }
+  .ipop.stat .dk3 > div > small:only-of-type:not(.dkd):not(:nth-child(4)) { grid-area: 1 / 2 / 4 / 3; align-self: center; }
 }
 /* "Also played (N)": an outlined pill button (like the "differs" tab); it opens the 1-card changes in the info popover */
 .altb { display: inline-flex; align-items: center; gap: 3px; padding: 0 7px 0 8px; border: 1.5px solid var(--pill-line); border-radius: 999px; cursor: pointer;
-  background: var(--surface); color: var(--ink); font-weight: 600; line-height: 1.5; white-space: nowrap; height: 28px; font-size: 11.5px; } /* same height and size as the other pills */
+  background: var(--surface); color: var(--ink); font-weight: 600; line-height: 1.5; white-space: nowrap; height: var(--pbh, 28px); font-size: var(--pbf, 11.5px); } /* same height and size as the other pills */
 @media (hover: hover) { .altb:hover { border-color: var(--muted); } }
 .slide .cmpb.ctop { position: absolute; top: -10px; right: 12px; z-index: 2; border-color: var(--muted); box-shadow: 0 1px 3px rgba(var(--sh), 0.18); } /* Nov 14: on the deck's top right edge, a clearer outline */
 .slide .cmpb.ctop[aria-expanded="true"] { z-index: 7; }
@@ -1627,12 +1746,21 @@ a.dkev { text-decoration: none; }
 .morelink { appearance: none; margin: 0; padding: 8px 14px; border: 0; font-family: inherit; line-height: inherit; cursor: pointer; width: 100%; min-height: 54px;
   display: grid; grid-template-columns: auto auto; justify-content: center; align-content: center; align-items: center; column-gap: 4px; row-gap: 1px;
   border-radius: var(--r-card); background: var(--surface); box-shadow: var(--raised), var(--bevel); color: var(--acc-ink); font-size: var(--fs-m); }
-@supports (background: color-mix(in srgb, red 50%, transparent)) { .morelink { background: color-mix(in srgb, var(--surface) 50%, transparent); } } /* Nov 15: the panel at 50 %, the text stays full */
 .morelink b { font-weight: 700; }
 .morelink .mcar { width: 10px; height: 10px; }
 .morelink span { grid-column: 1 / -1; color: var(--muted); font-weight: 500; font-size: var(--fs-xs); }
 @media (hover: hover) { .morelink:hover { background: var(--hover); } .morelink:hover b { text-decoration: underline; text-underline-offset: 3px; } .acc.peek:hover { opacity: 0.7; } }
 .morelink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Nov 16: "Show all N smaller decks": a full card with 2 thinner cards behind it (a stack: more decks here), the first smaller decks as icons,
+   the text centered, an accent chevron in a circle (no deck icons: too busy) */
+.moreb { margin-bottom: 14px; --stk1: color-mix(in srgb, var(--surface) 72%, var(--bg)); --stk2: color-mix(in srgb, var(--surface) 42%, var(--bg)); --stke: transparent; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .moreb { --stk1: #1c242e; --stk2: #18202a; --stke: rgba(255, 255, 255, 0.09); } }
+:root[data-theme="dark"] .moreb { --stk1: #1c242e; --stk2: #18202a; --stke: rgba(255, 255, 255, 0.09); }
+.moreb::before, .moreb::after { content: ""; position: absolute; left: 50%; height: 100%; border-radius: var(--r-card); transform: translateX(-50%); box-shadow: 0 1px 3px rgba(var(--sh), 0.16), inset 0 -1px 0 var(--stke); pointer-events: none; }
+.moreb::before { z-index: -1; width: 96%; bottom: -7px; background: var(--stk1); } .moreb::after { z-index: -2; width: 91%; bottom: -13px; background: var(--stk2); }
+.morelink { position: relative; background: var(--surface); column-gap: 8px; }
+.morelink .mcar { width: 20px; height: 20px; padding: 5px; box-sizing: border-box; border-radius: 50%; background: color-mix(in srgb, var(--acc-ink) 14%, transparent); }
+@media (min-width: 620px) { .morelink { min-height: 64px; } }
 
 /* ===== Rank badge (R14, Nov 13): a rounded square on the row's top-left corner: rank | thin grey line | change ===== */
 .rb { position: absolute !important; z-index: 5; left: -5px; top: -7px; display: inline-flex; align-items: stretch; height: 22px; border-radius: 4px;
@@ -1711,7 +1839,7 @@ a.dkev { text-decoration: none; }
   stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1.5px rgba(var(--sh), 0.35)); transform: rotate(-9deg); transition: transform var(--t-slow) ease; }
 .wcrown .cb { fill: none; stroke: #fff8e1; stroke-width: 0.7; stroke-linecap: round; }
 .arow[aria-expanded="true"] > .wcrown { display: none; } /* open: no crown */
-.evr .arow > .icons { z-index: 1; } /* Nov 15: the crown (with its shadow) sits behind the card images */
+.evr .arow > .icons { z-index: 2; } .evr .arow > .wcrown { z-index: 1; } /* Nov 15: the crown (with its shadow) sits behind the card images */
 @media (min-width: 1024px) { .arow > .wcrown { left: 26px; top: 5px; width: 18px; height: 13.5px; } }
 /* Dark: like the dark medal crown (darker gold, outline in the dark card color) */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .wcrown, :root:not([data-theme="light"]) .wcrown .cb { stroke: #283145; }
@@ -1747,11 +1875,13 @@ a.dkev { text-decoration: none; }
     <div class="hband" aria-hidden="true"></div>
     <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to dark mode"></button>
     <div class="ribbon"><span class="rlogo" aria-hidden="true"><svg viewBox="0 0 24 24" overflow="visible"><defs><linearGradient id="rlGrad" gradientUnits="userSpaceOnUse" x1="0" y1="2" x2="0" y2="22"><stop offset="0" style="stop-color:var(--rl-a)"/><stop offset="1" style="stop-color:var(--rl-b)"/></linearGradient></defs><g transform="skewX(-12) translate(2.5 0)"><g fill="none" stroke="url(#rlGrad)" stroke-width="2"><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="url(#rlGrad)"><path d="M2.009 6A4.8 4.8 0 0 1 11.491 6H9.448A2.8 2.8 0 0 0 4.052 6ZM2.009 7.5A4.8 4.8 0 0 0 11.491 7.5H9.448A2.8 2.8 0 0 1 4.052 7.5Z"/><circle cx="6.75" cy="6.75" r="1.785"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></g></svg></span><h1>Pocket Meta QR</h1></div>
+    <div class="hline">
     <div class="hrow">
     <h2 class="hsec">This week&rsquo;s Pok&eacute;mon TCG Pocket decks</h2>
     </div>
     <div class="mline"><p class="meta" id="meta">Loading&hellip;</p>
     <p class="live" id="live" hidden></p></div>
+    </div>
     <p class="nset" id="nset" role="note" hidden></p>
     <p class="since" id="since" hidden></p>
     <p class="since" id="shChip" hidden></p>
@@ -1782,7 +1912,8 @@ a.dkev { text-decoration: none; }
   </div>
   </div>
   <p class="fnone" id="fnone" aria-live="polite" hidden><span id="fnoneTxt"></span> <button type="button" id="fclear">Clear</button></p>
-  <section class="t10" id="t10" aria-label="Top 10 decks" hidden></section>
+  <section class="t10 t10wait" id="t10" aria-label="Top 10 decks"><p class="t10h">Top 10</p></section>
+  <div class="lsh" id="lsh" hidden><span>All decks<b id="lshN"></b></span><span class="lshc">share &middot; win</span></div>
   <main class="list" id="list"><div class="empty">Loading decks&hellip;</div></main>
   <section class="list" id="evl" aria-label="Latest events" hidden></section>
 
@@ -2965,14 +3096,23 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       return `<svg class="t10s" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true"><polyline points="${p}" style="stroke:${ECOL[(d.energy || [])[0]] || "#9aa7b1"}"/></svg>`; };
     const strip = top.map((d) => `<button type="button" class="t10i" data-go="${esc(d.id)}" aria-label="${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}"><span class="t10r">${d.rank}</span>${t2c(d, 42, 60, 50, 16, 3)}<b>${pct(d.share)}</b>${dTxt(ch(d)) || '<span class="pdl t10e">&ndash;</span>'}</button>`).join("");
     const byC = top.filter((d) => ch(d) != null).sort((a, b) => ch(b) - ch(a)), up = byC.filter((d) => ch(d) >= 0.3).slice(0, 3), dn = byC.filter((d) => ch(d) <= -0.3).reverse().slice(0, 3);
-    const row = (d) => `<button type="button" class="t10m" data-go="${esc(d.id)}">${t2c(d, 26, 42, 34, 15, 5)}<span class="t10n"><span class="t10sh">${esc(t10Short(d.name))}</span><span class="t10ln">${esc(d.name)}</span></span><small class="t10x">#${d.rank} &middot; ${pct(d.share)}</small><span class="t10c">${spark(d)}${dTxt(ch(d))}</span></button>`;
+    const first = (d) => { const v = ((trOf(d.id) || {}).s || []).filter((x) => x != null); return v.length ? v[0] : null; };
+    const bigSpark = (d, up) => { const v = (trOf(d.id) || {}).s || [], m = Math.max(...v.filter((x) => x != null), 0.1) * 1.12, W = 92, H = 30, n = v.length - 1;
+      const pts = v.map((x, i) => x == null ? null : [i * W / n, H - 1 - x / m * (H - 2)]).filter(Boolean); if (pts.length < 2) return "";
+      const l = pts.map((p) => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" "), e = pts[pts.length - 1], c = up ? "#1f9d55" : "#d6345a";
+      return `<svg class="t10g" viewBox="-2 -2 ${W + 5} ${H + 3}" width="${W + 5}" height="${H + 3}" aria-hidden="true"><polygon points="${pts[0][0].toFixed(1)},${H} ${l} ${e[0].toFixed(1)},${H}" style="fill:${c};opacity:.13"/><polyline points="${l}" style="stroke:${c}"/><circle cx="${e[0].toFixed(1)}" cy="${e[1].toFixed(1)}" r="2.4" style="fill:${c}"/></svg>`; };
+    const row = (d, up) => { const f = first(d); return `<button type="button" class="t10m" data-go="${esc(d.id)}">${t2c(d, 26, 42, 34, 15, 5)}<span class="t10n">${esc(d.name)}</span><small class="t10x">#${d.rank} &middot; ${f != null ? (f < 0.05 ? "new" : pct(f)) + " &rarr; " : ""}<b>${pct(d.share)}</b></small>${bigSpark(d, up)}<span class="t10d">${dTxt(ch(d))}<small>pts</small></span></button>`; };
+    el.className = "t10";
     el.innerHTML = `<p class="t10h">Top 10 ${winWk()}</p><div class="t10st">${strip}</div>
-      <div class="t10mv"><div><p class="t10k up">Rising</p>${up.length ? up.map(row).join("") : '<p class="t10z">No big moves</p>'}</div><div><p class="t10k dn">Falling</p>${dn.length ? dn.map(row).join("") : '<p class="t10z">No big moves</p>'}</div></div>
+      <div class="t10mv"><div><p class="t10k up"><i>\u25b2</i>Rising</p>${up.length ? up.map((d) => row(d, 1)).join("") : '<p class="t10z">No big moves</p>'}</div><div><p class="t10k dn"><i>\u25bc</i>Falling</p>${dn.length ? dn.map((d) => row(d, 0)).join("") : '<p class="t10z">No big moves</p>'}</div></div>
       <p class="t10f">Share change over the last ${nd} days</p>`;
     t10Show(); }
   function t10Show() { const el = $("t10"); if (!el) return;
     const f = typeof fstate !== "undefined" && fstate && (fstate.q.trim() || fstate.card || fstate.en.size || fstate.dk.size || fstate.without);
-    el.hidden = !el.innerHTML || curTab === "events" || !!f; }
+    el.hidden = !el.innerHTML || curTab === "events" || !!f;
+    const lh = $("lsh"); if (lh) { lh.hidden = curTab === "events" || !!f || !data; // Nov 16: "ALL DECKS · 32 + 22 smaller" (all: "· 54")
+      if (data) { const n0 = data.decks.filter((d) => !d._more).length, nm = MORE ? data.decks.length - n0 : data.more || 0;
+        $("lshN").textContent = " \u00b7 " + (moreShown || !nm ? n0 + nm : n0 + " + " + nm + " smaller"); } } }
   $("t10").addEventListener("click", (e) => { const b = e.target.closest("[data-go]"); if (!b) return; const id = b.dataset.go; track("top10-deck");
     if (location.hash === "#" + id) history.replaceState(null, "", location.pathname + location.search); location.hash = id; });
   function renderList() {
@@ -3012,7 +3152,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           ${rbHTML(d, pod)}
           <span class="icons${d.art.length === 1 ? " one" : ""}">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>
           <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, d.name.length)}">${esc(d.name)}${NEWD.has(d.id) ? '<span class="newb" title="New in the top 10 since your last visit">NEW</span>' : ""}</span>
-            <span class="asub"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win${d.bc ? ` <span class="bcn" title="No top player ${winWk()}">${bcI(d)}${bcN(d).toLowerCase()}</span>` : ""}
+            <span class="asub">${d.bc ? `<span class="bcn" title="No top player ${winWk()}">${bcI(d)}${bcN(d).toLowerCase()}</span>` : ""}<span class="asw"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win</span>
               <span class="sm"><span class="sep">&middot; </span><span class="nw">${d.count} players</span> <span class="nw">&middot; ${d.w}-${d.l}-${d.t}</span></span></span></span>
           ${dpill(d)}
         </button>
@@ -3157,14 +3297,17 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   let fitScT = null;
   addEventListener("resize", () => { clearTimeout(fitScT); fitScT = setTimeout(() => fitScores(document), 100); });
   document.fonts?.ready.then(() => fitScores(document));
+  const CEN = () => document.documentElement.classList.contains("cen") && matchMedia("(min-width: 600px)").matches;
+  document.documentElement.classList.add("cen"); // Nov 16: the centered list strip with the focus mask is the default
   function wireCarousel(p, d, n) {
     const vars = p.querySelector(".vars");
     const slides = [...vars.querySelectorAll(".slide")];
     const per = () => parseInt(getComputedStyle(vars).getPropertyValue("--per"), 10) || 1;
-    const go = (i) => { i = Math.max(0, Math.min(i, n - per())); slides[i] && vars.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: reduced ? "auto" : "smooth" }); }; // offsets from the first list (the strip has side padding)
+    const kk = () => (CEN() && per() > 1 ? 1 : per()); // Nov 16: centered strip: one list in focus, its neighbours masked
+    const go = (i) => { i = Math.max(0, Math.min(i, n - kk())); slides[i] && vars.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: reduced ? "auto" : "smooth" }); }; // offsets from the first list (the strip has side padding)
     const at = () => { const x = vars.scrollLeft, o = slides[0].offsetLeft; return slides.reduce((b, s, i) => Math.abs(s.offsetLeft - o - x) < Math.abs(slides[b].offsetLeft - o - x) ? i : b, 0); };
     const sync = () => {
-      const i = at(), k = per();
+      const i = at(), k = kk();
       p.classList.toggle("fit", n <= k);
       p.querySelector(".chev-btn.prev").hidden = i === 0;
       p.querySelector(".chev-btn.next").hidden = i >= n - k;
@@ -3405,8 +3548,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   function placeTip() {
     if (!FLOAT || !tipBtn) return;
     const Z = ZK(), VW = innerWidth / Z.z, VH = innerHeight / Z.z;
-    ipop.style.maxHeight = Math.floor(VH - 16) + "px"; // Nov 15: a tall popover scrolls inside (a page scroll closes it)
-    ipop.style.overflowY = ipop.scrollHeight > ipop.clientHeight + 1 ? "auto" : ""; // only then (the arrow shows on short ones)
+    ipop.style.maxHeight = Math.floor(Math.min(VH - 16, Math.max(360, VH * 0.72))) + "px"; // Nov 16: 72 % of the screen (min 360px): a tall popover scrolls inside
+    ipop.style.overflowY = "auto";
     const r = cssR(tipBtn.getBoundingClientRect(), Z.k), w = ipop.offsetWidth, h = ipop.offsetHeight, g = 10, cx = r.left + r.width / 2;
     const fitB = VH - r.bottom >= h + g + 8, fitA = r.top >= h + g + 8;
     const below = fitB || (!fitA && VH - r.bottom >= r.top); // the side that fits, else the side with more room
@@ -3417,7 +3560,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     a.className = "parr " + (below ? "t" : "b");
     a.style.left = Math.max(12, Math.min(cx - x - 7, w - 26)) + "px";
   }
-  // Nov 15: the folds of a sheet go in one box (.fgr): 2 columns in the wide popover (1200px+), one column elsewhere
+  // Nov 15: the folds of a sheet go in one box (.fgr): 2 columns from 620px (Nov 16, was 1200px), one column on phones
   function fGroup(box) { const ds = [...box.querySelectorAll(":scope > details.sfold")]; if (ds.length < 2) return;
     const g = document.createElement("div"); g.className = "fgr"; ds[0].before(g); ds.forEach((d) => g.append(d)); }
   function showTip(btn, html) { // html: content to show instead of the button's own (the QR panel)
@@ -3918,9 +4061,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (!q) {
       // New in the current set: its cards that top players use (what people look for after opening packs), most used first
       const pre = String(data.set || "").toLowerCase() + "-";
-      const nw = idx.cards.filter((c) => c.id.startsWith(pre)).sort((a, b) => (b.u || 0) - (a.u || 0) || b.decks.size - a.decks.size).slice(0, 10); // 2 rows of 5
-      $("fsug").innerHTML = nw.length ? `<span class="sgh">New in ${esc(data.setName || data.set)}</span><div class="sgg">${nw.map((c) =>
-        `<button class="sgc" type="button" role="option" data-card="${c.id}" title="${esc(c.n)} \u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? "s" : ""}"><img src="c/${c.id}.webp" alt="" width="150" height="209" loading="lazy"><span>${esc(c.n)}</span></button>`).join("")}</div>` : "";
+      const nw = idx.cards.filter((c) => c.id.startsWith(pre) && (c.u || 0) >= 2).sort((a, b) => (b.u || 0) - (a.u || 0) || b.decks.size - a.decks.size).slice(0, 20); // up to 20, 2+ top players
+      $("fsug").innerHTML = nw.length ? `<span class="sgh">New in ${esc(data.setName || data.set)}<span class="sgo"> &middot; most played first</span></span><div class="sgg sgs">${nw.map((c) =>
+        `<button class="sgc" type="button" role="option" data-card="${c.id}" title="${esc(c.n)} \u00b7 ${c.u} top players \u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? "s" : ""}"><span class="sgcw"><img src="c/${c.id}.webp" alt="" width="150" height="209" loading="lazy"><i class="sgu" aria-label="${c.u} top players">${PPL_I}${c.u}</i></span><span>${esc(c.n)}</span></button>`).join("")}</div>` : "";
+      const g = $("fsug").querySelector(".sgs"); if (g) { const fit = () => { const t = g.querySelector(".sgc"); if (!t || !t.offsetHeight || !g.offsetParent) return; const gap = parseFloat(getComputedStyle(g).rowGap) || 0;
+        const im = t.querySelector("img"); g.style.maxHeight = Math.round(t.offsetHeight + gap + (im ? im.offsetHeight : 0) * 0.2 + 4) + "px"; /* row 1 + 20 % of a card of row 2 (a straight cut) */ g.classList.toggle("end", g.scrollTop + g.clientHeight >= g.scrollHeight - 2); };
+        requestAnimationFrame(fit); g.querySelectorAll("img").forEach((im) => im.addEventListener("load", fit, { once: true }));
+        g.addEventListener("scroll", () => g.classList.toggle("end", g.scrollTop + g.clientHeight >= g.scrollHeight - 2), { passive: true }); }
       return;
     }
     const decks = data.decks.filter((d) => norm(d.name).includes(q)).sort((a, b) => rank(a.name) - rank(b.name) || b.share - a.share).slice(0, 4);
@@ -4200,8 +4347,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       evIo = new IntersectionObserver((es) => es.forEach((x) => x.isIntersecting && draw(x.target)), { root: vars, threshold: 0.2 });
       slides.slice(1).forEach((sl) => evIo.observe(sl));
       const at = () => { const x = vars.scrollLeft, o = slides[0].offsetLeft; return slides.reduce((b, s, i) => (Math.abs(s.offsetLeft - o - x) < Math.abs(slides[b].offsetLeft - o - x) ? i : b), 0); };
-      const go = (i) => { i = Math.max(0, Math.min(i, n - per())); vars.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: reduced ? "auto" : "smooth" }); };
-      const sync = () => { const i = at(), k = per(); p.classList.toggle("fit", n <= k);
+      const kk = () => (CEN() && per() > 1 ? 1 : per());
+      const go = (i) => { i = Math.max(0, Math.min(i, n - kk())); vars.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: reduced ? "auto" : "smooth" }); };
+      const sync = () => { const i = at(), k = kk(); p.classList.toggle("fit", n <= k);
         p.querySelector(".chev-btn.prev").hidden = i === 0; p.querySelector(".chev-btn.next").hidden = i >= n - k;
         p.querySelectorAll(".dot").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.i >= i && +b.dataset.i < i + k)));
         slides.forEach((s, j) => { s.classList.toggle("away", n > k && (j < i || j >= i + k)); s.classList.toggle("near", j === i - 1 || j === i + k); });
@@ -4240,6 +4388,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   $("tabM").addEventListener("click", () => setTab("decks"));
   $("tabE").addEventListener("click", () => setTab("events"));
+  loadStats().catch(() => {}); // Nov 16: stats.json loads together with data.json (the Top 10 card is ready sooner)
   fetch("data.json", { cache: "no-cache" })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((j) => {
@@ -4271,7 +4420,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       $("fwin").textContent = winLast().replace(/^in /, "");
       seenDecks(); // before the rows: the NEW tags of decks new in the top 10
       renderLive(); loadEvents().then(() => { seenEvents(); renderLive(); });
-      renderList(); watchMore(); loadStats().then(() => renderT10()).catch(() => {}); // Nov 16: the Top 10 card needs the trends
+      if (STD) renderT10(); else { const t = $("t10"); t.className = "t10 t10wait"; t.innerHTML = `<p class="t10h">Top 10 ${winWk()}</p>`; t10Show(); } // Nov 16: keep its space (no jump)
+      renderList(); watchMore(); loadStats().then(() => renderT10()).catch(() => { const t = $("t10"); t.innerHTML = ""; t.className = "t10"; t10Show(); }); // the Top 10 card needs the trends
       setupFilter();
       podFit(); podGrow();
       renderShChip(); // the "Shared list" chip (hidden again when a shared list opens)
@@ -4288,7 +4438,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     })
     .catch(() => {
       $("meta").innerHTML = "<span>Deck data did not load.</span>";
-      $("list").innerHTML = '<div class="empty">Deck data did not load. Reload the page to try again.</div>';
+      $("list").innerHTML = '<div class="empty">Deck data did not load. Reload the page to try again.</div>'; $("t10").hidden = true;
     });
 
   // Card fade: a list card that is not loaded yet fades in (0.16 s) when its own image is ready. No placeholder hold-back
