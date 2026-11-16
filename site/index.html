@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794824401-e836 -->
+<!-- ui: artifact version 1794831702-167a -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1117,8 +1117,23 @@ html { -webkit-tap-highlight-color: transparent; }
 .sgu svg { width: 9px; height: 9px; }
 
 /* Nov 16: no jump while loading: the Top 10 card keeps its space until stats.json arrives; the "Loading decks" box fills the screen (the footer stays below) */
-.t10.t10wait { min-height: 395px; } @media (max-width: 599px) { .t10.t10wait { min-height: 385px; } } @media (max-width: 420px) { .t10.t10wait { min-height: 370px; } }
+.t10.t10wait { min-height: 355px; } @media (max-width: 599px) { .t10.t10wait { min-height: 340px; } } @media (max-width: 420px) { .t10.t10wait { min-height: 330px; } }
 #list > .empty:only-child { min-height: 100vh; }
+
+/* Nov 16: Top players: 3 cards (exact list with a stacked bar: exact / 1-card / 2-card tweak players, win rate, best);
+   under them 3 boxes in the same columns: 1-card tweaks, 2-card tweaks (players, with the bar colors), all together (win rate) */
+:root .tp3 .tpb { display: flex; } :root .tp3 .tpb i { border-radius: 0; flex: none; } :root .tp3 .tpb i:first-child { border-radius: 2px 0 0 2px; }
+:root .tp3 .tpb .k1, .tpt3 .k1 { background: color-mix(in srgb, var(--acc-mark) 55%, transparent); } :root .tp3 .tpb .k2, .tpt3 .k2 { background: color-mix(in srgb, var(--acc-mark) 28%, transparent); }
+@media (min-width: 620px) { :root .ipop.stat .dk3.tp3 > div.tpc > .tpb { grid-column: 1 / -1; grid-row: 4; margin-top: 6px; } }
+.tpt3 { display: grid; grid-template-columns: 1fr 1fr 0.85fr; gap: 6px; margin: 6px 0 2px; } @media (min-width: 620px) { .tpt3 { gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tpt3 > div { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; padding: 5px 9px; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(var(--sh), 0.12); min-width: 0; }
+.tpt3 span { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-xs); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.tpt3 b { font-size: 13px; font-weight: 700; color: var(--ink); white-space: nowrap; } .tpt3 b small { font-size: 10px; font-weight: 500; color: var(--muted); }
+.tpt3 i { flex: none; width: 8px; height: 8px; border-radius: 2px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tpt3 > div { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); } }
+:root[data-theme="dark"] .tpt3 > div { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+@media (max-width: 420px) { .tpt3 > div { flex-direction: column; align-items: flex-start; gap: 0; padding: 4px 9px; } }
+
 /* Nov 16: wider screens: each summary card has 2 columns (label + number left; day bars / note right), like the stats sheets */
 @media (min-width: 761px) {
   .evsum { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
@@ -1279,6 +1294,8 @@ a.dkev { text-decoration: none; }
 .sev { margin: 0 0 4px; color: var(--muted); font-size: var(--fs-xs); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tg8 { background: #1d3150; color: #8cbcff; } :root:not([data-theme="light"]) .saway b, :root:not([data-theme="light"]) .swl .f { color: #a78bfa; border-color: #a78bfa; } }
 :root[data-theme="dark"] .tg8 { background: #1d3150; color: #8cbcff; }
+/* Nov 16: "Top 25%" in the results list = a blue dot after the place, the same as the chart's top 25% dot (the text stays for screen readers) */
+:root:not(#_) .tg8 { font-size: 0; width: 10px; height: 10px; padding: 0; margin-left: 7px; border-radius: 50%; background: #2f7de1; vertical-align: middle; position: relative; top: -2px; }
 :root[data-theme="dark"] .saway b, :root[data-theme="dark"] .swl .f { color: #a78bfa; border-color: #a78bfa; }
 .sfoot .us.top { display: inline-flex; align-items: center; background: var(--acc-bg); color: var(--acc-ink); font-weight: 600; padding: 1px 9px; }
 .info { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sp-2); align-content: center; font-variant-numeric: tabular-nums; }
@@ -1822,6 +1839,33 @@ a.dkev { text-decoration: none; }
 :root[data-theme="dark"] .rb.pm.s { background: linear-gradient(135deg, #33415a, #55698d); box-shadow: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.18), inset -1px -1px 0 #33415a, 0 1px 2px rgba(0, 0, 0, 0.3); } :root[data-theme="dark"] .rb.pm.s .rn { color: #c9dbf3; } :root[data-theme="dark"] .rb.pm.s .rsep { background: rgba(201, 219, 243, 0.25); }
 :root[data-theme="dark"] .rb.pm.b { background: linear-gradient(135deg, #4e3322, #7f573d); box-shadow: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.18), inset -1px -1px 0 #4e3322, 0 1px 2px rgba(0, 0, 0, 0.3); } :root[data-theme="dark"] .rb.pm.b .rn { color: #efb084; } :root[data-theme="dark"] .rb.pm.b .rsep { background: rgba(239, 176, 132, 0.25); }
 :root[data-theme="dark"] .rb.pm svg.cr { stroke: #283145; }
+/* Nov 16: medal badges like solid metal coins (user reference): a left-to-right gradient, light to dark, white number, crown and change.
+   The same in light and dark mode, so silver is clearly not the plain badge. --m1/--m2: light / dark end; ":root:not(#_)" wins over the older light / dark medal rules */
+:root:not(#_) .rb.pm.g { --m1: #e0bd6c; --m2: #c19530; } :root:not(#_) .rb.pm.s { --m1: #9db6c9; --m2: #5b6e7d; } :root:not(#_) .rb.pm.b { --m1: #e59a6c; --m2: #c4652d; }
+/* Nov 16: dark mode: the number, change and crown of the medal badges in the card color (cut-out look), the crown outline in the metal color */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not(#_) .rb.pm .rn, :root:not([data-theme="light"]):not(#_) .rb.pm .dl, :root:not([data-theme="light"]):not(#_) .rb.pm .dl.up, :root:not([data-theme="light"]):not(#_) .rb.pm .dl.dn, :root:not([data-theme="light"]):not(#_) .rb.pm .dl.eq, :root:not([data-theme="light"]):not(#_) .rb.pm .dl.nw { color: var(--surface); } :root:not([data-theme="light"]):not(#_) .rb.pm svg.cr { fill: var(--surface); stroke: var(--m1); } :root:not([data-theme="light"]):not(#_) .rb.pm .rsep { background: rgba(0, 0, 0, 0.3); } }
+:root[data-theme="dark"]:not(#_) .rb.pm .rn, :root[data-theme="dark"]:not(#_) .rb.pm .dl, :root[data-theme="dark"]:not(#_) .rb.pm .dl.up, :root[data-theme="dark"]:not(#_) .rb.pm .dl.dn, :root[data-theme="dark"]:not(#_) .rb.pm .dl.eq, :root[data-theme="dark"]:not(#_) .rb.pm .dl.nw { color: var(--surface); } :root[data-theme="dark"]:not(#_) .rb.pm svg.cr { fill: var(--surface); stroke: var(--m1); } :root[data-theme="dark"]:not(#_) .rb.pm .rsep { background: rgba(0, 0, 0, 0.3); }
+@media (min-width: 761px) and (max-width: 1023px) { .rb.pm .rn svg.cr { margin-top: -2px; } } /* Nov 16: the square badge (761-1023px): the crown 2px higher, clear of the number */
+/* Nov 16: dark mode: the medal badges about 20 % darker (less bright on the dark page) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not(#_) .rb.pm.g { --m1: #b8994f; --m2: #977322; } :root:not([data-theme="light"]):not(#_) .rb.pm.s { --m1: #aebfcc; --m2: #788b9a; } :root:not([data-theme="light"]):not(#_) .rb.pm.b { --m1: #bf7d55; --m2: #9c5124; } }
+:root[data-theme="dark"]:not(#_) .rb.pm.g { --m1: #b8994f; --m2: #977322; } :root[data-theme="dark"]:not(#_) .rb.pm.s { --m1: #aebfcc; --m2: #788b9a; } :root[data-theme="dark"]:not(#_) .rb.pm.b { --m1: #bf7d55; --m2: #9c5124; }
+:root:not(#_) .rb.pm.g, :root:not(#_) .rb.pm.s, :root:not(#_) .rb.pm.b { background: linear-gradient(90deg, var(--m1), var(--m2)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 1px 3px rgba(var(--sh), 0.3); }
+:root:not(#_) .rb.pm .rn, :root:not(#_) .rb.pm .dl, :root:not(#_) .rb.pm .dl.up, :root:not(#_) .rb.pm .dl.dn, :root:not(#_) .rb.pm .dl.eq, :root:not(#_) .rb.pm .dl.nw { color: #fff; }
+:root:not(#_) .rb.pm svg.cr { fill: #fff; stroke: var(--m1); stroke-width: 2.6; } /* a thicker outline (was 1.8) */ :root:not(#_) .rb.pm .rsep { background: rgba(255, 255, 255, 0.45); }
+/* Nov 16: 1st-3rd place dots (Top players chart, its legend, the results list, the Score pill) like the medal badges: a solid metal
+   gradient with a small white crown; a bit larger so the crown reads (chart 11px, legend 11px, list 14px, pill 12px) */
+:root:not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md).p1 { --m1: #e0bd6c; --m2: #c19530; }
+:root:not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md).p2 { --m1: #9db6c9; --m2: #5b6e7d; }
+:root:not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md).p3 { --m1: #e59a6c; --m2: #c4652d; }
+:root:not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md):is(.p1, .p2, .p3) { position: relative; border-radius: 50%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M1.6 3.6 4.3 5.6 6 2 7.7 5.6 10.4 3.6 9.4 8H2.6zM2.6 8.9h6.8V10H2.6z'/%3E%3C/svg%3E") center 45% / 72% no-repeat, linear-gradient(90deg, var(--m1), var(--m2)); box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.12); }
+/* Nov 16: dark mode: the crown in the medal dots = the sheet background color (#1d252f); the medal colors stay */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md):is(.p1, .p2, .p3) { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%231d252f' d='M1.6 3.6 4.3 5.6 6 2 7.7 5.6 10.4 3.6 9.4 8H2.6zM2.6 8.9h6.8V10H2.6z'/%3E%3C/svg%3E") center 45% / 72% no-repeat, linear-gradient(90deg, var(--m1), var(--m2)); } }
+:root[data-theme="dark"]:not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md):is(.p1, .p2, .p3) { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%231d252f' d='M1.6 3.6 4.3 5.6 6 2 7.7 5.6 10.4 3.6 9.4 8H2.6zM2.6 8.9h6.8V10H2.6z'/%3E%3C/svg%3E") center 45% / 72% no-repeat, linear-gradient(90deg, var(--m1), var(--m2)); }
+:root:not(#_) .sdots i:is(.p1, .p2, .p3) { width: 11px; height: 11px; margin: -1px -1px; } :root:not(#_) .sdots i:is(.p1, .p2, .p3) b { left: 13px; }
+:root:not(#_) .slg i.m { width: 11px; height: 11px; vertical-align: -1px; }
+:root:not(#_) .fins .md { width: 14px; height: 14px; vertical-align: -2px; }
+:root:not(#_) .ppl .md { width: 12px; height: 12px; }
 /* ===== Latest Events: one row per event (winner deck icons and energy streak), day headers ===== */
 .evnote { margin: 0 4px -4px; font-size: var(--fs-s); color: var(--muted); }
 .evday { margin: 6px 4px -4px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
@@ -1845,6 +1889,18 @@ a.dkev { text-decoration: none; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .wcrown, :root:not([data-theme="light"]) .wcrown .cb { stroke: #283145; }
   :root:not([data-theme="light"]) .wcrown { filter: brightness(0.7) drop-shadow(0 0.5px 0.5px rgba(0, 0, 0, 0.25)); } }
 :root[data-theme="dark"] .wcrown, :root[data-theme="dark"] .wcrown .cb { stroke: #283145; }
+/* Nov 16: the winner crown like the medal badge crown: white with a gold outline (light and dark) */
+:root:not(#_) .arow > .wcrown { fill: #fff; stroke: #d4a63a; stroke-width: 2; filter: drop-shadow(0 1px 1.5px rgba(var(--sh), 0.35)); }
+:root:not(#_) .wcrown .cb { stroke: #d4a63a; stroke-width: 0.9; }
+/* Nov 16: Top 10 strip: share and its change on one line; the 2-card icons: a long smooth fade from 42 % */
+.t10v { display: flex; align-items: baseline; gap: 4px; margin-top: -4px; } .t10v b { margin-top: 0 !important; }
+.t2c { --t2m: linear-gradient(180deg, #000 42%, rgba(0,0,0,0.957) 49.2%, rgba(0,0,0,0.844) 56.5%, rgba(0,0,0,0.684) 63.7%, rgba(0,0,0,0.500) 71.0%, rgba(0,0,0,0.316) 78.2%, rgba(0,0,0,0.156) 85.5%, rgba(0,0,0,0.043) 92.8%, rgba(0,0,0,0.000) 100.0%); -webkit-mask-image: var(--t2m); mask-image: var(--t2m); } /* a smooth (smoothstep) fade from 42 % down */
+/* Nov 16: dark mode: the Top 10 card dividers (under the strip, between Rising and Falling) lighter, so they show on the brighter box */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t10mv, :root:not([data-theme="light"]) .t10mv > div + div { border-color: rgba(255, 255, 255, 0.13); } }
+:root[data-theme="dark"] .t10mv, :root[data-theme="dark"] .t10mv > div + div { border-color: rgba(255, 255, 255, 0.13); }
+.t10ms { overflow-y: auto; scrollbar-width: thin; max-height: 150px; } /* Nov 16: Rising / Falling scroll boxes (max height from t10Fit) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not(#_) .arow > .wcrown { filter: brightness(0.8) drop-shadow(0 1px 1.5px rgba(var(--sh), 0.35)); } }
+:root[data-theme="dark"]:not(#_) .arow > .wcrown { filter: brightness(0.8) drop-shadow(0 1px 1.5px rgba(var(--sh), 0.35)); } /* dark: 20 % dimmer, like the card images */
 :root[data-theme="dark"] .wcrown { filter: brightness(0.7) drop-shadow(0 0.5px 0.5px rgba(0, 0, 0, 0.25)); }
 /* Event lists: the dots under the strip (in the flow), the standings link under them; place colors for 1st-3rd */
 .apanel.evp .dots { position: static; transform: none; align-self: center; margin-top: -19px; } /* list card to the dots: 10px, like the decks */
@@ -2130,12 +2186,15 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       : `<div class="fscr nos"><ol class="fins">${exRows.map(row).join("")}</ol></div>${ex > f.length ? `<p class="fmore">+ ${ex - f.length} more</p>` : ""}`;
     const b0 = f[0], rc = v.rec || [0, 0, 0];
     // Nov 15: top = 3 cards (like the deck sheet): exact list (of N top players, small bar), win rate, best place; tweaks in one line
-    const top = `<div class="dk3 tp3"><div><span>Exact list</span><b>${ex}</b><small>of ${v.of}</small>${v.of ? `<i class="tpb"><i style="width:${Math.max(3, Math.min(100, ex / v.of * 100)).toFixed(1)}%"></i></i>` : ""}</div>
+    // Nov 16: card 1 = top players: exact list + 1-card and 2-card tweaks (players), one stacked bar of all top players of the deck
+    const t1 = (v.alt || []).filter((a) => (a.k || 1) === 1).reduce((s, a) => s + (a.u || 0), 0), t2 = (v.alt || []).filter((a) => a.k === 2).reduce((s, a) => s + (a.u || 0), 0);
+    const pw = (n) => v.of ? Math.min(100, n / v.of * 100).toFixed(1) : 0;
+    const bar = v.of ? `<i class="tpb"><i style="width:${Math.max(3, +pw(ex))}%"></i>${t1 ? `<i class="k1" style="width:${pw(t1)}%"></i>` : ""}${t2 ? `<i class="k2" style="width:${pw(t2)}%"></i>` : ""}</i>` : "";
+    const top = `<div class="dk3 tp3"><div class="tpc"><span>Exact list</span><b>${ex}</b><small>of ${v.of} top players</small>${bar}</div>
       <div><span>Win rate</span><b>${wrPct(rc)}%</b><small>${rc.join("-")}</small></div>
       <div><span>Best</span><b>${b0 ? ordF(b0[0]) : "\u2013"}</b><small>${b0 ? `of ${b0[1]}` : ""}</small></div></div>
-      ${tw > 0 ? `<p class="tptw">+${tw} more top player${tw > 1 ? "s" : ""} with 1\u20132 cards changed${v.grec ? ` \u00b7 ${wrPct(v.grec)}% win together` : ""}</p>` : ""}`;
-    const spk = days.map((dy) => all.filter((x) => x.r[5] === dy).length), mx = Math.max(1, ...spk);
-    const fold = all.length > 1 ? `<details class="sfold"><summary><span><b>Results ${winWk()}</b><span>${all.length} results \u00b7 chart by day and full list</span></span><span class="sspk" aria-hidden="true">${spk.map((n) => `<i style="height:${n ? Math.max(2, Math.round(n / mx * 16)) : 1}px"></i>`).join("")}</span><svg class="sdn" viewBox="0 0 10 7" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>${wk}${list}</details>` : `${wk}${list}`;
+      ${tw > 0 ? `<div class="tpt3"><div><span><i class="k1"></i>1-card tweaks</span><b>${t1 ? "+" + t1 : "\u2013"}</b></div><div><span><i class="k2"></i>2-card tweaks</span><b>${t2 ? "+" + t2 : "\u2013"}</b></div>${v.grec ? `<div><span>All together</span><b>${wrPct(v.grec)}% <small>win</small></b></div>` : "<div></div>"}</div>` : ""}`;
+    const fold = `${wk}${list}`; // Nov 16: no "Results this week" fold: the chart and the list show directly
     return `<h3 class="sh3">${PPL_I}Top players</h3>${top}${fold}<p class="snote">Top player: at least 2 more wins than losses at an event ${winWk()}.</p>`; };
   const bcSheet = (v, d) => { const [w, l] = String(v.sc || "0-0-0").split("-").map(Number), n = w - l, k = Math.max(1, Math.ceil((2 - n) / 2));
     const pm = /^(\d+)\D+(\d+)/.exec(String(v.pl || "")), pl = pm ? +pm[1] : 0, of = pm ? +pm[2] : 0, need = Math.floor(of * TOP_PCT);
@@ -3094,8 +3153,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const spark = (d) => { const v = (trOf(d.id) || {}).s || [], m = Math.max(...v.filter((x) => x != null), 0.1) * 1.1, W = 36, H = 14;
       const p = v.map((x, i) => x == null ? null : `${(i * W / (v.length - 1)).toFixed(1)},${(H - x / m * H).toFixed(1)}`).filter(Boolean).join(" ");
       return `<svg class="t10s" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true"><polyline points="${p}" style="stroke:${ECOL[(d.energy || [])[0]] || "#9aa7b1"}"/></svg>`; };
-    const strip = top.map((d) => `<button type="button" class="t10i" data-go="${esc(d.id)}" aria-label="${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}"><span class="t10r">${d.rank}</span>${t2c(d, 42, 60, 50, 16, 3)}<b>${pct(d.share)}</b>${dTxt(ch(d)) || '<span class="pdl t10e">&ndash;</span>'}</button>`).join("");
-    const byC = top.filter((d) => ch(d) != null).sort((a, b) => ch(b) - ch(a)), up = byC.filter((d) => ch(d) >= 0.3).slice(0, 3), dn = byC.filter((d) => ch(d) <= -0.3).reverse().slice(0, 3);
+    const strip = top.map((d) => `<button type="button" class="t10i" data-go="${esc(d.id)}" aria-label="${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}"><span class="t10r">${d.rank}</span>${t2c(d, 42, 60, 50, 16, 3)}<span class="t10v"><b>${pct(d.share)}</b>${dTxt(ch(d)) || '<span class="pdl t10e">&ndash;</span>'}</span></button>`).join("");
+    // Nov 16: Rising / Falling: every deck of the main list (not only the top 10) with a change of 0.3+ points, in 2 scroll boxes
+    const byC = data.decks.filter((d) => !d._more && !d.bc && ch(d) != null).sort((a, b) => ch(b) - ch(a)), up = byC.filter((d) => ch(d) >= 0.3), dn = byC.filter((d) => ch(d) <= -0.3).reverse();
     const first = (d) => { const v = ((trOf(d.id) || {}).s || []).filter((x) => x != null); return v.length ? v[0] : null; };
     const bigSpark = (d, up) => { const v = (trOf(d.id) || {}).s || [], m = Math.max(...v.filter((x) => x != null), 0.1) * 1.12, W = 92, H = 30, n = v.length - 1;
       const pts = v.map((x, i) => x == null ? null : [i * W / n, H - 1 - x / m * (H - 2)]).filter(Boolean); if (pts.length < 2) return "";
@@ -3104,12 +3164,19 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const row = (d, up) => { const f = first(d); return `<button type="button" class="t10m" data-go="${esc(d.id)}">${t2c(d, 26, 42, 34, 15, 5)}<span class="t10n">${esc(d.name)}</span><small class="t10x">#${d.rank} &middot; ${f != null ? (f < 0.05 ? "new" : pct(f)) + " &rarr; " : ""}<b>${pct(d.share)}</b></small>${bigSpark(d, up)}<span class="t10d">${dTxt(ch(d))}<small>pts</small></span></button>`; };
     el.className = "t10";
     el.innerHTML = `<p class="t10h">Top 10 ${winWk()}</p><div class="t10st">${strip}</div>
-      <div class="t10mv"><div><p class="t10k up"><i>\u25b2</i>Rising</p>${up.length ? up.map((d) => row(d, 1)).join("") : '<p class="t10z">No big moves</p>'}</div><div><p class="t10k dn"><i>\u25bc</i>Falling</p>${dn.length ? dn.map((d) => row(d, 0)).join("") : '<p class="t10z">No big moves</p>'}</div></div>
+      <div class="t10mv"><div><p class="t10k up"><i>\u25b2</i>Rising</p>${up.length ? `<div class="t10ms">${up.map((d) => row(d, 1)).join("")}</div>` : '<p class="t10z">No big moves</p>'}</div><div><p class="t10k dn"><i>\u25bc</i>Falling</p>${dn.length ? `<div class="t10ms">${dn.map((d) => row(d, 0)).join("")}</div>` : '<p class="t10z">No big moves</p>'}</div></div>
       <p class="t10f">Share change over the last ${nd} days</p>`;
-    t10Show(); }
+    t10Show(); requestAnimationFrame(t10Fit); }
+  // Nov 16: each mover box shows 2.5 rows (both boxes the same height: the taller of the two), the rest scrolls
+  function t10Fit() { const bs = [...document.querySelectorAll("#t10 .t10ms")]; if (!bs.length || !bs[0].offsetParent) return;
+    const hs = bs.map((b) => { const r = [...b.children]; if (r.length <= 2) return 0; const g = parseFloat(getComputedStyle(r[1]).marginTop) || 0;
+      return r[0].offsetHeight + r[1].offsetHeight + g * 2 + r[2].offsetHeight * 0.5; }), m = Math.round(Math.max(...hs));
+    bs.forEach((b) => { b.style.maxHeight = m ? m + "px" : ""; }); }
+  { let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(t10Fit, 150); }); }
   function t10Show() { const el = $("t10"); if (!el) return;
     const f = typeof fstate !== "undefined" && fstate && (fstate.q.trim() || fstate.card || fstate.en.size || fstate.dk.size || fstate.without);
     el.hidden = !el.innerHTML || curTab === "events" || !!f;
+    if (!el.hidden) requestAnimationFrame(t10Fit); // Nov 16: size the mover boxes when the card shows (also after a tab switch)
     const lh = $("lsh"); if (lh) { lh.hidden = curTab === "events" || !!f || !data; // Nov 16: "ALL DECKS · 32 + 22 smaller" (all: "· 54")
       if (data) { const n0 = data.decks.filter((d) => !d._more).length, nm = MORE ? data.decks.length - n0 : data.more || 0;
         $("lshN").textContent = " \u00b7 " + (moreShown || !nm ? n0 + nm : n0 + " + " + nm + " smaller"); } } }
@@ -3569,7 +3636,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (tipBtn) tipBtn.setAttribute("aria-expanded", "false");
     tipBtn = btn; btn.setAttribute("aria-expanded", "true"); tipAt = Date.now();
     track(btn.classList.contains("cmpb") ? "compare" : btn.classList.contains("fabout") ? "about" : btn.classList.contains("altb") ? "also-played" : "info");
-    $("iPopIn").innerHTML = html ?? btn.dataset.tip; fGroup($("iPopIn"));
+    $("iPopIn").innerHTML = html ?? btn.dataset.tip; fGroup($("iPopIn")); { const fb = $("iPopIn").querySelector(".fscr"); if (fb && !fb.closest("details")) requestAnimationFrame(() => fscrCur(fb)); }
     if (ipop.hidden) {
       ipop.className = "cpop ipop " + (FLOAT ? "float" : "sheet") + (btn.matches(".altb, .fabout") ? " wide" : "") + ($("iPopIn").querySelector(".sh3, .dk3") ? " stat" : "");
       ipop.style.transform = "";
