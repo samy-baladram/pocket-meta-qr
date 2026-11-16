@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794785568-b25d -->
+<!-- ui: artifact version 1794800113-ba00 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -973,6 +973,47 @@ html { -webkit-tap-highlight-color: transparent; }
 .evsum small { font-size: 10.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .evsum .evbars { display: flex; align-items: flex-end; gap: 2px; height: 18px; margin-top: 2px; } .evbars i { flex: 1; max-width: 8px; border-radius: 1px; background: var(--acc-mark); cursor: pointer; }
 .evbig { cursor: pointer; }
+
+/* Nov 16: "Top 10" card above the deck list */
+.t10 { margin: 2px var(--sp-3, 12px) 10px; padding: 10px 12px 8px; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 3px rgba(var(--sh), 0.12); }
+.t10h { margin: 0 0 4px; font-size: var(--fs-s, 13px); font-weight: 700; color: var(--ink); }
+.t10st { display: flex; gap: 12px; overflow-x: auto; padding: 6px 2px 4px; scrollbar-width: none; } .t10st::-webkit-scrollbar { display: none; }
+.t10i, .t10m { all: unset; box-sizing: border-box; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.t10i { position: relative; flex: none; display: flex; flex-direction: column; align-items: center; gap: 1px; border-radius: 10px; padding: 0 2px 2px; }
+.t10i b { position: relative; margin-top: -4px; font-size: 12.5px; font-weight: 800; color: var(--ink); } .t10i .pdl { font-size: 10.5px; } .t10e { color: var(--muted); }
+.t10r { position: absolute; z-index: 2; top: -5px; left: -3px; min-width: 15px; text-align: center; font-size: 9.5px; font-weight: 800; line-height: 15px; border-radius: 8px; background: var(--ink); color: var(--surface); }
+.t2c { position: relative; display: block; flex: none; -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent 96%); mask-image: linear-gradient(180deg, #000 50%, transparent 96%); }
+.t2c img { position: absolute; top: 0; height: auto; border-radius: 3px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); transform-origin: 50% 100%; }
+.t10mv { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; padding-top: 8px; border-top: 1px solid var(--line); }
+.t10k { margin: 0 0 2px; font-size: 11px; font-weight: 700; } .t10k.up { color: #1f9d55; } .t10k.dn { color: #d6345a; }
+.t10m { width: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "ic nm nm" "ic mt ch"; column-gap: 7px; row-gap: 1px; align-items: center; padding: 3px 2px; border-radius: 8px; }
+.t10m .t2c { grid-area: ic; } .t10n { grid-area: nm; font-size: 11.5px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t10x { grid-area: mt; font-size: 10px; color: var(--muted); white-space: nowrap; } .t10c { grid-area: ch; display: flex; align-items: center; gap: 4px; } .t10c .pdl { font-size: 10.5px; }
+@media (max-width: 480px) { .t10c .t10s { display: none; } } /* phones: no room for the sparkline next to "#1 · 12.0%" */
+.t10s polyline { fill: none; stroke-width: 1.5; stroke-linejoin: round; } .t10z { margin: 4px 0; font-size: 11px; color: var(--muted); }
+.t10f { margin: 4px 0 0; font-size: 10px; color: var(--muted); }
+.t10i:hover, .t10m:hover, .t10i:focus-visible, .t10m:focus-visible { background: var(--tile); }
+@media (min-width: 761px) { .t10st { justify-content: space-between; overflow: visible; } .t10mv { gap: 24px; } }
+
+/* Nov 16: flat info boxes (no shadow) for the Top 10 card and the Latest Events top cards; wide: full names, larger icons */
+.t10 { background: var(--tile); box-shadow: none; } .evsum > div { background: var(--tile); box-shadow: none; }
+.t10i:hover, .t10m:hover, .t10i:focus-visible, .t10m:focus-visible { background: rgba(var(--sh), 0.07); }
+.t10mv { border-top-color: rgba(var(--sh), 0.12); }
+.t10ln { display: none; }
+@media (max-width: 760px) { /* phones: a wider card, tighter strip, larger icons; 3 decks show, a quarter of the 4th bleeds at the edge */
+  .t10 { margin-left: -8px; margin-right: -8px; padding: 10px 10px 8px; } .t10st { gap: 8px; margin-right: -10px; padding-right: 10px; }
+  .t10 .t10i .t2c { zoom: 1.84; } .t10i b { font-size: 15px; } }
+@media (max-width: 420px) { .t10 .t10i .t2c { zoom: 1.65; } }
+@media (max-width: 370px) { .t10 .t10i .t2c { zoom: 1.5; } }
+.evbig { position: relative; padding-right: 24px !important; } .evbig:hover { background: rgba(var(--sh), 0.09); }
+.evgo { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); display: flex; color: var(--acc-ink, #1d6eb9); }
+.evgo .spch { width: 8px; height: 12px; }
+@media (min-width: 761px) {
+  .t10ln { display: inline; } .t10sh { display: none; }
+  .t10 .t10i .t2c { zoom: 1.3; } .t10 .t10m .t2c { zoom: 1.35; }
+  .t10i b { font-size: 14px; } .t10n { font-size: 13px; } .t10x { font-size: 11px; }
+  .t10mv { gap: 32px; } .t10m { column-gap: 10px; padding: 4px; }
+}
 /* Nov 16: wider screens: each summary card has 2 columns (label + number left; day bars / note right), like the stats sheets */
 @media (min-width: 761px) {
   .evsum { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
@@ -1741,6 +1782,7 @@ a.dkev { text-decoration: none; }
   </div>
   </div>
   <p class="fnone" id="fnone" aria-live="polite" hidden><span id="fnoneTxt"></span> <button type="button" id="fclear">Clear</button></p>
+  <section class="t10" id="t10" aria-label="Top 10 decks" hidden></section>
   <main class="list" id="list"><div class="empty">Loading decks&hellip;</div></main>
   <section class="list" id="evl" aria-label="Latest events" hidden></section>
 
@@ -2910,6 +2952,29 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     }).catch(() => { moreP = null; return null; }));
   }
   const podTop = () => (data.decks.length > 3 ? data.decks.filter((d) => !d._more).slice(0, 3) : []);
+  // Nov 16: "Top 10" card above the deck list: a strip (2-card icon, rank, share, share change) + Rising / Falling
+  // (the 3 biggest share changes over the trend days, 0.3 points or more). Needs stats.json; hidden with a filter or on Events.
+  const ECOL = { grass: "#4caf50", fire: "#f05a28", water: "#2b9bea", lightning: "#e0b000", psychic: "#a865c9", fighting: "#c0703a", darkness: "#3d4a5c", metal: "#9aa7b1", dragon: "#b8962e" };
+  const t2c = (d, cw, bw, bh, off, rot) => { const a = d.art || []; return `<span class="t2c" style="width:${bw}px;height:${bh}px">${a[1] ? `<img src="c/${a[1]}.webp" alt="" style="width:${cw}px;left:${off}px;top:1px;transform:rotate(${rot}deg)" loading="lazy">` : ""}${a[0] ? `<img src="c/${a[0]}.webp" alt="" style="width:${cw}px;left:0;transform:rotate(-${rot}deg)" loading="lazy">` : ""}</span>`; };
+  const t10Short = (n) => { const w = n.replace(/ ex\b/g, "").split(" "); return w.slice(0, w[0] === "Mega" ? 2 : 1).join(" "); };
+  function renderT10() { const el = $("t10"); if (!el || !data || !STD) return;
+    const top = data.decks.filter((d) => !d._more && !d.bc).slice(0, 10); if (top.length < 5) { el.innerHTML = ""; t10Show(); return; }
+    const ch = (d) => { const t = trOf(d.id); return t ? trD(t.s) : null; }, nd = (trOf(top[0].id) || { s: [] }).s.length || 7;
+    const spark = (d) => { const v = (trOf(d.id) || {}).s || [], m = Math.max(...v.filter((x) => x != null), 0.1) * 1.1, W = 36, H = 14;
+      const p = v.map((x, i) => x == null ? null : `${(i * W / (v.length - 1)).toFixed(1)},${(H - x / m * H).toFixed(1)}`).filter(Boolean).join(" ");
+      return `<svg class="t10s" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true"><polyline points="${p}" style="stroke:${ECOL[(d.energy || [])[0]] || "#9aa7b1"}"/></svg>`; };
+    const strip = top.map((d) => `<button type="button" class="t10i" data-go="${esc(d.id)}" aria-label="${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}"><span class="t10r">${d.rank}</span>${t2c(d, 42, 60, 50, 16, 3)}<b>${pct(d.share)}</b>${dTxt(ch(d)) || '<span class="pdl t10e">&ndash;</span>'}</button>`).join("");
+    const byC = top.filter((d) => ch(d) != null).sort((a, b) => ch(b) - ch(a)), up = byC.filter((d) => ch(d) >= 0.3).slice(0, 3), dn = byC.filter((d) => ch(d) <= -0.3).reverse().slice(0, 3);
+    const row = (d) => `<button type="button" class="t10m" data-go="${esc(d.id)}">${t2c(d, 26, 42, 34, 15, 5)}<span class="t10n"><span class="t10sh">${esc(t10Short(d.name))}</span><span class="t10ln">${esc(d.name)}</span></span><small class="t10x">#${d.rank} &middot; ${pct(d.share)}</small><span class="t10c">${spark(d)}${dTxt(ch(d))}</span></button>`;
+    el.innerHTML = `<p class="t10h">Top 10 ${winWk()}</p><div class="t10st">${strip}</div>
+      <div class="t10mv"><div><p class="t10k up">Rising</p>${up.length ? up.map(row).join("") : '<p class="t10z">No big moves</p>'}</div><div><p class="t10k dn">Falling</p>${dn.length ? dn.map(row).join("") : '<p class="t10z">No big moves</p>'}</div></div>
+      <p class="t10f">Share change over the last ${nd} days</p>`;
+    t10Show(); }
+  function t10Show() { const el = $("t10"); if (!el) return;
+    const f = typeof fstate !== "undefined" && fstate && (fstate.q.trim() || fstate.card || fstate.en.size || fstate.dk.size || fstate.without);
+    el.hidden = !el.innerHTML || curTab === "events" || !!f; }
+  $("t10").addEventListener("click", (e) => { const b = e.target.closest("[data-go]"); if (!b) return; const id = b.dataset.go; track("top10-deck");
+    if (location.hash === "#" + id) history.replaceState(null, "", location.pathname + location.search); location.hash = id; });
   function renderList() {
     const top = podTop();
     $("list").innerHTML = podiumHTML(top) + withGhosts(data.decks.slice(top.length), data.nolist, top.length ? top[top.length - 1].rank : 0, false) + moreBoxHTML();
@@ -3706,7 +3771,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const q = fstate.q.trim().toLowerCase(), pickC = fstate.card ? searchIndex().cards.find((c) => c.id === fstate.card) : null;
     const pickW = fstate.without ? searchIndex().cards.find((c) => c.id === fstate.without) : null;
     const act0 = !!q || !!fstate.card || fstate.en.size > 0 || fstate.dk.size > 0 || !!fstate.without; // a filter is on: the smaller decks count too
-    setPodFlat(act0);
+    setPodFlat(act0); t10Show();
     let n = 0, nMore = 0, peek = 0;
     data.decks.forEach((d) => {
       const sec = $(d.id);
@@ -4046,7 +4111,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const just = all.filter((e) => e.at && agoH(e.at) < 12).sort((a, b) => Date.parse(b.at) - Date.parse(a.at)).slice(0, 3);
     const strip = `<div class="evsum"><div><span>Events${skipTip}</span><b>${all.length}</b><span class="evbars" aria-hidden="true">${per.map((n, k) => `<i data-day="${dys[k]}" style="height:${n ? Math.max(16, Math.round(n / mx * 100)) : 5}%" title="${evDay(dys[k])}: ${n}"></i>`).join("")}</span></div>
       <div><span>Players</span><b>${pl.toLocaleString("en-US")}</b><small>${winLast().replace(/^in /, "")}</small></div>
-      <div class="evbig" role="button" tabindex="0" data-go="${big ? big.tid : ""}"><span>Biggest</span><b>${big ? big.players : "\u2013"}</b><small>${big ? esc(shortEv(big.name)) : ""}</small></div></div>
+      <div class="evbig" role="button" tabindex="0" data-go="${big ? big.tid : ""}" aria-label="Open the biggest event"><span>Biggest</span><b>${big ? big.players : "\u2013"}</b><small>${big ? esc(shortEv(big.name)) : ""}</small>${big ? `<i class="evgo">${SPCH}</i>` : ""}</div></div>
       ${tw.length > 1 ? `<p class="evwl">Most wins</p><div class="evwins">${tw.map((t) => `<button class="evwc${evWin === t.w.deck ? " on" : ""}" type="button" data-wd="${esc(t.w.deck)}" aria-pressed="${evWin === t.w.deck}">${(t.w.art || []).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="20" height="28" loading="lazy">`).join("")}<span>${esc(t.w.name)}</span><b>\u00d7${t.n}</b></button>`).join("")}</div>` : ""}
       ${anyF ? `<p class="evnote">${L.length ? `${L.length} event${L.length > 1 ? "s" : ""}` : "No events"}${evWin ? ` won by ${esc((wins[evWin] || {}).w ? wins[evWin].w.name : "")}` : ""}${evDk ? ` with ${esc(dn(evDk))} in the top 8` : ""}${evMin ? ` with ${evMin}+ players` : ""}${q && !evDk ? ` for &ldquo;${esc(evQ.trim())}&rdquo;` : ""} &middot; <button class="evclr" type="button">Show all events</button></p>` : ""}`;
     const justL = just.length && !anyF ? `<p class="evjust"><b>Just added</b>${just.map((e) => `<button type="button" data-go="${e.tid}">${esc(shortEv(e.name))} <span>${addAgo(e.at)}</span></button>`).join("")}</p>` : "";
@@ -4166,7 +4231,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const ev = t === "events";
     if (curTab && curTab !== t) clearFilters(); curTab = t;
     $("tabM").setAttribute("aria-selected", String(!ev)); $("tabE").setAttribute("aria-selected", String(ev));
-    $("list").hidden = ev; $("evl").hidden = !ev;
+    $("list").hidden = ev; $("evl").hidden = !ev; t10Show();
     $("filtBtn").hidden = !data; $("filtBtn").disabled = false; setDrop(false); filtMode(ev); if (ev) { $("fnone").hidden = true; } else if (data) applyFilter();
     if (ev) { if (openId) closeOpen(); track("tab-events"); if (!EV) { $("evl").innerHTML = '<div class="empty">Loading events&hellip;</div>'; loadEvents().then(renderEvents); }
       else renderEvents(); } // events.json is loaded early (live line); drawn again on each visit (the filter is cleared when the tab changes)
@@ -4206,7 +4271,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       $("fwin").textContent = winLast().replace(/^in /, "");
       seenDecks(); // before the rows: the NEW tags of decks new in the top 10
       renderLive(); loadEvents().then(() => { seenEvents(); renderLive(); });
-      renderList(); watchMore();
+      renderList(); watchMore(); loadStats().then(() => renderT10()).catch(() => {}); // Nov 16: the Top 10 card needs the trends
       setupFilter();
       podFit(); podGrow();
       renderShChip(); // the "Shared list" chip (hidden again when a shared list opens)
