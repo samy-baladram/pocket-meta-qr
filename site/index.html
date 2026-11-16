@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794831702-167a -->
+<!-- ui: artifact version 1794835574-242d -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1026,6 +1026,9 @@ html { -webkit-tap-highlight-color: transparent; }
             mask-image: var(--cmask); }
   html.cen .vars .slide { scroll-snap-align: center; flex-basis: var(--slw); } html.cen .vars .slide.away { opacity: 1; }
   html.cen .apanel.fit .vars { justify-content: flex-start; }
+  /* Nov 16 fix: Safari leaves the end padding of a flex scroll box out of its scroll width, so the last list could not reach the
+     center (a deck with 2 lists could not scroll at all): the end space is a real flex item, not padding */
+  html.cen .vars { padding-inline-end: 0; } html.cen .vars::after { content: ""; flex: none; width: max(0px, calc(50vw - var(--mh) - var(--vgap))); align-self: stretch; }
 }
 /* Nov 16: "Top 10" card above the deck list */
 .t10 { margin: 2px var(--sp-3, 12px) 10px; padding: 10px 12px 8px; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 3px rgba(var(--sh), 0.12); }
