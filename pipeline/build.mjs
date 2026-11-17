@@ -14,7 +14,7 @@ const require = createRequire(import.meta.url);
 const QRCode = require("qrcode"); // the QR library that ptcgp-deckcode uses (deckCodeToSVG = QRCode.toString)
 
 const MAX_VARIATIONS = 10;  // lists kept per deck (the page shows them as a carousel with 1 dot per list)
-const NEAR = 2;             // R18: lists that differ by this many cards or fewer are 1 group (the others: "tweaks")
+const NEAR = 3;             // R18: lists that differ by this many cards or fewer are 1 group (the others: "tweaks"). Nov 17: 3 (was 2)
 // R18b (Nov 13, 2026): a group after list 1 is shown only with SHOW_MIN_PLAYERS+ top players, or with 1 top player
 // whose finish is in the top SHOW_TOP of an event with SHOW_MIN_EVENT+ players. MAX_VARIATIONS stays the hard limit.
 const SHOW_MIN_PLAYERS = 2, SHOW_TOP = 8, SHOW_MIN_EVENT = 32;
@@ -176,7 +176,7 @@ function changes(g) {
     else by.set(key, { in: ins, out: outs, k: ins.reduce((t, c) => t + c.c, 0), u: 1, pl: x.row.pl, order, row: x.row,
       rec: [...x.rec], fin: [finRow(x)] });
   });
-  // R17: rec = [w, l, t] of the u finishes. R18: k = cards changed (1 or 2); sort by k, then u, then win rate, then
+  // R17: rec = [w, l, t] of the u finishes. R18: k = cards changed (1 to 3); sort by k, then u, then win rate, then
   // best place.
   return [...by.values()].sort((a, b) => a.k - b.k || b.u - a.u || winRate(b.rec) - winRate(a.rec) || a.order - b.order)
     .map(({ order, ...a }) => a);

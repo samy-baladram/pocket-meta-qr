@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794835574-242d -->
+<!-- ui: artifact version 1794913851-3ebe -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -531,6 +531,8 @@ footer a { color: var(--muted); }
 .dpill .lw { opacity: 0.6; } /* win rate from fewer than 30 players */
 .arow[aria-expanded="true"] > .dpill { display: block; }
 .acc:not(.pod) > .arow > .dpill { left: auto; right: 12px; transform: none; } /* Nov 15: phones: on the right of the bottom edge (easy to reach with the thumb) */
+@media (max-width: 619px) { /* Nov 17: phones: the deck stats pill as tall as the status chips (23px, easier to tap), 3px lower */
+  .acc:not(.pod) > .arow > .dpb { box-sizing: border-box; height: 23px; bottom: -14.5px; padding: 0 10px; font-size: 11px; line-height: 20px; } }
 .arow[aria-expanded="true"] .atext .asub { display: none; } /* open row: the numbers are in the pill */
 .pcard > .dpill { left: 50%; transform: translateX(-50%); }
 .podium > .pod:nth-child(1) > .pcard > .dpill { left: 8px; transform: none; }
@@ -664,7 +666,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .tcar::-webkit-scrollbar { display: none; }
 .tw { flex: 0 0 var(--iw); scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px;
   transition: opacity 0.2s; cursor: pointer; } /* same size on and off focus (no scale) */
-.tw.on { opacity: 1; }
+.tw:not(.on) { opacity: 0.4; } .tw:not(.on) { opacity: 0.4; } .tw.on { opacity: 1; } /* Nov 17: the versions beside the one in focus are faded */ /* Nov 17: the versions beside the one in focus are faded */
 .tw { background: var(--surface); border-radius: 10px; padding: 6px 0 5px; box-shadow: 0 1px 5px rgba(var(--sh), 0.3); } /* each tweak is a card you can swipe */
 .tw .tsw { display: flex; align-items: center; gap: 5px; }
 .tw .tstk { display: flex; }
@@ -680,11 +682,15 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .swsc { overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; padding: 6px; }
 .swsc::-webkit-scrollbar { display: none; }
 .swin { display: flex; flex-direction: column; align-items: center; gap: 7px; width: max-content; min-width: 100%; }
+.apop3.swp { z-index: 6; }
 .swr { display: flex; gap: 3px; }
 .swr img { width: var(--cw, 30px); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); cursor: zoom-in; }
 .swr.out img { filter: grayscale(0.35) brightness(0.92); } /* list 1's cards: a bit quieter */
 .swch { display: block; color: var(--muted); line-height: 0; }
 .swch svg { width: 12px; height: 7px; display: block; }
+.swrw { display: flex; align-items: center; } /* Nov 17: row label + cards */
+.swlb { flex: none; width: 40px; padding-right: 6px; font-size: 10.5px; font-weight: 600; line-height: 1.15; color: var(--muted); text-align: right; }
+.swin.lab .swch { margin-left: 40px; }
 .tdots { position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); z-index: 1; display: flex; align-items: center; gap: 4px; padding: 0; } /* Nov 15: inside the panel, no background (it covered the pills under the panel) */
 .tdots:empty { display: none; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tw { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1); } }
@@ -713,7 +719,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .slg i.ld { width: 9px; height: 9px; border-radius: 50%; background: #bcd6f5; } .slg i.ld + b + i.ld { margin-left: 6px; }
 .fscr { max-height: 190px; overflow: auto; margin-top: 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overscroll-behavior: contain; }
 .fscr.nos { border-bottom: 0; }
-.fscr .fins { margin: 0; }
+.fscr .fins { margin: 0; } .fscr::after { content: ""; display: block; height: var(--fend, 0px); }
 .fsec { position: sticky; top: 0; z-index: 1; margin: 0; padding: 5px 8px; background: var(--tile); font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .fins .fch2 { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .fins .fch2, .fins .fen { display: block; } /* tweak rows: the change, then the event on its own line */
@@ -1123,20 +1129,73 @@ html { -webkit-tap-highlight-color: transparent; }
 .t10.t10wait { min-height: 355px; } @media (max-width: 599px) { .t10.t10wait { min-height: 340px; } } @media (max-width: 420px) { .t10.t10wait { min-height: 330px; } }
 #list > .empty:only-child { min-height: 100vh; }
 
-/* Nov 16: Top players: 3 cards (exact list with a stacked bar: exact / 1-card / 2-card tweak players, win rate, best);
-   under them 3 boxes in the same columns: 1-card tweaks, 2-card tweaks (players, with the bar colors), all together (win rate) */
-:root .tp3 .tpb { display: flex; } :root .tp3 .tpb i { border-radius: 0; flex: none; } :root .tp3 .tpb i:first-child { border-radius: 2px 0 0 2px; }
-:root .tp3 .tpb .k1, .tpt3 .k1 { background: color-mix(in srgb, var(--acc-mark) 55%, transparent); } :root .tp3 .tpb .k2, .tpt3 .k2 { background: color-mix(in srgb, var(--acc-mark) 28%, transparent); }
-@media (min-width: 620px) { :root .ipop.stat .dk3.tp3 > div.tpc > .tpb { grid-column: 1 / -1; grid-row: 4; margin-top: 6px; } }
-.tpt3 { display: grid; grid-template-columns: 1fr 1fr 0.85fr; gap: 6px; margin: 6px 0 2px; } @media (min-width: 620px) { .tpt3 { gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.tpt3 > div { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; padding: 5px 9px; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(var(--sh), 0.12); min-width: 0; }
-.tpt3 span { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-xs); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-.tpt3 b { font-size: 13px; font-weight: 700; color: var(--ink); white-space: nowrap; } .tpt3 b small { font-size: 10px; font-weight: 500; color: var(--muted); }
-.tpt3 i { flex: none; width: 8px; height: 8px; border-radius: 2px; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tpt3 > div { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); } }
-:root[data-theme="dark"] .tpt3 > div { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
-@media (max-width: 420px) { .tpt3 > div { flex-direction: column; align-items: flex-start; gap: 0; padding: 4px 9px; } }
 
+/* Nov 17: one status chip on the top edge of each list card (Popular now / Unproven / No top result / N swaps from List 1) */
+.apanel .vars { padding-top: 12px; }
+.slide > .stc { position: absolute; top: -10px; left: 14px; z-index: 4; height: 19px; margin: 0; padding: 0 8px 0 6px; gap: 3px; font-size: 10px; font-weight: 600;
+  border: 0; border-radius: 999px; background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--pill-line), 0 1px 3px rgba(var(--sh), 0.2); }
+.slide > .stc svg:not(.spch) { width: 11px; height: 11px; } .slide > .stc .spch { width: 5px; height: 7px; opacity: .7; } /* Nov 17: status chips small (info, not the main buttons) */
+.slide > .stc.pop .pstar { color: #e3a51b; } /* Nov 17: plain chip, only the star gold */
+.slide > .stc.bc { color: var(--ink); }
+.slide > .stc.cmpb { font-weight: 600; } .slide > .stc.cmpb .swi { width: 11px; height: 11px; }
+:root .slide > .stc.cmpb, :root .slide > .stc.cmpb[aria-expanded="true"] { position: absolute; z-index: 7; height: 19px; border: 0; font-size: 10px; } /* Nov 17 fix: an open .altb is position: relative (it jumped into the card) */
+:root .slide > .stc.cmpb[aria-expanded="true"] { background: var(--sel-bg); box-shadow: inset 0 0 0 1.5px var(--sel), 0 1px 3px rgba(var(--sh), 0.2); }
+
+
+/* Nov 17: under the list: one connected bar of 5 equal cells: exact (a number) | 1 / 2 / 3 swaps (open the swap panel) | players (sheet).
+   Every cell: icon, number, label on the same 3 lines, so icons, numbers and labels line up; ▾ / › in the top-right corner */
+.sfoot > .swb { grid-column: 1 / -1; margin-top: 2px; min-width: 0; }
+.swt { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.25fr); --cf: var(--surface); --bg0: var(--surface); --ln: var(--pill-line); }
+:root .swt > * { position: relative; display: grid; grid-template-columns: auto auto; grid-template-rows: auto; justify-content: center; align-items: center; align-content: center; column-gap: 4px; row-gap: 0; min-width: 0; height: auto;
+  margin: 0; padding: 6px 2px; border: 0; border-radius: 0; background: none; font: inherit; color: var(--ink); line-height: 1.1; letter-spacing: 0; align-self: stretch; }
+/* Nov 17 (option B): the 4 counts form one outlined group; players is its own outlined cell after a small gap (not a call to action) */
+:root .swt > :not(.swp) { box-shadow: inset 0 1.5px 0 var(--ln), inset 0 -1.5px 0 var(--ln), inset 1.5px 0 0 var(--ln); }
+:root .swt > :first-child { border-radius: 12px 0 0 12px; }
+:root .swt > :nth-child(4) { border-radius: 0 12px 12px 0; box-shadow: inset 0 1.5px 0 var(--ln), inset 0 -1.5px 0 var(--ln), inset 1.5px 0 0 var(--ln), inset -1.5px 0 0 var(--ln); }
+:root .swt > * { padding: 2px 2px 6px; grid-template-rows: 26px auto; } /* Nov 17: content 2px up (the icons have space on top) */ /* Nov 17: a "players" word under the icon and number */
+:root .swt > .swx .swi2 { margin-right: -3.6px; } :root .swt > :nth-child(2) .swi2 { margin-right: -2px; } :root .swt > :nth-child(3) .swi2 { margin-right: -1.3px; } :root .swt > :nth-child(4) .swi2 { margin-right: -0.5px; } :root .swt > .swp .swi2 { margin-right: -1px; } /* Nov 17: ink gap from each icon to its number: ~5.5px; exact ~6.5px (its right side is flat) */
+:root .swt .swpl { grid-column: 1 / -1; grid-row: 2; justify-self: center; margin-top: -3px; font-size: 9.5px; line-height: 1.1; color: var(--muted); }
+:root .swt .swi2 { grid-column: 1; grid-row: 1; width: 26px; height: 26px; margin-top: 0; flex: none; color: var(--muted); } /* Nov 17: grey icons (the QR stays the main call to action); the open tile: blue */
+:root .swt > .swl.altb[aria-expanded="true"] .swi2 { color: var(--acc-ink); } :root .swt .swi2 { margin-bottom: 0; } /* Nov 17: the icons end ~4px above their box: less space under them */ :root .swt > .swx .swi2 { width: 23px; height: 23px; margin-top: 0; } /* exact: a bit smaller (its lines read thicker) */
+:root .swt b { grid-column: 2; grid-row: 1; font-size: 16px; font-weight: 600; color: inherit; line-height: 1.15; } :root .swt small { font-size: 10px; color: var(--muted); white-space: nowrap; }
+.swt .swx { background: var(--tile); --cf: var(--tile); --bg0: var(--tile); } :root .swt .swx { background: var(--tile); } .swt .swx .swi2 { color: var(--muted); }
+:root .swt > .swl.altb { cursor: pointer; }
+:root .swt .dcar, :root .swt .spch { display: none; position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; margin: 0; color: inherit; opacity: 0.6; }
+:root .swt > .swl.altb[aria-expanded="true"] { background: var(--sel-bg); --cf: var(--surface); } :root .swt > .swl.altb[aria-expanded="true"] .dcar { transform: rotate(180deg); }
+@media (hover: hover) { :root .swt > .swl.altb:hover { background: var(--sel-bg); } }
+.swt .swl.off > * { opacity: 0.4; }
+.swi2 .swn { fill: currentColor; font-family: ui-rounded, "SF Pro Rounded", "Varela Round", "Nunito", Figtree, sans-serif; font-size: 9px; font-weight: 800; font-variant-numeric: proportional-nums; font-feature-settings: "tnum" 0; } /* Nov 17: the number on the card: rounded; proportional digits, so a "1" is centered by its own width */ .swt .swl.off .swi2 { color: var(--muted); }
+:root .swt > .sp.swp { margin-left: 7px; border-radius: 12px; background: none; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ln); cursor: pointer; --bg0: var(--surface); }
+@media (hover: hover) { :root .swt > .sp.swp:hover { background: var(--sel-bg); } }
+:root .swt > .sp.swp .spch { width: 6px; height: 9px; color: var(--muted); opacity: 1; } :root .swt > .sp.swp .spch path { stroke: currentColor; }
+/* the swap panel: no tabs (the tile picks the level); 3 cards swapped = the same overlap as 2, a bit smaller, a wider item */
+.apop3.lv3 .tcar { --cw: 37px; --iw: calc(var(--cw) * 4.4 + 34px); }
+.tw .tstk img + img { margin-top: 10px; } .tw .tstk img + img + img { margin-top: 20px; } /* Nov 17: 10px lower per card (there is room) */
+.apop3.one .ttabs { display: none; }
+.apop3.lv1 .tcar { --iw: 138px; gap: 14px; } .apop3.lv1 .tw .tsw { gap: 11px; } /* Nov 17: 1 swap: narrower cards, more space */
+.apop3 .tcar { padding-top: 3px; padding-bottom: 10px; } .apop3 .tbody { padding-bottom: 0; } .apop3 .tdots { bottom: 4px; } .apop3 .tw .ast { line-height: 1.3; } /* Nov 17: the panel = the QR box height: a bit tighter */
+.apop3.lv3 .tcar { --cw: 35px; }
+@container (max-width: 300px) { .apop3.lv3 .tcar { --cw: 30px; } }
+
+/* Nov 17: Top players sheet: the 5 cells (static), 3 win cards; wide (620px+): the chart left, the results right (the dots stay close) */
+.tpg { display: grid; gap: 4px; min-width: 0; } .tpgl, .tpgr { min-width: 0; }
+@media (min-width: 620px) {
+  .ipop.stat:has(.tpg) { width: min(680px, calc(100vw - 32px)); }
+  .tpg { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 18px; min-height: 240px; } /* the row is as tall as the chart */
+  .tpgl .sdots { zoom: 1.2; } /* Nov 17: wide: bigger dots (and their 1 / 2 / 3 numbers) */
+  .tpgr { position: relative; } .tpgr .fscr { position: absolute; inset: 0; max-height: none; margin: 0; } /* the results fill that height and scroll */
+}
+
+/* Nov 17: Top players: one card per version group (exact, 1-3 swaps) with its own win rate, then Best */
+.tpcap { margin: 2px 0 4px; font-size: var(--fs-xs); color: var(--muted); } /* says what the % in the cards are */
+.sh3 .swi2 { width: 24px; height: 24px; margin: -3px 0 -3px -2px; --bg0: var(--surface); } /* Nov 17: the Top players title: the same trophy-people icon */
+.tpw { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 6px; margin: 0 0 6px; --cf: var(--tile); --bg0: var(--tile); }
+.tpw > div { display: grid; gap: 1px; min-width: 0; padding: 7px 8px 6px; border-radius: 12px; background: var(--tile); }
+.tpw span { display: flex; align-items: center; gap: 3px; min-width: 0; font-size: 10.5px; color: var(--muted); white-space: nowrap; overflow: hidden; }
+.tpw span .swi2 { width: 17px; height: 17px; flex: none; color: var(--acc-ink); margin: -2px 0 -2px -2px; }
+.tpw b { font-size: 20px; font-weight: 800; line-height: 1.15; color: var(--ink); } .tpw small { font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+@media (max-width: 420px) { .tpw { gap: 4px; } .tpw > div { padding: 6px 4px 5px 5px; } .tpw b { font-size: 17px; } .tpw span, .tpw small { font-size: 9.5px; } .tpw span { gap: 2px; } .tpw span .swi2 { width: 14px; height: 14px; margin: -1px 0 -1px -1px; } }
+@media (min-width: 620px) { .tpw b { font-size: 24px; } .tpw span .swi2 { width: 19px; height: 19px; } }
 /* Nov 16: wider screens: each summary card has 2 columns (label + number left; day bars / note right), like the stats sheets */
 @media (min-width: 761px) {
   .evsum { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
@@ -1270,6 +1329,18 @@ a.dkev { text-decoration: none; }
 .sbar i { display: block; height: 100%; }
 .sbar i.x { background: #7f97ab; } .sbar i.t { background: #c9d6e0; }
 .sbr.me .sbar i.x { background: #e8b52e; } .sbr.me .sbar i.t { background: #f3dc9a; }
+/* Nov 17: Popular now: tall bars in 4 parts (exact, 1, 2, 3 swaps), each part holds its icon and count */
+.pbars { gap: 10px; margin: 8px 0 12px; } .pbars .sbr { grid-template-columns: 44px 1fr 26px; }
+.pbars .sbar { height: 28px; margin: 0; border-radius: 7px; gap: 1.5px; background: transparent; }
+.pbars .sbar i { display: flex; align-items: center; justify-content: center; gap: 1px; min-width: 3px; font-style: normal; overflow: hidden; background: var(--sb); --cf: var(--sb); --bg0: var(--sb); color: #33424f; }
+.pbars .sbar i b { font-size: 12px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; margin-right: 1px; }
+.pbars .sbar i svg { width: 22px; height: 22px; flex: none; margin-left: -2px; }
+.pbars .sbar i:first-child { border-radius: 7px 0 0 7px; } .pbars .sbar i:last-child { border-radius: 0 7px 7px 0; } .pbars .sbar i:only-child { border-radius: 7px; }
+.pbars .sbar i.s0 { --sb: #8fa5b8; } .pbars .sbar i.s1 { --sb: #aebfcc; } .pbars .sbar i.s2 { --sb: #c8d4de; } .pbars .sbar i.s3 { --sb: #dde5ec; }
+.pbars .sbr > span:last-child { text-align: right; }
+:root:not(#_) .pbars .sbr.me .sbar i { color: #4a3606; } :root:not(#_) .pbars .sbr.me .sbar i.s0 { --sb: #dfab2a; } :root:not(#_) .pbars .sbr.me .sbar i.s1 { --sb: #ecc458; } :root:not(#_) .pbars .sbr.me .sbar i.s2 { --sb: #f2d68a; } :root:not(#_) .pbars .sbr.me .sbar i.s3 { --sb: #f7e6b8; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pbars .sbar i { color: #e6edf3; } :root:not([data-theme="light"]) .pbars .sbar i.s0 { --sb: #6f889d; } :root:not([data-theme="light"]) .pbars .sbar i.s1 { --sb: #586f82; } :root:not([data-theme="light"]) .pbars .sbar i.s2 { --sb: #455969; } :root:not([data-theme="light"]) .pbars .sbar i.s3 { --sb: #364754; } }
+:root[data-theme="dark"] .pbars .sbar i { color: #e6edf3; } :root[data-theme="dark"] .pbars .sbar i.s0 { --sb: #6f889d; } :root[data-theme="dark"] .pbars .sbar i.s1 { --sb: #586f82; } :root[data-theme="dark"] .pbars .sbar i.s2 { --sb: #455969; } :root[data-theme="dark"] .pbars .sbar i.s3 { --sb: #364754; }
 .slg { display: flex; align-items: center; gap: 5px; margin: 0 0 4px; font-size: var(--fs-xs); color: var(--muted); }
 .slg i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; }
 .slg i.x { background: #e8b52e; } .slg i.t { background: #f3dc9a; margin-left: 8px; } .slg i.g { background: #e8b52e; border-radius: 50%; }
@@ -1317,7 +1388,7 @@ a.dkev { text-decoration: none; }
 .pill { display: inline-block; border-radius: 999px; padding: 1px 7px; font-weight: 600; line-height: 1.5; white-space: nowrap; }
 .pill.pl { background: none; color: var(--muted); font-size: 0.76em; font-weight: 500; padding: 0; } /* place: quiet text, part of the score */
 /* QR box: raised; a small expand badge on its corner says "tap to enlarge" */
-.qcol { display: flex; flex-direction: column; align-items: center; gap: 1px; align-self: start; margin-right: 3px; padding: 6px;
+.qcol { display: flex; flex-direction: column; align-items: center; gap: 1px; align-self: start; margin-right: 0; padding: 6px;
   border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), var(--bevel); }
 .qr { position: relative; width: 102px; aspect-ratio: 1; padding: 0; border: 0; display: block; background: transparent; cursor: zoom-in; }
 .qr img { display: block; width: 100%; height: auto; }
@@ -1371,10 +1442,10 @@ a.dkev { text-decoration: none; }
 .dot[aria-current="true"]::before { width: 14px; background: var(--muted); } /* the lists in view: a longer dot */
 .dot.l1::before { background: var(--acc-mark); } /* list 1: always the vivid blue */
 /* Nov 14: deck lists get numbered tabs ("List 1  2  3"); the current one is filled. Events keep the dots. */
-.ldots { gap: 4px; bottom: 3px; }
+.ldots { gap: 4px; bottom: -3px; } /* Nov 17: 6px lower (was 3px) */
 .ldots .dot { width: auto; min-width: 20px; height: 18px; padding: 0 5px; border-radius: 999px; font-family: inherit; line-height: 1; font-size: 10.5px; font-weight: 600; color: var(--muted); }
 .ldots .dot::before { display: none; }
-.ldots .dot[aria-current="true"] { background: var(--muted); color: var(--surface); }
+.ldots .dot[aria-current="true"] { background: var(--sel-bg); color: var(--acc-ink); box-shadow: inset 0 0 0 1.5px var(--acc-line); } /* Nov 17: the site's "current" style (soft blue tint), was solid grey */
 .vwrap:has(.ldots) .vars { padding-bottom: calc(var(--sp-3) + 28px); } /* room for the tabs under the lists */
 .dot:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 50%; }
 
@@ -1861,10 +1932,10 @@ a.dkev { text-decoration: none; }
 :root:not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md).p2 { --m1: #9db6c9; --m2: #5b6e7d; }
 :root:not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md).p3 { --m1: #e59a6c; --m2: #c4652d; }
 :root:not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md):is(.p1, .p2, .p3) { position: relative; border-radius: 50%;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M1.6 3.6 4.3 5.6 6 2 7.7 5.6 10.4 3.6 9.4 8H2.6zM2.6 8.9h6.8V10H2.6z'/%3E%3C/svg%3E") center 45% / 72% no-repeat, linear-gradient(90deg, var(--m1), var(--m2)); box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.12); }
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' stroke='%23fff' stroke-width='1.1' stroke-linejoin='round' d='M1.3 4 4.1 6.6 6 2 7.9 6.6 10.7 4 9.3 10H2.7z'/%3E%3C/svg%3E") 50% 50% / 60% 60% no-repeat, linear-gradient(90deg, var(--m1), var(--m2)); box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.12); }
 /* Nov 16: dark mode: the crown in the medal dots = the sheet background color (#1d252f); the medal colors stay */
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md):is(.p1, .p2, .p3) { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%231d252f' d='M1.6 3.6 4.3 5.6 6 2 7.7 5.6 10.4 3.6 9.4 8H2.6zM2.6 8.9h6.8V10H2.6z'/%3E%3C/svg%3E") center 45% / 72% no-repeat, linear-gradient(90deg, var(--m1), var(--m2)); } }
-:root[data-theme="dark"]:not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md):is(.p1, .p2, .p3) { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%231d252f' d='M1.6 3.6 4.3 5.6 6 2 7.7 5.6 10.4 3.6 9.4 8H2.6zM2.6 8.9h6.8V10H2.6z'/%3E%3C/svg%3E") center 45% / 72% no-repeat, linear-gradient(90deg, var(--m1), var(--m2)); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md):is(.p1, .p2, .p3) { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%231d252f' stroke='%231d252f' stroke-width='1.1' stroke-linejoin='round' d='M1.3 4 4.1 6.6 6 2 7.9 6.6 10.7 4 9.3 10H2.7z'/%3E%3C/svg%3E") 50% 50% / 60% 60% no-repeat, linear-gradient(90deg, var(--m1), var(--m2)); } }
+:root[data-theme="dark"]:not(#_) :is(.sdots, .slg, .fins, .ppl) :is(i, .md):is(.p1, .p2, .p3) { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%231d252f' stroke='%231d252f' stroke-width='1.1' stroke-linejoin='round' d='M1.3 4 4.1 6.6 6 2 7.9 6.6 10.7 4 9.3 10H2.7z'/%3E%3C/svg%3E") 50% 50% / 60% 60% no-repeat, linear-gradient(90deg, var(--m1), var(--m2)); }
 :root:not(#_) .sdots i:is(.p1, .p2, .p3) { width: 11px; height: 11px; margin: -1px -1px; } :root:not(#_) .sdots i:is(.p1, .p2, .p3) b { left: 13px; }
 :root:not(#_) .slg i.m { width: 11px; height: 11px; vertical-align: -1px; }
 :root:not(#_) .fins .md { width: 14px; height: 14px; vertical-align: -2px; }
@@ -2084,14 +2155,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     : n > f.length ? `<p class="fmore">+ ${n - f.length} more</p>` : "");
   const usedTip = (v, pop) => { const ch = altSum(v), ex = nxOf(v);
     return `<h3>Top players</h3><p>A <b>top player</b> won at least 2 more matches than they lost (ties do not count) at a single-deck event ${winLast()}.</p>
-    <p><b>${v.of}</b> top players used this deck; <b>${ex}</b> used exactly this list${v.rec ? ` (together <b>${recTxt(v.rec)}</b>, ${wrPct(v.rec)}% win)` : ""}${ch ? `, and <b>${ch}</b> more with 1 or 2 cards changed (\u201ctweaks\u201d${v.grec ? `; all ${v.nu} together ${recTxt(v.grec)}, ${wrPct(v.grec)}%` : ""})` : ""}.</p>
+    <p><b>${v.of}</b> top players used this deck; <b>${ex}</b> used exactly this list${v.rec ? ` (together <b>${recTxt(v.rec)}</b>, ${wrPct(v.rec)}% win)` : ""}${ch ? `, and <b>${ch}</b> more with 1 to 3 cards swapped${v.grec ? ` (all ${v.nu} together ${recTxt(v.grec)}, ${wrPct(v.grec)}%)` : ""}` : ""}.</p>
     ${v.fin && v.fin.length > 1 ? `<h4>Results with exactly this list</h4>${finRows(v.fin, ex)}` : ""}
     ${pop ? `<p><b>Popular now</b>: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.</p>` : ""}`; };
   // Each version has a small QR button (logo glyph + "QR"); it opens the full-screen QR view for that version (data: alt[k].qr)
   const QR_GLYPH = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="13.45" y="2.95" width="7.6" height="7.6" rx="1.9"/><rect x="2.95" y="13.45" width="7.6" height="7.6" rx="1.9"/></g><g fill="currentColor"><path d="M2.009 6A4.8 4.8 0 0 1 11.491 6H9.448A2.8 2.8 0 0 0 4.052 6ZM2.009 7.5A4.8 4.8 0 0 0 11.491 7.5H9.448A2.8 2.8 0 0 1 4.052 7.5Z"/><circle cx="6.75" cy="6.75" r="1.785"/><rect x="15.4" y="4.9" width="3.4" height="3.4" rx="0.75"/><rect x="4.9" y="15.4" width="3.4" height="3.4" rx="0.75"/><circle cx="14.5" cy="14.5" r="1.5"/><circle cx="20" cy="14.5" r="1.5"/><circle cx="17.25" cy="17.25" r="1.5"/><circle cx="14.5" cy="20" r="1.5"/><circle cx="20" cy="20" r="1.5"/></g></svg>';
   const tName = (c) => c.n + (curDup.has(c.n) ? " " + c.id.split("-")[0].toUpperCase() : ""); // plain-text name (+ set code when needed)
   const altName = (a) => `\u2212${a.out.map(tName).join(", ")} +${a.in.map(tName).join(", ")}`;
-  const altBtn = (v, i) => (v.alt && v.alt.length ? `<button class="altb" type="button" aria-expanded="false" aria-label="${v.alt.length} tweak${v.alt.length > 1 ? "s" : ""}: 1 or 2 cards changed" data-cids="${v.alt.flatMap((a) => a.in.map((c) => c.id)).join(" ")}">+ ${v.alt.length} tweak${v.alt.length > 1 ? "s" : ""}${CARET}</button>` : "");
   const STAR = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 .8l1.6 3.3 3.6.5-2.6 2.5.6 3.6L6 9l-3.2 1.7.6-3.6L.8 4.6l3.6-.5z" fill="currentColor"/></svg>';
   const FIRE = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6.2.8c.3 1.7-.6 2.6-1.4 3.5C4 5.2 3.1 6.2 3.1 7.7A2.9 2.9 0 0 0 6 10.9a2.9 2.9 0 0 0 2.9-3.1c0-1-.4-1.8-.9-2.4.1.8-.2 1.5-.8 1.7.3-2-.2-4.5-1-6.3z" fill="currentColor"/></svg>'; // "Hot" mark, filled (a star means rarity in the game)
   const UPM = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.2 10.6 6.4H7.6V10.8H4.4V6.4H1.4Z" fill="currentColor"/></svg>'; // "Top" mark (decks under 2% share)
@@ -2127,16 +2197,37 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // a short sheet: bars and tiles, few words.
   const PPL_I = '<svg class="sppl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>';
   const SPCH = '<svg class="spch" viewBox="0 0 8 10" aria-hidden="true"><path d="M2 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'; // "opens a sheet"
+  // Nov 17: exact / swap icons (user pick: "v4"): exact = 2 stacked cards with a check; swap k = k fanned cards + a round swap badge
+  const EXACT_I = `<svg class="swi2" viewBox="0 0 32 32" aria-hidden="true"><rect x="8.5" y="6" width="11" height="15" rx="2" fill="var(--cf)" stroke="currentColor" stroke-width="1.5" opacity=".55"/><rect x="12.5" y="10" width="11" height="15" rx="2" fill="var(--bg0)" stroke="var(--bg0)" stroke-width="4.2"/><rect x="12.5" y="10" width="11" height="15" rx="2" fill="var(--cf)" stroke="currentColor" stroke-width="1.7"/><path d="M15.2 17.6l2.2 2.2 3.9-4.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const SWX_I = (k) => { const A = [[0], [-7, 7], [-10.5, 0, 10.5]][k - 1], f = A[A.length - 1], PV = k > 1 ? "14 40" : "14 22"; // Nov 17: k fanned cards (each front card cuts a gap into the one behind it), the number k on the front card, a round swap badge
+    return `<svg class="swi2" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(${[0, -1.6, -2.4][k - 1]} 0)">${A.map((a, j) => `${j ? `<rect x="9" y="8" width="10" height="14" rx="1.8" transform="rotate(${a} ${PV})" fill="var(--bg0)" stroke="var(--bg0)" stroke-width="4"/>` : ""}<rect x="9" y="8" width="10" height="14" rx="1.8" transform="rotate(${a} ${PV})" fill="var(--cf)" stroke="currentColor" stroke-width="1.5"/>`).join("")}<text class="swn" x="${k > 1 ? 13.4 : 14}" y="${k > 1 ? 14.4 : 15.4}" transform="rotate(${f} ${PV})" text-anchor="middle" dominant-baseline="central">${k}</text></g><g transform="translate(${[-1.2, -0.4, 0.6][k - 1]} -4)"><circle cx="24" cy="24" r="6.8" fill="var(--bg0)"/><path d="M19.85 22.89A4.3 4.3 0 0 1 27.2 21.12M28.15 25.11A4.3 4.3 0 0 1 20.8 26.88" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/><path d="M28.94 23.05L28.5 19.95L25.9 22.29ZM19.06 24.95L19.5 28.05L22.1 25.71Z" fill="currentColor" stroke="currentColor" stroke-width="0.6" stroke-linejoin="round"/></g></svg>`; };
+  // Nov 17: cards swapped vs the list (1-3), from the data (k) or from the "in" copies (older data)
+  // Nov 17: "top players" icon: two people + a small round badge with a trophy (the same badge place as the swap icons)
+  const TOPP_I = '<svg class="swi2" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(0.8 2.6) scale(1.03)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></g><circle cx="24.2" cy="19.8" r="7" fill="var(--bg0)"/><path transform="translate(24.2 20.2) scale(0.9) translate(-24 -19.6)" d="M24 14.6l1.65 3.35 3.7.54-2.68 2.6.63 3.68L24 23.03l-3.3 1.74.63-3.68-2.68-2.6 3.7-.54z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'; // Nov 17: two people (smaller than the card icons: fewer lines, so less weight) + an outline star in a background-colored gap (not a trophy: no top-3 meaning)
+  const PM_I = '<svg class="pmi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>'; // Nov 17: "players" mark before each count
+  const lvOf = (a) => Math.min(3, a.k || (a.in || []).reduce((s, c) => s + (c.c || 1), 0) || 1);
+  const lvU = (v, k) => (v.alt || []).filter((a) => lvOf(a) === k).reduce((s, a) => s + (a.u || 0), 0);
+  // Nov 17: under a list: a caption with the Top players button (all top players of the list family: exact + 1-3 swaps),
+  // then 4 tiles in one row: exact (a number, not a button) and 1 / 2 / 3 swaps (each opens the swap panel at that level)
+  const swapBlock = (v) => { if (v.bc || !v.nu) return "";
+    const ex = nxOf(v), pl = (n) => `<small class="swpl">player${n === 1 ? "" : "s"}</small>`, sw = (k) => `${k} swap${k > 1 ? "s" : ""}`;
+    return `<div class="swb"><div class="swt"><div class="swx" role="img" title="${ex} top player${ex === 1 ? "" : "s"} with exactly this list" aria-label="${ex} top player${ex === 1 ? "" : "s"} with exactly this list"><b>${ex}</b>${EXACT_I}${pl(ex)}</div>${[1, 2, 3].map((k) => { const n = lvU(v, k);
+        return n ? `<button class="altb swl" type="button" data-lv="${k}" aria-expanded="false" title="${n} top player${n > 1 ? "s" : ""} with ${k} card${k > 1 ? "s" : ""} swapped" aria-label="${n} top player${n > 1 ? "s" : ""} with ${sw(k)}: show them"><b>${n}</b>${SWX_I(k)}${pl(n)}${CARET}</button>`
+          : `<div class="swl off" title="No top player with ${k} card${k > 1 ? "s" : ""} swapped" aria-hidden="true"><b>0</b>${SWX_I(k)}${pl(0)}</div>`; }).join("")}<button class="sp spn swp" type="button" data-sk="tp" aria-haspopup="dialog" title="${v.nu} top players: this list or 1\u20133 cards swapped" aria-label="Top players: ${v.nu} with this list or 1 to 3 cards swapped, of ${v.of}"><b>${v.nu}</b>${TOPP_I}${pl(v.nu)}${SPCH}</button></div></div>`; };
   // Nov 14: sheet top = hero number + share bar + 3 tiles (big value, label, detail)
   const sHero = (n, of, txt, bar, barTxt) => `<div class="shero"><b>${n}</b>${of != null ? ` <small>of ${of}</small>` : ""}<span>${txt}</span></div>${bar != null ? `<div class="sbar"><i style="width:${Math.max(2, Math.min(100, bar)).toFixed(1)}%"></i></div><p class="sbl">${barTxt}</p>` : ""}`;
   const sT3 = (L) => `<div class="st3">${L.filter(Boolean).map(([b, s, e]) => `<div><b>${b}</b><span>${s}</span>${e ? `<em>${e}</em>` : ""}</div>`).join("")}</div>`;
   const sTile = (big, sub, small) => `<div class="stile"><b>${big}${small ? ` <small>${small}</small>` : ""}</b><span>${sub}</span></div>`;
   const fTag = (p, of) => p <= 3 ? `<span class="md p${p}" aria-label="${ordF(p)} place"></span>` : of && p / of <= 0.25 ? '<span class="tg8">Top 25%</span>' : "";
   const fCls = (p, of) => p <= 3 ? ` class="p${p}"` : of && p / of <= 0.25 ? ' class="q"' : "";
+  // Nov 17: one bar per list, split in exact / 1 / 2 / 3 swaps; each part holds its icon (same as the swap bar) and its count when it fits
   const popSheet = (d) => { const L = (d.lists || [d]).slice(0, 4), mx = Math.max(...L.map((x) => x.nu || 1));
-    return `<h3 class="sh3">${STAR_I}Popular now</h3><p class="ssub">The list most top players build from.</p><div class="sbars">${L.map((x, k) => { const nx = nxOf(x), nu = x.nu || nx;
-      return `<div class="sbr${k ? "" : " me"}"><span>List ${k + 1}</span><span class="sbar"><i class="x" style="width:${(100 * nx / mx).toFixed(1)}%"></i><i class="t" style="width:${(100 * (nu - nx) / mx).toFixed(1)}%"></i></span><span>${nu}</span></div>`; }).join("")}</div>
-      <p class="slg"><i class="x"></i>exact list <i class="t"></i>with 1\u20132 card tweaks</p><p class="snote">Most used is not always the best: compare the win rates.</p>`; };
+    const seg = (x) => { const s = [nxOf(x), lvU(x, 1), lvU(x, 2), lvU(x, 3)], nu = x.nu || s[0], r = nu - s.reduce((a, b) => a + b, 0); if (r > 0) s[3] += r; return s; };
+    const tt = (c, j) => `${c} top player${c > 1 ? "s" : ""} ${j ? `with ${j} card${j > 1 ? "s" : ""} swapped` : "with the exact list"}`;
+    return `<h3 class="sh3">${STAR_I}Popular now</h3><p class="ssub">The list most top players build from.</p><div class="sbars pbars">${L.map((x, k) => { const s = seg(x), nu = x.nu || s[0];
+      return `<div class="sbr${k ? "" : " me"}"><span>List ${k + 1}</span><span class="sbar">${s.map((c, j) => { const w = 100 * c / mx;
+        return c ? `<i class="s${j}" style="width:${w.toFixed(1)}%" title="${tt(c, j)}" aria-label="${tt(c, j)}">${w >= 8 ? (j ? SWX_I(j) : EXACT_I) : ""}${w >= 12 ? `<b>${c}</b>` : ""}</i>` : ""; }).join("")}</span><span>${nu}</span></div>`; }).join("")}</div>
+      <p class="snote">Most used is not always the best: compare the win rates.</p>`; };
   // Nov 14: short event names in rows (prize text, emojis, "Pokémon TCG Pocket" out); the full name stays in the opened sheet
   const shortEv = (n) => {
     let s = String(n)
@@ -2166,18 +2257,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const tpSheet = (v) => { const ex = nxOf(v), tw = (v.nu || ex) - ex;
     const f = v.fin && v.fin.length ? v.fin : v.pl ? [[...((String(v.pl).match(/\d+/g) || [0, 0]).slice(0, 2).map(Number)), ...(v.rec || [0, 0, 0]), v.dt || "", ...(v.tid && v.pid ? [v.tid, v.pid] : [])]] : [];
     v._f = f; // the rows as shown (1 player: built from the list's own best finish, with its event and player)
-    const A = (v.alt || []).flatMap((a, i) => (a.fin || []).map((r, j) => ({ r, k: a.k || 1, key: `a${i}.${j}`, a })));
+    const A = (v.alt || []).flatMap((a, i) => (a.fin || []).map((r, j) => ({ r, k: lvOf(a), key: `a${i}.${j}`, a })));
     const all = [...f.map((r, j) => ({ r, k: 0, key: `x${j}` })), ...A];
     const days = winDays(); // R25: 7, 10 or 14 days
     const hasT = A.length > 0;
-    const wk = days.length && all.length ? `<p class="slg sl2">Results ${winWk()} <span><i class="m p1"></i><i class="m p2"></i><i class="m p3"></i>1st\u20133rd <i class="q"></i>top 25%</span></p>${hasT ? '<p class="slg sl3"><span><i class="ld"></i><b>1</b>1-card tweak <i class="ld"></i><b>2</b>2-card tweak</span></p>' : ""}<div class="swk" style="grid-template-columns:repeat(${days.length},1fr)">${days.map((dy, k) => `<div class="swd${k === days.length - 1 ? " last" : ""}${days.length > 10 && (days.length - 1 - k) % 2 ? " nol" : ""}"><span class="sdots">${all.filter((x) => x.r[5] === dy).sort((a, b) => b.r[0] / b.r[1] - a.r[0] / a.r[1]).map((x) => `<i${fCls(x.r[0], x.r[1])} data-k="${x.key}">${x.k ? `<b>${x.k}</b>` : ""}</i>`).join("")}</span>${days.length > 10 && k !== days.length - 1 ? +dy.slice(8) : `${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}`}</div>`).join("")}</div>` : "";
+    const wk = days.length && all.length ? `<p class="slg sl2">Results ${winWk()} <span><i class="m p1"></i><i class="m p2"></i><i class="m p3"></i>1st\u20133rd <i class="q"></i>top 25%</span></p>${hasT ? '<p class="slg sl3"><span><i class="ld"></i><b>1</b><i class="ld"></i><b>2</b><i class="ld"></i><b>3</b>cards swapped</span></p>' : ""}<div class="swk" style="grid-template-columns:repeat(${days.length},1fr)">${days.map((dy, k) => `<div class="swd${k === days.length - 1 ? " last" : ""}${days.length > 10 && (days.length - 1 - k) % 2 ? " nol" : ""}"><span class="sdots">${all.filter((x) => x.r[5] === dy).sort((a, b) => b.r[0] / b.r[1] - a.r[0] / a.r[1]).map((x) => `<i${fCls(x.r[0], x.r[1])} data-k="${x.key}">${x.k ? `<b>${x.k}</b>` : ""}</i>`).join("")}</span>${k === 0 || dy.slice(5, 7) !== days[k - 1].slice(5, 7) ? `${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}` : +dy.slice(8)}</div>`).join("")}</div>` : "";
     // R20: rows with an event (tid) and player (pid): the event name under the place, and a tap opens that player's list
     const evN = (tid) => (EV && EV.events || []).find((x) => x.tid === tid)?.name || "";
     const chgO = (a) => (a.out || []).map((c) => `<span class="cm">\u2212</span>${c.c > 1 ? c.c + " " : ""}${esc(c.n)}`).join(" ");
     const chgI = (a) => (a.in || []).map((c) => `<span class="cp">+</span>${c.c > 1 ? c.c + " " : ""}${esc(c.n)}`).join(" ");
     const chg = (a) => `${chgO(a)} ${chgI(a)}`;
     const row = ({ r: [p, of, w, l, t, dt, tid, pid], key, a }) => { const en = tid && evN(tid) ? esc(shortEv(evN(tid))) : "";
-      const two = a && (a.k === 2 || (a.in || []).reduce((s, c) => s + (c.c || 1), 0) > 1); // 2 cards changed: minus line, then plus line
+      const two = a && lvOf(a) > 1; // 2-3 cards swapped: minus line, then plus line
       const sub = a ? `${two ? `<span class="fch2">${chgO(a)}</span><span class="fch2">${chgI(a)}</span>` : `<span class="fch2">${chg(a)}</span>`}${en ? `<span class="fen">${en}</span>` : ""}` : en;
       return `<li data-k="${key}"${tid && pid ? ` class="frow" data-r="${key}" role="button" tabindex="0"` : ""}><span class="fpl">${ordF(p)} <span>of ${of}</span>${fTag(p, of)}${sub ? `<span class="fev">${sub}</span>` : ""}</span><span class="fsc">${w}-${l}-${t}</span><span class="fdt">${dt ? MON[+dt.slice(5, 7) - 1] + " " + +dt.slice(8) : ""}</span>${tid && pid ? '<span class="fch" aria-hidden="true">\u203a</span>' : ""}</li>`; };
     const nP = new Set(all.map((x) => x.r[7]).filter(Boolean)).size, nE = new Set(all.map((x) => x.r[6]).filter(Boolean)).size;
@@ -2185,20 +2276,21 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const ord = (L) => L.slice().sort((x, y) => x.r[0] / x.r[1] - y.r[0] / y.r[1] || x.r[0] - y.r[0]);
     const sec = (t, L) => L.length ? `<h5 class="fsec">${t} \u00b7 ${L.length}</h5><ol class="fins">${L.map(row).join("")}</ol>` : "";
     const exRows = f.map((r, j) => ({ r, key: `x${j}` }));
-    const list = hasT ? `<div class="fscr">${sec("Exact list", exRows)}${sec("1 card changed", ord(A.filter((x) => x.k === 1)))}${sec("2 cards changed", ord(A.filter((x) => x.k === 2)))}</div>`
+    const list = hasT ? `<div class="fscr">${sec("Exact list", exRows)}${[1, 2, 3].map((k) => sec(`${k} swap${k > 1 ? "s" : ""}`, ord(A.filter((x) => x.k === k)))).join("")}</div>`
       : `<div class="fscr nos"><ol class="fins">${exRows.map(row).join("")}</ol></div>${ex > f.length ? `<p class="fmore">+ ${ex - f.length} more</p>` : ""}`;
     const b0 = f[0], rc = v.rec || [0, 0, 0];
     // Nov 15: top = 3 cards (like the deck sheet): exact list (of N top players, small bar), win rate, best place; tweaks in one line
     // Nov 16: card 1 = top players: exact list + 1-card and 2-card tweaks (players), one stacked bar of all top players of the deck
-    const t1 = (v.alt || []).filter((a) => (a.k || 1) === 1).reduce((s, a) => s + (a.u || 0), 0), t2 = (v.alt || []).filter((a) => a.k === 2).reduce((s, a) => s + (a.u || 0), 0);
-    const pw = (n) => v.of ? Math.min(100, n / v.of * 100).toFixed(1) : 0;
-    const bar = v.of ? `<i class="tpb"><i style="width:${Math.max(3, +pw(ex))}%"></i>${t1 ? `<i class="k1" style="width:${pw(t1)}%"></i>` : ""}${t2 ? `<i class="k2" style="width:${pw(t2)}%"></i>` : ""}</i>` : "";
-    const top = `<div class="dk3 tp3"><div class="tpc"><span>Exact list</span><b>${ex}</b><small>of ${v.of} top players</small>${bar}</div>
-      <div><span>Win rate</span><b>${wrPct(rc)}%</b><small>${rc.join("-")}</small></div>
-      <div><span>Best</span><b>${b0 ? ordF(b0[0]) : "\u2013"}</b><small>${b0 ? `of ${b0[1]}` : ""}</small></div></div>
-      ${tw > 0 ? `<div class="tpt3"><div><span><i class="k1"></i>1-card tweaks</span><b>${t1 ? "+" + t1 : "\u2013"}</b></div><div><span><i class="k2"></i>2-card tweaks</span><b>${t2 ? "+" + t2 : "\u2013"}</b></div>${v.grec ? `<div><span>All together</span><b>${wrPct(v.grec)}% <small>win</small></b></div>` : "<div></div>"}</div>` : ""}`;
-    const fold = `${wk}${list}`; // Nov 16: no "Results this week" fold: the chart and the list show directly
-    return `<h3 class="sh3">${PPL_I}Top players</h3>${top}${fold}<p class="snote">Top player: at least 2 more wins than losses at an event ${winWk()}.</p>`; };
+    const T = [0, 1, 2, 3].map((k) => k ? lvU(v, k) : 0);
+    // Nov 17: top = one card per version group (exact, 1 / 2 / 3 swaps; only groups with players), each with its own win rate
+    // and players, then the best place. Small icons: the same as under the list.
+    const sw = (k) => `${k} swap${k > 1 ? "s" : ""}`;
+    const lvR = (k) => (v.alt || []).filter((a) => lvOf(a) === k).reduce((s, a) => s.map((x, j) => x + ((a.rec || [])[j] || 0)), [0, 0, 0]);
+    const cell = (ic, lab, r, n) => `<div><span>${ic}${lab}</span><b>${wrPct(r)}%</b><small>${n} player${n === 1 ? "" : "s"}</small></div>`;
+    const top = `<p class="tpcap">Win rate by version</p><div class="tpw" style="--n:${2 + [1, 2, 3].filter((k) => T[k]).length}">${cell(EXACT_I, "Exact", rc, ex)}${[1, 2, 3].filter((k) => T[k]).map((k) => cell(SWX_I(k), sw(k), lvR(k), T[k])).join("")}
+      <div class="tpbest"><span>Best</span><b>${b0 ? ordF(b0[0]) : "\u2013"}</b><small>${b0 ? `of ${b0[1]}` : ""}</small></div></div>`;
+    const fold = `<div class="tpg"><div class="tpgl">${wk}</div><div class="tpgr">${list}</div></div>`; // Nov 17: wide: chart left, results right
+    return `<h3 class="sh3">${TOPP_I}Top players</h3>${top}${fold}<p class="snote">Top player: at least 2 more wins than losses at an event ${winWk()}.</p>`; };
   const bcSheet = (v, d) => { const [w, l] = String(v.sc || "0-0-0").split("-").map(Number), n = w - l, k = Math.max(1, Math.ceil((2 - n) / 2));
     const pm = /^(\d+)\D+(\d+)/.exec(String(v.pl || "")), pl = pm ? +pm[1] : 0, of = pm ? +pm[2] : 0, need = Math.floor(of * TOP_PCT);
     const X = '<span class="cx" aria-hidden="true"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2 2 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>';
@@ -2261,8 +2353,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           <div class="tile t-sc"><span class="tl">Score${i === 0 ? ii("Score", scoreTip(v)) : ""}</span><div class="sc"><span>${esc(v.sc || "\u2013")}</span>${v.plm ? `<span class="pill ppl">${v.plm <= 3 ? `<span class="md p${v.plm}"></span>` : ""}${esc(v.pl || "")}</span>` : v.pl ? `<span class="pill pl">${esc(v.pl)}</span>` : ""}</div></div>
           <div class="tile t-ev"><span class="tl">Event</span><div class="ev" title="${esc(v.ev || "")}">${v.dt ? `<span class="dt">${fmtDate(v.dt)}</span> \u00b7 ` : ""}${esc(v.ev || "\u2013")}</div></div>
         </div>
-        ${(() => { const cmp = curCmp; curCmp = ""; const pop = i === 0 && curDeck && !curDeck.evt && popular(curDeck);
-          return v.bc || usedBy(v) || altBtn(v) || cmp ? `<div class="usrow">${v.bc ? `<button class="sp spt" type="button" data-sk="bc" aria-haspopup="dialog">${bcI(v)}${bcN(v)}${SPCH}</button>` : ""}${cmp}${usedBy(v) ? `${pop ? `<button class="sp spt" type="button" data-sk="pop" aria-haspopup="dialog">${STAR_I}Popular</button>` : ""}<button class="sp spn" type="button" data-sk="tp" aria-haspopup="dialog" aria-label="Top players: ${nxOf(v)} of ${v.of}">${PPL_I}${nxOf(v)} player${nxOf(v) > 1 ? "s" : ""}${SPCH}</button>` : ""}${altBtn(v, i)}</div>` : ""; })()}`;
+        ${swapBlock(v)}`;
   // Legend icon: a tiny card with the same corner tag as the marked cards
   const MARK_ICON = '<svg viewBox="0 0 8 11" aria-hidden="true"><rect x="0" y="0" width="8" height="11" rx="1.2" fill="currentColor" opacity="0.45"/><path d="M3.2 0H6.8A1.2 1.2 0 0 1 8 1.2V4.8Z" fill="var(--mark)" stroke="var(--mark-edge)" stroke-width="0.9" stroke-linejoin="round"/></svg>';
   const CARET = '<svg class="dcar" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 4 2.5 2.5L7.5 4"/></svg>';
@@ -2293,11 +2384,15 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const ins = diff(mine, base), outs = diff(base, mine);
       const chip = ([id, k]) => `<span class="chip" role="button" tabindex="0" data-cid="${id}" data-cn="${esc(names.get(id))}"><img src="c/${id}.webp" alt="" width="150" height="209">${cName({ id, n: names.get(id) })}${k > 1 ? ` <span class="x">&times;${k}</span>` : ""}</span>`;
       // ⇄ N vs ★1: opens the In / Out popover and fades every card except the changed ones (this list: added; List 1: removed)
-      curCmp = `<button class="altb cmpb" type="button" aria-expanded="false" aria-label="${nd} card${nd > 1 ? "s" : ""} changed versus list 1">${SWAP_I}${nd} vs List 1</button>`; // Nov 14: in the pill row (first place)
+      curCmp = `<button class="altb cmpb stc" type="button" aria-expanded="false" aria-label="${nd} card${nd > 1 ? "s" : ""} swapped versus list 1">${SWAP_I}${nd} swap${nd > 1 ? "s" : ""} from List 1</button>`; // Nov 17: the status chip of lists 2+
       outTxt = outs.map(chip).join("");
     }
-    return `
-      ${v.bc ? "" : i === 0 && d.lists && d.lists.length > 1 ? l1Tab(v) : ""}
+    // Nov 17: one status chip, always on the top edge of the list card: Popular now (list 1) / Unproven / No top result /
+    // "N swaps from List 1" (lists 2+, opens the swap view)
+    const chip = v.bc ? `<button class="sp stc bc" type="button" data-sk="bc" aria-haspopup="dialog">${bcI(v)}${bcN(v)}${SPCH}</button>`
+      : i === 0 && !d.evt && popular(d) ? `<button class="sp stc pop" type="button" data-sk="pop" aria-haspopup="dialog">${STAR_I}Popular now${SPCH}</button>` : curCmp;
+    curCmp = "";
+    return `${chip}
       <div class="cards"${outTxt ? ` data-out="${esc(outTxt)}"` : ""}>${copies.map((c, k) => { const img = `<img data-n="${esc(c.n)}"${dif[k] ? ' data-dif="1"' : ""} ${i === 0 ? 'fetchpriority="high" ' : ""}tabindex="0" role="button" src="c/${c.id}.webp" alt="${esc(c.n)}${dif[k] ? ` (not in the ${L1n(d)})` : ""}" width="150" height="209">`;
         return img; }).join("")}</div>
       <div class="sfoot">
@@ -2509,7 +2604,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     x.restore();
     if (med) disc(r0 - 5, med[2], med[3]);
     x.fillStyle = med ? "#ffffff" : "#66758a"; x.font = F(700, 32); x.textAlign = "center"; x.textBaseline = "middle";
-    x.fillText(String(d.rank), mx, my + 1); x.textAlign = "left"; x.textBaseline = "alphabetic";
+    x.fillText(d.rank != null ? String(d.rank) : "\u2013", mx, my + 1); x.textAlign = "left"; x.textBaseline = "alphabetic";
 
     // Deck name (up to 2 lines) and share / win
     const tx = cL + 410, tw = cL + cW - 40 - tx;
@@ -2519,7 +2614,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     let ny = cT + 118 - ((nl.length - 1) * lh) / 2;
     x.fillStyle = C.ink; nl.forEach((ln, k) => x.fillText(ln, tx, ny + k * lh));
     x.font = F(500, 27); x.fillStyle = C.muted;
-    x.fillText(fit(x, `${pct(d.share)} share  ·  ${pct(d.win)} win`, tw), tx, ny + (nl.length - 1) * lh + 50);
+    if (d.share != null && d.win != null) x.fillText(fit(x, `${pct(d.share)} share  ·  ${pct(d.win)} win`, tw), tx, ny + (nl.length - 1) * lh + 50);
 
     // Flat stat tiles: Score (with the place pill) and Event (with the list number)
     const tT = cT + 268, tH = 96, gap = 16;
@@ -2733,7 +2828,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       return n <= 0 ? "today" : n === 1 ? "yesterday" : n < 7 ? `${n} days ago` : n < 60 ? `${Math.floor(n / 7)} week${n < 14 ? "" : "s"} ago` : n < 730 ? `${Math.floor(n / 30)} months ago` : `${Math.floor(n / 365)} years ago`; };
     const when = t ? (["today", "yesterday"].includes(ago(+t)) ? ago(+t) : `${fmtDay(+t)} \u00b7 ${ago(+t)}`) : ""; // "today", "yesterday", "Oct 2 \u00b7 6 weeks ago"
     const srcUrl = o.tid && o.pid ? `https://play.limitlesstcg.com/tournament/${o.tid}/player/${encodeURIComponent(o.pid)}/decklist` : "";
-    SH = { label: opt && opt.label, p, code, dk, name: deckNameOf(p.k), when, played: playedOk ? fmtDay(o.played) : "", src: srcUrl, packed: packCode(code), M: null, today: null };
+    SH = { o, playedOk, label: opt && opt.label, p, code, dk, name: deckNameOf(p.k), when, played: playedOk ? fmtDay(o.played) : "", src: srcUrl, packed: packCode(code), M: null, today: null };
     shName = (p.k || "shared-list") + ".png"; shBlob = null;
     { const c = document.createElement("canvas"), img = new Image(); img.onload = () => { c.width = img.width; c.height = img.height; c.getContext("2d").drawImage(img, 0, 0); c.toBlob((b) => { shBlob = b; }); }; img.src = qrPng(SH.packed, "#ffffff"); }
     if ($("shv").hidden && !(history.state && history.state.sh)) pushH({ ...(history.state || {}), sh: 1 }, "", location.href); // Back closes the list (only)
@@ -2754,6 +2849,17 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (!$("shv").hidden && $("shBox").dataset.mode === "cards") shCards();
   }
   function shHead() { return `<p class="shk">${SH.label ? esc(SH.label) : `Shared list${SH.when ? " \u00b7 " + SH.when : ""}`}</p><h3 id="shT">${esc(SH.name)}<span class="shen">${SH.dk.energy.map((e) => `<img src="e/${e}.webp" alt="${cap(e)}" title="${cap(e)}" width="20" height="20">`).join("")}</span></h3>`; }
+  let shCardP = null, shCardFor = null;
+  function shCardBlob() { // the shared list as the full card image (makeCard), made once per opened list
+    if (shCardFor === SH && shCardP) return shCardP;
+    shCardFor = SH;
+    const o = SH.o, d0 = data && (data.decks.find((x) => x.id === SH.p.k) || (data.nolist || []).find((x) => x.id === SH.p.k)), x = SH.today && (SH.today.d || SH.today.nl);
+    const ev = (EV && EV.events || []).find((e) => e.tid === o.tid);
+    const pp = /^(\d+)-(\d+)$/.exec(SH.p.p || ""), pl = pp ? `${ordF(+pp[1])} of ${pp[2]}` : "";
+    const d = { id: SH.p.k, name: SH.name, art: (d0 && d0.art) || [], energy: SH.dk.energy, rank: d0 ? d0.rank : null, share: x ? x.share : null, win: x ? x.win : null, nv: 1, evt: "Shared list" };
+    const v = { qr: SH.packed, energy: SH.dk.energy, sc: SH.p.s || "", pl, ev: ev ? ev.name : "", dt: SH.playedOk && o.played ? new Date(o.played).toISOString().slice(0, 10) : "" };
+    return (shCardP = makeCard(d, v, 0));
+  }
   function shCards() {
     const box = $("shBox"), M = SH.M, dk = SH.dk, T = SH.today;
     box.dataset.mode = "cards";
@@ -2781,6 +2887,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   // Nov 15: the result list highlights its middle row, and that row's dot in the chart
   function fscrCur(box) { const rows = [...box.querySelectorAll("li[data-k]")]; if (!rows.length) return;
+    if (!box.dataset.pad && rows.length > 1 && box.clientHeight) { box.dataset.pad = 1; // Nov 17: room after the last row, so every row can scroll to the top (short lists too)
+      const mh = parseFloat(getComputedStyle(box).maxHeight), H = box.scrollHeight > box.clientHeight + 1 || !mh ? box.clientHeight : mh;
+      box.style.setProperty("--fend", Math.max(0, Math.round(H - rows[rows.length - 1].offsetHeight - 2)) + "px"); }
     const bb = box.getBoundingClientRect(), atTop = box.scrollTop < 2, atEnd = box.scrollTop + box.clientHeight >= box.scrollHeight - 2;
     const mid = atTop ? bb.top + 30 : atEnd ? bb.bottom - 10 : bb.top + bb.height / 2;
     let best = null, bd = 1e9; for (const r of rows) { const rb = r.getBoundingClientRect(), d = Math.abs((rb.top + rb.bottom) / 2 - mid); if (d < bd) { bd = d; best = r; } }
@@ -2832,6 +2941,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (td) { const id = SH && SH.p.k, k = +td.dataset.k; closeShared(); track("shared-today"); if (id && $(id)) openAt(id, k); return; }
     if (e.target.closest(".shsave")) {
       track("shared-save");
+      // Nov 17: the same full card image as a list's QR save (deck, score, place, event, QR, steps); the bare QR only as a fallback
+      let blob = null; try { blob = await shCardBlob(); } catch (err) {}
+      if (blob) shBlob = blob;
       if (!shBlob) { $("shMsg").textContent = "The image is not ready. Try again."; return; }
       const file = new File([shBlob], shName, { type: "image/png" });
       if (TOUCH && navigator.canShare && navigator.canShare({ files: [file] })) { try { await navigator.share({ files: [file] }); return; } catch (err) { if (err && err.name === "AbortError") return; } }
@@ -3605,7 +3717,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     <h4>What is in Latest Events?</h4><p>The tournaments of the same days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.</p>
     <h4>What is a &ldquo;top player&rdquo;?</h4><p>A player with at least 2 more wins than losses at a single-deck event.</p>
     <h4>What do &ldquo;Unproven&rdquo; and &ldquo;No top result&rdquo; mean?</h4><p>The deck has no top player in these days. <b>Unproven</b>: some players won more than they lost, but none reached a top result; the page shows the best of them. <b>No top result</b>: no player won more than they lost; the page shows the best-placed list. Both are a starting point, not a proven list.</p>
-    <h4>How are the lists chosen?</h4><p>List 1 of a deck is the list that the most top players used. A list that only 1 or 2 cards differ from is a <b>tweak</b> of it (&ldquo;+ N tweaks&rdquo;, each with its own QR code). A list with 3 or more different cards is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. <b>&#9733; Popular now</b> marks a list 1 that clearly more top players used exactly than any other list.</p>
+    <h4>How are the lists chosen?</h4><p>List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. <b>&#9733; Popular now</b> marks a list 1 that clearly more top players used exactly than any other list.</p>
     <h4>Why is the win rate different from other sites?</h4><p>Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.</p>
     <h4>Can I use it like an app?</h4><p>Yes: tap <b>Add to Home Screen</b> at the bottom of the page for the steps.</p>
     <h4>Is it free?</h4><p>Yes: no ads and no sign-up. ${GC ? "No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter)." : "No tracking."} This browser keeps only your theme and the last tab you used.</p>
@@ -3790,16 +3902,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     curDup = dupNames(d);
     const info = slide.querySelector(".sfoot .info"), qcol = slide.querySelector(".sfoot .qcol"), qb = qcol && qcol.querySelector(".qr"), qim = qb && qb.querySelector("img");
     if (!info) return;
-    const zk = ZK().k, sr = cssR(slide.getBoundingClientRect(), zk), ir = cssR(info.getBoundingClientRect(), zk), MAXT = 6;
-    const all = v.alt.map((a, k) => ({ a, k, n: altPairs(a).length > 1 ? 2 : 1 }));
-    // 5+ tweaks: split into "1 card" / "2 cards" tabs (6 each at most); fewer: one carousel, 1-card tweaks first
-    const G = all.length >= 5 ? [1, 2].map((n) => ({ n, items: all.filter((x) => x.n === n).slice(0, MAXT) })).filter((g) => g.items.length) : [{ n: 0, items: all }];
+    const zk = ZK().k, sr = cssR(slide.getBoundingClientRect(), zk), ir = cssR(info.getBoundingClientRect(), zk), MAXT = 8;
+    // Nov 17: one tab per swap level (1, 2, 3 cards), 8 versions each at most; the panel opens at the tile's level
+    const all = v.alt.map((a, k) => ({ a, k, n: lvOf(a) }));
+    const lv = +btn.dataset.lv || 1, G = [{ n: lv, items: all.filter((x) => x.n === lv).slice(0, MAXT) }].filter((g) => g.items.length), g0 = 0; // Nov 17: the tile picks the level (no tabs)
+    if (!G.length) return;
     const stk = (cs, cls) => `<span class="tstk">${cs.map((c) => `<img${cls} src="c/${c.id}.webp" data-cid="${c.id}" data-cn="${esc(c.n)}" alt="${esc(c.n)}" title="${esc(tName(c))}" width="150" height="209">`).join("")}</span>`;
     const pop = document.createElement("div");
     pop.className = "apop3";
-    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top - 8}px;width:${ir.width}px;height:${ir.height + 15}px`; // Nov 15: 5px more at the bottom (room for the dots)
-    if (G.length < 2) pop.classList.add("one");
-    pop.innerHTML = `<div class="ttabs" role="tablist" aria-label="Cards changed">${G.length < 2 ? "" : G.map((g, j) => `<button type="button" role="tab" data-g="${j}" aria-selected="${j === 0}">${g.n} card${g.n > 1 ? "s" : ""}</button>`).join("")}</div>
+    { const qe = slide.querySelector(".sfoot .qcol"), qr = qe ? cssR(qe.getBoundingClientRect(), zk) : null; // Nov 17: top and bottom in line with the QR box
+      pop.style.cssText = qr ? `left:${ir.left - sr.left}px;top:${qr.top - sr.top}px;width:${ir.width}px;height:${qr.height}px` : `left:${ir.left - sr.left}px;top:${ir.top - sr.top - 8}px;width:${ir.width}px;height:${ir.height + 15}px`; } // Nov 15: 5px more at the bottom (room for the dots)
+    pop.classList.add("one", "lv" + lv);
+    pop.innerHTML = `<div class="ttabs" role="tablist" aria-label="Cards swapped">${G.length < 2 ? "" : G.map((g, j) => `<button type="button" role="tab" data-g="${j}" aria-selected="${j === g0}">${g.n} swap${g.n > 1 ? "s" : ""}</button>`).join("")}</div>
       <div class="tbody"><div class="tcar" role="listbox"></div></div><div class="tdots"></div>`;
     slide.append(pop);
     const q0 = qim ? qim.getAttribute("src") : "", q0n = qim ? qim.dataset.q : "";
@@ -3822,7 +3936,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const show = (g) => {
       pop.querySelectorAll(".ttabs button").forEach((b) => b.setAttribute("aria-selected", String(+b.dataset.g === g)));
       list = G[g].items; cur = -1;
-      car.setAttribute("aria-label", G[g].n ? `Tweaks: ${G[g].n} card${G[g].n > 1 ? "s" : ""} changed` : "Tweaks: 1 or 2 cards changed");
+      car.setAttribute("aria-label", `${G[g].n} card${G[g].n > 1 ? "s" : ""} swapped`);
       car.innerHTML = list.map(({ a, k }) => { const P = altPairs(a);
         return `<div class="tw" role="option" data-k="${k}" aria-label="${esc(altName(a))}"><span class="tsw">${stk(P.map((x) => x.out), "")}<span class="achev">${ACHEV}</span>${stk(P.map((x) => x.in), "")}</span>
           <span class="ast"><b>${a.u}</b> player${a.u > 1 ? "s" : ""}${a.pl ? ` \u00b7 ${esc(a.pl)}` : ""}</span></div>`; }).join("");
@@ -3840,7 +3954,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       if (im && it.classList.contains("on")) { cardClick(im); return; }
       it.scrollIntoView({ behavior: reduced ? "auto" : "smooth", inline: "center", block: "nearest" });
     });
-    show(0);
+    show(g0);
   }
   // Nov 14: the "N vs List 1" swaps in the same fixed panel as the tweaks (over the tiles): list-1 cards, a chevron down,
   // this list's cards; the card size fits the panel (height first, then width; a long row scrolls). All swaps show in the grid.
@@ -3852,14 +3966,19 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const row = (cs, cls) => cs.map((c) => `<img${cls} src="c/${c.id}.webp" data-cid="${c.id}" data-cn="${esc(c.n)}" alt="${esc(c.n)}" title="${esc(tName(c))}" width="150" height="209">`).join("");
     const pop = document.createElement("div");
     pop.className = "apop3 swp";
-    pop.style.cssText = `left:${ir.left - sr.left}px;top:${ir.top - sr.top - 8}px;width:${ir.width}px;height:${ir.height + 15}px`; // Nov 15: 5px more at the bottom (room for the dots)
-    pop.innerHTML = `<div class="swsc" role="group" aria-label="Cards swapped vs ${esc(L1n(d))}"><div class="swin"><div class="swr out">${row(pairs.map((x) => x.out), ' class="ao"')}</div>
+    // Nov 17: the swap view covers the whole foot of the list (tiles, QR and the swap bar): about 2x the room for the cards; tap outside or the chip closes it
+    { const qe = slide.querySelector(".sfoot .qcol"), be = slide.querySelector(".sfoot .swb"), qr = qe ? cssR(qe.getBoundingClientRect(), zk) : ir, br = be ? cssR(be.getBoundingClientRect(), zk) : null;
+      const top = Math.min(ir.top, qr.top), bot = br ? br.bottom : qr.bottom, right = Math.max(qr.right, br ? br.right : 0);
+      pop.style.cssText = `left:${ir.left - sr.left}px;top:${top - sr.top}px;width:${right - ir.left}px;height:${bot - top}px`; }
+    // One row of list 1's cards (out) over one row of this list's cards (in); the card size comes from the panel (height first, then width). 9+ swaps: min 34px and the rows scroll sideways
+    // Nov 17: up to 5 swaps, a label on the left of each row (List 1 / List N); 6+ swaps need that width for the cards
+    const n = pairs.length, g = 3, PH = parseFloat(pop.style.height), PW = parseFloat(pop.style.width), lab = n < 6, LW = lab ? 40 : 0;
+    const cw = Math.max(34, Math.min(Math.floor(((PH - 12 - 7 - 14) / 2) * 150 / 209), Math.floor((PW - 12 - LW - (n - 1) * g) / n), 64));
+    const lb = (t) => lab ? `<span class="swlb">${t}</span>` : "";
+    pop.innerHTML = `<div class="swsc" role="group" aria-label="Cards swapped vs ${esc(L1n(d))}"><div class="swin${lab ? " lab" : ""}"><div class="swrw">${lb("List 1")}<div class="swr out">${row(pairs.map((x) => x.out), ' class="ao"')}</div></div>
       <span class="swch" aria-hidden="true"><svg viewBox="0 0 14 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 2 5 5 5-5"/></svg></span>
-      <div class="swr">${row(pairs.map((x) => x.in), "")}</div></div></div>`;
+      <div class="swrw">${lb("This<br>List")}<div class="swr">${row(pairs.map((x) => x.in), "")}</div></div></div></div>`;
     slide.append(pop);
-    // card width: the 2 rows + chevron fill the height; narrower when the row would be wider than the panel (min 22 px, then it scrolls)
-    const n = pairs.length, H = pop.clientHeight - 12 - 7 - 14, W = pop.clientWidth - 12, g = 3;
-    const cw = Math.max(22, Math.min(Math.floor((H / 2) * 150 / 209), Math.floor((W - (n - 1) * g) / n), 46));
     pop.style.setProperty("--cw", cw + "px");
     altOpen = { btn, pop, slide, d, i, x0: slide.closest(".vars")?.scrollLeft || 0 };
     btn.setAttribute("aria-expanded", "true");
@@ -3874,7 +3993,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Capture phase: the "i" inside a deck row must not open or close the deck
   document.addEventListener("click", (e) => {
     const ab = e.target.closest(".altb");
-    if (ab) { e.preventDefault(); e.stopPropagation(); if (!ipop.hidden) hideTip(); toggleAlts(ab); return; }
+    if (ab) { e.preventDefault(); e.stopPropagation(); if (!ipop.hidden) hideTip();
+      const vs = ab.closest(".vars"), x = vs ? vs.scrollLeft : 0; toggleAlts(ab); // Nov 17: the list strip must not move when a swap tile opens
+      if (vs) { const keep = () => { if (Math.abs(vs.scrollLeft - x) > 0.5) vs.scrollLeft = x; }; keep(); requestAnimationFrame(keep); setTimeout(keep, 120); } return; }
     if (e.target.closest("#homeBtn") && installEv) { e.preventDefault(); e.stopPropagation(); track("home-btn"); const ev = installEv; installEv = null;
       ev.prompt(); ev.userChoice.then((c) => track("home-prompt-" + (c && c.outcome))).catch(() => {}); return; }
     if (e.target.closest("#homeBtn")) track("home-btn");
@@ -3884,6 +4005,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (b) { e.preventDefault(); e.stopPropagation(); showTip(b); return; }
     if (!ipop.hidden && !e.target.closest("#iPop, #cPop, dialog, #shv")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
   }, true);
+  document.addEventListener("mousedown", (e) => { if (e.target.closest && e.target.closest(".swt .altb")) e.preventDefault(); }, true); // Nov 17: a tap on a swap tile does not focus it (Safari scrolled the strip to the focused button)
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !ipop.hidden && $("shv").hidden) hideTip();
   }, true);
@@ -4076,7 +4198,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     L.forEach((v, k) => { if ((v.cards || []).some((c) => c.id === id)) ls.push(k + 1); else if ((v.alt || []).some((a) => a.in.some((c) => c.id === id))) al.push(k + 1); });
     const parts = [];
     if (ls.length) parts.push(`${ls.length > 1 ? "lists" : "list"} ${ls.join(", ")}`);
-    if (al.length) parts.push(`a tweak of ${al.map((k) => (k === 1 ? "the " + L1n(d) : "list " + k)).join(", ")}`);
+    if (al.length) parts.push(`a swap version of ${al.map((k) => (k === 1 ? "the " + L1n(d) : "list " + k)).join(", ")}`);
     return parts.length ? "in " + parts.join(" and ") : "";
   }
   // On open: scroll to the first list that has the card (its copies and the "Also played" button are highlighted by CSS)
