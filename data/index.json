@@ -440,6 +440,12 @@
    "path": "raw/2026/11/6afb3978ee43ef789147636a.json",
    "players": 88,
    "rule": "wl2"
+  },
+  "6aee2747e99f3235a75e259b": {
+   "date": "2026-11-10T00:00:00Z",
+   "path": "raw/2026/11/6aee2747e99f3235a75e259b.json",
+   "players": 28,
+   "rule": "wl2"
   }
  },
  "skipped": {
