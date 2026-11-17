@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794913851-3ebe -->
+<!-- ui: artifact version 1794936703-2148 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -609,6 +609,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 
 /* The 20 cards: one shared shadow under the whole grid, so no shadow spills onto a neighbor */
 .cards { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.slide > .cards, .slide > * > .cards { width: 94%; margin-inline: auto; } /* Nov 17: the deck a bit smaller (about the height the QR box gained) */
 /* ===== "Also played" (artifact version 294): a popover over the list footer, its arrow on the button; a centered snap carousel of
    the 1-card changes. The change in the middle is chosen and shown in the deck: the replaced card fades, the new card lies on it,
    8px right and down. Tap outside closes it. ===== */
@@ -797,9 +798,9 @@ html { -webkit-tap-highlight-color: transparent; }
 :root[data-theme="dark"] .icons img, :root[data-theme="dark"] .picons img, :root[data-theme="dark"] .cards img { filter: brightness(0.85); }
 
 /* List footer: Energy / Score / Event (flat tiles) on the left, the QR box (raised) on the right */
-.sfoot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--sp-2) var(--sp-3); align-items: stretch; }
-.sfoot > .info { grid-row: 1; grid-column: 1; }
-.sfoot > .qcol, .sfoot > .qr { grid-row: 1; grid-column: 2; }
+.sfoot { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sp-2) var(--sp-3); align-items: stretch; }
+.sfoot > .info { grid-row: 1; grid-column: 2; } /* Nov 18: QR on the left, tiles and the swap carousel on the right (closer to a right thumb) */
+.sfoot > .qcol, .sfoot > .qr { grid-row: 1; grid-column: 1; }
 /* List 1 identity: one color (cyan --acc-ink) and one star everywhere the page names list 1:
    the "★ List 1" token in text, the "★ Most played / Best place" tab on list 1, its dot, and its "Used by" pill.
    Accent ink is darker than --accent in light mode, for small-text contrast. */
@@ -1039,7 +1040,7 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Nov 16: "Top 10" card above the deck list */
 .t10 { margin: 2px var(--sp-3, 12px) 10px; padding: 10px 12px 8px; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 3px rgba(var(--sh), 0.12); }
 .t10h { margin: 0 0 4px; font-size: var(--fs-s, 13px); font-weight: 700; color: var(--ink); }
-.t10st { display: flex; gap: 12px; overflow-x: auto; padding: 6px 2px 4px; scrollbar-width: none; } .t10st::-webkit-scrollbar { display: none; }
+.t10st { display: flex; gap: 12px; overflow-x: auto; overflow-y: hidden; touch-action: pan-x pan-y; /* Nov 18: sideways only (the large iPad cards were 6px taller than the strip) */ padding: 6px 2px 4px; scrollbar-width: none; } .t10st::-webkit-scrollbar { display: none; }
 .t10i, .t10m { all: unset; box-sizing: border-box; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .t10i { position: relative; flex: none; display: flex; flex-direction: column; align-items: center; gap: 1px; border-radius: 10px; padding: 0 2px 2px; }
 .t10i b { position: relative; margin-top: -4px; font-size: 12.5px; font-weight: 800; color: var(--ink); } .t10i .pdl { font-size: 10.5px; } .t10e { color: var(--muted); }
@@ -1067,9 +1068,14 @@ html { -webkit-tap-highlight-color: transparent; }
 .t10ln { display: none; }
 @media (max-width: 760px) { /* phones: a wider card, tighter strip, larger icons; 3 decks show, a quarter of the 4th bleeds at the edge */
   .t10 { margin-left: -8px; margin-right: -8px; padding: 10px 10px 8px; } .t10st { gap: 8px; margin-right: -10px; padding-right: 10px; }
-  .t10 .t10i .t2c { zoom: 1.84; } .t10i b { font-size: 15px; } }
-@media (max-width: 420px) { .t10 .t10i .t2c { zoom: 1.65; } }
-@media (max-width: 370px) { .t10 .t10i .t2c { zoom: 1.5; } }
+  .t10 .t10i .t2c { zoom: 1.74; } .t10i b { font-size: 15px; } }
+@media (max-width: 420px) { .t10 .t10i .t2c { zoom: 1.53; } } /* Nov 18: a bit smaller: a part of the 4th deck shows at the edge */
+@media (max-width: 370px) { .t10 .t10i .t2c { zoom: 1.4; } }
+/* Nov 18: iPad and wider: larger, splashier Top 10 cards (card images are 240px wide: at most ~110px on screen stays sharp) */
+@media (min-width: 600px) and (max-width: 1100px) and (pointer: coarse) { :root:not(#_) .t10 .t10i .t2c { zoom: 3.56; } :root:not(#_) .t10i b { font-size: 20px; } :root:not(#_) .t10i .pdl { font-size: 14px; } :root:not(#_) .t10st { gap: 16px; } } /* Nov 18: iPad: much larger */
+@media (min-width: 600px) and (max-width: 790px) and (pointer: coarse) { :root:not(#_) .t10 .t10i .t2c { zoom: 3.25; } :root:not(#_) .t10st { gap: 12px; } } /* iPad mini: 3 decks in view */
+@media (min-width: 600px) { :root .t10 .t10i .t2c { zoom: 2.3; } :root .t10i b { font-size: 17px; } :root .t10i .pdl { font-size: 12px; } :root .t10st { gap: 12px; } }
+
 .evbig { position: relative; padding-right: 24px !important; } .evbig:hover { background: rgba(var(--sh), 0.09); }
 .evgo { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); display: flex; color: var(--acc-ink, #1d6eb9); }
 .evgo .spch { width: 8px; height: 12px; }
@@ -1126,7 +1132,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .sgu svg { width: 9px; height: 9px; }
 
 /* Nov 16: no jump while loading: the Top 10 card keeps its space until stats.json arrives; the "Loading decks" box fills the screen (the footer stays below) */
-.t10.t10wait { min-height: 355px; } @media (max-width: 599px) { .t10.t10wait { min-height: 340px; } } @media (max-width: 420px) { .t10.t10wait { min-height: 330px; } }
+.t10.t10wait { min-height: 475px; } @media (min-width: 600px) and (max-width: 760px) { .t10.t10wait { min-height: 520px; } } @media (min-width: 600px) and (max-width: 1100px) and (pointer: coarse) { :root .t10.t10wait { min-height: 550px; } } @media (max-width: 599px) { .t10.t10wait { min-height: 412px; } } @media (max-width: 420px) { .t10.t10wait { min-height: 405px; } } /* Nov 18: the space kept while loading = the Top 10 card height (names, 3.5 mover rows) */
 #list > .empty:only-child { min-height: 100vh; }
 
 
@@ -1145,20 +1151,45 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Nov 17: under the list: one connected bar of 5 equal cells: exact (a number) | 1 / 2 / 3 swaps (open the swap panel) | players (sheet).
    Every cell: icon, number, label on the same 3 lines, so icons, numbers and labels line up; ▾ / › in the top-right corner */
 .sfoot > .swb { grid-column: 1 / -1; margin-top: 2px; min-width: 0; }
-.swt { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.25fr); --cf: var(--surface); --bg0: var(--surface); --ln: var(--pill-line); }
+.swt { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); --cf: var(--surface); --bg0: var(--surface); --ln: var(--pill-line); }
 :root .swt > * { position: relative; display: grid; grid-template-columns: auto auto; grid-template-rows: auto; justify-content: center; align-items: center; align-content: center; column-gap: 4px; row-gap: 0; min-width: 0; height: auto;
   margin: 0; padding: 6px 2px; border: 0; border-radius: 0; background: none; font: inherit; color: var(--ink); line-height: 1.1; letter-spacing: 0; align-self: stretch; }
 /* Nov 17 (option B): the 4 counts form one outlined group; players is its own outlined cell after a small gap (not a call to action) */
 :root .swt > :not(.swp) { box-shadow: inset 0 1.5px 0 var(--ln), inset 0 -1.5px 0 var(--ln), inset 1.5px 0 0 var(--ln); }
 :root .swt > :first-child { border-radius: 12px 0 0 12px; }
 :root .swt > :nth-child(4) { border-radius: 0 12px 12px 0; box-shadow: inset 0 1.5px 0 var(--ln), inset 0 -1.5px 0 var(--ln), inset 1.5px 0 0 var(--ln), inset -1.5px 0 0 var(--ln); }
-:root .swt > * { padding: 2px 2px 6px; grid-template-rows: 26px auto; } /* Nov 17: content 2px up (the icons have space on top) */ /* Nov 17: a "players" word under the icon and number */
+:root .swt > * { padding: 5px 2px 9px; grid-template-rows: 26px auto; } /* Nov 17: content 2px up (the icons have space on top) */ /* Nov 17: a "players" word under the icon and number */
 :root .swt > .swx .swi2 { margin-right: -3.6px; } :root .swt > :nth-child(2) .swi2 { margin-right: -2px; } :root .swt > :nth-child(3) .swi2 { margin-right: -1.3px; } :root .swt > :nth-child(4) .swi2 { margin-right: -0.5px; } :root .swt > .swp .swi2 { margin-right: -1px; } /* Nov 17: ink gap from each icon to its number: ~5.5px; exact ~6.5px (its right side is flat) */
 :root .swt .swpl { grid-column: 1 / -1; grid-row: 2; justify-self: center; margin-top: -3px; font-size: 9.5px; line-height: 1.1; color: var(--muted); }
 :root .swt .swi2 { grid-column: 1; grid-row: 1; width: 26px; height: 26px; margin-top: 0; flex: none; color: var(--muted); } /* Nov 17: grey icons (the QR stays the main call to action); the open tile: blue */
 :root .swt > .swl.altb[aria-expanded="true"] .swi2 { color: var(--acc-ink); } :root .swt .swi2 { margin-bottom: 0; } /* Nov 17: the icons end ~4px above their box: less space under them */ :root .swt > .swx .swi2 { width: 23px; height: 23px; margin-top: 0; } /* exact: a bit smaller (its lines read thicker) */
 :root .swt b { grid-column: 2; grid-row: 1; font-size: 16px; font-weight: 600; color: inherit; line-height: 1.15; } :root .swt small { font-size: 10px; color: var(--muted); white-space: nowrap; }
-.swt .swx { background: var(--tile); --cf: var(--tile); --bg0: var(--tile); } :root .swt .swx { background: var(--tile); } .swt .swx .swi2 { color: var(--muted); }
+/* Nov 18: a selector: Exact is chosen until a swap level is open (then that level); a tap outside goes back to Exact */
+:root .swt > .swx { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; --cf: var(--surface); --bg0: var(--surface); } .swt .swx .swi2 { color: var(--muted); }
+:root .swt:not(:has(.altb[aria-expanded="true"])) > .swx { background: var(--sel-bg); cursor: default; } :root .swt:not(:has(.altb[aria-expanded="true"])) > .swx .swi2 { color: var(--acc-ink); }
+@media (hover: hover) { :root .swt:has(.altb[aria-expanded="true"]) > .swx:hover { background: var(--sel-bg); } }
+:root .swt > .swl.altb[aria-expanded="true"] { cursor: default; }
+/* Nov 18: the selected segment is wider and says more: "9 of 24 players" + "with this exact list" / "with 1 card swapped"; the others: icon + number */
+:root .swt { display: flex; } :root .swt > * { flex: 1 1 0; min-width: 0; min-height: 47px; padding: 3px 2px; grid-template-rows: auto; align-content: center; transition: flex-grow 0.2s ease, background-color 0.2s; }
+:root .swt .swof, :root .swt .swpl { display: none; }
+:root .swt:not(:has(.altb[aria-expanded="true"])) > .swx, :root .swt > .altb[aria-expanded="true"] { flex-grow: 2.3; grid-template-columns: 1fr auto auto 1fr; grid-template-rows: auto auto; justify-content: stretch; }
+:root .swt:not(:has(.altb[aria-expanded="true"])) > .swx .swi2, :root .swt > .altb[aria-expanded="true"] .swi2 { grid-column: 2; }
+:root .swt:not(:has(.altb[aria-expanded="true"])) > .swx b, :root .swt > .altb[aria-expanded="true"] b { grid-column: 3; white-space: nowrap; }
+:root .swt:not(:has(.altb[aria-expanded="true"])) > .swx .swof, :root .swt > .altb[aria-expanded="true"] .swof { display: inline; margin-left: 3px; font-size: 12.5px; font-weight: 500; color: var(--muted); }
+:root .swt:not(:has(.altb[aria-expanded="true"])) > .swx .swpl, :root .swt > .altb[aria-expanded="true"] .swpl { display: block; margin-top: 0; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { :root .swt > * { transition: none; } }
+/* Nov 18: one group: "24 top players ›" (all top players of this list's family) over the 4 parts (exact / 1 / 2 / 3 swaps) */
+:root .swb { position: relative; border-radius: 14px; overflow: hidden; } :root .swb::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1.5px var(--pill-line); pointer-events: none; z-index: 2; }
+:root .swb > .sp.tph { display: flex; align-items: center; gap: 7px; width: 100%; height: auto; min-height: 34px; padding: 4px 12px 3px 10px; border: 0; border-radius: 0; background: var(--surface); color: var(--ink); font-size: 13.5px; font-weight: 600; text-align: left; cursor: pointer; --bg0: var(--surface); --cf: var(--surface); }
+:root .swb > .sp.tph .swi2 { width: 22px; height: 22px; flex: none; color: var(--muted); }
+:root .swb > .sp.tph b { font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums; } :root .swb > .sp.tph { gap: 5px; } :root .swb > .sp.tph .swi2 { margin-right: 2px; } :root .swb > .sp.tph .tpu { font-weight: 500; } /* Nov 18: "Used by 24 top players" */
+:root .swb > .sp.tph .spch { margin-left: auto; width: 7px; height: 11px; flex: none; color: var(--muted); opacity: 1; } :root .swb > .sp.tph .spch path { stroke: currentColor; }
+:root .swb > .sp.tph[aria-expanded="true"] { background: var(--sel-bg); }
+@media (hover: hover) { :root .swb > .sp.tph:hover { background: var(--sel-bg); } }
+:root .swb .swt > * { border-radius: 0 !important; box-shadow: inset 0 1.5px 0 var(--ln) !important; } :root .swb .swt > * + * { box-shadow: inset 0 1.5px 0 var(--ln), inset 1.5px 0 0 var(--ln) !important; }
+/* the tiles fill the QR box height (2 rows); the event name can use 2 lines */
+.sfoot > .info { align-self: stretch; align-content: stretch; grid-template-rows: 1fr 1fr; } .sfoot > .info > .tile { display: flex; flex-direction: column; justify-content: center; }
+.sfoot > .info .t-ev .ev { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 :root .swt > .swl.altb { cursor: pointer; }
 :root .swt .dcar, :root .swt .spch { display: none; position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; margin: 0; color: inherit; opacity: 0.6; }
 :root .swt > .swl.altb[aria-expanded="true"] { background: var(--sel-bg); --cf: var(--surface); } :root .swt > .swl.altb[aria-expanded="true"] .dcar { transform: rotate(180deg); }
@@ -1170,11 +1201,14 @@ html { -webkit-tap-highlight-color: transparent; }
 :root .swt > .sp.swp .spch { width: 6px; height: 9px; color: var(--muted); opacity: 1; } :root .swt > .sp.swp .spch path { stroke: currentColor; }
 /* the swap panel: no tabs (the tile picks the level); 3 cards swapped = the same overlap as 2, a bit smaller, a wider item */
 .apop3.lv3 .tcar { --cw: 37px; --iw: calc(var(--cw) * 4.4 + 34px); }
-.tw .tstk img + img { margin-top: 10px; } .tw .tstk img + img + img { margin-top: 20px; } /* Nov 17: 10px lower per card (there is room) */
+.tw .tstk img + img { margin-top: 7px; } .tw .tstk img + img + img { margin-top: 14px; } /* Nov 17: lower per card; Nov 18: 7px (was 10px): the panel is shorter */
 .apop3.one .ttabs { display: none; }
-.apop3.lv1 .tcar { --iw: 138px; gap: 14px; } .apop3.lv1 .tw .tsw { gap: 11px; } /* Nov 17: 1 swap: narrower cards, more space */
-.apop3 .tcar { padding-top: 3px; padding-bottom: 10px; } .apop3 .tbody { padding-bottom: 0; } .apop3 .tdots { bottom: 4px; } .apop3 .tw .ast { line-height: 1.3; } /* Nov 17: the panel = the QR box height: a bit tighter */
+.apop3.lv1 .tcar { --iw: 138px; gap: 14px; } .apop3.lv1 .tw .tsw { gap: 16px; } /* Nov 17: 1 swap: narrower cards, more space */
+.apop3 .tcar { padding-top: 2px; padding-bottom: 9px; } .apop3 .tw { padding: 4px 0 3px; gap: 3px; } /* Nov 18: no QR caption, so a shorter panel: less padding, the same card size */ .apop3 .tbody { padding-bottom: 0; } .apop3 .tdots { bottom: 2px; } .apop3 .tw .ast { line-height: 1.3; } /* Nov 17: the panel = the QR box height: a bit tighter */
 .apop3.lv3 .tcar { --cw: 35px; }
+/* Nov 18: 2 and 3 cards swapped: the cards overlap more (narrower stacks), so they can grow taller in the taller panel */
+.apop3.lv2 .tw .tstk img + img { margin-left: calc(var(--cw) * -0.62); } .apop3.lv3 .tw .tstk img + img { margin-left: calc(var(--cw) * -0.7); }
+.apop3.lv2 .tcar { --iw: calc(var(--cw) * 2.76 + 34px); } .apop3.lv3 .tcar { --iw: calc(var(--cw) * 3.2 + 34px); }
 @container (max-width: 300px) { .apop3.lv3 .tcar { --cw: 30px; } }
 
 /* Nov 17: Top players sheet: the 5 cells (static), 3 win cards; wide (620px+): the chart left, the results right (the dots stay close) */
@@ -1213,7 +1247,7 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Nov 16: wide screens: "Most wins" chips get more room: taller, larger card icons and text, wider names, more space between and around */
 @media (min-width: 761px) {
   .evwl { margin: 8px 0 -2px; font-size: 11px; }
-  .evwins { gap: 10px; margin: 0 0 14px; padding: 4px 0; flex-wrap: wrap; overflow: visible; } /* all chips show (they wrap), no cut chip at the edge */
+  .evwins { gap: 10px; margin: 0 -16px 14px; padding: 4px 16px; } /* Nov 17: one row that scrolls (was: wrap) */
   .evwc { min-height: 56px; gap: 8px; padding: 5px 14px 5px 8px; border-radius: 14px; font-size: 13px; }
   .evwc img { width: 24px; height: 33px; border-radius: 3px; margin-right: -4px; }
   .evwc span { max-width: 170px; font-size: 13px; } .evwc b { font-size: 13px; margin-left: 4px; }
@@ -1390,7 +1424,7 @@ a.dkev { text-decoration: none; }
 /* QR box: raised; a small expand badge on its corner says "tap to enlarge" */
 .qcol { display: flex; flex-direction: column; align-items: center; gap: 1px; align-self: start; margin-right: 0; padding: 6px;
   border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), var(--bevel); }
-.qr { position: relative; width: 102px; aspect-ratio: 1; padding: 0; border: 0; display: block; background: transparent; cursor: zoom-in; }
+.qr { position: relative; width: 122px; aspect-ratio: 1; padding: 0; border: 0; display: block; background: transparent; cursor: zoom-in; }
 .qr img { display: block; width: 100%; height: auto; }
 .qr.wait { background: var(--line); cursor: default; }
 .qr .none { display: block; padding-top: 34px; text-align: center; color: #5b6575; font-size: 0.75rem; }
@@ -1419,7 +1453,7 @@ a.dkev { text-decoration: none; }
   .pill { padding: 0 6px; }
   .energy { min-height: 20px; }
   .energy img { width: 14px; height: 14px; }
-  .qr { width: 80px; }
+  .qr { width: 96px; }
   .cards { gap: 3px; }
 }
 
@@ -1752,7 +1786,7 @@ a.dkev { text-decoration: none; }
   .ev { font-size: var(--fs-s); }
   .sc { font-size: var(--fs-m); }
   .cards { gap: 3px; }
-  .qr { width: 93px; }
+  .qr { width: 112px; } /* Nov 17/18: was 93px: a taller QR box, so the swap carousel over it is bigger */
   /* podium: tiles 20px shorter; the medal sits on the tile's corner, like the game */
   .podium { margin-top: 10px; }
   .pod > .pcard { --t0: 10px; --tx: 72px; } /* same layout as wider screens; a taller text area for 2-line names */
@@ -1968,11 +2002,18 @@ a.dkev { text-decoration: none; }
 :root:not(#_) .wcrown .cb { stroke: #d4a63a; stroke-width: 0.9; }
 /* Nov 16: Top 10 strip: share and its change on one line; the 2-card icons: a long smooth fade from 42 % */
 .t10v { display: flex; align-items: baseline; gap: 4px; margin-top: -4px; } .t10v b { margin-top: 0 !important; }
+/* Nov 18: the deck name over the share (1 line, as wide as the card icon) */
+.t10nm { align-self: stretch; width: 0; min-width: 100%; margin: -6px 0 0; position: relative; display: flex; flex-direction: column; font-size: 11px; font-weight: 600; line-height: 1.2; text-align: center; color: var(--ink); } .t10nm span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* Nov 18: 2 lines: one Pokémon per line */
+@media (max-width: 599px) { .t10nm { min-width: calc(100% + 8px); margin-inline: -4px; font-size: 10.5px; } } /* phones: a few px more for "Mega Charizard Y ex" */
+.t10i .t10v { margin-top: -2px !important; } .t10h .ii { vertical-align: -2px; margin-left: 4px; }
+.t10i .t10v { margin-top: 0; }
+@media (min-width: 600px) { .t10nm { font-size: 12.5px; margin-top: -8px; } }
+@media (min-width: 600px) and (max-width: 1100px) and (pointer: coarse) { :root .t10nm { font-size: 14px; margin-top: -10px; } }
 .t2c { --t2m: linear-gradient(180deg, #000 42%, rgba(0,0,0,0.957) 49.2%, rgba(0,0,0,0.844) 56.5%, rgba(0,0,0,0.684) 63.7%, rgba(0,0,0,0.500) 71.0%, rgba(0,0,0,0.316) 78.2%, rgba(0,0,0,0.156) 85.5%, rgba(0,0,0,0.043) 92.8%, rgba(0,0,0,0.000) 100.0%); -webkit-mask-image: var(--t2m); mask-image: var(--t2m); } /* a smooth (smoothstep) fade from 42 % down */
 /* Nov 16: dark mode: the Top 10 card dividers (under the strip, between Rising and Falling) lighter, so they show on the brighter box */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t10mv, :root:not([data-theme="light"]) .t10mv > div + div { border-color: rgba(255, 255, 255, 0.13); } }
 :root[data-theme="dark"] .t10mv, :root[data-theme="dark"] .t10mv > div + div { border-color: rgba(255, 255, 255, 0.13); }
-.t10ms { overflow-y: auto; scrollbar-width: thin; max-height: 150px; } /* Nov 16: Rising / Falling scroll boxes (max height from t10Fit) */
+.t10ms { overflow-y: auto; scrollbar-width: thin; max-height: 210px; } /* Nov 16: Rising / Falling scroll boxes (max height from t10Fit) */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not(#_) .arow > .wcrown { filter: brightness(0.8) drop-shadow(0 1px 1.5px rgba(var(--sh), 0.35)); } }
 :root[data-theme="dark"]:not(#_) .arow > .wcrown { filter: brightness(0.8) drop-shadow(0 1px 1.5px rgba(var(--sh), 0.35)); } /* dark: 20 % dimmer, like the card images */
 :root[data-theme="dark"] .wcrown { filter: brightness(0.7) drop-shadow(0 0.5px 0.5px rgba(0, 0, 0, 0.25)); }
@@ -1998,6 +2039,28 @@ a.dkev { text-decoration: none; }
 .ptab.p1 .pm { background: linear-gradient(135deg, #fbe07a, #d39a1c); } .ptab.p2 .pm { background: linear-gradient(135deg, #c9dbf3, #6585ba); } .ptab.p3 .pm { background: linear-gradient(135deg, #f7c79c, #c4703a); }
 .evlink { margin: -6px auto 0; font-size: var(--fs-s); color: var(--muted); text-align: center; }
 .evlink a { color: var(--acc-ink); font-weight: 600; }
+/* Nov 17: iPad portrait (touch, 600-1100px): wider list card and larger small texts (they were phone sizes, read from farther away) */
+@media (min-width: 600px) and (max-width: 1100px) and (pointer: coarse) {
+  html.cen .vars { --slw: min(470px, calc(100vw - 240px)); }
+  :root:not(#_) .slide .tile .tl, :root:not(#_) .slide .tile .ev, :root:not(#_) .slide .ev .dt, :root:not(#_) .qcap { font-size: 12px; }
+  :root:not(#_) .slide .sc .pill.pl { font-size: 11.5px; }
+  :root:not(#_) .slide > .stc { height: 22px; top: -11px; font-size: 11.5px; }
+  :root:not(#_) .swt .swpl { font-size: 11px; }
+  :root:not(#_) .tw .ast { font-size: 12px; }
+  :root:not(#_) .ldots .dot { height: 21px; min-width: 23px; font-size: 12px; }
+  :root:not(#_) .rb .dl { font-size: 9.5px; }
+  :root:not(#_) .tpcap, :root:not(#_) .slg, :root:not(#_) .snote, :root:not(#_) .tpw > div > span, :root:not(#_) .tpw > div > small, :root:not(#_) .swd, :root:not(#_) .fscr .fsec { font-size: 12px; }
+  :root:not(#_) .fpl .fev, :root:not(#_) .fev .fen { font-size: 12.5px; }
+  :root:not(#_) .t10v .pdl, :root:not(#_) .t10d small { font-size: 12px; } :root:not(#_) .t10x { font-size: 12.5px; } :root:not(#_) .t10h, :root:not(#_) .t10k { font-size: 13.5px; }
+  :root:not(#_) #lsh, :root:not(#_) #lsh .lshc, :root:not(#_) #lshN, :root:not(#_) .morelink span { font-size: 12px; }
+  :root:not(#_) .evwc { min-height: 60px; gap: 9px; padding: 6px 15px 6px 9px; font-size: 14px; } :root:not(#_) .evwc img { width: 27px; height: 37px; } :root:not(#_) .evwc span, :root:not(#_) .evwc b { font-size: 14px; } :root:not(#_) .evwc span { max-width: 190px; }
+  :root.cen:not(#_) .vars { --vgap: 22px; } /* more space between the list cards */
+  :root:not(#_) .evday { font-size: 12px; } :root:not(#_) .evsum > div > span, :root:not(#_) .evsum > div > small { font-size: 12px; } :root:not(#_) .evwl, :root:not(#_) .evsub { font-size: 13px; }
+  :root:not(#_) .dk3 span, :root:not(#_) .dk3 small, :root:not(#_) .dk3 .dkm, :root:not(#_) .dk3 .wv, :root:not(#_) .dkd, :root:not(#_) .wpm, :root:not(#_) .mur .mug { font-size: 12px; }
+  :root:not(#_) .cu2h { font-size: 12.5px; } :root:not(#_) .cu2h small, :root:not(#_) .cfx span, :root:not(#_) figcaption b { font-size: 11px; } :root:not(#_) figure .x1 { font-size: 9.5px; }
+  :root:not(#_) .dhint, :root:not(#_) .mmtip, :root:not(#_) .t10f { font-size: 12px; }
+  :root:not(#_) #meta, :root:not(#_) .lchk, :root:not(#_) .foot .fsrc, :root:not(#_) .foot .ffb, :root:not(#_) .foot .fabout { font-size: 13px; } :root:not(#_) .foot .fleg { font-size: 11.5px; }
+}
 </style>
 
 <div class="wrap">
@@ -2210,10 +2273,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Nov 17: under a list: a caption with the Top players button (all top players of the list family: exact + 1-3 swaps),
   // then 4 tiles in one row: exact (a number, not a button) and 1 / 2 / 3 swaps (each opens the swap panel at that level)
   const swapBlock = (v) => { if (v.bc || !v.nu) return "";
-    const ex = nxOf(v), pl = (n) => `<small class="swpl">player${n === 1 ? "" : "s"}</small>`, sw = (k) => `${k} swap${k > 1 ? "s" : ""}`;
-    return `<div class="swb"><div class="swt"><div class="swx" role="img" title="${ex} top player${ex === 1 ? "" : "s"} with exactly this list" aria-label="${ex} top player${ex === 1 ? "" : "s"} with exactly this list"><b>${ex}</b>${EXACT_I}${pl(ex)}</div>${[1, 2, 3].map((k) => { const n = lvU(v, k);
-        return n ? `<button class="altb swl" type="button" data-lv="${k}" aria-expanded="false" title="${n} top player${n > 1 ? "s" : ""} with ${k} card${k > 1 ? "s" : ""} swapped" aria-label="${n} top player${n > 1 ? "s" : ""} with ${sw(k)}: show them"><b>${n}</b>${SWX_I(k)}${pl(n)}${CARET}</button>`
-          : `<div class="swl off" title="No top player with ${k} card${k > 1 ? "s" : ""} swapped" aria-hidden="true"><b>0</b>${SWX_I(k)}${pl(0)}</div>`; }).join("")}<button class="sp spn swp" type="button" data-sk="tp" aria-haspopup="dialog" title="${v.nu} top players: this list or 1\u20133 cards swapped" aria-label="Top players: ${v.nu} with this list or 1 to 3 cards swapped, of ${v.of}"><b>${v.nu}</b>${TOPP_I}${pl(v.nu)}${SPCH}</button></div></div>`; };
+    const ex = nxOf(v), T = v.nu, pl = (n, k) => `<small class="swpl">${k ? `with ${k} card${k > 1 ? "s" : ""} swapped` : "with this exact list"}</small>`, num = (n) => `<b>${n}</b>`, sw = (k) => `${k} swap${k > 1 ? "s" : ""}`;
+    return `<div class="swb"><button class="sp tph" type="button" data-sk="tp" aria-haspopup="dialog" title="${T} top players: this list or 1\u20133 cards swapped" aria-label="Top players: ${T} with this list or 1 to 3 cards swapped, of ${v.of}">${TOPP_I}<span class="tpu">Used by</span><b>${T}</b><span>top player${T === 1 ? "" : "s"}</span>${SPCH}</button><div class="swt" role="group" aria-label="Show this list or a version with cards swapped"><button class="swx" type="button" title="${ex} top player${ex === 1 ? "" : "s"} with exactly this list" aria-label="Exact list: ${ex} top player${ex === 1 ? "" : "s"}">${num(ex)}${EXACT_I}${pl(ex, 0)}</button>${[1, 2, 3].map((k) => { const n = lvU(v, k);
+        return n ? `<button class="altb swl" type="button" data-lv="${k}" aria-expanded="false" title="${n} top player${n > 1 ? "s" : ""} with ${k} card${k > 1 ? "s" : ""} swapped" aria-label="${n} top player${n > 1 ? "s" : ""} with ${sw(k)}: show them">${num(n)}${SWX_I(k)}${pl(n, k)}${CARET}</button>`
+          : `<div class="swl off" title="No top player with ${k} card${k > 1 ? "s" : ""} swapped" aria-hidden="true"><b>0</b>${SWX_I(k)}</div>`; }).join("")}</div></div>`; };
   // Nov 14: sheet top = hero number + share bar + 3 tiles (big value, label, detail)
   const sHero = (n, of, txt, bar, barTxt) => `<div class="shero"><b>${n}</b>${of != null ? ` <small>of ${of}</small>` : ""}<span>${txt}</span></div>${bar != null ? `<div class="sbar"><i style="width:${Math.max(2, Math.min(100, bar)).toFixed(1)}%"></i></div><p class="sbl">${barTxt}</p>` : ""}`;
   const sT3 = (L) => `<div class="st3">${L.filter(Boolean).map(([b, s, e]) => `<div><b>${b}</b><span>${s}</span>${e ? `<em>${e}</em>` : ""}</div>`).join("")}</div>`;
@@ -2351,7 +2414,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
         <div class="info">
           <div class="tile t-en"><span class="tl">Energy</span><div class="energy">${energyHtml}</div></div>
           <div class="tile t-sc"><span class="tl">Score${i === 0 ? ii("Score", scoreTip(v)) : ""}</span><div class="sc"><span>${esc(v.sc || "\u2013")}</span>${v.plm ? `<span class="pill ppl">${v.plm <= 3 ? `<span class="md p${v.plm}"></span>` : ""}${esc(v.pl || "")}</span>` : v.pl ? `<span class="pill pl">${esc(v.pl)}</span>` : ""}</div></div>
-          <div class="tile t-ev"><span class="tl">Event</span><div class="ev" title="${esc(v.ev || "")}">${v.dt ? `<span class="dt">${fmtDate(v.dt)}</span> \u00b7 ` : ""}${esc(v.ev || "\u2013")}</div></div>
+          <div class="tile t-ev"><span class="tl">Event</span><div class="ev" title="${esc(v.ev || "")}">${v.dt ? `<span class="dt">${fmtDate(v.dt)}</span> \u00b7 ` : ""}${v.ev ? esc(shortEv(v.ev)) : "\u2013"}</div></div>
         </div>
         ${swapBlock(v)}`;
   // Legend icon: a tiny card with the same corner tag as the marked cards
@@ -2398,7 +2461,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       <div class="sfoot">
         ${info(v, v.energy.map((e) => `<img src="e/${e}.webp" alt="${cap(e)}" title="${cap(e)}" width="28" height="28">`).join(""), i)}
         ${v.qr ? `<div class="qcol">
-          <button class="qr" type="button" data-i="${i}" aria-label="Enlarge the QR code for ${esc(d.name)}"><img ${qrImg(v.qr)} alt="Deck share code for ${esc(d.name)}" width="128" height="128"><span class="qcap">${TOUCH ? `${EXPAND}Tap to save` : `${SCAN}Scan in game`}</span></button>
+          <button class="qr" type="button" data-i="${i}" aria-label="Enlarge the QR code for ${esc(d.name)}"><img ${qrImg(v.qr)} alt="Deck share code for ${esc(d.name)}" width="128" height="128"></button>
         </div>` : '<div class="qr"><span class="none">QR code not available for this list.</span></div>'}
       </div>`;
   }
@@ -3260,7 +3323,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Nov 16: "Top 10" card above the deck list: a strip (2-card icon, rank, share, share change) + Rising / Falling
   // (the 3 biggest share changes over the trend days, 0.3 points or more). Needs stats.json; hidden with a filter or on Events.
   const ECOL = { grass: "#4caf50", fire: "#f05a28", water: "#2b9bea", lightning: "#e0b000", psychic: "#a865c9", fighting: "#c0703a", darkness: "#3d4a5c", metal: "#9aa7b1", dragon: "#b8962e" };
-  const t2c = (d, cw, bw, bh, off, rot) => { const a = d.art || []; return `<span class="t2c" style="width:${bw}px;height:${bh}px">${a[1] ? `<img src="c/${a[1]}.webp" alt="" style="width:${cw}px;left:${off}px;top:1px;transform:rotate(${rot}deg)" loading="lazy">` : ""}${a[0] ? `<img src="c/${a[0]}.webp" alt="" style="width:${cw}px;left:0;transform:rotate(-${rot}deg)" loading="lazy">` : ""}</span>`; };
+  // Nov 18 fix: the front card turns left and its top corner went past the box, where the fade mask cut it: the cards start p px in (p = how far the corner moves)
+  const t2c = (d, cw, bw, bh, off, rot) => { const a = d.art || [], p = Math.ceil(Math.sin(rot * Math.PI / 180) * cw * 209 / 150 + 0.5); return `<span class="t2c" style="width:${bw + p}px;height:${bh}px">${a[1] ? `<img src="c/${a[1]}.webp" alt="" style="width:${cw}px;left:${off + p}px;top:1px;transform:rotate(${rot}deg)" loading="lazy">` : ""}${a[0] ? `<img src="c/${a[0]}.webp" alt="" style="width:${cw}px;left:${p}px;transform:rotate(-${rot}deg)" loading="lazy">` : ""}</span>`; };
   const t10Short = (n) => { const w = n.replace(/ ex\b/g, "").split(" "); return w.slice(0, w[0] === "Mega" ? 2 : 1).join(" "); };
   function renderT10() { const el = $("t10"); if (!el || !data || !STD) return;
     const top = data.decks.filter((d) => !d._more && !d.bc).slice(0, 10); if (top.length < 5) { el.innerHTML = ""; t10Show(); return; }
@@ -3268,7 +3332,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const spark = (d) => { const v = (trOf(d.id) || {}).s || [], m = Math.max(...v.filter((x) => x != null), 0.1) * 1.1, W = 36, H = 14;
       const p = v.map((x, i) => x == null ? null : `${(i * W / (v.length - 1)).toFixed(1)},${(H - x / m * H).toFixed(1)}`).filter(Boolean).join(" ");
       return `<svg class="t10s" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true"><polyline points="${p}" style="stroke:${ECOL[(d.energy || [])[0]] || "#9aa7b1"}"/></svg>`; };
-    const strip = top.map((d) => `<button type="button" class="t10i" data-go="${esc(d.id)}" aria-label="${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}"><span class="t10r">${d.rank}</span>${t2c(d, 42, 60, 50, 16, 3)}<span class="t10v"><b>${pct(d.share)}</b>${dTxt(ch(d)) || '<span class="pdl t10e">&ndash;</span>'}</span></button>`).join("");
+    // Nov 18: the name in 2 lines, one Pokémon per line: break after the first "ex" that is not the last word; else before a "Mega" that is not first; else before the last Pokémon ("Miraidon ex", "Greninja")
+    const t10Name = (n) => { const w = n.split(" "); let k = w.findIndex((x, j) => x === "ex" && j < w.length - 1) + 1;
+      if (!k) { k = w.indexOf("Mega", 1); if (k < 1) { k = w.length - (w[w.length - 1] === "ex" ? 2 : 1); if (/^[XY]$/.test(w[k] || "")) k--; if (k > 1 && w[k - 1] === "Mega") k--; } }
+      return k > 0 && k < w.length ? `<span>${esc(w.slice(0, k).join(" "))}</span><span>${esc(w.slice(k).join(" "))}</span>` : `<span>${esc(n)}</span>`; };
+    const strip = top.map((d) => `<button type="button" class="t10i" data-go="${esc(d.id)}" aria-label="${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}"><span class="t10r">${d.rank}</span>${t2c(d, 42, 60, 50, 16, 3)}<span class="t10nm" title="${esc(d.name)}">${t10Name(d.name)}</span><span class="t10v"><b>${pct(d.share)}</b>${dTxt(ch(d)) || '<span class="pdl t10e">&ndash;</span>'}</span></button>`).join("");
     // Nov 16: Rising / Falling: every deck of the main list (not only the top 10) with a change of 0.3+ points, in 2 scroll boxes
     const byC = data.decks.filter((d) => !d._more && !d.bc && ch(d) != null).sort((a, b) => ch(b) - ch(a)), up = byC.filter((d) => ch(d) >= 0.3), dn = byC.filter((d) => ch(d) <= -0.3).reverse();
     const first = (d) => { const v = ((trOf(d.id) || {}).s || []).filter((x) => x != null); return v.length ? v[0] : null; };
@@ -3278,14 +3346,14 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       return `<svg class="t10g" viewBox="-2 -2 ${W + 5} ${H + 3}" width="${W + 5}" height="${H + 3}" aria-hidden="true"><polygon points="${pts[0][0].toFixed(1)},${H} ${l} ${e[0].toFixed(1)},${H}" style="fill:${c};opacity:.13"/><polyline points="${l}" style="stroke:${c}"/><circle cx="${e[0].toFixed(1)}" cy="${e[1].toFixed(1)}" r="2.4" style="fill:${c}"/></svg>`; };
     const row = (d, up) => { const f = first(d); return `<button type="button" class="t10m" data-go="${esc(d.id)}">${t2c(d, 26, 42, 34, 15, 5)}<span class="t10n">${esc(d.name)}</span><small class="t10x">#${d.rank} &middot; ${f != null ? (f < 0.05 ? "new" : pct(f)) + " &rarr; " : ""}<b>${pct(d.share)}</b></small>${bigSpark(d, up)}<span class="t10d">${dTxt(ch(d))}<small>pts</small></span></button>`; };
     el.className = "t10";
-    el.innerHTML = `<p class="t10h">Top 10 ${winWk()}</p><div class="t10st">${strip}</div>
+    el.innerHTML = `<p class="t10h">Top 10 ${winWk()}${ii("Top 10", `<h3>Top 10 ${winWk()}</h3><p>The 10 decks played most ${winLast()}, in public Standard events with 8 or more players on Limitless TCG.</p><p>The big number is the deck\u2019s <b>share</b>: of <b>all players</b> in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the \u201ctop players\u201d (that count, under each list, only takes players who won at least 2 more matches than they lost).</p><p>The small \u25b2 / \u25bc number is how much the share went up or down over those days, in percentage points (8.3% \u2192 12.0% = \u25b23.7).</p><p><b>Rising</b> / <b>Falling</b>: the decks whose share moved most. Tap a deck to open it.</p>`)}</p><div class="t10st">${strip}</div>
       <div class="t10mv"><div><p class="t10k up"><i>\u25b2</i>Rising</p>${up.length ? `<div class="t10ms">${up.map((d) => row(d, 1)).join("")}</div>` : '<p class="t10z">No big moves</p>'}</div><div><p class="t10k dn"><i>\u25bc</i>Falling</p>${dn.length ? `<div class="t10ms">${dn.map((d) => row(d, 0)).join("")}</div>` : '<p class="t10z">No big moves</p>'}</div></div>
       <p class="t10f">Share change over the last ${nd} days</p>`;
     t10Show(); requestAnimationFrame(t10Fit); }
   // Nov 16: each mover box shows 2.5 rows (both boxes the same height: the taller of the two), the rest scrolls
   function t10Fit() { const bs = [...document.querySelectorAll("#t10 .t10ms")]; if (!bs.length || !bs[0].offsetParent) return;
-    const hs = bs.map((b) => { const r = [...b.children]; if (r.length <= 2) return 0; const g = parseFloat(getComputedStyle(r[1]).marginTop) || 0;
-      return r[0].offsetHeight + r[1].offsetHeight + g * 2 + r[2].offsetHeight * 0.5; }), m = Math.round(Math.max(...hs));
+    const hs = bs.map((b) => { const r = [...b.children]; if (r.length <= 3) return 0; /* Nov 18: 3.5 rows (was 2.5) */ const g = parseFloat(getComputedStyle(r[1]).marginTop) || 0;
+      return r[0].offsetHeight + r[1].offsetHeight + r[2].offsetHeight + g * 3 + (r[3] ? r[3].offsetHeight * 0.5 : 0); }), m = Math.round(Math.max(...hs));
     bs.forEach((b) => { b.style.maxHeight = m ? m + "px" : ""; }); }
   { let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(t10Fit, 150); }); }
   function t10Show() { const el = $("t10"); if (!el) return;
@@ -3819,7 +3887,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     altPreview(o.slide, null);
   }
   async function toggleAlts(btn) {
-    if (altOpen && altOpen.btn === btn) { closeAlts(); return; }
+    if (altOpen && altOpen.btn === btn) { if (!btn.classList.contains("cmpb")) return; closeAlts(); return; } // Nov 18: the swap bar is a selector: the chosen level stays (Exact, a tap outside or another list goes back)
     closeAlts();
     const slide = btn.closest(".slide"), d = data.decks.find((x) => x.id === openId);
     if (!slide || !d) return;
@@ -3955,6 +4023,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       it.scrollIntoView({ behavior: reduced ? "auto" : "smooth", inline: "center", block: "nearest" });
     });
     show(g0);
+    // Nov 17: the cards grow to fill the panel's height (the QR box, and so the panel, is taller now); the width of each item grows with them
+    { const tk = car.querySelector(".tw.on .tstk"), cs = getComputedStyle(car), cw0 = parseFloat(cs.getPropertyValue("--cw")) || 42, iw0 = (car.querySelector(".tw") || {}).offsetWidth || 170;
+      const tb = pop.querySelector(".tbody"), tw = car.querySelector(".tw.on"), free = tb && tw ? tb.clientHeight - 14 - tw.offsetHeight : 0;
+      // item width = m x card width + fixed space (chevron, gaps); m by level (cards overlap more for 2 and 3 swaps). Phones: the item may fill the panel (the dots show there is more)
+      const m = [2, 2.76, 3.2][lv - 1], C = iw0 - m * cw0, pad = car.clientWidth < 260 ? 12 : 30;
+      if (tk && free > 2) { const cw = Math.max(cw0, Math.min(cw0 * (lv === 1 ? 1.45 : 1.7), cw0 + free * 150 / 209, (car.clientWidth - pad - (lv === 1 ? 34 : C)) / (lv === 1 ? 2.76 : m))); /* Nov 18: 1 swap: the same card size as 2 swaps (more room around) */ car.style.setProperty("--cw", cw.toFixed(1) + "px"); car.style.setProperty("--iw", (m * cw + C + (lv === 1 ? 12 : 0)).toFixed(1) + "px"); } }
   }
   // Nov 14: the "N vs List 1" swaps in the same fixed panel as the tweaks (over the tiles): list-1 cards, a chevron down,
   // this list's cards; the card size fits the panel (height first, then width; a long row scrolls). All swaps show in the grid.
@@ -3969,7 +4043,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     // Nov 17: the swap view covers the whole foot of the list (tiles, QR and the swap bar): about 2x the room for the cards; tap outside or the chip closes it
     { const qe = slide.querySelector(".sfoot .qcol"), be = slide.querySelector(".sfoot .swb"), qr = qe ? cssR(qe.getBoundingClientRect(), zk) : ir, br = be ? cssR(be.getBoundingClientRect(), zk) : null;
       const top = Math.min(ir.top, qr.top), bot = br ? br.bottom : qr.bottom, right = Math.max(qr.right, br ? br.right : 0);
-      pop.style.cssText = `left:${ir.left - sr.left}px;top:${top - sr.top}px;width:${right - ir.left}px;height:${bot - top}px`; }
+      const left = Math.min(ir.left, qr.left, br ? br.left : ir.left); /* Nov 18: the QR box is on the left now */
+      pop.style.cssText = `left:${left - sr.left}px;top:${top - sr.top}px;width:${right - left}px;height:${bot - top}px`; }
     // One row of list 1's cards (out) over one row of this list's cards (in); the card size comes from the panel (height first, then width). 9+ swaps: min 34px and the rows scroll sideways
     // Nov 17: up to 5 swaps, a label on the left of each row (List 1 / List N); 6+ swaps need that width for the cards
     const n = pairs.length, g = 3, PH = parseFloat(pop.style.height), PW = parseFloat(pop.style.width), lab = n < 6, LW = lab ? 40 : 0;
@@ -4005,7 +4080,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (b) { e.preventDefault(); e.stopPropagation(); showTip(b); return; }
     if (!ipop.hidden && !e.target.closest("#iPop, #cPop, dialog, #shv")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
   }, true);
-  document.addEventListener("mousedown", (e) => { if (e.target.closest && e.target.closest(".swt .altb")) e.preventDefault(); }, true); // Nov 17: a tap on a swap tile does not focus it (Safari scrolled the strip to the focused button)
+  document.addEventListener("mousedown", (e) => { if (e.target.closest && e.target.closest(".swt .altb, .swt .swx")) e.preventDefault(); }, true); // Nov 17: a tap on a swap tile does not focus it (Safari scrolled the strip to the focused button)
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !ipop.hidden && $("shv").hidden) hideTip();
   }, true);
