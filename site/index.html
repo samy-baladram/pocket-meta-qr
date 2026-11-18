@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794936703-2148 -->
+<!-- ui: artifact version 1794969032-2b2f -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -715,7 +715,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .fins .fpl { min-width: 0; }
 /* R21: tweak dots (a small 1 / 2 right of the dot), legend, scroll list with sticky sections */
 .sdots i b { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); line-height: 1; font-size: 8.5px; font-weight: 700; font-style: normal; color: var(--muted); }
-.swk .sdots { margin-right: 8px; }
+.swk .sdots { margin-right: 0; } /* Nov 18: the dot itself is centered over its date (the 1 / 2 / 3 number hangs on its right) */
 .slg.sl3 { justify-content: flex-end; margin-top: -4px; } .slg.sl3 b { font-size: 8.5px; color: var(--muted); margin: 0 4px 0 2px; }
 .slg i.ld { width: 9px; height: 9px; border-radius: 50%; background: #bcd6f5; } .slg i.ld + b + i.ld { margin-left: 6px; }
 .fscr { max-height: 190px; overflow: auto; margin-top: 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overscroll-behavior: contain; }
@@ -922,6 +922,9 @@ html { -webkit-tap-highlight-color: transparent; }
 .sdn { width: 10px; height: 7px; flex: none; color: var(--muted); transition: transform var(--t-fast, 0.15s); }
 .sfold[open] > summary { margin-bottom: 10px; } .sfold[open] .sdn { transform: rotate(180deg); }
 .fdc .fup { display: inline-flex; margin-right: 4px; vertical-align: 1px; } .fdc .fup svg { width: 8px; height: 6px; }
+.fdc .fnw { display: inline-flex; margin-right: 4px; vertical-align: 0; color: #c08200; } .fdc .fnw svg { width: 10px; height: 10px; } /* Nov 18: the "new" sparkle */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .fdc .fnw { color: #ffd166; } } :root[data-theme="dark"] .fdc .fnw { color: #ffd166; }
+:root .rb .dl.nw svg { width: 10px; height: 10px; display: block; } :root .rb.pm .dl.nw svg { width: 11px; height: 11px; } .tnw .spk { width: 0.8em; height: 0.8em; vertical-align: -0.05em; } /* the rank badge: a sparkle in place of the word NEW */
 
 /* R24 (Nov 15): deck sheet: 3 top cards with sparklines, folds (matchups, trend, meta map, cards); pill share sparkline */
 .dpb .psk { display: inline-flex; margin-left: 0; } .dpb .psk:empty { display: none; }
@@ -988,9 +991,10 @@ html { -webkit-tap-highlight-color: transparent; }
    right that pop out about 8px above the row, a longer slanted band, a lower row; opening a deck does not change the badge
    or the icons. Latest Events rows: the same, without the rank column (the crown sits on the first card). */
 @media (min-width: 620px) {
-  .list { gap: calc(var(--sp-3) + 5px); }
-  .acc:not(.pod) > .arow { min-height: 58px; padding-top: 6px; padding-bottom: 6px; padding-left: 66px; --bw: 250px; --ox: 0px; }
-  .acc:not(.pod) > .arow .rb, .acc:not(.pod) > .arow[aria-expanded="true"] .rb { left: 33px; top: 50%; transform: translate(-50%, -50%); }
+  .list { gap: calc(var(--sp-3) + 10px); } /* Nov 18: +5px more between the deck rows */
+  .acc:not(.pod) > .arow { min-height: 58px; padding-top: 6px; padding-bottom: 6px; padding-left: 92px; --bw: 250px; --ox: 0px; }
+  .acc:not(.pod) > .arow .rb, .acc:not(.pod) > .arow[aria-expanded="true"] .rb { left: calc(42.5px / 1.3); top: 50%; transform: translate(-50%, -50%); zoom: 1.3; } /* Nov 18: badge 1.3x; centered in the 85px space left of the card icons (zoom also scales `left`, so 42.5 / 1.3) */
+  .acc:not(.pod) > .arow .rb.pm, .acc:not(.pod) > .arow[aria-expanded="true"] .rb.pm { zoom: 1; left: 42.5px; } /* top 3 medals: their own size, as before; the same center */
   .acc.evr > .arow { padding-left: 18px; --bw: 200px; }
   .acc.evr > .arow > .wcrown { left: 22px; top: 0; }
   .acc:not(.pod) > .arow .icons { --iw: 128px; margin-top: -46px; margin-bottom: -6px; padding-top: 40px; clip-path: inset(0 -30px 0 -40px); }
@@ -3250,6 +3254,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // explains the change. Podium: the same badge with a crown and a gold / silver / bronze tint.
   // Data (R14): d.rk0 = the rank 24 h earlier (0 = not in the list then), d.nw = 1 for a deck new in the list this set
   // (first 3 days). Without R14 data the badge shows the rank only (the artifact preview shows sample changes).
+  const SPARK = '<svg class="spk" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0c.35 2.6 1.4 4.3 5 5-3.6.7-4.65 2.4-5 5-.35-2.6-1.4-4.3-5-5 3.6-.7 4.65-2.4 5-5z" fill="currentColor"/></svg>'; // Nov 18: "new in the list" (gold), like the green \u25b2 for rising
   const RB_UP = '<svg viewBox="0 0 7 5" aria-hidden="true"><path d="M3.5 0 7 5H0z" fill="currentColor"/></svg>';
   const RB_DN = '<svg viewBox="0 0 7 5" aria-hidden="true"><path d="M0 0h7L3.5 5z" fill="currentColor"/></svg>';
   const RB_CR = '<svg class="cr" viewBox="0 0 18 14" aria-hidden="true"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg>';
@@ -3263,7 +3268,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const hasTrend = () => !!(data && !data.wch && data.decks.some((d) => "rk0" in d || d.nw)); // R25: no 24 h arrows on a day the window length changed
   function rbTip(d) {
     const was = d.rk0, mv = was ? was - d.rank : null, set = esc(data.setName || data.set || "this set");
-    const body = d.nw ? `<p><b class="tnw">New</b>: the first time this deck is in the list since ${set} came out. The tag shows for 3 days.</p>`
+    const body = d.nw ? `<p><b class="tnw">${SPARK} New</b>: the first time this deck is in the list since ${set} came out. The tag shows for 3 days.</p>`
       : !was ? `<p>Not in the list 24 h ago. Now <b>${ordN(d.rank)}</b>.</p>`
       : mv > 0 ? `<p><b class="tup">\u25b2 Up ${mv} place${mv > 1 ? "s" : ""}</b>: <b>${ordN(was)}</b> 24 h ago, now <b>${ordN(d.rank)}</b>.</p>`
       : mv < 0 ? `<p><b class="tdn">\u25bc Down ${-mv} place${mv < -1 ? "s" : ""}</b>: <b>${ordN(was)}</b> 24 h ago, now <b>${ordN(d.rank)}</b>.</p>`
@@ -3277,11 +3282,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const was = d.rk0, mv = was ? was - d.rank : null;
     // Nov 13: no change in 24 h -> the rank only (no line, no dash), so quiet days add no clutter; a tap still explains it
     if (!d.nw && mv === 0) return `<span class="rb rbt${cls} solo" data-tip="${esc(rbTip(d))}" aria-label="Rank ${d.rank}, same rank as 24 hours ago">${rn}</span>`;
-    const dl = d.nw ? `<span class="dl nw">NEW</span>`
+    const dl = d.nw ? `<span class="dl nw">${SPARK}</span>`
       : mv > 0 ? `<span class="dl up">${RB_UP}<span>+${mv}</span></span>`
       : mv < 0 ? `<span class="dl dn"><span>\u2212${-mv}</span>${RB_DN}</span>`
       : `<span class="dl eq">\u2013</span>`;
-    return `<span class="rb rbt${cls}" data-tip="${esc(rbTip(d))}" aria-label="Rank ${d.rank}, change in 24 hours">${rn}<span class="rsep" aria-hidden="true"></span>${dl}</span>`;
+    return `<span class="rb rbt${cls}" data-tip="${esc(rbTip(d))}" aria-label="Rank ${d.rank}, ${d.nw ? "new in the list" : "change in 24 hours"}">${rn}<span class="rsep" aria-hidden="true"></span>${dl}</span>`;
   }
   // Decks without a public list yet (no lists, no QR): a quiet, disabled row in their rank place, so no rank is skipped
   const ghostHTML = (g, more) => `<div class="acc ghost" data-rank="${g.rank}"${more ? ' data-more="1"' : ""} aria-disabled="true" title="No public decklist ${winLast()} yet">
@@ -3346,7 +3351,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       return `<svg class="t10g" viewBox="-2 -2 ${W + 5} ${H + 3}" width="${W + 5}" height="${H + 3}" aria-hidden="true"><polygon points="${pts[0][0].toFixed(1)},${H} ${l} ${e[0].toFixed(1)},${H}" style="fill:${c};opacity:.13"/><polyline points="${l}" style="stroke:${c}"/><circle cx="${e[0].toFixed(1)}" cy="${e[1].toFixed(1)}" r="2.4" style="fill:${c}"/></svg>`; };
     const row = (d, up) => { const f = first(d); return `<button type="button" class="t10m" data-go="${esc(d.id)}">${t2c(d, 26, 42, 34, 15, 5)}<span class="t10n">${esc(d.name)}</span><small class="t10x">#${d.rank} &middot; ${f != null ? (f < 0.05 ? "new" : pct(f)) + " &rarr; " : ""}<b>${pct(d.share)}</b></small>${bigSpark(d, up)}<span class="t10d">${dTxt(ch(d))}<small>pts</small></span></button>`; };
     el.className = "t10";
-    el.innerHTML = `<p class="t10h">Top 10 ${winWk()}${ii("Top 10", `<h3>Top 10 ${winWk()}</h3><p>The 10 decks played most ${winLast()}, in public Standard events with 8 or more players on Limitless TCG.</p><p>The big number is the deck\u2019s <b>share</b>: of <b>all players</b> in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the \u201ctop players\u201d (that count, under each list, only takes players who won at least 2 more matches than they lost).</p><p>The small \u25b2 / \u25bc number is how much the share went up or down over those days, in percentage points (8.3% \u2192 12.0% = \u25b23.7).</p><p><b>Rising</b> / <b>Falling</b>: the decks whose share moved most. Tap a deck to open it.</p>`)}</p><div class="t10st">${strip}</div>
+    el.innerHTML = `<p class="t10h">Top 10 ${winWk()}${ii("Top 10", `<h3>Top 10 ${winWk()}</h3><p>The 10 decks played most ${winLast()}, in public Standard events with 8 or more players on Limitless TCG.</p><p>The big number is the deck\u2019s <b>share</b>: of <b>all players</b> in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the \u201ctop players\u201d (that count, under each list, only takes players who won at least 2 more matches than they lost).</p><p>The small \u25b2 / \u25bc number is how much the share went up or down over the last 7 days, in percentage points (8.3% \u2192 12.0% = \u25b23.7).</p><p><b>Rising</b> / <b>Falling</b>: the decks whose share moved most. Tap a deck to open it.</p>`)}</p><div class="t10st">${strip}</div>
       <div class="t10mv"><div><p class="t10k up"><i>\u25b2</i>Rising</p>${up.length ? `<div class="t10ms">${up.map((d) => row(d, 1)).join("")}</div>` : '<p class="t10z">No big moves</p>'}</div><div><p class="t10k dn"><i>\u25bc</i>Falling</p>${dn.length ? `<div class="t10ms">${dn.map((d) => row(d, 0)).join("")}</div>` : '<p class="t10z">No big moves</p>'}</div></div>
       <p class="t10f">Share change over the last ${nd} days</p>`;
     t10Show(); requestAnimationFrame(t10Fit); }
@@ -4129,16 +4134,16 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     // the result line then says so ("No Metal decks in the meta right now").
     $("fen").innerHTML = ENERGY_ORDER.map((e) =>
       `<button class="ech" type="button" data-e="${e}" aria-pressed="false" title="${cap(e)}"><img src="e/${e}.webp" alt="${cap(e)}" width="22" height="22"></button>`).join("");
-    $("fdk").innerHTML = [["noex", "No ex", "Decks whose main list has no Pok\u00e9mon ex"], ["two", "2 energy", "Decks with two energy types"],
-      ["rise", "Rising", "Up in rank in the last 24 hours, or new in the list"], ["new", `New ${esc(data.set || "set")} cards`, `Decks that use a card from ${esc(data.setName || data.set || "the newest set")}`]]
-      .map(([k, t, tip]) => `<button class="fdc" type="button" data-k="${k}" aria-pressed="false" title="${tip}"${k === "rise" && !hasTrend() ? " disabled" : ""}>${k === "rise" ? `<span class="fup">${RB_UP}</span>` : ""}${t}</button>`).join("");
+    $("fdk").innerHTML = [["noex", "No ex", "Decks whose main list has no Pok\u00e9mon ex"], 
+      ["rise", "Rising", "Up in rank in the last 24 hours, or new in the list"], ["nw", "New", "New in the list: the first time since the set came out (for 3 days)"], ["new", `${esc(data.set || "set")} cards`, `Decks that use a card from ${esc(data.setName || data.set || "the newest set")}`]]
+      .map(([k, t, tip]) => `<button class="fdc" type="button" data-k="${k}" aria-pressed="false" title="${tip}"${(k === "rise" && !hasTrend()) || (k === "nw" && !data.decks.some((d) => d.nw)) ? " disabled" : ""}>${k === "rise" ? `<span class="fup">${RB_UP}</span>` : k === "nw" ? `<span class="fnw">${SPARK}</span>` : ""}${t}</button>`).join("");
     $("filtBtn").hidden = false;
   }
   // Deck chips (Nov 13): facts of each deck's main list (list 1), so the result is the same for everyone
   const isEx = (n) => /(^|\s)ex$/i.test(String(n || "").trim());
   const DK = {
     noex: (d) => !(d.cards || []).some((c) => isEx(c.n)),
-    two: (d) => (d.energy || []).length >= 2,
+    nw: (d) => !!d.nw, // Nov 18: replaces "2 energy" (new in the list in the last 72 h)
     rise: (d) => !!d.nw || ("rk0" in d && (d.rk0 === 0 || d.rk0 > d.rank)),
     new: (d) => { const pre = String(data.set || "").toLowerCase() + "-"; return !!pre.length && (d.cards || []).some((c) => c.id.startsWith(pre)); },
   };
