@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794973513-5fac -->
+<!-- ui: artifact version 1794989487-da21 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1849,6 +1849,36 @@ a.dkev { text-decoration: none; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tabs button[aria-selected="true"] { box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); } }
 :root[data-theme="dark"] .tabs button[aria-selected="true"] { box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); }
 .list[hidden] { display: none; }
+/* ===== Limited Battle tab (Nov 18): a limited-time in-game event. It must look temporary: dashed edges, an hourglass,
+   the days left on the tab. ===== */
+:root { --lb: var(--acc-ink); --lb-bg: var(--sel-bg); --lb-line: var(--acc-line); } /* Nov 18: the site's own blue */
+.tabs:has(#tabL:not([hidden])) { grid-template-columns: 1fr 1.12fr 1fr; gap: 3px; }
+.tabs button#tabL { display: inline-flex; align-items: center; justify-content: center; gap: 3px; padding: 0 6px; color: var(--lb); outline: 1px dashed var(--lb-line); outline-offset: -3px; white-space: nowrap; }
+.tabs button#tabL[hidden] { display: none; }
+.tabs button#tabL[aria-selected="true"] { color: var(--lb); }
+#tabL .hg { width: 13px; height: 13px; flex: none; }
+@media (max-width: 599px) { .tabs:has(#tabL:not([hidden])) .tlx { display: none; } } /* phones, 3 tabs: Meta · Events · Limited (full names on wider screens) */
+#tabL .lbt { font-size: 10px; font-weight: 700; line-height: 1; padding: 2px 4px; border-radius: 999px; background: var(--lb-bg); font-variant-numeric: tabular-nums; }
+.lbh { position: relative; padding: 14px var(--sp-4) 13px; border-radius: var(--r-card); background: var(--surface); box-shadow: var(--raised); overflow: hidden; }
+.lbh::before { content: ""; position: absolute; inset: 5px; border: 1.5px dashed var(--lb-line); border-radius: calc(var(--r-card) - 4px); pointer-events: none; }
+.lbh .lbk { display: flex; align-items: center; gap: 6px; margin: 0; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--lb); }
+.lbh .lbk .hg { width: 14px; height: 14px; }
+.lbh .lbk .lbleft { margin-left: auto; padding: 3px 8px; border-radius: 999px; background: var(--lb-bg); letter-spacing: 0; text-transform: none; font-size: var(--fs-s); }
+.lbh h2 { margin: 8px 0 2px; font-size: 1.125rem; line-height: 1.25; }
+.lbh .lbd { margin: 0; font-size: var(--fs-s); color: var(--muted); }
+.lbh .lbf { display: grid; gap: 6px; margin: 11px 0 0; padding: 0; list-style: none; font-size: var(--fs-s); }
+.lbh .lbf li { display: grid; grid-template-columns: 52px minmax(0, 1fr); align-items: baseline; gap: 6px; }
+.lbh .lbf li > b:first-child { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.lbh .lbf .ii { vertical-align: -3px; }
+.lbh .lbn { margin: 11px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+.lbnote { margin: 10px 6px 0; font-size: var(--fs-xs); color: var(--muted); line-height: 1.45; }
+.lbnote a { color: inherit; }
+.lbr .sfoot > .info.lbinf { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; } /* deck notes: 1 tile per row, each grows with its text */
+.lbr .sfoot > .info.lbinf > .tile { justify-content: flex-start; }
+.lbr .t-nt p { margin: 2px 0 0; font-size: var(--fs-s); line-height: 1.4; color: var(--ink); }
+.lbr .evsub img { width: 20px; height: 20px; vertical-align: -5px; margin-right: 5px; }
+.lbr .evsub .lbpk { color: var(--lb); font-weight: 600; }
+
 /* A deck without a public list yet: flat, dashed, faded, not a button */
 .acc.ghost { background: none; box-shadow: none; border: 1px dashed var(--line-strong); }
 .grow { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 12px; min-height: 50px; padding: 6px var(--sp-3) 6px var(--sp-4); opacity: 0.62; cursor: default; }
@@ -2095,7 +2125,7 @@ a.dkev { text-decoration: none; }
   <div class="cpop ipop" id="iPop" role="dialog" aria-label="About this label" tabindex="-1" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div class="ibody" id="iPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="iPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <div class="cpop" id="cPop" role="dialog" aria-label="Card details" tabindex="-1" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div id="cPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="cPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <div class="tbar" id="tbar">
-  <div class="tabs" id="tabs" role="tablist" aria-label="View"><button type="button" role="tab" id="tabM" aria-selected="true" aria-controls="list">Meta Decks</button><button type="button" role="tab" id="tabE" aria-selected="false" aria-controls="evl">Latest Events</button></div>
+  <div class="tabs" id="tabs" role="tablist" aria-label="View"><button type="button" role="tab" id="tabM" aria-selected="true" aria-controls="list" aria-label="Meta Decks">Meta<span class="tlx"> Decks</span></button><button type="button" role="tab" id="tabE" aria-selected="false" aria-controls="evl" aria-label="Latest Events"><span class="tlx">Latest </span>Events</button><button type="button" role="tab" id="tabL" aria-selected="false" aria-controls="lbl" hidden></button></div>
   <div class="fwrap">
     <button class="theme-btn filt-btn" id="filtBtn" type="button" aria-label="Search and filter decks" title="Search and filter" aria-expanded="false" aria-controls="filt" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V18l-3.6 2v-7.6z"/></svg><span class="fdot" id="fdot" hidden></span></button>
     <div class="filt" id="filt" hidden>
@@ -2113,6 +2143,7 @@ a.dkev { text-decoration: none; }
   <div class="lsh" id="lsh" hidden><span>All decks<b id="lshN"></b></span><span class="lshc">share &middot; win</span></div>
   <main class="list" id="list"><div class="empty">Loading decks&hellip;</div></main>
   <section class="list" id="evl" aria-label="Latest events" hidden></section>
+  <section class="list" id="lbl" aria-label="Limited Battle decks" hidden></section>
 
 
   <footer class="foot">
@@ -2558,6 +2589,15 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       (code ? `<text x="75" y="190" font-size="12" font-weight="600" fill="${mut}">${x(code)}</text>` : "") + `</g></svg>`;
     return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
   };
+  // Nov 18: a card the site has no image for (c/), e.g. one only a Limited Battle deck uses: first the image source the
+  // pipeline itself copies (PocketDecks on GitHub); only when that fails too, the name placeholder (handler below)
+  const RAWC = "https://raw.githubusercontent.com/PocketDecks/pokemon-tcg-pocket-cards/refs/heads/main/images/webp/cards/";
+  const cardSrc = (src) => { const m = /(?:^|\/)[cz]\/([a-z0-9]+)-(\d+)\.webp$/.exec(src || ""); return m ? `${RAWC}${m[1]}/${m[2]}.webp` : null; };
+  document.addEventListener("error", (e) => { const im = e.target; if (!(im instanceof HTMLImageElement)) return;
+    const src = im.getAttribute("src") || "";
+    if (src.startsWith(RAWC)) { e.stopImmediatePropagation(); const id = im.dataset.fbid; im.dataset.ph = id; im.dataset.phn = (im.dataset.n || im.dataset.cn || im.alt || "").replace(/\s*\((?:in|out|not in [^)]*)\)\s*$/, ""); im.src = phSvg(im.dataset.phn, id); return; }
+    const m = /(?:^|\/)c\/([a-z0-9]+-\d+)\.webp$/.exec(src); if (!m || im.dataset.fbid) return;
+    e.stopImmediatePropagation(); im.dataset.fbid = m[1]; im.src = cardSrc(src); }, true);
   document.addEventListener("error", (e) => {
     const im = e.target;
     if (!(im instanceof HTMLImageElement)) return;
@@ -2572,7 +2612,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (im instanceof HTMLImageElement && im.dataset.ph && !im.src.startsWith("data:")) { delete im.dataset.ph; delete im.dataset.phn; } }, true);
   const repaintPh = () => document.querySelectorAll("img[data-ph]").forEach((im) => { im.src = phSvg(im.dataset.phn, im.dataset.ph); });
 
-  const loadImg = (src) => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; });
+  const loadImg = (src) => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im);
+    im.onerror = () => { const f = cardSrc(src); if (!f || im.crossOrigin) return rej(); im.crossOrigin = "anonymous"; im.src = f; }; im.src = src; });
   const rrect = (x, l, t, w, h, r) => { x.beginPath(); x.roundRect(l, t, w, h, r); };
   function fit(x, text, w) {
     if (x.measureText(text).width <= w) return text;
@@ -2666,12 +2707,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const MED = { 1: ["#fbe07a", "#d39a1c", "#f0c440", "#f7d968"], 2: ["#c9dbf3", "#6585ba", "#8eaad6", "#b3c9ea"], 3: ["#f7c79c", "#c4703a", "#e0915a", "#efb084"] };
     const med = MED[d.evt ? d.rank : data.decks.indexOf(d) + 1], r0 = 32 /* medal by position: ranks can skip numbers */, mx = cL + 20, my = cT + 16;
     const disc = (r, a, b) => { const g = x.createLinearGradient(mx - r, my - r, mx + r, my + r); g.addColorStop(0, a); g.addColorStop(1, b); x.beginPath(); x.arc(mx, my, r, 0, 7); x.fillStyle = g; x.fill(); };
-    x.save(); x.shadowColor = "rgba(32, 76, 121, 0.3)"; x.shadowBlur = 6; x.shadowOffsetY = 3;
+    if (!d.lb) { x.save(); x.shadowColor = "rgba(32, 76, 121, 0.3)"; x.shadowBlur = 6; x.shadowOffsetY = 3;
     if (med) disc(r0, med[0], med[1]); else { x.beginPath(); x.arc(mx, my, r0, 0, 7); x.fillStyle = "#ffffff"; x.fill(); }
     x.restore();
     if (med) disc(r0 - 5, med[2], med[3]);
     x.fillStyle = med ? "#ffffff" : "#66758a"; x.font = F(700, 32); x.textAlign = "center"; x.textBaseline = "middle";
-    x.fillText(d.rank != null ? String(d.rank) : "\u2013", mx, my + 1); x.textAlign = "left"; x.textBaseline = "alphabetic";
+    x.fillText(d.rank != null ? String(d.rank) : "\u2013", mx, my + 1); } x.textAlign = "left"; x.textBaseline = "alphabetic";
 
     // Deck name (up to 2 lines) and share / win
     const tx = cL + 410, tw = cL + cW - 40 - tx;
@@ -3363,9 +3404,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   { let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(t10Fit, 150); }); }
   function t10Show() { const el = $("t10"); if (!el) return;
     const f = typeof fstate !== "undefined" && fstate && (fstate.q.trim() || fstate.card || fstate.en.size || fstate.dk.size || fstate.without);
-    el.hidden = !el.innerHTML || curTab === "events" || !!f;
+    el.hidden = !el.innerHTML || curTab === "events" || curTab === "limited" || !!f;
     if (!el.hidden) requestAnimationFrame(t10Fit); // Nov 16: size the mover boxes when the card shows (also after a tab switch)
-    const lh = $("lsh"); if (lh) { lh.hidden = curTab === "events" || !!f || !data; // Nov 16: "ALL DECKS · 32 + 22 smaller" (all: "· 54")
+    const lh = $("lsh"); if (lh) { lh.hidden = curTab === "events" || curTab === "limited" || !!f || !data; // Nov 16: "ALL DECKS · 32 + 22 smaller" (all: "· 54")
       if (data) { const n0 = data.decks.filter((d) => !d._more).length, nm = MORE ? data.decks.length - n0 : data.more || 0;
         $("lshN").textContent = " \u00b7 " + (moreShown || !nm ? n0 + nm : n0 + " + " + nm + " smaller"); } } }
   $("t10").addEventListener("click", (e) => { const b = e.target.closest("[data-go]"); if (!b) return; const id = b.dataset.go; track("top10-deck");
@@ -4155,12 +4196,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Dropdown: the filter button opens and closes it; a tap outside or Esc closes it (the filter stays on)
   // Nov 15: on Latest Events the same button filters events (search: event or deck; size chips); each tab keeps its own filter
   const isEvTab = () => !$("evl").hidden;
-  function filtMode(ev) { $("fen").hidden = ev; $("fdk").hidden = ev; $("fevk").hidden = !ev;
-    $("fq").value = ev ? (evDk ? ((EV && EV.decks && EV.decks[evDk] && EV.decks[evDk].name) || "") : evQ) : (fstate && fstate.q) || "";
-    $("fq").placeholder = ev ? "Search an event or deck" : "Search a deck or card"; $("fqx").hidden = !$("fq").value;
+  function filtMode(ev, lb = false) { $("fen").hidden = ev; $("fdk").hidden = ev || lb; $("fevk").hidden = !ev;
+    $("fq").value = lb ? lbF.q : ev ? (evDk ? ((EV && EV.decks && EV.decks[evDk] && EV.decks[evDk].name) || "") : evQ) : (fstate && fstate.q) || "";
+    $("fq").placeholder = lb ? "Search a card" : ev ? "Search an event or deck" : "Search a deck or card"; $("fqx").hidden = !$("fq").value;
     $("fevk").innerHTML = [50, 100, 200].map((n) => `<button class="fdc" type="button" data-min="${n}" aria-pressed="${evMin === n}">${n}+ players</button>`).join("");
     fDot(); }
-  const fDot = () => $("filtBtn").classList.toggle("fon", isEvTab() ? !!(evQ || evMin || evWin || evDk) : !!(fstate && (fstate.q || fstate.card || [...document.querySelectorAll("#fen [aria-pressed=true], #fdk [aria-pressed=true]")].length)));
+  const fDot = () => $("filtBtn").classList.toggle("fon", isLbTab() ? !!(lbF.q || lbF.card || lbF.without || lbF.en.size) : isEvTab() ? !!(evQ || evMin || evWin || evDk) : !!(fstate && (fstate.q || fstate.card || [...document.querySelectorAll("#fen [aria-pressed=true], #fdk [aria-pressed=true]")].length)));
   // Nov 15: Latest Events suggestions: decks (in a top 8 here) and events
   function renderEvSug() { if (!EV || !EV.events) return;
     const q = norm(evQ.trim()), dn = (id) => (EV.decks && EV.decks[id] && EV.decks[id].name) || id, st = {};
@@ -4179,7 +4220,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const setDrop = (on) => {
     $("filt").hidden = !on;
     $("filtBtn").setAttribute("aria-expanded", String(on));
-    if (on && !isEvTab()) { renderSug(); loadSearch(); loadMore(); } // the filter also covers the smaller decks
+    if (on && isLbTab()) renderLbSug();
+    else if (on && !isEvTab()) { renderSug(); loadSearch(); loadMore(); } // the filter also covers the smaller decks
     if (on && isEvTab()) renderEvSug();
     if (on && !TOUCH) $("fq").focus(); // phones: no keyboard until the viewer taps the field
   };
@@ -4299,7 +4341,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const pickStyle = document.createElement("style");
   document.head.append(pickStyle);
   // Spotlight: the other cards fade, so the picked card stands out (no outline: the card popup uses the outline)
-  const setPickStyle = (id) => { pickStyle.textContent = id ? `.cards img:not([src="c/${id}.webp"]):not([data-ph="${id}"]) { opacity: 0.25; transition: opacity 0.2s; }
+  const setPickStyle = (id) => { pickStyle.textContent = id ? `.cards img:not([src="c/${id}.webp"]):not([data-ph="${id}"]):not([data-fbid="${id}"]) { opacity: 0.25; transition: opacity 0.2s; }
     .cards img.hl { opacity: 1; }
     .altb:not(.cmpb)[data-cids~="${id}"] { border-color: var(--acc-mark); box-shadow: 0 0 0 1px var(--acc-mark); }
     .cmpb { display: none !important; }` : ""; if (id) closeAlts(); }; // a picked card: no "swap vs Hot/Top" buttons
@@ -4647,17 +4689,151 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (!row) return;
     if (evOpen && evOpen.tid === row.dataset.tid) evClose(); else evOpenId(row.dataset.tid);
   });
-  // Tabs: remembered in this browser; #events opens the events tab
+  // ===== Limited Battle tab (Nov 18, 2026): an in-game limited-time event with hand-picked decks (not tournament data).
+  // The tab shows until LB.to and then goes away by itself (no new upload needed). Remove this block after the event.
+  // Order = our ranking, best first (Nov 18). A deck: [id, name, energy, art ids, cards [id, name, count], packed QR "<n>:<base64>" of the in-game deck code].
+  const LB = { name: "Dual Fusion Limited Battle", from: "2026-11-18T06:00:00Z", to: "2026-12-02T05:59:00Z",
+    // Deck notes [[label, text], [label, text]]: our own words, made with help from GameWith's comments (LB.src)
+    src: "https://gamewith.jp/pokemon-tcg-pocket/588256",
+    notes: {
+      "lb-zoroark-blastoise": [["Why it's good", "Zoroark hard-counters Pikachu ex and Clodsire, two of the decks you'll see the most. It honestly fits in almost any list."], ["Tip", "Blastoise is its best partner, and Blue's Provocation fits right in."]],
+      "lb-blastoise-lapras": [["Why it's good", "Lapras snipes the Bench, and Blastoise + Blue's Provocation lets you pick who eats the damage. Chip whatever you want."], ["Tip", "Energy is rarely a problem, so you almost never brick on attacks."]],
+      "lb-paldean-clodsire": [["Why it's good", "The fastest deck in the format once it's set up. Draw the pieces and it's GG."], ["Watch out", "No way to boost HP, so Megas can tank it. Slightly unfavored there."]],
+      "lb-mega-mewtwo-x-ex-mew-ex": [["Why it's good", "Big HP and big damage in one package. Bullies the other ex decks."], ["Tip", "Pulled Mega Mewtwo Y ex from the event packs? Swap it in for Jigglypuff."]],
+      "lb-charizard-fuecoco-ex": [["Why it's good", "Fuecoco ex is straight-up busted in this format."], ["Tip", "Not feeling Charizard? Run it with Salazzle instead."]],
+      "lb-mega-greninja-ex-lapras": [["Why it's good", "Almost nothing in this card pool can gust, so Mega Greninja ex's no-retreat lock just wins games."], ["Tip", "200 HP makes it a real pain to take down."]],
+      "lb-pikachu-ex-pawmot": [["Why it's good", "Pikachu ex + Light Ball = turbo aggro. KOs most Basics early, so you're ahead on points fast."], ["Watch out", "Zoroark is the go-to counter in this format, so expect to see it."]],
+      "lb-azumarill-lopunny": [["Why it's good", "Coin-flip heavy, but very few decks can hard-wall it."], ["Watch out", "Low HP, so Pikachu ex is a nightmare matchup."]],
+      "lb-vespiquen-ribombee": [["Why it's good", "Get the setup right and it hits surprisingly hard with little effort."], ["Watch out", "HP is on the low side, so Fire decks hitting Weakness will wreck you."]] },
+    promos: ["Potion", "X Speed", "Pok\u00e9 Ball", "Professor's Research", "Hand Scope", "Pok\u00e9dex", "Red Card"],
+    decks: [
+      ["lb-charizard-fuecoco-ex", "Charizard Fuecoco ex", ["fire"], ["c1-018", "c1-025"], [["c1-016", "Charmander", 2], ["c1-017", "Charmeleon", 2], ["c1-018", "Charizard", 2], ["c1-025", "Fuecoco ex", 2], ["pa-002", "X Speed", 2], ["pa-005", "Poké Ball", 2], ["pa-007", "Professor's Research", 2], ["c1-123", "Eviolite", 2], ["c1-126", "Blue's Provocation", 2], ["c1-127", "Serena's Choice", 2]], "41:/oYmbT/BHh820G6GPs5Lt1pYosXbqjhE4uwW3IcJB/qqqqr+AfSLKACLoZ6I/NJMEr0dVoYKx7gxnDzktq5k0OEd8C5Nhk3VW6bGMhqDi/5N+aowhtjATluoBQyAxuvfC6wpALnwlntRhDzuwBuR49CJkBRAemoPn3orzjwaVELuwJKtjqOikcUupJrekMCRpTB4wEeohMMH9P6DKdNyIt3NPbrfWZ0A/wBqW/5Hf6/wRqswS21EMautuy4frdPoqvb66CKP8RMEXZ58y/7y+4jHAA=="],
+      ["lb-azumarill-lopunny","Azumarill Lopunny",["psychic"],["c1-059","c1-116"],[["c1-058","Marill",2],["c1-059","Azumarill",2],["c1-115","Buneary",2],["c1-116","Lopunny",2],["c1-022","Scorbunny",2],["c1-023","Raboot",2],["pa-002","X Speed",2],["pa-005","Poké Ball",2],["pa-007","Professor's Research",2],["c1-127","Serena's Choice",2]],"41:/tMVdj/BBR/yUG6MGo4rt1C6gOXbr+DU8uwUmsdJB/qqqqr+Adv5OwCLy1KJ/MA0Cb0bqs6SXzvKEYjg94d7VKEYZk0zpW7XbkNPMANa8TqI+jvTRJfDrK303U9knEvbaqSPEqrM2exIlTSOzc0RYnKe9QZDetLV+niufkAeVWgMkZGtklfAccygrytGlIuZfvA8ykbLreA+1A+nsUVkeqsFc7vmcF+g/4B3jrvGf7HQBqqwQe10EWuswz6PjdDIgn7e6VU/0wcEHYpsT/64u4iDAA=="],
+      ["lb-pikachu-ex-pawmot", "Pikachu ex Pawmot", ["lightning"], ["c1-043", "c1-050"], [["c1-043", "Pikachu ex", 2], ["c1-048", "Pawmi", 2], ["c1-049", "Pawmo", 2], ["c1-050", "Pawmot", 2], ["pa-005", "Poké Ball", 2], ["pa-006", "Red Card", 1], ["pa-007", "Professor's Research", 2], ["c1-119", "Sweet Honey", 1], ["c1-120", "Super Potion", 1], ["c1-121", "Max Repel", 1], ["c1-124", "Light Ball", 2], ["c1-127", "Serena's Choice", 2]], "41:/pKGbT/BHF820G6Bvs5rt1oootXbqkBF8uwX3IdpB/qqqqr+Ad+LCACLmJ6M/Lp2krwd9PKKxrgmphzE+KW+uPVccErZh0zWmERGMwO4vb5N+fanxthXLFi5BTxzi0vfC7ElsLj8lniJhLzuTWWRQPJtJAxQa1kpm3gr56xclVSOLkIdjoPnMfU+qhxesMSSuZBogEUiUMMXzH3godPCUT/NPeruL50I+QB52+5Hf6iQRqswRn1UMbuqwy4fpdM8qvba6IUG8RsE+pofC/6qu9iHAA=="],
+      ["lb-vespiquen-ribombee","Vespiquen Ribombee",["grass"],["c1-008","c1-015"],[["c1-007","Combee",2],["c1-008","Vespiquen",2],["c1-014","Cutiefly",2],["c1-015","Ribombee",2],["c1-006","Pinsir",2],["pa-002","X Speed",1],["pa-005","Poké Ball",2],["pa-006","Red Card",1],["pa-007","Professor's Research",2],["c1-119","Sweet Honey",2],["c1-127","Serena's Choice",2]],"41:/s6srL/BSKTF0G6iWQILt0hwclXbqbajkuwTkZBlB/qqqqr+APMl1wCf23CwS7bjuZmFRonhZRt4ukyy8520/lxeiwfawyjR7MhvyWs4i9ZWTw62LtcFfjzzkKT63joeKLSCcJjvbewaRYNVa2rSutUKmgbrQJiis15m/olbSFVmz5KtnzKCpbRhXTYXIlPIoG+FUw4mSXwxQ04NPK3L4JbBvwbKZg4J/IBFYHlFP7yHMauQWuUpsYuqTezvtdV5/+b26Tsg7X8EXmIxff6nbs2UAA=="],
+      ["lb-paldean-clodsire", "Paldean Clodsire", ["fighting"], ["c1-074"], [["c1-073", "Paldean Wooper", 2], ["c1-074", "Paldean Clodsire", 2], ["c1-077", "Barboach", 1], ["c1-078", "Whiscash", 1], ["pa-001", "Potion", 2], ["pa-002", "X Speed", 2], ["pa-005", "Poké Ball", 2], ["pa-007", "Professor's Research", 2], ["c1-121", "Max Repel", 1], ["c1-123", "Eviolite", 1], ["c1-127", "Serena's Choice", 2], ["c1-128", "Rika", 2]], "37:/kd5u/wSR+fQbrsp6rt1ZoX1265a9a7BR1ENB/qqqq/gFgpmAL4AVKPmLA/iSB7u6T1X0vELFRJiQSds9AzGFby5johebAkpVmGHXy2+nE4t2fup3vFEP4mZDTEftw0v98yjToSBSr8z3O+mGNUTvjtcJmQsDf5rYrWp5gdLUhluKuJIYv8AS/ycU/lOiCtwXqKVELqwtf/F1999dK6imZnTBM5+dR/r1W4pgA=="],
+      ["lb-zoroark-blastoise", "Zoroark Blastoise", ["water"], ["c1-088", "c1-031"], [["c1-087", "Zorua", 2], ["c1-088", "Zoroark", 2], ["c1-029", "Squirtle", 2], ["c1-030", "Wartortle", 2], ["c1-031", "Blastoise", 2], ["pa-002", "X Speed", 2], ["pa-005", "Poké Ball", 2], ["pa-007", "Professor's Research", 2], ["c1-126", "Blue's Provocation", 2], ["c1-127", "Serena's Choice", 2]], "41:/tdxYz/BUlvykG60RP+Lt0nUFDXbrgUBsuwTlFxlB/qqqqr+AIQ21wCf18ywS76YQpm9d5HhZQ1VkAgy8rvyrJTZEujbt03aeKIZLHLQsq2hTK9InQSX4AoQb9Ui40PF6LIWHWYDbie5ZrJXAHWDq2TOvazr+Srys1zspjTZSTXeZxGtj1fYTDRpHj7TIlvJbPVt3x7nSDp4Qx2h01lryJB6QFXr+fWZ+oBRW8rFP7NY7CuQVJrGcYuvpl/ftdZCgvbi6Dp47XMEcBIyff6hjs2SAA=="],
+      ["lb-mega-mewtwo-x-ex-mew-ex", "Mega Mewtwo X ex Mew ex", ["psychic"], ["c1-056", "c1-057"], [["c1-056", "Mega Mewtwo X ex", 2], ["c1-057", "Mew ex", 2], ["c1-051", "Jigglypuff", 1], ["pa-001", "Potion", 2], ["pa-002", "X Speed", 1], ["pa-005", "Poké Ball", 2], ["pa-006", "Red Card", 1], ["pa-007", "Professor's Research", 2], ["c1-121", "Max Repel", 1], ["c1-123", "Eviolite", 2], ["c1-127", "Serena's Choice", 2], ["c1-131", "Abandoned Station", 2]], "41:/j6iHL/BLdFOUG64wiuLt1G00QXbqXGC+uwUwiDFB/qqqqr+AXItFAC+XF75PkKk9YX+R8qKJDAJPqCVfBUsXSIAZwSvZNDsWEBQA+AYuDVRi050MqER7pzi9V30q5cchRgzn+gbjrtYUqC5IzN67uoJvoh5mfK/HmYZE3NCJYoSiMy3fr2rwTezWYHU4UOv8di/nCSJFiCZ6u8RN+sRMdFOIYqv+yX5+ABuBJZG/4rqpWoQUkI18ausYvEPtdU+QXDq6++RzfkEiN1A+v7N6+lgAA=="],
+      ["lb-mega-greninja-ex-lapras", "Mega Greninja ex Lapras", ["water"], ["c1-042", "c1-037"], [["c1-040", "Froakie", 2], ["c1-041", "Frogadier", 2], ["c1-042", "Mega Greninja ex", 2], ["c1-037", "Lapras", 2], ["pa-001", "Potion", 1], ["pa-002", "X Speed", 2], ["pa-005", "Poké Ball", 2], ["pa-007", "Professor's Research", 2], ["c1-123", "Eviolite", 2], ["c1-125", "Lorelei", 1], ["c1-127", "Serena's Choice", 2]], "41:/r5hcT/Bdh82kG6zQr/Lt0g1FQXbq40RouwTMlxlB/qqqqr+AEV01wCfgBSwS9qXGrmPMqqgdBaVs7h2v4TljJSa7Kufh0/XTgsBLnNrwWUgTeYME40TNoBEs9cTqGXl6DmNH0QPZfWxZ7LRJosDquU+aq7qwKIe0l65J9xZSCEkNdKNjqSPraTpsJ0RJhvzucQt1RWAyhh6W05qWl1TkOI2wkXeXZMw/IBGksrFP6k6zCuQWon2cYuqz1/ftdeaqvba6crY7WsEz0Exff7eIs2SAA=="],
+      ["lb-blastoise-lapras", "Blastoise Lapras", ["water"], ["c1-031", "c1-037"], [["c1-029", "Squirtle", 2], ["c1-030", "Wartortle", 2], ["c1-031", "Blastoise", 2], ["c1-037", "Lapras", 2], ["pa-002", "X Speed", 1], ["pa-005", "Poké Ball", 2], ["pa-007", "Professor's Research", 2], ["c1-120", "Super Potion", 1], ["c1-123", "Eviolite", 2], ["c1-126", "Blue's Provocation", 2], ["c1-127", "Serena's Choice", 2]], "41:/l86Hb/BJFEOUG6gBiuLt1/E0yXbrCmD+uwUxGSlB/qqqqr+AYFMNAC+DAL9PhT3XITe7M4yJDARmxCVcrE4KSYBgYL3ZcHlejfIEvmbGDlRi1+MGqkG5LB2Ne4vhnMehZ2UrNo3gW1QUiCYAhNyTdiI45poGfG2WGZaEpUGZYGA7hyFbTLuiSagjbzy8QeCqUmv3DREPACJzu9mp+uRInEKIcu2vgdx+ABnVQbE/4qKpSsQVgA18but6/kP3dXSSXjC6tGAyfEEJNkguv7fh7kAAA=="]
+    ] };
+  const LB_DEMO = !/pocketmetaqr\.com$/.test(location.hostname) && new URLSearchParams(location.search).get("demo") === "lbend"; // artifact only: the tab gone
+  const lbOn = () => !LB_DEMO && Date.now() < Date.parse(LB.to);
+  const lbLeft = (long) => { const ms = Date.parse(LB.to) - Date.now(), d = Math.ceil(ms / 864e5), hr = Math.max(1, Math.ceil(ms / 36e5));
+    return ms >= 2 * 864e5 ? (long ? `${d} days left` : `${d}d`) : long ? `${hr} hour${hr > 1 ? "s" : ""} left` : `${hr}h`; };
+  const HG_I = '<svg class="hg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 1.8h8M4 14.2h8"/><path d="M5 1.8v1.6c0 1.7 1.4 3 3 4.6 1.6-1.6 3-2.9 3-4.6V1.8M5 14.2v-1.6c0-1.7 1.4-3 3-4.6 1.6 1.6 3 2.9 3 4.6v1.6"/><path d="M6.4 12.6 8 11.2l1.6 1.4z" fill="currentColor" stroke-width="1"/></svg>';
+  const lbDecks = LB.decks.map(([id, name, energy, art, cards, q], k) => ({ id, name, energy, art, qr: q, nv: 1, lb: 1, k, rank: k + 1, deckName: name,
+    cards: cards.map(([cid, n, c]) => ({ id: cid, n, c })), note: LB.notes[id] || null, evt: "Limited Battle pick", ev: LB.name }));
+  function lbTab() { const b = $("tabL"), on = lbOn(); b.hidden = !on;
+    if (on) { b.innerHTML = `${HG_I}<span>Limited</span><span class="lbt">${lbLeft()}</span>`; b.setAttribute("aria-label", `Limited Battle, ${lbLeft(true)}`); }
+    else if (curTab === "limited") setTab("decks"); }
+  let lbOpen = -1;
+  function renderLB() {
+    const box = $("lbl"), end = new Date(LB.to), o = { month: "short", day: "numeric" };
+    const endTxt = `${end.toLocaleDateString(undefined, o)}, ${end.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}`;
+    const promoTip = `<h3>Cards you can use</h3><p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(", ")}.</p>`;
+    lbOpen = -1;
+    box.innerHTML = `<div class="lbh">
+        <p class="lbk">${HG_I}Limited-time event<span class="lbleft">${lbLeft(true)}</span></p>
+        <h2>${esc(LB.name)}</h2>
+        <p class="lbd">${new Date(LB.from).toLocaleDateString(undefined, o)} \u2013 ${endTxt} (your time)</p>
+        <ul class="lbf">
+          <li><b>Cards</b><span>Dual Fusion, Promo-C Vol. 1 and 7 shop promos ${ii("cards you can use", promoTip)}</span></li>
+        </ul>
+        <p class="lbn">Hand-picked decks, not tournament data. This tab goes away when the event ends.</p>
+      </div>
+      <p class="lbnote">Ranked best first, from our testing so far (it can change). Deck notes made with help from <a href="${esc(LB.src)}" target="_blank" rel="noopener">GameWith</a>.</p>` + lbDecks.map((d, k) => `<section class="acc evr lbr" id="lbr-${k}" style="${bandStyle(d)}">
+        <button class="arow" type="button" data-lk="${k}" aria-expanded="false" aria-controls="lbp-${k}">
+          <span class="icons${d.art.length === 1 ? " one" : ""}">${d.art.map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>
+          <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, d.name.length)}">${esc(d.name)}</span>
+            <span class="evsub">${d.energy.map((e) => `<img src="e/${e}.webp" alt="${cap(e)}" width="15" height="15">`).join("")}<span class="lbpk">Hand-picked</span></span></span>
+        </button>
+        <div class="apanel" id="lbp-${k}" hidden></div>
+      </section>`).join("");
+  }
+  // ---- Filter on this tab (Nov 18): like Meta Decks, but cards only (no deck search) and the energy chips ----
+  const lbF = { q: "", card: null, without: null, en: new Set() };
+  const isLbTab = () => !$("lbl").hidden;
+  const lbCards = () => { const m = new Map(); lbDecks.forEach((d) => d.cards.forEach((c) => { const x = m.get(c.id) || m.set(c.id, { id: c.id, n: c.n, decks: new Set() }).get(c.id); x.decks.add(d.id); })); return [...m.values()]; };
+  const lbHas = (d, id) => d.cards.some((c) => c.id === id);
+  function lbApply() {
+    const q = norm(lbF.q.trim()), act = !!q || !!lbF.card || !!lbF.without || lbF.en.size > 0; let n = 0;
+    lbDecks.forEach((d, k) => { const sec = $("lbr-" + k); if (!sec) return;
+      const ok = (lbF.card ? lbHas(d, lbF.card) : !q || d.cards.some((c) => norm(c.n).includes(q))) && (!lbF.without || !lbHas(d, lbF.without)) && [...lbF.en].every((e) => d.energy.includes(e));
+      sec.hidden = !ok; if (ok) n++; if (!ok && lbOpen === k) lbClose();
+      sec.querySelector(".fuse")?.remove();
+      const c = ok && lbF.card && d.cards.find((x) => x.id === lbF.card); if (c) sec.querySelector(".atext").insertAdjacentHTML("beforeend", `<span class="fuse">${c.c}\u00d7 ${esc(c.n)}</span>`); });
+    setPickStyle(lbF.card);
+    const nm = (id) => (lbCards().find((c) => c.id === id) || {}).n || "";
+    $("fnone").hidden = !act; $("fdot").hidden = !act; $("filtBtn").classList.toggle("fon", act);
+    $("fnoneTxt").textContent = !n ? "No decks match." : lbF.without ? `${n} deck${n > 1 ? "s" : ""} without ${nm(lbF.without)}.` : lbF.card ? `${n} deck${n > 1 ? "s" : ""} use${n > 1 ? "" : "s"} ${nm(lbF.card)}.` : `Showing ${n} of ${lbDecks.length} decks.`;
+  }
+  function renderLbSug() {
+    const q = lbF.card ? "" : norm(lbF.q.trim()), all = lbCards(), N = lbDecks.length, rank = (s) => (norm(s).startsWith(q) ? 0 : 1);
+    if (lbF.card) { $("fsug").innerHTML = ""; return; }
+    if (!q) { // the cards that only some decks use (not the ones every deck has), most used first
+      const L = all.filter((c) => c.decks.size < N).sort((a, b) => b.decks.size - a.decks.size || a.n.localeCompare(b.n)).slice(0, 20);
+      $("fsug").innerHTML = `<span class="sgh">Cards in these decks<span class="sgo"> &middot; most used first</span></span><div class="sgg sgs">${L.map((c) =>
+        `<button class="sgc" type="button" role="option" data-lbc="${c.id}" title="${esc(c.n)} \u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? "s" : ""}"><span class="sgcw"><img src="c/${c.id}.webp" alt="" width="150" height="209" loading="lazy"></span><span>${esc(c.n)}</span></button>`).join("")}</div>`;
+      const g = $("fsug").querySelector(".sgs"); if (g) { const fit = () => { const t = g.querySelector(".sgc"); if (!t || !t.offsetHeight || !g.offsetParent) return; const gap = parseFloat(getComputedStyle(g).rowGap) || 0;
+        const im = t.querySelector("img"); g.style.maxHeight = Math.round(t.offsetHeight + gap + (im ? im.offsetHeight : 0) * 0.2 + 4) + "px"; g.classList.toggle("end", g.scrollTop + g.clientHeight >= g.scrollHeight - 2); };
+        requestAnimationFrame(fit); g.querySelectorAll("img").forEach((im) => im.addEventListener("load", fit, { once: true }));
+        g.addEventListener("scroll", () => g.classList.toggle("end", g.scrollTop + g.clientHeight >= g.scrollHeight - 2), { passive: true }); }
+      return;
+    }
+    const L = all.filter((c) => norm(c.n).includes(q)).sort((a, b) => rank(a.n) - rank(b.n) || b.decks.size - a.decks.size || a.n.localeCompare(b.n)).slice(0, 6);
+    $("fsug").innerHTML = L.length ? `<span class="sgh">Cards</span>` + L.map((c) => `<div class="sgrow"><button class="sg" type="button" role="option" data-lbc="${c.id}">
+        <span class="sgi one"><img src="c/${c.id}.webp" alt="" width="150" height="209" loading="lazy"></span>
+        <span class="sgt"><b>${hl(c.n, q)}</b><small>${c.decks.size === N ? "in every deck" : `in ${c.decks.size} deck${c.decks.size > 1 ? "s" : ""}`}</small></span></button>${c.decks.size < N ? `<button class="sgw" type="button" data-lbw="${c.id}" aria-label="Decks without ${esc(c.n)}">Without</button>` : ""}</div>`).join("")
+      : `<span class="sgh">No card found</span>`;
+  }
+  // The shared filter controls: on this tab they work on lbF (capture: before the Meta Decks handlers)
+  $("fq").addEventListener("input", (e) => { if (!isLbTab()) return; e.stopImmediatePropagation(); lbF.q = e.target.value; lbF.card = null; lbF.without = null; $("fqx").hidden = !lbF.q; renderLbSug(); lbApply(); }, true);
+  $("fqx").addEventListener("click", (e) => { if (!isLbTab()) return; e.stopImmediatePropagation(); e.preventDefault(); lbF.q = ""; lbF.card = null; lbF.without = null; $("fq").value = ""; $("fqx").hidden = true; renderLbSug(); lbApply(); }, true);
+  $("fsug").addEventListener("click", (e) => { if (!isLbTab()) return; e.stopImmediatePropagation();
+    const w = e.target.closest("[data-lbw]"), c = !w && e.target.closest("[data-lbc]"); if (!w && !c) return;
+    const id = (w || c).dataset[w ? "lbw" : "lbc"], nm = (lbCards().find((x) => x.id === id) || {}).n || "";
+    lbF.q = ""; lbF.card = w ? null : id; lbF.without = w ? id : null; $("fq").value = w ? "Without " + nm : nm; $("fqx").hidden = false;
+    track(w ? "lb-filter-without" : "lb-filter-card"); lbApply(); setDrop(false); }, true);
+  $("fen").addEventListener("click", (e) => { if (!isLbTab()) return; e.stopImmediatePropagation(); const b = e.target.closest(".ech"); if (!b) return;
+    const on = b.getAttribute("aria-pressed") !== "true"; b.setAttribute("aria-pressed", String(on)); on ? lbF.en.add(b.dataset.e) : lbF.en.delete(b.dataset.e); lbApply(); }, true);
+  $("fclear").addEventListener("click", (e) => { if (!isLbTab()) return; e.stopImmediatePropagation();
+    lbF.q = ""; lbF.card = null; lbF.without = null; lbF.en.clear(); $("fq").value = ""; $("fqx").hidden = true;
+    document.querySelectorAll(".ech").forEach((b) => b.setAttribute("aria-pressed", "false")); renderLbSug(); lbApply(); }, true);
+  function lbClose() { if (lbOpen < 0) return; const sec = $("lbr-" + lbOpen); lbOpen = -1; if (!sec) return;
+    sec.querySelector(".arow").setAttribute("aria-expanded", "false"); const p = sec.querySelector(".apanel"); p.hidden = true; p.innerHTML = ""; }
+  function lbOpenK(k) {
+    lbClose(); const d = lbDecks[k], sec = $("lbr-" + k); if (!d || !sec) return;
+    lbOpen = k; track("lb-open");
+    const row = sec.querySelector(".arow"), p = sec.querySelector(".apanel");
+    row.setAttribute("aria-expanded", "true"); p.hidden = false;
+    p.innerHTML = `<div class="vwrap"><div class="vars"><div class="slide evs" data-k="0">${slideBody(d, d, -1)}</div></div></div>`;
+    const inf = p.querySelector(".slide .info"); // the energy is on the row: all the tiles are deck notes
+    if (inf && d.note) { inf.classList.add("lbinf"); inf.innerHTML = d.note.map(([l, t]) => `<div class="tile t-nt"><span class="tl">${esc(l)}</span><p>${esc(t)}</p></div>`).join(""); }
+    const top = sec.getBoundingClientRect().top + scrollY - ($("tbar").offsetHeight || 0) - 8;
+    if (sec.getBoundingClientRect().top < ($("tbar").offsetHeight || 0) || sec.getBoundingClientRect().top > innerHeight * 0.4) scrollTo({ top, behavior: reduced ? "auto" : "smooth" });
+  }
+  $("lbl").addEventListener("click", (e) => {
+    const ci = e.target.closest(".cards img"); if (ci) { cardClick(ci); return; }
+    const qb = e.target.closest(".qr[data-i]"); if (qb) { const sec = qb.closest(".lbr"), d = sec && lbDecks[+sec.id.slice(4)]; if (d) openQRSheet(qb, d, 0); return; }
+    const row = e.target.closest(".arow[data-lk]"); if (!row) return;
+    if (lbOpen === +row.dataset.lk) lbClose(); else lbOpenK(+row.dataset.lk);
+  });
+  // Tabs: remembered in this browser; #events opens the events tab, #limited the Limited Battle tab
   let curTab = "";
   function clearFilters() { // Nov 15: moving between the tabs clears both filters
     if (typeof fstate !== "undefined" && fstate) { fstate.q = ""; fstate.en.clear(); fstate.card = null; fstate.dk.clear(); fstate.without = null; document.querySelectorAll(".ech, .fdc").forEach((b) => b.setAttribute("aria-pressed", "false")); }
-    evQ = ""; evMin = 0; evWin = ""; evDk = ""; $("fq").value = ""; $("fqx").hidden = true; }
+    evQ = ""; evMin = 0; evWin = ""; evDk = ""; $("fq").value = ""; $("fqx").hidden = true;
+    lbF.q = ""; lbF.card = null; lbF.without = null; lbF.en.clear(); setPickStyle(null); }
   function setTab(t, save = true) {
-    const ev = t === "events";
+    if (t === "limited" && !lbOn()) t = "decks";
+    const ev = t === "events", lb = t === "limited";
     if (curTab && curTab !== t) clearFilters(); curTab = t;
-    $("tabM").setAttribute("aria-selected", String(!ev)); $("tabE").setAttribute("aria-selected", String(ev));
-    $("list").hidden = ev; $("evl").hidden = !ev; t10Show();
-    $("filtBtn").hidden = !data; $("filtBtn").disabled = false; setDrop(false); filtMode(ev); if (ev) { $("fnone").hidden = true; } else if (data) applyFilter();
+    $("tabM").setAttribute("aria-selected", String(!ev && !lb)); $("tabE").setAttribute("aria-selected", String(ev)); $("tabL").setAttribute("aria-selected", String(lb));
+    $("list").hidden = ev || lb; $("evl").hidden = !ev; $("lbl").hidden = !lb; t10Show();
+    $("filtBtn").hidden = !data; $("filtBtn").disabled = false; setDrop(false); filtMode(ev, lb); if (ev || lb) { $("fnone").hidden = true; } else if (data) applyFilter();
+    if (lb) { if (openId) closeOpen(); evClose(); track("tab-limited"); renderLB(); lbApply(); if (save) try { localStorage.setItem("pmq-tab", t); } catch (err) {} return; }
+    lbClose();
     if (ev) { if (openId) closeOpen(); track("tab-events"); if (!EV) { $("evl").innerHTML = '<div class="empty">Loading events&hellip;</div>'; loadEvents().then(renderEvents); }
       else renderEvents(); } // events.json is loaded early (live line); drawn again on each visit (the filter is cleared when the tab changes)
     else evClose();
@@ -4665,6 +4841,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   $("tabM").addEventListener("click", () => setTab("decks"));
   $("tabE").addEventListener("click", () => setTab("events"));
+  $("tabL").addEventListener("click", () => setTab("limited"));
+  lbTab(); setInterval(lbTab, 6e4); // the days left; the tab goes away at the end
   loadStats().catch(() => {}); // Nov 16: stats.json loads together with data.json (the Top 10 card is ready sooner)
   fetch("data.json", { cache: "no-cache" })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
@@ -4709,6 +4887,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       else if (id && id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); openAt(id, hk); } });
       let t0 = null; try { t0 = localStorage.getItem("pmq-tab"); } catch (err) {}
       if (id === "events" || (!(id && $(id)) && t0 === "events")) setTab("events", false);
+      else if (id === "limited" || (!(id && $(id)) && t0 === "limited")) setTab("limited", false); // ends: setTab falls back to the decks
       // After a home-screen refresh (see below): back to the old scroll place when no deck was open, and a short "Updated" note
       let rs = null; try { rs = sessionStorage.getItem("pmq-rs"); sessionStorage.removeItem("pmq-rs"); } catch (err) {}
       if (rs) { if (!id) scrollTo(0, +rs || 0); toast("Updated to the newest data"); }
@@ -4890,7 +5069,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Reload with the open deck (#id) or the Events tab and the scroll place kept; then a short "Updated" note
   function reloadKeep() {
     try { sessionStorage.setItem("pmq-rs", String(Math.round(scrollY))); } catch (err) {}
-    const h = openId ? "#" + openId : !$("evl").hidden ? "#events" : "";
+    const h = openId ? "#" + openId : !$("evl").hidden ? "#events" : !$("lbl").hidden ? "#limited" : "";
     history.replaceState(null, "", location.pathname + location.search + h);
     location.reload();
   }
