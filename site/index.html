@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794992868-1c10 -->
+<!-- ui: artifact version 1794996746-e79c -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1852,12 +1852,12 @@ a.dkev { text-decoration: none; }
 /* ===== Limited Battle tab (Nov 18): a limited-time in-game event. It must look temporary: dashed edges, an hourglass,
    the days left on the tab. ===== */
 :root { --lb: var(--acc-ink); --lb-bg: var(--sel-bg); --lb-line: var(--acc-line); } /* Nov 18: the site's own blue */
-.tabs:has(#tabL:not([hidden])) { grid-template-columns: 1fr 1.12fr 1fr; gap: 3px; }
+.tabs:has(#tabL:not([hidden])) { grid-template-columns: 0.9fr 1fr 1.3fr; gap: 3px; } /* during the event: Limited wider; after it: 50/50 again (base rule) */
 .tabs button#tabL { display: inline-flex; align-items: center; justify-content: center; gap: 3px; padding: 0 6px; color: var(--lb); outline: 1px dashed var(--lb-line); outline-offset: -3px; white-space: nowrap; }
 .tabs button#tabL[hidden] { display: none; }
 .tabs button#tabL[aria-selected="true"] { color: var(--lb); }
 #tabL .hg { width: 13px; height: 13px; flex: none; }
-@media (max-width: 599px) { .tabs:has(#tabL:not([hidden])) .tlx { display: none; } } /* phones, 3 tabs: Meta · Events · Limited (full names on wider screens) */
+@media (max-width: 599px) { .tabs:has(#tabL:not([hidden])) .tlx { display: none; } .tabs button { font-size: 0.8125rem; } } /* phones: 13px (was 14px), same 32px tab height */ /* phones, 3 tabs: Meta · Events · Limited (full names on wider screens) */
 #tabL .lbt { font-size: 10px; font-weight: 700; line-height: 1; padding: 2px 4px; border-radius: 999px; background: var(--lb-bg); font-variant-numeric: tabular-nums; }
 .lbh { position: relative; padding: 14px var(--sp-4) 13px; border-radius: var(--r-card); background: var(--surface); box-shadow: var(--raised); overflow: hidden; }
 .lbh::before { content: ""; position: absolute; inset: 5px; border: 1.5px dashed var(--lb-line); border-radius: calc(var(--r-card) - 4px); pointer-events: none; }
