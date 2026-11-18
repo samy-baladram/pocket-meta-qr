@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1794969032-2b2f -->
+<!-- ui: artifact version 1794973513-5fac -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1205,7 +1205,7 @@ html { -webkit-tap-highlight-color: transparent; }
 :root .swt > .sp.swp .spch { width: 6px; height: 9px; color: var(--muted); opacity: 1; } :root .swt > .sp.swp .spch path { stroke: currentColor; }
 /* the swap panel: no tabs (the tile picks the level); 3 cards swapped = the same overlap as 2, a bit smaller, a wider item */
 .apop3.lv3 .tcar { --cw: 37px; --iw: calc(var(--cw) * 4.4 + 34px); }
-.tw .tstk img + img { margin-top: 7px; } .tw .tstk img + img + img { margin-top: 14px; } /* Nov 17: lower per card; Nov 18: 7px (was 10px): the panel is shorter */
+.tw .tstk img + img { margin-top: 7px; } .tw .tstk img + img + img { margin-top: 14px; } .apop3.lv2 .tw .tstk img + img { margin-top: calc(var(--cw) * 0.58); } .apop3.lv3 .tw .tstk img + img { margin-top: calc(var(--cw) * 0.42); } .apop3.lv3 .tw .tstk img + img + img { margin-top: calc(var(--cw) * 0.84); } .apop3.lv2 .tw, .apop3.lv3 .tw { padding-top: 9px; padding-bottom: 8px; } /* Nov 18: 2-3 swaps: each card steps down more, so the cards behind show their name and art */ /* Nov 17: lower per card; Nov 18: 7px (was 10px): the panel is shorter */
 .apop3.one .ttabs { display: none; }
 .apop3.lv1 .tcar { --iw: 138px; gap: 14px; } .apop3.lv1 .tw .tsw { gap: 16px; } /* Nov 17: 1 swap: narrower cards, more space */
 .apop3 .tcar { padding-top: 2px; padding-bottom: 9px; } .apop3 .tw { padding: 4px 0 3px; gap: 3px; } /* Nov 18: no QR caption, so a shorter panel: less padding, the same card size */ .apop3 .tbody { padding-bottom: 0; } .apop3 .tdots { bottom: 2px; } .apop3 .tw .ast { line-height: 1.3; } /* Nov 17: the panel = the QR box height: a bit tighter */
@@ -3315,7 +3315,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   function loadMore() {
     if (!data || !data.more) return Promise.resolve(null);
     return moreP || (moreP = fetch("more.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(normQ).then((j) => {
-      MORE = j;
+      MORE = j; nwSync();
       const have = new Set(data.decks.map((d) => d.id)), add = (j.decks || []).filter((d) => !have.has(d.id));
       add.forEach((d) => { d._more = true; data.decks.push(d); });
       $("moreRows").insertAdjacentHTML("beforeend", withGhosts(add, j.nolist, 0, true));
@@ -3984,7 +3984,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const pop = document.createElement("div");
     pop.className = "apop3";
     { const qe = slide.querySelector(".sfoot .qcol"), qr = qe ? cssR(qe.getBoundingClientRect(), zk) : null; // Nov 17: top and bottom in line with the QR box
-      pop.style.cssText = qr ? `left:${ir.left - sr.left}px;top:${qr.top - sr.top}px;width:${ir.width}px;height:${qr.height}px` : `left:${ir.left - sr.left}px;top:${ir.top - sr.top - 8}px;width:${ir.width}px;height:${ir.height + 15}px`; } // Nov 15: 5px more at the bottom (room for the dots)
+      // Nov 18: 2 and 3 swaps: the panel goes down to just above the line under "Used by N top players" (room to step the stacked cards more)
+      const th = lv >= 2 && slide.querySelector(".sfoot .swb .tph"), tr = th ? cssR(th.getBoundingClientRect(), zk) : null;
+      pop.style.cssText = qr ? `left:${ir.left - sr.left}px;top:${qr.top - sr.top}px;width:${ir.width}px;height:${(tr ? tr.bottom - 2 : qr.bottom) - qr.top}px` : `left:${ir.left - sr.left}px;top:${ir.top - sr.top - 8}px;width:${ir.width}px;height:${ir.height + 15}px`; } // Nov 15: 5px more at the bottom (room for the dots)
     pop.classList.add("one", "lv" + lv);
     pop.innerHTML = `<div class="ttabs" role="tablist" aria-label="Cards swapped">${G.length < 2 ? "" : G.map((g, j) => `<button type="button" role="tab" data-g="${j}" aria-selected="${j === g0}">${g.n} swap${g.n > 1 ? "s" : ""}</button>`).join("")}</div>
       <div class="tbody"><div class="tcar" role="listbox"></div></div><div class="tdots"></div>`;
@@ -4033,7 +4035,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const tb = pop.querySelector(".tbody"), tw = car.querySelector(".tw.on"), free = tb && tw ? tb.clientHeight - 14 - tw.offsetHeight : 0;
       // item width = m x card width + fixed space (chevron, gaps); m by level (cards overlap more for 2 and 3 swaps). Phones: the item may fill the panel (the dots show there is more)
       const m = [2, 2.76, 3.2][lv - 1], C = iw0 - m * cw0, pad = car.clientWidth < 260 ? 12 : 30;
-      if (tk && free > 2) { const cw = Math.max(cw0, Math.min(cw0 * (lv === 1 ? 1.45 : 1.7), cw0 + free * 150 / 209, (car.clientWidth - pad - (lv === 1 ? 34 : C)) / (lv === 1 ? 2.76 : m))); /* Nov 18: 1 swap: the same card size as 2 swaps (more room around) */ car.style.setProperty("--cw", cw.toFixed(1) + "px"); car.style.setProperty("--iw", (m * cw + C + (lv === 1 ? 12 : 0)).toFixed(1) + "px"); } }
+      if (tk && free > 2) { const cw = Math.max(cw0, Math.min(cw0 * (lv === 1 ? 1.45 : 1.7), cw0 + free / (209 / 150 + [0, 0.58, 0.84][lv - 1]), /* Nov 18: a stack grows by its card height + its step (0.58 / 0.84 x the width) */ (car.clientWidth - pad - (lv === 1 ? 34 : C)) / (lv === 1 ? 2.76 : m))); /* Nov 18: 1 swap: the same card size as 2 swaps (more room around) */ car.style.setProperty("--cw", cw.toFixed(1) + "px"); car.style.setProperty("--iw", (m * cw + C + (lv === 1 ? 12 : 0)).toFixed(1) + "px"); } }
   }
   // Nov 14: the "N vs List 1" swaps in the same fixed panel as the tweaks (over the tiles): list-1 cards, a chevron down,
   // this list's cards; the card size fits the panel (height first, then width; a long row scrolls). All swaps show in the grid.
@@ -4129,6 +4131,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // ===== Search + energy filter: hides decks that do not match (ranks stay as they are) =====
   const ENERGY_ORDER = ["grass", "fire", "water", "lightning", "psychic", "fighting", "darkness", "metal"];
   const fstate = { q: "", en: new Set(), card: null, dk: new Set(), without: null }; // dk: deck chips; without: a card id the decks must not use // card: a card id picked from the suggestions (exact card, not by name)
+  // Nov 18 fix: a new deck usually has a small share, so it is in more.json (not data.json): the New chip waits for it
+  const nwAny = () => [...data.decks, ...((MORE && MORE.decks) || [])].some((d) => d.nw) || (!!data.more && !MORE);
+  const nwSync = () => { const b = document.querySelector('#fdk .fdc[data-k="nw"]'); if (b) b.disabled = !nwAny(); };
   function setupFilter() {
     // All 8 energy types, always (so Metal shows too). A type with no deck in the meta right now can still be chosen:
     // the result line then says so ("No Metal decks in the meta right now").
@@ -4136,7 +4141,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       `<button class="ech" type="button" data-e="${e}" aria-pressed="false" title="${cap(e)}"><img src="e/${e}.webp" alt="${cap(e)}" width="22" height="22"></button>`).join("");
     $("fdk").innerHTML = [["noex", "No ex", "Decks whose main list has no Pok\u00e9mon ex"], 
       ["rise", "Rising", "Up in rank in the last 24 hours, or new in the list"], ["nw", "New", "New in the list: the first time since the set came out (for 3 days)"], ["new", `${esc(data.set || "set")} cards`, `Decks that use a card from ${esc(data.setName || data.set || "the newest set")}`]]
-      .map(([k, t, tip]) => `<button class="fdc" type="button" data-k="${k}" aria-pressed="false" title="${tip}"${(k === "rise" && !hasTrend()) || (k === "nw" && !data.decks.some((d) => d.nw)) ? " disabled" : ""}>${k === "rise" ? `<span class="fup">${RB_UP}</span>` : k === "nw" ? `<span class="fnw">${SPARK}</span>` : ""}${t}</button>`).join("");
+      .map(([k, t, tip]) => `<button class="fdc" type="button" data-k="${k}" aria-pressed="false" title="${tip}"${(k === "rise" && !hasTrend()) || (k === "nw" && !nwAny()) ? " disabled" : ""}>${k === "rise" ? `<span class="fup">${RB_UP}</span>` : k === "nw" ? `<span class="fnw">${SPARK}</span>` : ""}${t}</button>`).join("");
     $("filtBtn").hidden = false;
   }
   // Deck chips (Nov 13): facts of each deck's main list (list 1), so the result is the same for everyone
