@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795072565-dcfe -->
+<!-- ui: artifact version 1795082988-fbd0 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1044,47 +1044,72 @@ html { -webkit-tap-highlight-color: transparent; }
 
 /* ===== Nov 19: wide screens (740px+, iPad portrait too): open deck = list card (as on phones) + deck stats sidebar ===== */
 .dks { display: none; }
-.dkl { position: relative; min-width: 0; display: flex; flex-direction: column; }
+.dkl { min-width: 0; display: flex; flex-direction: column; } /* phones: not positioned, so the List tabs keep their place under the strip (relative to the panel) */
 @media (min-width: 740px) {
   .apanel:has(> .dk2) { margin-inline: 0; }
   .dk2 { --dklw: 400px; display: grid; grid-template-columns: var(--dklw) minmax(0, 1fr); column-gap: 16px; align-items: start; }
-  .dkl .ldots { position: static; transform: none; order: -1; align-self: flex-start; flex-wrap: wrap; margin: 8px 0 0 2px; padding: 0; gap: 6px; }
+  .dkl { position: relative; }
+  .dkl .ldots { position: static; transform: none; order: -1; align-self: flex-start; flex-wrap: wrap; margin: 8px 0 8px 2px; padding: 0; gap: 7px; }
   .dkl .ldots .lwd { display: inline; }
-  :root:not(#_) .dkl .ldots .dot { display: inline-flex; flex-direction: row; align-items: center; height: 24px; padding: 0 10px; font-size: 12px; white-space: pre; }
+  :root:not(#_) .dkl .ldots .dot { display: inline-flex; flex-direction: row; align-items: center; height: 30px; padding: 0 13px; font-size: 13px; white-space: pre; } /* Nov 19: bigger, easier to tap */
   html.cen .dkl .vars, .dkl .vars { --per: 1; --sw: var(--dklw); --slw: var(--dklw); --mh: calc(var(--dklw) / 2); margin-inline: -8px; padding-inline: 8px; scroll-padding-inline: 8px; -webkit-mask-image: none; mask-image: none; justify-content: flex-start; }
   html.cen .dkl .vars::after { display: none; }
   .dkl .vars .slide { flex: 0 0 var(--dklw); }
   .dkl .chev-btn { display: none; }
-  .dks.on { display: flex; flex-direction: column; position: relative; z-index: 1; margin-top: -20px; padding: 30px 0 0; border-radius: 0 0 var(--r-card) var(--r-card); background: var(--surface); box-shadow: var(--raised); overflow: hidden; }
-  .acc:has(.dks.on) > .arow { border-bottom-right-radius: 0; }
-  .dksh { margin: 0 14px 8px; display: flex; justify-content: space-between; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-  .dksh span { font-weight: 500; letter-spacing: 0; text-transform: none; }
+  .dks.on { display: flex; flex-direction: column; position: relative; padding: 6px 0 0; border-radius: 0 0 var(--r-card) var(--r-card); background: var(--surface); box-shadow: var(--raised); overflow: hidden; }
+  /* Nov 19 v3: 2 panels side by side: left = the deck head + its stats (one tall card), right = the list (tabs + list card) */
+  .acc:has(.dks.on) { --dklw: 400px; display: grid; grid-template-columns: minmax(0, 1fr) var(--dklw); grid-template-rows: auto 1fr; column-gap: 16px; align-items: start; }
+  .acc:has(.dks.on) > .apanel, .acc:has(.dks.on) .dk2 { display: contents; }
+  .acc:has(.dks.on) > .arow { grid-column: 1; grid-row: 1; border-radius: var(--r-card) var(--r-card) 0 0; clip-path: inset(-40px -24px 0 -24px); }
+  .acc:has(.dks.on) > .arow > .dpill { display: none !important; } /* the panel shows the same numbers */
+  :root:not(#_) .acc:has(.dks.on) > .arow .aname { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.15; font-size: calc(var(--fs-xl) * 1.05); text-wrap: balance; } /* the narrower head: the name on up to 2 lines (no "…") */
+  .acc:has(.dks.on) .dks { grid-column: 1; grid-row: 2; }
+  .acc:has(.dks.on) .dkl { grid-column: 2; grid-row: 1 / span 2; }
+  .acc:has(.dks.on) .dkl .ldots { margin-top: 0; }
   .dksb { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 14px 14px; scrollbar-width: thin;
     -webkit-mask-image: linear-gradient(#000 calc(100% - 44px), transparent); mask-image: linear-gradient(#000 calc(100% - 44px), transparent); }
   .dksb.end { -webkit-mask-image: none; mask-image: none; }
-  .dks .dk3.dk2c { grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 4px; }
-  .dks .dk2c > div { gap: 1px; }
-  .dks .dk2c small.dkd, .dks .dk2c .wv { margin-top: 0; order: 0; }
-  .dks .dkcw { display: block; margin-top: 8px; }
-  .dks .dkch { display: block; width: 100%; height: 58px; overflow: visible; }
-  .dkb0 { fill: #b7dbff; } .dkb1 { fill: #4aa3ff; }
-  .dk50 { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.6; } .dk50t { font-size: 9px; fill: var(--muted); }
-  .dkln { fill: none; stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; } .dkln.g { stroke: #1f9d55; } .dkln.r { stroke: #d6345a; }
-  .dkdt.g { fill: #1f9d55; } .dkdt.r { fill: #d6345a; }
-  .dkdays { display: flex; margin-top: 3px; } .dkdays i { flex: 1; text-align: center; font-style: normal; font-size: 9.5px; color: var(--muted); }
-  .dksec { margin-top: 14px; }
-  .dksech { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 0 0 6px; }
-  .dksech b { font-size: 14px; font-weight: 700; color: var(--ink); } .dksech span { font-size: 11.5px; color: var(--muted); text-align: right; }
-  .dks [data-k="mu"] .dhint { display: none; }
-  .dks .mur { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) 34px 22px; gap: 6px; } /* longer bars: the bar column grows with the panel */
-  .dks .mun { white-space: normal; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-  .dks .mmap { display: block; max-height: 240px; margin: 0 auto; }
-  .dks .dkev { margin: 14px 0 6px; }
-  .dks .snotes { margin-top: 8px; }
-  :root:not(#_) .dks .dk3 b { font-size: 19px; }
+  .dks .dksh { margin: 0 14px 8px; }
 }
-@media (min-width: 740px) and (max-width: 799px) { .dk2 { --dklw: 380px; column-gap: 14px; } } /* iPad mini portrait (744px) */
-@media (min-width: 1000px) { .dk2 { --dklw: 420px; column-gap: 20px; } }
+/* Nov 19: Latest Events: 2 (600px+) / 3 (900px+) lists side by side, from the left, no focus mask (the overview of the winners) */
+@media (min-width: 600px) {
+  html.cen #evl .vars { --sw: min(960px, 100vw - 32px); --vgap: 10px; /* Nov 19: the lists line up with the event row (the content column), 10px apart */
+    --slw: calc((var(--sw) - (var(--per) - 1) * var(--vgap)) / var(--per)); --pad: var(--edge, 16px);
+    padding-inline: var(--pad); scroll-padding-inline: var(--pad); -webkit-mask-image: none; mask-image: none; }
+  html.cen #evl .vars::after { content: ""; flex: none; width: max(0px, calc(var(--pad) - var(--vgap))); }
+  html.cen #evl .vars .slide { scroll-snap-align: start; }
+  :root.cen:not(#_) #evl .vars { --vgap: 10px; } /* also on iPad (its block sets 22px for the deck lists) */
+}
+@media (min-width: 740px) and (max-width: 799px) { .dk2, .acc:has(.dks.on) { --dklw: 380px; column-gap: 14px; } }
+@media (min-width: 740px) and (max-width: 999px) { /* iPad portrait: the head is narrow: badge and icons move left, smaller name */
+  :root:not(#_) .acc:not(.pod):has(.dks.on) > .arow[aria-expanded="true"] { padding-left: 58px; }
+  :root:not(#_) .acc:not(.pod):has(.dks.on) > .arow[aria-expanded="true"] .rb { left: calc(30px / 1.3); }
+  :root:not(#_) .acc:not(.pod):has(.dks.on) > .arow[aria-expanded="true"] .rb.pm { left: 30px; }
+  :root:not(#_) .acc:not(.pod):has(.dks.on) > .arow[aria-expanded="true"] .aname { font-size: 17px; } } /* iPad mini portrait (744px) */
+@media (min-width: 1000px) { .dk2, .acc:has(.dks.on) { --dklw: 420px; column-gap: 20px; } }
+/* Nov 19: deck stats v2 content (the sidebar and the stats sheet) */
+.dksh { margin: 2px 0 8px; display: flex; justify-content: space-between; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.dksh span { font-weight: 500; letter-spacing: 0; text-transform: none; }
+.dkv2 .dk3.dk2c { grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 4px; }
+.dkv2 .dk2c > div { gap: 1px; }
+.dkv2 .dk2c small.dkd, .dkv2 .dk2c .wv { margin-top: 0; order: 0; }
+.dkv2 .dkcw { display: block; margin-top: 8px; }
+.dkv2 .dkch { display: block; width: 100%; height: 58px; overflow: visible; }
+.dkb0 { fill: #b7dbff; } .dkb1 { fill: #4aa3ff; }
+.dk50 { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.6; } .dk50t { font-size: 9px; fill: var(--muted); }
+.dkln { fill: none; stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; } .dkln.g { stroke: #1f9d55; } .dkln.r { stroke: #d6345a; }
+.dkdt.g { fill: #1f9d55; } .dkdt.r { fill: #d6345a; }
+.dkdays { display: flex; margin-top: 3px; } .dkdays i { flex: 1; text-align: center; font-style: normal; font-size: 9.5px; color: var(--muted); }
+.dksec { margin-top: 14px; }
+.dksech { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 0 0 6px; }
+.dksech b { font-size: 14px; font-weight: 700; color: var(--ink); } .dksech span { font-size: 11.5px; color: var(--muted); text-align: right; }
+.dkv2 [data-k="mu"] .dhint { display: none; }
+.dkv2 .mur { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) 34px 22px; gap: 6px; } /* longer bars: the bar column grows with the panel */
+.dkv2 .mun { white-space: normal; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.dkv2 .mmap { display: block; max-height: 240px; margin: 0 auto; }
+.dkv2 .dkev { margin: 14px 0 6px; }
+.dkv2 .snotes { margin-top: 8px; }
+:root:not(#_) .dkv2 .dk3 b { font-size: 19px; }
 /* Nov 16: "Top 10" card above the deck list */
 .t10 { margin: 2px var(--sp-3, 12px) 10px; padding: 10px 12px 8px; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 3px rgba(var(--sh), 0.12); }
 .t10h { margin: 0 0 4px; font-size: var(--fs-s, 13px); font-weight: 700; color: var(--ink); }
@@ -1261,12 +1286,18 @@ html { -webkit-tap-highlight-color: transparent; }
 
 /* Nov 17: Top players sheet: the 5 cells (static), 3 win cards; wide (620px+): the chart left, the results right (the dots stay close) */
 .tpg { display: grid; gap: 4px; min-width: 0; } .tpgl, .tpgr { min-width: 0; }
-@media (min-width: 620px) {
-  .ipop.stat:has(.tpg) { width: min(680px, calc(100vw - 32px)); }
-  .tpg { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 18px; min-height: 240px; } /* the row is as tall as the chart */
+@media (min-width: 620px) { /* Nov 19: one column again (chart over the results) */
+  .ipop.stat:has(.tpg) { width: min(460px, calc(100vw - 32px)); }
   .tpgl .sdots { zoom: 1.2; } /* Nov 17: wide: bigger dots (and their 1 / 2 / 3 numbers) */
-  .tpgr { position: relative; } .tpgr .fscr { position: absolute; inset: 0; max-height: none; margin: 0; } /* the results fill that height and scroll */
+  .tpgr .fscr { max-height: 260px; }
 }
+/* Nov 19: two-panel deck view (740px+): the Top players popover covers the list card from the top of the deck to the
+   "Used by" button (as wide as the list card); the results fill the rest of its height */
+.ipop.tpfit { display: flex; flex-direction: column; overflow: hidden !important; }
+.ipop.tpfit #iPopIn { flex: 1; min-height: 0; display: flex; flex-direction: column; width: 100%; max-width: none; margin: 0; }
+.ipop.tpfit .tpg { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.ipop.tpfit .tpgr { flex: 1; min-height: 120px; position: relative; }
+.ipop.tpfit .tpgr .fscr { position: absolute; inset: 0; max-height: none; margin: 0; }
 
 /* Nov 17: Top players: one card per version group (exact, 1-3 swaps) with its own win rate, then Best */
 .tpcap { margin: 2px 0 4px; font-size: var(--fs-xs); color: var(--muted); } /* says what the % in the cards are */
@@ -2431,8 +2462,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const sw = (k) => `${k} swap${k > 1 ? "s" : ""}`;
     const lvR = (k) => (v.alt || []).filter((a) => lvOf(a) === k).reduce((s, a) => s.map((x, j) => x + ((a.rec || [])[j] || 0)), [0, 0, 0]);
     const cell = (ic, lab, r, n) => `<div><span>${ic}${lab}</span><b>${wrPct(r)}%</b><small>${n} player${n === 1 ? "" : "s"}</small></div>`;
-    const top = `<p class="tpcap">Win rate by version</p><div class="tpw" style="--n:${2 + [1, 2, 3].filter((k) => T[k]).length}">${cell(EXACT_I, "Exact", rc, ex)}${[1, 2, 3].filter((k) => T[k]).map((k) => cell(SWX_I(k), sw(k), lvR(k), T[k])).join("")}
-      <div class="tpbest"><span>Best</span><b>${b0 ? ordF(b0[0]) : "\u2013"}</b><small>${b0 ? `of ${b0[1]}` : ""}</small></div></div>`;
+    const top = `<p class="tpcap">Win rate by version</p><div class="tpw" style="--n:${1 + [1, 2, 3].filter((k) => T[k]).length}">${cell(EXACT_I, "Exact", rc, ex)}${[1, 2, 3].filter((k) => T[k]).map((k) => cell(SWX_I(k), sw(k), lvR(k), T[k])).join("")}
+</div>`; // Nov 19: no "Best" card (not very useful; the list shows every place)
     const fold = `<div class="tpg"><div class="tpgl">${wk}</div><div class="tpgr">${list}</div></div>`; // Nov 17: wide: chart left, results right
     return `<h3 class="sh3">${TOPP_I}Top players</h3>${top}${fold}<p class="snote">Top player: at least 2 more wins than losses at an event ${winWk()}.</p>`; };
   const bcSheet = (v, d) => { const [w, l] = String(v.sc || "0-0-0").split("-").map(Number), n = w - l, k = Math.max(1, Math.ceil((2 - n) / 2));
@@ -2451,7 +2482,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   if ("requestIdleCallback" in window) requestIdleCallback(() => loadStats(), { timeout: 4000 }); else setTimeout(() => loadStats(), 2500); // a function, not loadStats itself: it is declared further down (Safari has no requestIdleCallback, so this line ran first and stopped the page)
   addEventListener("click", async (e) => { const b = e.target.closest && e.target.closest(".dpb[data-dk]"); if (!b) return;
     e.preventDefault(); e.stopPropagation(); const d = [...data.decks, ...((MORE && MORE.decks) || [])].find((x) => x.id === b.dataset.dk); if (!d) return;
-    track("sheet-deck"); const [st, M, V] = await Promise.all([loadStats(), loadCardMap().catch(() => null), d.nv > 1 && !d.bc ? loadExtra(d.id).catch(() => null) : null]); showTip(b, dkSheet(d, st, M, V)); }, true);
+    track("sheet-deck"); const [st, M, V] = await Promise.all([loadStats(), loadCardMap().catch(() => null), d.nv > 1 && !d.bc ? loadExtra(d.id).catch(() => null) : null]); showTip(b, dkSheet2(d, st, M, V)); }, true); // Nov 19: the v2 format (as the wide-screen sidebar)
   // a card in the deck sheet's Cards fold opens the card sheet
   $("iPop").addEventListener("click", (e) => { const g = e.target.closest(".dkev[data-evd]"); if (g) { const id = g.dataset.evd; hideTip(); setTab("events"); evDk = id; filtMode(true); renderEvents(); scrollTo({ top: $("evl").getBoundingClientRect().top + scrollY - 80, behavior: "smooth" }); track("deck-to-events"); } });
   $("iPop").addEventListener("click", (e) => { const c = e.target.closest && e.target.closest(".mmap [data-mm]"); if (!c) return; // Nov 15: meta map dot -> its numbers
@@ -3548,11 +3579,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // best 3 / worst 3 matchups, "All deck stats" = the sheet). Phones: no sidebar (the stats pill opens the sheet).
   const DKW = matchMedia("(min-width: 740px)");
   let dksRo = null;
-  async function dkSide(p, d) {
-    const a = p.querySelector(".dks"); if (!a || a.dataset.on || !DKW.matches) return; a.dataset.on = "1";
-    const [st, M, V] = await Promise.all([loadStats().catch(() => null), loadCardMap().catch(() => null), d.nv > 1 && !d.bc ? loadExtra(d.id).catch(() => null) : null]);
-    if (openId !== d.id || !a.isConnected) return;
-    const box = document.createElement("div"); box.innerHTML = dkSheet(d, st, M, V); box.querySelector(".sh3")?.remove();
+  // Nov 19: deck stats, v2 format (used by the wide-screen sidebar and by the stats sheet on every screen): header line,
+  // 2 cards Share / Win rate with their 7-day charts, then open sections Matchups, Meta map, Cards, Events (no folds)
+  function dkV2(d, st, M, V) {
+    const box = document.createElement("div"); box.innerHTML = dkSheet(d, st, M, V); const name = box.querySelector(".sh3"); name?.remove();
     const S = st && st.d && st.d[d.id] || {}, tr = S.tr, days = st && st.days ? st.days.map((x) => String(+x.slice(8))) : [];
     // Nov 19 v2: 2 top cards (Share, Win rate) with their real 7-day charts in place of the small line / range bar
     const k3 = box.querySelector(":scope > .dk3"); if (k3) { k3.classList.add("dk2c"); k3.children[2]?.remove(); }
@@ -3573,16 +3603,23 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       s.innerHTML = `<div class="dksech"><b>${f.querySelector("summary b").innerHTML}</b><span>${f.querySelector(".dpv")?.innerHTML || ""}</span></div>`; s.append(...f.querySelector(".dfb").childNodes); return s; };
     const fk = (f) => { const t = f.querySelector("summary b")?.textContent || ""; return t.startsWith("Match") ? "mu" : t.startsWith("7-day") ? "tr" : t.startsWith("Meta") ? "mm" : t.startsWith("Cards") ? "cu" : ""; };
     const F = {}; box.querySelectorAll(":scope > details.sfold").forEach((f) => { f.dataset.k = fk(f); F[f.dataset.k] = f; });
-    const body = document.createElement("div"); body.className = "dksb";
+    const body = document.createElement("div"); body.className = "dkv2";
     if (k3) body.append(k3);
     ["mu", "mm", "cu"].forEach((k) => F[k] && body.append(sec(F[k])));
     const ev = box.querySelector(":scope > .dkev"); if (ev) body.append(ev);
     const sn = box.querySelector(":scope > .snotes"); if (sn) body.append(sn);
     const nDk = [...data.decks, ...((MORE && MORE.decks) || [])].length;
-    a.innerHTML = `<p class="dksh">This deck \u00b7 all lists<span>#${d.rank} of ${nDk} \u00b7 ${d.count} players</span></p>`;
-    a.append(body); a.classList.add("on");
+    return { name, head: `<p class="dksh">This deck \u00b7 all lists<span>#${d.rank} of ${nDk} \u00b7 ${d.count} players</span></p>`, body };
+  }
+  const dkSheet2 = (d, st, M, V) => { const v = dkV2(d, st, M, V); return (v.name ? v.name.outerHTML : "") + v.head + v.body.outerHTML; };
+  async function dkSide(p, d) {
+    const a = p.querySelector(".dks"); if (!a || a.dataset.on || !DKW.matches) return; a.dataset.on = "1";
+    const [st, M, V] = await Promise.all([loadStats().catch(() => null), loadCardMap().catch(() => null), d.nv > 1 && !d.bc ? loadExtra(d.id).catch(() => null) : null]);
+    if (openId !== d.id || !a.isConnected) return;
+    const v = dkV2(d, st, M, V), body = v.body; body.classList.add("dksb");
+    a.innerHTML = v.head; a.append(body); a.classList.add("on");
     // as tall as the list card; the stats scroll inside (a soft fade at the bottom until the end)
-    const lc = p.querySelector(".dkl"), fit = () => { if (!lc.offsetHeight) return; a.style.height = lc.offsetHeight + 20 - 6 + "px"; endF(); };
+    const lc = p.querySelector(".dkl"), fit = () => { if (!lc.offsetHeight) return; const k = ZK().k, sb = Math.max(...[...lc.querySelectorAll(".vars > .slide")].map((s) => s.getBoundingClientRect().bottom)); a.style.height = Math.max(240, (sb - a.getBoundingClientRect().top) / k) + "px"; endF(); }; // Nov 19: the stats panel ends where the list card ends // Nov 19: the left panel (head + stats) = the list column height
     const endF = () => body.classList.toggle("end", body.scrollTop + body.clientHeight >= body.scrollHeight - 2);
     body.addEventListener("scroll", endF, { passive: true });
     if (dksRo) dksRo.disconnect();
@@ -3597,6 +3634,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const g = e.target.closest(".dkev[data-evd]"); if (g) { const id = g.dataset.evd; setTab("events"); evDk = id; filtMode(true); renderEvents(); scrollTo({ top: $("evl").getBoundingClientRect().top + scrollY - 80, behavior: "smooth" }); track("deck-to-events"); return; }
     const c = e.target.closest(".mmap [data-mm]"); if (c) { const [nm, s, w, k] = c.dataset.mm.split("|"), svg = c.closest("svg"); svg.querySelectorAll(".mdot.on").forEach((x) => x.classList.remove("on")); if (c.classList.contains("mdot")) c.classList.add("on");
       svg.nextElementSibling.innerHTML = `<b>${nm}</b> \u00b7 ${s} share \u00b7 ${w} win \u00b7 ${k} players`; } });
+  // Nov 19: when the page cannot scroll far enough to keep the tapped row in place (near the top of the page), the list glides
+  // to its new place (0.25 s) instead of jumping there
+  function glide(list, el, was) { const d = el.getBoundingClientRect().top - was; if (Math.abs(d) < 2 || reduced || matchMedia("(max-width: 599px)").matches) return; // phones: the page scrolls to the row anyway
+    list.style.transition = "none"; list.style.transform = `translateY(${-d}px)`; void list.offsetHeight;
+    list.style.transition = "transform 0.25s ease"; list.style.transform = "";
+    const end = () => { list.style.transition = ""; list.removeEventListener("transitionend", end); }; list.addEventListener("transitionend", end); setTimeout(end, 400); }
   function close(id) {
     closeAlts();
     const sec = $(id);
@@ -3633,7 +3676,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (!d) return;
     const boxOf = (el) => (el && el.classList.contains("pod") ? el.querySelector(".arow") : el); // podium sections have no box
     const pinTop = $(id) ? boxOf($(id)).getBoundingClientRect().top : 0; // row position before a deck above it closes
-    if (openId && openId !== id) close(openId);
+    if (openId && openId !== id) { close(openId);
+      // Nov 19: a deck above closed: move the page by the same amount at once, so the tapped row stays under the finger
+      // (no jump up and back); the smooth scroll below then starts from there
+      if ($(id)) { const sh = boxOf($(id)).getBoundingClientRect().top - pinTop; if (Math.abs(sh) > 1) { barHold = Date.now() + 400; scrollBy(0, sh); } glide($("list"), boxOf($(id)), pinTop); } } // the band does not slide in for this move
     openId = id;
     const sec = $(id), p = sec.querySelector(".apanel"), n = d.nv || 1;
 
@@ -3959,6 +4005,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const a = ipop.querySelector(".parr");
     a.className = "parr " + (below ? "t" : "b");
     a.style.left = Math.max(12, Math.min(cx - x - 7, w - 26)) + "px";
+    // Nov 19: Top players from a list in the two-panel deck view: over the list card, deck top -> just above the button
+    const sl = ipop.querySelector(".tpg") && DKW.matches && tipBtn.closest(".dkl .slide"), acc = sl && sl.closest(".acc");
+    ipop.classList.remove("tpfit"); ipop.style.width = ""; ipop.style.height = "";
+    if (sl && acc) { const rs = cssR(sl.getBoundingClientRect(), Z.k), ra = cssR(acc.getBoundingClientRect(), Z.k), t0 = Math.max(8, ra.top), b0 = r.top - g;
+      if (b0 - t0 >= 320) { ipop.classList.add("tpfit"); ipop.style.width = rs.width + "px"; ipop.style.height = ipop.style.maxHeight = b0 - t0 + "px";
+        ipop.style.left = rs.left + "px"; ipop.style.top = t0 + "px"; a.className = "parr b"; a.style.left = Math.max(12, Math.min(cx - rs.left - 7, rs.width - 26)) + "px";
+        const fb = ipop.querySelector(".fscr"); if (fb) { delete fb.dataset.pad; requestAnimationFrame(() => fscrCur(fb)); } } }
   }
   // Nov 15: the folds of a sheet go in one box (.fgr): 2 columns from 620px (Nov 16, was 1200px), one column on phones
   function fGroup(box) { const ds = [...box.querySelectorAll(":scope > details.sfold")]; if (ds.length < 2) return;
@@ -3984,7 +4037,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (ipop.hidden) return;
     if (!FLOAT && !fromHistory && history.state && history.state.tip) { history.back(); return; } // the popstate handler closes it
     if (tipBtn) { tipBtn.setAttribute("aria-expanded", "false"); if (ipop.contains(document.activeElement)) tipBtn.focus({ preventScroll: true }); }
-    tipBtn = null; ipop.classList.remove("qsheet");
+    tipBtn = null; ipop.classList.remove("qsheet", "tpfit"); ipop.style.width = ""; ipop.style.height = "";
     ipop.classList.remove("on"); cscrim.classList.remove("on");
     const done = () => { if (!tipBtn) { ipop.hidden = true; if (cpop.hidden) cscrim.hidden = true; } };
     if (reduced || FLOAT) done(); else setTimeout(done, 240);
@@ -4728,7 +4781,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   async function evOpenId(tid) {
     const e = EV && EV.events.find((x) => x.tid === tid), sec = $("ev-" + tid);
     if (!e || !sec) return;
-    evClose();
+    const pin = sec.getBoundingClientRect().top; evClose();
+    { const sh = sec.getBoundingClientRect().top - pin; if (Math.abs(sh) > 1) { barHold = Date.now() + 400; scrollBy(0, sh); } glide($("evl"), sec, pin); } // Nov 19: an event above closed: the tapped row stays in place
     evOpen = { tid, e };
     track("event/" + tid);
     const p = sec.querySelector(".apanel");
@@ -4770,7 +4824,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       evIo = new IntersectionObserver((es) => es.forEach((x) => x.isIntersecting && draw(x.target)), { root: vars, threshold: 0.2 });
       slides.slice(1).forEach((sl) => evIo.observe(sl));
       const at = () => { const x = vars.scrollLeft, o = slides[0].offsetLeft; return slides.reduce((b, s, i) => (Math.abs(s.offsetLeft - o - x) < Math.abs(slides[b].offsetLeft - o - x) ? i : b), 0); };
-      const kk = () => (CEN() && per() > 1 ? 1 : per());
+      const kk = () => per(); // Nov 19: events show 2-3 lists side by side again (no centered single list): an overview of the winners
       const go = (i) => { i = Math.max(0, Math.min(i, n - kk())); vars.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: reduced ? "auto" : "smooth" }); };
       const sync = () => { const i = at(), k = kk(); p.classList.toggle("fit", n <= k);
         p.querySelector(".chev-btn.prev").hidden = i === 0; p.querySelector(".chev-btn.next").hidden = i >= n - k;
