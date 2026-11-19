@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795027354-595d -->
+<!-- ui: artifact version 1795072565-dcfe -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1041,6 +1041,50 @@ html { -webkit-tap-highlight-color: transparent; }
      center (a deck with 2 lists could not scroll at all): the end space is a real flex item, not padding */
   html.cen .vars { padding-inline-end: 0; } html.cen .vars::after { content: ""; flex: none; width: max(0px, calc(50vw - var(--mh) - var(--vgap))); align-self: stretch; }
 }
+
+/* ===== Nov 19: wide screens (740px+, iPad portrait too): open deck = list card (as on phones) + deck stats sidebar ===== */
+.dks { display: none; }
+.dkl { position: relative; min-width: 0; display: flex; flex-direction: column; }
+@media (min-width: 740px) {
+  .apanel:has(> .dk2) { margin-inline: 0; }
+  .dk2 { --dklw: 400px; display: grid; grid-template-columns: var(--dklw) minmax(0, 1fr); column-gap: 16px; align-items: start; }
+  .dkl .ldots { position: static; transform: none; order: -1; align-self: flex-start; flex-wrap: wrap; margin: 8px 0 0 2px; padding: 0; gap: 6px; }
+  .dkl .ldots .lwd { display: inline; }
+  :root:not(#_) .dkl .ldots .dot { display: inline-flex; flex-direction: row; align-items: center; height: 24px; padding: 0 10px; font-size: 12px; white-space: pre; }
+  html.cen .dkl .vars, .dkl .vars { --per: 1; --sw: var(--dklw); --slw: var(--dklw); --mh: calc(var(--dklw) / 2); margin-inline: -8px; padding-inline: 8px; scroll-padding-inline: 8px; -webkit-mask-image: none; mask-image: none; justify-content: flex-start; }
+  html.cen .dkl .vars::after { display: none; }
+  .dkl .vars .slide { flex: 0 0 var(--dklw); }
+  .dkl .chev-btn { display: none; }
+  .dks.on { display: flex; flex-direction: column; position: relative; z-index: 1; margin-top: -20px; padding: 30px 0 0; border-radius: 0 0 var(--r-card) var(--r-card); background: var(--surface); box-shadow: var(--raised); overflow: hidden; }
+  .acc:has(.dks.on) > .arow { border-bottom-right-radius: 0; }
+  .dksh { margin: 0 14px 8px; display: flex; justify-content: space-between; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .dksh span { font-weight: 500; letter-spacing: 0; text-transform: none; }
+  .dksb { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 14px 14px; scrollbar-width: thin;
+    -webkit-mask-image: linear-gradient(#000 calc(100% - 44px), transparent); mask-image: linear-gradient(#000 calc(100% - 44px), transparent); }
+  .dksb.end { -webkit-mask-image: none; mask-image: none; }
+  .dks .dk3.dk2c { grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 4px; }
+  .dks .dk2c > div { gap: 1px; }
+  .dks .dk2c small.dkd, .dks .dk2c .wv { margin-top: 0; order: 0; }
+  .dks .dkcw { display: block; margin-top: 8px; }
+  .dks .dkch { display: block; width: 100%; height: 58px; overflow: visible; }
+  .dkb0 { fill: #b7dbff; } .dkb1 { fill: #4aa3ff; }
+  .dk50 { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.6; } .dk50t { font-size: 9px; fill: var(--muted); }
+  .dkln { fill: none; stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; } .dkln.g { stroke: #1f9d55; } .dkln.r { stroke: #d6345a; }
+  .dkdt.g { fill: #1f9d55; } .dkdt.r { fill: #d6345a; }
+  .dkdays { display: flex; margin-top: 3px; } .dkdays i { flex: 1; text-align: center; font-style: normal; font-size: 9.5px; color: var(--muted); }
+  .dksec { margin-top: 14px; }
+  .dksech { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 0 0 6px; }
+  .dksech b { font-size: 14px; font-weight: 700; color: var(--ink); } .dksech span { font-size: 11.5px; color: var(--muted); text-align: right; }
+  .dks [data-k="mu"] .dhint { display: none; }
+  .dks .mur { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) 34px 22px; gap: 6px; } /* longer bars: the bar column grows with the panel */
+  .dks .mun { white-space: normal; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .dks .mmap { display: block; max-height: 240px; margin: 0 auto; }
+  .dks .dkev { margin: 14px 0 6px; }
+  .dks .snotes { margin-top: 8px; }
+  :root:not(#_) .dks .dk3 b { font-size: 19px; }
+}
+@media (min-width: 740px) and (max-width: 799px) { .dk2 { --dklw: 380px; column-gap: 14px; } } /* iPad mini portrait (744px) */
+@media (min-width: 1000px) { .dk2 { --dklw: 420px; column-gap: 20px; } }
 /* Nov 16: "Top 10" card above the deck list */
 .t10 { margin: 2px var(--sp-3, 12px) 10px; padding: 10px 12px 8px; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 3px rgba(var(--sh), 0.12); }
 .t10h { margin: 0 0 4px; font-size: var(--fs-s, 13px); font-weight: 700; color: var(--ink); }
@@ -1483,6 +1527,7 @@ a.dkev { text-decoration: none; }
 .ldots { gap: 4px; bottom: -3px; } /* Nov 17: 6px lower (was 3px) */
 .ldots .dot { width: auto; min-width: 20px; height: 18px; padding: 0 5px; border-radius: 999px; font-family: inherit; line-height: 1; font-size: 10.5px; font-weight: 600; color: var(--muted); }
 .ldots .dot::before { display: none; }
+.ldots .lwd { display: none; } /* "List " before 2, 3 ... only on wide screens (the tabs above the list card) */
 .ldots .dot[aria-current="true"] { background: var(--sel-bg); color: var(--acc-ink); box-shadow: inset 0 0 0 1.5px var(--acc-line); } /* Nov 17: the site's "current" style (soft blue tint), was solid grey */
 .vwrap:has(.ldots) .vars { padding-bottom: calc(var(--sp-3) + 28px); } /* room for the tabs under the lists */
 .dot:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 50%; }
@@ -2999,8 +3044,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (!box.dataset.pad && rows.length > 1 && box.clientHeight) { box.dataset.pad = 1; // Nov 17: room after the last row, so every row can scroll to the top (short lists too)
       const mh = parseFloat(getComputedStyle(box).maxHeight), H = box.scrollHeight > box.clientHeight + 1 || !mh ? box.clientHeight : mh;
       box.style.setProperty("--fend", Math.max(0, Math.round(H - rows[rows.length - 1].offsetHeight - 2)) + "px"); }
-    const bb = box.getBoundingClientRect(), atTop = box.scrollTop < 2, atEnd = box.scrollTop + box.clientHeight >= box.scrollHeight - 2;
-    const mid = atTop ? bb.top + 30 : atEnd ? bb.bottom - 10 : bb.top + bb.height / 2;
+    // Nov 19: the reading line moves smoothly from near the top (row 1) to the middle as the box scrolls, and from the middle to
+    // near the bottom at the end (it jumped from top+30 to the middle at the first pixel, so row 2 was never picked)
+    const bb = box.getBoundingClientRect(), st = box.scrollTop, rem = box.scrollHeight - box.clientHeight - st;
+    const mid = 10 + rem < bb.height / 2 ? bb.bottom - 10 - rem : bb.top + Math.min(bb.height / 2, 30 + st);
     let best = null, bd = 1e9; for (const r of rows) { const rb = r.getBoundingClientRect(), d = Math.abs((rb.top + rb.bottom) / 2 - mid); if (d < bd) { bd = d; best = r; } }
     const sheet = box.closest(".sfold") || document; sheet.querySelectorAll("li.cur, .sdots i.cur").forEach((x) => x.classList.remove("cur"));
     sheet.querySelector(".swk")?.classList.add("hlon");
@@ -3178,7 +3225,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     else { const L = xs[xs.length - 1]; s += `<circle cx="${X(L[0]).toFixed(1)}" cy="${Y(L[1]).toFixed(1)}" r="1.8"/>`; }
     if (o.lastTxt) { const L = xs[xs.length - 1]; s += `<text x="${X(L[0]).toFixed(1)}" y="${(Y(L[1]) - 7).toFixed(1)}" text-anchor="end" class="lvt">${o.lastTxt}</text>`; }
     if (o.days) s += o.days.map((t, i) => `<text x="${X(i).toFixed(1)}" y="${H - 2}" text-anchor="middle" class="ltx">${t}</text>`).join("");
-    return `<svg class="lsv ${o.cls || ""}" viewBox="0 0 ${W} ${H}" width="${o.fw ? "100%" : W}" height="${o.fw ? "auto" : H}" aria-hidden="true">${s}</svg>`; }
+    return `<svg class="lsv ${o.cls || ""}" viewBox="0 0 ${W} ${H}" width="${o.fw ? "100%" : W}"${o.fw ? "" : ` height="${H}"`} aria-hidden="true">${s}</svg>`; } /* Nov 19: no height="auto" (not a valid SVG length; the viewBox sets the height) */
   // Nov 15: the share change in the trend days (first to last point), not a line: "▲3.7" / "▼1.2"; under 0.3 points: nothing
   const trD = (a) => { const v = (a || []).filter((x) => x != null); return v.length >= 2 ? v[v.length - 1] - v[0] : null; };
   const dTxt = (x, u) => x == null ? "" : Math.abs(x) < 0.3 ? "" : `<span class="pdl ${x > 0 ? "up" : "dn"}"><i>${x > 0 ? "\u25b2" : "\u25bc"}</i>${Math.abs(x).toFixed(1)}${u || ""}</span>`;
@@ -3495,6 +3542,61 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     return d._lp;
   }
 
+  // ===== Nov 19: wide screens (740px+, iPad portrait too): the open deck = the list card as on phones (left; List tabs on top,
+  // one list in view) + a deck stats sidebar on the right, joined to the deck row (same surface: "this deck, all lists").
+  // Sidebar 480px+ wide: 2 columns (trend + cards | matchups + meta map + events); narrower: 1 column (Share / Win / Rank,
+  // best 3 / worst 3 matchups, "All deck stats" = the sheet). Phones: no sidebar (the stats pill opens the sheet).
+  const DKW = matchMedia("(min-width: 740px)");
+  let dksRo = null;
+  async function dkSide(p, d) {
+    const a = p.querySelector(".dks"); if (!a || a.dataset.on || !DKW.matches) return; a.dataset.on = "1";
+    const [st, M, V] = await Promise.all([loadStats().catch(() => null), loadCardMap().catch(() => null), d.nv > 1 && !d.bc ? loadExtra(d.id).catch(() => null) : null]);
+    if (openId !== d.id || !a.isConnected) return;
+    const box = document.createElement("div"); box.innerHTML = dkSheet(d, st, M, V); box.querySelector(".sh3")?.remove();
+    const S = st && st.d && st.d[d.id] || {}, tr = S.tr, days = st && st.days ? st.days.map((x) => String(+x.slice(8))) : [];
+    // Nov 19 v2: 2 top cards (Share, Win rate) with their real 7-day charts in place of the small line / range bar
+    const k3 = box.querySelector(":scope > .dk3"); if (k3) { k3.classList.add("dk2c"); k3.children[2]?.remove(); }
+    const okN = (a) => a && a.filter((x) => x != null).length >= 2;
+    const dayRow = (n) => `<span class="dkdays">${days.slice(-n).map((x) => `<i>${x}</i>`).join("")}</span>`;
+    const barsSvg = (v) => { const mx = Math.max(...v.filter((x) => x != null)) * 1.12 || 1, n = v.length, W = 200, H = 58, bw = W / n;
+      return `<svg class="dkch" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${v.map((x, i) => x == null ? "" : `<rect x="${(i * bw + bw * 0.12).toFixed(1)}" width="${(bw * 0.76).toFixed(1)}" y="${(H - x / mx * H).toFixed(1)}" height="${(x / mx * H).toFixed(1)}" rx="2.5" class="${i === n - 1 ? "dkb1" : "dkb0"}"/>`).join("")}</svg>`; };
+    const lineW = (v) => { const ok = v.filter((x) => x != null), lo = Math.min(46, Math.floor(Math.min(...ok)) - 1), hi = Math.max(54, Math.ceil(Math.max(...ok)) + 1), n = v.length, W = 200, H = 58, bw = W / n;
+      const X = (i) => i * bw + bw / 2, Y = (x) => 4 + (hi - x) / (hi - lo) * (H - 8), pts = v.map((x, i) => x == null ? null : `${X(i).toFixed(1)},${Y(x).toFixed(1)}`).filter(Boolean);
+      const last = v.length - 1 - [...v].reverse().findIndex((x) => x != null), up = v[last] >= 50;
+      return `<svg class="dkch" viewBox="0 0 ${W} ${H}" aria-hidden="true"><line x1="0" x2="${W}" y1="${Y(50).toFixed(1)}" y2="${Y(50).toFixed(1)}" class="dk50"/><text x="2" y="${(Y(50) - 3).toFixed(1)}" class="dk50t">50%</text>
+        <polyline points="${pts.join(" ")}" class="dkln ${up ? "g" : "r"}"/><circle cx="${X(last).toFixed(1)}" cy="${Y(v[last]).toFixed(1)}" r="3.4" class="dkdt ${up ? "g" : "r"}"/></svg>`; };
+    if (k3) { const [cs, cw] = k3.children; cs?.querySelector(".dkm")?.remove(); cw?.querySelector(".dkm")?.remove();
+      if (tr && okN(tr.s) && cs) cs.insertAdjacentHTML("beforeend", `<span class="dkcw">${barsSvg(tr.s)}${dayRow(tr.s.length)}</span>`);
+      if (tr && okN(tr.w) && cw) cw.insertAdjacentHTML("beforeend", `<span class="dkcw">${lineW(tr.w)}${dayRow(tr.w.length)}</span>`); }
+    // the folds become open sections (heading only, no chevron); the trend fold is in the 2 cards now
+    const sec = (f) => { const s = document.createElement("section"); s.className = "dksec"; s.dataset.k = f.dataset.k;
+      s.innerHTML = `<div class="dksech"><b>${f.querySelector("summary b").innerHTML}</b><span>${f.querySelector(".dpv")?.innerHTML || ""}</span></div>`; s.append(...f.querySelector(".dfb").childNodes); return s; };
+    const fk = (f) => { const t = f.querySelector("summary b")?.textContent || ""; return t.startsWith("Match") ? "mu" : t.startsWith("7-day") ? "tr" : t.startsWith("Meta") ? "mm" : t.startsWith("Cards") ? "cu" : ""; };
+    const F = {}; box.querySelectorAll(":scope > details.sfold").forEach((f) => { f.dataset.k = fk(f); F[f.dataset.k] = f; });
+    const body = document.createElement("div"); body.className = "dksb";
+    if (k3) body.append(k3);
+    ["mu", "mm", "cu"].forEach((k) => F[k] && body.append(sec(F[k])));
+    const ev = box.querySelector(":scope > .dkev"); if (ev) body.append(ev);
+    const sn = box.querySelector(":scope > .snotes"); if (sn) body.append(sn);
+    const nDk = [...data.decks, ...((MORE && MORE.decks) || [])].length;
+    a.innerHTML = `<p class="dksh">This deck \u00b7 all lists<span>#${d.rank} of ${nDk} \u00b7 ${d.count} players</span></p>`;
+    a.append(body); a.classList.add("on");
+    // as tall as the list card; the stats scroll inside (a soft fade at the bottom until the end)
+    const lc = p.querySelector(".dkl"), fit = () => { if (!lc.offsetHeight) return; a.style.height = lc.offsetHeight + 20 - 6 + "px"; endF(); };
+    const endF = () => body.classList.toggle("end", body.scrollTop + body.clientHeight >= body.scrollHeight - 2);
+    body.addEventListener("scroll", endF, { passive: true });
+    if (dksRo) dksRo.disconnect();
+    dksRo = new ResizeObserver(fit); dksRo.observe(lc); fit();
+  }
+  DKW.addEventListener("change", () => { if (!openId || !DKW.matches) return; const s = $(openId), d = [...data.decks, ...((MORE && MORE.decks) || [])].find((x) => x.id === openId);
+    if (s && d) dkSide(s.querySelector(".apanel"), d); });
+  // the sidebar's links work like the ones in the deck sheet
+  $("list").addEventListener("click", (e) => { const a = e.target.closest && e.target.closest(".dks"); if (!a) return;
+    const im = e.target.closest("img[data-cu]"); if (im) { e.stopPropagation(); cardClick(im); return; }
+    const r = e.target.closest(".mur[data-go]"); if (r) { track("matchup-to-deck"); location.hash = r.dataset.go; return; }
+    const g = e.target.closest(".dkev[data-evd]"); if (g) { const id = g.dataset.evd; setTab("events"); evDk = id; filtMode(true); renderEvents(); scrollTo({ top: $("evl").getBoundingClientRect().top + scrollY - 80, behavior: "smooth" }); track("deck-to-events"); return; }
+    const c = e.target.closest(".mmap [data-mm]"); if (c) { const [nm, s, w, k] = c.dataset.mm.split("|"), svg = c.closest("svg"); svg.querySelectorAll(".mdot.on").forEach((x) => x.classList.remove("on")); if (c.classList.contains("mdot")) c.classList.add("on");
+      svg.nextElementSibling.innerHTML = `<b>${nm}</b> \u00b7 ${s} share \u00b7 ${w} win \u00b7 ${k} players`; } });
   function close(id) {
     closeAlts();
     const sec = $(id);
@@ -3505,7 +3607,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     void snap.offsetHeight; // apply the closed look now, without transitions
     requestAnimationFrame(() => requestAnimationFrame(() => snap.classList.remove("snap")));
     const p = sec.querySelector(".apanel");
-    carouselSync = null; p._wake = null;
+    carouselSync = null; p._wake = null; if (dksRo) { dksRo.disconnect(); dksRo = null; }
     if (io) { io.disconnect(); io = null; }
     p.hidden = true;
     p.innerHTML = ""; // drop the images of a closed deck
@@ -3540,7 +3642,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     sec.querySelector(".arow").setAttribute("aria-expanded", "true");
     void snap.offsetHeight;
     requestAnimationFrame(() => requestAnimationFrame(() => snap.classList.remove("snap")));
-    p.innerHTML = `
+    p.innerHTML = `<div class="dk2"><div class="dkl">
       <div class="vwrap">
         <div class="vars">
           <div class="slide" data-i="0">${n === 1 ? slideBody(d, d) : d.lists ? slideBody(d.lists[0], d, 0) : slideBody(d, d, 0)}</div>
@@ -3549,7 +3651,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
         ${n > 1 ? `<button class="chev-btn prev" type="button" aria-label="Previous list" hidden>${CHEV_L}</button>
         <button class="chev-btn next" type="button" aria-label="Next list">${CHEV_R}</button>` : ""}
       </div>
-      ${n > 1 ? `<div class="dots ldots" role="group" aria-label="Lists">${Array.from({ length: n }, (_, i) => `<button class="dot${i === 0 ? " l1" + (isHot(d) ? " hot" : "") : ""}" type="button" data-i="${i}" aria-label="Show list ${i + 1} of ${n}${i === 0 ? " (" + L1n(d) + ")" : ""}" aria-current="${i === 0}">${i === 0 ? "List 1" : i + 1}</button>`).join("")}</div>` : ""}`;
+      ${n > 1 ? `<div class="dots ldots" role="group" aria-label="Lists">${Array.from({ length: n }, (_, i) => `<button class="dot${i === 0 ? " l1" + (isHot(d) ? " hot" : "") : ""}" type="button" data-i="${i}" aria-label="Show list ${i + 1} of ${n}${i === 0 ? " (" + L1n(d) + ")" : ""}" aria-current="${i === 0}">${i === 0 ? "List 1" : `<span class="lwd">List </span>${i + 1}`}</button>`).join("")}</div>` : ""}</div><aside class="dks" aria-label="Deck stats, all lists"></aside></div>`;
     p.hidden = false;
     if (n > 1 && !d.lists) listsOf(d).then((L) => { // first open: list 1 (the most played) comes from the order
       const s0 = p.querySelector('.slide[data-i="0"]');
@@ -3559,6 +3661,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       else if (L.length > 1) { s0.innerHTML = slideBody(L[0], d, 0); fitScores(s0); } // "Popular now" needs list 2
     }).catch(() => {});
     if (n > 1) wireCarousel(p, d, n);
+    dkSide(p, d); // Nov 19: wide screens (740px+): the deck stats beside the list
     if (fstate.card && n > 1) jumpToCard(p, d, fstate.card);
     placeChevrons(p);
     fitScores(p);
