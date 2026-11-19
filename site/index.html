@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795088581-a3ee -->
+<!-- ui: artifact version 1795092196-0978 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1062,7 +1062,7 @@ html { -webkit-tap-highlight-color: transparent; }
   .acc:has(.dks.on) > .apanel, .acc:has(.dks.on) .dk2 { display: contents; }
   .acc:has(.dks.on) > .arow { grid-column: 1; grid-row: 1; border-radius: var(--r-card) var(--r-card) 0 0; clip-path: inset(-40px -24px 0 -24px); }
   .acc:has(.dks.on) > .arow > .dpill { display: none !important; } /* the panel shows the same numbers */
-  :root:not(#_) .acc:has(.dks.on) > .arow .aname { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.15; font-size: calc(var(--fs-xl) * 1.05); text-wrap: balance; } /* the narrower head: the name on up to 2 lines (no "…") */
+  :root:not(#_) .acc:has(.dks.on) > .arow .aname { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.15; text-wrap: balance; font-size: var(--fs-xl); transition: none; } /* Nov 19: the same size as the closed row, no grow animation */ /* the narrower head: the name on up to 2 lines (no "…") */
   .acc:has(.dks.on) .dks { grid-column: 1; grid-row: 2; }
   .acc:has(.dks.on) .dkl { grid-column: 2; grid-row: 1 / span 2; }
   .acc:has(.dks.on) .dkl .ldots { margin-top: 0; }
@@ -1232,7 +1232,7 @@ html { -webkit-tap-highlight-color: transparent; }
 :root .swt > :first-child { border-radius: 12px 0 0 12px; }
 :root .swt > :nth-child(4) { border-radius: 0 12px 12px 0; box-shadow: inset 0 1.5px 0 var(--ln), inset 0 -1.5px 0 var(--ln), inset 1.5px 0 0 var(--ln), inset -1.5px 0 0 var(--ln); }
 :root .swt > * { padding: 5px 2px 9px; grid-template-rows: 26px auto; } /* Nov 17: content 2px up (the icons have space on top) */ /* Nov 17: a "players" word under the icon and number */
-:root .swt > .swx .swi2 { margin-right: -3.6px; } :root .swt > :nth-child(2) .swi2 { margin-right: -2px; } :root .swt > :nth-child(3) .swi2 { margin-right: -1.3px; } :root .swt > :nth-child(4) .swi2 { margin-right: -0.5px; } :root .swt > .swp .swi2 { margin-right: -1px; } /* Nov 17: ink gap from each icon to its number: ~5.5px; exact ~6.5px (its right side is flat) */
+:root .swt > .swx .swi2 { margin-right: -3.6px; } :root .swt > :nth-child(2) .swi2 { margin-right: -0.5px; } :root .swt > :nth-child(3) .swi2 { margin-right: -0.55px; } :root .swt > :nth-child(4) .swi2 { margin-right: -1.5px; } /* Nov 19: style-B icons */ :root .swt > .swp .swi2 { margin-right: -1px; } /* Nov 17: ink gap from each icon to its number: ~5.5px; exact ~6.5px (its right side is flat) */
 :root .swt .swpl { grid-column: 1 / -1; grid-row: 2; justify-self: center; margin-top: -3px; font-size: 9.5px; line-height: 1.1; color: var(--muted); }
 :root .swt .swi2 { grid-column: 1; grid-row: 1; width: 26px; height: 26px; margin-top: 0; flex: none; color: var(--muted); } /* Nov 17: grey icons (the QR stays the main call to action); the open tile: blue */
 :root .swt > .swl.altb[aria-expanded="true"] .swi2 { color: var(--acc-ink); } :root .swt .swi2 { margin-bottom: 0; } /* Nov 17: the icons end ~4px above their box: less space under them */ :root .swt > .swx .swi2 { width: 23px; height: 23px; margin-top: 0; } /* exact: a bit smaller (its lines read thicker) */
@@ -1268,6 +1268,7 @@ html { -webkit-tap-highlight-color: transparent; }
 :root .swt > .swl.altb[aria-expanded="true"] { background: var(--sel-bg); --cf: var(--surface); } :root .swt > .swl.altb[aria-expanded="true"] .dcar { transform: rotate(180deg); }
 @media (hover: hover) { :root .swt > .swl.altb:hover { background: var(--sel-bg); } }
 .swt .swl.off > * { opacity: 0.4; }
+.swi2 .swn.swnb { font-size: 8.4px; } /* Nov 19: the number inside the swap badge */
 .swi2 .swn { fill: currentColor; font-family: ui-rounded, "SF Pro Rounded", "Varela Round", "Nunito", Figtree, sans-serif; font-size: 9px; font-weight: 800; font-variant-numeric: proportional-nums; font-feature-settings: "tnum" 0; } /* Nov 17: the number on the card: rounded; proportional digits, so a "1" is centered by its own width */ .swt .swl.off .swi2 { color: var(--muted); }
 :root .swt > .sp.swp { margin-left: 7px; border-radius: 12px; background: none; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ln); cursor: pointer; --bg0: var(--surface); }
 @media (hover: hover) { :root .swt > .sp.swp:hover { background: var(--sel-bg); } }
@@ -1971,13 +1972,15 @@ a.dkev { text-decoration: none; }
 /* Nov 19: wide screens (620px+): the same layout as the other wide rows (rank badge centered in the 85px space on the
    left, 72px card icons from 92px, name, numbers on the right), still flat, dashed and faded */
 @media (min-width: 620px) {
-  .grow { min-height: 58px; padding: 6px var(--sp-4) 6px 92px; grid-template-columns: 128px minmax(0, 1fr); column-gap: 10px; }
+  /* Nov 19: identical to the other wide rows (.arow / .icons at 620px+): same padding, gap, icon box and card places */
+  .grow { min-height: 58px; padding: 6px var(--sp-3) 6px 92px; grid-template-columns: auto minmax(0, 1fr); column-gap: 12px; }
   .grow .rk { left: calc(42.5px / 1.3); top: 50%; transform: translate(-50%, -50%); zoom: 1.3; }
-  .gicons { width: 128px; margin: -6px 0; padding: 0; box-sizing: border-box; clip-path: inset(-40px -30px 0 -40px); }
-  .gicons img, .gicons i { width: 72px; top: 8px; }
-  .gicons > :first-child { left: 16px; top: 10px; }
-  .gicons > :nth-child(2) { left: 66px; top: 6px; }
-  .gicons.one > :first-child { left: 42px; transform: translateY(3px) rotate(-5deg); }
+  .gicons { --iw: 128px; width: var(--iw); margin: -46px -16px -6px; padding: 40px 16px 0; box-sizing: content-box; clip-path: inset(0 -30px 0 -40px);
+    -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 22px), transparent 100%); mask-image: linear-gradient(180deg, #000 calc(100% - 22px), transparent 100%); }
+  .gicons img, .gicons i { width: 72px; top: 34px; }
+  .gicons > :first-child { left: 16px; top: 34px; transform: rotate(-9deg); }
+  .gicons > :nth-child(2) { left: 66px; top: 31px; transform: rotate(9deg); }
+  .gicons.one > :first-child { left: 42px; transform: rotate(-5deg); }
   .grow .atext { flex-direction: row; flex-wrap: wrap; align-items: baseline; column-gap: 14px; }
   .grow .asub { margin-left: auto; padding-right: 6px; } /* the numbers on the right, as on the other closed rows */
 }
@@ -2387,8 +2390,14 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const SPCH = '<svg class="spch" viewBox="0 0 8 10" aria-hidden="true"><path d="M2 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'; // "opens a sheet"
   // Nov 17: exact / swap icons (user pick: "v4"): exact = 2 stacked cards with a check; swap k = k fanned cards + a round swap badge
   const EXACT_I = `<svg class="swi2" viewBox="0 0 32 32" aria-hidden="true"><rect x="8.5" y="6" width="11" height="15" rx="2" fill="var(--cf)" stroke="currentColor" stroke-width="1.5" opacity=".55"/><rect x="12.5" y="10" width="11" height="15" rx="2" fill="var(--bg0)" stroke="var(--bg0)" stroke-width="4.2"/><rect x="12.5" y="10" width="11" height="15" rx="2" fill="var(--cf)" stroke="currentColor" stroke-width="1.7"/><path d="M15.2 17.6l2.2 2.2 3.9-4.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-  const SWX_I = (k) => { const A = [[0], [-7, 7], [-10.5, 0, 10.5]][k - 1], f = A[A.length - 1], PV = k > 1 ? "14 40" : "14 22"; // Nov 17: k fanned cards (each front card cuts a gap into the one behind it), the number k on the front card, a round swap badge
-    return `<svg class="swi2" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(${[0, -1.6, -2.4][k - 1]} 0)">${A.map((a, j) => `${j ? `<rect x="9" y="8" width="10" height="14" rx="1.8" transform="rotate(${a} ${PV})" fill="var(--bg0)" stroke="var(--bg0)" stroke-width="4"/>` : ""}<rect x="9" y="8" width="10" height="14" rx="1.8" transform="rotate(${a} ${PV})" fill="var(--cf)" stroke="currentColor" stroke-width="1.5"/>`).join("")}<text class="swn" x="${k > 1 ? 13.4 : 14}" y="${k > 1 ? 14.4 : 15.4}" transform="rotate(${f} ${PV})" text-anchor="middle" dominant-baseline="central">${k}</text></g><g transform="translate(${[-1.2, -0.4, 0.6][k - 1]} -4)"><circle cx="24" cy="24" r="6.8" fill="var(--bg0)"/><path d="M19.85 22.89A4.3 4.3 0 0 1 27.2 21.12M28.15 25.11A4.3 4.3 0 0 1 20.8 26.88" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/><path d="M28.94 23.05L28.5 19.95L25.9 22.29ZM19.06 24.95L19.5 28.05L22.1 25.71Z" fill="currentColor" stroke="currentColor" stroke-width="0.6" stroke-linejoin="round"/></g></svg>`; };
+  // Nov 19 (style B): a big round swap badge (2 arcs + filled heads) with the number k inside; k fanned cards peek out behind
+  // it (top left). Every line 1.5; each overlap is a background-coloured gap (no crossing lines)
+  const SWX_I = (k) => { const A = [[0], [-7, 7], [-10.5, 0, 10.5]][k - 1], PV = k > 1 ? "14 40" : "14 22", s = 1.62, cx = 21.4, cy = 19.2;
+    const P = (x, y) => `${(cx + (x - 24) * s).toFixed(2)} ${(cy + (y - 24) * s).toFixed(2)}`, R = (4.3 * s).toFixed(2);
+    return `<svg class="swi2" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(${[-3.6, -4.6, -2.8][k - 1]} -3)">${A.map((a, j) => `${j ? `<rect x="9" y="8" width="10" height="14" rx="1.8" transform="rotate(${a} ${PV})" fill="var(--bg0)" stroke="var(--bg0)" stroke-width="4"/>` : ""}<rect x="9" y="8" width="10" height="14" rx="1.8" transform="rotate(${a} ${PV})" fill="var(--cf)" stroke="currentColor" stroke-width="1.5"/>`).join("")}</g>`
+      + `<circle cx="${cx}" cy="${cy}" r="${(6.6 * s).toFixed(2)}" fill="var(--bg0)"/><path d="M${P(19.85, 22.89)}A${R} ${R} 0 0 1 ${P(27.2, 21.12)}M${P(28.15, 25.11)}A${R} ${R} 0 0 1 ${P(20.8, 26.88)}" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>`
+      + `<path d="M${P(28.94, 23.05)}L${P(28.5, 19.95)}L${P(25.9, 22.29)}ZM${P(19.06, 24.95)}L${P(19.5, 28.05)}L${P(22.1, 25.71)}Z" fill="currentColor" stroke="currentColor" stroke-width="0.6" stroke-linejoin="round"/>`
+      + `<text class="swn swnb" x="${cx}" y="${cy + 0.3}" text-anchor="middle" dominant-baseline="central">${k}</text></svg>`; };
   // Nov 17: cards swapped vs the list (1-3), from the data (k) or from the "in" copies (older data)
   // Nov 17: "top players" icon: two people + a small round badge with a trophy (the same badge place as the swap icons)
   const TOPP_I = '<svg class="swi2" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(0.8 2.6) scale(1.03)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></g><circle cx="24.2" cy="19.8" r="7" fill="var(--bg0)"/><path transform="translate(24.2 20.2) scale(0.9) translate(-24 -19.6)" d="M24 14.6l1.65 3.35 3.7.54-2.68 2.6.63 3.68L24 23.03l-3.3 1.74.63-3.68-2.68-2.6 3.7-.54z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'; // Nov 17: two people (smaller than the card icons: fewer lines, so less weight) + an outline star in a background-colored gap (not a trophy: no top-3 meaning)
@@ -3360,7 +3369,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const cImg = (c, cap) => `<figure><img src="c/${c[0]}.webp" alt="${esc(cName(c[0]))}" data-cu="1" loading="lazy" width="56" height="78"><figcaption>${cap}</figcaption></figure>`;
     let cuBody = "", cuPv = "";
     if (!d.bc && cu.length) {
-      if (of < 3) { cuBody = `<p class="dhint">Cards of the ${of} top player${of > 1 ? "s" : ""} (too few for core and flex).</p><div class="cug">${cu.map((c) => cImg(c, `\u00d7${c[2]}`)).join("")}</div>`; cuPv = `${cu.length} cards`; }
+      if (of < 3) { cuBody = `<p class="dhint cufew">Cards of the ${of} top player${of > 1 ? "s" : ""} (too few for core and flex).</p><div class="cug">${cu.map((c) => cImg(c, `\u00d7${c[2]}`)).join("")}</div>`; cuPv = `${cu.length} cards`; }
       else { // Nov 15: a 20-card deck (5 x 4): the core copies + "Flex" slots; the extra copies of core cards are flex options
         // core order = the order in list 1, then list 2 (Nov 15); same card = same id or same name (another print)
         const ord = new Map(); [d.cards, V && V[0] && V[0].cards].forEach((cs, li) => (cs || []).forEach((c, i) => { const k = li * 100 + i; if (!ord.has(c.id)) ord.set(c.id, k); if (!ord.has("n:" + c.n)) ord.set("n:" + c.n, k); }));
@@ -3618,7 +3627,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const F = {}; box.querySelectorAll(":scope > details.sfold").forEach((f) => { f.dataset.k = fk(f); F[f.dataset.k] = f; });
     const body = document.createElement("div"); body.className = "dkv2";
     if (k3) body.append(k3);
-    ["mu", "mm", "cu"].forEach((k) => F[k] && body.append(sec(F[k])));
+    ["mu", "mm", "cu"].forEach((k) => F[k] && !(k === "cu" && F[k].querySelector(".cufew")) && body.append(sec(F[k]))); // Nov 19: no Cards section when there are too few top players for core and flex
     const ev = box.querySelector(":scope > .dkev"); if (ev) body.append(ev);
     const sn = box.querySelector(":scope > .snotes"); if (sn) body.append(sn);
     const nDk = [...data.decks, ...((MORE && MORE.decks) || [])].length;
@@ -3627,12 +3636,21 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const dkSheet2 = (d, st, M, V) => { const v = dkV2(d, st, M, V); return (v.name ? v.name.outerHTML : "") + v.head + v.body.outerHTML; };
   async function dkSide(p, d) {
     const a = p.querySelector(".dks"); if (!a || a.dataset.on || !DKW.matches) return; a.dataset.on = "1";
+    // Nov 19: the 2-panel layout (it keys on .dks.on) from the first frame, with the panel's final height and the one-list
+    // alignment, not after the files load (the name changed size and the page moved)
+    a.classList.add("on");
+    { const lc0 = p.querySelector(".dkl"), acc = p.closest(".acc"), rw = acc && acc.querySelector(":scope > .arow"), s = lc0 ? [...lc0.querySelectorAll(".vars > .slide")] : [];
+      if (s.length) { const k = ZK().k;
+        if (rw && !lc0.querySelector(".ldots")) { const dd = (s[0].getBoundingClientRect().top - rw.getBoundingClientRect().top) / k; if (Math.abs(dd) > 0.5) lc0.style.marginTop = (parseFloat(lc0.style.marginTop) || 0) - dd + "px"; }
+        a.style.height = Math.max(240, (Math.max(...s.map((x) => x.getBoundingClientRect().bottom)) - a.getBoundingClientRect().top) / k) + "px"; } }
     const [st, M, V] = await Promise.all([loadStats().catch(() => null), loadCardMap().catch(() => null), d.nv > 1 && !d.bc ? loadExtra(d.id).catch(() => null) : null]);
     if (openId !== d.id || !a.isConnected) return;
     const v = dkV2(d, st, M, V), body = v.body; body.classList.add("dksb");
     a.innerHTML = v.head; a.append(body); a.classList.add("on");
     // as tall as the list card; the stats scroll inside (a soft fade at the bottom until the end)
-    const lc = p.querySelector(".dkl"), fit = () => { if (!lc.offsetHeight) return; const k = ZK().k, sb = Math.max(...[...lc.querySelectorAll(".vars > .slide")].map((s) => s.getBoundingClientRect().bottom)); a.style.height = Math.max(240, (sb - a.getBoundingClientRect().top) / k) + "px"; endF(); }; // Nov 19: the stats panel ends where the list card ends // Nov 19: the left panel (head + stats) = the list column height
+    const lc = p.querySelector(".dkl"), fit = () => { if (!lc.offsetHeight) return; const k = ZK().k, rw = p.closest(".acc")?.querySelector(":scope > .arow"), s0 = lc.querySelector(".vars > .slide");
+      if (rw && s0 && !lc.querySelector(".ldots")) { const d = (s0.getBoundingClientRect().top - rw.getBoundingClientRect().top) / k; if (Math.abs(d) > 0.5) lc.style.marginTop = (parseFloat(lc.style.marginTop) || 0) - d + "px"; } // Nov 19: one list (no tabs): the list card top = the deck head top
+      const sb = Math.max(...[...lc.querySelectorAll(".vars > .slide")].map((s) => s.getBoundingClientRect().bottom)); a.style.height = Math.max(240, (sb - a.getBoundingClientRect().top) / k) + "px"; endF(); }; // Nov 19: the stats panel ends where the list card ends // Nov 19: the left panel (head + stats) = the list column height
     const endF = () => body.classList.toggle("end", body.scrollTop + body.clientHeight >= body.scrollHeight - 2);
     body.addEventListener("scroll", endF, { passive: true });
     if (dksRo) dksRo.disconnect();
