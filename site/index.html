@@ -1,8 +1,8 @@
-<!-- ui: artifact version 1795184011-31de -->
+<!-- ui: artifact version 1795201487-3a29 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
-<meta name="theme-color" id="themeColor" content="#eff5f8">
+<meta name="theme-color" id="themeColor" content="#e2ecf5">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -34,15 +34,15 @@
 /* ===== Tokens ===== */
 :root {
   /* Shadows: one color for every shadow on the page (hue 217, the steel blue of the brand); black in dark mode */
-  --sh: 32, 76, 121; /* Nov 12: the game's shadow hue and saturation (#cae1f1: hue 205, 58%), darker */
+  --sh: 191, 209, 225; --shk: 5; /* Nov 21: a lighter tint (was 48, 77, 105; before 32, 76, 121); every use of it at 5x its opacity (--shk; dark mode: 1) */ /* Nov 12: the game's shadow hue and saturation (#cae1f1: hue 205, 58%), darker */
   /* Color (light) */
-  --bg: #eff5f8;           /* page: one step darker than the cards */
-  --surface: #eef5f9;      /* raised cards, rows, QR box, chips (Nov 12: the game's panel color) */
+  --bg: #e2ecf5;           /* page: one step darker than the cards (Nov 21: was #eff5f8) */
+  --surface: #eff5f8;      /* Nov 21: was #eef5f9 · raised cards, rows, QR box, chips (Nov 12: the game's panel color) */
   --well: linear-gradient(180deg, #e1eff6, #e1eef5); /* pressed-in areas: tab track, search boxes */
-  --tile: #e1eef5; --tile-muted: var(--muted);         /* flat info boxes: stat tiles, Energy/Score/Event, tip, search */
+  --tile: #e8f0f7; --tile-muted: var(--muted); /* Nov 21: was #e1eef5 */         /* flat info boxes: stat tiles, Energy/Score/Event, tip, search */
   --hover: #f3f6f7;
   --line: #e2ebf0;
-  --line-strong: #cbd8e0; --pill-line: #d7e8f2; --dpill-line: #f8fbfc; --qs-bg: #eef5f9; /* large QR box = the QR background */ /* outline of info pills (Live, stats, Also played) */
+  --line-strong: #cbd8e0; --pill-line: #d7e8f2; --dpill-line: #f8fbfc; --qs-bg: #eff5f8; /* large QR box = the QR background */ /* outline of info pills (Live, stats, Also played) */
   --ink: #4c5965;           /* Nov 12: the game's text color */
   --muted: #5a6d7f;        /* the game's steel blue-grey, a little deeper for small text */
   --accent: #3f8ac9; --sel: #3799e6; --sel-bg: rgba(55, 153, 230, 0.14);       /* interactive / current / selected: a quiet steel blue, the same hue as the page and its shadows */
@@ -55,13 +55,13 @@
   --chev: #ffffff; --chev-glow: rgba(0, 0, 0, 0.45); --chev-halo: rgba(0, 0, 0, 0.25);  /* carousel arrows */
   /* Header ribbon (Community Decks style) */
   --band-top: #3e5bea; --band-mid2: #2c7bf2; --band-mid: #1aa4f9; --band-bot: #0dd5fd; --rib-a: #ffffff; --rib-b: #eef4f9; --rib-ink: #5d6b80; --rib-logo: #2a92f2;
-  --rib-shadow: 0 10px 20px rgba(var(--sh), 0.24), 0 2px 4px rgba(var(--sh), 0.18), inset 0 1px 0 #ffffff; /* Nov 12: 2x wider, a bit darker */
+  --rib-shadow: 0 10px 20px rgba(var(--sh), calc(0.24 * var(--shk))), 0 2px 4px rgba(var(--sh), calc(0.18 * var(--shk))), inset 0 1px 0 #ffffff; /* Nov 12: 2x wider, a bit darker */
   /* Depth: one light from the top-left. Raised = cards and things you tap; flat = info. Whole pixels only. */
-  --raised: -2px -2px 5px rgba(var(--sh), 0.04), 0 0 10px rgba(var(--sh), 0.075),
-    3px 5px 5px rgba(var(--sh), 0.075), 6px 8px 15px rgba(var(--sh), 0.075); /* game: twice as wide, lighter (Nov 12) */
-  --raised-sm: 0 0 10px rgba(var(--sh), 0.075), 3px 5px 5px rgba(var(--sh), 0.075);
+  --raised: -2px -2px 5px rgba(var(--sh), 0.5), 0 0 8px rgba(var(--sh), 0.25),
+    6px 5px 5px rgba(var(--sh), 0.5); /* Nov 21: layer 3 at 0.5 (tried 1.0, 0.8); was 7px 5px 8px. Nov 21: layers 1-2 at 0.5, the close shadow at full strength */ /* Nov 21 try: no wide layer (6px 8px 15px); the close layer wider (was 3px 5px 5px) */
+  --raised-sm: 0 0 10px rgba(var(--sh), calc(0.075 * var(--shk))), 3px 5px 5px rgba(var(--sh), calc(0.075 * var(--shk)));
   --sxbev: inset 1px 1px 1px rgba(255, 255, 255, 0.12); /* Nov 15: the sheet close button's light edge, very soft */
-  --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.8); /* Nov 12: top and left light edge only (game), no dark bottom-right edge */
+  --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.8), inset -1px -1px 1px rgba(var(--sh), 0.8); /* Nov 21: + the bottom-right edge, same width, the shadow tint at 0.8. Nov 12: top and left light edge only (game), no dark bottom-right edge */
   /* Radius: card > box > tile */
   --r-card: 12px; --r-box: 10px; --r-tile: 8px;
   /* Type: five small steps that land on whole pixels (10 / 12 / 13 / 15 / 17px at the default 16px), plus display sizes in the header */
@@ -77,29 +77,29 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --sh: 3, 9, 16;
+    --sh: 3, 9, 16; --shk: 1;
     --bg: #141b24; --surface: #1d252f; --well: linear-gradient(180deg, #10161e, #11171f); --tile: #121921; --tile-muted: var(--muted); --hover: #212b36; --line: #262f39; --line-strong: #323d4a; --pill-line: #2c3846; --dpill-line: #323d4a; --qs-bg: var(--bg);
     --ink: #e8eef2; --muted: #95a6b2; --accent: #7fbce6; --sel: #7ac0f0; --sel-bg: rgba(122, 192, 240, 0.16); --mark-ring: #0b0e13; --mark-edge: var(--mark-ring); --mark-text: var(--mark);
     --pill-bg: #46586a; --pill-ink: #eef3f6; --row-band: 0.22;
     --chev: #0f1218; --chev-glow: rgba(255, 255, 255, 0.5); --chev-halo: rgba(255, 255, 255, 0.3);
     --band-top: #273a9b; --band-mid2: #194c9a; --band-mid: #0c6297; --band-bot: #087a91; --rib-a: #2a3542; --rib-b: #232d38; --rib-ink: #e8eef2; --rib-logo: #6aa8ff;
     --rib-shadow: 0 10px 20px rgba(0, 0, 0, 0.55), 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    --raised: -2px -2px 4px rgba(var(--sh), 0.16), 0 0 8px rgba(var(--sh), 0.24), 2px 4px 4px rgba(var(--sh), 0.26), 4px 6px 12px rgba(var(--sh), 0.18);
-    --raised-sm: 0 0 8px rgba(var(--sh), 0.24), 2px 4px 4px rgba(var(--sh), 0.26);
+    --raised: -2px -2px 4px rgba(var(--sh), calc(0.16 * var(--shk))), 0 0 8px rgba(var(--sh), calc(0.24 * var(--shk))), 2px 4px 4px rgba(var(--sh), calc(0.26 * var(--shk))), 4px 6px 12px rgba(var(--sh), calc(0.18 * var(--shk)));
+    --raised-sm: 0 0 8px rgba(var(--sh), calc(0.24 * var(--shk))), 2px 4px 4px rgba(var(--sh), calc(0.26 * var(--shk)));
     --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.05); --sxbev: inset 1px 1px 1px rgba(255, 255, 255, 0.03);
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --sh: 3, 9, 16;
+  --sh: 3, 9, 16; --shk: 1;
   --bg: #141b24; --surface: #1d252f; --well: linear-gradient(180deg, #10161e, #11171f); --tile: #121921; --tile-muted: var(--muted); --hover: #212b36; --line: #262f39; --line-strong: #323d4a; --pill-line: #2c3846; --dpill-line: #323d4a; --qs-bg: var(--bg);
   --ink: #e8eef2; --muted: #95a6b2; --accent: #7fbce6; --sel: #7ac0f0; --sel-bg: rgba(122, 192, 240, 0.16); --mark-ring: #0b0e13; --mark-edge: var(--mark-ring); --mark-text: var(--mark);
   --pill-bg: #46586a; --pill-ink: #eef3f6; --row-band: 0.22;
   --chev: #0f1218; --chev-glow: rgba(255, 255, 255, 0.5); --chev-halo: rgba(255, 255, 255, 0.3);
   --band-top: #273a9b; --band-mid2: #194c9a; --band-mid: #0c6297; --band-bot: #087a91; --rib-a: #2a3542; --rib-b: #232d38; --rib-ink: #e8eef2; --rib-logo: #6aa8ff;
   --rib-shadow: 0 10px 20px rgba(0, 0, 0, 0.55), 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  --raised: -2px -2px 4px rgba(var(--sh), 0.16), 0 0 8px rgba(var(--sh), 0.24), 2px 4px 4px rgba(var(--sh), 0.26), 4px 6px 12px rgba(var(--sh), 0.18);
-  --raised-sm: 0 0 8px rgba(var(--sh), 0.24), 2px 4px 4px rgba(var(--sh), 0.26);
+  --raised: -2px -2px 4px rgba(var(--sh), calc(0.16 * var(--shk))), 0 0 8px rgba(var(--sh), calc(0.24 * var(--shk))), 2px 4px 4px rgba(var(--sh), calc(0.26 * var(--shk))), 4px 6px 12px rgba(var(--sh), calc(0.18 * var(--shk)));
+  --raised-sm: 0 0 8px rgba(var(--sh), calc(0.24 * var(--shk))), 2px 4px 4px rgba(var(--sh), calc(0.26 * var(--shk)));
   --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.05); --sxbev: inset 1px 1px 1px rgba(255, 255, 255, 0.03);
 }
 
@@ -131,7 +131,7 @@ footer a { color: var(--muted); }
 /* Nov 12: no line above the footer; a shadow across the full screen that falls down onto the footer (the tab-bar shadow, turned over) */
 .foot { position: relative; }
 .foot::before { content: ""; position: absolute; z-index: -1; bottom: 100%; height: 24px; left: calc(50% - 50vw); width: 100vw; pointer-events: none; /* a full-width strip above the footer casts it (a 1px strip gave a thin, light shadow) */
-  background: var(--bg); box-shadow: 0 2px 3px rgba(var(--sh), 0.06), 0 5px 11px rgba(var(--sh), 0.10); }
+  background: var(--bg); box-shadow: 0 2px 3px rgba(var(--sh), calc(0.06 * var(--shk))), 0 5px 11px rgba(var(--sh), calc(0.10 * var(--shk))); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .foot::before { box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3), 0 5px 11px rgba(0, 0, 0, 0.4); } }
 :root[data-theme="dark"] .foot::before { box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3), 0 5px 11px rgba(0, 0, 0, 0.4); }
 .fsig { display: inline-flex; align-items: center; gap: 10px; font-size: var(--fs-l); color: var(--muted); }
@@ -231,7 +231,7 @@ footer a { color: var(--muted); }
 .nset svg { flex: none; width: 15px; height: 15px; margin-top: 1px; color: var(--acc-ink); }
 .nset b { color: var(--ink); } /* Nov 13: blue bold reads as a link: bold ink only */
 /* Shared-link view (Nov 13): a list from a permanent link; a bottom sheet on phones, a centered box on larger screens */
-.shv { position: fixed; inset: 0; z-index: 60; overscroll-behavior: contain; display: flex; align-items: flex-end; justify-content: center; background: rgba(var(--sh), 0.28); }
+.shv { position: fixed; inset: 0; z-index: 60; overscroll-behavior: contain; display: flex; align-items: flex-end; justify-content: center; background: rgba(var(--sh), calc(0.28 * var(--shk))); }
 .shv[hidden] { display: none; }
 .shbox { position: relative; box-sizing: border-box; width: 100%; max-height: 92vh; overflow: auto; overscroll-behavior: contain; padding: 16px 12px calc(8px + env(safe-area-inset-bottom));
   border-radius: 20px 20px 0 0; background: var(--surface); color: var(--ink); box-shadow: var(--sheet-sh); text-align: center; outline: none; }
@@ -294,7 +294,7 @@ footer a { color: var(--muted); }
 .pdmain { display: flex; flex-direction: column; justify-content: center; gap: 6px; }
 .pdlink { align-self: center; margin: 2px 0 0 !important; font-size: var(--fs-s) !important; }
 .pdside { justify-content: space-between; }
-.shv { background: rgba(var(--sh), 0.22); }
+.shv { background: rgba(var(--sh), calc(0.22 * var(--shk))); }
 .shbox { width: 100% !important; max-width: 460px; max-height: 88vh; border-radius: 22px 22px 0 0 !important; padding: 8px 12px calc(4px + env(safe-area-inset-bottom)) !important;
   box-shadow: var(--sheet-sh) !important; animation: shUp 0.28s cubic-bezier(.2,.8,.2,1); }
 @media (min-width: 600px) { .shbox { border-radius: 22px !important; } }
@@ -357,7 +357,7 @@ footer a { color: var(--muted); }
 .fwrap::before { content: ""; width: 1px; height: 18px; border-radius: 1px; background: var(--line-strong); }
 .tbar .filt-btn { background: none; box-shadow: none; color: var(--muted); width: 36px; border-radius: 999px; }
 @media (hover: hover) { .tbar .filt-btn:not(:disabled):hover { color: var(--ink); } }
-.tbar .filt-btn[aria-expanded="true"] { background: var(--tile); color: var(--ink); box-shadow: inset 2px 3px 4px rgba(var(--sh), 0.14), inset -2px -2px 3px rgba(255, 255, 255, 0.85); }
+.tbar .filt-btn[aria-expanded="true"] { background: var(--tile); color: var(--ink); box-shadow: inset 2px 3px 4px rgba(var(--sh), calc(0.14 * var(--shk))), inset -2px -2px 3px rgba(255, 255, 255, 0.85); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tbar .filt-btn[aria-expanded="true"] { box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); } }
 :root[data-theme="dark"] .tbar .filt-btn[aria-expanded="true"] { box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); }
 .tbar .filt-btn .fdot { top: 3px; right: 6px; }
@@ -368,7 +368,7 @@ footer a { color: var(--muted); }
 .filt-btn .fdot[hidden] { display: none; }
 /* Dropdown: search + energy chips + count, under the buttons; closed by default */
 .filt { position: absolute; z-index: 5; top: calc(100% + 10px); right: 0; width: min(340px, calc(100vw - 32px)); display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2);
-  padding: var(--sp-3); border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), 0 8px 24px rgba(var(--sh), 0.2); }
+  padding: var(--sp-3); border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), 0 8px 24px rgba(var(--sh), calc(0.2 * var(--shk))); }
 .filt[hidden] { display: none; }
 .filt .fsearch { flex-basis: 100%; }
 .fsearch { flex: 1 1 200px; min-width: 0; position: relative; display: flex; align-items: center; }
@@ -395,9 +395,9 @@ footer a { color: var(--muted); }
 @media (max-width: 380px) { .ech { width: 34px; height: 34px; } } /* small phones: all 8 chips still fit */
 /* Game style (the in-game search panel): a light top band with a pressed-in search pill, a slightly darker area below;
    energy chips are raised round buttons in 1 row, icons always in color; the chosen one is a dark pressed-in disc */
-:root { --fp-top: #eef4f7; --fp-bot: #e6eef3; --fp-line: rgba(var(--sh), 0.13);
-  --fin-bg: var(--well); --fin-sh: inset 2px 2px 4px rgba(var(--sh), 0.17), inset -2px -2px 4px rgba(255, 255, 255, 0.9); --fin-icon: #8fb0d6;
-  --fch-bg: linear-gradient(180deg, #f8fbfc, #edf3f6); --fch-sh: 0 2px 4px rgba(var(--sh), 0.13), inset 0 1px 0 #ffffff;
+:root { --fp-top: #eef4f7; --fp-bot: #e6eef3; --fp-line: rgba(var(--sh), calc(0.13 * var(--shk)));
+  --fin-bg: var(--well); --fin-sh: inset 2px 2px 4px rgba(var(--sh), calc(0.17 * var(--shk))), inset -2px -2px 4px rgba(255, 255, 255, 0.9); --fin-icon: #8fb0d6;
+  --fch-bg: linear-gradient(180deg, #f8fbfc, #edf3f6); --fch-sh: 0 2px 4px rgba(var(--sh), calc(0.13 * var(--shk))), inset 0 1px 0 #ffffff;
   --fch-on: #4b5f72; --fch-on-sh: inset 0 2px 3px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.8); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --fp-top: #222c37; --fp-bot: #1b232d; --fp-line: rgba(0, 0, 0, 0.5);
   --fin-bg: var(--well); --fin-sh: inset 2px 2px 4px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); --fin-icon: #6f8fb8;
@@ -433,7 +433,7 @@ footer a { color: var(--muted); }
   background: none; color: var(--ink); text-align: left; cursor: pointer; }
 .sg:hover, .sg:focus-visible { background: var(--tile); outline: none; }
 .sgi { position: relative; height: 34px; }
-.sgi img { position: absolute; top: 1px; width: 23px; height: auto; aspect-ratio: 367 / 512; border-radius: 2px; box-shadow: 0 1px 2px rgba(var(--sh), 0.34); }
+.sgi img { position: absolute; top: 1px; width: 23px; height: auto; aspect-ratio: 367 / 512; border-radius: 2px; box-shadow: 0 1px 2px rgba(var(--sh), calc(0.34 * var(--shk))); }
 .sgi img:first-child { left: 2px; transform: rotate(-8deg); z-index: 1; }
 .sgi img + img { left: 17px; transform: rotate(8deg); }
 .sgi.one img { left: 10px; transform: none; }
@@ -449,7 +449,7 @@ footer a { color: var(--muted); }
 .sgc { padding: 0; border: 0; background: none; cursor: pointer; border-radius: 3px; }
 .sgc { display: flex; flex-direction: column; gap: 3px; min-width: 0; color: var(--muted); }
 .sgc span { font-size: 0.5625rem; font-weight: 600; line-height: 1.15; text-align: center; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.sgc img { width: 100%; height: auto; aspect-ratio: 367 / 512; display: block; border-radius: 3px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); }
+.sgc img { width: 100%; height: auto; aspect-ratio: 367 / 512; display: block; border-radius: 3px; box-shadow: 0 1px 3px rgba(var(--sh), calc(0.34 * var(--shk))); }
 .sgc:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; } /* the count shows once, in the bar above the list */
 .fnone { margin: 0; text-align: center; color: var(--muted); font-size: var(--fs-m); } /* "Showing N of M decks · Clear" while a filter is on */
 .fnone[hidden] { display: none; }
@@ -479,7 +479,7 @@ footer a { color: var(--muted); }
 
 /* Rank badge (game style): white disc on the top-left corner; shrinks to 75% when the deck opens */
 .rk { position: absolute !important; left: -5px; top: -7px; z-index: 3; width: 22px; height: 22px; border-radius: 50%; pointer-events: none;
-  display: grid; place-items: center; background: #ffffff; color: #66758a; box-shadow: 0 2px 3px rgba(var(--sh), 0.3);
+  display: grid; place-items: center; background: #ffffff; color: #66758a; box-shadow: 0 2px 3px rgba(var(--sh), calc(0.3 * var(--shk)));
   font-family: var(--font-display); font-weight: 700; font-size: var(--fs-s); line-height: 1; font-variant-numeric: tabular-nums;
   transition: transform var(--t-slow) ease, opacity var(--t-slow) ease; }
 .rk .mn { position: relative; z-index: 1; }
@@ -495,7 +495,7 @@ footer a { color: var(--muted); }
 .arow[aria-expanded="false"] .icons {
   -webkit-mask-image: linear-gradient(180deg, #000 52px, transparent 66px); mask-image: linear-gradient(180deg, #000 52px, transparent 66px); }
 .icons img { position: absolute; top: 10px; width: 52px; height: auto; aspect-ratio: 367 / 512; display: block; border-radius: 2px;
-  box-shadow: 0 3px 4px rgba(var(--sh), 0.48); /* box-shadow: Safari clips filter shadows on rotated images */
+  box-shadow: 0 3px 4px rgba(var(--sh), calc(0.48 * var(--shk))); /* box-shadow: Safari clips filter shadows on rotated images */
   transition: transform var(--t-slow) ease; }
 /* Open row: the icons (same size as before, 1.1538) move right; the icon box widens by --ox, so the name moves with them
    and has more room; the name is 20% bigger */
@@ -526,7 +526,7 @@ footer a { color: var(--muted); }
 /* Info, not action (not a button): the flat info-box color (like Energy) with a lighter outline, muted labels, bold ink numbers (Nov 12) */
 .dpill { position: absolute !important; z-index: 5; bottom: -10px; display: none; padding: 2px 9px; border-radius: 999px; white-space: nowrap; pointer-events: none;
   background: var(--tile); color: var(--muted); border: 1.5px solid var(--dpill-line); font-size: var(--fs-xs); font-weight: 500; line-height: 1.3; font-variant-numeric: tabular-nums;
-  box-shadow: 0 1px 2px rgba(var(--sh), 0.12); }
+  box-shadow: 0 1px 2px rgba(var(--sh), calc(0.12 * var(--shk))); }
 .dpill b { color: var(--ink); font-weight: 700; }
 .dpill .lw { opacity: 0.6; } /* win rate from fewer than 30 players */
 .arow[aria-expanded="true"] > .dpill { display: block; }
@@ -594,7 +594,7 @@ footer a { color: var(--muted); }
 /* "N cards differ from list 1": a tab on the card's top edge, with a small folded card as its legend (same fold and colors as on the cards) */
 .dnote { position: absolute; top: -8px; right: 12px; /* centered on the card's top edge, 4px clear of the card grid */ z-index: 1; padding: 2px 8px 2px 6px; border-radius: 999px; white-space: nowrap;
   display: inline-flex; align-items: center; gap: 4px;
-  background: var(--surface); color: var(--ink); font-size: var(--fs-xs); font-weight: 600; line-height: 1.2; box-shadow: 0 1px 2px rgba(var(--sh), 0.12); }
+  background: var(--surface); color: var(--ink); font-size: var(--fs-xs); font-weight: 600; line-height: 1.2; box-shadow: 0 1px 2px rgba(var(--sh), calc(0.12 * var(--shk))); }
 .dnote svg, .cdif svg { width: 8px; height: 11px; display: block; flex: none; } /* a tiny card with the same corner tag */
 /* The tab is a button: a tap opens the swap panel (In / Out). A small caret says it opens. */
 button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-family: inherit; } /* outlined, like the deck stats pill */
@@ -629,7 +629,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .slide .altb[aria-expanded="true"] { position: relative; z-index: 7; } /* the button that opened the popover stays above its shadow */
 @keyframes apopIn { from { opacity: 0; transform: translateY(6px); } }
 .apop2 .parr2 { position: absolute; bottom: -5px; left: var(--ax, 50%); width: 10px; height: 10px; margin-left: -5px; background: var(--surface); transform: rotate(45deg);
-  box-shadow: 3px 3px 5px rgba(var(--sh), 0.22); }
+  box-shadow: 3px 3px 5px rgba(var(--sh), calc(0.22 * var(--shk))); }
 .acar { --iw: 228px; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
   padding: 8px calc(50% - var(--iw) / 2) 6px; align-items: center; border-radius: 12px; }
 .acar::-webkit-scrollbar { display: none; }
@@ -637,7 +637,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
   padding: 8px 9px; border: 1.5px solid transparent; border-radius: 10px; background: var(--tile); opacity: 0.5; transform: scale(0.94); cursor: pointer;
   transition: opacity 0.2s, transform 0.2s, background 0.2s, border-color 0.2s; }
 .ait.on { opacity: 1; transform: none; background: var(--surface); border-color: var(--sel); box-shadow: var(--raised-sm); }
-.ait > img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); }
+.ait > img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), calc(0.34 * var(--shk))); }
 .ait.on > img { cursor: zoom-in; }
 .ait > img.ao { opacity: 0.55; filter: grayscale(0.4); }
 .ait .achev { display: grid; place-items: center; color: var(--muted); }
@@ -647,7 +647,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .ait .ast { grid-column: 1 / -1; margin-top: 5px; font-size: var(--fs-xs); color: var(--muted); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ait .ast b { color: var(--ink); }
 .apop3 { position: absolute; z-index: 6; display: flex; flex-direction: column; border-radius: var(--r-tile); background: var(--surface);
-  box-shadow: 0 2px 6px rgba(var(--sh), 0.16), 0 0 0 1px rgba(var(--sh), 0.06); overflow: visible; animation: apopIn 0.16s ease-out; } /* highlighted: the panel, not the QR */
+  box-shadow: 0 2px 6px rgba(var(--sh), calc(0.16 * var(--shk))), 0 0 0 1px rgba(var(--sh), calc(0.06 * var(--shk))); overflow: visible; animation: apopIn 0.16s ease-out; } /* highlighted: the panel, not the QR */
 .ttabs { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; flex: none; margin: 0; padding: 0; border-bottom: 0; }
 .ttabs:empty { display: none; }
 .ttabs button { height: 26px; border: 0; border-radius: 0; background: none; color: var(--muted); font-family: inherit; font-size: 12px; font-weight: 500; line-height: 1; cursor: pointer; }
@@ -668,10 +668,10 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .tw { flex: 0 0 var(--iw); scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px;
   transition: opacity 0.2s; cursor: pointer; } /* same size on and off focus (no scale) */
 .tw:not(.on) { opacity: 0.4; } .tw:not(.on) { opacity: 0.4; } .tw.on { opacity: 1; } /* Nov 17: the versions beside the one in focus are faded */ /* Nov 17: the versions beside the one in focus are faded */
-.tw { background: var(--surface); border-radius: 10px; padding: 6px 0 5px; box-shadow: 0 1px 5px rgba(var(--sh), 0.3); } /* each tweak is a card you can swipe */
+.tw { background: var(--surface); border-radius: 10px; padding: 6px 0 5px; box-shadow: 0 1px 5px rgba(var(--sh), calc(0.3 * var(--shk))); } /* each tweak is a card you can swipe */
 .tw .tsw { display: flex; align-items: center; gap: 5px; }
 .tw .tstk { display: flex; }
-.tw .tstk img { width: var(--cw); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); }
+.tw .tstk img { width: var(--cw); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), calc(0.34 * var(--shk))); }
 .tw .tstk img + img { margin-left: calc(var(--cw) * -0.4); margin-top: 4px; } /* the 2nd card covers 40% of the 1st, 4px lower (Nov 15: was 7px; 2-card tweaks were tight) */
 .tw .tstk { align-items: flex-start; }
 .tw.on .tstk img { cursor: zoom-in; }
@@ -685,7 +685,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .swin { display: flex; flex-direction: column; align-items: center; gap: 7px; width: max-content; min-width: 100%; }
 .apop3.swp { z-index: 6; }
 .swr { display: flex; gap: 3px; }
-.swr img { width: var(--cw, 30px); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); cursor: zoom-in; }
+.swr img { width: var(--cw, 30px); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), calc(0.34 * var(--shk))); cursor: zoom-in; }
 .swr.out img { filter: grayscale(0.35) brightness(0.92); } /* list 1's cards: a bit quieter */
 .swch { display: block; color: var(--muted); line-height: 0; }
 .swch svg { width: 12px; height: 7px; display: block; }
@@ -748,7 +748,7 @@ details.fmore .fins li:first-child { border-top: 1px solid var(--line); }
 .acar.asw { display: block; padding: 10px 10px 8px; scroll-snap-type: none; }
 .aswl { display: flex; align-items: flex-start; gap: 6px; width: max-content; margin: 0 auto; }
 .aswl .asc { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 50px; }
-.aswl .asc img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), 0.34); cursor: zoom-in; }
+.aswl .asc img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; box-shadow: 0 1px 3px rgba(var(--sh), calc(0.34 * var(--shk))); cursor: zoom-in; }
 .aswl .asc img.ao { opacity: 0.55; filter: grayscale(0.4); }
 .aswl .achev { align-self: center; margin-top: -14px; color: var(--muted); }
 .aswl .achev svg { width: 10px; height: 14px; display: block; }
@@ -832,7 +832,7 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Nov 15: top notices (notice()): a card that drops in from the top; tap = act, swipe up = hide, 6 s */
 .ntc { position: fixed; left: 50%; top: calc(10px + env(safe-area-inset-top, 0px)); z-index: 70; box-sizing: border-box; width: min(420px, calc(100% - 24px));
   display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 16px; background: var(--surface); color: var(--ink); font-size: var(--fs-m); line-height: 1.3;
-  box-shadow: 0 8px 28px rgba(var(--sh), 0.22), 0 1px 3px rgba(var(--sh), 0.12); border: 1px solid var(--line-strong); cursor: pointer; touch-action: none;
+  box-shadow: 0 8px 28px rgba(var(--sh), calc(0.22 * var(--shk))), 0 1px 3px rgba(var(--sh), calc(0.12 * var(--shk))); border: 1px solid var(--line-strong); cursor: pointer; touch-action: none;
   transform: translate(-50%, calc(-100% - 24px)); transition: transform 0.32s cubic-bezier(.2, .8, .2, 1); }
 .ntc.on { transform: translate(-50%, 0); }
 .ntc .ntx { flex: 1; min-width: 0; } .ntc small { display: block; font-size: var(--fs-xs); color: var(--muted); font-weight: 500; } .ntc b { color: var(--acc-ink); }
@@ -841,7 +841,7 @@ html { -webkit-tap-highlight-color: transparent; }
 /* "Updated" note after a home-screen refresh: a small pill at the top, fades in and out */
 .toast { position: fixed; left: 50%; top: calc(12px + env(safe-area-inset-top, 0px)); z-index: 60; transform: translate(-50%, -8px); opacity: 0;
   padding: 8px 14px; border-radius: 999px; background: var(--surface); color: var(--ink); font-size: var(--fs-m); font-weight: 600; white-space: nowrap;
-  border: 1px solid var(--line-strong); box-shadow: 0 6px 20px rgba(var(--sh), 0.18); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
+  border: 1px solid var(--line-strong); box-shadow: 0 6px 20px rgba(var(--sh), calc(0.18 * var(--shk))); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
 .toast.newp { pointer-events: auto; cursor: pointer; font-family: inherit; line-height: inherit; font-size: var(--fs-m); font-weight: 600; } /* "New data · Refresh" (browser tab) */
 .toast.newp b { color: var(--acc-ink); }
@@ -957,7 +957,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .mub i.cut.r::after { content: ""; position: absolute; left: -5px; top: 0; border: 5px solid transparent; border-right-color: #d6345a; border-left: 0; }
 .mur.muax { cursor: default; padding-top: 0; padding-bottom: 0; } .mur.muax:hover { background: none; } .muax .mub { height: 12px; }
 .muax .mub b { position: absolute; transform: translateX(-50%); font-size: 9px; font-weight: 600; color: var(--muted); line-height: 12px; }
-.mub { background: linear-gradient(90deg, transparent calc(16.67% - 0.5px), rgba(var(--sh), 0.12) calc(16.67% - 0.5px), rgba(var(--sh), 0.12) calc(16.67% + 0.5px), transparent calc(16.67% + 0.5px), transparent calc(83.33% - 0.5px), rgba(var(--sh), 0.12) calc(83.33% - 0.5px), rgba(var(--sh), 0.12) calc(83.33% + 0.5px), transparent calc(83.33% + 0.5px)); } /* Nov 20: ticks at 30 / 70 % */ .mun { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.mub { background: linear-gradient(90deg, transparent calc(16.67% - 0.5px), rgba(var(--sh), calc(0.12 * var(--shk))) calc(16.67% - 0.5px), rgba(var(--sh), calc(0.12 * var(--shk))) calc(16.67% + 0.5px), transparent calc(16.67% + 0.5px), transparent calc(83.33% - 0.5px), rgba(var(--sh), calc(0.12 * var(--shk))) calc(83.33% - 0.5px), rgba(var(--sh), calc(0.12 * var(--shk))) calc(83.33% + 0.5px), transparent calc(83.33% + 0.5px)); } /* Nov 20: ticks at 30 / 70 % */ .mun { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .mub { position: relative; height: 10px; } .mub i { position: absolute; top: 0; bottom: 0; border-radius: 3px; } .mub i.g { background: #1f9d55; } .mub i.r { background: #d6345a; }
 .mub em { position: absolute; left: 50%; top: -3px; bottom: -3px; border-left: 1.5px solid var(--muted); opacity: 0.6; }
 .mup { font-weight: 700; text-align: right; } .mug { font-size: 10.5px; color: var(--muted); text-align: right; } .musep { margin: 0; text-align: center; line-height: 1; color: var(--muted); }
@@ -1111,7 +1111,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .dkv2 .snotes { margin-top: 8px; }
 :root:not(#_) .dkv2 .dk3 b { font-size: 19px; }
 /* Nov 16: "Top 10" card above the deck list */
-.t10 { margin: 2px var(--sp-3, 12px) 10px; padding: 10px 12px 8px; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 3px rgba(var(--sh), 0.12); }
+.t10 { margin: 2px var(--sp-3, 12px) 10px; padding: 10px 12px 8px; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 3px rgba(var(--sh), calc(0.12 * var(--shk))); }
 .t10h { margin: 0 0 4px; font-size: var(--fs-s, 13px); font-weight: 700; color: var(--ink); }
 .t10st { display: flex; gap: 12px; overflow-x: auto; overflow-y: hidden; touch-action: pan-x pan-y; /* Nov 18: sideways only (the large iPad cards were 6px taller than the strip) */ padding: 6px 2px 4px; scrollbar-width: none; } .t10st::-webkit-scrollbar { display: none; }
 .t10i, .t10m { all: unset; box-sizing: border-box; cursor: pointer; -webkit-tap-highlight-color: transparent; }
@@ -1136,8 +1136,8 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Nov 16: dark mode: these flat boxes are a bit brighter than the page (was darker, hard to see) */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --flat: #1c2530; } }
 :root[data-theme="dark"] { --flat: #1c2530; }
-.t10i:hover, .t10m:hover, .t10i:focus-visible, .t10m:focus-visible { background: rgba(var(--sh), 0.07); }
-.t10mv { border-top-color: rgba(var(--sh), 0.12); }
+.t10i:hover, .t10m:hover, .t10i:focus-visible, .t10m:focus-visible { background: rgba(var(--sh), calc(0.07 * var(--shk))); }
+.t10mv { border-top-color: rgba(var(--sh), calc(0.12 * var(--shk))); }
 .t10ln { display: none; }
 @media (max-width: 760px) { /* phones: a wider card, tighter strip, larger icons; 3 decks show, a quarter of the 4th bleeds at the edge */
   .t10 { margin-left: -8px; margin-right: -8px; padding: 10px 10px 8px; } .t10st { gap: 8px; margin-right: -10px; padding-right: 10px; }
@@ -1149,7 +1149,7 @@ html { -webkit-tap-highlight-color: transparent; }
 @media (min-width: 600px) and (max-width: 790px) and (pointer: coarse) { :root:not(#_) .t10 .t10i .t2c { zoom: 3.25; } :root:not(#_) .t10st { gap: 12px; } } /* iPad mini: 3 decks in view */
 @media (min-width: 600px) { :root .t10 .t10i .t2c { zoom: 2.3; } :root .t10i b { font-size: 17px; } :root .t10i .pdl { font-size: 12px; } :root .t10st { gap: 12px; } }
 
-.evbig { position: relative; padding-right: 24px !important; } .evbig:hover { background: rgba(var(--sh), 0.09); }
+.evbig { position: relative; padding-right: 24px !important; } .evbig:hover { background: rgba(var(--sh), calc(0.09 * var(--shk))); }
 .evgo { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); display: flex; color: var(--acc-ink, #1d6eb9); }
 .evgo .spch { width: 8px; height: 12px; }
 @media (min-width: 761px) {
@@ -1162,7 +1162,7 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Nov 16: Rising / Falling, one format on all screens: icon | full name (up to 2 lines) + "#rank · from -> to" | the change ("▲3.7 pts").
    600px+: a sparkline between the text and the change. A divider between the 2 columns. */
 .t10g, .t10c { display: none; }
-.t10mv { gap: 0; padding-top: 8px; } .t10mv > div { min-width: 0; } .t10mv > div + div { border-left: 1px solid rgba(var(--sh), 0.12); padding-left: 8px; } .t10mv > div:first-child { padding-right: 8px; }
+.t10mv { gap: 0; padding-top: 8px; } .t10mv > div { min-width: 0; } .t10mv > div + div { border-left: 1px solid rgba(var(--sh), calc(0.12 * var(--shk))); padding-left: 8px; } .t10mv > div:first-child { padding-right: 8px; }
 .t10k { display: flex; align-items: center; gap: 4px; margin: 0 0 3px; font-size: 12px; letter-spacing: .02em; } .t10k i { font-style: normal; font-size: 8.5px; }
 .t10m { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "ic nm d" "ic mt d"; column-gap: 7px; row-gap: 1px; padding: 4px 2px; }
 .t10m + .t10m { margin-top: 2px; }
@@ -1212,13 +1212,13 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Nov 17: one status chip on the top edge of each list card (Popular now / Unproven / No top result / N swaps from List 1) */
 .apanel .vars { padding-top: 12px; }
 .slide > .stc { position: absolute; top: -10px; left: 14px; z-index: 4; height: 19px; margin: 0; padding: 0 8px 0 6px; gap: 3px; font-size: 10px; font-weight: 600;
-  border: 0; border-radius: 999px; background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--pill-line), 0 1px 3px rgba(var(--sh), 0.2); }
+  border: 0; border-radius: 999px; background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--pill-line), 0 1px 3px rgba(var(--sh), calc(0.2 * var(--shk))); }
 .slide > .stc svg:not(.spch) { width: 11px; height: 11px; } .slide > .stc .spch { width: 5px; height: 7px; opacity: .7; } /* Nov 17: status chips small (info, not the main buttons) */
 .slide > .stc.pop .pstar { color: #e3a51b; } /* Nov 17: plain chip, only the star gold */
 .slide > .stc.bc { color: var(--ink); }
 .slide > .stc.cmpb { font-weight: 600; } .slide > .stc.cmpb .swi { width: 11px; height: 11px; }
 :root .slide > .stc.cmpb, :root .slide > .stc.cmpb[aria-expanded="true"] { position: absolute; z-index: 7; height: 19px; border: 0; font-size: 10px; } /* Nov 17 fix: an open .altb is position: relative (it jumped into the card) */
-:root .slide > .stc.cmpb[aria-expanded="true"] { background: var(--sel-bg); box-shadow: inset 0 0 0 1.5px var(--sel), 0 1px 3px rgba(var(--sh), 0.2); }
+:root .slide > .stc.cmpb[aria-expanded="true"] { background: var(--sel-bg); box-shadow: inset 0 0 0 1.5px var(--sel), 0 1px 3px rgba(var(--sh), calc(0.2 * var(--shk))); }
 
 
 /* Nov 17: under the list: one connected bar of 5 equal cells: exact (a number) | 1 / 2 / 3 swaps (open the swap panel) | players (sheet).
@@ -1386,7 +1386,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .dk3 .dkm { display: flex; align-items: center; height: 18px; margin: 3px 0 2px; font-style: normal; } .dk3 .dkm > svg { width: 100%; height: 16px; } .dk3 .dkm > svg.lwid { display: none; }
 .dk3 .dko { font-size: 10.5px; color: var(--muted); }
 .dk3 em.wv { margin-top: auto; }
-.wci { position: relative; display: block; flex: 1; height: 10px; border-radius: 5px; background: rgba(var(--sh), 0.08); }
+.wci { position: relative; display: block; flex: 1; height: 10px; border-radius: 5px; background: rgba(var(--sh), calc(0.08 * var(--shk))); }
 .wci i { position: absolute; top: 2px; bottom: 2px; border-radius: 3px; background: #2fa866; opacity: 0.45; } .wci u { position: absolute; z-index: 2; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; text-decoration: none; background: repeating-linear-gradient(to bottom, var(--ink) 0 2px, transparent 2px 4px); opacity: 0.55; } /* Nov 15: a drawn dashed line (a thin dashed border did not show on some phones) */
 .wci s { position: absolute; top: 1px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: #1f9d55; }
 .dk3 em.wv { font-style: normal; font-size: 10.5px; font-weight: 700; color: var(--muted); } .dk3 em.wv.g { color: #1f9d55; } .dk3 em.wv.r { color: #d6345a; }
@@ -1502,9 +1502,9 @@ a.dkev { text-decoration: none; }
 .pill { display: inline-block; border-radius: 999px; padding: 1px 7px; font-weight: 600; line-height: 1.5; white-space: nowrap; }
 .pill.pl { background: none; color: var(--muted); font-size: 0.76em; font-weight: 500; padding: 0; } /* place: quiet text, part of the score */
 /* QR box: raised; a small expand badge on its corner says "tap to enlarge" */
-.qcol { display: flex; flex-direction: column; align-items: center; gap: 1px; align-self: start; margin-right: 0; padding: 6px;
-  border-radius: var(--r-box); background: var(--surface); box-shadow: var(--raised), var(--bevel); }
-.qr { position: relative; width: 122px; aspect-ratio: 1; padding: 0; border: 0; display: block; background: transparent; cursor: zoom-in; }
+.qcol { display: flex; flex-direction: column; align-items: center; gap: 1px; align-self: start; margin-right: 0; padding: 1px;
+  border-radius: var(--r-box); background: transparent; box-shadow: none; } /* Nov 21: no box around the QR (same color as the panel); the padding stays so the QR and its neighbors keep their positions */
+.qr { position: relative; width: 132px; /* Nov 21: +10px, the box padding 6px -> 1px: same outer size, larger QR */ aspect-ratio: 1; padding: 0; border: 0; display: block; background: transparent; cursor: zoom-in; }
 .qr img { display: block; width: 100%; height: auto; }
 .qr.wait { background: var(--line); cursor: default; }
 .qr .none { display: block; padding-top: 34px; text-align: center; color: #5b6575; font-size: 0.75rem; }
@@ -1533,7 +1533,7 @@ a.dkev { text-decoration: none; }
   .pill { padding: 0 6px; }
   .energy { min-height: 20px; }
   .energy img { width: 14px; height: 14px; }
-  .qr { width: 96px; }
+  .qr { width: 106px; }
   .cards { gap: 3px; }
 }
 
@@ -1574,7 +1574,7 @@ a.dkev { text-decoration: none; }
 .qdlg[open] { display: grid; place-items: center; cursor: zoom-out; }
 /* Raised round controls, like the theme button */
 .qclose { width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
-  background: var(--surface); color: var(--ink); box-shadow: var(--raised), var(--bevel), 0 4px 12px rgba(var(--sh), 0.3); }
+  background: var(--surface); color: var(--ink); box-shadow: var(--raised), var(--bevel), 0 4px 12px rgba(var(--sh), calc(0.3 * var(--shk))); }
 .qclose svg { width: 18px; height: 18px; display: block; stroke-width: 2; }
 .qclose { position: static; width: 44px; height: 44px; margin: 12px 0 28px; }
 .qclose svg { width: 28px; height: 28px; stroke-width: 1.4; }
@@ -1593,13 +1593,13 @@ a.dkev { text-decoration: none; }
 .qsave:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
 /* Card popup: phone = bottom sheet (tap); mouse = popover beside the card (hover, click pins). The card image opens full screen. */
 /* Popover and sheet shadows: strong enough to lift them off the page; dark mode adds a faint light edge (a shadow alone is lost on dark) */
-:root { --pop-sh: 0 0 10px rgba(var(--sh), 0.12), 0 6px 24px rgba(var(--sh), 0.20), 0 -2px 12px rgba(var(--sh), 0.06); /* Nov 12: more even, light from the top */
-  --sheet-sh: 0 -2px 6px rgba(var(--sh), 0.14), 0 -14px 44px rgba(var(--sh), 0.36); }
+:root { --pop-sh: 0 0 10px rgba(var(--sh), calc(0.12 * var(--shk))), 0 6px 24px rgba(var(--sh), calc(0.20 * var(--shk))), 0 -2px 12px rgba(var(--sh), calc(0.06 * var(--shk))); /* Nov 12: more even, light from the top */
+  --sheet-sh: 0 -2px 6px rgba(var(--sh), calc(0.14 * var(--shk))), 0 -14px 44px rgba(var(--sh), calc(0.36 * var(--shk))); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --pop-sh: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 12px rgba(var(--sh), 0.45), 0 6px 26px rgba(var(--sh), 0.6), 0 -2px 12px rgba(var(--sh), 0.25);
+  --pop-sh: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 12px rgba(var(--sh), calc(0.45 * var(--shk))), 0 6px 26px rgba(var(--sh), calc(0.6 * var(--shk))), 0 -2px 12px rgba(var(--sh), calc(0.25 * var(--shk)));
   --sheet-sh: 0 -1px 0 rgba(255, 255, 255, 0.10), 0 -4px 12px rgba(0, 0, 0, 0.5), 0 -18px 50px rgba(0, 0, 0, 0.8); } }
 :root[data-theme="dark"] {
-  --pop-sh: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 12px rgba(var(--sh), 0.45), 0 6px 26px rgba(var(--sh), 0.6), 0 -2px 12px rgba(var(--sh), 0.25);
+  --pop-sh: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 12px rgba(var(--sh), calc(0.45 * var(--shk))), 0 6px 26px rgba(var(--sh), calc(0.6 * var(--shk))), 0 -2px 12px rgba(var(--sh), calc(0.25 * var(--shk)));
   --sheet-sh: 0 -1px 0 rgba(255, 255, 255, 0.10), 0 -4px 12px rgba(0, 0, 0, 0.5), 0 -18px 50px rgba(0, 0, 0, 0.8); }
 /* QR sheet */
 .ipop.qsheet.float { width: min(340px, calc(100vw - 24px)); }
@@ -1613,7 +1613,7 @@ a.dkev { text-decoration: none; }
 .qsl .qsn { color: var(--muted); font-weight: 500; }
 .qsl .qsv { display: block; font-weight: 500; }
 .qsrow { display: flex; align-items: center; gap: 6px; }
-.qsimg { width: min(236px, 62vw); height: auto; aspect-ratio: 1; display: block; border-radius: 12px; background: #eef5f9; padding: 6px; } /* Nov 12: the panel color, not white */
+.qsimg { width: min(236px, 62vw); height: auto; aspect-ratio: 1; display: block; border-radius: 12px; background: #eff5f8; padding: 6px; } /* Nov 12: the panel color, not white */
 .qsh { margin: 0; font-size: var(--fs-s); color: var(--muted); line-height: 1.4; }
 .ipop .qssave { margin: 12px auto 0; display: flex; }
 /* Phone sheet: Save sits on the same line as the round ×, at the lower right (easy to reach with a thumb) */
@@ -1638,11 +1638,11 @@ a.dkev { text-decoration: none; }
 .cpop.float .grab, .cpop.sheet .parr { display: none; }
 .cpop .parr, .apop2 .parr2 { display: none !important; } /* Nov 16: no arrow on any popup (a big popup can cover its button) */
 .cpop .parr { position: absolute; top: 40px; width: 14px; height: 14px; background: var(--surface); transform: rotate(45deg); }
-.cpop .parr.l { left: -7px; box-shadow: -1px 1px 0 rgba(var(--sh), 0.09); }
-.cpop .parr.r { right: -7px; box-shadow: 1px -1px 0 rgba(var(--sh), 0.09); }
+.cpop .parr.l { left: -7px; box-shadow: -1px 1px 0 rgba(var(--sh), calc(0.09 * var(--shk))); }
+.cpop .parr.r { right: -7px; box-shadow: 1px -1px 0 rgba(var(--sh), calc(0.09 * var(--shk))); }
 .cpop .sbody { position: relative; display: flex; gap: 14px; align-items: stretch; }
 .cpop .zc { flex: none; width: 138px; height: auto; aspect-ratio: 367 / 512; padding: 0; border: 0; background: var(--line); border-radius: 7px; cursor: zoom-in;
-  box-shadow: 0 4px 12px rgba(var(--sh), 0.3); overflow: hidden; }
+  box-shadow: 0 4px 12px rgba(var(--sh), calc(0.3 * var(--shk))); overflow: hidden; }
 /* (Nov 15: the popover card width is set below: 300px) */
 .cpop .zc { position: relative; }
 .cpop .zic { position: absolute; right: 6px; bottom: 6px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: rgba(12, 18, 26, 0.6); color: #fff; } /* full screen: an icon on the card */
@@ -1661,7 +1661,7 @@ a.dkev { text-decoration: none; }
 .cpop .ps { margin: -4px 0 0; font-size: var(--fs-s); color: var(--muted); }
 .cpop .pack { display: flex; gap: 10px; align-items: center; background: var(--tile); border-radius: var(--r-box); padding: 8px; }
 .cpop .pks { display: flex; flex: none; }
-.cpop .pk { height: 72px; width: auto; display: block; border-radius: 3px; filter: drop-shadow(0 2px 3px rgba(var(--sh), 0.3)); }
+.cpop .pk { height: 72px; width: auto; display: block; border-radius: 3px; filter: drop-shadow(0 2px 3px rgba(var(--sh), calc(0.3 * var(--shk)))); }
 .cpop .pks.n2 .pk:first-child, .cpop .pks.n3 .pk:first-child { transform: rotate(-4deg); }
 .cpop .pks.n2 .pk + .pk, .cpop .pks.n3 .pk + .pk { margin-left: -18px; transform: rotate(6deg); }
 .cpop .pks.n3 .pk { height: 64px; }
@@ -1716,11 +1716,11 @@ a.dkev { text-decoration: none; }
 .altb { display: inline-flex; align-items: center; gap: 3px; padding: 0 7px 0 8px; border: 1.5px solid var(--pill-line); border-radius: 999px; cursor: pointer;
   background: var(--surface); color: var(--ink); font-weight: 600; line-height: 1.5; white-space: nowrap; height: var(--pbh, 28px); font-size: var(--pbf, 11.5px); } /* same height and size as the other pills */
 @media (hover: hover) { .altb:hover { border-color: var(--muted); } }
-.slide .cmpb.ctop { position: absolute; top: -10px; right: 12px; z-index: 2; border-color: var(--muted); box-shadow: 0 1px 3px rgba(var(--sh), 0.18); } /* Nov 14: on the deck's top right edge, a clearer outline */
+.slide .cmpb.ctop { position: absolute; top: -10px; right: 12px; z-index: 2; border-color: var(--muted); box-shadow: 0 1px 3px rgba(var(--sh), calc(0.18 * var(--shk))); } /* Nov 14: on the deck's top right edge, a clearer outline */
 .slide .cmpb.ctop[aria-expanded="true"] { z-index: 7; }
 .cmpb.ctop[aria-expanded="true"] { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); }
 .apop2.atop { bottom: auto; top: var(--at, 30px); } /* the swap popover opens under the top-right button */
-.apop2.atop .parr2 { bottom: auto; top: -5px; box-shadow: -3px -3px 5px rgba(var(--sh), 0.12); }
+.apop2.atop .parr2 { bottom: auto; top: -5px; box-shadow: -3px -3px 5px rgba(var(--sh), calc(0.12 * var(--shk))); }
 .altb[aria-expanded="true"] .dcar { transform: rotate(180deg); }
 .altb[aria-expanded="true"] { border-color: var(--sel); background: linear-gradient(var(--sel-bg), var(--sel-bg)), var(--surface); } /* open: the button is highlighted; the panel has only its shadow */
 .altb .dcar { width: 8px; height: 8px; opacity: 0.8; transition: transform var(--t-fast); }
@@ -1731,8 +1731,8 @@ a.dkev { text-decoration: none; }
 .aqr svg { width: 20px; height: 20px; display: block; }
 @media (hover: hover) { .aqr:hover { color: var(--accent); } }
 .aqr:active { transform: scale(0.96); }
-.ipop .parr.t { top: -7px; box-shadow: -1px -1px 0 rgba(var(--sh), 0.09); }
-.ipop .parr.b { top: auto; bottom: -7px; box-shadow: 1px 1px 0 rgba(var(--sh), 0.09); }
+.ipop .parr.t { top: -7px; box-shadow: -1px -1px 0 rgba(var(--sh), calc(0.09 * var(--shk))); }
+.ipop .parr.b { top: auto; bottom: -7px; box-shadow: 1px 1px 0 rgba(var(--sh), calc(0.09 * var(--shk))); }
 #iPop:focus, #cPop:focus { outline: none; }
 .ipop .ibody { position: relative; max-width: 480px; margin: 0 auto; font-size: var(--fs-m); line-height: 1.45; }
 .ipop h3 { margin: 0 0 6px; font-size: var(--fs-l); font-weight: 700; color: var(--ink); }
@@ -1773,7 +1773,7 @@ a.dkev { text-decoration: none; }
 .cdlg .cname { display: none; } /* the card popup under it already shows the name */
 .cdlg[open] { cursor: default; }
 .cbox { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px; width: min(320px, 82vw); }
-.cbox img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: var(--r-box); box-shadow: 0 8px 30px rgba(var(--sh), 0.45); }
+.cbox img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: var(--r-box); box-shadow: 0 8px 30px rgba(var(--sh), calc(0.45 * var(--shk))); }
 .cname { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 8px; color: var(--dlg-ink); font-size: var(--fs-l); text-align: center; }
 .cname b { font-weight: 700; }
 .cname span { color: var(--dlg-muted); font-size: var(--fs-m); }
@@ -1811,7 +1811,7 @@ a.dkev { text-decoration: none; }
   -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--fe) - var(--it) - 24px), transparent calc(var(--fe) - var(--it)));
   mask-image: linear-gradient(180deg, #000 calc(var(--fe) - var(--it) - 24px), transparent calc(var(--fe) - var(--it))); }
 .picons img:nth-child(2) { --it: calc(9 * var(--u)); }
-.picons img { position: absolute; top: calc(4 * var(--u)); width: calc(52 * var(--u)); height: auto; aspect-ratio: 367 / 512; border-radius: 2px; box-shadow: 0 3px 4px rgba(var(--sh), 0.43);
+.picons img { position: absolute; top: calc(4 * var(--u)); width: calc(52 * var(--u)); height: auto; aspect-ratio: 367 / 512; border-radius: 2px; box-shadow: 0 3px 4px rgba(var(--sh), calc(0.43 * var(--shk)));
   transition: transform var(--t-slow) ease; }
 .picons img:first-child { left: calc(2 * var(--u)); transform: rotate(-9deg); z-index: 2; }
 .picons img:nth-child(2) { left: calc(38 * var(--u)); top: calc(9 * var(--u)); transform: rotate(9deg); z-index: 1; }
@@ -1825,12 +1825,12 @@ a.dkev { text-decoration: none; }
 .pod > .apanel { grid-column: 1 / -1; grid-row: 2; margin-top: calc(var(--pgap, 24px) + 10px) !important; padding-top: 0; } /* + room for the stats pill (same 10px gap as the rows) */
 /* Medals (game style): outer disc shaded from the top-left, a recessed inner disc, a crown with a white outline */
 .medal { position: absolute; z-index: 3; left: -6px; top: -9px; width: 32px; height: 32px; border-radius: 50%;
-  background: var(--m-out); box-shadow: 0 2px 3px rgba(var(--sh), 0.3); transition: transform var(--t-slow) ease, opacity var(--t-slow) ease; }
+  background: var(--m-out); box-shadow: 0 2px 3px rgba(var(--sh), calc(0.3 * var(--shk))); transition: transform var(--t-slow) ease, opacity var(--t-slow) ease; }
 .medal::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--m-in);
   box-shadow: inset 1.5px 1.5px 2px rgba(0, 0, 0, 0.22), inset -1px -1px 1.5px rgba(255, 255, 255, 0.55); }
 .medal .mn { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; color: #ffffff; font-weight: 600; font-size: 1.1rem; line-height: 1; }
 .medal .crown { position: absolute; z-index: 2; left: 50%; top: -7px; width: 15px; height: 12px; transform: translateX(-50%); overflow: visible;
-  fill: var(--m-c); stroke: var(--m-rim); stroke-width: 1.8; stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1px rgba(var(--sh), 0.25)); }
+  fill: var(--m-c); stroke: var(--m-rim); stroke-width: 1.8; stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1px rgba(var(--sh), calc(0.25 * var(--shk)))); }
 .medal .crown .cb { fill: none; stroke: var(--m-rim); stroke-width: 0.7; stroke-linecap: round; }
 .medal.m1 { --m-rim: #fff8e1; --m-c: #e8b52e; --m-out: linear-gradient(135deg, #fbe07a, #d39a1c); --m-in: linear-gradient(135deg, #f0c440, #f7d968); }
 .medal.m2 { --m-rim: #eef4fd; --m-c: #87a5d4; --m-out: linear-gradient(135deg, #c9dbf3, #6585ba); --m-in: linear-gradient(135deg, #8eaad6, #b3c9ea); }
@@ -1867,7 +1867,7 @@ a.dkev { text-decoration: none; }
   .ev { font-size: var(--fs-s); }
   .sc { font-size: var(--fs-m); }
   .cards { gap: 3px; }
-  .qr { width: 112px; } /* Nov 17/18: was 93px: a taller QR box, so the swap carousel over it is bigger */
+  .qr { width: 122px; } /* Nov 21: +10px (box padding 6px -> 1px). Nov 17/18: was 93px: a taller QR box, so the swap carousel over it is bigger */
   /* podium: tiles 20px shorter; the medal sits on the tile's corner, like the game */
   .podium { margin-top: 10px; }
   .pod > .pcard { --t0: 10px; --tx: 72px; } /* same layout as wider screens; a taller text area for 2-line names */
@@ -1917,12 +1917,12 @@ a.dkev { text-decoration: none; }
   /* a straight band across the screen (full width), the tabs stay in the page column */
   margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 4px calc(50vw - 50% + 4px); border-radius: 0;
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; /* stays at the top while the list scrolls */
-  box-shadow: 0 -2px 3px rgba(var(--sh), 0.06), 0 -5px 11px rgba(var(--sh), 0.10), 0 2px 4px rgba(var(--sh), 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8); } /* shadow above, a short weak shadow below, light line on top */
+  box-shadow: 0 -2px 3px rgba(var(--sh), calc(0.06 * var(--shk))), 0 -5px 11px rgba(var(--sh), calc(0.10 * var(--shk))), 0 2px 4px rgba(var(--sh), calc(0.06 * var(--shk))), inset 0 1px 0 rgba(255, 255, 255, 0.8); } /* shadow above, a short weak shadow below, light line on top */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tbar { box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.3), 0 -5px 11px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04); } }
 :root[data-theme="dark"] .tbar { box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.3), 0 -5px 11px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04); }
 .tabs button { height: 32px; border: 0; border-radius: 999px; background: none; color: var(--muted); font-weight: 500; font-size: 0.875rem; cursor: pointer; } /* 14px */
 .tabs button[aria-selected="true"] { background: var(--tile); color: var(--ink); font-weight: 600;
-  box-shadow: inset 2px 3px 4px rgba(var(--sh), 0.14), inset -2px -2px 3px rgba(255, 255, 255, 0.85); }
+  box-shadow: inset 2px 3px 4px rgba(var(--sh), calc(0.14 * var(--shk))), inset -2px -2px 3px rgba(255, 255, 255, 0.85); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tabs button[aria-selected="true"] { box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); } }
 :root[data-theme="dark"] .tabs button[aria-selected="true"] { box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); }
 .list[hidden] { display: none; }
@@ -1930,12 +1930,11 @@ a.dkev { text-decoration: none; }
    the days left on the tab. ===== */
 :root { --lb: var(--acc-ink); --lb-bg: var(--sel-bg); --lb-line: var(--acc-line); } /* Nov 18: the site's own blue */
 .tabs:has(#tabL:not([hidden])) { grid-template-columns: 0.9fr 1fr 1.3fr; gap: 3px; } /* during the event: Limited wider; after it: 50/50 again (base rule) */
-.tabs button#tabL { display: inline-flex; align-items: center; justify-content: center; gap: 3px; padding: 0 6px; color: var(--lb); outline: 1px dashed var(--lb-line); outline-offset: -3px; white-space: nowrap; }
+.tabs button#tabL { display: inline-flex; align-items: center; justify-content: center; gap: 3px; padding: 0 6px; outline: 1px dashed color-mix(in srgb, var(--muted) 35%, transparent); outline-offset: -3px; /* Nov 21: the same color as the other tabs; a dimmer outline */ white-space: nowrap; }
 .tabs button#tabL[hidden] { display: none; }
-.tabs button#tabL[aria-selected="true"] { color: var(--lb); }
 #tabL .hg { width: 13px; height: 13px; flex: none; }
 @media (max-width: 599px) { .tabs:has(#tabL:not([hidden])) .tlx { display: none; } .tabs button { font-size: 0.8125rem; } } /* phones: 13px (was 14px), same 32px tab height */ /* phones, 3 tabs: Meta · Events · Limited (full names on wider screens) */
-#tabL .lbt { font-size: 10px; font-weight: 700; line-height: 1; padding: 2px 4px; border-radius: 999px; background: var(--lb-bg); font-variant-numeric: tabular-nums; }
+#tabL .lbt { font-size: 10px; font-weight: 700; line-height: 1; padding: 2px 4px; border-radius: 999px; background: color-mix(in srgb, var(--muted) 14%, transparent); font-variant-numeric: tabular-nums; }
 .lbh { position: relative; padding: 14px var(--sp-4) 13px; border-radius: var(--r-card); background: var(--surface); box-shadow: var(--raised); overflow: hidden; }
 .lbh::before { content: ""; position: absolute; inset: 5px; border: 1.5px dashed var(--lb-line); border-radius: calc(var(--r-card) - 4px); pointer-events: none; }
 .lbh .lbk { display: flex; align-items: center; gap: 6px; margin: 0; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--lb); }
@@ -2008,7 +2007,7 @@ a.dkev { text-decoration: none; }
 .moreb { margin-bottom: 14px; --stk1: color-mix(in srgb, var(--surface) 72%, var(--bg)); --stk2: color-mix(in srgb, var(--surface) 42%, var(--bg)); --stke: transparent; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .moreb { --stk1: #1c242e; --stk2: #18202a; --stke: rgba(255, 255, 255, 0.09); } }
 :root[data-theme="dark"] .moreb { --stk1: #1c242e; --stk2: #18202a; --stke: rgba(255, 255, 255, 0.09); }
-.moreb::before, .moreb::after { content: ""; position: absolute; left: 50%; height: 100%; border-radius: var(--r-card); transform: translateX(-50%); box-shadow: 0 1px 3px rgba(var(--sh), 0.16), inset 0 -1px 0 var(--stke); pointer-events: none; }
+.moreb::before, .moreb::after { content: ""; position: absolute; left: 50%; height: 100%; border-radius: var(--r-card); transform: translateX(-50%); box-shadow: 0 1px 3px rgba(var(--sh), calc(0.16 * var(--shk))), inset 0 -1px 0 var(--stke); pointer-events: none; }
 .moreb::before { z-index: -1; width: 96%; bottom: -7px; background: var(--stk1); } .moreb::after { z-index: -2; width: 91%; bottom: -13px; background: var(--stk2); }
 .morelink { position: relative; background: var(--surface); column-gap: 8px; }
 .morelink .mcar { width: 20px; height: 20px; padding: 5px; box-sizing: border-box; border-radius: 50%; background: color-mix(in srgb, var(--acc-ink) 14%, transparent); }
@@ -2016,7 +2015,7 @@ a.dkev { text-decoration: none; }
 
 /* ===== Rank badge (R14, Nov 13): a rounded square on the row's top-left corner: rank | thin grey line | change ===== */
 .rb { position: absolute !important; z-index: 5; left: -5px; top: -7px; display: inline-flex; align-items: stretch; height: 22px; border-radius: 4px;
-  background: #ffffff; box-shadow: 0 1px 2px rgba(var(--sh), 0.18); font-family: var(--font-display); font-variant-numeric: tabular-nums; pointer-events: none;
+  background: #ffffff; box-shadow: 0 1px 2px rgba(var(--sh), calc(0.18 * var(--shk))); font-family: var(--font-display); font-variant-numeric: tabular-nums; pointer-events: none;
   transition: transform var(--t-slow) ease; transform-origin: top left; }
 .rb.rbt { pointer-events: auto; cursor: pointer; }
 .rb .rn { position: relative; display: grid; place-items: center; min-width: 18px; padding: 0 3px 0 4px; font-weight: 700; font-size: 13px; color: #66758a; line-height: 1; }
@@ -2051,9 +2050,9 @@ a.dkev { text-decoration: none; }
 /* Podium: the same badge with a crown just above the number and a light gold / silver / bronze tint (top-left light) */
 .rb.pm .rn svg.cr { position: absolute; top: -4px; left: 50%; width: 13px; height: 10px; transform: translateX(-50%); stroke: #ffffff; stroke-width: 1.8; stroke-linejoin: round; paint-order: stroke; overflow: visible; }
 .rb.pm .rn svg.cr .cb { fill: none; stroke-width: 0.7; stroke-linecap: round; }
-.rb.pm.g { background: linear-gradient(135deg, #f9e3a0, #fffcee); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.7), inset -1px -1px 0 #f9e3a0, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.g .rn { color: #a8740e; } .rb.pm.g svg.cr { fill: #e8b52e; } .rb.pm.g .rsep { background: rgba(201, 150, 40, 0.32); }
-.rb.pm.s { background: linear-gradient(135deg, #d8e3f4, #fafcff); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.7), inset -1px -1px 0 #d8e3f4, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.s .rn { color: #4f6a96; } .rb.pm.s svg.cr { fill: #87a5d4; } .rb.pm.s .rsep { background: rgba(101, 133, 186, 0.32); }
-.rb.pm.b { background: linear-gradient(135deg, #f8d6ba, #fff9f3); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.7), inset -1px -1px 0 #f8d6ba, 0 1px 2px rgba(var(--sh), 0.18); } .rb.pm.b .rn { color: #9a5426; } .rb.pm.b svg.cr { fill: #dc8b52; } .rb.pm.b .rsep { background: rgba(196, 112, 58, 0.32); }
+.rb.pm.g { background: linear-gradient(135deg, #f9e3a0, #fffcee); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.7), inset -1px -1px 0 #f9e3a0, 0 1px 2px rgba(var(--sh), calc(0.18 * var(--shk))); } .rb.pm.g .rn { color: #a8740e; } .rb.pm.g svg.cr { fill: #e8b52e; } .rb.pm.g .rsep { background: rgba(201, 150, 40, 0.32); }
+.rb.pm.s { background: linear-gradient(135deg, #d8e3f4, #fafcff); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.7), inset -1px -1px 0 #d8e3f4, 0 1px 2px rgba(var(--sh), calc(0.18 * var(--shk))); } .rb.pm.s .rn { color: #4f6a96; } .rb.pm.s svg.cr { fill: #87a5d4; } .rb.pm.s .rsep { background: rgba(101, 133, 186, 0.32); }
+.rb.pm.b { background: linear-gradient(135deg, #f8d6ba, #fff9f3); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.7), inset -1px -1px 0 #f8d6ba, 0 1px 2px rgba(var(--sh), calc(0.18 * var(--shk))); } .rb.pm.b .rn { color: #9a5426; } .rb.pm.b svg.cr { fill: #dc8b52; } .rb.pm.b .rsep { background: rgba(196, 112, 58, 0.32); }
 .pcard[aria-expanded="true"] .rb { transform: scale(0.85); }
 @media (max-width: 760px) { /* phones: a smaller podium badge, like the rows */
   .rb.pm { height: 19px; left: -4px; top: -6px; }
@@ -2084,7 +2083,7 @@ a.dkev { text-decoration: none; }
 /* Nov 16: dark mode: the medal badges about 20 % darker (less bright on the dark page) */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not(#_) .rb.pm.g { --m1: #b8994f; --m2: #977322; } :root:not([data-theme="light"]):not(#_) .rb.pm.s { --m1: #aebfcc; --m2: #788b9a; } :root:not([data-theme="light"]):not(#_) .rb.pm.b { --m1: #bf7d55; --m2: #9c5124; } }
 :root[data-theme="dark"]:not(#_) .rb.pm.g { --m1: #b8994f; --m2: #977322; } :root[data-theme="dark"]:not(#_) .rb.pm.s { --m1: #aebfcc; --m2: #788b9a; } :root[data-theme="dark"]:not(#_) .rb.pm.b { --m1: #bf7d55; --m2: #9c5124; }
-:root:not(#_) .rb.pm.g, :root:not(#_) .rb.pm.s, :root:not(#_) .rb.pm.b { background: linear-gradient(90deg, var(--m1), var(--m2)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 1px 3px rgba(var(--sh), 0.3); }
+:root:not(#_) .rb.pm.g, :root:not(#_) .rb.pm.s, :root:not(#_) .rb.pm.b { background: linear-gradient(90deg, var(--m1), var(--m2)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 1px 3px rgba(var(--sh), calc(0.3 * var(--shk))); }
 :root:not(#_) .rb.pm .rn, :root:not(#_) .rb.pm .dl, :root:not(#_) .rb.pm .dl.up, :root:not(#_) .rb.pm .dl.dn, :root:not(#_) .rb.pm .dl.eq, :root:not(#_) .rb.pm .dl.nw { color: #fff; }
 :root:not(#_) .rb.pm svg.cr { fill: #fff; stroke: var(--m1); stroke-width: 2.6; } /* a thicker outline (was 1.8) */ :root:not(#_) .rb.pm .rsep { background: rgba(255, 255, 255, 0.45); }
 /* Nov 16: 1st-3rd place dots (Top players chart, its legend, the results list, the Score pill) like the medal badges: a solid metal
@@ -2115,7 +2114,7 @@ a.dkev { text-decoration: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* Winner crown over the first card icon (the 1st place medal's crown) */
 .arow > .wcrown { position: absolute; z-index: 0; left: 21px; top: 5px; width: 15px; height: 11.5px; overflow: visible; fill: #e8b52e; stroke: #fff8e1; stroke-width: 1.8;
-  stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1.5px rgba(var(--sh), 0.35)); transform: rotate(-9deg); transition: transform var(--t-slow) ease; }
+  stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1.5px rgba(var(--sh), calc(0.35 * var(--shk)))); transform: rotate(-9deg); transition: transform var(--t-slow) ease; }
 .wcrown .cb { fill: none; stroke: #fff8e1; stroke-width: 0.7; stroke-linecap: round; }
 .arow[aria-expanded="true"] > .wcrown { display: none; } /* open: no crown */
 .evr .arow > .icons { z-index: 2; } .evr .arow > .wcrown { z-index: 1; } /* Nov 15: the crown (with its shadow) sits behind the card images */
@@ -2125,7 +2124,7 @@ a.dkev { text-decoration: none; }
   :root:not([data-theme="light"]) .wcrown { filter: brightness(0.7) drop-shadow(0 0.5px 0.5px rgba(0, 0, 0, 0.25)); } }
 :root[data-theme="dark"] .wcrown, :root[data-theme="dark"] .wcrown .cb { stroke: #283145; }
 /* Nov 16: the winner crown like the medal badge crown: white with a gold outline (light and dark) */
-:root:not(#_) .arow > .wcrown { fill: #fff; stroke: #d4a63a; stroke-width: 2; filter: drop-shadow(0 1px 1.5px rgba(var(--sh), 0.35)); }
+:root:not(#_) .arow > .wcrown { fill: #fff; stroke: #d4a63a; stroke-width: 2; filter: drop-shadow(0 1px 1.5px rgba(var(--sh), calc(0.35 * var(--shk)))); }
 :root:not(#_) .wcrown .cb { stroke: #d4a63a; stroke-width: 0.9; }
 /* Nov 16: Top 10 strip: share and its change on one line; the 2-card icons: a long smooth fade from 42 % */
 .t10v { display: flex; align-items: baseline; gap: 4px; margin-top: -4px; } .t10v b { margin-top: 0 !important; }
@@ -2141,8 +2140,8 @@ a.dkev { text-decoration: none; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t10mv, :root:not([data-theme="light"]) .t10mv > div + div { border-color: rgba(255, 255, 255, 0.13); } }
 :root[data-theme="dark"] .t10mv, :root[data-theme="dark"] .t10mv > div + div { border-color: rgba(255, 255, 255, 0.13); }
 .t10ms { overflow-y: auto; scrollbar-width: thin; max-height: 210px; } /* Nov 16: Rising / Falling scroll boxes (max height from t10Fit) */
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not(#_) .arow > .wcrown { filter: brightness(0.8) drop-shadow(0 1px 1.5px rgba(var(--sh), 0.35)); } }
-:root[data-theme="dark"]:not(#_) .arow > .wcrown { filter: brightness(0.8) drop-shadow(0 1px 1.5px rgba(var(--sh), 0.35)); } /* dark: 20 % dimmer, like the card images */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not(#_) .arow > .wcrown { filter: brightness(0.8) drop-shadow(0 1px 1.5px rgba(var(--sh), calc(0.35 * var(--shk)))); } }
+:root[data-theme="dark"]:not(#_) .arow > .wcrown { filter: brightness(0.8) drop-shadow(0 1px 1.5px rgba(var(--sh), calc(0.35 * var(--shk)))); } /* dark: 20 % dimmer, like the card images */
 :root[data-theme="dark"] .wcrown { filter: brightness(0.7) drop-shadow(0 0.5px 0.5px rgba(0, 0, 0, 0.25)); }
 /* Event lists: the dots under the strip (in the flow), the standings link under them; place colors for 1st-3rd */
 .apanel.evp .dots { position: static; transform: none; align-self: center; margin-top: -19px; } /* list card to the dots: 10px, like the decks */
@@ -2188,6 +2187,81 @@ a.dkev { text-decoration: none; }
   :root:not(#_) .dhint, :root:not(#_) .mmtip, :root:not(#_) .t10f { font-size: 12px; }
   :root:not(#_) #meta, :root:not(#_) .lchk, :root:not(#_) .foot .fsrc, :root:not(#_) .foot .ffb, :root:not(#_) .foot .fabout { font-size: 13px; } :root:not(#_) .foot .fleg { font-size: 11.5px; }
 }
+/* Nov 21: the flat info boxes (were --tile): the panel colour, pressed in like the selected tab but narrower (dark inner
+   shadow top-left, light bottom-right). Bars, tracks, hovers and sticky headers keep --tile. At the end of the styles: later rules (.t10, .evsum: box-shadow: none) no longer win */
+.tile, .stile, .dk3 > div, .tpw > div, .st3 > div, .lvgrid > div, .dpill, .t10, .evsum > div, .bchk li, .cpop .pack, .sfold > summary {
+  background: var(--surface); box-shadow: var(--pin-sh); }
+:root { --pin-sh: inset 1px 1.5px 2px rgba(var(--sh), 0.75), inset -1.5px -2px 2.5px rgba(255, 255, 255, 0.95); } /* Nov 21: dark part 75 %; the white part 0.5px wider than the dark part */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --pin-sh: inset 1px 1.5px 2px rgba(0, 0, 0, 0.55), inset -1.5px -2px 2.5px rgba(255, 255, 255, 0.06); } }
+:root[data-theme="dark"] { --pin-sh: inset 1px 1.5px 2px rgba(0, 0, 0, 0.55), inset -1.5px -2px 2.5px rgba(255, 255, 255, 0.06); }
+/* Nov 21: the deck / event stats pills: raised like the panels (light top-left edge, the panel shadow), not pressed in */
+.dpill, .dpill.dpb, .evr .arow[aria-expanded="true"] > .dpill.epb { background: var(--surface); border: 0; box-shadow: var(--raised), var(--bevel); }
+/* no border (the light edge sits on the outer edge, as on the panels); +1.5px padding keeps the size */
+.dpill { padding: 3.5px 10.5px; }
+@media (min-width: 620px) { .acc:not(.pod) > .arow > .dpill { padding: 4.5px 11.5px; } html .acc:not(.pod) > .arow > .dpill { padding: 0 13.5px; } }
+/* Nov 21: event stats: open sections like the deck stats; the energy bar sits under the heading */
+.ekv2 .dksech span { display: inline-flex; align-items: center; gap: 3px; }
+.ekv2 .dksec > .eenb { position: static; margin: 0 0 8px; }
+/* Nov 21: the list selector (List 1 / 2 / ...): the current one is pressed in like the tiles (no blue); the others are fainter */
+.ldots .dot[aria-current="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--pin-sh); }
+.ldots .dot:not([aria-current="true"]) { opacity: 0.55; }
+/* Nov 21: a bit more padding; the label centered both ways */
+.ldots .dot { display: inline-flex; align-items: center; justify-content: center; }
+:root:not(#_) .ldots .dot { height: 22px; min-width: 26px; padding: 0 8px; }
+@media (min-width: 600px) and (max-width: 1100px) and (pointer: coarse) { :root:not(#_) .ldots .dot { height: 25px; min-width: 29px; padding: 0 9px; } }
+@media (min-width: 740px) { :root:not(#_):not(#_) .dkl .ldots .dot { height: 34px; padding: 0 16px; } }
+/* the label sits about 1px high in the font box: more padding on top (measured; phones 2px, the text snaps to whole px; not on touch iPads, where it is centered) */
+:root:not(#_) .ldots .dot { padding-top: 2px; }
+@media (min-width: 600px) and (max-width: 1100px) and (pointer: coarse) { :root:not(#_) .ldots .dot { padding-top: 0; } }
+@media (min-width: 740px) and (pointer: fine) { :root:not(#_):not(#_) .dkl .ldots .dot { padding-top: 1.5px; } }
+/* Nov 21: the event list selector: the same pills, labeled 1st / 2nd / ...; the top 3 filled with the light gold / silver / copper of the rank badges */
+.evdots .dot.pd1, .evdots .dot.pd1[aria-current] { background: linear-gradient(135deg, #f9e3a0, #fffcee); color: #a8740e; }
+.evdots .dot.pd2, .evdots .dot.pd2[aria-current] { background: linear-gradient(135deg, #d8e3f4, #fafcff); color: #4f6a96; }
+.evdots .dot.pd3, .evdots .dot.pd3[aria-current] { background: linear-gradient(135deg, #f8d6ba, #fff9f3); color: #9a5426; }
+.evdots .dot:is(.pd1, .pd2, .pd3):not([aria-current="true"]) { box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.7); }
+/* Nov 21: stats sections as pressed tiles (like Share / Win rate); their notes show only after a tap on the info point */
+.btile { background: var(--surface); box-shadow: var(--pin-sh); border-radius: 10px; padding: 10px 12px; }
+.dkv2 .dksec.btile, .ekv2 .dksec.btile { margin-top: 10px; }
+.btile > .dksech { margin-bottom: 6px; }
+.hh, .hh0 { display: none !important; }
+.hon .hh, .ibody.hon > .hh0 { display: block !important; }
+.hon .hh { margin-top: 8px; }
+.hib[aria-expanded="true"] { color: var(--sel); opacity: 1; }
+/* Nov 21: the Top players version tiles: the same left padding as the tiles below (was 5px phones, 8px wide) */
+:root:not(#_) .tpw > div { padding-left: 12px; }
+/* Nov 21: the "Used by N top players" box + swap buttons: no outline; the panel shadow (raised) and light edge instead; inner lines in the shadow tint */
+:root .swb { box-shadow: -2px -2px 5px rgba(var(--sh), 0.5), 0 0 8px rgba(var(--sh), 0.25), 3px 2px 5px rgba(var(--sh), 0.5); } /* the panel shadow, its offset layer 3px less (6px 5px -> 3px 2px) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .swb { box-shadow: var(--raised); } }
+:root[data-theme="dark"] .swb { box-shadow: var(--raised); }
+:root .swb::after { box-shadow: var(--bevel); }
+:root { --swsep: rgba(var(--sh), 0.8); }
+/* Nov 21: the area under the banner (title, event line) in the panel color, edge to edge, down to the tab bar
+   (a wide shadow clipped at the top and bottom: no sideways scroll) */
+.hdr::before { content: ""; position: absolute; z-index: -1; inset: -400px 0 -20px; background: var(--surface); box-shadow: 0 0 0 100vmax var(--surface); clip-path: inset(0 -100vmax); pointer-events: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --swsep: rgba(255, 255, 255, 0.08); } }
+:root[data-theme="dark"] { --swsep: rgba(255, 255, 255, 0.08); }
+:root .swb .swt > * { box-shadow: inset 0 1.5px 0 var(--swsep) !important; }
+:root .swb .swt > * + * { box-shadow: inset 0 1.5px 0 var(--swsep), inset 1.5px 0 0 var(--swsep) !important; }
+#iPop .dkv2 .dksech .ii.hib { display: inline-grid; } /* the in-place info point also works inside the sheet */
+.tpg:has(> .btile) { gap: 10px; }
+.ipop.tpfit .tpgr.btile .fscr { inset: 8px 10px; }
+/* Nov 21: dark mode: the medal pills are dark tints with bright text (the light gradients were too bright); the other labels a bit stronger, so they stay legible */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ldots .dot:not([aria-current="true"]) { opacity: 0.72; }
+  :root:not([data-theme="light"]) .evdots .dot.pd1 { background: linear-gradient(135deg, rgba(232, 181, 46, 0.34), rgba(232, 181, 46, 0.12)); color: #f5d26e; }
+  :root:not([data-theme="light"]) .evdots .dot.pd2 { background: linear-gradient(135deg, rgba(135, 165, 212, 0.34), rgba(135, 165, 212, 0.12)); color: #c3d5f3; }
+  :root:not([data-theme="light"]) .evdots .dot.pd3 { background: linear-gradient(135deg, rgba(220, 139, 82, 0.34), rgba(220, 139, 82, 0.12)); color: #f2b083; }
+  :root:not([data-theme="light"]) .evdots .dot:is(.pd1, .pd2, .pd3):not([aria-current="true"]) { box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.06); }
+}
+:root[data-theme="dark"] .ldots .dot:not([aria-current="true"]) { opacity: 0.72; }
+:root[data-theme="dark"] .evdots .dot.pd1 { background: linear-gradient(135deg, rgba(232, 181, 46, 0.34), rgba(232, 181, 46, 0.12)); color: #f5d26e; }
+:root[data-theme="dark"] .evdots .dot.pd2 { background: linear-gradient(135deg, rgba(135, 165, 212, 0.34), rgba(135, 165, 212, 0.12)); color: #c3d5f3; }
+:root[data-theme="dark"] .evdots .dot.pd3 { background: linear-gradient(135deg, rgba(220, 139, 82, 0.34), rgba(220, 139, 82, 0.12)); color: #f2b083; }
+:root[data-theme="dark"] .evdots .dot:is(.pd1, .pd2, .pd3):not([aria-current="true"]) { box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.06); }
+/* Nov 21: Top 10 and the Latest Events stat boxes: the page background color (still pressed in) */
+.t10, .evsum > div { background: var(--bg); }
+/* Nov 21: Top 10: card 1 starts in line with the heading (was 4px in); the strip starts 3px further left so the rank badge is not cut off */
+.t10st { margin-left: -5px; padding-left: 3px; }
 </style>
 
 <div class="wrap">
@@ -2300,7 +2374,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     $("themeBtn").setAttribute("aria-label", d ? "Switch to light mode" : "Switch to dark mode");
     $("themeBtn").title = d ? "Light mode" : "Dark mode";
     // Browser / home-screen status bar: the page color (a flat blue did not match the banner's gradient) (Nov 13)
-    $("themeColor")?.setAttribute("content", d ? "#141b24" : "#eff5f8");
+    $("themeColor")?.setAttribute("content", d ? "#141b24" : "#e2ecf5"); // Nov 21: = --bg
   };
   $("themeBtn").addEventListener("click", () => {
     const next = isDark() ? "light" : "dark";
@@ -2333,6 +2407,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const ii = (label, tip, asSpan) => asSpan
     ? `<span class="ii" aria-hidden="true" data-tip="${esc(tip)}">${II_SVG}</span>` // the numbers are read with the row; a tap still opens the tip
     : `<button class="ii" type="button" aria-label="About ${esc(label)}" aria-expanded="false" data-tip="${esc(tip)}">${II_SVG}</button>`;
+  // Nov 21: an info point that shows / hides the short notes of its own tile in place (works inside a popup too)
+  const hib = (label) => `<button class="ii hib" type="button" aria-label="About ${esc(label)}" aria-expanded="false">${II_SVG}</button>`;
+  addEventListener("click", (e) => { const b = e.target.closest && e.target.closest(".hib"); if (!b) return; e.preventDefault(); e.stopPropagation();
+    const c = b.closest(".btile, .ibody, .dkv2"); if (!c) return; const on = c.classList.toggle("hon"); b.setAttribute("aria-expanded", String(on)); }, true);
   const scoreTip = (v) => `<h3>Score</h3><p>The match record (<b>wins-losses-ties</b>) of the player who used this list${v.sc ? `: <b>${esc(v.sc)}</b>` : ""}${v.pl ? `, and their place: <b>${esc(v.pl)}</b>` : ""}.</p>`;
   const altSum = (v) => (v.alt || []).reduce((a, x) => a + (x.u || 0), 0);
   const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -2486,8 +2564,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const cell = (ic, lab, r, n) => `<div><span>${ic}${lab}</span><b>${wrPct(r)}%</b><small>${n} player${n === 1 ? "" : "s"}</small></div>`;
     const top = `<p class="tpcap">Win rate by version</p><div class="tpw" style="--n:${1 + [1, 2, 3].filter((k) => T[k]).length}">${cell(EXACT_I, "Exact", rc, ex)}${[1, 2, 3].filter((k) => T[k]).map((k) => cell(SWX_I(k), sw(k), lvR(k), T[k])).join("")}
 </div>`; // Nov 19: no "Best" card (not very useful; the list shows every place)
-    const fold = `<div class="tpg"><div class="tpgl">${wk}</div><div class="tpgr">${list}</div></div>`; // Nov 17: wide: chart left, results right
-    return `<h3 class="sh3">${TOPP_I}Top players</h3>${top}${fold}<p class="snote">Top player: at least 2 more wins than losses at an event ${winWk()}.</p>`; };
+    const fold = `<div class="tpg"><div class="tpgl btile">${wk}</div><div class="tpgr btile">${list}</div></div>`; // Nov 17: wide: chart left, results right. Nov 21: tiles
+    return `<h3 class="sh3">${TOPP_I}Top players ${hib("top players")}</h3>${top}${fold}<p class="snote hh0">Top player: at least 2 more wins than losses at an event ${winWk()}.</p>`; };
   const bcSheet = (v, d) => { const [w, l] = String(v.sc || "0-0-0").split("-").map(Number), n = w - l, k = Math.max(1, Math.ceil((2 - n) / 2));
     const pm = /^(\d+)\D+(\d+)/.exec(String(v.pl || "")), pl = pm ? +pm[1] : 0, of = pm ? +pm[2] : 0, need = Math.floor(of * TOP_PCT);
     const X = '<span class="cx" aria-hidden="true"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2 2 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>';
@@ -2654,7 +2732,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   // On-page QR background: the light panel color, or (dark theme) the color that the dark-theme filter turns
   // into the dark panel color. Both keep a normal dark-on-light code for a long-press save.
-  const QR_BG = () => (isDark() ? "#d5dce4" : "#eef5f9"); // light: the card color; dark: the filter turns #d5dce4 into the card color #1d252f
+  const QR_BG = () => (isDark() ? "#d5dce4" : "#eff5f8"); // light: the card color; dark: the filter turns #d5dce4 into the card color #1d252f
   const pngCache = new Map(), qrSvgs = [];
   function qrPng(svg, bg = QR_BG()) {
     const k = bg + svg;
@@ -2739,7 +2817,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const W = 1080, H = 1600, c = document.createElement("canvas");
     c.width = W; c.height = H;
     const x = c.getContext("2d");
-    const C = { bg: "#eff5f8", surface: "#eef5f9", tile: "#e1eef5", ink: "#4c5965", muted: "#5a6d7f", pill: "#627789" };
+    const C = { bg: "#e2ecf5", surface: "#eff5f8", tile: "#e8f0f7", // Nov 21: the new page colors
+      ink: "#4c5965", muted: "#5a6d7f", pill: "#627789" };
     const F = (w, sz, it = "") => `${it}${w} ${sz}px "Figtree", "Segoe UI", sans-serif`;
     const raised = (draw, blur, oy) => { x.save(); x.shadowColor = "rgba(32, 76, 121, 0.16)"; x.shadowBlur = blur; x.shadowOffsetX = oy / 2; x.shadowOffsetY = oy; draw(); x.restore(); };
     // inner bevel: a light rim on the top and left, a dark rim on the bottom and right
@@ -3088,7 +3167,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   function shQR() {
     const box = $("shBox"); box.dataset.mode = "qr"; track("shared-qr");
     box.innerHTML = `${shHead()}
-      <div class="qsbox"><div class="qsrow"><img class="qsimg" src="${qrPng(SH.packed, "#eef5f9")}" alt="QR code for ${esc(SH.name)}" width="240" height="240"></div>
+      <div class="qsbox"><div class="qsrow"><img class="qsimg" src="${qrPng(SH.packed, "#eff5f8")}" alt="QR code for ${esc(SH.name)}" width="240" height="240"></div>
       <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><button class="qslink shlink" type="button">${LINK_ICON}<span>${TOUCH ? "Share link" : "Copy link"}</span></button></div>
       <div class="shfoot"><button class="qclose shback" type="button" aria-label="Back to the cards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button><button class="qsave shsave" type="button">${SAVE_ICON}${TOUCH ? "Save" : "Download"}</button></div><p class="qmsg" id="shMsg" role="status"></p>`;
   }
@@ -3214,7 +3293,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       : n > 1 ? `${i === 0 ? L1(d) : `List ${i + 1}`} <span class="qsn">· ${i + 1} of ${n}</span>` : "";
     return `<div class="qsbox">
       <p class="qsdeck"><b>${esc(d.name)}</b>${name ? `<span class="qsl">${name}</span>` : ""}</p>
-      <div class="qsrow"><img class="qsimg" src="${qrPng(svg, "#eef5f9")}" alt="QR code for ${esc(d.name)}" width="240" height="240"></div>
+      <div class="qsrow"><img class="qsimg" src="${qrPng(svg, "#eff5f8")}" alt="QR code for ${esc(d.name)}" width="240" height="240"></div>
       <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><button class="qslink" type="button">${LINK_ICON}<span>${TOUCH ? "Share link" : "Copy link"}</span></button></div>
       <button class="qsave qssave" type="button">${SAVE_ICON}${TOUCH ? "Save image" : "Download image"}</button><p class="qmsg" id="qsMsg" role="status"></p>`;
   }
@@ -3624,9 +3703,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       if (tr && okN(tr.s) && cs) cs.insertAdjacentHTML("beforeend", `<span class="dkcw">${barsSvg(tr.s)}${dayRow(tr.s.length)}</span>`);
       if (tr && okN(tr.w) && cw) cw.insertAdjacentHTML("beforeend", `<span class="dkcw">${lineW(tr.w)}${dayRow(tr.w.length)}</span>`); }
     // the folds become open sections (heading only, no chevron); the trend fold is in the 2 cards now
-    const sec = (f) => { const s = document.createElement("section"); s.className = "dksec"; s.dataset.k = f.dataset.k;
-      const tip = f.dataset.k === "mu" ? " " + ii("about matchups", `<h3>Matchups</h3><p>Win rate in games against each of the 10 most played decks ${winWk()}, best first. The bar goes right (green) above 50% and left (red) below it.</p><p><b>Light bar</b> = too few games to be sure it is not 50%. The number on the right is the games.</p>`) : "";
-      s.innerHTML = `<div class="dksech"><b>${f.querySelector("summary b").innerHTML}${tip}</b><span>${f.querySelector(".dpv")?.innerHTML || ""}</span></div>`; s.append(...f.querySelector(".dfb").childNodes); return s; };
+    // Nov 21: each section is a tile (like Share / Win rate); its notes are hidden behind the info point
+    const sec = (f) => { const s = document.createElement("section"); s.className = "dksec btile"; s.dataset.k = f.dataset.k;
+      const hs = [...f.querySelectorAll(".dfb .dhint, .dfb .mmtip")]; hs.forEach((x) => x.classList.add("hh"));
+      if (f.dataset.k === "mu") hs.forEach((x) => { x.innerHTML = `Win rate against the 10 most played decks ${winWk()}, best first. Green bar: above 50%, red: below. <b>Light bar</b>: too few games to be sure it is not 50%. Right: the number of games.`; });
+      const t = f.querySelector("summary b").innerHTML;
+      s.innerHTML = `<div class="dksech"><b>${t}${hs.length ? " " + hib(f.querySelector("summary b").textContent) : ""}</b><span>${f.querySelector(".dpv")?.innerHTML || ""}</span></div>`; s.append(...f.querySelector(".dfb").childNodes); return s; };
     const fk = (f) => { const t = f.querySelector("summary b")?.textContent || ""; return t.startsWith("Match") ? "mu" : t.startsWith("7-day") ? "tr" : t.startsWith("Meta") ? "mm" : t.startsWith("Cards") ? "cu" : ""; };
     const F = {}; box.querySelectorAll(":scope > details.sfold").forEach((f) => { f.dataset.k = fk(f); F[f.dataset.k] = f; });
     const body = document.createElement("div"); body.className = "dkv2";
@@ -4714,7 +4796,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       <div><span>Players</span><b>${e.players}</b><small>${big === 1 ? "biggest" : `#${big}`} of ${evs.length} events</small></div>
       <div><span>Decks</span><b>${dk.length}</b><small>in the top ${n}</small></div>
       <div><span>Above meta</span><b class="${ups.length ? "g" : ""}">${ups.length ? `${ups.length} \u25b2` : "0"}</b><small>2&times; meta share</small></div></div>`;
-    const fold = (t, pv, body, open) => `<details class="sfold dkf"${open ? " open" : ""}><summary><b>${t}</b><span class="dpv">${pv}</span>${CHD}</summary><div class="dfb">${body}</div></details>`;
+    // Nov 21: open sections (heading only, no accordion), as in the deck stats; the sheet scrolls
+    const fold = (t, pv, body, k, xtra = "") => `<section class="dksec btile" data-k="${k}"><div class="dksech"><b>${t} ${hib(k === "ed" ? "the decks" : "the records")}</b><span>${pv}</span></div>${xtra}${body.replace(/<p class="dhint">/g, '<p class="dhint hh">')}</section>`;
     const mx = Math.max(1, ...dk.map((x) => x[1]));
     const dkRow = ([id, c]) => { const m = meta[id], u = up(id, c);
       return `<button type="button" class="edk" data-go="${esc(id)}" style="--w:${(c / mx * 100).toFixed(0)}%"><span class="edi">${art(id).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="20" height="28">`).join("")}</span><span class="edn">${esc(dn(id))}</span><span class="edc"><b>${c}</b> <small>${ordF(best[id])}</small></span><span class="edm${u ? " up" : ""}">${m != null ? `${u ? "\u25b2 " : ""}${m < 10 ? m.toFixed(1) : Math.round(m)}%` : "new"}</span></button>`; };
@@ -4728,9 +4811,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const enL = ens.length ? `<span class="eenb" title="Energy in the top ${n}">${ens.map(([x, c]) => `<i class="e-${x}" style="flex:${c}" title="${cap(x)}: ${Math.round(c / n * 100)}%"></i>`).join("")}</span>` : "";
     const enP = ens.slice(0, 3).map(([x, c]) => `<img src="e/${x}.webp" alt="" width="14" height="14">`).join("");
     return `<h3 class="sh3">${esc(shortEv(e.name))}</h3>${top}
-      ${fold(`Decks in the top ${n}`, `${ups.length ? `<span class="g">${ups.length} \u25b2</span> ` : ""}${enP}`, deckBody, true).replace("</summary>", `${enL}</summary>`)}
-      ${n >= 8 ? fold("Records", `${wk[wk.length - 1]}\u2013${wk[0]} wins`, recBody, true) : ""}
-      <a class="dkev" href="${esc(e.url)}" target="_blank" rel="noopener">Full standings on Limitless <b>\u2197</b></a>`; }
+      <div class="dkv2 ekv2">${fold(`Decks in the top ${n}`, `${ups.length ? `<span class="g">${ups.length} \u25b2</span> ` : ""}${enP}`, deckBody, "ed", enL)}
+      ${n >= 8 ? fold("Records", `${wk[wk.length - 1]}\u2013${wk[0]} wins`, recBody, "er") : ""}
+      <a class="dkev" href="${esc(e.url)}" target="_blank" rel="noopener">Full standings on Limitless <b>\u2197</b></a></div>`; }
   addEventListener("click", async (ev) => { const b = ev.target.closest && ev.target.closest(".epb[data-ek]"); if (!b) return;
     ev.preventDefault(); ev.stopPropagation(); const e = (EV.events || []).find((x) => x.tid === b.dataset.ek); if (!e) return;
     track("sheet-event"); showTip(b, await evSheet(e)); }, true);
@@ -4847,7 +4930,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     // Only the first list is drawn now; the others when they come into view (like the deck lists)
     p.innerHTML = `<div class="vwrap"><div class="vars">${L.map((v, k) => `<div class="slide evs" data-k="${k}"${k ? ' data-pending="1"' : ""}>${k ? placeholder() : evSlide(e, v, k)}</div>`).join("")}</div>
       ${n > 1 ? `<button class="chev-btn prev" type="button" aria-label="Previous list" hidden>${CHEV_L}</button><button class="chev-btn next" type="button" aria-label="Next list">${CHEV_R}</button>` : ""}</div>
-      ${n > 1 ? `<div class="dots" role="group" aria-label="Lists">${L.map((v, k) => `<button class="dot${v.pl <= 3 ? " pd" + v.pl : ""}" type="button" data-i="${k}" aria-label="${esc(ordN(v.pl))} place" aria-current="${k === 0}"></button>`).join("")}</div>` : ""}
+      ${n > 1 ? `<div class="dots ldots evdots" role="group" aria-label="Lists">${L.map((v, k) => `<button class="dot${v.pl <= 3 ? " pd" + v.pl : ""}" type="button" data-i="${k}" aria-label="${esc(ordN(v.pl))} place" aria-current="${k === 0}">${ordF(v.pl)}</button>`).join("")}</div>` : ""}
       <p class="evlink"><a href="${esc(e.url)}" target="_blank" rel="noopener">Full standings on Limitless</a></p>`;
     evTile(p.querySelector(".slide"), L[0]);
     fitScores(p); placeChevrons(p);
