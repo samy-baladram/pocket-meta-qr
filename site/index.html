@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795218633-5b82 -->
+<!-- ui: artifact version 1795226073-7d76 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2237,6 +2237,73 @@ a.dkev { text-decoration: none; }
 :root { --swsep: rgba(var(--sh), 0.8); }
 /* Nov 21: the pull-down bar of the sheets: #c8dbee (light); dark keeps the old mix */
 :root { --grab: #c8dbee; }
+/* Nov 21: the space kept while the Top 10 shelf loads (= its height: shelf + 3 Rising rows) */
+.t1s.t1s-wait { min-height: 510px; }
+@media (min-width: 600px) and (max-width: 1100px) and (pointer: coarse) { .t1s.t1s-wait { min-height: 530px; } }
+@media (min-width: 700px) and (pointer: fine), (min-width: 1101px) { .t1s.t1s-wait { min-height: 548px; } }
+/* Nov 21: Top 10 "shelf" (see t10Car). Wrapper .t10x: section label, shelf (raised rim + pressed well), Rising / Falling panel */
+.t1s { --cw: 96px; --ch: calc(var(--cw) * 1.395); position: relative; isolation: isolate; margin: 2px 0 10px; } /* Nov 21: as wide as the deck rows */
+@media (min-width: 600px) and (max-width: 1100px) and (pointer: coarse) { .t1s { --cw: 120px; } }
+@media (min-width: 700px) and (pointer: fine), (min-width: 1101px) { .t1s { --cw: 132px; } }
+.t1s-h { position: relative; display: flex; align-items: center; gap: 6px; margin: 0 4px 8px; font-size: 12px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.t1s-h b { font-weight: 500; color: var(--ink); }
+.t1s-h .ii { text-transform: none; letter-spacing: 0; }
+.t1s-hw { display: inline-flex; align-items: center; gap: 6px; }
+.t1s-hr { margin-left: auto; font-size: 11.5px; letter-spacing: 0; text-transform: none; }
+.t1s.t1s-on .t1s-h { color: var(--ink); } /* on the light pack backdrop: ink (more contrast than muted) */
+.t1s-bd { position: absolute; z-index: -1; pointer-events: none; }
+.t1s-bd > i { position: absolute; inset: 0; background: linear-gradient(100deg, var(--bd1), var(--bd2)); clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--bdS, 8.75vw)), 0 100%); } /* --bdS = width x tan 5 deg (set in CSS px: zoom-safe) */
+/* the slanted lower edge: the banner's 5 deg; a dark inner shadow band along it, clipped by the shape */
+.t1s-bd > i::after { content: ""; position: absolute; left: 0; bottom: 0; width: 102%; height: 27px; transform-origin: 0 100%; transform: rotate(-5deg); background: linear-gradient(rgba(20, 30, 60, 0), rgba(20, 30, 60, 0.09) 55%, rgba(20, 30, 60, 0.22)); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t1s-bd > i { filter: brightness(0.42) saturate(0.8); } :root:not([data-theme="light"]) .t1s.t1s-on .t1s-h { color: var(--ink); } }
+:root[data-theme="dark"] .t1s-bd > i { filter: brightness(0.42) saturate(0.8); }
+
+.t1s-sh { position: relative; z-index: 1; border: 6px solid var(--surface); border-radius: 24px; background: var(--bg); box-shadow: var(--raised); overflow: hidden; }
+.t1s-sh::after { content: ""; position: absolute; inset: 0; border-radius: 18px; box-shadow: var(--pin-sh); pointer-events: none; z-index: 3; }
+.t1s-lab { position: absolute; left: 0; right: 0; top: 6px; height: 30px; z-index: 4; pointer-events: none; }
+.t1s-lab > div { position: absolute; inset: 0 22px; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; opacity: 0; transition: opacity 0.35s; }
+.t1s-lab > div.on { opacity: 1; }
+.t1s-ln { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-weight: 700; color: var(--ink); }
+.t1s-ln i { font-style: normal; font-weight: 600; color: var(--muted); margin-right: 6px; }
+.t1s-ls { flex: none; display: inline-flex; align-items: center; gap: 4px; color: var(--muted); }
+.t1s-ls b { font-weight: 700; color: var(--ink); }
+.t1s-ls .pdl { font-weight: 700; }
+.t1s-vp { position: relative; height: calc(var(--ch) * 1.05 + 44px); touch-action: none; overscroll-behavior: contain; cursor: grab; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; outline: none; }
+.t1s-vp.drag { cursor: grabbing; }
+.t1s-tr { position: absolute; left: 0; top: 44px; display: flex; gap: 16px; will-change: transform; }
+.t1s-set { display: contents; }
+.t1s-c { flex: none; position: relative; width: var(--cw); height: calc(var(--ch) * 1.5); padding: 0; border: 0; background: none; cursor: inherit; transform: rotate(5deg); transform-origin: 50% 0; -webkit-tap-highlight-color: transparent; }
+.t1s-c img { position: absolute; left: 0; top: 0; width: 100%; height: auto; aspect-ratio: 240 / 335; border-radius: 5px; background: var(--tile); box-shadow: 2px 2px 5px rgba(40, 60, 90, 0.33); /* Nov 21: wider to the right, a bit darker (was 0 2px 4px 0.25). Dark slate (the panel tint was too light on the cards) */ pointer-events: none; -webkit-user-drag: none; }
+.t1s-c img.b { left: 8px; top: calc(var(--ch) * 0.5); /* Nov 21: 50% lower (was 45%); the shelf height stays */ box-shadow: 0 -3px 6px rgba(40, 60, 90, 0.35), 2px 2px 5px rgba(40, 60, 90, 0.33); } /* the upward layer (was 0.28): the front card sits on the back one */
+.t1s-set > .t1s-c:first-child::before { content: ""; position: absolute; left: -8.5px; top: -4px; width: 1px; height: calc(var(--ch) * 1.1); background: linear-gradient(rgba(var(--sh), 0), rgba(var(--sh), 1) 15%, rgba(var(--sh), 1) 70%, rgba(var(--sh), 0)); box-shadow: 1px 0 0 rgba(255, 255, 255, 0.8); } /* the loop seam: between #10 and #1 */
+.t1s-c:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.t1s-mp { position: relative; z-index: 1; margin-top: 14px; padding: 10px 10px 6px; border-radius: 18px; background: var(--surface); box-shadow: var(--raised), var(--bevel); }
+.t1s-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 3px; margin-bottom: 6px; border-radius: 999px; background: var(--bg); box-shadow: var(--pin-sh); }
+.t1s-seg button { height: 30px; border: 0; border-radius: 999px; background: none; color: var(--muted); font-family: inherit; font-size: 13px; font-weight: 400; cursor: pointer; }
+.t1s-seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 500; box-shadow: var(--raised), var(--bevel); }
+.t1s-cols[data-on="up"] > .t1s-col[data-k="dn"], .t1s-cols[data-on="dn"] > .t1s-col[data-k="up"] { display: none; }
+.t1s-col .t1s-k { display: none; margin: 2px 6px 4px; font-size: 13px; font-weight: 500; }
+.t1s-col .t1s-k i { font-style: normal; margin-right: 4px; }
+.t1s-col .t1s-k.up { color: #1f9d55; } .t1s-col .t1s-k.dn { color: #d6345a; }
+.t1s-rows { display: grid; }
+.t1s-col:not(.all) .t1s-rows > .t1s-r:nth-child(n + 4) { display: none; }
+.t1s-mp .t1s-r { display: grid; grid-template-columns: 44px minmax(0, 1fr) 64px auto; align-items: center; gap: 10px; width: 100%; margin: 0; padding: 8px 6px; border: 0; border-radius: 12px; background: none; color: var(--ink); font-family: inherit; text-align: left; cursor: pointer; transition: background 0.3s; }
+.t1s-mp .t1s-r + .t1s-r { box-shadow: inset 0 1px 0 rgba(var(--sh), 0.8); }
+.t1s-mp .t1s-r.hl { background: var(--bg); }
+.t1s-mp .t1s-r .t2c { width: 44px !important; height: 34px !important; }
+.t1s-n2 { min-width: 0; display: grid; gap: 1px; }
+.t1s-mp .t1s-n { font-size: 14px; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t1s-mp .t1s-x { display: block; margin: 0; padding: 0; font-size: 11.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t1s-mp .t1s-g { display: block; width: 64px; height: 24px; overflow: visible; } .t1s-g polyline { fill: none; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.t1s-pl { min-width: 54px; padding: 4px 7px; border-radius: 7px; background: #1f9d55; color: #fff; font-size: 13px; font-weight: 500; text-align: center; font-variant-numeric: tabular-nums; }
+.t1s-r.dn .t1s-pl { background: #d6345a; }
+.t1s-all { display: block; margin: 2px auto; padding: 6px; border: 0; background: none; color: var(--acc-ink); font-family: inherit; font-size: 12.5px; cursor: pointer; }
+.t1s-mp .t1s-z { margin: 8px 6px; color: var(--muted); font-size: 13px; }
+.t1s-mp .t1s-f { margin: 4px 6px 2px; font-size: 11px; color: var(--muted); text-align: center; }
+@media (min-width: 700px) { .t1s-seg { display: none; } .t1s-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; } .t1s-cols > .t1s-col { display: block !important; } .t1s-col .t1s-k { display: block; } .t1s-cols > .t1s-col + .t1s-col { box-shadow: -9px 0 0 -8px rgba(var(--sh), 1); } }
+@media (hover: hover) { .t1s-mp .t1s-r:hover { background: var(--bg); } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t1s-set > .t1s-c:first-child::before { box-shadow: 1px 0 0 rgba(255, 255, 255, 0.06); } }
+:root[data-theme="dark"] .t1s-set > .t1s-c:first-child::before { box-shadow: 1px 0 0 rgba(255, 255, 255, 0.06); }
 /* Nov 21: the selected swap segment: no highlight; its number bolder and in the accent (like its icon) */
 :root .swt:not(:has(.altb[aria-expanded="true"])) > .swx > b, :root .swt > .swl.altb[aria-expanded="true"] > b { color: var(--accent); font-weight: 800; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --grab: color-mix(in srgb, var(--accent) 22%, var(--line)); } }
@@ -2312,7 +2379,7 @@ a.dkev { text-decoration: none; }
   </div>
   </div>
   <p class="fnone" id="fnone" aria-live="polite" hidden><span id="fnoneTxt"></span> <button type="button" id="fclear">Clear</button></p>
-  <section class="t10 t10wait" id="t10" aria-label="Top 10 decks"><p class="t10h">Top 10</p></section>
+  <section class="t1s t1s-wait" id="t10" aria-label="Top 10 decks"><p class="t1s-h"><b>Top 10</b></p></section>
   <div class="lsh" id="lsh" hidden><span>All decks<b id="lshN"></b></span><span class="lshc">share &middot; win</span></div>
   <main class="list" id="list"><div class="empty">Loading decks&hellip;</div></main>
   <section class="list" id="evl" aria-label="Latest events" hidden></section>
@@ -3562,7 +3629,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const t2c = (d, cw, bw, bh, off, rot) => { const a = d.art || [], p = Math.ceil(Math.sin(rot * Math.PI / 180) * cw * 209 / 150 + 0.5); return `<span class="t2c" style="width:${bw + p}px;height:${bh}px">${a[1] ? `<img src="c/${a[1]}.webp" alt="" style="width:${cw}px;left:${off + p}px;top:1px;transform:rotate(${rot}deg)" loading="lazy">` : ""}${a[0] ? `<img src="c/${a[0]}.webp" alt="" style="width:${cw}px;left:${p}px;transform:rotate(-${rot}deg)" loading="lazy">` : ""}</span>`; };
   const t10Short = (n) => { const w = n.replace(/ ex\b/g, "").split(" "); return w.slice(0, w[0] === "Mega" ? 2 : 1).join(" "); };
   function renderT10() { const el = $("t10"); if (!el || !data || !STD) return;
-    const top = data.decks.filter((d) => !d._more && !d.bc).slice(0, 10); if (top.length < 5) { el.innerHTML = ""; t10Show(); return; }
+    const top = data.decks.filter((d) => !d._more && !d.bc).slice(0, 10); if (top.length < 5) { if (t10Kill) t10Kill(); el.innerHTML = ""; t10Show(); return; }
     const ch = (d) => { const t = trOf(d.id); return t ? trD(t.s) : null; }, nd = (trOf(top[0].id) || { s: [] }).s.length || 7;
     const spark = (d) => { const v = (trOf(d.id) || {}).s || [], m = Math.max(...v.filter((x) => x != null), 0.1) * 1.1, W = 36, H = 14;
       const p = v.map((x, i) => x == null ? null : `${(i * W / (v.length - 1)).toFixed(1)},${(H - x / m * H).toFixed(1)}`).filter(Boolean).join(" ");
@@ -3579,22 +3646,87 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const pts = v.map((x, i) => x == null ? null : [i * W / n, H - 1 - x / m * (H - 2)]).filter(Boolean); if (pts.length < 2) return "";
       const l = pts.map((p) => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" "), e = pts[pts.length - 1], c = up ? "#1f9d55" : "#d6345a";
       return `<svg class="t10g" viewBox="-2 -2 ${W + 5} ${H + 3}" width="${W + 5}" height="${H + 3}" aria-hidden="true"><polygon points="${pts[0][0].toFixed(1)},${H} ${l} ${e[0].toFixed(1)},${H}" style="fill:${c};opacity:.13"/><polyline points="${l}" style="stroke:${c}"/><circle cx="${e[0].toFixed(1)}" cy="${e[1].toFixed(1)}" r="2.4" style="fill:${c}"/></svg>`; };
-    const row = (d, up) => { const f = first(d); return `<button type="button" class="t10m" data-go="${esc(d.id)}">${t2c(d, 26, 42, 34, 15, 5)}<span class="t10n">${esc(d.name)}</span><small class="t10x">#${d.rank} &middot; ${f != null ? (f < 0.05 ? "new" : pct(f)) + " &rarr; " : ""}<b>${pct(d.share)}</b></small>${bigSpark(d, up)}<span class="t10d">${dTxt(ch(d))}<small>pts</small></span></button>`; };
-    el.className = "t10";
-    el.innerHTML = `<p class="t10h">Top 10 ${winWk()}${ii("Top 10", `<h3>Top 10 ${winWk()}</h3><p>The 10 decks played most ${winLast()}, in public Standard events with 8 or more players on Limitless TCG.</p><p>The big number is the deck\u2019s <b>share</b>: of <b>all players</b> in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the \u201ctop players\u201d (that count, under each list, only takes players who won at least 2 more matches than they lost).</p><p>The small \u25b2 / \u25bc number is how much the share went up or down over the last 7 days, in percentage points (8.3% \u2192 12.0% = \u25b23.7).</p><p><b>Rising</b> / <b>Falling</b>: the decks whose share moved most. Tap a deck to open it.</p>`)}</p><div class="t10st">${strip}</div>
-      <div class="t10mv"><div><p class="t10k up"><i>\u25b2</i>Rising</p>${up.length ? `<div class="t10ms">${up.map((d) => row(d, 1)).join("")}</div>` : '<p class="t10z">No big moves</p>'}</div><div><p class="t10k dn"><i>\u25bc</i>Falling</p>${dn.length ? `<div class="t10ms">${dn.map((d) => row(d, 0)).join("")}</div>` : '<p class="t10z">No big moves</p>'}</div></div>
-      <p class="t10f">Share change over the last ${nd} days</p>`;
-    t10Show(); requestAnimationFrame(t10Fit); }
+    // Nov 21: the "shelf": a raised rim with a pressed well; each deck = its 2 main cards stacked (the 2nd 45% lower, tilted, cut by the well's edge);
+    // a loop carousel (#1 in the middle), slow auto-move, iOS-like flick momentum, snap; one label at the top = the deck in the middle.
+    // Rising / Falling under it: a toggle on phones, 2 columns from 700px; filled change pills, sparkline.
+    const chP = (d) => { const c = ch(d); return c == null ? "" : `${c > 0 ? "\u25b2" : "\u25bc"}${Math.abs(c).toFixed(1)}`; };
+    const card = (d) => { const a = d.art || []; return `<button type="button" class="t1s-c" data-go="${esc(d.id)}" aria-label="${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}">${a[0] ? `<img src="c/${a[0]}.webp" alt="" draggable="false" loading="lazy">` : ""}${a[1] ? `<img class="b" src="c/${a[1]}.webp" alt="" draggable="false" loading="lazy">` : ""}</button>`; };
+    const mrow = (d, up) => { const f = first(d); return `<button type="button" class="t1s-r${up ? "" : " dn"}" data-go="${esc(d.id)}">${t2c(d, 26, 42, 34, 15, 5)}<span class="t1s-n2"><span class="t1s-n">${esc(d.name)}</span><small class="t1s-x">#${d.rank} &middot; ${f != null ? (f < 0.05 ? "new" : pct(f)) + " &rarr; " : ""}${pct(d.share)}</small></span>${bigSpark(d, up).replace('class="t10g"', 'class="t1s-g"')}<span class="t1s-pl">${chP(d)}</span></button>`; };
+    const col = (k, L) => `<div class="t1s-col" data-k="${k}"><p class="t1s-k ${k}"><i>${k === "up" ? "\u25b2" : "\u25bc"}</i>${k === "up" ? "Rising" : "Falling"}</p>${L.length ? `<div class="t1s-rows">${L.map((d) => mrow(d, k === "up")).join("")}</div>${L.length > 3 ? `<button type="button" class="t1s-all">Show all ${L.length}</button>` : ""}` : '<p class="t1s-z">No big moves</p>'}</div>`;
+    el.className = "t1s";
+    const bd = PACKBD[data.set]; el.classList.toggle("t1s-on", !!bd); if (bd) { el.style.setProperty("--bd1", bd[0]); el.style.setProperty("--bd2", bd[1]); }
+    el.innerHTML = `${bd ? '<div class="t1s-bd" aria-hidden="true"><i></i></div>' : ""}<p class="t1s-h"><b>Top 10</b> <span class="t1s-hw">${winWk()}${ii("Top 10", `<h3>Top 10 ${winWk()}</h3><p>The 10 decks played most ${winLast()}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.</p><p>The big number is the deck\u2019s <b>share</b>: of <b>all players</b> in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the \u201ctop players\u201d (that count, under each list, only takes players who won at least 2 more matches than they lost).</p><p>The \u25b2 / \u25bc number is how much the share went up or down over the last ${nd} days, in percentage points (8.3% \u2192 12.0% = \u25b23.7).</p><p><b>Rising</b> / <b>Falling</b>: the decks whose share moved most.</p>`)}</span><span class="t1s-hr">\u25b2\u25bc share change \u00b7 ${nd} days</span></p>
+      <div class="t1s-sh"><div class="t1s-lab" aria-live="polite"><div></div><div></div></div><div class="t1s-vp"><div class="t1s-tr">${[0, 1, 2].map((r) => `<div class="t1s-set"${r !== 1 ? ' aria-hidden="true"' : ""}>${top.map(card).join("")}</div>`).join("")}</div></div></div>
+      <div class="t1s-mp"><div class="t1s-seg" role="tablist"><button type="button" data-k="up" aria-pressed="true">\u25b2 Rising</button><button type="button" data-k="dn" aria-pressed="false">\u25bc Falling</button></div>
+        <div class="t1s-cols">${col("up", up)}${col("dn", dn)}</div></div>`;
+    t10Car(el, top);
+    t10Show(); }
   // Nov 16: each mover box shows 2.5 rows (both boxes the same height: the taller of the two), the rest scrolls
   function t10Fit() { const bs = [...document.querySelectorAll("#t10 .t10ms")]; if (!bs.length || !bs[0].offsetParent) return;
     const hs = bs.map((b) => { const r = [...b.children]; if (r.length <= 3) return 0; /* Nov 18: 3.5 rows (was 2.5) */ const g = parseFloat(getComputedStyle(r[1]).marginTop) || 0;
       return r[0].offsetHeight + r[1].offsetHeight + r[2].offsetHeight + g * 3 + (r[3] ? r[3].offsetHeight * 0.5 : 0); }), m = Math.round(Math.max(...hs));
     bs.forEach((b) => { b.style.maxHeight = m ? m + "px" : ""; }); }
   { let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(t10Fit, 150); }); }
+  // Nov 21: the shelf carousel. 3 copies of the 10 (loop); transform only (sub-pixel, smooth); one rAF loop that runs only while the shelf is on screen.
+  // Nov 21: the backdrop behind the Top 10, from the set's booster pack (like the game's pack screen). OKLCH, left -> right.
+  // One-color pack: right = the pack color, left = same hue, L + 0.15, C 0.125. Two-color packs (C1): color A -> color B, both light.
+  const PACKBD = { C1: ["oklch(0.76 0.121 291)", "oklch(0.84 0.095 312)"] };
+  let t10Kill = null;
+  function t10Car(el, top) { if (t10Kill) t10Kill(); const vp = el.querySelector(".t1s-vp"), tr = el.querySelector(".t1s-tr"), labs = [...el.querySelectorAll(".t1s-lab > div")];
+    const its = [...tr.querySelectorAll(".t1s-c")], N = top.length, SPEED = 10, IDLE = 5000, RM = matchMedia("(prefers-reduced-motion: reduce)");
+    let setW = 0, pos = 0, last = 0, idle = performance.now() + 2000, mode = "idle", A = null, cur = -1, lb = 0, down = null, drag = false, on = false, raf = 0, dead = false, wt = 0;
+    const cx = (i) => its[i].offsetLeft + its[i].offsetWidth / 2;
+    const meas = () => { setW = its[N].offsetLeft - its[0].offsetLeft; };
+    const near = (p) => { const c = p + vp.clientWidth / 2; let b = 0, bd = 1e9; for (let i = 0; i < its.length; i++) { const d = Math.abs(cx(i) - c); if (d < bd) { bd = d; b = i; } } return b; };
+    const hl = (id) => el.querySelectorAll(".t1s-r").forEach((r) => r.classList.toggle("hl", r.dataset.go === id));
+    const label = () => { const d = top[near(pos) % N]; if (d.rank === cur) return; cur = d.rank;
+      const a = labs[lb], o = labs[1 - lb]; lb = 1 - lb; a.innerHTML = `<span class="t1s-ln"><i>#${d.rank}</i>${esc(d.name)}</span><span class="t1s-ls"><b>${pct(d.share)}</b>${dTxt((trOf(d.id) ? trD(trOf(d.id).s) : null))}</span>`; a.classList.add("on"); o.classList.remove("on"); hl(d.id); };
+    const put = () => { if (setW) { if (pos < setW * 0.5) { pos += setW; if (A) { A.from += setW; A.to += setW; } } else if (pos > setW * 1.5) { pos -= setW; if (A) { A.from -= setW; A.to -= setW; } } }
+      tr.style.transform = `translate3d(${(-pos).toFixed(2)}px,0,0)`; label(); };
+    const hold = (ms = IDLE) => { idle = performance.now() + ms; };
+    const glide = (to, dur) => { A = { from: pos, to, t0: performance.now(), dur }; mode = "glide"; hold(dur + IDLE); };
+    const snap = () => glide(cx(near(pos)) - vp.clientWidth / 2, 380);
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const tick = (t) => { raf = 0; if (dead || !on) return; const dt = last ? Math.min(0.05, (t - last) / 1000) : 0; last = t;
+      if (mode === "glide" && A) { const k = Math.min(1, (t - A.t0) / A.dur); pos = A.from + (A.to - A.from) * ease(k); put(); if (k >= 1) { A = null; mode = "idle"; } }
+      else if (mode === "idle" && t > idle && !RM.matches) { pos += SPEED * dt; put(); }
+      raf = requestAnimationFrame(tick); };
+    const run = () => { if (!raf && on && !dead) { last = 0; raf = requestAnimationFrame(tick); } };
+    const io = new IntersectionObserver((es) => { on = es[0].isIntersecting && !document.hidden; on ? run() : (cancelAnimationFrame(raf), raf = 0); }); io.observe(vp);
+    const vis = () => { on = !document.hidden && !el.hidden && vp.offsetParent != null; on ? run() : (cancelAnimationFrame(raf), raf = 0); }; document.addEventListener("visibilitychange", vis);
+    // drag / flick (touch-action: pan-y keeps the page scroll with the browser)
+    vp.addEventListener("pointerdown", (e) => { if (e.button > 0) return; down = { x: e.clientX, p: pos, H: [[performance.now(), e.clientX]] }; drag = false; A = null; mode = "drag"; hold(); });
+    vp.addEventListener("pointermove", (e) => { if (!down) return; const dx = e.clientX - down.x; if (!drag && Math.abs(dx) > 6) { drag = true; vp.classList.add("drag"); try { vp.setPointerCapture(e.pointerId); } catch (_) {} }
+      if (!drag) return; const n = performance.now(); down.H.push([n, e.clientX]); while (down.H.length > 2 && n - down.H[0][0] > 100) down.H.shift(); pos = down.p - dx; put(); hold(); });
+    const up = () => { if (!down) return; const H = down.H; down = null; vp.classList.remove("drag"); if (!drag) { mode = "idle"; return; }
+      const a = H[0], z = H[H.length - 1], v = Math.max(-8000, Math.min(8000, (a[1] - z[1]) / Math.max(16, z[0] - a[0]) * 1000));
+      if (Math.abs(v) < 200 || performance.now() - z[0] > 90) { snap(); return; }
+      const to = cx(near(pos + v * 0.499)) - vp.clientWidth / 2; glide(to, Math.max(300, Math.min(2600, Math.abs(3 * (to - pos) / v) * 1000))); }; // iOS deceleration 0.998/ms: travels v x 0.499 s
+    vp.addEventListener("pointerup", up); vp.addEventListener("pointercancel", up);
+    vp.addEventListener("click", (e) => { if (drag) { e.stopPropagation(); e.preventDefault(); drag = false; } }, true); // a drag is not a tap
+    vp.addEventListener("wheel", (e) => { const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY; if (!d) return; /* Nov 21: a vertical wheel on the shelf turns it (the page does not scroll here) */ e.preventDefault(); A = null; mode = "drag"; pos += d; put(); hold(); clearTimeout(wt); wt = setTimeout(snap, 140); }, { passive: false });
+    vp.addEventListener("keydown", (e) => { if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return; e.preventDefault(); const i = near(pos) + (e.key === "ArrowRight" ? 1 : -1); glide(cx(i) - vp.clientWidth / 2, 300); });
+    vp.addEventListener("focusin", (e) => { const b = e.target.closest(".t1s-c"); if (!b || drag) return; hold(); const i = its.indexOf(b); if (i >= 0 && Math.abs(cx(i) - vp.clientWidth / 2 - pos) > 4) glide(cx(i) - vp.clientWidth / 2, 300); });
+    // Rising / Falling toggle (phones) and Show all
+    el.querySelector(".t1s-seg").addEventListener("click", (e) => { const b = e.target.closest("[data-k]"); if (!b) return; el.querySelectorAll(".t1s-seg [data-k]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); el.querySelector(".t1s-cols").dataset.on = b.dataset.k; });
+    el.querySelectorAll(".t1s-all").forEach((b) => b.addEventListener("click", () => { const c = b.closest(".t1s-col"), o = c.classList.toggle("all"); b.textContent = o ? "Show less" : "Show all " + c.querySelectorAll(".t1s-r").length; }));
+    el.querySelector(".t1s-cols").dataset.on = "up";
+    const bdEl = el.querySelector(".t1s-bd"), mp = el.querySelector(".t1s-mp");
+    const bdSize = () => { if (!bdEl || !el.offsetParent) return; const { k } = ZK(), r = cssR(el.getBoundingClientRect(), k), m = cssR(mp.getBoundingClientRect(), k), W = document.documentElement.clientWidth / k;
+      const tb = $("tbar"), tbB = tb ? cssR(tb.getBoundingClientRect(), k).bottom : r.top - 14, top = Math.min(-8, tbB - r.top);
+      bdEl.style.cssText = `left:${(-r.left).toFixed(1)}px;width:${W.toFixed(1)}px;top:${top.toFixed(1)}px;height:${(m.top + m.height / 2 - r.top - top + W * 0.04375).toFixed(1)}px;--bdS:${(W * 0.0875).toFixed(1)}px`; };
+    const ro = new ResizeObserver(() => bdSize()); if (mp) ro.observe(mp);
+    const start = () => { meas(); pos = cx(N) - vp.clientWidth / 2; cur = -1; put(); bdSize(); };
+    const rz = () => { const k = (near(pos) % N) + N; meas(); pos = cx(k) - vp.clientWidth / 2; put(); bdSize(); }; let rt; const onR = () => { clearTimeout(rt); rt = setTimeout(rz, 120); }; addEventListener("resize", onR);
+    requestAnimationFrame(() => { start(); vis(); });
+    t10Kill = () => { dead = true; cancelAnimationFrame(raf); io.disconnect(); ro.disconnect(); document.removeEventListener("visibilitychange", vis); removeEventListener("resize", onR); };
+    el._t10vis = () => { if (!setW) start(); bdSize(); vis(); };
+  }
   function t10Show() { const el = $("t10"); if (!el) return;
     const f = typeof fstate !== "undefined" && fstate && (fstate.q.trim() || fstate.card || fstate.en.size || fstate.dk.size || fstate.without);
     el.hidden = !el.innerHTML || curTab === "events" || curTab === "limited" || !!f;
     if (!el.hidden) requestAnimationFrame(t10Fit); // Nov 16: size the mover boxes when the card shows (also after a tab switch)
+    if (el._t10vis) requestAnimationFrame(el._t10vis); // Nov 21: the shelf runs only while it shows
     const lh = $("lsh"); if (lh) { lh.hidden = curTab === "events" || curTab === "limited" || !!f || !data; // Nov 16: "ALL DECKS · 32 + 22 smaller" (all: "· 54")
       if (data) { const n0 = data.decks.filter((d) => !d._more).length, nm = MORE ? data.decks.length - n0 : data.more || 0;
         $("lshN").textContent = " \u00b7 " + (moreShown || !nm ? n0 + nm : n0 + " + " + nm + " smaller"); } } }
@@ -5169,8 +5301,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       $("fwin").textContent = winLast().replace(/^in /, "");
       seenDecks(); // before the rows: the NEW tags of decks new in the top 10
       renderLive(); loadEvents().then(() => { seenEvents(); renderLive(); });
-      if (STD) renderT10(); else { const t = $("t10"); t.className = "t10 t10wait"; t.innerHTML = `<p class="t10h">Top 10 ${winWk()}</p>`; t10Show(); } // Nov 16: keep its space (no jump)
-      renderList(); watchMore(); loadStats().then(() => renderT10()).catch(() => { const t = $("t10"); t.innerHTML = ""; t.className = "t10"; t10Show(); }); // the Top 10 card needs the trends
+      if (STD) renderT10(); else { const t = $("t10"); t.className = "t1s t1s-wait"; t.innerHTML = `<p class="t1s-h"><b>Top 10</b> ${winWk()}</p>`; t10Show(); } // Nov 16: keep its space (no jump)
+      renderList(); watchMore(); loadStats().then(() => renderT10()).catch(() => { const t = $("t10"); t.innerHTML = ""; t.className = "t1s"; t10Show(); }); // the Top 10 card needs the trends
       setupFilter();
       podFit(); podGrow();
       renderShChip(); // the "Shared list" chip (hidden again when a shared list opens)
