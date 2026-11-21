@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795238024-b3dd -->
+<!-- ui: artifact version 1795264497-703e -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2237,6 +2237,43 @@ a.dkev { text-decoration: none; }
 :root { --swsep: rgba(var(--sh), 0.8); }
 /* Nov 21: the pull-down bar of the sheets: #c8dbee (light); dark keeps the old mix */
 :root { --grab: #c8dbee; }
+/* Nov 21: event stats v2 (.ek2: the wide panel and the phone sheet) */
+.ek2 .ekhd { margin: 2px 0 4px; }
+.ekcut { margin: 0; font-size: 12.5px; color: var(--muted); } .ekcut b { color: var(--ink); } .ekcut a { color: var(--acc-ink); text-decoration: none; }
+.ekeb { display: flex; gap: 1px; height: 7px; margin: 9px 0 5px; border-radius: 4px; overflow: hidden; } .ekeb i { min-width: 3px; }
+.ekel { display: flex; flex-wrap: wrap; gap: 3px 10px; margin: 0; font-size: 11.5px; color: var(--muted); } .ekel span { display: inline-flex; align-items: center; gap: 4px; } .ekel i { width: 8px; height: 8px; border-radius: 50%; }
+.ekeb i, .ekel i { background: var(--muted); }
+.ekeb .e-fire, .ekel .e-fire { background: #e8613c; } .ekeb .e-water, .ekel .e-water { background: #3d9be9; } .ekeb .e-grass, .ekel .e-grass { background: #4caf50; } .ekeb .e-lightning, .ekel .e-lightning { background: #f2c12e; }
+.ekeb .e-psychic, .ekel .e-psychic { background: #a46bd6; } .ekeb .e-fighting, .ekel .e-fighting { background: #c9783b; } .ekeb .e-darkness, .ekel .e-darkness { background: #4a5463; } .ekeb .e-metal, .ekel .e-metal { background: #8f9aa5; } .ekeb .e-dragon, .ekel .e-dragon { background: #b39130; } .ekeb .e-colorless, .ekel .e-colorless { background: #bdbdbd; }
+.ekwon { margin: 10px 0 0; padding: 8px 11px; border-radius: 10px; font-size: 13px; background: var(--surface); box-shadow: var(--pin-sh); } .ekwon b { color: #a8740e; font-weight: 600; } .ekwon em { font-style: normal; color: #1f9d55; font-weight: 500; }
+.ekic { position: relative; display: inline-block; flex: none; width: 38px; height: 30px; overflow: hidden; -webkit-mask-image: linear-gradient(#000 62%, transparent); mask-image: linear-gradient(#000 62%, transparent); }
+.ekic img { position: absolute; top: 0; width: 22px; height: auto; border-radius: 2px; box-shadow: 0 1px 2px rgba(40, 60, 90, 0.3); }
+.ekic img:first-child { left: 3px; transform: rotate(-6deg); } .ekic img:nth-child(2) { left: 15px; top: 2px; transform: rotate(5deg); }
+.ek2 button { font-family: inherit; color: inherit; background: none; border: 0; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.ek8 { display: grid; grid-template-columns: 34px 38px minmax(0, 1fr) auto auto 46px; gap: 8px; align-items: center; width: 100%; padding: 4px 6px; border-radius: 9px; }
+.ek8.on { background: var(--bg); box-shadow: var(--pin-sh); } .ek8.on .ekn { font-weight: 600; }
+.ekpl { font-size: 12px; font-weight: 700; color: var(--muted); } .ekpl.p1 { color: #a8740e; } .ekpl.p2 { color: #4f6a96; } .ekpl.p3 { color: #9a5426; }
+.ek2 .ekn { min-width: 0; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ektg { font-size: 10.5px; font-weight: 600; color: #1f9d55; border: 1px solid currentColor; border-radius: 5px; padding: 0 4px; }
+.ekfm { font-size: 11px; color: var(--muted); text-align: right; white-space: nowrap; } .ekfm.z { color: #a8740e; }
+.eksc { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+@media (min-width: 740px) and (max-width: 999px) { .ek8 { grid-template-columns: 34px 38px minmax(0, 1fr) auto 46px; } .ek8 > .ekfm { display: none; } .ekt8 .dksech span { display: none; } } /* narrow: no room for the form count */
+.ekrest { display: none; } .ekt8.all .ekrest { display: block; }
+.ek2 .ekall { display: block; margin: 4px auto 0; padding: 4px; font-size: 12.5px; color: var(--acc-ink); }
+.eksl { margin: 6px 6px 2px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; } .eksl.up { color: #1f9d55; } .eksl.dn { color: #d6345a; }
+.eksr { display: grid; grid-template-columns: 38px minmax(0, 1fr) auto; gap: 8px; align-items: center; width: 100%; padding: 5px 6px; border-radius: 9px; }
+.eksr b { display: block; font-size: 13px; font-weight: 600; } .eksr small { font-size: 11.5px; color: var(--muted); } .eksr small b { display: inline; font-size: inherit; color: var(--ink); }
+.ektag { padding: 3px 8px; border-radius: 6px; background: #1f9d55; color: #fff; font-size: 11.5px; font-weight: 600; white-space: nowrap; } .ektag.dn { background: #d6345a; }
+.ektc { display: grid; grid-template-columns: 36px 1fr; gap: 8px; align-items: center; width: 100%; padding: 5px 6px; border-radius: 9px; }
+.ektc img { width: 36px; height: auto; border-radius: 3px; box-shadow: 2px 2px 5px rgba(40, 60, 90, 0.3); } .ektc b { display: block; font-size: 12.5px; } .ektc small { display: block; font-size: 11px; color: var(--muted); } .ektc i { font-style: normal; font-size: 10.5px; color: var(--acc-ink); }
+.eknsl { margin: 6px 6px 0; font-size: 12px; color: var(--muted); } .eknsl b { color: var(--ink); }
+.ekdr { display: grid; grid-template-columns: 38px minmax(0, 1fr) 20px 80px; gap: 8px; align-items: center; width: 100%; padding: 3px 6px; border-radius: 9px; font-size: 12.5px; } .ekdr > b { text-align: right; }
+.ekdk:not(.all) .ekdr:nth-of-type(n + 7) { display: none; }
+.ekbar { height: 6px; border-radius: 3px; background: var(--bg); box-shadow: var(--pin-sh); overflow: hidden; } .ekbar i { display: block; height: 100%; background: var(--accent); }
+@media (hover: hover) { .ek2 .ek8:not(.on):hover, .ek2 .eksr:hover, .ek2 .ektc:hover, .ek2 .ekdr:hover { background: var(--bg); } }
+.cards img.ekhi { outline: 2.5px solid var(--accent); outline-offset: 1px; }
+.eks .ekb { padding-top: 8px; }
+@media (min-width: 740px) { :root:not(#_):not(#_) #evl .dkl .vars { --per: 1; --sw: var(--dklw); --slw: var(--dklw); --mh: calc(var(--dklw) / 2); --vgap: 16px; --pad: 8px; padding-inline: 8px; scroll-padding-inline: 8px; } #evl .dkl .vars::after { display: none; } }
 /* Nov 21: the space kept while the Top 10 shelf loads (= its height: shelf + 3 Rising rows) */
 .t1s.t1s-wait { min-height: 510px; }
 @media (min-width: 600px) and (max-width: 1100px) and (pointer: coarse) { .t1s.t1s-wait { min-height: 530px; } }
@@ -2257,8 +2294,8 @@ a.dkev { text-decoration: none; }
 .t1s-bd > i::after { content: ""; position: absolute; left: 0; bottom: 0; width: 102%; height: 27px; transform-origin: 0 100%; transform: rotate(-5deg); background: linear-gradient(rgba(20, 30, 60, 0), rgba(20, 30, 60, 0.09) 55%, rgba(20, 30, 60, 0.22)); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t1s-bd > i { filter: brightness(0.42) saturate(0.8); } :root:not([data-theme="light"]) .t1s.t1s-on .t1s-h { color: var(--ink); } }
 :root[data-theme="dark"] .t1s-bd > i { filter: brightness(0.42) saturate(0.8); }
-/* Nov 21: the game's light pass: a 250px white band (bell-shaped fade, 0.30 in the middle) lying at 45 deg, moving from the top left to the bottom right; 6 s pass + 1 s pause */
-.t1s-bd > i > b { position: absolute; left: 50%; top: 50%; width: 250px; height: var(--shL, 160vmax); margin: calc(var(--shL, 160vmax) / -2) 0 0 -125px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.000) 0%,rgba(255, 255, 255, 0.004) 10%,rgba(255, 255, 255, 0.025) 20%,rgba(255, 255, 255, 0.099) 30%,rgba(255, 255, 255, 0.227) 40%,rgba(255, 255, 255, 0.300) 50%,rgba(255, 255, 255, 0.227) 60%,rgba(255, 255, 255, 0.099) 70%,rgba(255, 255, 255, 0.025) 80%,rgba(255, 255, 255, 0.004) 90%,rgba(255, 255, 255, 0.000) 100%); transform: rotate(45deg) translateX(calc(var(--shD, 80vmax) * -1)); animation: t1sShim 7s linear infinite; }
+/* Nov 21: the game's light pass: a 300px white band (bell-shaped fade, 0.30 in the middle) lying at 45 deg, moving from the top left to the bottom right; 6 s pass + 1 s pause */
+.t1s-bd > i > b { position: absolute; left: 50%; top: 50%; width: 300px; height: var(--shL, 160vmax); margin: calc(var(--shL, 160vmax) / -2) 0 0 -150px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.000) 0%,rgba(255, 255, 255, 0.004) 10%,rgba(255, 255, 255, 0.025) 20%,rgba(255, 255, 255, 0.099) 30%,rgba(255, 255, 255, 0.227) 40%,rgba(255, 255, 255, 0.300) 50%,rgba(255, 255, 255, 0.227) 60%,rgba(255, 255, 255, 0.099) 70%,rgba(255, 255, 255, 0.025) 80%,rgba(255, 255, 255, 0.004) 90%,rgba(255, 255, 255, 0.000) 100%); transform: rotate(45deg) translateX(calc(var(--shD, 80vmax) * -1)); animation: t1sShim 7s linear infinite; }
 /* --shD / --shL (set with the backdrop size): the band starts and ends fully outside the backdrop, so it enters and leaves the screen smoothly; a short band (no huge layer: Safari cut it) */
 @keyframes t1sShim { 0% { transform: rotate(45deg) translateX(calc(var(--shD, 80vmax) * -1)); } 85.7% { transform: rotate(45deg) translateX(var(--shD, 80vmax)); } 100% { transform: rotate(45deg) translateX(var(--shD, 80vmax)); } }
 @media (prefers-reduced-motion: reduce) { .t1s-bd > i > b { display: none; } }
@@ -3720,7 +3757,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const bdSize = () => { if (!bdEl || !el.offsetParent) return; const { k } = ZK(), r = cssR(el.getBoundingClientRect(), k), m = cssR(mp.getBoundingClientRect(), k), W = document.documentElement.clientWidth / k;
       const tb = $("tbar"), tbB = tb ? cssR(tb.getBoundingClientRect(), k).bottom : r.top - 14, top = Math.min(-8, tbB - r.top);
       bdEl.style.cssText = `left:${(-r.left).toFixed(1)}px;width:${W.toFixed(1)}px;top:${top.toFixed(1)}px;height:${(m.top + m.height / 2 - r.top - top + W * 0.04375).toFixed(1)}px;--bdS:${(W * 0.0875).toFixed(1)}px`;
-      const Hb = m.top + m.height / 2 - r.top - top + W * 0.04375, dg = (W + Hb) / Math.SQRT2; bdEl.style.setProperty("--shD", (dg / 2 + 150).toFixed(0) + "px"); bdEl.style.setProperty("--shL", (dg + 60).toFixed(0) + "px"); };
+      const Hb = m.top + m.height / 2 - r.top - top + W * 0.04375, dg = (W + Hb) / Math.SQRT2; bdEl.style.setProperty("--shD", (dg / 2 + 175).toFixed(0) + "px"); bdEl.style.setProperty("--shL", (dg + 60).toFixed(0) + "px"); };
     const ro = new ResizeObserver(() => bdSize()); if (mp) ro.observe(mp);
     const start = () => { meas(); pos = cx(N) - vp.clientWidth / 2; cur = -1; put(); bdSize(); };
     const rz = () => { const k = (near(pos) % N) + N; meas(); pos = cx(k) - vp.clientWidth / 2; put(); bdSize(); }; let rt; const onR = () => { clearTimeout(rt); rt = setTimeout(rz, 120); }; addEventListener("resize", onR);
@@ -4924,6 +4961,57 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const evPre = () => { const go = () => (EV && EV.events || []).slice(0, 3).forEach((x) => loadT(x.tid).catch(() => {}));
     if ("requestIdleCallback" in window) requestIdleCallback(go, { timeout: 1500 }); else setTimeout(go, 300); };
   // Nov 15: the event stats pill and sheet (from events.json + the event's top lists t/<tid>.json)
+  // Nov 21: event stats v2 (wide 2-panel view and the phone sheet). What happened at the event, not only counts:
+  // cut line + energy split; Top 8 (wide: the list picker; marks: x share vs this week / new, other top 8s this week); vs this week's meta
+  // (did better: decks outside the top 8; did worse: weekly top decks with half or less of the lists their share predicts);
+  // cards to look at (a card few of that deck's top players use) + the new-set cards; decks in the top N.
+  function evV2(e, T, st, wide) {
+    const Ls = ((T && T.lists) || []).slice().sort((a, b) => a.pl - b.pl), n = Ls.length; if (!n) return '<p class="dnone">No lists stored for this event.</p>';
+    const DK = EV.decks || {}, dn = (id) => (DK[id] && DK[id].name) || id, art = (id) => (DK[id] && DK[id].art) || [];
+    const all = [...data.decks, ...((MORE && MORE.decks) || [])], meta = {}; all.forEach((d) => { meta[d.id] = d; });
+    const sh = (id) => meta[id] ? meta[id].share : null;
+    const cnt = {}, best = {}; Ls.forEach((l) => { cnt[l.deck] = (cnt[l.deck] || 0) + 1; if (!best[l.deck] || l.pl < best[l.deck]) best[l.deck] = l.pl; });
+    const ic = (id) => `<span class="ekic">${art(id).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="22" height="31" loading="lazy">`).join("")}</span>`;
+    const tgt = (l) => wide ? `data-pl="${l.pl}"` : `data-go="${esc(l.deck)}"`;
+    const ratio = (id) => { const s = sh(id); return s ? (cnt[id] / n * 100) / s : null; };
+    const mark = (l) => { const s = sh(l.deck), r = ratio(l.deck);
+      if (s == null || s < 0.3) return `<span class="ektg" title="Under 0.3% share ${winWk()}">New</span>`;
+      return r >= 1.8 && (cnt[l.deck] >= 2 || s < 2) ? `<span class="ektg" title="Its share of the top ${n}: ${Math.round(r)}\u00d7 its share ${winWk()}">\u00d7${Math.round(r)}</span>` : "<span></span>"; };
+    const o8 = {}; (EV.events || []).forEach((x) => { if (x.tid !== e.tid) (x.top || []).forEach(([id, pl]) => { if (pl <= 8) o8[id] = (o8[id] || 0) + 1; }); });
+    const fm = (id) => o8[id] ? `<span class="ekfm" title="Top 8s at other events ${winWk()}">${o8[id]} top 8${o8[id] > 1 ? "s" : ""}</span>` : sh(id) == null || sh(id) < 0.3 ? '<span class="ekfm"></span>' : '<span class="ekfm z" title="No top 8 at other events ${winWk()}">only here</span>'; // no "only here" next to a "New" mark (the same news)
+    // header: the cut + energy split
+    const last = Ls[n - 1], en = {}; Ls.forEach((l) => (l.energy || []).forEach((x) => { en[x] = (en[x] || 0) + 1; })); const ens = Object.entries(en).sort((a, b) => b[1] - a[1]), et = ens.reduce((s, x) => s + x[1], 0);
+    const head = `<p class="ekcut"><b>${esc(last.sc || "")}</b> or better made the top ${n} \u00b7 <a href="${esc(e.url)}" target="_blank" rel="noopener">Limitless \u2197</a></p>
+      ${ens.length ? `<span class="ekeb" aria-hidden="true">${ens.map(([x, c]) => `<i class="e-${x}" style="flex:${c}"></i>`).join("")}</span><p class="ekel">${ens.slice(0, 4).map(([x, c]) => `<span><i class="e-${x}"></i>${cap(x)} ${c}</span>`).join("")}${ens.length > 4 ? `<span>Others ${et - ens.slice(0, 4).reduce((s, x) => s + x[1], 0)}</span>` : ""}</p>` : ""}`;
+    // top 8 (wide only: the right panel shows the chosen list)
+    const row = (l) => `<button type="button" class="ek8" ${tgt(l)}><span class="ekpl p${Math.min(l.pl, 4)}">${ordF(l.pl)}</span>${ic(l.deck)}<span class="ekn">${esc(dn(l.deck))}</span>${mark(l)}${fm(l.deck)}<span class="eksc">${esc(l.sc || "")}</span></button>`;
+    const t8 = wide ? `<section class="dksec btile ekt8"><div class="dksech"><b>Top 8</b><span>\u00d7N: share here vs ${winWk()} \u00b7 top 8s at other events</span></div>${Ls.slice(0, 8).map(row).join("")}${n > 8 ? `<div class="ekrest">${Ls.slice(8).map(row).join("")}</div><button type="button" class="ekall">Show all ${n} lists</button>` : ""}</section>` : "";
+    // won by (the sheet only: on wide screens the list on the right shows it)
+    const W = Ls[0], ws = sh(W.deck);
+    const won = wide ? "" : `<p class="ekwon"><b>Won by</b> ${esc(dn(W.deck))} \u00b7 ${esc(W.sc || "")}${ws != null && ws < 3 ? ` \u00b7 <em>only ${ws.toFixed(ws < 1 ? 2 : 1)}% share ${winWk()}</em>` : ""}</p>`;
+    // vs this week's meta
+    const in8 = new Set(Ls.slice(0, 8).map((l) => l.deck));
+    const better = Object.keys(cnt).filter((id) => (wide ? !in8.has(id) : true) && cnt[id] >= 2 && sh(id) && ratio(id) >= 1.8).sort((a, b) => best[a] - best[b]).slice(0, 3);
+    const worse = data.decks.slice(0, 10).map((d) => ({ d, x: d.share / 100 * n, g: cnt[d.id] || 0 })).filter((o) => o.x >= 1.5 && o.g <= o.x / 2).slice(0, 3);
+    const vrow = (id, sub, tag, dn2) => `<button type="button" class="eksr" ${cnt[id] ? (wide ? `data-pl="${best[id]}"` : `data-go="${esc(id)}"`) : `data-go="${esc(id)}"`}>${ic(id)}<span><b>${esc(dn(id))}</b><small>${sub}</small></span><span class="ektag${dn2 ? " dn" : ""}">${tag}</span></button>`;
+    const pc = (s) => s < 10 ? s.toFixed(s < 1 ? 2 : 1) : String(Math.round(s));
+    const vs = better.length || worse.length ? `<section class="dksec btile"><div class="dksech"><b>Vs the meta</b><span>top ${n} vs ${winWk()}</span></div>
+      ${better.length ? `<p class="eksl up">Did better</p>${better.map((id) => vrow(id, `${cnt[id]} lists \u00b7 best <b>${ordF(best[id])}</b> \u00b7 ${pc(sh(id))}% share ${winWk()}`, `\u00d7${Math.round(ratio(id))}`)).join("")}` : ""}
+      ${worse.length ? `<p class="eksl dn">Did worse</p>${worse.map((o) => vrow(o.d.id, `#${o.d.rank} \u00b7 ${pc(o.d.share)}% share ${winWk()} \u00b7 about ${Math.round(o.x)} lists expected, got <b>${o.g}</b>`, `${o.g} of ~${Math.round(o.x)}`, 1)).join("")}` : ""}</section>` : "";
+    // cards to look at + new-set cards
+    const tech = [], seen = new Set();
+    for (const l of Ls.slice(0, 16)) { const cu = st && st.d && st.d[l.deck] && st.d[l.deck].cu; if (!cu || !cu.length) continue; const np = Math.max(...cu.map((c) => c[1])); if (np < 5) continue;
+      const use = {}; cu.forEach((c) => { use[c[0]] = c[1] / np; });
+      for (const c of l.cards || []) { const u = use[c.id] || 0, key = l.deck + "|" + c.n; if (u < 0.15 && !seen.has(key)) { seen.add(key); tech.push({ l, c, u }); } } if (tech.length >= 3) break; }
+    const set = String(data.set || "").toLowerCase(), nc = {}, nn = {}; if (set) Ls.forEach((l) => { const s = new Set(); (l.cards || []).forEach((c) => { if (c.id.startsWith(set + "-") && !s.has(c.n)) { s.add(c.n); nc[c.n] = (nc[c.n] || 0) + 1; } }); });
+    const ncs = Object.entries(nc).sort((a, b) => b[1] - a[1]).slice(0, 3);
+    const cards = tech.length || ncs.length ? `<section class="dksec btile"><div class="dksech"><b>Cards to look at</b></div>${tech.slice(0, 3).map((t) => `<button type="button" class="ektc" ${wide ? `data-pl="${t.l.pl}" data-card="${t.c.id}"` : `data-go="${esc(t.l.deck)}"`}><img src="c/${t.c.id}.webp" alt="" width="36" height="50" loading="lazy"><span><b>${esc(t.c.n)}${t.c.c > 1 ? ` \u00d7${t.c.c}` : ""}</b><small>in the ${ordF(t.l.pl)}-place ${esc(dn(t.l.deck))}</small><i>${t.u ? `in ${Math.round(t.u * 100)}% of its top players\u2019 lists ${winWk()}` : `in no other top player\u2019s list ${winWk()}`}</i></span></button>`).join("")}
+      ${ncs.length ? `<p class="eknsl"><b>${esc(data.set)} cards</b> in the top ${n} (lists): ${ncs.map(([nm, c]) => `${esc(nm)} ${c}`).join(", ")}</p>` : ""}</section>` : "";
+    // decks in the top N
+    const dk = Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a] || best[a] - best[b]), mx = cnt[dk[0]];
+    const decks = `<section class="dksec btile ekdk"><div class="dksech"><b>Decks in the top ${n}</b><span>lists</span></div>${dk.map((id) => `<button type="button" class="ekdr" ${wide ? `data-pl="${best[id]}"` : `data-go="${esc(id)}"`}>${ic(id)}<span class="ekn">${esc(dn(id))}</span><b>${cnt[id]}</b><span class="ekbar"><i style="width:${(cnt[id] / mx * 100).toFixed(0)}%"></i></span></button>`).join("")}${dk.length > 6 ? `<button type="button" class="ekall">Show all ${dk.length} decks</button>` : ""}</section>`;
+    return `<div class="ekhd">${head}</div>${won}${t8}${vs}${cards}${decks}`;
+  }
   async function evSheet(e) { let T = null; try { T = await loadT(e.tid); } catch (err) {}
     const Ls = (T && T.lists) || [], n = Ls.length, dn = (id) => (EV.decks && EV.decks[id] && EV.decks[id].name) || id, art = (id) => (EV.decks && EV.decks[id] && EV.decks[id].art) || [];
     const meta = {}; [...data.decks, ...((MORE && MORE.decks) || [])].forEach((d) => { meta[d.id] = d.share; });
@@ -4954,6 +5042,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const ens = Object.entries(en).sort((a, b) => b[1] - a[1]);
     const enL = ens.length ? `<span class="eenb" title="Energy in the top ${n}">${ens.map(([x, c]) => `<i class="e-${x}" style="flex:${c}" title="${cap(x)}: ${Math.round(c / n * 100)}%"></i>`).join("")}</span>` : "";
     const enP = ens.slice(0, 3).map(([x, c]) => `<img src="e/${x}.webp" alt="" width="14" height="14">`).join("");
+    const st2 = await loadStats().catch(() => null);
+    if (n) return `<h3 class="sh3">${esc(shortEv(e.name))}</h3><p class="esub">${when}</p><div class="dkv2 ekv2 ek2">${evV2(e, T, st2, false)}</div>`;
     return `<h3 class="sh3">${esc(shortEv(e.name))}</h3>${top}
       <div class="dkv2 ekv2">${fold(`Decks in the top ${n}`, `${ups.length ? `<span class="g">${ups.length} \u25b2</span> ` : ""}${enP}`, deckBody, "ed", enL)}
       ${n >= 8 ? fold("Records", `${wk[wk.length - 1]}\u2013${wk[0]} wins`, recBody, "er") : ""}
@@ -4962,7 +5052,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     ev.preventDefault(); ev.stopPropagation(); const e = (EV.events || []).find((x) => x.tid === b.dataset.ek); if (!e) return;
     track("sheet-event"); showTip(b, await evSheet(e)); }, true);
   $("iPop").addEventListener("click", (ev) => { const a = ev.target.closest(".edall"); if (a) { a.previousElementSibling.classList.add("all"); a.remove(); return; } });
-  $("iPop").addEventListener("click", (ev) => { const r = ev.target.closest(".edk[data-go], .mur[data-go]"); if (!r) return; const id = r.dataset.go; hideTip(); setTab("decks"); location.hash = id; track(r.classList.contains("mur") ? "matchup-to-deck" : "event-to-deck"); });
+  $("iPop").addEventListener("click", (ev) => { const s = ev.target.closest(".ek2 .ekall"); if (s) { const c = s.closest(".dksec"), o = c.classList.toggle("all"); s.textContent = o ? "Show less" : `Show all ${c.querySelectorAll(".ekdr").length} decks`; } });
+  $("iPop").addEventListener("click", (ev) => { const r = ev.target.closest(".edk[data-go], .mur[data-go], .ek2 [data-go]"); if (!r) return; const id = r.dataset.go; hideTip(); setTab("decks"); location.hash = id; track(r.classList.contains("mur") ? "matchup-to-deck" : "event-to-deck"); });
   const SHOW_JUST = false; // Nov 15: the "Just added" chips are off (the rows show "added N h ago")
   let evWin = "", evQ = "", evMin = 0, evDk = ""; // Nov 15: event filters: winner chip, search text, min players, a deck in the top 8 (from the deck sheet)
   $("evl").addEventListener("click", (e) => {
@@ -5068,6 +5159,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     clearTimeout(slow);
     if (!evOpen || evOpen.tid !== tid) return;
     p.hidden = false;
+    if (DKW.matches && T.lists.length) { evWide(e, T, p, sec); return; }
     const L = T.lists.filter((v) => v.pl <= 8).slice(0, 8), n = L.length; // the top 8 only
     evOpen.T = { lists: L };
     if (!n) { p.querySelector(".slide").innerHTML = '<p class="note">No public lists for this event.</p>'; return; }
@@ -5100,6 +5192,37 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       let t = null; vars.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(sync, 60); }, { passive: true });
     }
   }
+  // Nov 21: wide screens (740px+): an open event = 2 panels, as an open deck: left = the event row + its stats (one tall card),
+  // right = one list (all top lists; the Top 8 and every item on the left choose it; a card item outlines that card)
+  async function evWide(e, T, p, sec) {
+    const L = T.lists.slice().sort((a, b) => a.pl - b.pl), n = L.length; evOpen.T = { lists: L };
+    p.innerHTML = `<div class="dk2"><div class="dks eks on"><div class="dkv2 dksb ekb ek2"><p class="dnone">\u2026</p></div></div><div class="dkl"><div class="vwrap"><div class="vars">${L.map((v, k) => `<div class="slide evs" data-k="${k}"${k ? ' data-pending="1"' : ""}>${k ? placeholder() : evSlide(e, v, k)}</div>`).join("")}</div></div></div></div>`;
+    evTile(p.querySelector(".slide"), L[0]); fitScores(p);
+    const a = p.querySelector(".eks"), body = a.querySelector(".ekb"), lc = p.querySelector(".dkl"), vars = lc.querySelector(".vars"), slides = [...vars.children];
+    const fit = () => { if (!lc.offsetHeight) return; const k = ZK().k, rw = sec.querySelector(":scope > .arow"), s0 = slides[0];
+      const d = (s0.getBoundingClientRect().top - rw.getBoundingClientRect().top) / k; if (Math.abs(d) > 0.5) lc.style.marginTop = (parseFloat(lc.style.marginTop) || 0) - d + "px"; // the list card top = the event row top
+      const sb = Math.max(...slides.map((s) => s.getBoundingClientRect().bottom)); a.style.height = Math.max(240, (sb - a.getBoundingClientRect().top) / k) + "px"; endF(); };
+    const endF = () => body.classList.toggle("end", body.scrollTop + body.clientHeight >= body.scrollHeight - 2);
+    body.addEventListener("scroll", endF, { passive: true });
+    const draw = (k) => { const sl = slides[k]; if (!sl || !sl.dataset.pending) return; delete sl.dataset.pending; sl.innerHTML = evSlide(e, L[k], k); evTile(sl, L[k]); fitScores(sl); };
+    let cur = 0;
+    const mark = () => { const pl = L[cur].pl; a.querySelectorAll(".ek8").forEach((b) => { const on = +b.dataset.pl === pl; b.classList.toggle("on", on); b.setAttribute("aria-current", String(on)); }); };
+    const sel = (k, card) => { k = Math.max(0, Math.min(n - 1, k)); draw(k); cur = k; vars.scrollTo({ left: slides[k].offsetLeft - slides[0].offsetLeft, behavior: "auto" }); mark();
+      slides.forEach((s) => s.querySelectorAll(".cards img.ekhi").forEach((x) => x.classList.remove("ekhi")));
+      if (card) slides[k].querySelectorAll(`.cards img[src$="c/${card}.webp"]`).forEach((x) => x.classList.add("ekhi"));
+      requestAnimationFrame(fit); };
+    a._sel = (pl, card) => { const k = L.findIndex((v) => v.pl === pl); if (k >= 0) { sel(k, card); track("event-pick"); } };
+    let t = null; vars.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(() => { const x = vars.scrollLeft, o = slides[0].offsetLeft; const k = slides.reduce((b, s, i) => (Math.abs(s.offsetLeft - o - x) < Math.abs(slides[b].offsetLeft - o - x) ? i : b), 0); if (k !== cur) { draw(k); cur = k; mark(); } }, 80); }, { passive: true });
+    if (dksRo) dksRo.disconnect(); dksRo = new ResizeObserver(fit); dksRo.observe(lc); fit();
+    const st = await loadStats().catch(() => null);
+    if (!evOpen || evOpen.tid !== e.tid || !a.isConnected) return;
+    body.innerHTML = evV2(e, T, st, true); mark(); fit();
+  }
+  DKW.addEventListener("change", () => { if (evOpen && $("ev-" + evOpen.tid)) { const t = evOpen.tid; evClose(); evOpenId(t); } });
+  $("evl").addEventListener("click", (e) => { const a = e.target.closest && e.target.closest(".eks"); if (!a) return;
+    const all = e.target.closest(".ekall"); if (all) { const s = all.closest(".dksec"), o = s.classList.toggle("all"); if (s.classList.contains("ekt8")) s.querySelector(".dksech b").textContent = o ? `Top ${s.querySelectorAll(".ek8").length}` : "Top 8"; all.textContent = o ? "Show less" : all.textContent.replace("Show less", "Show all"); if (!o) all.textContent = s.classList.contains("ekt8") ? `Show all ${s.querySelectorAll(".ek8").length} lists` : `Show all ${s.querySelectorAll(".ekdr").length} decks`; return; }
+    const b = e.target.closest("[data-pl]"); if (b && a._sel) { a._sel(+b.dataset.pl, b.dataset.card); return; }
+    const g = e.target.closest("[data-go]"); if (g) { setTab("decks"); location.hash = g.dataset.go; track("event-to-deck"); } });
   $("evl").addEventListener("click", (e) => {
     const ci = e.target.closest(".cards img");
     if (ci) { cardClick(ci); return; }
