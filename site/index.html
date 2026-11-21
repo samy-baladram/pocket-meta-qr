@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795237743-9f41 -->
+<!-- ui: artifact version 1795238024-b3dd -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2258,8 +2258,9 @@ a.dkev { text-decoration: none; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t1s-bd > i { filter: brightness(0.42) saturate(0.8); } :root:not([data-theme="light"]) .t1s.t1s-on .t1s-h { color: var(--ink); } }
 :root[data-theme="dark"] .t1s-bd > i { filter: brightness(0.42) saturate(0.8); }
 /* Nov 21: the game's light pass: a 250px white band (bell-shaped fade, 0.30 in the middle) lying at 45 deg, moving from the top left to the bottom right; 6 s pass + 1 s pause */
-.t1s-bd > i > b { position: absolute; left: 50%; top: 50%; width: 250px; height: 300vmax; margin: -150vmax 0 0 -125px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.000) 0%,rgba(255, 255, 255, 0.004) 10%,rgba(255, 255, 255, 0.025) 20%,rgba(255, 255, 255, 0.099) 30%,rgba(255, 255, 255, 0.227) 40%,rgba(255, 255, 255, 0.300) 50%,rgba(255, 255, 255, 0.227) 60%,rgba(255, 255, 255, 0.099) 70%,rgba(255, 255, 255, 0.025) 80%,rgba(255, 255, 255, 0.004) 90%,rgba(255, 255, 255, 0.000) 100%); transform: rotate(45deg) translateX(-80vmax); animation: t1sShim 7s linear infinite; will-change: transform; }
-@keyframes t1sShim { 0% { transform: rotate(45deg) translateX(-80vmax); } 85.7% { transform: rotate(45deg) translateX(80vmax); } 100% { transform: rotate(45deg) translateX(80vmax); } }
+.t1s-bd > i > b { position: absolute; left: 50%; top: 50%; width: 250px; height: var(--shL, 160vmax); margin: calc(var(--shL, 160vmax) / -2) 0 0 -125px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.000) 0%,rgba(255, 255, 255, 0.004) 10%,rgba(255, 255, 255, 0.025) 20%,rgba(255, 255, 255, 0.099) 30%,rgba(255, 255, 255, 0.227) 40%,rgba(255, 255, 255, 0.300) 50%,rgba(255, 255, 255, 0.227) 60%,rgba(255, 255, 255, 0.099) 70%,rgba(255, 255, 255, 0.025) 80%,rgba(255, 255, 255, 0.004) 90%,rgba(255, 255, 255, 0.000) 100%); transform: rotate(45deg) translateX(calc(var(--shD, 80vmax) * -1)); animation: t1sShim 7s linear infinite; }
+/* --shD / --shL (set with the backdrop size): the band starts and ends fully outside the backdrop, so it enters and leaves the screen smoothly; a short band (no huge layer: Safari cut it) */
+@keyframes t1sShim { 0% { transform: rotate(45deg) translateX(calc(var(--shD, 80vmax) * -1)); } 85.7% { transform: rotate(45deg) translateX(var(--shD, 80vmax)); } 100% { transform: rotate(45deg) translateX(var(--shD, 80vmax)); } }
 @media (prefers-reduced-motion: reduce) { .t1s-bd > i > b { display: none; } }
 
 .t1s-sh { position: relative; z-index: 1; border: 6px solid var(--surface); border-radius: 24px; background: var(--bg); box-shadow: var(--raised); overflow: hidden; }
@@ -3718,7 +3719,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const bdEl = el.querySelector(".t1s-bd"), mp = el.querySelector(".t1s-mp");
     const bdSize = () => { if (!bdEl || !el.offsetParent) return; const { k } = ZK(), r = cssR(el.getBoundingClientRect(), k), m = cssR(mp.getBoundingClientRect(), k), W = document.documentElement.clientWidth / k;
       const tb = $("tbar"), tbB = tb ? cssR(tb.getBoundingClientRect(), k).bottom : r.top - 14, top = Math.min(-8, tbB - r.top);
-      bdEl.style.cssText = `left:${(-r.left).toFixed(1)}px;width:${W.toFixed(1)}px;top:${top.toFixed(1)}px;height:${(m.top + m.height / 2 - r.top - top + W * 0.04375).toFixed(1)}px;--bdS:${(W * 0.0875).toFixed(1)}px`; };
+      bdEl.style.cssText = `left:${(-r.left).toFixed(1)}px;width:${W.toFixed(1)}px;top:${top.toFixed(1)}px;height:${(m.top + m.height / 2 - r.top - top + W * 0.04375).toFixed(1)}px;--bdS:${(W * 0.0875).toFixed(1)}px`;
+      const Hb = m.top + m.height / 2 - r.top - top + W * 0.04375, dg = (W + Hb) / Math.SQRT2; bdEl.style.setProperty("--shD", (dg / 2 + 150).toFixed(0) + "px"); bdEl.style.setProperty("--shL", (dg + 60).toFixed(0) + "px"); };
     const ro = new ResizeObserver(() => bdSize()); if (mp) ro.observe(mp);
     const start = () => { meas(); pos = cx(N) - vp.clientWidth / 2; cur = -1; put(); bdSize(); };
     const rz = () => { const k = (near(pos) % N) + N; meas(); pos = cx(k) - vp.clientWidth / 2; put(); bdSize(); }; let rt; const onR = () => { clearTimeout(rt); rt = setTimeout(rz, 120); }; addEventListener("resize", onR);
