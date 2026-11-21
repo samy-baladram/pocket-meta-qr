@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795264497-703e -->
+<!-- ui: artifact version 1795269193-2eb7 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -339,8 +339,9 @@ footer a { color: var(--muted); }
 .shslide .cards img { cursor: zoom-in; }
 /* Share link (QR panel): a quiet text button under the steps */
 .qslink { appearance: none; margin: 2px 0 0; padding: 4px 10px; border: 0; border-radius: 999px; background: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
-  font-family: inherit; line-height: inherit; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.02em; color: var(--acc-ink); }
-.qslink svg { width: 13px; height: 13px; display: block; }
+  font-family: inherit; line-height: inherit; font-size: var(--fs-s); font-weight: 700; letter-spacing: 0.02em; color: var(--accent); } /* Nov 21: bigger, the theme cyan (as in the game; below AA by choice) */
+.qslink svg { width: 16px; height: 16px; display: block; }
+:root:not(#_) .qslink { padding: 6px 12px; }
 .qslink:hover { background: var(--acc-bg); }
 .qslink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .since .sinx { appearance: none; margin: 0; border: 0; background: none; font-family: inherit; text-align: inherit; padding: 0; cursor: pointer; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
@@ -1502,9 +1503,9 @@ a.dkev { text-decoration: none; }
 .pill { display: inline-block; border-radius: 999px; padding: 1px 7px; font-weight: 600; line-height: 1.5; white-space: nowrap; }
 .pill.pl { background: none; color: var(--muted); font-size: 0.76em; font-weight: 500; padding: 0; } /* place: quiet text, part of the score */
 /* QR box: raised; a small expand badge on its corner says "tap to enlarge" */
-.qcol { display: flex; flex-direction: column; align-items: center; gap: 1px; align-self: start; margin-right: 0; padding: 1px;
+.qcol { display: flex; flex-direction: column; align-items: center; gap: 1px; align-self: start; margin-right: 0; padding: 0;
   border-radius: var(--r-box); background: transparent; box-shadow: none; } /* Nov 21: no box around the QR (same color as the panel); the padding stays so the QR and its neighbors keep their positions */
-.qr { position: relative; width: 132px; /* Nov 21: +10px, the box padding 6px -> 1px: same outer size, larger QR */ aspect-ratio: 1; padding: 0; border: 0; display: block; background: transparent; cursor: zoom-in; }
+.qr { position: relative; width: 134px; /* Nov 21: the box padding 0 and no edge in the image: the code fills the box = the height of the tiles next to it */ aspect-ratio: 1; padding: 0; border: 0; display: block; background: transparent; cursor: zoom-in; }
 .qr img { display: block; width: 100%; height: auto; }
 .qr.wait { background: var(--line); cursor: default; }
 .qr .none { display: block; padding-top: 34px; text-align: center; color: #5b6575; font-size: 0.75rem; }
@@ -1514,8 +1515,10 @@ a.dkev { text-decoration: none; }
 @media (hover: hover) { .qr:hover .qcap { color: var(--accent); } }
 /* Dark: the filter shows the PNG as light dots; its background color turns into the dark card color (no box, no blending).
    A long-press still saves a normal dark-on-light code that the game reads. */
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .qr img { filter: invert(1) hue-rotate(180deg) saturate(1.25); } }
-:root[data-theme="dark"] .qr img { filter: invert(1) hue-rotate(180deg) saturate(1.25); }
+/* Nov 21: no inverted code any more (the game could not read it): a dark-on-light code on a soft light square, rounded like the tiles */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .qr img:not([data-q]) { filter: invert(1) hue-rotate(180deg) saturate(1.25); } :root:not([data-theme="light"]) .qr img[data-q] { border-radius: 10px; box-shadow: var(--raised), var(--bevel); } }
+:root[data-theme="dark"] .qr img:not([data-q]) { filter: invert(1) hue-rotate(180deg) saturate(1.25); } /* other page QRs as before */
+:root[data-theme="dark"] .qr img[data-q] { border-radius: 10px; box-shadow: var(--raised), var(--bevel); } /* dark: the QR is a raised muted tile like its neighbors */
 
 /* Narrow list columns (3 per view on wide screens): the same tiles and labels as on the phone, with a smaller QR and text */
 @container (max-width: 300px) {
@@ -1533,7 +1536,7 @@ a.dkev { text-decoration: none; }
   .pill { padding: 0 6px; }
   .energy { min-height: 20px; }
   .energy img { width: 14px; height: 14px; }
-  .qr { width: 106px; }
+  .qr { width: 108px; }
   .cards { gap: 3px; }
 }
 
@@ -1867,7 +1870,7 @@ a.dkev { text-decoration: none; }
   .ev { font-size: var(--fs-s); }
   .sc { font-size: var(--fs-m); }
   .cards { gap: 3px; }
-  .qr { width: 122px; } /* Nov 21: +10px (box padding 6px -> 1px). Nov 17/18: was 93px: a taller QR box, so the swap carousel over it is bigger */
+  .qr { width: 124px; } /* Nov 21: box padding 0, no image edge. Nov 17/18: was 93px: a taller QR box, so the swap carousel over it is bigger */
   /* podium: tiles 20px shorter; the medal sits on the tile's corner, like the game */
   .podium { margin-top: 10px; }
   .pod > .pcard { --t0: 10px; --tx: 72px; } /* same layout as wider screens; a taller text area for 2-line names */
@@ -2822,11 +2825,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   const QR_DOT = 0.84; // dot diameter as a share of one module (ZXing reads 0.70-0.92 on every code)
   // In-game look: cyan -> blue vertical gradient, round dots and rounded finder squares. Whole-pixel modules keep the edges sharp.
-  function drawQR(ctx, q, x, y, mod) {
+  function drawQR(ctx, q, x, y, mod, solid) { // solid: one flat color (the dark-mode test: white dots)
     const n = q.n, g = qrGrid(q), size = n * mod;
     const grad = ctx.createLinearGradient(0, y, 0, y + size);
     grad.addColorStop(0, "#0e8db4"); grad.addColorStop(1, "#0a44a5"); // darker than the game so every code still decodes
-    ctx.save(); ctx.fillStyle = grad;
+    ctx.save(); ctx.fillStyle = solid || grad;
     const inFinder = (r, c) => (r < 7 && c < 7) || (r < 7 && c >= n - 7) || (r >= n - 7 && c < 7);
     ctx.beginPath(); // data modules as round dots
     const rad = mod * QR_DOT / 2;
@@ -2849,20 +2852,24 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // into the dark panel color. Both keep a normal dark-on-light code for a long-press save.
   const QR_BG = () => (isDark() ? "#d5dce4" : "#eef6f9"); // light: the card color; dark: the filter turns #d5dce4 into the card color #1d252f
   const pngCache = new Map(), qrSvgs = [];
-  function qrPng(svg, bg = QR_BG()) {
-    const k = bg + svg;
+  function qrPng(svg, bg = QR_BG(), e = 1, solid = "") { // e = edge in modules (the page QR: 0, so the code fills its box; saved / shared images keep 1)
+    const k = bg + e + solid + svg;
     if (pngCache.has(k)) return pngCache.get(k);
     const q = qrParse(svg), mod = 8, c = document.createElement("canvas");
-    c.width = c.height = (q.n + 2) * mod; // 1 module of edge
+    c.width = c.height = (q.n + 2 * e) * mod;
     const x = c.getContext("2d"); x.fillStyle = bg; x.fillRect(0, 0, c.width, c.height);
-    drawQR(x, q, mod, mod, mod);
+    drawQR(x, q, mod * e, mod * e, mod, solid);
     const url = c.toDataURL("image/png"); pngCache.set(k, url);
     if (pngCache.size > 80) pngCache.delete(pngCache.keys().next().value); // about 37 KB each: keep the newest 80
     return url;
   }
-  const qrImg = (svg) => { const n = qrSvgs.indexOf(svg) < 0 ? qrSvgs.push(svg) - 1 : qrSvgs.indexOf(svg); return `data-q="${n}" src="${qrPng(svg)}"`; };
+  // Nov 21: the page QR. Light: no edge (the code fills the box). Dark: a normal dark-on-light code (scanners do not read light-on-dark) on a soft
+  // light square with its 1-module edge inside the same box (still lined up with the tiles)
+  // Nov 21: dark = a muted light tile (#bccad7) with the gradient dots and a 1-module edge (the game cannot read light-on-dark codes; a white code was tried)
+  const qrPage = (svg) => isDark() ? qrPng(svg, "#bccad7", 1) : qrPng(svg, QR_BG(), 0); // dark: the same gradient dots as light mode
+  const qrImg = (svg) => { const n = qrSvgs.indexOf(svg) < 0 ? qrSvgs.push(svg) - 1 : qrSvgs.indexOf(svg); return `data-q="${n}" src="${qrPage(svg)}"`; };
   // Theme change: draw the open QR codes again with the new background.
-  const repaintQR = () => document.querySelectorAll(".qr img[data-q]").forEach((im) => { im.src = qrPng(qrSvgs[+im.dataset.q]); });
+  const repaintQR = () => document.querySelectorAll(".qr img[data-q]").forEach((im) => { im.src = qrPage(qrSvgs[+im.dataset.q]); });
   // Nov 14: a card image that does not load (c/ or z/) becomes a gray card with its name: an SVG made here, so the <img> stays
   // (size, taps, zoom, highlight and the swap preview keep working). One capture listener for every place that shows cards.
   const phSvg = (name, id) => {
@@ -4502,7 +4509,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const { a, k } = list[j];
       altPreview(slide, altPairs(a).map((p) => ({ slot: p.out.id, back: p.out, front: p.in })));
       if (qim && a.qr && k !== lastK) { lastK = k; qb.dataset.ak = k;
-        const n = qrSvgs.indexOf(a.qr) < 0 ? qrSvgs.push(a.qr) - 1 : qrSvgs.indexOf(a.qr); qim.dataset.q = n; qim.src = qrPng(a.qr); }
+        const n = qrSvgs.indexOf(a.qr) < 0 ? qrSvgs.push(a.qr) - 1 : qrSvgs.indexOf(a.qr); qim.dataset.q = n; qim.src = qrPage(a.qr); }
     };
     const show = (g) => {
       pop.querySelectorAll(".ttabs button").forEach((b) => b.setAttribute("aria-selected", String(+b.dataset.g === g)));
