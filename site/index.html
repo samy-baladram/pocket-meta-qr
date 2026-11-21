@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795280297-253e -->
+<!-- ui: artifact version 1795281229-7d18 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2452,13 +2452,13 @@ a.dkev { text-decoration: none; }
 .lbban { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; width: 100%; height: 58px; margin: 16px 0 14px; padding: 0 12px 0 74px; border: 0; border-radius: var(--r-card); background: var(--surface); box-shadow: var(--raised), var(--bevel); color: var(--ink); font-family: inherit; font-size: 14px; text-align: left; cursor: pointer; }
 .lbban[hidden] { display: none; }
 .lbban::after { content: ""; position: absolute; inset: 4px; border-radius: 9px; outline: 1px dashed color-mix(in srgb, var(--muted) 35%, transparent); pointer-events: none; }
-.lbk { position: absolute; left: 0; top: -18px; bottom: 0; width: 72px; clip-path: inset(-40px -40px 0 -40px); pointer-events: none; }
-.lbk img { position: absolute; left: 16px; top: 0; width: 46px; height: auto; aspect-ratio: 367 / 512; border-radius: 3px; transform: rotate(5deg); transform-origin: 50% 0; box-shadow: 2px 2px 5px rgba(40, 60, 90, 0.33); }
+.lbkc { position: absolute; left: 0; top: -18px; bottom: 0; width: 72px; clip-path: inset(-40px -40px 0 -40px); pointer-events: none; }
+.lbkc img { position: absolute; left: 16px; top: 0; width: 46px; height: auto; aspect-ratio: 367 / 512; border-radius: 3px; transform: rotate(5deg); transform-origin: 50% 0; box-shadow: 2px 2px 5px rgba(40, 60, 90, 0.33); }
 .lbban .hg { width: 15px; height: 15px; flex: none; color: var(--acc-ink); }
 .lbban .lbtx { display: flex; align-items: center; gap: 7px; min-width: 0; }
-.lbban .lbn { min-width: 0; overflow: hidden; font-weight: 600; white-space: nowrap; text-overflow: ellipsis; }
-.lbban .lbn b { font-weight: 600; }
-@media (max-width: 599px) { .lbban .lbn { display: grid; line-height: 1.25; } .lbban .lbn .l1 { overflow: hidden; color: var(--muted); font-size: 12px; font-weight: 500; text-overflow: ellipsis; } } /* phones: 2 lines, the set name over the event name (as in the game) */
+.lbban .lbnm { min-width: 0; overflow: hidden; font-weight: 600; white-space: nowrap; text-overflow: ellipsis; }
+.lbban .lbnm b { font-weight: 600; }
+@media (max-width: 599px) { .lbban .lbnm { display: grid; line-height: 1.25; } .lbban .lbnm .l1 { overflow: hidden; color: var(--muted); font-size: 12px; font-weight: 500; text-overflow: ellipsis; } } /* phones: 2 lines, the set name over the event name (as in the game) */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t1s-set > .pks-c:first-child::before { box-shadow: 1px 0 0 rgba(255, 255, 255, 0.06); } }
 :root[data-theme="dark"] .t1s-set > .pks-c:first-child::before { box-shadow: 1px 0 0 rgba(255, 255, 255, 0.06); }
 .lbban .lbt { flex: none; margin-left: auto; padding: 3px 7px; border-radius: 999px; background: color-mix(in srgb, var(--muted) 14%, transparent); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
@@ -3911,7 +3911,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     sec.querySelector(".pkd").innerHTML = `<p class="pkd-h"><b>${esc(c.n)}</b> &middot; in ${c.decks.length} meta deck${c.decks.length > 1 ? "s" : ""}</p><div class="pkd-l">${c.decks.slice(0, 5).map((r) => `<button type="button" class="pkd-r" data-go="${esc(r.d.id)}">${t2c(r.d, 26, 42, 34, 15, 5)}<span class="pkd-n">${esc(r.d.name)}</span><span class="pkd-s"><b>${pct(r.d.share)}</b>${r.c > 1 ? " &middot; ×" + r.c : ""}</span></button>`).join("")}</div>${c.decks.length > 5 ? `<p class="pkd-m">+${c.decks.length - 5} more</p>` : ""}`; }
   // Nov 22: from a card popup ("Booster pack" tile) to the Packs tab, filtered by that card
   let pkTarget = null;
-  function pkGo(ids, name) { pkTarget = { ids, name }; setTab("decks"); if (MV === "packs") pkGoNow(); else setMV("packs"); try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} }
+  function pkGo(ids, name) { pkTarget = { ids, name }; setTab("decks"); setMV("packs"); if (PKV) pkGoNow(); /* the view was built before: filter now (else renderPacks does it) */ try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} }
   function pkGoNow() { const t = pkTarget; if (!t || !PKV || !$("pkl")) return; pkTarget = null;
     if (PKV.some((x) => x.cards.some((c) => c.n === t.name))) { // the card is in the view: filter the packs by it (as a pick in the filter), the first pack opens with the card picked
       pkF.q = ""; pkF.card = t.name; pkFiltUI(); pkApply();
@@ -5530,7 +5530,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const lbDecks = LB.decks.map(([id, name, energy, art, cards, q], k) => ({ id, name, energy, art, qr: q, nv: 1, lb: 1, k, rank: k + 1, deckName: name,
     cards: cards.map(([cid, n, c]) => ({ id: cid, n, c })), note: LB.notes[id] || null, evt: "Limited Battle pick", ev: LB.name }));
   function lbTab() { const b = $("tabL"), on = lbOn(); b.hidden = true; /* Nov 22: no Limited tab; a banner on the Meta tab */ const bn = $("lbBan");
-    if (bn) { bn.innerHTML = on ? `<span class="lbk" aria-hidden="true"><img src="${LB.key}" alt=""></span><span class="lbtx">${HG_I}<span class="lbn"><span class="l1">${esc(LB.name.replace(/\s*Limited Battle$/, ""))}</span> <b>Limited Battle</b></span></span><span class="lbt">${lbLeft()}</span><svg class="ch" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>` : ""; bn.setAttribute("aria-label", on ? `Limited Battle, ${lbLeft(true)}` : ""); lbBanShow(); }
+    if (bn) { bn.innerHTML = on ? `<span class="lbkc" aria-hidden="true"><img src="${LB.key}" alt=""></span><span class="lbtx">${HG_I}<span class="lbnm"><span class="l1">${esc(LB.name.replace(/\s*Limited Battle$/, ""))}</span> <b>Limited Battle</b></span></span><span class="lbt">${lbLeft()}</span><svg class="ch" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>` : ""; bn.setAttribute("aria-label", on ? `Limited Battle, ${lbLeft(true)}` : ""); lbBanShow(); }
     if (on) { b.innerHTML = `${HG_I}<span>Limited</span><span class="lbt">${lbLeft()}</span>`; b.setAttribute("aria-label", `Limited Battle, ${lbLeft(true)}`); }
     else if (curTab === "limited") setTab("decks"); }
   const lbUpd = () => { const t = new Date(LB.updated), m = Math.max(0, Math.round((Date.now() - t) / 6e4)), h = Math.round(m / 60), d = Math.round(m / 1440);
@@ -5549,7 +5549,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
         <ul class="lbf">
           <li><b>Cards</b><span>Dual Fusion, Promo-C Vol. 1 and 7 shop promos ${ii("cards you can use", promoTip)}</span></li>
         </ul>
-        <p class="lbn">Hand-picked decks, not tournament data. This tab goes away when the event ends.</p>
+        <p class="lbn">Hand-picked decks, not tournament data. This view goes away when the event ends.</p>
       </div>
       <p class="lbnote"><b class="lbup">Updated ${lbUpd()}.</b> Ranked best first, from our testing so far (it can change). Deck notes made with help from <a href="${esc(LB.src)}" target="_blank" rel="noopener">GameWith</a>.</p>` + lbDecks.map((d, k) => `<section class="acc evr lbr" id="lbr-${k}" style="${bandStyle(d)}">
         <button class="arow" type="button" data-lk="${k}" aria-expanded="false" aria-controls="lbp-${k}">
