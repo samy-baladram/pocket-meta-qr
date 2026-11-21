@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795269193-2eb7 -->
+<!-- ui: artifact version 1795280297-253e -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1664,6 +1664,11 @@ a.dkev { text-decoration: none; }
 .cpop .ps { margin: -4px 0 0; font-size: var(--fs-s); color: var(--muted); }
 .cpop .pack { display: flex; gap: 10px; align-items: center; background: var(--tile); border-radius: var(--r-box); padding: 8px; }
 .cpop .pks { display: flex; flex: none; }
+.cpop .pack.pkgo { width: 100%; border: 0; color: inherit; font-family: inherit; font-size: inherit; text-align: left; cursor: pointer; } /* Nov 22: a link to the Packs tab */
+.cpop .pgo { display: inline-flex; align-items: center; gap: 3px; margin-top: 3px; color: var(--acc-ink); font-size: var(--fs-s); font-weight: 600; }
+.cpop .pgo svg { width: 10px; height: 10px; }
+@media (hover: hover) { .cpop .pack.pkgo:hover { outline: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: -1.5px; } }
+.pka, #fnone { scroll-margin-top: 64px; }
 .cpop .pk { height: 72px; width: auto; display: block; border-radius: 3px; filter: drop-shadow(0 2px 3px rgba(var(--sh), calc(0.3 * var(--shk)))); }
 .cpop .pks.n2 .pk:first-child, .cpop .pks.n3 .pk:first-child { transform: rotate(-4deg); }
 .cpop .pks.n2 .pk + .pk, .cpop .pks.n3 .pk + .pk { margin-left: -18px; transform: rotate(6deg); }
@@ -1936,7 +1941,7 @@ a.dkev { text-decoration: none; }
 .tabs button#tabL { display: inline-flex; align-items: center; justify-content: center; gap: 3px; padding: 0 6px; outline: 1px dashed color-mix(in srgb, var(--muted) 35%, transparent); outline-offset: -3px; /* Nov 21: the same color as the other tabs; a dimmer outline */ white-space: nowrap; }
 .tabs button#tabL[hidden] { display: none; }
 #tabL .hg { width: 13px; height: 13px; flex: none; }
-@media (max-width: 599px) { .tabs:has(#tabL:not([hidden])) .tlx { display: none; } .tabs button { font-size: 0.8125rem; } } /* phones: 13px (was 14px), same 32px tab height */ /* phones, 3 tabs: Meta · Events · Limited (full names on wider screens) */
+@media (max-width: 599px) { .tabs .tlx { display: none; } .tabs button { font-size: 0.8125rem; } } /* phones: 13px (was 14px), same 32px tab height */ /* Nov 22: phones, 3 tabs: Meta · Events · Packs (full names on wider screens) */
 #tabL .lbt { font-size: 10px; font-weight: 700; line-height: 1; padding: 2px 4px; border-radius: 999px; background: color-mix(in srgb, var(--muted) 14%, transparent); font-variant-numeric: tabular-nums; }
 .lbh { position: relative; padding: 14px var(--sp-4) 13px; border-radius: var(--r-card); background: var(--surface); box-shadow: var(--raised); overflow: hidden; }
 .lbh::before { content: ""; position: absolute; inset: 5px; border: 1.5px dashed var(--lb-line); border-radius: calc(var(--r-card) - 4px); pointer-events: none; }
@@ -2380,6 +2385,85 @@ a.dkev { text-decoration: none; }
 .t10, .evsum > div { background: var(--bg); }
 /* Nov 21: Top 10: card 1 starts in line with the heading (was 4px in); the strip starts 3px further left so the rank badge is not cut off */
 .t10st { margin-left: -5px; padding-left: 3px; }
+/* Nov 22: Booster Packs tab. Shelf = all packs with meta cards (loop carousel, like the Top 10); list = one row per pack; open = card grid + the decks of the picked card */
+#pkv { --pw: calc(var(--cw) * 0.875); margin: 2px 0 10px; }
+#pkv[hidden] { display: none; }
+.pks-c { flex: none; position: relative; width: var(--pw); padding: 0; border: 0; background: none; cursor: inherit; transform: rotate(5deg); transform-origin: 50% 0; -webkit-tap-highlight-color: transparent; }
+.pks-c img { display: block; width: 100%; height: auto; aspect-ratio: 200 / 386; filter: drop-shadow(2px 3px 4px rgba(40, 60, 90, 0.35)); pointer-events: none; -webkit-user-drag: none; }
+.pks-c:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.t1s-set > .pks-c:first-child::before { content: ""; position: absolute; left: -8.5px; top: -4px; width: 1px; height: calc(var(--pw) * 1.6); background: linear-gradient(rgba(var(--sh), 0), rgba(var(--sh), 1) 15%, rgba(var(--sh), 1) 70%, rgba(var(--sh), 0)); box-shadow: 1px 0 0 rgba(255, 255, 255, 0.8); } /* the loop seam: between the oldest and the newest pack */
+.pkcode { display: inline-block; flex: none; margin-right: 6px; padding: 1px 5px; border-radius: 5px; background: var(--bg); box-shadow: var(--pin-sh); color: var(--muted); font-size: 10.5px; font-weight: 700; letter-spacing: 0.02em; line-height: 1.4; }
+.t1s-lab .pkcode { margin-right: 0; }
+.pk-lh { margin-top: 18px; align-items: center; }
+.pk-lh .t1s-seg { display: inline-grid; grid-template-columns: auto auto; margin: 0; text-transform: none; letter-spacing: 0; }
+.pk-lh .t1s-seg button { height: 26px; padding: 0 12px; font-size: 12.5px; }
+.pka { margin-bottom: 10px; border-radius: var(--r-card); background: var(--surface); box-shadow: var(--raised), var(--bevel); }
+.pka[hidden] { display: none; }
+.pk-l:not(.old-on):not(.f) .pka.old, .pk-l.f .moreb { display: none; } /* Nov 22: the older series (A now) stay behind "Show older packs"; a filter shows them */
+.pk-l .moreb { margin: 4px 0 10px; }
+.pka.sk .pkr { cursor: default; } .pka.sk .pkr-t, .pka.sk .pkr-n { border-radius: 6px; background: color-mix(in srgb, var(--muted) 10%, transparent); } .pka.sk .pkr-t { clip-path: none; margin: 14px 6px 14px 10px; } .pka.sk .pkr-n { height: 40px; } /* loading skeleton */
+.pka.z { background: transparent; box-shadow: none; outline: 1.5px dashed rgba(var(--sh), 1); outline-offset: -1.5px; }
+.pkr { display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 12px; align-items: center; width: 100%; height: 86px; padding: 0 14px 0 8px; border: 0; background: none; color: inherit; font-family: inherit; text-align: left; cursor: pointer; }
+.pka.z .pkr { cursor: default; }
+.pka.open .pkr { box-shadow: inset 0 -1px 0 rgba(var(--sh), 0.9); }
+/* the pack: tilted 5 deg, its top peeks over the row (wide screens, and an open row on phones); the row's bottom edge cuts it */
+.pkr-t { position: relative; align-self: stretch; clip-path: inset(-40px -40px 0 -40px); }
+.pkr-t img { position: absolute; left: 13px; top: -11px; width: 54px; height: auto; aspect-ratio: 200 / 386; transform: rotate(5deg); transform-origin: 50% 0; filter: drop-shadow(1.5px 2px 2px rgba(40, 60, 90, 0.3)); transition: width 0.3s cubic-bezier(0.2, 0.8, 0.3, 1.2), top 0.3s cubic-bezier(0.2, 0.8, 0.3, 1.2), left 0.3s; }
+@media (max-width: 699px) { .pkr-t img { left: 14px; top: 9px; width: 52px; } .pka.open .pkr-t img { left: 13px; top: -11px; width: 54px; } }
+@media (prefers-reduced-motion: reduce) { .pkr-t img { transition: none; } }
+.pkr-n { min-width: 0; }
+.pkr-n b { display: block; overflow: hidden; font-size: 15px; font-weight: 600; white-space: nowrap; text-overflow: ellipsis; }
+.pkr-n small { display: flex; align-items: center; min-height: 19px; overflow: hidden; color: var(--muted); font-size: 12px; white-space: nowrap; }
+.pkr-m { display: flex; gap: 4px; margin-top: 4px; }
+.pkr-m img { width: 24px; height: auto; aspect-ratio: 240 / 335; border-radius: 2px; background: var(--tile); box-shadow: 1px 1px 3px rgba(40, 60, 90, 0.3); }
+.pkr-m img.lo { opacity: 0.4; }
+.pkr-v { color: var(--muted); font-size: 12.5px; text-align: right; white-space: nowrap; }
+.pkr-v b { color: var(--ink); font-size: 14px; }
+.pkr-v small { display: block; margin-top: 2px; font-size: 11px; }
+.pkp { display: none; padding: 0 12px 10px; }
+.pka.open .pkp { display: block; }
+/* the card grid (like a decklist): 5 columns, 3 rows show (phones); 10 columns, 2 rows (wide); then it scrolls */
+.pkg-w { container-type: inline-size; margin: 8px 0 10px; }
+.pkg { --n: 5; --g: 8px; --rows: 3; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 10px var(--g); max-height: calc(var(--rows) * ((100cqw - 8px - (var(--n) - 1) * var(--g)) / var(--n) * 1.396 + 21px) + (var(--rows) - 1) * 10px + 10px); padding: 4px 4px 6px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+@media (min-width: 700px) { .pkg { --n: 10; --g: 10px; --rows: 2; } }
+.pkc { display: grid; justify-items: center; gap: 4px; min-width: 0; padding: 0; border: 0; background: none; color: var(--muted); font-family: inherit; text-align: center; cursor: pointer; }
+.pkc-i { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 240 / 335; overflow: hidden; border-radius: 5px; background: var(--tile); box-shadow: 2px 2px 5px rgba(40, 60, 90, 0.33); }
+.pkc-i > span { padding: 4px; font-size: 10px; line-height: 1.2; } /* the name, under the image (shows when there is no image) */
+.pkc-i img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pkc small { font-size: 11px; }
+.pkc.on .pkc-i { outline: 2px solid var(--accent); outline-offset: 2px; }
+.pkc.lo:not(.on) .pkc-i { opacity: 0.4; }
+.pkc.lo:not(.on) small { opacity: 0.6; }
+.pkg-f { margin: 2px 4px 0; color: var(--muted); font-size: 11.5px; }
+.pkg-f i { display: inline-block; width: 9px; height: 12px; margin-right: 5px; border-radius: 2px; background: var(--muted); opacity: 0.4; vertical-align: -1px; }
+.pkd { padding-top: 8px; box-shadow: inset 0 1px 0 rgba(var(--sh), 0.8); }
+.pkd-h { margin: 0 2px 4px; color: var(--muted); font-size: 12.5px; }
+.pkd-h b { color: var(--ink); font-weight: 600; }
+.pkd-l { display: grid; }
+@media (min-width: 700px) { .pkd-l { grid-template-columns: 1fr 1fr; column-gap: 22px; } }
+.pkd-r { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: center; min-height: 44px; padding: 4px; border: 0; background: none; box-shadow: inset 0 1px 0 rgba(var(--sh), 0.8); color: var(--ink); font-family: inherit; font-size: 13.5px; text-align: left; cursor: pointer; }
+.pkd-n { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.pkd-s { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.pkd-s b { color: var(--ink); font-size: 13px; }
+.pkd-m { margin: 6px 4px 0; color: var(--muted); font-size: 12.5px; }
+@media (hover: hover) { .pkd-r:hover { background: var(--bg); } }
+/* Nov 22: Limited Battle: a banner at the top of the Meta tab (no tab), with the event's key card */
+.tabs, .tabs:has(#tabL:not([hidden])) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; } /* 3 tabs, the same width */
+.lbban { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; width: 100%; height: 58px; margin: 16px 0 14px; padding: 0 12px 0 74px; border: 0; border-radius: var(--r-card); background: var(--surface); box-shadow: var(--raised), var(--bevel); color: var(--ink); font-family: inherit; font-size: 14px; text-align: left; cursor: pointer; }
+.lbban[hidden] { display: none; }
+.lbban::after { content: ""; position: absolute; inset: 4px; border-radius: 9px; outline: 1px dashed color-mix(in srgb, var(--muted) 35%, transparent); pointer-events: none; }
+.lbk { position: absolute; left: 0; top: -18px; bottom: 0; width: 72px; clip-path: inset(-40px -40px 0 -40px); pointer-events: none; }
+.lbk img { position: absolute; left: 16px; top: 0; width: 46px; height: auto; aspect-ratio: 367 / 512; border-radius: 3px; transform: rotate(5deg); transform-origin: 50% 0; box-shadow: 2px 2px 5px rgba(40, 60, 90, 0.33); }
+.lbban .hg { width: 15px; height: 15px; flex: none; color: var(--acc-ink); }
+.lbban .lbtx { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.lbban .lbn { min-width: 0; overflow: hidden; font-weight: 600; white-space: nowrap; text-overflow: ellipsis; }
+.lbban .lbn b { font-weight: 600; }
+@media (max-width: 599px) { .lbban .lbn { display: grid; line-height: 1.25; } .lbban .lbn .l1 { overflow: hidden; color: var(--muted); font-size: 12px; font-weight: 500; text-overflow: ellipsis; } } /* phones: 2 lines, the set name over the event name (as in the game) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t1s-set > .pks-c:first-child::before { box-shadow: 1px 0 0 rgba(255, 255, 255, 0.06); } }
+:root[data-theme="dark"] .t1s-set > .pks-c:first-child::before { box-shadow: 1px 0 0 rgba(255, 255, 255, 0.06); }
+.lbban .lbt { flex: none; margin-left: auto; padding: 3px 7px; border-radius: 999px; background: color-mix(in srgb, var(--muted) 14%, transparent); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.lbban svg.ch { width: 12px; height: 12px; flex: none; color: var(--muted); }
+.lbback { display: inline-flex; align-items: center; gap: 4px; margin: 0 0 10px 2px; padding: 4px 2px; border: 0; background: none; color: var(--acc-ink); font-family: inherit; font-size: 13px; cursor: pointer; }
 </style>
 
 <div class="wrap">
@@ -2410,7 +2494,7 @@ a.dkev { text-decoration: none; }
   <div class="cpop ipop" id="iPop" role="dialog" aria-label="About this label" tabindex="-1" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div class="ibody" id="iPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="iPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <div class="cpop" id="cPop" role="dialog" aria-label="Card details" tabindex="-1" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div id="cPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="cPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <div class="tbar" id="tbar">
-  <div class="tabs" id="tabs" role="tablist" aria-label="View"><button type="button" role="tab" id="tabM" aria-selected="true" aria-controls="list" aria-label="Meta Decks">Meta<span class="tlx"> Decks</span></button><button type="button" role="tab" id="tabE" aria-selected="false" aria-controls="evl" aria-label="Latest Events"><span class="tlx">Latest </span>Events</button><button type="button" role="tab" id="tabL" aria-selected="false" aria-controls="lbl" hidden></button></div>
+  <div class="tabs" id="tabs" role="tablist" aria-label="View"><button type="button" role="tab" id="tabM" aria-selected="true" aria-controls="list" aria-label="Meta Decks">Meta<span class="tlx"> Decks</span></button><button type="button" role="tab" id="tabE" aria-selected="false" aria-controls="evl" aria-label="Latest Events"><span class="tlx">Latest </span>Events</button><button type="button" role="tab" id="tabP" aria-selected="false" aria-controls="pkv" aria-label="Booster Packs"><span class="tlx">Booster </span>Packs</button><button type="button" role="tab" id="tabL" aria-selected="false" aria-controls="lbl" hidden></button></div>
   <div class="fwrap">
     <button class="theme-btn filt-btn" id="filtBtn" type="button" aria-label="Search and filter decks" title="Search and filter" aria-expanded="false" aria-controls="filt" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V18l-3.6 2v-7.6z"/></svg><span class="fdot" id="fdot" hidden></span></button>
     <div class="filt" id="filt" hidden>
@@ -2424,8 +2508,10 @@ a.dkev { text-decoration: none; }
   </div>
   </div>
   <p class="fnone" id="fnone" aria-live="polite" hidden><span id="fnoneTxt"></span> <button type="button" id="fclear">Clear</button></p>
+  <button type="button" class="lbban" id="lbBan" hidden></button>
   <section class="t1s t1s-wait" id="t10" aria-label="Top 10 decks"><p class="t1s-h"><b>Top 10</b></p></section>
   <div class="lsh" id="lsh" hidden><span>All decks<b id="lshN"></b></span><span class="lshc">share &middot; win</span></div>
+  <section id="pkv" aria-label="Packs for the meta" hidden></section>
   <main class="list" id="list"><div class="empty">Loading decks&hellip;</div></main>
   <section class="list" id="evl" aria-label="Latest events" hidden></section>
   <section class="list" id="lbl" aria-label="Limited Battle decks" hidden></section>
@@ -3774,14 +3860,168 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   function t10Show() { const el = $("t10"); if (!el) return;
     const f = typeof fstate !== "undefined" && fstate && (fstate.q.trim() || fstate.card || fstate.en.size || fstate.dk.size || fstate.without);
-    el.hidden = !el.innerHTML || curTab === "events" || curTab === "limited" || !!f;
+    const pv = MV === "packs" && curTab !== "events" && curTab !== "limited"; // Nov 21: the Packs view
+    el.hidden = !el.innerHTML || curTab === "events" || curTab === "limited" || !!f || pv;
+    $("pkv").hidden = !pv; $("list").hidden = curTab === "events" || curTab === "limited" || pv; $("filtBtn").hidden = !data; if (pv) pkApply();
+    if (pv && $("pkv")._vis) requestAnimationFrame($("pkv")._vis);
+    lbBanShow(); $("tabM").setAttribute("aria-selected", String(curTab !== "events" && !pv)); $("tabP").setAttribute("aria-selected", String(pv));
     if (!el.hidden) requestAnimationFrame(t10Fit); // Nov 16: size the mover boxes when the card shows (also after a tab switch)
     if (el._t10vis) requestAnimationFrame(el._t10vis); // Nov 21: the shelf runs only while it shows
-    const lh = $("lsh"); if (lh) { lh.hidden = curTab === "events" || curTab === "limited" || !!f || !data; // Nov 16: "ALL DECKS · 32 + 22 smaller" (all: "· 54")
+    const lh = $("lsh"); if (lh) { lh.hidden = curTab === "events" || curTab === "limited" || !!f || !data || pv; // Nov 16: "ALL DECKS · 32 + 22 smaller" (all: "· 54")
       if (data) { const n0 = data.decks.filter((d) => !d._more).length, nm = MORE ? data.decks.length - n0 : data.more || 0;
         $("lshN").textContent = " \u00b7 " + (moreShown || !nm ? n0 + nm : n0 + " + " + nm + " smaller"); } } }
   $("t10").addEventListener("click", (e) => { const b = e.target.closest("[data-go]"); if (!b) return; const id = b.dataset.go; track("top10-deck");
     if (location.hash === "#" + id) history.replaceState(null, "", location.pathname + location.search); location.hash = id; });
+  // Nov 22: Booster Packs tab: which packs give the cards of the meta decks (Pokémon and Trainers).
+  // A deck plays a card when half or more of its lists play it. A "meta card": at least one deck with a 1.0% share or more plays it;
+  // the other cards (only in smaller decks) are faded and counted apart. No ranking: the packs are in release order (newest first).
+  let MV = "decks", PKV = null, pkSort = "new", pkKill = null;
+  const pkCode = (s) => s[0].toUpperCase() + s.slice(1).toLowerCase(); // "b2a" -> "B2a"
+  const pkSub = (x) => (x.pack === x.setName ? "" : x.pack); // the Pokémon name of a pack (sets with 2 or more packs)
+  const pkMeta = (x) => x.cards.filter((c) => c.st).length;
+  // Nov 22: the 2 newest series (B and C now) are "active"; older packs show after "Show older packs" (or with a filter)
+  const pkSer = (x) => x.set[0], pkAct = () => { const L = [...new Set((PKV || []).map(pkSer))]; return new Set(L.slice(0, 2)); };
+  let pkOld = false, pkIo = null;
+  // row images load only near the screen (not the browser's lazy loading: it loads 1,250 px+ ahead)
+  const pkLazy = (root) => { if (!pkIo) pkIo = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting) return; const i = e.target; pkIo.unobserve(i); i.src = i.dataset.src; i.removeAttribute("data-src"); }), { rootMargin: "300px 0px" });
+    root.querySelectorAll("img[data-src]").forEach((i) => pkIo.observe(i)); };
+  function pkBuild(M) {
+    const nm = (cid) => { const e = M.byNr.get(M.byId.get(cid)); return e ? e.n : null; }, by = {}, dk = new Map(data.decks.map((d) => [d.id, d]));
+    for (const d of data.decks) { const s = STD && STD.d && STD.d[d.id]; if (!s || !s.cu || !s.cu.length) continue;
+      const np = Math.max(...s.cu.map((c) => c[1])); if (!np) continue;
+      for (const [cid, n, avg] of s.cu) { if (n / np < 0.5) continue; const name = nm(cid) || cid;
+        for (const p of PK.cards[cid] || []) { if (/^p[ab]-/.test(p) || !PK.packs[p]) continue;
+          const P = by[p] || (by[p] = new Map()), c = P.get(name) || (P.set(name, { n: name, ids: new Map(), decks: new Map() }), P.get(name));
+          c.ids.set(cid, (c.ids.get(cid) || 0) + n); c.decks.set(d.id, Math.max(c.decks.get(d.id) || 0, Math.round(avg))); } } }
+    const out = Object.keys(PK.packs).filter((p) => !/^p[ab]-/.test(p) && (PK.sets[PK.packs[p].set] || {}).release).map((p) => {
+      const k = PK.packs[p], st = PK.sets[k.set];
+      const cards = [...(by[p] || new Map()).values()].map((c) => { const ds = [...c.decks].map(([id, cp]) => ({ d: dk.get(id), c: cp })).sort((a, z) => z.d.share - a.d.share);
+        return { n: c.n, img: [...c.ids].sort((a, z) => z[1] - a[1])[0][0], decks: ds, st: ds.some((r) => r.d.share >= 1), sh: ds.reduce((t, r) => t + r.d.share, 0) }; })
+        .sort((a, z) => z.st - a.st || z.decks.length - a.decks.length || z.sh - a.sh);
+      return { id: p, set: pkCode(k.set), setName: st.name, rel: st.release, pack: k.name, img: k.img, cards }; });
+    return out.sort((a, z) => (z.rel > a.rel ? 1 : z.rel < a.rel ? -1 : a.id < z.id ? 1 : -1));
+  }
+  const pkRow = (x, old) => { const m = pkMeta(x), w = x.cards.length - m, mini = (m ? x.cards.filter((c) => c.st) : x.cards).slice(0, 4);
+    return `<section class="pka${x.cards.length ? "" : " z"}${old ? " old" : ""}" id="pk-${esc(x.id)}"><button type="button" class="pkr"${x.cards.length ? ' aria-expanded="false"' : " disabled"}><span class="pkr-t"><img data-src="p/${esc(x.img)}.webp" alt=""></span><span class="pkr-n"><b>${esc(x.setName)}</b><small><span class="pkcode">${esc(x.set)}</span>${esc(pkSub(x))}</small>${mini.length ? `<span class="pkr-m">${mini.map((c) => `<img${c.st ? "" : ' class="lo"'} data-src="c/${esc(c.img)}.webp" alt="">`).join("")}</span>` : ""}</span><span class="pkr-v">${m ? `<b>${m}</b> meta card${m > 1 ? "s" : ""}` : x.cards.length ? "" : "no meta cards"}${w ? `<small>${m ? "+" : ""}${w} in small decks</small>` : ""}</span></button>${x.cards.length ? '<div class="pkp"></div>' : ""}</section>`; };
+  // the card grid is built when the row opens (not for every pack at once)
+  const pkGrid = (x) => { const w = x.cards.some((c) => !c.st); return `<div class="pkg-w"><div class="pkg">${x.cards.map((c, k) => `<button type="button" class="pkc${k ? "" : " on"}${c.st ? "" : " lo"}" data-k="${k}" aria-label="${esc(c.n)}, in ${c.decks.length} deck${c.decks.length > 1 ? "s" : ""}"><span class="pkc-i"><span>${esc(c.n)}</span><img src="c/${esc(c.img)}.webp" alt="" loading="lazy"></span><small>${c.decks.length} deck${c.decks.length > 1 ? "s" : ""}</small></button>`).join("")}</div>${w ? '<p class="pkg-f"><i></i>Faded: only in decks under 1.0% share</p>' : ""}</div><div class="pkd"></div>`; };
+  const pkFill = (a) => { const p = a.querySelector(".pkp"); if (p && !p.innerHTML) { const x = PKV.find((y) => "pk-" + y.id === a.id); if (x) p.innerHTML = pkGrid(x); } };
+  function pkPick(sec, k) { const x = PKV.find((p) => "pk-" + p.id === sec.id), c = x && x.cards[k]; if (!c) return;
+    sec.querySelectorAll(".pkc").forEach((b) => b.classList.toggle("on", +b.dataset.k === k));
+    sec.querySelector(".pkd").innerHTML = `<p class="pkd-h"><b>${esc(c.n)}</b> &middot; in ${c.decks.length} meta deck${c.decks.length > 1 ? "s" : ""}</p><div class="pkd-l">${c.decks.slice(0, 5).map((r) => `<button type="button" class="pkd-r" data-go="${esc(r.d.id)}">${t2c(r.d, 26, 42, 34, 15, 5)}<span class="pkd-n">${esc(r.d.name)}</span><span class="pkd-s"><b>${pct(r.d.share)}</b>${r.c > 1 ? " &middot; ×" + r.c : ""}</span></button>`).join("")}</div>${c.decks.length > 5 ? `<p class="pkd-m">+${c.decks.length - 5} more</p>` : ""}`; }
+  // Nov 22: from a card popup ("Booster pack" tile) to the Packs tab, filtered by that card
+  let pkTarget = null;
+  function pkGo(ids, name) { pkTarget = { ids, name }; setTab("decks"); if (MV === "packs") pkGoNow(); else setMV("packs"); try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} }
+  function pkGoNow() { const t = pkTarget; if (!t || !PKV || !$("pkl")) return; pkTarget = null;
+    if (PKV.some((x) => x.cards.some((c) => c.n === t.name))) { // the card is in the view: filter the packs by it (as a pick in the filter), the first pack opens with the card picked
+      pkF.q = ""; pkF.card = t.name; pkFiltUI(); pkApply();
+      const a = document.querySelector("#pkl .pka:not([hidden])"), x = a && PKV.find((p) => "pk-" + p.id === a.id);
+      if (x) { pkOpen(a, true); pkPick(a, x.cards.findIndex((c) => c.n === t.name)); }
+      requestAnimationFrame(() => { const f = $("fnone"); (f && !f.hidden ? f : $("pkv")).scrollIntoView({ behavior: "smooth", block: "start" }); }); return; } // from the "Charmander is in 2 packs. Clear" line
+    const x = t.ids.map((id) => PKV.find((y) => y.id === id)).find(Boolean); if (!x) return; // not a card of the meta decks: show its pack
+    if (!pkOld && !pkAct().has(pkSer(x))) { pkOld = true; pkList(); }
+    const a = $("pk-" + x.id); if (a) requestAnimationFrame(() => a.scrollIntoView({ behavior: "smooth", block: "start" })); }
+  const pkOpen = (a, on) => { if (on !== false) pkFill(a); const o = a.classList.toggle("open", on), r = a.querySelector(".pkr"); if (r) r.setAttribute("aria-expanded", String(o)); if (o && !a.querySelector(".pkd").innerHTML) pkPick(a, +(a.querySelector(".pkc.on") || { dataset: { k: 0 } }).dataset.k); return o; };
+  function pkList() { const L = $("pkl"); if (!L || !PKV) return; const act = pkAct(), A = PKV.filter((x) => act.has(pkSer(x))), O = PKV.filter((x) => !act.has(pkSer(x)));
+    const srt = (a) => (pkSort === "meta" ? [...a].sort((x, z) => pkMeta(z) - pkMeta(x) || z.cards.length - x.cards.length) : a), ser = [...new Set(O.map(pkSer))].join(", ");
+    L.innerHTML = srt(A).map((x) => pkRow(x, false)).join("") + (O.length ? (pkOld ? "" : `<div class="moreb"><button class="morelink" type="button" id="pkOldBtn"><b>Show ${O.length} older packs</b><svg class="mcar" viewBox="0 0 10 10" aria-hidden="true"><path d="m2.5 4 2.5 2.5L7.5 4" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${esc(ser)} series &middot; the older sets</span></button></div>`) + srt(O).map((x) => pkRow(x, true)).join("") : "");
+    L.classList.toggle("old-on", pkOld); pkApply(); pkLazy(L); }
+  function renderPacks() { const el = $("pkv"); if (!el) return;
+    if (!data || !STD || !PK || !CMAP_J) { el.className = "t1s"; el.innerHTML = `<p class="t1s-h"><b>Packs</b> <span class="t1s-hw">for the meta ${winWk()}</span></p><div class="t1s-sh" aria-hidden="true"><div class="t1s-vp"></div></div><div class="lsh pk-lh"><span>All packs</span></div><div class="pk-l" aria-busy="true">${'<section class="pka sk"><div class="pkr"><span class="pkr-t"></span><span class="pkr-n"></span><span></span></div></section>'.repeat(4)}</div>`; return; } // a skeleton while the files load
+    PKV = pkBuild(CMAP_J); const act = pkAct(), L = PKV.filter((x) => pkMeta(x) > 0 && act.has(pkSer(x))), nA = PKV.filter((x) => act.has(pkSer(x))).length;
+    const bd = PACKBD[data.set]; el.className = "t1s" + (bd ? " t1s-on" : ""); if (bd) { el.style.setProperty("--bd1", bd[0]); el.style.setProperty("--bd2", bd[1]); }
+    el.innerHTML = `${bd ? '<div class="t1s-bd" aria-hidden="true"><i><b></b></i></div>' : ""}<p class="t1s-h"><b>Packs</b> <span class="t1s-hw">for the meta ${winWk()}${ii("Packs", `<h3>Packs for the meta</h3><p>Which booster packs give the cards of the meta decks ${winLast()}. <b>Early results</b>: this view is new.</p><p>A deck plays a card when half or more of its lists play it. A <b>meta card</b> is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.</p><p>The shelf shows the packs of the 2 newest series with meta cards, newest first; the older packs are under the list. Tap a pack to see its cards; tap a card to see the decks that play it.</p>`)}</span><span class="t1s-hr">Early results</span></p>
+      <div class="t1s-sh"><div class="t1s-lab" aria-live="polite"><div></div><div></div></div><div class="t1s-vp" tabindex="0" aria-label="Packs with meta cards, newest first"><div class="t1s-tr">${[0, 1, 2].map((r) => `<div class="t1s-set"${r !== 1 ? ' aria-hidden="true"' : ""}>${L.map((x) => `<button type="button" class="pks-c" data-pk="${esc(x.id)}" aria-label="${esc(x.setName)}${pkSub(x) ? " " + esc(pkSub(x)) : ""}"${r !== 1 ? ' tabindex="-1"' : ""}><img src="p/${esc(x.img)}.webp" alt="" draggable="false" loading="lazy"></button>`).join("")}</div>`).join("")}</div></div></div>
+      <div class="lsh pk-lh"><span>All packs<b> &middot; ${nA === PKV.length ? nA : nA + " + " + (PKV.length - nA) + " older"}</b></span><span class="t1s-seg" role="group" aria-label="Sort packs"><button type="button" data-s="new" aria-pressed="${pkSort === "new"}">Newest</button><button type="button" data-s="meta" aria-pressed="${pkSort === "meta"}">Most meta</button></span></div>
+      <div class="pk-l" id="pkl"></div>`;
+    pkList(); if (L.length) pkCar(el, L); if (pkTarget) pkGoNow(); }
+  // The pack shelf: the Top 10 carousel (loop of 3 copies, transform only, slow auto-move, flick momentum, snap), with packs
+  function pkCar(el, L) { if (pkKill) pkKill(); const vp = el.querySelector(".t1s-vp"), tr = el.querySelector(".t1s-tr"), labs = [...el.querySelectorAll(".t1s-lab > div")];
+    const its = [...tr.querySelectorAll(".pks-c")], N = L.length, SPEED = 10, IDLE = 5000, RM = matchMedia("(prefers-reduced-motion: reduce)");
+    let setW = 0, pos = 0, last = 0, idle = performance.now() + 2000, mode = "idle", A = null, cur = -1, lb = 0, down = null, drag = false, on = false, raf = 0, dead = false, wt = 0;
+    const cx = (i) => its[i].offsetLeft + its[i].offsetWidth / 2;
+    const meas = () => { setW = its[N].offsetLeft - its[0].offsetLeft; };
+    const near = (p) => { const c = p + vp.clientWidth / 2; let b = 0, bd = 1e9; for (let i = 0; i < its.length; i++) { const d = Math.abs(cx(i) - c); if (d < bd) { bd = d; b = i; } } return b; };
+    const label = () => { const k = near(pos) % N; if (k === cur) return; cur = k; const x = L[k], m = pkMeta(x), a = labs[lb], o = labs[1 - lb]; lb = 1 - lb;
+      a.innerHTML = `<span class="pkcode">${esc(x.set)}</span><span class="t1s-ln">${esc(x.setName)}</span>${pkSub(x) ? `<span class="t1s-ls">&middot; ${esc(pkSub(x))}</span>` : ""}<span class="t1s-ls">&middot; <b>${m}</b> meta card${m > 1 ? "s" : ""}</span>`; a.classList.add("on"); o.classList.remove("on"); };
+    const put = () => { if (setW) { if (pos < setW * 0.5) { pos += setW; if (A) { A.from += setW; A.to += setW; } } else if (pos > setW * 1.5) { pos -= setW; if (A) { A.from -= setW; A.to -= setW; } } }
+      tr.style.transform = `translate3d(${(-pos).toFixed(2)}px,0,0)`; label(); };
+    const hold = (ms = IDLE) => { idle = performance.now() + ms; };
+    const glide = (to, dur) => { A = { from: pos, to, t0: performance.now(), dur }; mode = "glide"; hold(dur + IDLE); };
+    const snap = () => glide(cx(near(pos)) - vp.clientWidth / 2, 380);
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const tick = (t) => { raf = 0; if (dead || !on) return; const dt = last ? Math.min(0.05, (t - last) / 1000) : 0; last = t;
+      if (mode === "glide" && A) { const k = Math.min(1, (t - A.t0) / A.dur); pos = A.from + (A.to - A.from) * ease(k); put(); if (k >= 1) { A = null; mode = "idle"; } }
+      else if (mode === "idle" && t > idle && !RM.matches) { pos += SPEED * dt; put(); }
+      raf = requestAnimationFrame(tick); };
+    const run = () => { if (!raf && on && !dead) { last = 0; raf = requestAnimationFrame(tick); } };
+    const io = new IntersectionObserver((es) => { on = es[0].isIntersecting && !document.hidden && !el.hidden; on ? run() : (cancelAnimationFrame(raf), raf = 0); }); io.observe(vp);
+    const vis = () => { on = !document.hidden && !el.hidden && vp.offsetParent != null; on ? run() : (cancelAnimationFrame(raf), raf = 0); }; document.addEventListener("visibilitychange", vis);
+    vp.addEventListener("pointerdown", (e) => { if (e.button > 0) return; down = { x: e.clientX, p: pos, H: [[performance.now(), e.clientX]] }; drag = false; A = null; mode = "drag"; hold(); });
+    vp.addEventListener("pointermove", (e) => { if (!down) return; const dx = e.clientX - down.x; if (!drag && Math.abs(dx) > 6) { drag = true; vp.classList.add("drag"); try { vp.setPointerCapture(e.pointerId); } catch (_) {} }
+      if (!drag) return; const n = performance.now(); down.H.push([n, e.clientX]); while (down.H.length > 2 && n - down.H[0][0] > 100) down.H.shift(); pos = down.p - dx; put(); hold(); });
+    const up = () => { if (!down) return; const H = down.H; down = null; vp.classList.remove("drag"); if (!drag) { mode = "idle"; return; }
+      const a = H[0], z = H[H.length - 1], v = Math.max(-8000, Math.min(8000, (a[1] - z[1]) / Math.max(16, z[0] - a[0]) * 1000));
+      if (Math.abs(v) < 200 || performance.now() - z[0] > 90) { snap(); return; }
+      const to = cx(near(pos + v * 0.499)) - vp.clientWidth / 2; glide(to, Math.max(300, Math.min(2600, Math.abs(3 * (to - pos) / v) * 1000))); };
+    vp.addEventListener("pointerup", up); vp.addEventListener("pointercancel", up);
+    vp.addEventListener("click", (e) => { if (drag) { e.stopPropagation(); e.preventDefault(); drag = false; return; }
+      const b = e.target.closest(".pks-c"); if (!b) return; track("packs-shelf"); const i = its.indexOf(b); glide(cx(i) - vp.clientWidth / 2, 300);
+      const a = $("pk-" + b.dataset.pk); if (a && !a.hidden) { pkOpen(a, true); setTimeout(() => a.scrollIntoView({ behavior: "smooth", block: "start" }), 320); } }, true);
+    vp.addEventListener("wheel", (e) => { const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY; if (!d) return; e.preventDefault(); A = null; mode = "drag"; pos += d; put(); hold(); clearTimeout(wt); wt = setTimeout(snap, 140); }, { passive: false });
+    vp.addEventListener("keydown", (e) => { if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return; e.preventDefault(); const i = near(pos) + (e.key === "ArrowRight" ? 1 : -1); glide(cx(i) - vp.clientWidth / 2, 300); });
+    vp.addEventListener("focusin", (e) => { const b = e.target.closest(".pks-c"); if (!b || drag) return; hold(); const i = its.indexOf(b); if (i >= 0 && Math.abs(cx(i) - vp.clientWidth / 2 - pos) > 4) glide(cx(i) - vp.clientWidth / 2, 300); });
+    const bdEl = el.querySelector(".t1s-bd"), sh = el.querySelector(".t1s-sh");
+    const bdSize = () => { if (!bdEl || !el.offsetParent || sh.hidden) return; const { k } = ZK(), r = cssR(el.getBoundingClientRect(), k), m = cssR(sh.getBoundingClientRect(), k), W = document.documentElement.clientWidth / k;
+      const tb = $("tbar"), tbB = tb ? cssR(tb.getBoundingClientRect(), k).bottom : r.top - 14, top = Math.min(-8, tbB - r.top), H = m.top + m.height * 0.5 - r.top - top + W * 0.04375; /* ends at the middle of the shelf */
+      bdEl.style.cssText = `left:${(-r.left).toFixed(1)}px;width:${W.toFixed(1)}px;top:${top.toFixed(1)}px;height:${H.toFixed(1)}px;--bdS:${(W * 0.0875).toFixed(1)}px`;
+      const dg = (W + H) / Math.SQRT2; bdEl.style.setProperty("--shD", (dg / 2 + 175).toFixed(0) + "px"); bdEl.style.setProperty("--shL", (dg + 60).toFixed(0) + "px"); };
+    const start = () => { if (!vp.offsetParent) return; meas(); pos = cx(N) - vp.clientWidth / 2; cur = -1; put(); bdSize(); };
+    const rz = () => { if (!setW) return start(); const k = (near(pos) % N) + N; meas(); pos = cx(k) - vp.clientWidth / 2; put(); bdSize(); }; let rt; const onR = () => { clearTimeout(rt); rt = setTimeout(rz, 120); }; addEventListener("resize", onR);
+    requestAnimationFrame(() => { start(); vis(); });
+    pkKill = () => { dead = true; cancelAnimationFrame(raf); io.disconnect(); document.removeEventListener("visibilitychange", vis); removeEventListener("resize", onR); };
+    el._vis = () => { if (!setW) start(); else bdSize(); vis(); };
+  }
+  $("pkv").addEventListener("error", (e) => { const t = e.target; if (t.tagName === "IMG" && t.closest(".pkc-i, .pkr-m")) t.remove(); }, true); // a card with no image: its name shows (grid) / no thumb (row)
+  $("pkv").addEventListener("click", (e) => {
+    const g = e.target.closest(".pkd-r[data-go]"); if (g) { track("packs-to-deck"); setTab("decks"); setMV("decks"); const id = g.dataset.go; if (location.hash === "#" + id) history.replaceState(null, "", location.pathname + location.search); location.hash = id; return; }
+    if (e.target.closest("#pkOldBtn")) { pkOld = true; track("packs-older"); pkList(); return; } // one way: the box goes away
+    const s = e.target.closest(".pk-lh [data-s]"); if (s) { pkSort = s.dataset.s; s.parentElement.querySelectorAll("[data-s]").forEach((b) => b.setAttribute("aria-pressed", String(b === s))); pkList(); return; }
+    const c = e.target.closest(".pkc"); if (c) { track("packs-card"); pkPick(c.closest(".pka"), +c.dataset.k); return; }
+    const r = e.target.closest(".pkr"); if (r && !r.disabled) { if (pkOpen(r.parentElement)) track("packs-open"); } });
+  let CMAP_J = null, pkLP = null;
+  // Nov 22: the Packs files load early: on the first touch / hover / focus of the Packs tab, or when the browser is idle after the first render
+  const pkLoad = () => pkLP || (pkLP = Promise.all([loadStats(), loadPacks(), loadCardMap().then((m) => (CMAP_J = m)), loadMore()]).catch((e) => { pkLP = null; throw e; }));
+  // Nov 22: the Limited banner shows on the Meta tab (Decks), not with a filter on
+  function lbBanShow() { const bn = $("lbBan"); if (!bn) return; const f = typeof fstate !== "undefined" && fstate && (fstate.q.trim() || fstate.card || fstate.en.size || fstate.dk.size || fstate.without);
+    bn.hidden = !bn.innerHTML || !data || curTab === "events" || curTab === "limited" || MV === "packs" || !!f; }
+  function setMV(v) { if (v === MV) return; MV = v; setDrop(false); pkF.q = ""; pkF.card = ""; if (v === "packs") { clearFilters(); pkFiltUI(); } else { filtMode(false, false); if (data) applyFilter(); }
+    if (v === "packs") { if (openId) closeOpen(); track("tab-packs");
+      if (!PKV) { if (!(PK && STD && CMAP_J && moreP)) renderPacks(); pkLoad().then(() => { if (PK && STD) renderPacks(); else throw 0; }).catch(() => { $("pkv").innerHTML = '<div class="empty">Could not load the packs. Try again later.</div>'; }); } }
+    t10Show(); }
+
+  // Nov 22: the filter on the Packs tab: a card name only (like Limited, no energy or deck chips)
+  const pkF = { q: "", card: "" }, isPkTab = () => !$("pkv").hidden;
+  const pkCards = () => { const m = new Map(); (PKV || []).forEach((x) => x.cards.forEach((c) => { const e = m.get(c.n) || (m.set(c.n, { n: c.n, img: c.img, st: false, sh: 0, packs: new Set() }), m.get(c.n)); e.packs.add(x.id); e.st = e.st || c.st; e.sh = Math.max(e.sh, c.sh); })); return [...m.values()]; };
+  function pkFiltUI() { $("fen").hidden = true; $("fdk").hidden = true; $("fevk").hidden = true; $("fq").placeholder = "Search a card"; $("fq").value = pkF.card || pkF.q; $("fqx").hidden = !$("fq").value; }
+  function pkApply() { if (!PKV || !$("pkl")) return; const q = norm(pkF.q.trim()), act = !!q || !!pkF.card; let n = 0;
+    $("pkl").classList.toggle("f", act);
+    PKV.forEach((x) => { const a = $("pk-" + x.id); if (!a) return; const ok = !act || x.cards.some((c) => (pkF.card ? c.n === pkF.card : norm(c.n).includes(q))); a.hidden = !ok; if (ok) n++; });
+    if (isPkTab()) { $("fnone").hidden = !act; $("fdot").hidden = !act; $("filtBtn").classList.toggle("fon", act);
+      $("fnoneTxt").textContent = !n ? "No pack has that card." : pkF.card ? `${pkF.card} is in ${n} pack${n > 1 ? "s" : ""}.` : `Showing ${n} of ${PKV.length} packs.`; }
+    const sh = $("pkv").querySelector(".t1s-sh"); if (sh) sh.hidden = act; } // the shelf hides while the filter is on
+  function pkSug() { const q = pkF.card ? "" : norm(pkF.q.trim()), all = pkCards(); if (pkF.card) { $("fsug").innerHTML = ""; return; }
+    if (!q) { const L = all.filter((c) => c.st).sort((a, b) => b.sh - a.sh).slice(0, 20);
+      $("fsug").innerHTML = `<span class="sgh">Meta cards in packs<span class="sgo"> &middot; most played first</span></span><div class="sgg sgs">${L.map((c) => `<button class="sgc" type="button" role="option" data-pkc="${esc(c.n)}"><span class="sgcw"><img src="c/${esc(c.img)}.webp" alt="" width="150" height="209" loading="lazy"></span><span>${esc(c.n)}</span></button>`).join("")}</div>`; return; }
+    const rank = (s) => (norm(s).startsWith(q) ? 0 : 1), L = all.filter((c) => norm(c.n).includes(q)).sort((a, b) => rank(a.n) - rank(b.n) || b.st - a.st || b.sh - a.sh).slice(0, 6);
+    $("fsug").innerHTML = L.length ? `<span class="sgh">Cards</span>` + L.map((c) => `<div class="sgrow"><button class="sg" type="button" role="option" data-pkc="${esc(c.n)}"><span class="sgi one"><img src="c/${esc(c.img)}.webp" alt="" width="150" height="209" loading="lazy"></span><span class="sgt"><b>${hl(c.n, q)}</b><small>in ${c.packs.size} pack${c.packs.size > 1 ? "s" : ""}</small></span></button></div>`).join("") : `<span class="sgh">No card found</span>`; }
+  $("fq").addEventListener("input", (e) => { if (!isPkTab()) return; e.stopImmediatePropagation(); pkF.q = e.target.value; pkF.card = ""; $("fqx").hidden = !pkF.q; pkSug(); pkApply(); }, true);
+  $("fqx").addEventListener("click", (e) => { if (!isPkTab()) return; e.stopImmediatePropagation(); e.preventDefault(); pkF.q = ""; pkF.card = ""; $("fq").value = ""; $("fqx").hidden = true; pkSug(); pkApply(); }, true);
+  $("fsug").addEventListener("click", (e) => { if (!isPkTab()) return; e.stopImmediatePropagation(); const c = e.target.closest("[data-pkc]"); if (!c) return;
+    pkF.q = ""; pkF.card = c.dataset.pkc; $("fq").value = pkF.card; $("fqx").hidden = false; track("packs-filter-card"); pkApply(); setDrop(false);
+    const a = document.querySelector("#pkl .pka:not([hidden])"), x = a && PKV.find((p) => "pk-" + p.id === a.id); // the first pack with it opens, with that card picked
+    if (x) { const k = x.cards.findIndex((y) => y.n === pkF.card); pkFill(a); a.classList.add("open"); a.querySelector(".pkr").setAttribute("aria-expanded", "true"); pkPick(a, k); } }, true);
+  $("fclear").addEventListener("click", (e) => { if (!isPkTab()) return; e.stopImmediatePropagation(); pkF.q = ""; pkF.card = ""; $("fq").value = ""; $("fqx").hidden = true; pkApply(); }, true);
   function renderList() {
     const top = podTop();
     $("list").innerHTML = podiumHTML(top) + withGhosts(data.decks.slice(top.length), data.nolist, top.length ? top[top.length - 1].rank : 0, false) + moreBoxHTML();
@@ -4137,7 +4377,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   let PK = null, pkP = null, popImg = null, pinned = false, showT = 0, hideT = 0;
   const loadPacks = () => pkP || (pkP = fetch("packs.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).then((j) => (PK = j)).catch(() => null));
   const fdate = (s) => (s ? new Date(s + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "");
-  function packBox(id) {
+  function packBox(id, n) {
     if (!PK) return "";
     const code = id.split("-")[0], set = PK.sets[code] || {}, ids = (PK.cards[id] || []).filter((k) => PK.packs[k]);
     if (!ids.length) return "";
@@ -4149,7 +4389,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const all = Object.values(PK.packs).filter((p) => p.set === code).length;
       sub = ps.length === all ? `In ${all === 2 ? "both" : "all " + all} ${set.name} packs` : `In ${ps.length} of the ${all} ${set.name} packs`;
     } else sub = ps[0].name === set.name ? `Released ${fdate(set.release)}` : `${set.name} \u00b7 ${fdate(set.release)}`;
-    return `<div class="pack"><span class="pks n${Math.min(ps.length, 3)}">${imgs}</span><span class="pt"><span class="pl">${label}</span><b>${esc(ps.map((p) => p.name).join(" or "))}</b><span class="psub">${esc(sub)}</span></span></div>`;
+    const body = `<span class="pks n${Math.min(ps.length, 3)}">${imgs}</span><span class="pt"><span class="pl">${label}</span><b>${esc(ps.map((p) => p.name).join(" or "))}</b><span class="psub">${esc(sub)}</span>`;
+    // Nov 22: a booster pack tile is a link to that pack on the Packs tab (not for promos)
+    return promo || !n ? `<div class="pack">${body}</span></div>` : `<button type="button" class="pack pkgo" data-pk="${esc(ids.join(" "))}" data-cn="${esc(n)}">${body}<span class="pgo">See in Packs<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3.5 2 6.5 5l-3 3" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></button>`;
   }
   function popHTML(img) {
     const n = img.dataset.n || img.alt, grid = cGrp(img), id = cardId(img);
@@ -4158,7 +4400,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const ps = `${set ? esc(set.name) + " \u00b7 " : ""}${esc((code || "").toUpperCase())} ${esc(num || "")}`;
     const dif = img.dataset.dif ? `<p class="pdif"><span><b>Not in the ${L1n(deckOf(img))}</b>${grid.dataset.out ? ` \u00b7 ${(grid.dataset.out.match(/class="chip"/g) || []).length > 1 ? `${L1n(deckOf(img))} has` : "replaces"}<span class="pout">${grid.dataset.out}</span>` : ""}</span></p>` : "";
     return `<div class="sbody"><div class="zcol"><button class="zc" type="button" aria-label="Show ${esc(n)} full screen"><img src="z/${id}.webp" alt="${esc(n)}" width="367" height="512"><span class="zic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></span></button></div>
-      <div class="pinfo"><p class="pn"><b>${esc(n)}${(() => { const dk = data.decks.find((x) => x.id === img.closest(".acc")?.id); return dk && dupNames(dk).has(n) ? setTag(id) : ""; })()}</b>${count > 1 ? `<span class="cnt">&times;${count}</span>` : ""}</p><p class="ps">${ps}</p>${packBox(id)}${dif}</div></div>`;
+      <div class="pinfo"><p class="pn"><b>${esc(n)}${(() => { const dk = data.decks.find((x) => x.id === img.closest(".acc")?.id); return dk && dupNames(dk).has(n) ? setTag(id) : ""; })()}</b>${count > 1 ? `<span class="cnt">&times;${count}</span>` : ""}</p><p class="ps">${ps}</p>${packBox(id, n)}${dif}</div></div>`;
   }
   function placePop() {
     if (!FLOAT || !popImg) return;
@@ -4263,6 +4505,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // A tap or click outside a popover or sheet closes it, and the tap still works (opens a deck, a card, ...).
   // Sheets close without a history step here (the back entry is dropped), so the tapped action is not undone.
   const dropState = (k) => { const st = { ...(history.state || {}) }; if (st[k]) { delete st[k]; history.replaceState(st, "", location.href); } };
+  cpop.addEventListener("click", (e) => { const b = e.target.closest(".pkgo"); if (!b) return; e.stopPropagation(); track("card-to-packs");
+    if (FLOAT) hidePop(); else { dropState("cpop"); hidePop(true); } pkGo(b.dataset.pk.split(" "), b.dataset.cn); });
   document.addEventListener("click", (e) => {
     if (cpop.hidden || cdlg.open || e.target.closest("#cPop, .cards img, .tstk img, .swr img, .astk img, .cug img")) return;
     if (FLOAT) hidePop(); else { dropState("cpop"); hidePop(true); }
@@ -4682,6 +4926,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const setDrop = (on) => {
     $("filt").hidden = !on;
     $("filtBtn").setAttribute("aria-expanded", String(on));
+    if (on && isPkTab()) pkSug(); else
     if (on && isLbTab()) renderLbSug();
     else if (on && !isEvTab()) { renderSug(); loadSearch(); loadMore(); } // the filter also covers the smaller decks
     if (on && isEvTab()) renderEvSug();
@@ -4934,6 +5179,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   window.addEventListener("hashchange", () => { if (location.hash.startsWith("#x=")) { if (data) openShared(location.hash.slice(1)); return; }
     const [id, k] = hashParts(); if (!data || !id || id === openId) return;
+    if (MV === "packs" && id !== "events") setMV("decks"); // Nov 21: a deck link from the Packs view
     if ($(id)) openAt(id, k); else if (id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); openAt(id, k); } }); });
   $("list").addEventListener("click", (e) => {
     // Nov 12: the faded rows and the link are one "read more" area: a tap shows all smaller decks (no deck opens)
@@ -5242,7 +5488,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // ===== Limited Battle tab (Nov 18, 2026): an in-game limited-time event with hand-picked decks (not tournament data).
   // The tab shows until LB.to and then goes away by itself (no new upload needed). Remove this block after the event.
   // Order = our ranking, best first (Nov 18). A deck: [id, name, energy, art ids, cards [id, name, count], packed QR "<n>:<base64>" of the in-game deck code].
-  const LB = { name: "Dual Fusion Limited Battle", from: "2026-11-18T06:00:00Z", to: "2026-12-02T05:59:00Z",
+  const LB = { key: "lb-pc-002.webp" /* the event's key card: a file in the site root (repo: static/), not from the image pipeline */, name: "Dual Fusion Limited Battle", from: "2026-11-18T06:00:00Z", to: "2026-12-02T05:59:00Z",
     updated: "2026-11-18T18:42:00Z", // set this (UTC) each time the decks, order or notes change
     // Deck notes [[label, text], [label, text]]: our own words, made with help from GameWith's comments (LB.src)
     src: "https://gamewith.jp/pokemon-tcg-pocket/588256",
@@ -5283,7 +5529,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const HG_I = '<svg class="hg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 1.8h8M4 14.2h8"/><path d="M5 1.8v1.6c0 1.7 1.4 3 3 4.6 1.6-1.6 3-2.9 3-4.6V1.8M5 14.2v-1.6c0-1.7 1.4-3 3-4.6 1.6 1.6 3 2.9 3 4.6v1.6"/><path d="M6.4 12.6 8 11.2l1.6 1.4z" fill="currentColor" stroke-width="1"/></svg>';
   const lbDecks = LB.decks.map(([id, name, energy, art, cards, q], k) => ({ id, name, energy, art, qr: q, nv: 1, lb: 1, k, rank: k + 1, deckName: name,
     cards: cards.map(([cid, n, c]) => ({ id: cid, n, c })), note: LB.notes[id] || null, evt: "Limited Battle pick", ev: LB.name }));
-  function lbTab() { const b = $("tabL"), on = lbOn(); b.hidden = !on;
+  function lbTab() { const b = $("tabL"), on = lbOn(); b.hidden = true; /* Nov 22: no Limited tab; a banner on the Meta tab */ const bn = $("lbBan");
+    if (bn) { bn.innerHTML = on ? `<span class="lbk" aria-hidden="true"><img src="${LB.key}" alt=""></span><span class="lbtx">${HG_I}<span class="lbn"><span class="l1">${esc(LB.name.replace(/\s*Limited Battle$/, ""))}</span> <b>Limited Battle</b></span></span><span class="lbt">${lbLeft()}</span><svg class="ch" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>` : ""; bn.setAttribute("aria-label", on ? `Limited Battle, ${lbLeft(true)}` : ""); lbBanShow(); }
     if (on) { b.innerHTML = `${HG_I}<span>Limited</span><span class="lbt">${lbLeft()}</span>`; b.setAttribute("aria-label", `Limited Battle, ${lbLeft(true)}`); }
     else if (curTab === "limited") setTab("decks"); }
   const lbUpd = () => { const t = new Date(LB.updated), m = Math.max(0, Math.round((Date.now() - t) / 6e4)), h = Math.round(m / 60), d = Math.round(m / 1440);
@@ -5295,7 +5542,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const endTxt = `${end.toLocaleDateString(undefined, o)}, ${end.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}`;
     const promoTip = `<h3>Cards you can use</h3><p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(", ")}.</p>`;
     lbOpen = -1;
-    box.innerHTML = `<div class="lbh">
+    box.innerHTML = `<button type="button" class="lbback" data-back="1"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>Meta decks</button><div class="lbh">
         <p class="lbk">${HG_I}Limited-time event<span class="lbleft">${lbLeft(true)}</span></p>
         <h2>${esc(LB.name)}</h2>
         <p class="lbd">${new Date(LB.from).toLocaleDateString(undefined, o)} \u2013 ${endTxt} (your time)</p>
@@ -5391,7 +5638,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (t === "limited" && !lbOn()) t = "decks";
     const ev = t === "events", lb = t === "limited";
     if (curTab && curTab !== t) clearFilters(); curTab = t;
-    $("tabM").setAttribute("aria-selected", String(!ev && !lb)); $("tabE").setAttribute("aria-selected", String(ev)); $("tabL").setAttribute("aria-selected", String(lb));
+    $("tabM").setAttribute("aria-selected", String(!ev && (lb || MV !== "packs"))); $("tabP").setAttribute("aria-selected", String(!ev && !lb && MV === "packs")); $("tabE").setAttribute("aria-selected", String(ev)); $("tabL").setAttribute("aria-selected", String(lb));
     $("list").hidden = ev || lb; $("evl").hidden = !ev; $("lbl").hidden = !lb; t10Show();
     $("filtBtn").hidden = !data; $("filtBtn").disabled = false; setDrop(false); filtMode(ev, lb); if (ev || lb) { $("fnone").hidden = true; } else if (data) applyFilter();
     if (lb) { if (openId) closeOpen(); evClose(); track("tab-limited"); renderLB(); lbApply(); if (save) try { localStorage.setItem("pmq-tab", t); } catch (err) {} return; }
@@ -5401,7 +5648,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     else evClose();
     if (save) try { localStorage.setItem("pmq-tab", t); } catch (err) {}
   }
-  $("tabM").addEventListener("click", () => setTab("decks"));
+  $("tabM").addEventListener("click", () => { setTab("decks"); setMV("decks"); });
+  ["pointerenter", "pointerdown", "focus"].forEach((ev) => $("tabP").addEventListener(ev, () => { if (data) pkLoad().catch(() => {}); }, { once: true, passive: true }));
+  $("tabP").addEventListener("click", () => { setTab("decks"); setMV("packs"); try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} });
+  $("lbBan").addEventListener("click", () => { track("limited-banner"); setTab("limited"); scrollTo({ top: 0 }); });
+  $("lbl").addEventListener("click", (e) => { if (e.target.closest(".lbback")) $("tabM").click(); });
   $("tabE").addEventListener("click", () => setTab("events"));
   $("tabL").addEventListener("click", () => setTab("limited"));
   lbTab(); setInterval(lbTab, 6e4); // the days left; the tab goes away at the end
@@ -5419,6 +5670,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
         if (demo === "late") { data.wch = 1; data.bige = [(data.decks[0] || {}).tid || "", 28]; } else data.setRelease = data.span[0]; }
       if (demo === "set") { data.setRelease = new Date(Date.parse(data.updatedAt) - 2 * 864e5).toISOString().slice(0, 10); data.setName = "Sample Set"; data.set = "C2"; }
       renderSetNote();
+      setTimeout(() => { const go = () => pkLoad().catch(() => {}); "requestIdleCallback" in window ? requestIdleCallback(go, { timeout: 4000 }) : go(); }, 5000); // Nov 22: the Packs files, early (idle)
       if (!/pocketmetaqr\.com$/.test(location.hostname) && !data.decks.some((d) => "rk0" in d)) {
         const S = [0, -1, 1, -2, 1, 0, -5, 3, -1, 2, 0, -3]; data.decks.forEach((d, k) => { if (k < S.length) d.rk0 = d.rank + S[k]; else d.rk0 = d.rank; });
         if (data.decks[8]) { delete data.decks[8].rk0; data.decks[8].nw = 1; }
@@ -5450,6 +5702,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       let t0 = null; try { t0 = localStorage.getItem("pmq-tab"); } catch (err) {}
       if (id === "events" || (!(id && $(id)) && t0 === "events")) setTab("events", false);
       else if (id === "limited" || (!(id && $(id)) && t0 === "limited")) setTab("limited", false); // ends: setTab falls back to the decks
+      else if (!(id && $(id)) && t0 === "packs") setMV("packs"); // Nov 22: the Packs tab
       // After a home-screen refresh (see below): back to the old scroll place when no deck was open, and a short "Updated" note
       let rs = null; try { rs = sessionStorage.getItem("pmq-rs"); sessionStorage.removeItem("pmq-rs"); } catch (err) {}
       if (rs) { if (!id) scrollTo(0, +rs || 0); toast("Updated to the newest data"); }
