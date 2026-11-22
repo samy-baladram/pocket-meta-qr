@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795281229-7d18 -->
+<!-- ui: artifact version 1795310623-3cd5 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -784,7 +784,11 @@ details.fmore .fins li:first-child { border-top: 1px solid var(--line); }
 /* Card fade: a card image that is not loaded yet fades in when it is ready (see dealGrid) */
 .cards img.dealt { animation: cardIn 0.18s ease-out both; } /* until it loads, the slot shows the card's grey background */
 @keyframes cardIn { from { opacity: 0.35; } }
-.cards img.hl, .tstk img.hl, .swr img.hl, .astk img.hl { outline: 2px solid var(--accent); outline-offset: 1px; position: relative; z-index: 2; }
+/* Nov 22: a picked card = a dark slate outline, as in the game (#4c5c74); dark mode: the light inverse. Keyboard focus keeps the accent. */
+:root { --card-sel: #4c5c74; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --card-sel: #c5d1de; } }
+:root[data-theme="dark"] { --card-sel: #c5d1de; }
+.cards img.hl, .tstk img.hl, .swr img.hl, .astk img.hl { outline: 2px solid var(--card-sel); outline-offset: 1px; position: relative; z-index: 2; }
 #cPop { z-index: 62; } /* the card sheet is always the top sheet (above Top players and the shared list) */ /* all copies of the card in the popup */
 html { -webkit-tap-highlight-color: transparent; }
 .cards img, .ait img, .aswl img, .cbox img { -webkit-user-select: none; user-select: none; }
@@ -967,7 +971,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .cug figure { margin: 0; } .cug img { display: block; width: 100%; height: auto; border-radius: 3px; cursor: pointer; }
 .cug figcaption { position: relative; margin-top: 3px; height: 14px; overflow: hidden; border-radius: 3px; background: var(--tile); font-size: 9.5px; text-align: center; color: var(--ink); }
 .cug figcaption i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--acc-mark); opacity: 0.35; } .cug figcaption b { position: relative; font-weight: 700; }
-.cug img.hl { outline: 2px solid var(--accent); outline-offset: 1px; }
+.cug img.hl { outline: 2px solid var(--card-sel); outline-offset: 1px; }
 .cug.cud { grid-template-columns: repeat(5, 1fr); gap: 4px; width: 70%; margin-inline: auto; } /* Nov 15: the core deck, 5 x 4 */
 .cug .cfx { aspect-ratio: 150 / 209; display: grid; place-items: center; border-radius: 4px; border: 1.5px dashed var(--line-strong); background: var(--tile); }
 .cug .cfx span { font-size: 10.5px; font-weight: 700; color: var(--muted); }
@@ -2279,7 +2283,7 @@ a.dkev { text-decoration: none; }
 .ekdk:not(.all) .ekdr:nth-of-type(n + 7) { display: none; }
 .ekbar { height: 6px; border-radius: 3px; background: var(--bg); box-shadow: var(--pin-sh); overflow: hidden; } .ekbar i { display: block; height: 100%; background: var(--accent); }
 @media (hover: hover) { .ek2 .ek8:not(.on):hover, .ek2 .eksr:hover, .ek2 .ektc:hover, .ek2 .ekdr:hover { background: var(--bg); } }
-.cards img.ekhi { outline: 2.5px solid var(--accent); outline-offset: 1px; }
+.cards img.ekhi { outline: 2.5px solid var(--card-sel); outline-offset: 1px; }
 .eks .ekb { padding-top: 8px; }
 @media (min-width: 740px) { :root:not(#_):not(#_) #evl .dkl .vars { --per: 1; --sw: var(--dklw); --slw: var(--dklw); --mh: calc(var(--dklw) / 2); --vgap: 16px; --pad: 8px; padding-inline: 8px; scroll-padding-inline: 8px; } #evl .dkl .vars::after { display: none; } }
 /* Nov 21: the space kept while the Top 10 shelf loads (= its height: shelf + 3 Rising rows) */
@@ -2412,7 +2416,8 @@ a.dkev { text-decoration: none; }
 @media (max-width: 699px) { .pkr-t img { left: 14px; top: 9px; width: 52px; } .pka.open .pkr-t img { left: 13px; top: -11px; width: 54px; } }
 @media (prefers-reduced-motion: reduce) { .pkr-t img { transition: none; } }
 .pkr-n { min-width: 0; }
-.pkr-n b { display: block; overflow: hidden; font-size: 15px; font-weight: 600; white-space: nowrap; text-overflow: ellipsis; }
+.pkr-n b { display: -webkit-box; overflow: hidden; font-size: 15px; font-weight: 600; line-height: 1.25; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; } /* Nov 22: up to 2 lines (no small cards under it now) */
+.pkr-n small { margin-top: 3px; }
 .pkr-n small { display: flex; align-items: center; min-height: 19px; overflow: hidden; color: var(--muted); font-size: 12px; white-space: nowrap; }
 .pkr-m { display: flex; gap: 4px; margin-top: 4px; }
 .pkr-m img { width: 24px; height: auto; aspect-ratio: 240 / 335; border-radius: 2px; background: var(--tile); box-shadow: 1px 1px 3px rgba(40, 60, 90, 0.3); }
@@ -2431,7 +2436,7 @@ a.dkev { text-decoration: none; }
 .pkc-i > span { padding: 4px; font-size: 10px; line-height: 1.2; } /* the name, under the image (shows when there is no image) */
 .pkc-i img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .pkc small { font-size: 11px; }
-.pkc.on .pkc-i { outline: 2px solid var(--accent); outline-offset: 2px; }
+.pkc.on .pkc-i { outline: 2px solid var(--card-sel); outline-offset: 2px; }
 .pkc.lo:not(.on) .pkc-i { opacity: 0.4; }
 .pkc.lo:not(.on) small { opacity: 0.6; }
 .pkg-f { margin: 2px 4px 0; color: var(--muted); font-size: 11.5px; }
@@ -2449,21 +2454,66 @@ a.dkev { text-decoration: none; }
 @media (hover: hover) { .pkd-r:hover { background: var(--bg); } }
 /* Nov 22: Limited Battle: a banner at the top of the Meta tab (no tab), with the event's key card */
 .tabs, .tabs:has(#tabL:not([hidden])) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; } /* 3 tabs, the same width */
-.lbban { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; width: 100%; height: 58px; margin: 16px 0 14px; padding: 0 12px 0 74px; border: 0; border-radius: var(--r-card); background: var(--surface); box-shadow: var(--raised), var(--bevel); color: var(--ink); font-family: inherit; font-size: 14px; text-align: left; cursor: pointer; }
-.lbban[hidden] { display: none; }
-.lbban::after { content: ""; position: absolute; inset: 4px; border-radius: 9px; outline: 1px dashed color-mix(in srgb, var(--muted) 35%, transparent); pointer-events: none; }
-.lbkc { position: absolute; left: 0; top: -18px; bottom: 0; width: 72px; clip-path: inset(-40px -40px 0 -40px); pointer-events: none; }
-.lbkc img { position: absolute; left: 16px; top: 0; width: 46px; height: auto; aspect-ratio: 367 / 512; border-radius: 3px; transform: rotate(5deg); transform-origin: 50% 0; box-shadow: 2px 2px 5px rgba(40, 60, 90, 0.33); }
-.lbban .hg { width: 15px; height: 15px; flex: none; color: var(--acc-ink); }
-.lbban .lbtx { display: flex; align-items: center; gap: 7px; min-width: 0; }
-.lbban .lbnm { min-width: 0; overflow: hidden; font-weight: 600; white-space: nowrap; text-overflow: ellipsis; }
-.lbban .lbnm b { font-weight: 600; }
-@media (max-width: 599px) { .lbban .lbnm { display: grid; line-height: 1.25; } .lbban .lbnm .l1 { overflow: hidden; color: var(--muted); font-size: 12px; font-weight: 500; text-overflow: ellipsis; } } /* phones: 2 lines, the set name over the event name (as in the game) */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t1s-set > .pks-c:first-child::before { box-shadow: 1px 0 0 rgba(255, 255, 255, 0.06); } }
 :root[data-theme="dark"] .t1s-set > .pks-c:first-child::before { box-shadow: 1px 0 0 rgba(255, 255, 255, 0.06); }
-.lbban .lbt { flex: none; margin-left: auto; padding: 3px 7px; border-radius: 999px; background: color-mix(in srgb, var(--muted) 14%, transparent); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
-.lbban svg.ch { width: 12px; height: 12px; flex: none; color: var(--muted); }
-.lbback { display: inline-flex; align-items: center; gap: 4px; margin: 0 0 10px 2px; padding: 4px 2px; border: 0; background: none; color: var(--acc-ink); font-family: inherit; font-size: 13px; cursor: pointer; }
+/* Nov 22: Limited Battle banner = a deck-style row under the header's meta line (all tabs but the Limited view): the event's key card as a 1-card icon */
+.lbban { margin: 14px 0 2px; }
+.lbban[hidden] { display: none; }
+.lbban .lbdash { position: absolute; inset: 4px; z-index: 3; border-radius: calc(var(--r-card) - 4px); outline: 1px dashed color-mix(in srgb, var(--muted) 35%, transparent); pointer-events: none; } /* temporary: the dashed line of the old Limited tab */
+.lbban .evsub { display: flex; align-items: center; gap: 4px; } /* the hourglass centered on the text line (it sat 3px high on the baseline) */
+.lbban .evsub .hg { width: 14px; height: 14px; flex: none; color: var(--acc-ink); }
+.lbban .evsub b { color: var(--acc-ink); font-weight: 600; }
+.lbban .arow { position: relative; padding-right: 36px; }
+.lbban.on { background: var(--bg); box-shadow: inset 0 0 0 2px var(--seld), var(--pin-sh); } /* selected: pressed in + the dark slate ring (no teal) */
+.lbban.on > .arow { background: transparent; } /* the row's own background covered the tint and the ring */ /* selected while the Limited view is open: teal tint + teal ring, pressed in */
+.lbban.on .lbdash { display: none; }
+.lbban.on .aname, .lbban.on .lbch { color: var(--acc-ink); }
+.lbban .lbch { transition: transform var(--t-fast, 0.15s) ease; }
+.lbban.on .lbch { transform: rotate(90deg); }
+.lbban .lbch { position: absolute; right: 16px; top: 50%; z-index: 2; width: 12px; height: 12px; margin-top: -6px; color: var(--muted); }
+.lbban .icons.one img:first-child { transform: translateY(5px) rotate(-5deg) scale(1.2); } /* as a closed 1-card deck row (wide rows: their own rule) */
+
+/* Nov 22: selected = a dark slate fill with white text, as in the game (#4c5c74; dark mode: the light inverse). Swap segments + "Used by N top players" while its sheet is open. */
+:root { --seld: #4c5c74; --seld-ink: #ffffff; --seld-mut: rgba(255, 255, 255, 0.78); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --seld: #c5d1de; --seld-ink: #18202a; --seld-mut: rgba(24, 32, 42, 0.72); } }
+:root[data-theme="dark"] { --seld: #c5d1de; --seld-ink: #18202a; --seld-mut: rgba(24, 32, 42, 0.72); }
+:root .swt:not(:has(.altb[aria-expanded="true"])) > .swx, :root .swt > .swl.altb[aria-expanded="true"], :root .swb > .sp.tph[aria-expanded="true"] { isolation: isolate; --cf: var(--seld); --bg0: var(--seld); }
+:root .swt:not(:has(.altb[aria-expanded="true"])) > .swx::before, :root .swt > .swl.altb[aria-expanded="true"]::before, :root .swb > .sp.tph[aria-expanded="true"]::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: var(--seld); } /* the whole cell dark (no inner pill) */
+:root .swt:not(:has(.altb[aria-expanded="true"])) > .swx .swi2, :root .swt > .swl.altb[aria-expanded="true"] .swi2, :root .swb > .sp.tph[aria-expanded="true"] .swi2,
+:root .swt:not(:has(.altb[aria-expanded="true"])) > .swx > b, :root .swt > .swl.altb[aria-expanded="true"] > b, :root .swb > .sp.tph[aria-expanded="true"], :root .swb > .sp.tph[aria-expanded="true"] .spch { color: var(--seld-ink); }
+:root .swt:not(:has(.altb[aria-expanded="true"])) > .swx small, :root .swt > .swl.altb[aria-expanded="true"] small, :root .swt:not(:has(.altb[aria-expanded="true"])) > .swx .swpl, :root .swt > .swl.altb[aria-expanded="true"] .swpl { color: var(--seld-mut); }
+:root .swb > .sp.tph[aria-expanded="true"] { position: relative; background: none; }
+
+/* Nov 22: no teal text (as in the game). Teal only for icons and marks (--acc-ico, the game's #29bfcf), a teal fill only for a call to action.
+   Actions = neutral raised pills with ink text; status = the game's grey timer chip; emphasis = ink bold; selected = dark slate fill (--seld). */
+:root { --acc-ico: #29bfcf; --chip: rgba(76, 92, 116, 0.72); --chip-ink: #ffffff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --chip: rgba(197, 209, 222, 0.2); --chip-ink: #e8eef2; } }
+:root[data-theme="dark"] { --chip: rgba(197, 209, 222, 0.2); --chip-ink: #e8eef2; }
+:root { --lb: var(--ink); --lb-bg: var(--chip); --lb-line: color-mix(in srgb, var(--muted) 40%, transparent); }
+/* icons and marks */
+.since .shci svg, .nset svg, .tpw span .swi2, .lbban .evsub .hg, .lbh .lbk .hg { color: var(--acc-ico); }
+.adots2 i.on { background: var(--acc-ico); }
+.morelink .mcar { background: color-mix(in srgb, var(--acc-ico) 18%, transparent); color: var(--acc-ico); }
+/* emphasis: ink bold */
+.since .sinb b, .sgt mark, .fuse, .l1, .ntc b, .toast.newp b, .aqr, .morelink, .lbr .evsub .lbpk, .lbban.on .aname, .lbban.on .lbch, .lbh .lbk { color: var(--ink); }
+.dnote.l1tab { color: var(--ink); border-color: color-mix(in srgb, var(--muted) 40%, transparent); }
+.sgt mark { text-decoration: underline; text-decoration-color: var(--acc-ico); text-decoration-thickness: 2px; text-underline-offset: 2px; }
+/* links in text: ink + underline */
+.evlink a, .ekcut a { color: var(--ink); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--muted) 60%, transparent); text-underline-offset: 2px; }
+@media (hover: hover) { .fmade a:hover { color: var(--ink); } }
+/* actions: neutral raised pills */
+.fnone button, .t1s-all, .ek2 .ekall, .lvopen, .shtoday, .fbtns .fabout { display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 5px 14px; border: 0; border-radius: 999px; background: var(--surface); box-shadow: var(--raised-sm), var(--bevel); color: var(--ink); font-weight: 600; }
+.t1s-all, .ek2 .ekall { display: flex; width: max-content; margin: 8px auto 4px; }
+.fnone button { margin-left: 6px; padding: 3px 12px; }
+.cpop .pgo { color: var(--ink); }
+.cpop .pgo svg { color: var(--acc-ico); }
+/* status: the grey timer chip */
+.lbban .evsub b, .lbh .lbk .lbleft, .sfoot .us.top, .ektc i { padding: 1px 8px; border-radius: 999px; background: var(--chip); color: var(--chip-ink); font-weight: 600; }
+.ektc i { display: inline-block; margin-top: 2px; padding: 0 6px; }
+.lbban .evsub b { flex: none; padding: 1px 6px; font-size: 11px; line-height: 1.35; } /* smaller, so it is never cut */
+.lbban .lbw { font-style: normal; }
+@media (max-width: 359px) { .lbban .lbw { display: none; } } /* very small phones: the days chip only */
+.lbban .evsub > span { display: inline-flex; align-items: center; gap: 4px; min-width: 0; white-space: nowrap; }
 </style>
 
 <div class="wrap">
@@ -2478,6 +2528,7 @@ a.dkev { text-decoration: none; }
     <div class="mline"><p class="meta" id="meta">Loading&hellip;</p>
     <p class="live" id="live" hidden></p></div>
     </div>
+    <section class="acc evr lbban" id="lbBan" hidden></section>
     <p class="nset" id="nset" role="note" hidden></p>
     <p class="since" id="since" hidden></p>
     <p class="since" id="shChip" hidden></p>
@@ -2508,7 +2559,6 @@ a.dkev { text-decoration: none; }
   </div>
   </div>
   <p class="fnone" id="fnone" aria-live="polite" hidden><span id="fnoneTxt"></span> <button type="button" id="fclear">Clear</button></p>
-  <button type="button" class="lbban" id="lbBan" hidden></button>
   <section class="t1s t1s-wait" id="t10" aria-label="Top 10 decks"><p class="t1s-h"><b>Top 10</b></p></section>
   <div class="lsh" id="lsh" hidden><span>All decks<b id="lshN"></b></span><span class="lshc">share &middot; win</span></div>
   <section id="pkv" aria-label="Packs for the meta" hidden></section>
@@ -3864,7 +3914,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     el.hidden = !el.innerHTML || curTab === "events" || curTab === "limited" || !!f || pv;
     $("pkv").hidden = !pv; $("list").hidden = curTab === "events" || curTab === "limited" || pv; $("filtBtn").hidden = !data; if (pv) pkApply();
     if (pv && $("pkv")._vis) requestAnimationFrame($("pkv")._vis);
-    lbBanShow(); $("tabM").setAttribute("aria-selected", String(curTab !== "events" && !pv)); $("tabP").setAttribute("aria-selected", String(pv));
+    lbBanShow(); $("tabM").setAttribute("aria-selected", String(curTab !== "events" && curTab !== "limited" && !pv)); $("tabP").setAttribute("aria-selected", String(pv));
     if (!el.hidden) requestAnimationFrame(t10Fit); // Nov 16: size the mover boxes when the card shows (also after a tab switch)
     if (el._t10vis) requestAnimationFrame(el._t10vis); // Nov 21: the shelf runs only while it shows
     const lh = $("lsh"); if (lh) { lh.hidden = curTab === "events" || curTab === "limited" || !!f || !data || pv; // Nov 16: "ALL DECKS · 32 + 22 smaller" (all: "· 54")
@@ -3901,10 +3951,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       return { id: p, set: pkCode(k.set), setName: st.name, rel: st.release, pack: k.name, img: k.img, cards }; });
     return out.sort((a, z) => (z.rel > a.rel ? 1 : z.rel < a.rel ? -1 : a.id < z.id ? 1 : -1));
   }
-  const pkRow = (x, old) => { const m = pkMeta(x), w = x.cards.length - m, mini = (m ? x.cards.filter((c) => c.st) : x.cards).slice(0, 4);
-    return `<section class="pka${x.cards.length ? "" : " z"}${old ? " old" : ""}" id="pk-${esc(x.id)}"><button type="button" class="pkr"${x.cards.length ? ' aria-expanded="false"' : " disabled"}><span class="pkr-t"><img data-src="p/${esc(x.img)}.webp" alt=""></span><span class="pkr-n"><b>${esc(x.setName)}</b><small><span class="pkcode">${esc(x.set)}</span>${esc(pkSub(x))}</small>${mini.length ? `<span class="pkr-m">${mini.map((c) => `<img${c.st ? "" : ' class="lo"'} data-src="c/${esc(c.img)}.webp" alt="">`).join("")}</span>` : ""}</span><span class="pkr-v">${m ? `<b>${m}</b> meta card${m > 1 ? "s" : ""}` : x.cards.length ? "" : "no meta cards"}${w ? `<small>${m ? "+" : ""}${w} in small decks</small>` : ""}</span></button>${x.cards.length ? '<div class="pkp"></div>' : ""}</section>`; };
+  const pkRow = (x, old) => { const m = pkMeta(x), w = x.cards.length - m;
+    return `<section class="pka${x.cards.length ? "" : " z"}${old ? " old" : ""}" id="pk-${esc(x.id)}"><button type="button" class="pkr"${x.cards.length ? ' aria-expanded="false"' : " disabled"}><span class="pkr-t"><img data-src="p/${esc(x.img)}.webp" alt=""></span><span class="pkr-n"><b>${esc(x.setName)}</b><small><span class="pkcode">${esc(x.set)}</span>${esc(pkSub(x))}</small></span><span class="pkr-v">${m ? `<b>${m}</b> meta card${m > 1 ? "s" : ""}` : x.cards.length ? "" : "no meta cards"}${w ? `<small>${m ? "+" : ""}${w} in small decks</small>` : ""}</span></button>${x.cards.length ? '<div class="pkp"></div>' : ""}</section>`; };
   // the card grid is built when the row opens (not for every pack at once)
-  const pkGrid = (x) => { const w = x.cards.some((c) => !c.st); return `<div class="pkg-w"><div class="pkg">${x.cards.map((c, k) => `<button type="button" class="pkc${k ? "" : " on"}${c.st ? "" : " lo"}" data-k="${k}" aria-label="${esc(c.n)}, in ${c.decks.length} deck${c.decks.length > 1 ? "s" : ""}"><span class="pkc-i"><span>${esc(c.n)}</span><img src="c/${esc(c.img)}.webp" alt="" loading="lazy"></span><small>${c.decks.length} deck${c.decks.length > 1 ? "s" : ""}</small></button>`).join("")}</div>${w ? '<p class="pkg-f"><i></i>Faded: only in decks under 1.0% share</p>' : ""}</div><div class="pkd"></div>`; };
+  const pkGrid = (x) => { const w = x.cards.some((c) => !c.st); return `<div class="pkg-w"><div class="pkg">${x.cards.map((c, k) => `<button type="button" class="pkc${k ? "" : " on"}${c.st ? "" : " lo"}" data-k="${k}" aria-label="${esc(c.n)}, in ${c.decks.length} deck${c.decks.length > 1 ? "s" : ""}"><span class="pkc-i"><span>${esc(c.n)}</span><img src="c/${esc(c.img)}.webp" alt="" data-n="${esc(c.n)}" loading="lazy"></span><small>${c.decks.length} deck${c.decks.length > 1 ? "s" : ""}</small></button>`).join("")}</div>${w ? '<p class="pkg-f"><i></i>Faded: only in decks under 1.0% share</p>' : ""}</div><div class="pkd"></div>`; };
   const pkFill = (a) => { const p = a.querySelector(".pkp"); if (p && !p.innerHTML) { const x = PKV.find((y) => "pk-" + y.id === a.id); if (x) p.innerHTML = pkGrid(x); } };
   function pkPick(sec, k) { const x = PKV.find((p) => "pk-" + p.id === sec.id), c = x && x.cards[k]; if (!c) return;
     sec.querySelectorAll(".pkc").forEach((b) => b.classList.toggle("on", +b.dataset.k === k));
@@ -3924,13 +3974,14 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const pkOpen = (a, on) => { if (on !== false) pkFill(a); const o = a.classList.toggle("open", on), r = a.querySelector(".pkr"); if (r) r.setAttribute("aria-expanded", String(o)); if (o && !a.querySelector(".pkd").innerHTML) pkPick(a, +(a.querySelector(".pkc.on") || { dataset: { k: 0 } }).dataset.k); return o; };
   function pkList() { const L = $("pkl"); if (!L || !PKV) return; const act = pkAct(), A = PKV.filter((x) => act.has(pkSer(x))), O = PKV.filter((x) => !act.has(pkSer(x)));
     const srt = (a) => (pkSort === "meta" ? [...a].sort((x, z) => pkMeta(z) - pkMeta(x) || z.cards.length - x.cards.length) : a), ser = [...new Set(O.map(pkSer))].join(", ");
+    if (pkSort === "meta") { L.innerHTML = srt(PKV).map((x) => pkRow(x, false)).join(""); L.classList.remove("old-on"); pkApply(); pkLazy(L); return; } // Nov 22: "Most meta" ranks every pack, the older series too (no older box)
     L.innerHTML = srt(A).map((x) => pkRow(x, false)).join("") + (O.length ? (pkOld ? "" : `<div class="moreb"><button class="morelink" type="button" id="pkOldBtn"><b>Show ${O.length} older packs</b><svg class="mcar" viewBox="0 0 10 10" aria-hidden="true"><path d="m2.5 4 2.5 2.5L7.5 4" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${esc(ser)} series &middot; the older sets</span></button></div>`) + srt(O).map((x) => pkRow(x, true)).join("") : "");
     L.classList.toggle("old-on", pkOld); pkApply(); pkLazy(L); }
   function renderPacks() { const el = $("pkv"); if (!el) return;
     if (!data || !STD || !PK || !CMAP_J) { el.className = "t1s"; el.innerHTML = `<p class="t1s-h"><b>Packs</b> <span class="t1s-hw">for the meta ${winWk()}</span></p><div class="t1s-sh" aria-hidden="true"><div class="t1s-vp"></div></div><div class="lsh pk-lh"><span>All packs</span></div><div class="pk-l" aria-busy="true">${'<section class="pka sk"><div class="pkr"><span class="pkr-t"></span><span class="pkr-n"></span><span></span></div></section>'.repeat(4)}</div>`; return; } // a skeleton while the files load
     PKV = pkBuild(CMAP_J); const act = pkAct(), L = PKV.filter((x) => pkMeta(x) > 0 && act.has(pkSer(x))), nA = PKV.filter((x) => act.has(pkSer(x))).length;
     const bd = PACKBD[data.set]; el.className = "t1s" + (bd ? " t1s-on" : ""); if (bd) { el.style.setProperty("--bd1", bd[0]); el.style.setProperty("--bd2", bd[1]); }
-    el.innerHTML = `${bd ? '<div class="t1s-bd" aria-hidden="true"><i><b></b></i></div>' : ""}<p class="t1s-h"><b>Packs</b> <span class="t1s-hw">for the meta ${winWk()}${ii("Packs", `<h3>Packs for the meta</h3><p>Which booster packs give the cards of the meta decks ${winLast()}. <b>Early results</b>: this view is new.</p><p>A deck plays a card when half or more of its lists play it. A <b>meta card</b> is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.</p><p>The shelf shows the packs of the 2 newest series with meta cards, newest first; the older packs are under the list. Tap a pack to see its cards; tap a card to see the decks that play it.</p>`)}</span><span class="t1s-hr">Early results</span></p>
+    el.innerHTML = `${bd ? '<div class="t1s-bd" aria-hidden="true"><i><b></b></i></div>' : ""}<p class="t1s-h"><b>Packs</b> <span class="t1s-hw">for the meta ${winWk()}${ii("Packs", `<h3>Packs for the meta</h3><p>Which booster packs give the cards of the meta decks ${winLast()}. <b>Beta</b>: this view is new, and its rules can change.</p><p>A deck plays a card when half or more of its lists play it. A <b>meta card</b> is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.</p><p>The shelf shows the packs of the 2 newest series with meta cards, newest first; the older packs are under the list. Tap a pack to see its cards; tap a card to see the decks that play it.</p>`)}</span><span class="t1s-hr">Beta</span></p>
       <div class="t1s-sh"><div class="t1s-lab" aria-live="polite"><div></div><div></div></div><div class="t1s-vp" tabindex="0" aria-label="Packs with meta cards, newest first"><div class="t1s-tr">${[0, 1, 2].map((r) => `<div class="t1s-set"${r !== 1 ? ' aria-hidden="true"' : ""}>${L.map((x) => `<button type="button" class="pks-c" data-pk="${esc(x.id)}" aria-label="${esc(x.setName)}${pkSub(x) ? " " + esc(pkSub(x)) : ""}"${r !== 1 ? ' tabindex="-1"' : ""}><img src="p/${esc(x.img)}.webp" alt="" draggable="false" loading="lazy"></button>`).join("")}</div>`).join("")}</div></div></div>
       <div class="lsh pk-lh"><span>All packs<b> &middot; ${nA === PKV.length ? nA : nA + " + " + (PKV.length - nA) + " older"}</b></span><span class="t1s-seg" role="group" aria-label="Sort packs"><button type="button" data-s="new" aria-pressed="${pkSort === "new"}">Newest</button><button type="button" data-s="meta" aria-pressed="${pkSort === "meta"}">Most meta</button></span></div>
       <div class="pk-l" id="pkl"></div>`;
@@ -3987,14 +4038,16 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const g = e.target.closest(".pkd-r[data-go]"); if (g) { track("packs-to-deck"); setTab("decks"); setMV("decks"); const id = g.dataset.go; if (location.hash === "#" + id) history.replaceState(null, "", location.pathname + location.search); location.hash = id; return; }
     if (e.target.closest("#pkOldBtn")) { pkOld = true; track("packs-older"); pkList(); return; } // one way: the box goes away
     const s = e.target.closest(".pk-lh [data-s]"); if (s) { pkSort = s.dataset.s; s.parentElement.querySelectorAll("[data-s]").forEach((b) => b.setAttribute("aria-pressed", String(b === s))); pkList(); return; }
-    const c = e.target.closest(".pkc"); if (c) { track("packs-card"); pkPick(c.closest(".pka"), +c.dataset.k); return; }
+    const c = e.target.closest(".pkc"); if (c) { if (c.classList.contains("on")) { const im = c.querySelector(".pkc-i img"); if (im) { track("packs-card-pop"); cardClick(im); } return; } // Nov 22: the picked card again = its card details (as on the other tabs)
+      if (!cpop.hidden) { if (FLOAT) hidePop(); else { dropState("cpop"); hidePop(true); } } // another card: the open card details close
+      track("packs-card"); pkPick(c.closest(".pka"), +c.dataset.k); return; }
     const r = e.target.closest(".pkr"); if (r && !r.disabled) { if (pkOpen(r.parentElement)) track("packs-open"); } });
   let CMAP_J = null, pkLP = null;
   // Nov 22: the Packs files load early: on the first touch / hover / focus of the Packs tab, or when the browser is idle after the first render
   const pkLoad = () => pkLP || (pkLP = Promise.all([loadStats(), loadPacks(), loadCardMap().then((m) => (CMAP_J = m)), loadMore()]).catch((e) => { pkLP = null; throw e; }));
-  // Nov 22: the Limited banner shows on the Meta tab (Decks), not with a filter on
+  // Nov 22: the Limited banner (in the header)
   function lbBanShow() { const bn = $("lbBan"); if (!bn) return; const f = typeof fstate !== "undefined" && fstate && (fstate.q.trim() || fstate.card || fstate.en.size || fstate.dk.size || fstate.without);
-    bn.hidden = !bn.innerHTML || !data || curTab === "events" || curTab === "limited" || MV === "packs" || !!f; }
+    const on = curTab === "limited"; bn.hidden = !bn.innerHTML || !data; bn.classList.toggle("on", on); const b = bn.querySelector(".arow"); if (b) b.setAttribute("aria-pressed", String(on)); } // Nov 22: on every tab (it sits in the header); pressed while the Limited view is open
   function setMV(v) { if (v === MV) return; MV = v; setDrop(false); pkF.q = ""; pkF.card = ""; if (v === "packs") { clearFilters(); pkFiltUI(); } else { filtMode(false, false); if (data) applyFilter(); }
     if (v === "packs") { if (openId) closeOpen(); track("tab-packs");
       if (!PKV) { if (!(PK && STD && CMAP_J && moreP)) renderPacks(); pkLoad().then(() => { if (PK && STD) renderPacks(); else throw 0; }).catch(() => { $("pkv").innerHTML = '<div class="empty">Could not load the packs. Try again later.</div>'; }); } }
@@ -4508,7 +4561,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   cpop.addEventListener("click", (e) => { const b = e.target.closest(".pkgo"); if (!b) return; e.stopPropagation(); track("card-to-packs");
     if (FLOAT) hidePop(); else { dropState("cpop"); hidePop(true); } pkGo(b.dataset.pk.split(" "), b.dataset.cn); });
   document.addEventListener("click", (e) => {
-    if (cpop.hidden || cdlg.open || e.target.closest("#cPop, .cards img, .tstk img, .swr img, .astk img, .cug img")) return;
+    if (cpop.hidden || cdlg.open || e.target.closest("#cPop, .cards img, .tstk img, .swr img, .astk img, .cug img, .pkc.on")) return;
     if (FLOAT) hidePop(); else { dropState("cpop"); hidePop(true); }
   });
   // ---- Info points (and "Also played"): one popover (mouse: beside the "i"; touch: bottom sheet). A tap on the same "i" or outside closes it. ----
@@ -5529,8 +5582,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const HG_I = '<svg class="hg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 1.8h8M4 14.2h8"/><path d="M5 1.8v1.6c0 1.7 1.4 3 3 4.6 1.6-1.6 3-2.9 3-4.6V1.8M5 14.2v-1.6c0-1.7 1.4-3 3-4.6 1.6 1.6 3 2.9 3 4.6v1.6"/><path d="M6.4 12.6 8 11.2l1.6 1.4z" fill="currentColor" stroke-width="1"/></svg>';
   const lbDecks = LB.decks.map(([id, name, energy, art, cards, q], k) => ({ id, name, energy, art, qr: q, nv: 1, lb: 1, k, rank: k + 1, deckName: name,
     cards: cards.map(([cid, n, c]) => ({ id: cid, n, c })), note: LB.notes[id] || null, evt: "Limited Battle pick", ev: LB.name }));
-  function lbTab() { const b = $("tabL"), on = lbOn(); b.hidden = true; /* Nov 22: no Limited tab; a banner on the Meta tab */ const bn = $("lbBan");
-    if (bn) { bn.innerHTML = on ? `<span class="lbkc" aria-hidden="true"><img src="${LB.key}" alt=""></span><span class="lbtx">${HG_I}<span class="lbnm"><span class="l1">${esc(LB.name.replace(/\s*Limited Battle$/, ""))}</span> <b>Limited Battle</b></span></span><span class="lbt">${lbLeft()}</span><svg class="ch" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>` : ""; bn.setAttribute("aria-label", on ? `Limited Battle, ${lbLeft(true)}` : ""); lbBanShow(); }
+  const LB_BAND = () => `--eb1:${EGRAD.psychic[0]};--eb2:${EGRAD.psychic[1]}`; // the key card's type (Mega Mewtwo Y ex: Psychic)
+  const lbRowIn = () => `<span class="icons one"><img src="${LB.key}" alt="" width="56" height="78" decoding="async"></span><span class="atext"><span class="aname" style="--nlen: ${LB.name.length}">${esc(LB.name)}</span><span class="evsub">${HG_I}<span><i class="lbw">Limited-time event &middot;</i><b>${lbLeft(true)}</b></span></span></span>`; // Nov 22: the key card as a 1-card icon + the event name (banner and the Limited view's top)
+  function lbTab() { const b = $("tabL"), on = lbOn(); b.hidden = true; /* Nov 22: no Limited tab; a banner under the header's meta line */ const bn = $("lbBan");
+    if (bn) { bn.setAttribute("style", LB_BAND());
+      bn.innerHTML = on ? `<span class="lbdash" aria-hidden="true"></span><button class="arow" type="button" aria-label="${esc(LB.name)}, ${lbLeft(true)}">${lbRowIn()}<svg class="lbch" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></button>` : ""; lbBanShow(); }
     if (on) { b.innerHTML = `${HG_I}<span>Limited</span><span class="lbt">${lbLeft()}</span>`; b.setAttribute("aria-label", `Limited Battle, ${lbLeft(true)}`); }
     else if (curTab === "limited") setTab("decks"); }
   const lbUpd = () => { const t = new Date(LB.updated), m = Math.max(0, Math.round((Date.now() - t) / 6e4)), h = Math.round(m / 60), d = Math.round(m / 1440);
@@ -5542,7 +5598,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const endTxt = `${end.toLocaleDateString(undefined, o)}, ${end.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}`;
     const promoTip = `<h3>Cards you can use</h3><p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(", ")}.</p>`;
     lbOpen = -1;
-    box.innerHTML = `<button type="button" class="lbback" data-back="1"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>Meta decks</button><div class="lbh">
+    box.innerHTML = `<div class="lbh">
         <p class="lbk">${HG_I}Limited-time event<span class="lbleft">${lbLeft(true)}</span></p>
         <h2>${esc(LB.name)}</h2>
         <p class="lbd">${new Date(LB.from).toLocaleDateString(undefined, o)} \u2013 ${endTxt} (your time)</p>
@@ -5638,11 +5694,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (t === "limited" && !lbOn()) t = "decks";
     const ev = t === "events", lb = t === "limited";
     if (curTab && curTab !== t) clearFilters(); curTab = t;
-    $("tabM").setAttribute("aria-selected", String(!ev && (lb || MV !== "packs"))); $("tabP").setAttribute("aria-selected", String(!ev && !lb && MV === "packs")); $("tabE").setAttribute("aria-selected", String(ev)); $("tabL").setAttribute("aria-selected", String(lb));
+    $("tabM").setAttribute("aria-selected", String(!ev && !lb && MV !== "packs")); $("tabP").setAttribute("aria-selected", String(!ev && !lb && MV === "packs")); /* Nov 22: Limited = its own page (the header banner pressed), no tab selected */ $("tabE").setAttribute("aria-selected", String(ev)); $("tabL").setAttribute("aria-selected", String(lb));
     $("list").hidden = ev || lb; $("evl").hidden = !ev; $("lbl").hidden = !lb; t10Show();
     $("filtBtn").hidden = !data; $("filtBtn").disabled = false; setDrop(false); filtMode(ev, lb); if (ev || lb) { $("fnone").hidden = true; } else if (data) applyFilter();
     if (lb) { if (openId) closeOpen(); evClose(); track("tab-limited"); renderLB(); lbApply(); if (save) try { localStorage.setItem("pmq-tab", t); } catch (err) {} return; }
-    lbClose();
+    lbClose(); if (history.state && history.state.lb) history.replaceState(null, "", location.pathname + location.search); // a tab left Limited: drop its step and #limited
     if (ev) { if (openId) closeOpen(); track("tab-events"); if (!EV) { $("evl").innerHTML = '<div class="empty">Loading events&hellip;</div>'; loadEvents().then(renderEvents); }
       else renderEvents(); } // events.json is loaded early (live line); drawn again on each visit (the filter is cleared when the tab changes)
     else evClose();
@@ -5651,8 +5707,15 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   $("tabM").addEventListener("click", () => { setTab("decks"); setMV("decks"); });
   ["pointerenter", "pointerdown", "focus"].forEach((ev) => $("tabP").addEventListener(ev, () => { if (data) pkLoad().catch(() => {}); }, { once: true, passive: true }));
   $("tabP").addEventListener("click", () => { setTab("decks"); setMV("packs"); try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} });
-  $("lbBan").addEventListener("click", () => { track("limited-banner"); setTab("limited"); scrollTo({ top: 0 }); });
-  $("lbl").addEventListener("click", (e) => { if (e.target.closest(".lbback")) $("tabM").click(); });
+  // Nov 22: the banner opens the Limited view; pressed again, it goes back to the tab it came from
+  let lbFrom = null;
+  // Nov 22: opening Limited adds a history step (#limited): the back gesture / button returns to that tab
+  const lbLeave = () => { const f = lbFrom || {}; lbFrom = null; $(f.ev ? "tabE" : f.pk ? "tabP" : "tabM").click(); };
+  $("lbBan").addEventListener("click", () => { if (curTab === "limited") { if (history.state && history.state.lb) history.back(); else lbLeave(); return; }
+    lbFrom = { ev: curTab === "events", pk: curTab !== "events" && MV === "packs" }; track("limited-banner"); setTab("limited"); scrollTo({ top: 0 });
+    history.pushState({ lb: 1 }, "", location.pathname + location.search + "#limited"); });
+  addEventListener("popstate", () => { const st = history.state || {};
+    if (curTab === "limited" && !st.lb) lbLeave(); else if (st.lb && curTab !== "limited" && lbOn()) { lbFrom = lbFrom || { ev: curTab === "events", pk: curTab !== "events" && MV === "packs" }; setTab("limited"); } });
   $("tabE").addEventListener("click", () => setTab("events"));
   $("tabL").addEventListener("click", () => setTab("limited"));
   lbTab(); setInterval(lbTab, 6e4); // the days left; the tab goes away at the end
