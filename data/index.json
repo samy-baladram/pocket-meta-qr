@@ -542,6 +542,12 @@
    "path": "raw/2026/11/6b02e931ada8eea1c94d03f7.json",
    "players": 24,
    "rule": "wl2"
+  },
+  "pmpt52": {
+   "date": "2026-11-21T17:00:00Z",
+   "path": "raw/2026/11/pmpt52.json",
+   "players": 325,
+   "rule": "wl2"
   }
  },
  "skipped": {
