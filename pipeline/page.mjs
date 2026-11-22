@@ -56,6 +56,12 @@
 // list 1), so a deck that left the data keeps its page with on: 0 for KEEP_DAYS (in the sitemap), then NOINDEX_DAYS with
 // noindex (not in the sitemap); after that the page and the record go. A record entry is rewritten only on a new day
 // (or for a new deck), so the file changes at most about once a day.
+//
+// R31 (Nov 22, 2026): a copy per booster pack, packs/<pack id>/index.html, for every pack the page's Packs view lists
+// (not pa- / pb- promo, its set has a release), only when the page has the pack-route code (its RPACK check, the text
+// /\bpacks\b/; --packs forces it): routes tag word "packs", title, description, canonical, og-packs.png, subtitle,
+// intro text and BreadcrumbList; every pack address in the sitemap. The numbers are the page's pkBuild (packBuild):
+// stats.json cu + packs.json + cards.json names + the data.json and more.json decks.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, rmSync, copyFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { createHash } from "node:crypto";
@@ -151,6 +157,72 @@ function deckPages(full, dataDir, outDir, seenFile) {
     mkdirSync(dirname(f), { recursive: true });
     writeFileSync(f, fillIntro(sectionPage(full, { dir, title, desc, img: "og.png", hsec: `${e.name} deck`, ld, extra }), intro));
     out.push({ dir, on, days, title, desc });
+  }
+  return out;
+}
+// R31: the page's pkBuild in Node (same rules; keep them the same). A deck plays a card when n / np >= 0.5 (np = the
+// largest n in its cu); cards grouped by name (the cards.json display print's name); promo packs skipped; a "meta card"
+// (st) = 1+ of its decks has share >= 1. Cards: meta first, then more decks, then the summed share; decks by share.
+function packBuild(dataDir) {
+  const D = readJSON(join(dataDir, "data.json")), Mo = readJSON(join(dataDir, "more.json")),
+    ST = readJSON(join(dataDir, "stats.json")), PK = readJSON(join(dataDir, "packs.json")), CJ = readJSON(join(dataDir, "cards.json"));
+  if (!D || !ST || !PK || !CJ) return null;
+  const nrOf = new Map(), nameOf = new Map();
+  for (const [nr, id, n] of CJ.c) { nrOf.set(id, nr); if (n) nameOf.set(nr, n); }
+  const nm = (cid) => nameOf.get(nrOf.get(cid)) ?? null;
+  const decks = [...D.decks, ...((Mo && Mo.decks) || [])], dk = new Map(decks.map((d) => [d.id, d])), by = {};
+  for (const d of decks) {
+    const s = ST.d && ST.d[d.id]; if (!s || !s.cu || !s.cu.length) continue;
+    const np = Math.max(...s.cu.map((c) => c[1])); if (!np) continue;
+    for (const [cid, n, avg] of s.cu) {
+      if (n / np < 0.5) continue;
+      const name = nm(cid) || cid;
+      for (const p of PK.cards[cid] || []) {
+        if (/^p[ab]-/.test(p) || !PK.packs[p]) continue;
+        const P = by[p] || (by[p] = new Map());
+        if (!P.has(name)) P.set(name, { n: name, ids: new Map(), decks: new Map() });
+        const c = P.get(name);
+        c.ids.set(cid, (c.ids.get(cid) || 0) + n);
+        c.decks.set(d.id, Math.max(c.decks.get(d.id) || 0, Math.round(avg)));
+      }
+    }
+  }
+  return Object.keys(PK.packs).filter((p) => !/^p[ab]-/.test(p) && (PK.sets[PK.packs[p].set] || {}).release).map((p) => {
+    const k = PK.packs[p], st = PK.sets[k.set];
+    const cards = [...(by[p] || new Map()).values()].map((c) => {
+      const ds = [...c.decks].map(([id, cp]) => ({ d: dk.get(id), c: cp })).sort((a, z) => z.d.share - a.d.share);
+      return { n: c.n, decks: ds, st: ds.some((x) => x.d.share >= 1), sh: ds.reduce((t, x) => t + x.d.share, 0) };
+    }).sort((a, z) => z.st - a.st || z.decks.length - a.decks.length || z.sh - a.sh);
+    return { id: p, setName: st.name, pack: k.name, name: st.name + (k.name === st.name ? "" : " " + k.name), cards };
+  });
+}
+// R31: the pack pages. Returns [{ dir, title, desc }] for the sitemap and the log.
+function packPages(full, dataDir, outDir) {
+  const L = packBuild(dataDir), D = readJSON(join(dataDir, "data.json"));
+  if (!L) return [];
+  const dates = span(D.span[0], D.span[1]), out = [];
+  for (const x of L) {
+    const meta = x.cards.filter((c) => c.st), small = x.cards.length - meta.length;
+    const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+    const title = `${x.name} Pack (${MONTH}): Meta Cards & Decks | Pocket Meta QR`;
+    const desc = meta.length
+      ? fit(`${x.name} pack: ${plural(meta.length, "card")} played in this week's Pokémon TCG Pocket meta decks: `,
+        meta.map((c, i) => `${c.n} (${c.decks.length}${i ? "" : c.decks.length === 1 ? " deck" : " decks"})`), "See which decks use them.")
+      : `${x.name} pack: none of its cards are played by this week's Pokémon TCG Pocket meta decks (${dates}).`;
+    const intro = (meta.length
+      ? `Which Pokémon TCG Pocket decks of this week (${dates}) use the cards of the ${x.name} pack: ` +
+        meta.map((c) => `${c.n} (${plural(c.decks.length, "deck")}: ${c.decks.slice(0, 3).map((r) => r.d.name).join(", ")}` +
+          `${c.decks.length > 3 ? "…" : ""})`).join(", ") + "."
+      : `None of the cards of the ${x.name} pack are played by this week's Pokémon TCG Pocket meta decks (${dates}).`) +
+      (small ? ` ${small} ${meta.length ? "more " : ""}${small === 1 ? "card" : "cards"} only in smaller decks.` : "");
+    const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Pocket Meta QR", item: `${SITE}/` },
+      { "@type": "ListItem", position: 2, name: "Booster packs", item: `${SITE}/packs/` },
+      { "@type": "ListItem", position: 3, name: `${x.name} pack`, item: `${SITE}/packs/${x.id}/` }] };
+    const dir = `packs/${x.id}`, f = join(outDir, dir, "index.html");
+    mkdirSync(dirname(f), { recursive: true });
+    writeFileSync(f, fillIntro(sectionPage(full, { dir, title, desc, img: "og-packs.png", hsec: `${x.name} pack`, ld }), intro));
+    out.push({ dir, title, desc, meta: meta.length, small });
   }
   return out;
 }
@@ -284,7 +356,9 @@ const body = readFileSync(src, "utf8");
 const ROUTES_ON = ROUTES && body.includes("pmq-routes");   // R26: the page supports the section addresses
 const ABOUT_ON = ROUTES_ON && ABV_RE.test(body);              // R29: the page has the static FAQ section
 const DECKS_ON = ROUTES_ON && (body.includes("pmq-deck") || args.includes("--decks"));   // R30 §2: the page's deck code
-const RT = ROUTE_TAG.replace('content="1"', `content="${["1", ABOUT_ON && "about", DECKS_ON && "decks"].filter(Boolean).join(" ")}"`);
+const PACKS_ON = ROUTES_ON && (body.includes("/\\bpacks\\b/") || args.includes("--packs")); // R31: the page's RPACK check
+const RT = ROUTE_TAG.replace('content="1"',
+  `content="${["1", ABOUT_ON && "about", DECKS_ON && "decks", PACKS_ON && "packs"].filter(Boolean).join(" ")}"`);
 const SECS = SECTIONS.filter((x) => !x.about || ABOUT_ON);
 
 // One head item at the start of the text: whitespace, then a comment, <title>..</title>, <meta>, <link>,
@@ -370,6 +444,12 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
       ` ${kept.filter((x) => x.days > KEEP_DAYS).length} noindex)${seenFile ? `; record ${seenFile}` : ""}`);
     if (on[0]) console.log(`page: e.g. ${on[0].dir}/ title "${on[0].title}"; description ${on[0].desc.length} chars: ${on[0].desc}`);
   } else console.log(`page: no deck pages (${ROUTES_ON ? "the page has no deck code yet" : "routes off"})`);
+  const packs = PACKS_ON ? packPages(full, dirname(src), dirname(out)) : [];
+  if (PACKS_ON) {
+    console.log(`page: pack pages ${packs.length} (${packs.filter((x) => x.meta).length} with meta cards)`);
+    const ex = packs.find((x) => x.dir === "packs/c1-pikachu") || packs[0];
+    if (ex) console.log(`page: e.g. ${ex.dir}/ title "${ex.title}"; description ${ex.desc.length} chars: ${ex.desc}`);
+  } else console.log(`page: no pack pages (${ROUTES_ON ? "the page has no pack-route code yet" : "routes off"})`);
   if (ROUTES_ON) for (const [k, v] of Object.entries({ "/": { title: TITLES[""], desc: descs[""] || rootDesc }, ...heads }))
     console.log(`page: ${k.padEnd(8)} title "${v.title}"; description ${v.desc.length} chars${descs[k === "/" ? "" : k] ? "" : " (fixed text)"}`);
   if (ROUTES_ON) {   // R26 + R27: sitemap.xml with the section addresses and <lastmod>
@@ -377,7 +457,8 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     const lbOn = !lb || Date.parse(lb.to) > Date.now();
     const urls = [["", "hourly"], ...SECS.filter((x) => x.dir !== "limited" || lbOn)
       .map((x) => [x.dir + "/", x.about ? "monthly" : "daily"]),
-      ...decks.filter((x) => x.on || x.days <= KEEP_DAYS).map((x) => [x.dir + "/", "daily"])];   // R30 §2.9 / §3
+      ...decks.filter((x) => x.on || x.days <= KEEP_DAYS).map((x) => [x.dir + "/", "daily"]),   // R30 §2.9 / §3
+      ...packs.map((x) => [x.dir + "/", "daily"])];   // R31
     writeFileSync(join(dirname(out), "sitemap.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n' +
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       urls.map(([u, f]) => `  <url><loc>${SITE}/${u}</loc><lastmod>${today}</lastmod><changefreq>${f}</changefreq></url>\n`).join("") +

@@ -214,6 +214,11 @@ The pairings do not say which deck a player used in a match. Thus:
   with a list (data.json + more.json `decks`), routes tag `content="1 about decks"`, the deck addresses in the
   sitemap, and `data/decks_seen.json` (committed by site.yml, about once a day): a deck that leaves the data keeps
   its page for 30 days (`on: 0`, in the sitemap), then up to 90 days with `noindex`, then the page and record go.
+- Pack pages (request R31, Nov 22, 2026): when the page has the pack-route code (its RPACK check), page.mjs writes
+  `packs/<pack id>/index.html` for every pack of the Packs view (not promo, set with a release): routes tag word
+  `packs`, title, description, canonical, `og-packs.png`, subtitle, intro text (the pack's meta cards and their top
+  decks) and BreadcrumbList; every pack address in the sitemap. The numbers are the page's `pkBuild`, in Node
+  (`packBuild` in page.mjs; checked equal to the page for all packs).
 - Times (decision Nov 12, request R13): an event's `ts` = its Limitless start time; `at` = the raw file's
   `fetched_at` (when the scraper stored the finished tournament; raw files are written once, so it does not change).
   `changedAt` = the largest `at` of the window's tournaments; `latest` = the single-deck event with the largest `at`.
