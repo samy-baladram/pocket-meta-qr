@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795322685-4245 -->
+<!-- ui: artifact version 1795324925-8f13 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2422,8 +2422,8 @@ a.dkev { text-decoration: none; }
 .pka.open .pkr { box-shadow: inset 0 -1px 0 rgba(var(--sh), 0.9); }
 /* the pack: tilted 5 deg, its top peeks over the row (wide screens, and an open row on phones); the row's bottom edge cuts it */
 .pkr-t { position: relative; align-self: stretch; clip-path: inset(-40px -40px 0 -40px); }
-.pkr-t img { position: absolute; left: 13px; top: -11px; width: 54px; height: auto; aspect-ratio: 200 / 386; transform: rotate(5deg); transform-origin: 50% 0; filter: drop-shadow(1.5px 2px 2px rgba(40, 60, 90, 0.3)); transition: width 0.3s cubic-bezier(0.2, 0.8, 0.3, 1.2), top 0.3s cubic-bezier(0.2, 0.8, 0.3, 1.2), left 0.3s; }
-@media (max-width: 699px) { .pkr-t img { left: 14px; top: 9px; width: 52px; } .pka.open .pkr-t img { left: 13px; top: -11px; width: 54px; } }
+.pkr-t img { position: absolute; left: 13px; top: -11px; width: 54px; height: auto; aspect-ratio: 200 / 386; transform: rotate(10deg); transform-origin: 50% 0; filter: drop-shadow(1.5px 2px 2px rgba(40, 60, 90, 0.3)); transition: width 0.3s cubic-bezier(0.2, 0.8, 0.3, 1.2), top 0.3s cubic-bezier(0.2, 0.8, 0.3, 1.2), left 0.3s; }
+@media (max-width: 699px) { .pkr-t img { left: 14px; top: 9px; width: 52px; } .pka.open .pkr-t img { left: 13px; top: -9px; width: 54px; } } /* Nov 22: 10 deg (the tilt lifts its corner); the pop stays clear of the row above */
 @media (prefers-reduced-motion: reduce) { .pkr-t img { transition: none; } }
 .pkr-n { min-width: 0; }
 .pkr-n b { display: -webkit-box; overflow: hidden; font-size: 15px; font-weight: 600; line-height: 1.25; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; } /* Nov 22: up to 2 lines (no small cards under it now) */
@@ -2561,20 +2561,34 @@ a.dkev { text-decoration: none; }
   .pkd { padding-top: 10px; box-shadow: none; }
   .pkd-l { grid-template-columns: 1fr; }
   .pkp .pkg-w { margin-bottom: 4px; }
-  .pkp .pkd { border-left: 1px solid rgba(var(--sh), 0.9); padding-left: 20px; margin-top: 8px; min-height: 100%; }
+  .pkp .pkd { align-self: stretch; border-left: 1px solid rgba(var(--sh), 0.9); padding-left: 20px; margin: 8px 0 10px; } /* Nov 22 fix: min-height 100% + margin grew the row on every card pick */
+  .pkp .pkd-r { min-height: 56px; padding: 6px 4px; font-size: 14.5px; } /* taller rows in the right column */
+  .pkp .pkd-r .t2c { zoom: 1.15; }
+  .pkp .pkd-s b { font-size: 14px; } .pkp .pkd-h { margin-bottom: 6px; font-size: 13px; }
 }
 /* Nov 22: wide screens (620px+): pack rows in the style of the deck / event rows: 58px row, the pack in a 128px icon space
    (it pops up over the row, cut by the bottom edge), name 17px + code / Pokémon on one line, the counts on the right on one line */
 @media (min-width: 620px) {
   :root:not(#_) .pkr { height: 58px; min-height: 58px; grid-template-columns: 128px minmax(0, 1fr) auto; gap: 12px; padding: 6px 16px 6px 18px; }
   :root:not(#_) .pka { margin-bottom: 22px; }
-  :root:not(#_) .pkr-t img, :root:not(#_) .pka.open .pkr-t img { left: 34px; top: -14px; width: 60px; } /* peeks ~11px like the deck cards */
+  :root:not(#_) .pkr-t { margin-block: -6px; } /* to the row edges: no gap under the pack (it is cut by the row bottom itself) */
+  :root:not(#_) .pkr-t img, :root:not(#_) .pka.open .pkr-t img { left: 34px; top: -18px; width: 60px; transform: rotate(10deg); } /* Nov 22: 10 deg, peeks ~24px: more of the tall pack art shows */
   :root:not(#_) .pkr-n { display: flex; align-items: baseline; gap: 10px; }
   :root:not(#_) .pkr-n b { display: block; flex: none; max-width: 70%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: var(--font-display); font-size: 17px; }
   :root:not(#_) .pkr-n small { margin-top: 0; min-height: 0; align-self: center; font-size: 12.5px; }
   :root:not(#_) .pkr-v small { display: inline; margin: 0 0 0 6px; font-size: 12px; }
   :root:not(#_) .pkr-v b ~ small::before { content: "\00b7  "; }
   :root:not(#_) .pka.band > .pkr::before { width: 220px; }
+}
+/* Nov 22: phones: pack rows in the style of the deck / event rows (70px, the 90px icon space, the pack a bit right, 12px gaps) */
+@media (max-width: 619px) {
+  :root:not(#_) .pkr { height: auto; min-height: 70px; grid-template-columns: 90px minmax(0, 1fr) auto; gap: 10px; padding: 8px 12px 8px 16px; }
+  :root:not(#_) .pka { margin-bottom: 12px; }
+  :root:not(#_) .pkr-t { margin-block: -8px; }
+  :root:not(#_) .pkr-t img { left: 22px; top: 6px; width: 52px; }
+  :root:not(#_) .pka.open .pkr-t img { left: 21px; top: -8px; width: 54px; }
+  :root:not(#_) .pkr-n b { font-family: var(--font-display); font-size: 15px; }
+  :root:not(#_) .pka.band > .pkr::before { width: 140px; }
 }
 </style>
 
@@ -4069,7 +4083,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (!data || !STD || !PK || !CMAP_J) { el.className = "t1s"; el.innerHTML = `<p class="t1s-h"><b>Packs</b> <span class="t1s-hw">for the meta ${winWk()}</span></p><div class="t1s-sh" aria-hidden="true"><div class="t1s-vp"></div></div><div class="lsh pk-lh"><span>All packs</span></div><div class="pk-l" aria-busy="true">${'<section class="pka sk"><div class="pkr"><span class="pkr-t"></span><span class="pkr-n"></span><span></span></div></section>'.repeat(4)}</div>`; return; } // a skeleton while the files load
     PKV = pkBuild(CMAP_J); const act = pkAct(), L = PKV.filter((x) => pkMeta(x) > 0 && act.has(pkSer(x))), nA = PKV.filter((x) => act.has(pkSer(x))).length;
     const bd = PACKBD[data.set]; el.className = "t1s" + (bd ? " t1s-on" : ""); if (bd) { el.style.setProperty("--bd1", bd[0]); el.style.setProperty("--bd2", bd[1]); }
-    el.innerHTML = `${bd ? '<div class="t1s-bd" aria-hidden="true"><i><b></b></i></div>' : ""}<p class="t1s-h"><b>Packs</b> <span class="t1s-hw">for the meta ${winWk()}${ii("Packs", `<h3>Packs for the meta</h3><p>Which booster packs give the cards of the meta decks ${winLast()}. <b>Beta</b>: this view is new, and its rules can change.</p><p>A deck plays a card when half or more of its lists play it. A <b>meta card</b> is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.</p><p>The shelf shows the packs of the 2 newest series with meta cards, newest first; the older packs are under the list. Tap a pack to see its cards; tap a card to see the decks that play it.</p>`)}</span><span class="t1s-hr">Beta</span></p>
+    el.innerHTML = `${bd ? '<div class="t1s-bd" aria-hidden="true"><i><b></b></i></div>' : ""}<p class="t1s-h"><b>Packs</b> <span class="t1s-hw">for the meta ${winWk()}${ii("Packs", `<h3>Packs for the meta</h3><p>Which booster packs give the cards of the meta decks ${winLast()}.</p><p>A deck plays a card when half or more of its lists play it. A <b>meta card</b> is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.</p><p>The shelf shows the packs of the 2 newest series with meta cards, newest first; the older packs are under the list. Tap a pack to see its cards; tap a card to see the decks that play it.</p>`)}</span></p>
       <div class="t1s-sh"><div class="t1s-lab" aria-live="polite"><div></div><div></div></div><div class="t1s-vp" tabindex="0" aria-label="Packs with meta cards, newest first"><div class="t1s-tr">${[0, 1, 2].map((r) => `<div class="t1s-set"${r !== 1 ? ' aria-hidden="true"' : ""}>${L.map((x) => `<button type="button" class="pks-c" data-pk="${esc(x.id)}" aria-label="${esc(x.setName)}${pkSub(x) ? " " + esc(pkSub(x)) : ""}"${r !== 1 ? ' tabindex="-1"' : ""}><img src="p/${esc(x.img)}.webp" alt="" draggable="false" loading="lazy"></button>`).join("")}</div>`).join("")}</div></div></div>
       <div class="lsh pk-lh"><span>All packs<b> &middot; ${nA === PKV.length ? nA : nA + " + " + (PKV.length - nA) + " older"}</b></span><span class="t1s-seg" role="group" aria-label="Sort packs"><button type="button" data-s="new" aria-pressed="${pkSort === "new"}">Newest</button><button type="button" data-s="meta" aria-pressed="${pkSort === "meta"}">Most meta</button></span></div>
       <div class="pk-l" id="pkl"></div>`;
