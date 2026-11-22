@@ -102,9 +102,11 @@ jobs:
       # page.mjs rewrites an entry only on a new day, so this commits about once a day. Pushes made with the workflow
       # token do not start other workflows.
       # R32: and data/cards_seen.json (the card pages' record, same rule).
+      # continue-on-error: a problem here must never stop the deploy (the next run saves the record).
       - name: Save the deck record
+        continue-on-error: true
         run: |
-          f=$(ls data/decks_seen.json data/cards_seen.json 2>/dev/null); [ -n "$f" ] || { echo "No record yet."; exit 0; }
+          f=$(ls data/decks_seen.json data/cards_seen.json 2>/dev/null || true); [ -n "$f" ] || { echo "No record yet."; exit 0; }
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add $f
