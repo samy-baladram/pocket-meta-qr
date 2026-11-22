@@ -193,6 +193,12 @@ The pairings do not say which deck a player used in a match. Thus:
   with their own title, description, canonical and og tags, and `<meta name="pmq-routes" content="1"><base href="/">`
   first in `<head>`; index.html gets the same 2 tags) and adds the 3 addresses to `sitemap.xml`. Only when the page
   source has the routing code (the text `pmq-routes`); else the output is the same as before R26.
+- Findable sections (request R27, Nov 22, 2026): page.mjs writes the whole `sitemap.xml` (the 4 addresses, `<lastmod>` =
+  build day; `/limited/` only while a Limited Battle is on: `static/limited.json`, else the page's `const LB`), fills
+  the page's intro slot `<p class="seoi" id="seoi">` per copy from the build's data (top 3 decks; 3 newest events with
+  32+ players and their winners; the 3 packs with the most cards of the shown lists; the Limited Battle name and
+  dates), and sets `og:image` / `twitter:image` to `static/og-events.png` / `og-packs.png` (made by hand with
+  `pipeline/og_sections.mjs`; make them again at a set release). `robots.txt` (static) already lists the sitemap.
 - Times (decision Nov 12, request R13): an event's `ts` = its Limitless start time; `at` = the raw file's
   `fetched_at` (when the scraper stored the finished tournament; raw files are written once, so it does not change).
   `changedAt` = the largest `at` of the window's tournaments; `latest` = the single-deck event with the largest `at`.

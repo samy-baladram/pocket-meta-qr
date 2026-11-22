@@ -22,6 +22,13 @@
 // folders, so the folders never show the deck table under a section title. With the folders, the sitemap
 // (static/sitemap.xml + the 3 section addresses) is written next to index.html; site.yml copies static/ without
 // overwriting it (cp --update=none).
+//
+// R27 (Nov 22, 2026): make the section pages findable. (1) sitemap.xml: the 4 addresses with <lastmod> = the build day;
+// /limited/ only while a Limited Battle is on (static/limited.json, else the page's `const LB`; unknown: listed).
+// (2) Each copy's intro text in the page's empty slot <p class="seoi" id="seoi"></p> (inside "Loading decks...": shown
+// while the page loads, then replaced by the list), plain text from this build's data (data.json, events.json,
+// packs.json next to the page source). (3) og:image / twitter:image per section (static/og-<section>.png when it
+// exists; else og.png stays).
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { minify as minifyJS } from "terser";
@@ -32,16 +39,63 @@ const SITE = "https://pocketmetaqr.com";
 const ROUTE_TAG = '<meta name="pmq-routes" content="1"><base href="/">';
 const SECTIONS = [
   { dir: "events", title: "Latest events – Pocket Meta QR",
-    desc: "Latest Pokémon TCG Pocket tournament results: top 8 lists with QR codes." },
+    desc: "Latest Pokémon TCG Pocket tournament results: top 8 lists with QR codes.", img: "og-events.png" },
   { dir: "packs", title: "Booster packs for the meta – Pocket Meta QR",
-    desc: "Which Pokémon TCG Pocket booster packs give the cards of this week's meta decks." },
+    desc: "Which Pokémon TCG Pocket booster packs give the cards of this week's meta decks.", img: "og-packs.png" },
   { dir: "limited", title: "Limited Battle decks – Pocket Meta QR",
-    desc: "Hand-picked decks with QR codes for the current Limited Battle event." },
+    desc: "Hand-picked decks with QR codes for the current Limited Battle event.", img: "og-limited.png" },
 ];
+const SEOI = '<p class="seoi" id="seoi"></p>';
+
+// R27: the intro texts ("" = no text) and the Limited Battle (null = unknown) from this build's data.
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const day = (iso) => { const [, m, d] = iso.slice(0, 10).split("-"); return `${MON[+m - 1]} ${+d}`; };
+const span = (a, b) => (a.slice(0, 10) === b.slice(0, 10) ? day(a) :
+  a.slice(0, 7) === b.slice(0, 7) ? `${day(a)} – ${+b.slice(8, 10)}` : `${day(a)} – ${day(b)}`);
+// Event names without emoji and decoration symbols (link previews and search snippets): "✧❀🌸 Festival 🌸❀✧" -> "Festival"
+const plain = (t) => t.replace(/[\p{Extended_Pictographic}\p{So}\u2700-\u27BF\uFE0F\u200D\uFF5C\uFE31]/gu, " ")
+  .replace(/\s*[|︱]\s*/g, " | ").replace(/\s+/g, " ").replace(/^[\s|:.,-]+|[\s|:.,-]+$/g, "");
+const readJSON = (f) => { try { return JSON.parse(readFileSync(f, "utf8")); } catch { return null; } };
+function limitedEvent(page) {
+  const j = readJSON("static/limited.json");
+  if (j && j.name && j.from && j.to) return { name: j.name, from: j.from, to: j.to, n: (j.decks || []).length };
+  const m = page.match(/const LB = \{[^]*?name: "([^"]+)", from: "([^"]+)", to: "([^"]+)"/);
+  return m ? { name: m[1], from: m[2], to: m[3], n: 0 } : null;
+}
+function intros(dataDir, page) {
+  const D = readJSON(join(dataDir, "data.json")), E = readJSON(join(dataDir, "events.json")),
+    P = readJSON(join(dataDir, "packs.json")), t = {};
+  if (D?.decks?.length) {
+    const top = D.decks.slice(0, 3).map((d, i) => `#${i + 1} ${d.name} ${d.share.toFixed(1)}%`).join(", ");
+    t[""] = `This week's top Pokémon TCG Pocket decks from ${D.summary.tournaments} tournaments ` +
+      `(${span(D.span[0], D.span[1])}): ${top}. Every list has a QR code to copy it in the game.`;
+  }
+  if (E?.events?.length) {   // the 3 newest events with 32+ players (else the 3 newest)
+    const ev = E.events.filter((x) => x.players >= 32 && x.win), list = (ev.length ? ev : E.events.filter((x) => x.win));
+    const s = list.slice(0, 3).map((x) => `${plain(x.name)} (${x.players} players) won by ${x.win.name}`);
+    if (s.length) t.events = `The latest Pokémon TCG Pocket tournaments: ${s.join("; ")}. Top 8 decklists with QR codes.`;
+  }
+  if (D?.decks?.length && P?.cards) {   // packs that give the most cards of the shown decks' lists (not promo)
+    const ids = new Set(D.decks.flatMap((d) => (d.cards || []).map((c) => c.id))), n = new Map();
+    for (const id of ids) for (const k of P.cards[id] || []) if (!/^p/.test(P.packs[k]?.set || "p")) n.set(k, (n.get(k) || 0) + 1);
+    const nm = (k) => {
+      const pk = P.packs[k], one = Object.values(P.packs).filter((x) => x.set === pk.set).length === 1;
+      return one ? pk.name : `${P.sets?.[pk.set]?.name || pk.set.toUpperCase()}: ${pk.name}`;
+    };
+    const best = [...n].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 3);
+    if (best.length) t.packs = "Which Pokémon TCG Pocket booster packs give the cards of this week's meta decks: " +
+      best.map(([k, c], i) => `${nm(k)} (${c}${i ? "" : " meta cards"})`).join(", ") + ".";
+  }
+  const lb = limitedEvent(page);
+  if (lb && Date.parse(lb.to) > Date.now())
+    t.limited = `Hand-picked decks for ${lb.name} (${span(lb.from, lb.to)}), with QR codes.`;
+  return { t, lb };
+}
+const fillIntro = (html, text) => (text ? html.replace(SEOI, `<p class="seoi" id="seoi">${esc(text)}</p>`) : html);
 const esc = (t) => t.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
 // R26: the copy of the page for 1 section folder. Changes only the head part (before </head>).
-function sectionPage(html, { dir, title, desc }) {
+function sectionPage(html, { dir, title, desc, img }) {
   const i = html.indexOf("</head>");
   let head = html.slice(0, i);
   const url = `${SITE}/${dir}/`, set = (re, val, what) => {
@@ -56,6 +110,11 @@ function sectionPage(html, { dir, title, desc }) {
   set(/<meta property="og:description" content="[^"]*">/i, `<meta property="og:description" content="${esc(desc)}">`);
   set(/<meta name="twitter:title" content="[^"]*">/i, `<meta name="twitter:title" content="${esc(title)}">`);
   set(/<meta name="twitter:description" content="[^"]*">/i, `<meta name="twitter:description" content="${esc(desc)}">`);
+  if (img && existsSync(join("static", img))) {   // R27: the section's preview image
+    set(/<meta property="og:image" content="[^"]*">/i, `<meta property="og:image" content="${SITE}/${img}">`);
+    set(/<meta name="twitter:image" content="[^"]*">/i, `<meta name="twitter:image" content="${SITE}/${img}">`);
+    set(/<meta property="og:image:alt" content="[^"]*">/i, `<meta property="og:image:alt" content="${esc(title)}">`);
+  }
   if (!head.startsWith(`<!doctype html><html lang="en"><head>${ROUTE_TAG}`)) throw new Error("R26: no route tag first in <head>");
   return head + html.slice(i);
 }
@@ -107,17 +166,25 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     "body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}" +
     "img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>\n";
   const full = head.replace("<head>", ROUTES_ON ? `<head>${ROUTE_TAG}` : "<head>") + rest + "\n</body></html>\n";
-  writeFileSync(out, full);
+  const { t: intro, lb } = intros(dirname(src), body), hasSlot = full.includes(SEOI);
+  writeFileSync(out, fillIntro(full, intro[""]));
   if (ROUTES_ON) for (const sec of SECTIONS) {   // R26: events/, packs/, limited/ next to index.html
     const f = join(dirname(out), sec.dir, "index.html");
     mkdirSync(dirname(f), { recursive: true });
-    writeFileSync(f, sectionPage(full, sec));
+    writeFileSync(f, fillIntro(sectionPage(full, sec), intro[sec.dir]));
   }
-  if (ROUTES_ON && existsSync("static/sitemap.xml")) {   // R26: the section addresses in the sitemap
-    const urls = SECTIONS.map((x) => `  <url><loc>${SITE}/${x.dir}/</loc><changefreq>daily</changefreq></url>\n`).join("");
-    writeFileSync(join(dirname(out), "sitemap.xml"),
-      readFileSync("static/sitemap.xml", "utf8").replace("</urlset>", urls + "</urlset>"));
+  if (ROUTES_ON) {   // R26 + R27: sitemap.xml with the section addresses and <lastmod>
+    const today = new Date().toISOString().slice(0, 10);
+    const lbOn = !lb || Date.parse(lb.to) > Date.now();
+    const urls = [["", "hourly"], ...SECTIONS.filter((x) => x.dir !== "limited" || lbOn).map((x) => [x.dir + "/", "daily"])];
+    writeFileSync(join(dirname(out), "sitemap.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n' +
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+      urls.map(([u, f]) => `  <url><loc>${SITE}/${u}</loc><lastmod>${today}</lastmod><changefreq>${f}</changefreq></url>\n`).join("") +
+      "</urlset>\n");
+    console.log(`page: sitemap ${urls.length} addresses${lb ? `; Limited Battle "${lb.name}" until ${lb.to}` : ""}`);
   }
+  console.log(hasSlot ? `page: intro texts ${["", ...SECTIONS.map((x) => x.dir)].map((k) => `${k || "/"} ${intro[k] ? intro[k].length + " chars" : "none"}`).join(", ")}`
+    : "page: no intro slot in the page (R27)");
   console.log(ROUTES_ON ? `page: routes on; section pages ${SECTIONS.map((x) => x.dir + "/").join(", ")}` :
     `page: routes off (${ROUTES ? "the page has no routing code yet" : "--no-routes"})`);
   const n = (tags.match(/<(?:title|meta|link|script)\b/gi) || []).length;
