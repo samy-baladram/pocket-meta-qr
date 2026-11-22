@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795324925-8f13 -->
+<!-- ui: artifact version 1795326433-f29b -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2400,6 +2400,28 @@ a.dkev { text-decoration: none; }
 /* Nov 21: Top 10: card 1 starts in line with the heading (was 4px in); the strip starts 3px further left so the rank badge is not cut off */
 .t10st { margin-left: -5px; padding-left: 3px; }
 /* Nov 22: Booster Packs tab. Shelf = all packs with meta cards (loop carousel, like the Top 10); list = one row per pack; open = card grid + the decks of the picked card */
+/* Nov 22: Events tab: the Winners shelf (the Top 10 shelf; a 2-line label: event, then winner · players · day), "Most wins" (the Rising / Falling panel style), the count line */
+.evsh { margin: 2px 0 0; }
+.evsh .t1s-lab { top: 5px; height: 42px; }
+.evsh .t1s-lab > div { flex-direction: column; justify-content: center; gap: 1px; }
+.evsh .t1s-ln { max-width: 100%; font-size: 13.5px; }
+.evsh .t1s-ls { max-width: 100%; min-width: 0; flex: 0 1 auto; font-size: 12px; }
+.evld { min-width: 0; overflow: hidden; text-overflow: ellipsis; color: var(--ink); }
+.evsh .t1s-vp { height: calc(var(--ch) * 1.05 + 54px); }
+.evsh .t1s-tr { top: 54px; }
+.evmw { margin-top: 0; }
+.evmw .t1s-k { display: flex; align-items: baseline; gap: 8px; margin: 2px 6px 4px; font-size: 13px; font-weight: 500; color: var(--ink); }
+.evmw .t1s-k small { font-size: 11.5px; font-weight: 400; color: var(--muted); }
+.evmw .t1s-r { grid-template-columns: 44px minmax(0, 1fr) auto; }
+.evmn { padding-right: 4px; font-size: 12px; color: var(--muted); white-space: nowrap; } .evmn b { margin-right: 3px; font-size: 17px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.evmw .t1s-r.on { background: var(--seld); color: var(--seld-ink); box-shadow: none; }
+.evmw .t1s-r.on .t1s-x, .evmw .t1s-r.on .evmn { color: var(--seld-mut); } .evmw .t1s-r.on .evmn b { color: var(--seld-ink); }
+.evmw .t1s-r.on + .t1s-r { box-shadow: none; }
+.evlh { margin-top: 4px; }
+.evbg { display: inline-flex; align-items: center; gap: 4px; padding: 0; border: 0; background: none; color: var(--muted); font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; } .evbg b { color: var(--ink); } .evbg .spch { width: 7px; height: 9px; }
+@media (min-width: 700px) { .evmw .t1s-rows { grid-template-columns: 1fr 1fr; column-gap: 18px; }
+  .evmw .t1s-col:not(.all) .t1s-rows > .t1s-r:nth-child(n + 4) { display: grid; } .evmw .t1s-col:not(.all) .t1s-rows > .t1s-r:nth-child(n + 7) { display: none; }
+  .evmw .t1s-rows > .t1s-r:nth-child(2) { box-shadow: none; } .evmw .t1s-all[data-w6] { display: none; } }
 #pkv { --pw: calc(var(--cw) * 0.875); margin: 2px 0 10px; }
 #pkv[hidden] { display: none; }
 .pks-c { flex: none; position: relative; width: var(--pw); padding: 0; border: 0; background: none; cursor: inherit; transform: rotate(5deg); transform-origin: 50% 0; -webkit-tap-highlight-color: transparent; }
@@ -3988,7 +4010,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     el.querySelectorAll(".t1s-all").forEach((b) => b.addEventListener("click", () => { const c = b.closest(".t1s-col"), o = c.classList.toggle("all"); b.textContent = o ? "Show less" : "Show all " + c.querySelectorAll(".t1s-r").length; }));
     el.querySelector(".t1s-cols").dataset.on = "up";
     const bdEl = el.querySelector(".t1s-bd"), mp = el.querySelector(".t1s-mp");
-    const bdSize = () => { if (!bdEl || !el.offsetParent) return; const { k } = ZK(), r = cssR(el.getBoundingClientRect(), k), m = cssR(mp.getBoundingClientRect(), k), W = document.documentElement.clientWidth / k;
+    const bdSize = () => { if (!bdEl || !el.offsetParent) return; const { k } = ZK(), r = cssR(el.getBoundingClientRect(), k), m = cssR(el.querySelector(".t1s-sh").getBoundingClientRect(), k), W = document.documentElement.clientWidth / k;
       const tb = $("tbar"), tbB = tb ? cssR(tb.getBoundingClientRect(), k).bottom : r.top - 14, top = Math.min(-8, tbB - r.top);
       bdEl.style.cssText = `left:${(-r.left).toFixed(1)}px;width:${W.toFixed(1)}px;top:${top.toFixed(1)}px;height:${(m.top + m.height / 2 - r.top - top + W * 0.04375).toFixed(1)}px;--bdS:${(W * 0.0875).toFixed(1)}px`;
       const Hb = m.top + m.height / 2 - r.top - top + W * 0.04375, dg = (W + Hb) / Math.SQRT2; bdEl.style.setProperty("--shD", (dg / 2 + 175).toFixed(0) + "px"); bdEl.style.setProperty("--shL", (dg + 60).toFixed(0) + "px"); };
@@ -4089,14 +4111,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       <div class="pk-l" id="pkl"></div>`;
     pkList(); if (L.length) pkCar(el, L); if (pkTarget) pkGoNow(); }
   // The pack shelf: the Top 10 carousel (loop of 3 copies, transform only, slow auto-move, flick momentum, snap), with packs
-  function pkCar(el, L) { if (pkKill) pkKill(); const vp = el.querySelector(".t1s-vp"), tr = el.querySelector(".t1s-tr"), labs = [...el.querySelectorAll(".t1s-lab > div")];
-    const its = [...tr.querySelectorAll(".pks-c")], N = L.length, SPEED = 10, IDLE = 5000, RM = matchMedia("(prefers-reduced-motion: reduce)");
+  // Nov 22: the shelf carousel for the Packs and the Events tabs (o.sel = the item buttons, o.lab(x) = the label HTML, o.tap(button) = after the glide to it); returns the stop function
+  function pkCar(el, L) { if (pkKill) pkKill(); pkKill = shelfCar(el, L, { sel: ".pks-c",
+    lab: (x) => { const m = pkMeta(x); return `<span class="pkcode">${esc(x.set)}</span><span class="t1s-ln">${esc(x.setName)}</span>${pkSub(x) ? `<span class="t1s-ls">&middot; ${esc(pkSub(x))}</span>` : ""}<span class="t1s-ls">&middot; <b>${m}</b> meta card${m > 1 ? "s" : ""}</span>`; },
+    tap: (b) => { track("packs-shelf"); const a = $("pk-" + b.dataset.pk); if (a && !a.hidden) { pkOpen(a, true); setTimeout(() => centerEl(a), 320); } } }); } // Nov 22: centered (was: to the top)
+  function shelfCar(el, L, o) { const vp = el.querySelector(".t1s-vp"), tr = el.querySelector(".t1s-tr"), labs = [...el.querySelectorAll(".t1s-lab > div")];
+    const its = [...tr.querySelectorAll(o.sel)], N = L.length, SPEED = 10, IDLE = 5000, RM = matchMedia("(prefers-reduced-motion: reduce)");
     let setW = 0, pos = 0, last = 0, idle = performance.now() + 2000, mode = "idle", A = null, cur = -1, lb = 0, down = null, drag = false, on = false, raf = 0, dead = false, wt = 0;
     const cx = (i) => its[i].offsetLeft + its[i].offsetWidth / 2;
     const meas = () => { setW = its[N].offsetLeft - its[0].offsetLeft; };
     const near = (p) => { const c = p + vp.clientWidth / 2; let b = 0, bd = 1e9; for (let i = 0; i < its.length; i++) { const d = Math.abs(cx(i) - c); if (d < bd) { bd = d; b = i; } } return b; };
-    const label = () => { const k = near(pos) % N; if (k === cur) return; cur = k; const x = L[k], m = pkMeta(x), a = labs[lb], o = labs[1 - lb]; lb = 1 - lb;
-      a.innerHTML = `<span class="pkcode">${esc(x.set)}</span><span class="t1s-ln">${esc(x.setName)}</span>${pkSub(x) ? `<span class="t1s-ls">&middot; ${esc(pkSub(x))}</span>` : ""}<span class="t1s-ls">&middot; <b>${m}</b> meta card${m > 1 ? "s" : ""}</span>`; a.classList.add("on"); o.classList.remove("on"); };
+    const label = () => { const k = near(pos) % N; if (k === cur) return; cur = k; const a = labs[lb], z = labs[1 - lb]; lb = 1 - lb;
+      a.innerHTML = o.lab(L[k]); a.classList.add("on"); z.classList.remove("on"); };
     const put = () => { if (setW) { if (pos < setW * 0.5) { pos += setW; if (A) { A.from += setW; A.to += setW; } } else if (pos > setW * 1.5) { pos -= setW; if (A) { A.from -= setW; A.to -= setW; } } }
       tr.style.transform = `translate3d(${(-pos).toFixed(2)}px,0,0)`; label(); };
     const hold = (ms = IDLE) => { idle = performance.now() + ms; };
@@ -4119,11 +4145,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const to = cx(near(pos + v * 0.499)) - vp.clientWidth / 2; glide(to, Math.max(300, Math.min(2600, Math.abs(3 * (to - pos) / v) * 1000))); };
     vp.addEventListener("pointerup", up); vp.addEventListener("pointercancel", up);
     vp.addEventListener("click", (e) => { if (drag) { e.stopPropagation(); e.preventDefault(); drag = false; return; }
-      const b = e.target.closest(".pks-c"); if (!b) return; track("packs-shelf"); const i = its.indexOf(b); glide(cx(i) - vp.clientWidth / 2, 300);
-      const a = $("pk-" + b.dataset.pk); if (a && !a.hidden) { pkOpen(a, true); setTimeout(() => centerEl(a), 320); } }, true); // Nov 22: centered (was: to the top)
+      const b = e.target.closest(o.sel); if (!b) return; const i = its.indexOf(b); glide(cx(i) - vp.clientWidth / 2, 300); o.tap(b, i); }, true);
     vp.addEventListener("wheel", (e) => { const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY; if (!d) return; e.preventDefault(); A = null; mode = "drag"; pos += d; put(); hold(); clearTimeout(wt); wt = setTimeout(snap, 140); }, { passive: false });
     vp.addEventListener("keydown", (e) => { if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return; e.preventDefault(); const i = near(pos) + (e.key === "ArrowRight" ? 1 : -1); glide(cx(i) - vp.clientWidth / 2, 300); });
-    vp.addEventListener("focusin", (e) => { const b = e.target.closest(".pks-c"); if (!b || drag) return; hold(); const i = its.indexOf(b); if (i >= 0 && Math.abs(cx(i) - vp.clientWidth / 2 - pos) > 4) glide(cx(i) - vp.clientWidth / 2, 300); });
+    vp.addEventListener("focusin", (e) => { const b = e.target.closest(o.sel); if (!b || drag) return; hold(); const i = its.indexOf(b); if (i >= 0 && Math.abs(cx(i) - vp.clientWidth / 2 - pos) > 4) glide(cx(i) - vp.clientWidth / 2, 300); });
     const bdEl = el.querySelector(".t1s-bd"), sh = el.querySelector(".t1s-sh");
     const bdSize = () => { if (!bdEl || !el.offsetParent || sh.hidden) return; const { k } = ZK(), r = cssR(el.getBoundingClientRect(), k), m = cssR(sh.getBoundingClientRect(), k), W = document.documentElement.clientWidth / k;
       const tb = $("tbar"), tbB = tb ? cssR(tb.getBoundingClientRect(), k).bottom : r.top - 14, top = Math.min(-8, tbB - r.top), H = m.top + m.height * 0.5 - r.top - top + W * 0.04375; /* ends at the middle of the shelf */
@@ -4132,8 +4157,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const start = () => { if (!vp.offsetParent) return; meas(); pos = cx(N) - vp.clientWidth / 2; cur = -1; put(); bdSize(); };
     const rz = () => { if (!setW) return start(); const k = (near(pos) % N) + N; meas(); pos = cx(k) - vp.clientWidth / 2; put(); bdSize(); }; let rt; const onR = () => { clearTimeout(rt); rt = setTimeout(rz, 120); }; addEventListener("resize", onR);
     requestAnimationFrame(() => { start(); vis(); });
-    pkKill = () => { dead = true; cancelAnimationFrame(raf); io.disconnect(); document.removeEventListener("visibilitychange", vis); removeEventListener("resize", onR); };
     el._vis = () => { if (!setW) start(); else bdSize(); vis(); };
+    return () => { dead = true; cancelAnimationFrame(raf); io.disconnect(); document.removeEventListener("visibilitychange", vis); removeEventListener("resize", onR); };
   }
   $("pkv").addEventListener("error", (e) => { const t = e.target; if (t.tagName === "IMG" && t.closest(".pkc-i, .pkr-m")) t.remove(); }, true); // a card with no image: its name shows (grid) / no thumb (row)
   $("pkv").addEventListener("click", (e) => {
@@ -5464,7 +5489,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const SHOW_JUST = false; // Nov 15: the "Just added" chips are off (the rows show "added N h ago")
   let evWin = "", evQ = "", evMin = 0, evDk = ""; // Nov 15: event filters: winner chip, search text, min players, a deck in the top 8 (from the deck sheet)
   $("evl").addEventListener("click", (e) => {
-    const c = e.target.closest(".evwc"); if (c) { evWin = evWin === c.dataset.wd ? "" : c.dataset.wd; track("events-win-chip");
+    const ma = e.target.closest(".evmw .t1s-all"); if (ma) { const o = ma.parentElement.classList.toggle("all"); ma.textContent = o ? "Show less" : "Show all " + ma.dataset.n; return; }
+    const c = e.target.closest(".evwc, .evmr"); if (c) { evWin = evWin === c.dataset.wd ? "" : c.dataset.wd; track("events-win-chip");
       const x0 = c.closest(".evwins") ? c.closest(".evwins").scrollLeft : 0; renderEvents(); fDot();
       // Nov 15: the row keeps its place, then the chosen chip slides to the left edge (not back to the start of the row)
       const row = $("evl").querySelector(".evwins"); if (row) { row.scrollLeft = x0; const on = row.querySelector(".evwc.on");
@@ -5472,7 +5498,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       return; }
     if (e.target.closest(".evclr")) { evWin = ""; evQ = ""; evMin = 0; evDk = ""; $("fq").value = ""; filtMode(true); renderEvents(); return; }
     const bar = e.target.closest(".evbars i[data-day]"); if (bar) { const t = $("evd-" + bar.dataset.day); if (t) t.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
-    const bg = e.target.closest(".evbig[data-go], .evjust [data-go]"); if (bg && bg.dataset.go) { const t = $("ev-" + bg.dataset.go); if (t) { t.scrollIntoView({ behavior: "smooth", block: "center" }); t.querySelector(".arow").click(); } } });
+    const bg = e.target.closest(".evbig[data-go], .evbg[data-go], .evjust [data-go]"); if (bg && bg.dataset.go) { const t = $("ev-" + bg.dataset.go); if (t) { const r = t.querySelector(".arow"); if (r.getAttribute("aria-expanded") === "true") centerEl(t); else r.click(); } } }); // Nov 22: opens, then moves to the middle (evCtr)
+  let evShEl = null, evShKill = null; // Nov 22: the Winners shelf (kept while only the "Most wins" pick changes)
   function renderEvents() { evPre();
     const box = $("evl");
     if (!EV || !EV.events || !EV.events.length) { box.innerHTML = `<div class="empty">No events ${winLast()} yet.</div>`; return; }
@@ -5492,10 +5519,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const tw = Object.values(wins).sort((a, b) => b.n - a.n).slice(0, 4);
     const skipTip = ii("events", `<h3>Events</h3><p>An event shows here <b>after it ends</b>, usually a few hours after it starts. It is listed under the day it was played (your time), so a new event can show under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.</p>${skip > 0 ? `<p>${skip} multi-deck event${skip > 1 ? "s" : ""} (players bring more than one deck) ${skip > 1 ? "are" : "is"} not listed: their results do not show which deck won each match.</p>` : ""}`, true);
     const just = all.filter((e) => e.at && agoH(e.at) < 12).sort((a, b) => Date.parse(b.at) - Date.parse(a.at)).slice(0, 3);
-    const strip = `<div class="evsum"><div><span>Events${skipTip}</span><b>${all.length}</b><span class="evbars" aria-hidden="true">${per.map((n, k) => `<i data-day="${dys[k]}" style="height:${n ? Math.max(16, Math.round(n / mx * 100)) : 5}%" title="${evDay(dys[k])}: ${n}"></i>`).join("")}</span></div>
-      <div><span>Players</span><b>${pl.toLocaleString("en-US")}</b><small>${winLast().replace(/^in /, "")}</small></div>
-      <div class="evbig" role="button" tabindex="0" data-go="${big ? big.tid : ""}" aria-label="Open the biggest event"><span>Biggest</span><b>${big ? big.players : "\u2013"}</b><small>${big ? esc(shortEv(big.name)) : ""}</small>${big ? `<i class="evgo">${SPCH}</i>` : ""}</div></div>
-      ${tw.length > 1 ? `<p class="evwl">Most wins</p><div class="evwins">${tw.map((t) => `<button class="evwc${evWin === t.w.deck ? " on" : ""}" type="button" data-wd="${esc(t.w.deck)}" aria-pressed="${evWin === t.w.deck}">${(t.w.art || []).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="20" height="28" loading="lazy">`).join("")}<span>${esc(t.w.name)}</span><b>\u00d7${t.n}</b></button>`).join("")}</div>` : ""}
+    // Nov 22: the Winners shelf (the Top 10 carousel, one item per event: the winning deck's 2 cards, newest first), a "Most wins" panel (Rising / Falling style) and a one-line count
+    const SL = all.filter((e) => e.win && e.win.art && e.win.art.length), shSh = SL.length >= 4 && !q && !evMin && !evDk, sk = SL.map((e) => e.tid).join();
+    const keep = shSh && evShEl && evShEl._k === sk ? evShEl : null, bd = data && PACKBD[data.set];
+    const evc = (e, r) => { const a = e.win.art; return `<button type="button" class="t1s-c" data-et="${e.tid}" aria-label="${esc(shortEv(e.name))}: won by ${esc(e.win.name)}, ${e.players} players"${r !== 1 ? ' tabindex="-1"' : ""}><img src="c/${a[0]}.webp" alt="" draggable="false" loading="lazy">${a[1] ? `<img class="b" src="c/${a[1]}.webp" alt="" draggable="false" loading="lazy">` : ""}</button>`; };
+    const shelf = !shSh ? "" : keep ? '<i id="evshP"></i>' : `<div class="t1s evsh${bd ? " t1s-on" : ""}" id="evsh"${bd ? ` style="--bd1:${bd[0]};--bd2:${bd[1]}"` : ""}>${bd ? '<div class="t1s-bd" aria-hidden="true"><i><b></b></i></div>' : ""}<p class="t1s-h"><b>Winners</b> <span class="t1s-hw">last ${SL.length} events${skipTip}</span></p>
+      <div class="t1s-sh"><div class="t1s-lab" aria-live="polite"><div></div><div></div></div><div class="t1s-vp" tabindex="0" aria-label="Event winners, newest first"><div class="t1s-tr">${[0, 1, 2].map((r) => `<div class="t1s-set"${r !== 1 ? ' aria-hidden="true"' : ""}>${SL.map((e) => evc(e, r)).join("")}</div>`).join("")}</div></div></div></div>`;
+    const t8 = (id) => all.reduce((n, e) => n + (e.top || []).filter(([x]) => x === id).length, 0);
+    const wl = Object.values(wins).map((t) => ({ ...t, t8: t8(t.w.deck) })).sort((a, b) => b.n - a.n || b.t8 - a.t8);
+    const mrow = (t) => { const on = evWin === t.w.deck; return `<button type="button" class="t1s-r evmr${on ? " on" : ""}" data-wd="${esc(t.w.deck)}" aria-pressed="${on}">${t2c(t.w, 26, 42, 34, 15, 5)}<span class="t1s-n2"><span class="t1s-n">${esc(t.w.name)}</span><small class="t1s-x">${t.t8} top 8 finish${t.t8 > 1 ? "es" : ""}</small></span><span class="evmn"><b>${t.n}</b> win${t.n > 1 ? "s" : ""}</span></button>`; };
+    const mAll = !!evWin && wl.findIndex((t) => t.w.deck === evWin) > 2, mw = wl.length > 1 && !q && !evMin && !evDk ? `<div class="t1s-mp evmw"><p class="t1s-k">Most wins<small>tap a deck to see its wins</small></p><div class="t1s-col${mAll ? " all" : ""}"><div class="t1s-rows">${wl.map(mrow).join("")}</div>${wl.length > 3 ? `<button type="button" class="t1s-all" data-n="${wl.length}"${wl.length > 6 ? "" : ' data-w6="1"'}>${mAll ? "Show less" : "Show all " + wl.length}</button>` : ""}</div></div>` : "";
+    const cnt = !anyF ? `<div class="lsh evlh"><span>All events<b> &middot; ${all.length} &middot; ${pl.toLocaleString("en-US")} players</b></span>${big ? `<button type="button" class="evbg" data-go="${big.tid}" aria-label="Open the biggest event">Biggest <b>${big.players}</b>${SPCH}</button>` : ""}</div>` : "";
+    const strip = `${shelf}${mw}${cnt}
       ${anyF ? `<p class="evnote">${L.length ? `${L.length} event${L.length > 1 ? "s" : ""}` : "No events"}${evWin ? ` won by ${esc((wins[evWin] || {}).w ? wins[evWin].w.name : "")}` : ""}${evDk ? ` with ${esc(dn(evDk))} in the top 8` : ""}${evMin ? ` with ${evMin}+ players` : ""}${q && !evDk ? ` for &ldquo;${esc(evQ.trim())}&rdquo;` : ""} &middot; <button class="evclr" type="button">Show all events</button></p>` : ""}`;
     const justL = just.length && !anyF ? `<p class="evjust"><b>Just added</b>${just.map((e) => `<button type="button" data-go="${e.tid}">${esc(shortEv(e.name))} <span>${addAgo(e.at)}</span></button>`).join("")}</p>` : "";
     box.innerHTML = strip + (SHOW_JUST && !(just.length === 1 && L[0] === just[0]) ? justL : "") + L.map((e) => {
@@ -5512,6 +5547,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
         <div class="apanel" id="evp-${e.tid}" hidden></div>
       </section>`;
     }).join("");
+    if (keep) { $("evshP").replaceWith(keep); keep._vis && requestAnimationFrame(keep._vis); }
+    else { if (evShKill) evShKill(); evShKill = null; evShEl = $("evsh");
+      if (evShEl) { evShEl._k = sk; evShKill = shelfCar(evShEl, SL, { sel: ".t1s-c",
+        lab: (e) => `<span class="t1s-ln">${esc(shortEv(e.name))}</span><span class="t1s-ls"><span class="evld">${esc(e.win.name)}</span>&middot; <b>${e.players}</b> players &middot; ${evDay(locDay(e))}</span>`,
+        tap: (b) => { track("events-shelf"); const t = $("ev-" + b.dataset.et); if (!t) return; const r = t.querySelector(".arow"); setTimeout(() => { if (r.getAttribute("aria-expanded") === "true") centerEl(t); else r.click(); }, 320); } }); } }
   }
   function evDeck(e, v, k) { // a list as a 1-list "deck" (so slideBody, the QR panel and the saved image work as for decks)
     const dk = (EV.decks && EV.decks[v.deck]) || {};
