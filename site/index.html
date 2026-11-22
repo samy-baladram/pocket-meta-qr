@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795326433-f29b -->
+<!-- ui: artifact version 1795329624-d616 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1704,10 +1704,10 @@ a.dkev { text-decoration: none; }
   color: var(--muted); opacity: 0.8; cursor: pointer; vertical-align: -2px; pointer-events: auto; flex: none; }
 .ii svg { width: 12px; height: 12px; display: block; position: relative; } /* above the open tint */
 .ii::after { content: ""; position: absolute; inset: -10px; } /* a 32 px tap area */
-@media (hover: hover) { .ii:hover { opacity: 1; color: var(--sel); } }
+@media (hover: hover) { .ii:hover { opacity: 1; color: var(--ink); } }
 .ii:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-radius: 50%; }
-.ii[aria-expanded="true"] { opacity: 1; color: var(--sel); }
-.ii[aria-expanded="true"]::before { content: ""; position: absolute; inset: -3px; border-radius: 50%; background: var(--sel-bg); } /* open: a faint round tint, like the selected Also played item */
+.ii[aria-expanded="true"] { opacity: 1; color: var(--seld-ink); }
+.ii[aria-expanded="true"]::before { content: ""; position: absolute; inset: -3px; border-radius: 50%; background: var(--seld); } /* Nov 22: open = the selected style: a dark slate disc, white icon (dark mode: light disc, dark icon); was a teal tint + teal icon (below AA on the pack backdrop) */
 .us.top .ii { color: inherit; }
 .ipop.float { width: min(300px, calc(100vw - 24px)); overscroll-behavior: contain; }
 .ipop.float.wide { width: min(360px, calc(100vw - 24px)); }
@@ -2400,6 +2400,9 @@ a.dkev { text-decoration: none; }
 /* Nov 21: Top 10: card 1 starts in line with the heading (was 4px in); the strip starts 3px further left so the rank badge is not cut off */
 .t10st { margin-left: -5px; padding-left: 3px; }
 /* Nov 22: Booster Packs tab. Shelf = all packs with meta cards (loop carousel, like the Top 10); list = one row per pack; open = card grid + the decks of the picked card */
+/* Nov 22: dark mode: every card and pack image 15% darker, like the deck cards (.icons / .picons / .cards above); drop shadows kept */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t1s-c img, :root:not([data-theme="light"]) .t2c img, :root:not([data-theme="light"]) .pkc-i img, :root:not([data-theme="light"]) .pkr-m img, :root:not([data-theme="light"]) .tstk img, :root:not([data-theme="light"]) .swr:not(.out) img, :root:not([data-theme="light"]) .cug img, :root:not([data-theme="light"]) .sgc img, :root:not([data-theme="light"]) .sgi img, :root:not([data-theme="light"]) .ekic img, :root:not([data-theme="light"]) .ektc img, :root:not([data-theme="light"]) .edi img, :root:not([data-theme="light"]) .ait > img:not(.ao), :root:not([data-theme="light"]) .aswl .asc img:not(.ao), :root:not([data-theme="light"]) .anew img, :root:not([data-theme="light"]) .cfg img, :root:not([data-theme="light"]) .shcards img, :root:not([data-theme="light"]) .chip img, :root:not([data-theme="light"]) .evwc img, :root:not([data-theme="light"]) .cpop .zc img, :root:not([data-theme="light"]) .cpop .pk.promo { filter: brightness(0.85); } :root:not([data-theme="light"]) .pks-c img { filter: brightness(0.85) drop-shadow(2px 3px 4px rgba(40, 60, 90, 0.35)); } :root:not([data-theme="light"]) .pkr-t img { filter: brightness(0.85) drop-shadow(1.5px 2px 2px rgba(40, 60, 90, 0.3)); } :root:not([data-theme="light"]) .cpop .pk:not(.promo) { filter: brightness(0.85) drop-shadow(0 2px 3px rgba(var(--sh), calc(0.3 * var(--shk)))); } :root:not([data-theme="light"]) .swr.out img { filter: grayscale(0.35) brightness(0.78); } :root:not([data-theme="light"]) .ait > img.ao, :root:not([data-theme="light"]) .aswl .asc img.ao { filter: grayscale(0.4) brightness(0.85); } }
+:root[data-theme="dark"] .t1s-c img, :root[data-theme="dark"] .t2c img, :root[data-theme="dark"] .pkc-i img, :root[data-theme="dark"] .pkr-m img, :root[data-theme="dark"] .tstk img, :root[data-theme="dark"] .swr:not(.out) img, :root[data-theme="dark"] .cug img, :root[data-theme="dark"] .sgc img, :root[data-theme="dark"] .sgi img, :root[data-theme="dark"] .ekic img, :root[data-theme="dark"] .ektc img, :root[data-theme="dark"] .edi img, :root[data-theme="dark"] .ait > img:not(.ao), :root[data-theme="dark"] .aswl .asc img:not(.ao), :root[data-theme="dark"] .anew img, :root[data-theme="dark"] .cfg img, :root[data-theme="dark"] .shcards img, :root[data-theme="dark"] .chip img, :root[data-theme="dark"] .evwc img, :root[data-theme="dark"] .cpop .zc img, :root[data-theme="dark"] .cpop .pk.promo { filter: brightness(0.85); } :root[data-theme="dark"] .pks-c img { filter: brightness(0.85) drop-shadow(2px 3px 4px rgba(40, 60, 90, 0.35)); } :root[data-theme="dark"] .pkr-t img { filter: brightness(0.85) drop-shadow(1.5px 2px 2px rgba(40, 60, 90, 0.3)); } :root[data-theme="dark"] .cpop .pk:not(.promo) { filter: brightness(0.85) drop-shadow(0 2px 3px rgba(var(--sh), calc(0.3 * var(--shk)))); } :root[data-theme="dark"] .swr.out img { filter: grayscale(0.35) brightness(0.78); } :root[data-theme="dark"] .ait > img.ao, :root[data-theme="dark"] .aswl .asc img.ao { filter: grayscale(0.4) brightness(0.85); }
 /* Nov 22: Events tab: the Winners shelf (the Top 10 shelf; a 2-line label: event, then winner · players · day), "Most wins" (the Rising / Falling panel style), the count line */
 .evsh { margin: 2px 0 0; }
 .evsh .t1s-lab { top: 5px; height: 42px; }
@@ -3969,7 +3972,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Nov 21: the backdrop behind the Top 10, from the set's booster pack (like the game's pack screen). OKLCH, left -> right.
   // One-color pack: right = the pack color, left = same hue, L + 0.15, C 0.125. Two-color packs (C1): color A -> color B, both light.
   const PACKBD = { C1: ["oklch(0.76 0.121 291)", "oklch(0.84 0.095 312)"] };
-  let t10Kill = null;
+  let t10Kill = null; const SHELF_SNAP = false; // Nov 22: the shelves stop where the drag / flick ends (true = snap to the nearest item)
   function t10Car(el, top) { if (t10Kill) t10Kill(); const vp = el.querySelector(".t1s-vp"), tr = el.querySelector(".t1s-tr"), labs = [...el.querySelectorAll(".t1s-lab > div")];
     const its = [...tr.querySelectorAll(".t1s-c")], N = top.length, SPEED = 10, IDLE = 5000, RM = matchMedia("(prefers-reduced-motion: reduce)");
     let setW = 0, pos = 0, last = 0, idle = performance.now() + 2000, mode = "idle", A = null, cur = -1, lb = 0, down = null, drag = false, on = false, raf = 0, dead = false, wt = 0;
@@ -3983,7 +3986,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       tr.style.transform = `translate3d(${(-pos).toFixed(2)}px,0,0)`; label(); };
     const hold = (ms = IDLE) => { idle = performance.now() + ms; };
     const glide = (to, dur) => { A = { from: pos, to, t0: performance.now(), dur }; mode = "glide"; hold(dur + IDLE); };
-    const snap = () => glide(cx(near(pos)) - vp.clientWidth / 2, 380);
+    const snap = () => { if (!SHELF_SNAP) { mode = "idle"; return; } glide(cx(near(pos)) - vp.clientWidth / 2, 380); }; // Nov 22: no snap (it jerked when the shelf was barely on screen); a tap, the arrow keys and focus still center an item
     const ease = (t) => 1 - Math.pow(1 - t, 3);
     const tick = (t) => { raf = 0; if (dead || !on) return; const dt = last ? Math.min(0.05, (t - last) / 1000) : 0; last = t;
       if (mode === "glide" && A) { const k = Math.min(1, (t - A.t0) / A.dur); pos = A.from + (A.to - A.from) * ease(k); put(); if (k >= 1) { A = null; mode = "idle"; } }
@@ -3999,7 +4002,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const up = () => { if (!down) return; const H = down.H; down = null; vp.classList.remove("drag"); if (!drag) { mode = "idle"; return; }
       const a = H[0], z = H[H.length - 1], v = Math.max(-8000, Math.min(8000, (a[1] - z[1]) / Math.max(16, z[0] - a[0]) * 1000));
       if (Math.abs(v) < 200 || performance.now() - z[0] > 90) { snap(); return; }
-      const to = cx(near(pos + v * 0.499)) - vp.clientWidth / 2; glide(to, Math.max(300, Math.min(2600, Math.abs(3 * (to - pos) / v) * 1000))); }; // iOS deceleration 0.998/ms: travels v x 0.499 s
+      const to = SHELF_SNAP ? cx(near(pos + v * 0.499)) - vp.clientWidth / 2 : pos + v * 0.499; glide(to, Math.max(300, Math.min(2600, Math.abs(3 * (to - pos) / v) * 1000))); }; // iOS deceleration 0.998/ms: travels v x 0.499 s
     vp.addEventListener("pointerup", up); vp.addEventListener("pointercancel", up);
     vp.addEventListener("click", (e) => { if (drag) { e.stopPropagation(); e.preventDefault(); drag = false; } }, true); // a drag is not a tap
     vp.addEventListener("wheel", (e) => { const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY; if (!d) return; /* Nov 21: a vertical wheel on the shelf turns it (the page does not scroll here) */ e.preventDefault(); A = null; mode = "drag"; pos += d; put(); hold(); clearTimeout(wt); wt = setTimeout(snap, 140); }, { passive: false });
@@ -4102,18 +4105,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     L.innerHTML = srt(A).map((x) => pkRow(x, false)).join("") + (O.length ? (pkOld ? "" : `<div class="moreb"><button class="morelink" type="button" id="pkOldBtn"><b>Show ${O.length} older packs</b><svg class="mcar" viewBox="0 0 10 10" aria-hidden="true"><path d="m2.5 4 2.5 2.5L7.5 4" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${esc(ser)} series &middot; the older sets</span></button></div>`) + srt(O).map((x) => pkRow(x, true)).join("") : "");
     L.classList.toggle("old-on", pkOld); pkApply(); pkLazy(L); }
   function renderPacks() { const el = $("pkv"); if (!el) return;
-    if (!data || !STD || !PK || !CMAP_J) { el.className = "t1s"; el.innerHTML = `<p class="t1s-h"><b>Packs</b> <span class="t1s-hw">for the meta ${winWk()}</span></p><div class="t1s-sh" aria-hidden="true"><div class="t1s-vp"></div></div><div class="lsh pk-lh"><span>All packs</span></div><div class="pk-l" aria-busy="true">${'<section class="pka sk"><div class="pkr"><span class="pkr-t"></span><span class="pkr-n"></span><span></span></div></section>'.repeat(4)}</div>`; return; } // a skeleton while the files load
-    PKV = pkBuild(CMAP_J); const act = pkAct(), L = PKV.filter((x) => pkMeta(x) > 0 && act.has(pkSer(x))), nA = PKV.filter((x) => act.has(pkSer(x))).length;
+    if (!data || !STD || !PK || !CMAP_J) { el.className = "t1s"; el.innerHTML = `<p class="t1s-h"><b>Top 10 packs</b> <span class="t1s-hw">for the meta ${winWk()}</span></p><div class="t1s-sh" aria-hidden="true"><div class="t1s-vp"></div></div><div class="lsh pk-lh"><span>All packs</span></div><div class="pk-l" aria-busy="true">${'<section class="pka sk"><div class="pkr"><span class="pkr-t"></span><span class="pkr-n"></span><span></span></div></section>'.repeat(4)}</div>`; return; } // a skeleton while the files load
+    PKV = pkBuild(CMAP_J); const act = pkAct(), L = PKV.filter((x) => pkMeta(x) > 0).sort((x, z) => pkMeta(z) - pkMeta(x) || z.cards.length - x.cards.length).slice(0, 10) /* Nov 22: the top 10 packs by meta cards, all series (was: the 2 newest series, newest first) */, nA = PKV.filter((x) => act.has(pkSer(x))).length;
     const bd = PACKBD[data.set]; el.className = "t1s" + (bd ? " t1s-on" : ""); if (bd) { el.style.setProperty("--bd1", bd[0]); el.style.setProperty("--bd2", bd[1]); }
-    el.innerHTML = `${bd ? '<div class="t1s-bd" aria-hidden="true"><i><b></b></i></div>' : ""}<p class="t1s-h"><b>Packs</b> <span class="t1s-hw">for the meta ${winWk()}${ii("Packs", `<h3>Packs for the meta</h3><p>Which booster packs give the cards of the meta decks ${winLast()}.</p><p>A deck plays a card when half or more of its lists play it. A <b>meta card</b> is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.</p><p>The shelf shows the packs of the 2 newest series with meta cards, newest first; the older packs are under the list. Tap a pack to see its cards; tap a card to see the decks that play it.</p>`)}</span></p>
-      <div class="t1s-sh"><div class="t1s-lab" aria-live="polite"><div></div><div></div></div><div class="t1s-vp" tabindex="0" aria-label="Packs with meta cards, newest first"><div class="t1s-tr">${[0, 1, 2].map((r) => `<div class="t1s-set"${r !== 1 ? ' aria-hidden="true"' : ""}>${L.map((x) => `<button type="button" class="pks-c" data-pk="${esc(x.id)}" aria-label="${esc(x.setName)}${pkSub(x) ? " " + esc(pkSub(x)) : ""}"${r !== 1 ? ' tabindex="-1"' : ""}><img src="p/${esc(x.img)}.webp" alt="" draggable="false" loading="lazy"></button>`).join("")}</div>`).join("")}</div></div></div>
+    el.innerHTML = `${bd ? '<div class="t1s-bd" aria-hidden="true"><i><b></b></i></div>' : ""}<p class="t1s-h"><b>Top 10 packs</b> <span class="t1s-hw">for the meta ${winWk()}${ii("Packs", `<h3>Packs for the meta</h3><p>Which booster packs give the cards of the meta decks ${winLast()}.</p><p>A deck plays a card when half or more of its lists play it. A <b>meta card</b> is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.</p><p>The shelf shows the 10 packs with the most meta cards (#1 in the middle); the list has every pack, the older series under it. Tap a pack to see its cards; tap a card to see the decks that play it.</p>`)}</span></p>
+      <div class="t1s-sh"><div class="t1s-lab" aria-live="polite"><div></div><div></div></div><div class="t1s-vp" tabindex="0" aria-label="Top 10 packs by meta cards"><div class="t1s-tr">${[0, 1, 2].map((r) => `<div class="t1s-set"${r !== 1 ? ' aria-hidden="true"' : ""}>${L.map((x) => `<button type="button" class="pks-c" data-pk="${esc(x.id)}" aria-label="${esc(x.setName)}${pkSub(x) ? " " + esc(pkSub(x)) : ""}"${r !== 1 ? ' tabindex="-1"' : ""}><img src="p/${esc(x.img)}.webp" alt="" draggable="false" loading="lazy"></button>`).join("")}</div>`).join("")}</div></div></div>
       <div class="lsh pk-lh"><span>All packs<b> &middot; ${nA === PKV.length ? nA : nA + " + " + (PKV.length - nA) + " older"}</b></span><span class="t1s-seg" role="group" aria-label="Sort packs"><button type="button" data-s="new" aria-pressed="${pkSort === "new"}">Newest</button><button type="button" data-s="meta" aria-pressed="${pkSort === "meta"}">Most meta</button></span></div>
       <div class="pk-l" id="pkl"></div>`;
     pkList(); if (L.length) pkCar(el, L); if (pkTarget) pkGoNow(); }
   // The pack shelf: the Top 10 carousel (loop of 3 copies, transform only, slow auto-move, flick momentum, snap), with packs
   // Nov 22: the shelf carousel for the Packs and the Events tabs (o.sel = the item buttons, o.lab(x) = the label HTML, o.tap(button) = after the glide to it); returns the stop function
   function pkCar(el, L) { if (pkKill) pkKill(); pkKill = shelfCar(el, L, { sel: ".pks-c",
-    lab: (x) => { const m = pkMeta(x); return `<span class="pkcode">${esc(x.set)}</span><span class="t1s-ln">${esc(x.setName)}</span>${pkSub(x) ? `<span class="t1s-ls">&middot; ${esc(pkSub(x))}</span>` : ""}<span class="t1s-ls">&middot; <b>${m}</b> meta card${m > 1 ? "s" : ""}</span>`; },
+    lab: (x) => { const m = pkMeta(x); return `<span class="pkcode">${esc(x.set)}</span><span class="t1s-ln"><i>#${L.indexOf(x) + 1}</i>${esc(x.setName)}</span>${pkSub(x) ? `<span class="t1s-ls">&middot; ${esc(pkSub(x))}</span>` : ""}<span class="t1s-ls">&middot; <b>${m}</b> meta card${m > 1 ? "s" : ""}</span>`; },
     tap: (b) => { track("packs-shelf"); const a = $("pk-" + b.dataset.pk); if (a && !a.hidden) { pkOpen(a, true); setTimeout(() => centerEl(a), 320); } } }); } // Nov 22: centered (was: to the top)
   function shelfCar(el, L, o) { const vp = el.querySelector(".t1s-vp"), tr = el.querySelector(".t1s-tr"), labs = [...el.querySelectorAll(".t1s-lab > div")];
     const its = [...tr.querySelectorAll(o.sel)], N = L.length, SPEED = 10, IDLE = 5000, RM = matchMedia("(prefers-reduced-motion: reduce)");
@@ -4127,7 +4130,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       tr.style.transform = `translate3d(${(-pos).toFixed(2)}px,0,0)`; label(); };
     const hold = (ms = IDLE) => { idle = performance.now() + ms; };
     const glide = (to, dur) => { A = { from: pos, to, t0: performance.now(), dur }; mode = "glide"; hold(dur + IDLE); };
-    const snap = () => glide(cx(near(pos)) - vp.clientWidth / 2, 380);
+    const snap = () => { if (!SHELF_SNAP) { mode = "idle"; return; } glide(cx(near(pos)) - vp.clientWidth / 2, 380); }; // Nov 22: no snap (it jerked when the shelf was barely on screen); a tap, the arrow keys and focus still center an item
     const ease = (t) => 1 - Math.pow(1 - t, 3);
     const tick = (t) => { raf = 0; if (dead || !on) return; const dt = last ? Math.min(0.05, (t - last) / 1000) : 0; last = t;
       if (mode === "glide" && A) { const k = Math.min(1, (t - A.t0) / A.dur); pos = A.from + (A.to - A.from) * ease(k); put(); if (k >= 1) { A = null; mode = "idle"; } }
@@ -4142,7 +4145,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const up = () => { if (!down) return; const H = down.H; down = null; vp.classList.remove("drag"); if (!drag) { mode = "idle"; return; }
       const a = H[0], z = H[H.length - 1], v = Math.max(-8000, Math.min(8000, (a[1] - z[1]) / Math.max(16, z[0] - a[0]) * 1000));
       if (Math.abs(v) < 200 || performance.now() - z[0] > 90) { snap(); return; }
-      const to = cx(near(pos + v * 0.499)) - vp.clientWidth / 2; glide(to, Math.max(300, Math.min(2600, Math.abs(3 * (to - pos) / v) * 1000))); };
+      const to = SHELF_SNAP ? cx(near(pos + v * 0.499)) - vp.clientWidth / 2 : pos + v * 0.499; glide(to, Math.max(300, Math.min(2600, Math.abs(3 * (to - pos) / v) * 1000))); };
     vp.addEventListener("pointerup", up); vp.addEventListener("pointercancel", up);
     vp.addEventListener("click", (e) => { if (drag) { e.stopPropagation(); e.preventDefault(); drag = false; return; }
       const b = e.target.closest(o.sel); if (!b) return; const i = its.indexOf(b); glide(cx(i) - vp.clientWidth / 2, 300); o.tap(b, i); }, true);
