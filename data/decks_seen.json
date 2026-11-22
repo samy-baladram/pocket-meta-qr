@@ -3705,5 +3705,88 @@
     2
    ]
   ]
+ },
+ "mega-dragonite-ex-c1-dragonite-a1": {
+  "name": "Mega Dragonite ex Dragonite",
+  "seen": "2026-11-22",
+  "rank": 55,
+  "share": 0.23,
+  "win": 37.5,
+  "count": 5,
+  "games": 16,
+  "more": 1,
+  "dates": "Nov 16 – 22",
+  "best": [
+   "37th of 145",
+   "PGX TOURNAMENT #6 $5 USD + FA",
+   "2026-11-17"
+  ],
+  "cards": [
+   [
+    "Dratini",
+    2
+   ],
+   [
+    "Dragonair",
+    2
+   ],
+   [
+    "Dragonite",
+    1
+   ],
+   [
+    "Mega Dragonite ex",
+    1
+   ],
+   [
+    "Oricorio",
+    1
+   ],
+   [
+    "Pichu",
+    1
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Lyra",
+    1
+   ],
+   [
+    "May",
+    1
+   ],
+   [
+    "Copycat",
+    1
+   ],
+   [
+    "Wally",
+    1
+   ],
+   [
+    "Serena's Choice",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Rare Candy",
+    1
+   ],
+   [
+    "Giant Cape",
+    1
+   ],
+   [
+    "Soothing Shore",
+    1
+   ]
+  ],
+  "xs": []
  }
 }
