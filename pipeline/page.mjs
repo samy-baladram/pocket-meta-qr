@@ -111,52 +111,176 @@ function shareCode(html, outDir) {
   }
   return { html: head + rest, files };
 }
-// R30 §2-3: the deck pages. Returns [{ dir, on, days, lastmod }] for the sitemap.
+// R30 §2-3: the deck pages (R32: new description and intro). Returns [{ dir, on, days, lastmod }] for the sitemap.
 const pct = (x) => (x == null ? null : (+x).toFixed(1));
 const cardsText = (cards) => cards.map(([n, c]) => `${c} ${n}`);
+// R32 (Nov 23, 2026): the page's newer title formulas (RDTITLE / RPTITLE / RCTITLE: "… Deck List (Nov 2026) – Pokémon
+// TCG Pocket | Pocket Meta QR"); used when the page has them (NEWT, the text " Deck List ("), else the R30 / R31 titles.
+const GAME = "– Pokémon TCG Pocket | Pocket Meta QR";
+const wr = (w, l, t) => (w + l + t ? ((w + t / 2) / (w + l + t)) * 100 : null);
+const sharePct = (x) => (x >= 10 ? Math.round(x) : (+x).toFixed(1));   // 12%, 5.4%, 0.8%
+// R32: the shared texts of a deck from this build's data (stats.json mu / cu, cards.json names, the decks for names).
+function deckFacts(d, st, deckName, cardName) {
+  const mu = ((st && st.mu) || []).map(([o, w, l, t]) => ({ o, n: deckName(o), g: w + l + t, p: wr(w, l, t) }))
+    .filter((x) => x.n && x.g >= 10);
+  const best = [...mu].filter((x) => x.p > 50).sort((a, b) => b.p - a.p || b.g - a.g).slice(0, 2);
+  const worst = [...mu].filter((x) => x.p < 50).sort((a, b) => a.p - b.p || b.g - a.g).slice(0, 2);
+  const s = [];
+  if (best.length) s.push(`Best matchups: ${best.map((x) => `${x.n} (${Math.round(x.p)}% in ${x.g} games)`).join(", ")}.`);
+  if (worst.length) s.push(`Decks that beat it: ${worst.map((x, i) =>
+    `${x.n} (${i ? "" : d.name + " wins "}${Math.round(x.p)}% in ${x.g} games)`).join(", ")}.`);
+  const of = d.of || 0;
+  if (st && st.cu && of >= 3 && !d.bc) {   // core (90%+ of the top players' lists) and flex (10%+, top 3)
+    const rows = st.cu.map(([cid, n, avg]) => ({ n: cardName(cid) || cid, u: n, c: Math.max(1, Math.round(avg)) }));
+    const core = rows.filter((x) => x.u / of >= 0.9), flex = rows.filter((x) => x.u / of < 0.9 && x.u / of >= 0.1)
+      .sort((a, b) => b.u - a.u).slice(0, 3);
+    if (core.length) s.push(`Core cards (in 90%+ of the ${of} top players' lists): ${core.map((x) => `${x.c} ${x.n}`).join(", ")}.`);
+    if (flex.length) s.push(`Flex picks: ${flex.map((x) => `${x.n} (${Math.round((x.u / of) * 100)}%)`).join(", ")}.`);
+  }
+  return { best: best[0] || null, sentences: s };
+}
+const names = (dataDir) => {   // deck id -> name, card id -> the cards.json display print's name
+  const D = readJSON(join(dataDir, "data.json")), M = readJSON(join(dataDir, "more.json")), CJ = readJSON(join(dataDir, "cards.json"));
+  const dn = new Map([...(D?.decks || []), ...(D?.nolist || []), ...(M?.decks || []), ...(M?.nolist || [])].map((d) => [d.id, d.name]));
+  const nrOf = new Map(), nameOf = new Map();
+  for (const [nr, id, n] of CJ?.c || []) { nrOf.set(id, nr); if (n) nameOf.set(nr, n); }
+  return { deckName: (id) => dn.get(id) || null, cardName: (cid) => nameOf.get(nrOf.get(cid)) ?? null };
+};
+// R30 §3 / R32 §3.9: entries not seen for more than NOINDEX_DAYS go; a page with on 0 is noindex after KEEP_DAYS.
+const daysAgo = (today, iso) => Math.round((Date.parse(today) - Date.parse(iso)) / 864e5);
+const tagJSON = (o) => JSON.stringify(o).replace(/&/g, "&amp;").replace(/'/g, "&#39;").replace(/</g, "&lt;");
+const crumbs = (last, url) => ({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+  { "@type": "ListItem", position: 1, name: "Pocket Meta QR", item: `${SITE}/` },
+  { "@type": "ListItem", position: 2, name: "Meta decks", item: `${SITE}/` },
+  { "@type": "ListItem", position: 3, name: last, item: url }] });
+
 function deckPages(full, dataDir, outDir, seenFile) {
-  const D = readJSON(join(dataDir, "data.json")), M = readJSON(join(dataDir, "more.json"));
+  const D = readJSON(join(dataDir, "data.json")), M = readJSON(join(dataDir, "more.json")), ST = readJSON(join(dataDir, "stats.json"));
   if (!D) return [];
-  const today = new Date().toISOString().slice(0, 10), dates = span(D.span[0], D.span[1]);
+  const today = new Date().toISOString().slice(0, 10), dates = span(D.span[0], D.span[1]), N = names(dataDir);
   const rec = (seenFile && readJSON(seenFile)) || {};
   const now = [...(D.decks || []).map((d) => ({ d, more: 0 })), ...((M && M.decks) || []).map((d) => ({ d, more: 1 }))];
-  for (const { d, more } of now) {   // the record: rewritten on a new day or for a new deck
-    if (rec[d.id]?.seen === today) continue;
-    rec[d.id] = { name: d.name, seen: today, rank: d.rank, share: d.share, win: d.win, count: d.count,
+  const facts = new Map(), live = new Map();
+  for (const { d, more } of now) {
+    const f = deckFacts(d, ST?.d?.[d.id], N.deckName, N.cardName);
+    facts.set(d.id, f);
+    live.set(d.id, { name: d.name, seen: today, rank: d.rank, share: d.share, win: d.win, count: d.count,
       games: (d.w || 0) + (d.l || 0) + (d.t || 0), more, dates, best: d.pl ? [d.pl, plain(d.ev || ""), d.dt] : null,
-      cards: d.cards.map((c) => [c.n, c.c]) };
+      cards: d.cards.map((c) => [c.n, c.c]), xs: f.sentences });
+    // the record (for the page after the deck leaves): rewritten on a new day or for a new deck, so the file changes
+    // about once a day; the pages of decks in the data use this build's numbers (live)
+    if (!(rec[d.id]?.seen === today && rec[d.id].xs)) rec[d.id] = live.get(d.id);
   }
-  const ago = (iso) => Math.round((Date.parse(today) - Date.parse(iso)) / 864e5);
-  for (const id of Object.keys(rec)) if (ago(rec[id].seen) > NOINDEX_DAYS) delete rec[id];
+  for (const id of Object.keys(rec)) if (daysAgo(today, rec[id].seen) > NOINDEX_DAYS) delete rec[id];
   if (seenFile) writeFileSync(seenFile, JSON.stringify(rec, null, 1) + "\n");
   const onIds = new Set(now.map((x) => x.d.id)), out = [];
-  for (const [id, e] of Object.entries(rec)) {
-    const on = onIds.has(id) ? 1 : 0, days = ago(e.seen);
+  for (const [id, e0] of Object.entries(rec)) {
+    const on = onIds.has(id) ? 1 : 0, days = daysAgo(today, e0.seen), f = facts.get(id), e = on ? live.get(id) : e0;
     const cards = cardsText(e.cards), win = pct(e.win), share = pct(e.share);
-    const stats = `${share}% share${win ? `, ${win}% win` : ""}, ${e.count} players`;
     const best = e.best ? ` Best finish: ${e.best[0]}${e.best[1] ? ` at ${e.best[1]}` : ""} (${day(e.best[2])}).` : "";
-    const lead = e.more ? `A smaller Pokémon TCG Pocket deck this week (${e.dates})` : `#${e.rank} in the Pokémon TCG Pocket meta (${e.dates})`;
-    const title = on ? `${e.name} Deck (${MONTH}): List & QR Code | Pocket Meta QR`
+    const title = NEWT ? (on ? `${e.name} Deck List (${MONTH}) ${GAME}` : `${e.name} Deck List (last seen ${day(e.seen)}) ${GAME}`)
+      : on ? `${e.name} Deck (${MONTH}): List & QR Code | Pocket Meta QR`
       : `${e.name} Deck: List & QR Code (last seen ${day(e.seen)}) | Pocket Meta QR`;
-    const desc = on ? fit(`${lead}: ${stats}. Full list with `, cards, "and a QR code to import it.").replace(/([.…]) and a QR/, (m, p1) => (p1 === "…" ? "… and a QR" : " and a QR")).replace(/\. and a QR/, " and a QR")
-      : fit(`Not in this week's Pokémon TCG Pocket meta (last seen ${day(e.seen)}): ${stats}. Its list: `, cards, "");
+    let desc;
+    if (on) {   // R32 §2: numbers first, then the best matchup, then the QR
+      const head = `${e.name} is ${e.more ? "a smaller Pokémon TCG Pocket deck this week" : `#${e.rank} in the Pokémon TCG Pocket meta`}: ` +
+        `${sharePct(e.share)}% of players${e.win != null ? `, ${Math.round(e.win)}% win rate` : ""}.`;
+      // the order of what goes when it is too long: the QR sentence gets shorter, then goes, then the matchup goes
+      const bv = f?.best ? ` Best vs ${f.best.n} (${Math.round(f.best.p)}%).` : "";
+      desc = [head + bv + " Full list with a QR code to import.", head + bv + " List + QR code.", head + bv,
+        head + " Full list with a QR code to import.", head].find((x) => x.length <= DESC_MAX) || head;
+    } else desc = fit(`Not in this week's Pokémon TCG Pocket meta (last seen ${day(e.seen)}): ${share}% share` +
+      `${win ? `, ${win}% win` : ""}, ${e.count} players. Its list: `, cards, "");
+    const xs = (e.xs || []).join(" ");
     const intro = on
       ? `${e.name}: #${e.rank} of this week's Pokémon TCG Pocket decks (${e.dates}), ${share}% of players` +
-        `${win ? `, ${win}% win rate in ${e.games} games` : ""}. List 1: ${cards.join(", ")}.${best}` +
-        " Open the list and tap its QR code to import it in the game."
+        `${win ? `, ${win}% win rate in ${e.games} games` : ""}. The most played ${e.name} list: ${cards.join(", ")}.` +
+        `${xs ? " " + xs : ""}${best} Open the list and tap its QR code to import it in the game.`
       : `Not in this week's meta. Last seen ${day(e.seen)}: #${e.rank} of the Pokémon TCG Pocket decks (${e.dates}), ` +
-        `${share}% of players${win ? `, ${win}% win rate in ${e.games} games` : ""}. Its list: ${cards.join(", ")}.${best}`;
-    const tag = `<meta name="pmq-deck" content='${JSON.stringify({ id, name: e.name, seen: e.seen, on })
-      .replace(/&/g, "&amp;").replace(/'/g, "&#39;").replace(/</g, "&lt;")}'>`;
-    const extra = tag + (!on && days > KEEP_DAYS ? '<meta name="robots" content="noindex">' : "");
-    const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Pocket Meta QR", item: `${SITE}/` },
-      { "@type": "ListItem", position: 2, name: "Meta decks", item: `${SITE}/` },
-      { "@type": "ListItem", position: 3, name: e.name, item: `${SITE}/decks/${id}/` }] };
-    const dir = `decks/${id}`, f = join(outDir, dir, "index.html");
-    mkdirSync(dirname(f), { recursive: true });
-    writeFileSync(f, fillIntro(sectionPage(full, { dir, title, desc, img: "og.png", hsec: `${e.name} deck`, ld, extra }), intro));
-    out.push({ dir, on, days, title, desc });
+        `${share}% of players${win ? `, ${win}% win rate in ${e.games} games` : ""}. Its list: ${cards.join(", ")}.` +
+        `${xs ? " " + xs : ""}${best}`;
+    const extra = `<meta name="pmq-deck" content='${tagJSON({ id, name: e.name, seen: e.seen, on })}'>` +
+      (!on && days > KEEP_DAYS ? '<meta name="robots" content="noindex">' : "");
+    const dir = `decks/${id}`, fl = join(outDir, dir, "index.html");
+    mkdirSync(dirname(fl), { recursive: true });
+    writeFileSync(fl, fillIntro(sectionPage(full, { dir, title, desc, img: "og.png", hsec: `${e.name} deck`,
+      ld: crumbs(e.name, `${SITE}/decks/${id}/`), extra }), intro));
+    out.push({ dir, on, days, title, desc, intro });
+  }
+  return out;
+}
+
+// R32 §3: a page per card name (search.json cards; prints of 1 name = 1 page). The page's rules: main print = the most
+// top players (u), then more decks (cardMain); decks = the union over the prints (copies summed, top players the
+// largest), by share; % of top players = summed u / the summed `of` of the data.json + more.json decks; the pack(s) of
+// the main print (packs.json; set name + pack name when the set has 2+ packs; promo: no booster pack). Record
+// (cards_seen.json, by card name) and the 30 / 90-day rule as for decks.
+function cardPages(full, dataDir, outDir, seenFile) {
+  const D = readJSON(join(dataDir, "data.json")), M = readJSON(join(dataDir, "more.json")),
+    SE = readJSON(join(dataDir, "search.json")), P = readJSON(join(dataDir, "packs.json"));
+  if (!D || !SE) return [];
+  const today = new Date().toISOString().slice(0, 10), dates = span(D.span[0], D.span[1]);
+  const decks = [...D.decks, ...((M && M.decks) || [])], dk = new Map(decks.map((d) => [d.id, d]));
+  const allTop = decks.reduce((t, d) => t + (d.of || 0), 0);
+  const byName = new Map();
+  for (const c of SE.cards) (byName.get(c.n) || byName.set(c.n, []).get(c.n)).push(c);
+  // the main print's packs: [long, short]: "Dual Fusion Mega Mewtwo X or Pikachu pack", "Dual Fusion pack"; null = promo
+  const orJoin = (L) => (L.length > 1 ? L.slice(0, -1).join(", ") + " or " + L.at(-1) : L[0]);
+  const packText = (id) => {
+    const ps = ((P && P.cards[id]) || []).filter((k) => !/^p[ab]-/.test(k) && P.packs[k]);
+    if (!ps.length) return null;
+    const bySet = new Map();
+    for (const k of ps) {
+      const pk = P.packs[k], st = P.sets?.[pk.set], setName = st?.name || pk.set.toUpperCase();
+      const solo = Object.values(P.packs).filter((x) => x.set === pk.set).length === 1 || pk.name === setName;
+      (bySet.get(setName) || bySet.set(setName, []).get(setName)).push(solo ? null : pk.name);
+    }
+    const long = orJoin([...bySet].map(([sn, L]) => (L.some((x) => x) ? `${sn} ${orJoin(L.filter((x) => x))}` : sn))) + " pack";
+    return [long, orJoin([...bySet.keys()]) + " pack"];
+  };
+  const rec = (seenFile && readJSON(seenFile)) || {}, live = new Map();
+  for (const [n, prints] of byName) {
+    const main = [...prints].sort((a, b) => (b.u || 0) - (a.u || 0) || b.decks.length - a.decks.length)[0];
+    const per = new Map();
+    for (const c of prints) for (const [id, copies, tp] of c.decks) {
+      const e = per.get(id) || { c: 0, tp: 0 }; e.c += copies; e.tp = Math.max(e.tp, tp); per.set(id, e);
+    }
+    const L = [...per].filter(([id]) => dk.has(id)).map(([id, e]) => ({ name: dk.get(id).name, share: dk.get(id).share, ...e }))
+      .sort((a, b) => b.share - a.share);
+    const u = prints.reduce((t, c) => t + (c.u || 0), 0);
+    live.set(n, { id: main.id, seen: today, dates, pct: allTop ? Math.round((u / allTop) * 100) : null, u,
+      pack: packText(main.id), nd: L.length, L: L.map((x) => [x.name, x.c, x.tp]) });
+    // the record (for the page after the card leaves the lists; up to 12 decks): on a new day, a new card or a new main
+    // print, so the file changes about once a day; pages of cards in the lists use this build's numbers (live)
+    if (!(rec[n]?.seen === today && rec[n].id === main.id)) rec[n] = { ...live.get(n), L: live.get(n).L.slice(0, 12) };
+  }
+  for (const n of Object.keys(rec)) if (daysAgo(today, rec[n].seen) > NOINDEX_DAYS) delete rec[n];
+  if (seenFile) writeFileSync(seenFile, JSON.stringify(rec, null, 1) + "\n");
+  const out = [], plural = (k, w, ws) => `${k} ${k === 1 ? w : ws || w + "s"}`;
+  for (const [n, r0] of Object.entries(rec)) {
+    const on = byName.has(n) ? 1 : 0, e0 = on ? live.get(n) : r0;
+    const e = { ...e0, L: (e0.L || []).map(([name, c, tp]) => ({ name, c, tp })) };
+    const days = daysAgo(today, r0.seen), id = e.id;
+    const nd = e.nd ?? e.L.length, pk = Array.isArray(e.pack) ? e.pack : e.pack ? [e.pack, e.pack] : null;
+    const pkt = pk ? `Get it from the ${pk[1]}.` : "Promo card (not in a booster pack).";
+    const title = on ? `${n}: Which Meta Decks Use It (${MONTH}) ${GAME}` : `${n}: Which Meta Decks Use It (last seen ${day(e.seen)}) ${GAME}`;
+    const desc = on
+      ? fit(`${n} is in ${plural(nd, "Pokémon TCG Pocket meta deck")} this week, run by ${e.pct}% of top players. Top decks: `,
+        e.L.map((x) => x.name), pkt)
+      : fit(`Not in this week's Pokémon TCG Pocket meta decks (last seen ${day(e.seen)}). It was in ${plural(nd, "deck")}: `, e.L.map((x) => x.name), pkt);
+    const used = e.L.map((x) => `${x.name} (${plural(x.c, "copy", "copies")}, ${plural(x.tp, "top player")})`).join(", ");
+    const intro = on
+      ? `${n} is played in ${nd} of this week's Pokémon TCG Pocket decks (${e.dates}) by ${e.pct}% of top players. ` +
+        `Decks that use it: ${used}${nd > e.L.length ? ", …" : ""}. ${pk ? `Get it from the ${pk[0]}.` : pkt}`
+      : `Not in this week's meta decks. Last seen ${day(e.seen)}: in ${plural(nd, "deck")} (${e.dates}), by ${e.pct}% of top ` +
+        `players. Decks that used it: ${used}. ${pk ? `Get it from the ${pk[0]}.` : pkt}`;
+    const extra = `<meta name="pmq-card" content='${tagJSON({ id, name: n, seen: e.seen, on })}'>` +
+      (!on && days > KEEP_DAYS ? '<meta name="robots" content="noindex">' : "");
+    const dir = `cards/${id}`, fl = join(outDir, dir, "index.html");
+    mkdirSync(dirname(fl), { recursive: true });
+    writeFileSync(fl, fillIntro(sectionPage(full, { dir, title, desc, img: "og.png", hsec: `${n}: decks that use it`,
+      ld: crumbs(n, `${SITE}/cards/${id}/`), extra }), intro));
+    out.push({ dir, on, days, title, desc, intro });
   }
   return out;
 }
@@ -204,7 +328,7 @@ function packPages(full, dataDir, outDir) {
   for (const x of L) {
     const meta = x.cards.filter((c) => c.st), small = x.cards.length - meta.length;
     const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
-    const title = `${x.name} Pack (${MONTH}): Meta Cards & Decks | Pocket Meta QR`;
+    const title = NEWT ? `${x.name} Pack: Meta Cards & Decks (${MONTH}) ${GAME}` : `${x.name} Pack (${MONTH}): Meta Cards & Decks | Pocket Meta QR`;
     const desc = meta.length
       ? fit(`${x.name} pack: ${plural(meta.length, "card")} played in this week's Pokémon TCG Pocket meta decks: `,
         meta.map((c, i) => `${c.n} (${c.decks.length}${i ? "" : c.decks.length === 1 ? " deck" : " decks"})`), "See which decks use them.")
@@ -346,19 +470,21 @@ function sectionPage(html, { dir, title, desc, img, hsec, ld, extra }) {
   if (ld) head += `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`;
   let rest = html.slice(i);
   if (hsec) {   // R28: the section subtitle (the page sets the same text after a tab switch)
-    const re = /(<h2 class="hsec">)[\s\S]*?(<\/h2>)/;
-    if (re.test(rest)) rest = rest.replace(re, `$1${esc(hsec)}$2`); else console.log("page: no h2.hsec in the page (R28)");
+    const re = /(<(h[12]) class="hsec">)[\s\S]*?(<\/\2>)/;   // R32: h1 (was h2)
+    if (re.test(rest)) rest = rest.replace(re, `$1${esc(hsec)}$3`); else console.log("page: no h1.hsec / h2.hsec in the page (R28)");
   }
   return head + rest;
 }
-const [src = "site/index.html", out = "public/index.html"] = args.filter((a, i) => !a.startsWith("--") && !["--prev", "--seen"].includes(args[i - 1]));
+const [src = "site/index.html", out = "public/index.html"] = args.filter((a, i) => !a.startsWith("--") && !["--prev", "--seen", "--cards-seen"].includes(args[i - 1]));
 const body = readFileSync(src, "utf8");
 const ROUTES_ON = ROUTES && body.includes("pmq-routes");   // R26: the page supports the section addresses
 const ABOUT_ON = ROUTES_ON && ABV_RE.test(body);              // R29: the page has the static FAQ section
 const DECKS_ON = ROUTES_ON && (body.includes("pmq-deck") || args.includes("--decks"));   // R30 §2: the page's deck code
 const PACKS_ON = ROUTES_ON && (body.includes("/\\bpacks\\b/") || args.includes("--packs")); // R31: the page's RPACK check
+const CARDS_ON = ROUTES_ON && (body.includes("/\\bcards\\b/") || args.includes("--cards")); // R32: the page's RCARD check
+const NEWT = body.includes(" Deck List (") || args.includes("--newt");   // R32: the page's new title formulas
 const RT = ROUTE_TAG.replace('content="1"',
-  `content="${["1", ABOUT_ON && "about", DECKS_ON && "decks", PACKS_ON && "packs"].filter(Boolean).join(" ")}"`);
+  `content="${["1", ABOUT_ON && "about", DECKS_ON && "decks", PACKS_ON && "packs", CARDS_ON && "cards"].filter(Boolean).join(" ")}"`);
 const SECS = SECTIONS.filter((x) => !x.about || ABOUT_ON);
 
 // One head item at the start of the text: whitespace, then a comment, <title>..</title>, <meta>, <link>,
@@ -445,6 +571,14 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     if (on[0]) console.log(`page: e.g. ${on[0].dir}/ title "${on[0].title}"; description ${on[0].desc.length} chars: ${on[0].desc}`);
   } else console.log(`page: no deck pages (${ROUTES_ON ? "the page has no deck code yet" : "routes off"})`);
   const packs = PACKS_ON ? packPages(full, dirname(src), dirname(out)) : [];
+  const ci = args.indexOf("--cards-seen"), cardsSeen = ci > 0 ? args[ci + 1] : null;
+  const cards = CARDS_ON ? cardPages(full, dirname(src), dirname(out), cardsSeen) : [];
+  if (CARDS_ON) {
+    const on = cards.filter((x) => x.on), kept = cards.filter((x) => !x.on);
+    console.log(`page: card pages ${cards.length} (${on.length} in the lists, ${kept.filter((x) => x.days <= KEEP_DAYS).length} kept,` +
+      ` ${kept.filter((x) => x.days > KEEP_DAYS).length} noindex)${cardsSeen ? `; record ${cardsSeen}` : ""}`);
+  } else console.log(`page: no card pages (${ROUTES_ON ? "the page has no card-route code yet" : "routes off"})`);
+  console.log(`page: titles ${NEWT ? "R32 (… Deck List (Mon YYYY) – Pokémon TCG Pocket | Pocket Meta QR)" : "R30 / R31 (the page has the older formulas)"}`);
   if (PACKS_ON) {
     console.log(`page: pack pages ${packs.length} (${packs.filter((x) => x.meta).length} with meta cards)`);
     const ex = packs.find((x) => x.dir === "packs/c1-pikachu") || packs[0];
@@ -458,7 +592,8 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     const urls = [["", "hourly"], ...SECS.filter((x) => x.dir !== "limited" || lbOn)
       .map((x) => [x.dir + "/", x.about ? "monthly" : "daily"]),
       ...decks.filter((x) => x.on || x.days <= KEEP_DAYS).map((x) => [x.dir + "/", "daily"]),   // R30 §2.9 / §3
-      ...packs.map((x) => [x.dir + "/", "daily"])];   // R31
+      ...packs.map((x) => [x.dir + "/", "daily"]),   // R31
+      ...cards.filter((x) => x.on).map((x) => [x.dir + "/", "daily"])];   // R32: cards in this week's lists only
     writeFileSync(join(dirname(out), "sitemap.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n' +
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       urls.map(([u, f]) => `  <url><loc>${SITE}/${u}</loc><lastmod>${today}</lastmod><changefreq>${f}</changefreq></url>\n`).join("") +

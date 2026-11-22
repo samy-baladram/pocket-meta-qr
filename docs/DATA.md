@@ -219,6 +219,15 @@ The pairings do not say which deck a player used in a match. Thus:
   `packs`, title, description, canonical, `og-packs.png`, subtitle, intro text (the pack's meta cards and their top
   decks) and BreadcrumbList; every pack address in the sitemap. The numbers are the page's `pkBuild`, in Node
   (`packBuild` in page.mjs; checked equal to the page for all packs).
+- Deck texts and card pages (request R32, Nov 23, 2026): deck pages get a description with the numbers and the best
+  matchup, and an intro with the most played list, best matchups, counters (stats.json `mu`, 10+ games), core (90%+)
+  and flex (10%+) cards (`cu`, when `of` >= 3). Titles "… Deck List (Mon YYYY) – Pokémon TCG Pocket | Pocket Meta QR"
+  (and the pack / card formulas) when the page has them. `h1.hsec` (or the old `h2`). When the page has the card-route
+  code (RCARD, `/\bcards\b/`): `cards/<main print>/index.html` per card name of search.json (main print = most top
+  players, then most decks), with the routes word `cards`, the `pmq-card` tag, title, description, intro (decks,
+  copies, top players, % of all top players, packs) and BreadcrumbList; `data/cards_seen.json` keeps a card that leaves
+  the lists 30 days (`on: 0`, not in the sitemap), then noindex to 90 days. Pages in the data use this build's numbers;
+  the records (rewritten about once a day) are only for pages that left.
 - Times (decision Nov 12, request R13): an event's `ts` = its Limitless start time; `at` = the raw file's
   `fetched_at` (when the scraper stored the finished tournament; raw files are written once, so it does not change).
   `changedAt` = the largest `at` of the window's tournaments; `latest` = the single-deck event with the largest `at`.

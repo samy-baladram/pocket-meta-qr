@@ -91,7 +91,7 @@ jobs:
           mkdir -p site/v site/t && cp -r site/data.json site/packs.json site/search.json site/events.json site/more.json site/cards.json site/stats.json site/v site/t site/c site/z site/p site/e public/
           rm -f public/c/.width public/p/.width
           # R30: shared app.<hash>.css/.js (the previous build's files kept from cache/app), deck pages + their record
-          node pipeline/page.mjs site/index.html public/index.html --prev cache/app --seen data/decks_seen.json
+          node pipeline/page.mjs site/index.html public/index.html --prev cache/app --seen data/decks_seen.json --cards-seen data/cards_seen.json
           # Static files from the UI chat (R7a): favicon, app icons, manifest, link preview image, robots.txt,
           # sitemap.xml. Served from the site root, next to index.html.
           find static -maxdepth 1 -type f ! -name README.md -exec cp --update=none {} public/ \;   # --update=none: keep page.mjs's sitemap.xml (R26)
@@ -101,14 +101,15 @@ jobs:
       # R30 §3: the record of each deck's last day in the data, so a deck that leaves keeps its page for 30 days.
       # page.mjs rewrites an entry only on a new day, so this commits about once a day. Pushes made with the workflow
       # token do not start other workflows.
+      # R32: and data/cards_seen.json (the card pages' record, same rule).
       - name: Save the deck record
         run: |
-          [ -f data/decks_seen.json ] || { echo "No deck record (no deck pages yet)."; exit 0; }
+          f=$(ls data/decks_seen.json data/cards_seen.json 2>/dev/null); [ -n "$f" ] || { echo "No record yet."; exit 0; }
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/decks_seen.json
+          git add $f
           if git diff --cached --quiet; then echo "Deck record unchanged."; exit 0; fi
-          git commit -q -m "Data: deck record ($(date -u +%FT%TZ))"
+          git commit -q -m "Data: deck / card record ($(date -u +%FT%TZ))"
           for i in 1 2 3; do
             if ! git pull -q --rebase origin main; then git rebase --abort || true; break; fi
             git push -q origin HEAD:main && exit 0
