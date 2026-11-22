@@ -10,13 +10,58 @@
 // application/ld+json) with terser (compress + mangle of local names; top-level names are kept), and HTML comments
 // after the head tags are dropped. The head tags (with the "<!-- ui: artifact version ... -->" line) stay as they
 // are. --no-minify writes the page as before. site/index.html is never changed.
-import { readFileSync, writeFileSync } from "node:fs";
+//
+// R26 (Nov 22, 2026): one address per section. The page (History API) shows a section by its path when it finds
+// <meta name="pmq-routes" content="1">. So index.html gets that tag, and SECTIONS writes a copy of the page per section
+// folder (events/, packs/, limited/ next to index.html) with, first in <head>, the tag + <base href="/"> (data, images,
+// font, sw.js and manifest load from the site root), and its own title, description, og:title/description/url,
+// twitter:title/description (when present) and canonical. --no-routes writes index.html as before (no tag, no folders).
+// index.html gets the tag + <base href="/"> too (pipeline chat, Nov 22): the page at "/" moves to /events/ etc. with the
+// History API, and without <base> the images it adds after the move load from /events/e/... (404 in the test).
+// Only when the page source has the routing code (the text "pmq-routes"): an older page gets neither the tag nor the
+// folders, so the folders never show the deck table under a section title. With the folders, the sitemap
+// (static/sitemap.xml + the 3 section addresses) is written next to index.html; site.yml copies static/ without
+// overwriting it (cp --update=none).
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { minify as minifyJS } from "terser";
 import { minify as minifyCSS } from "csso";
 
-const args = process.argv.slice(2), MINIFY = !args.includes("--no-minify");
+const args = process.argv.slice(2), MINIFY = !args.includes("--no-minify"), ROUTES = !args.includes("--no-routes");
+const SITE = "https://pocketmetaqr.com";
+const ROUTE_TAG = '<meta name="pmq-routes" content="1"><base href="/">';
+const SECTIONS = [
+  { dir: "events", title: "Latest events – Pocket Meta QR",
+    desc: "Latest Pokémon TCG Pocket tournament results: top 8 lists with QR codes." },
+  { dir: "packs", title: "Booster packs for the meta – Pocket Meta QR",
+    desc: "Which Pokémon TCG Pocket booster packs give the cards of this week's meta decks." },
+  { dir: "limited", title: "Limited Battle decks – Pocket Meta QR",
+    desc: "Hand-picked decks with QR codes for the current Limited Battle event." },
+];
+const esc = (t) => t.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+
+// R26: the copy of the page for 1 section folder. Changes only the head part (before </head>).
+function sectionPage(html, { dir, title, desc }) {
+  const i = html.indexOf("</head>");
+  let head = html.slice(0, i);
+  const url = `${SITE}/${dir}/`, set = (re, val, what) => {
+    if (!re.test(head)) { if (what) throw new Error(`R26: no ${what} in the page head`); return; }
+    head = head.replace(re, val);
+  };
+  set(/<title\b[^>]*>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`, "<title>");
+  set(/<meta name="description" content="[^"]*">/i, `<meta name="description" content="${esc(desc)}">`, "description");
+  set(/<link rel="canonical" href="[^"]*">/i, `<link rel="canonical" href="${url}">`);
+  set(/<meta property="og:url" content="[^"]*">/i, `<meta property="og:url" content="${url}">`);
+  set(/<meta property="og:title" content="[^"]*">/i, `<meta property="og:title" content="${esc(title)}">`);
+  set(/<meta property="og:description" content="[^"]*">/i, `<meta property="og:description" content="${esc(desc)}">`);
+  set(/<meta name="twitter:title" content="[^"]*">/i, `<meta name="twitter:title" content="${esc(title)}">`);
+  set(/<meta name="twitter:description" content="[^"]*">/i, `<meta name="twitter:description" content="${esc(desc)}">`);
+  if (!head.startsWith(`<!doctype html><html lang="en"><head>${ROUTE_TAG}`)) throw new Error("R26: no route tag first in <head>");
+  return head + html.slice(i);
+}
 const [src = "site/index.html", out = "public/index.html"] = args.filter((a) => !a.startsWith("--"));
 const body = readFileSync(src, "utf8");
+const ROUTES_ON = ROUTES && body.includes("pmq-routes");   // R26: the page supports the section addresses
 
 // One head item at the start of the text: whitespace, then a comment, <title>..</title>, <meta>, <link>,
 // or <script type="application/ld+json">..</script>.
@@ -61,7 +106,20 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     "padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}" +
     "body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}" +
     "img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>\n";
-  writeFileSync(out, head + rest + "\n</body></html>\n");
+  const full = head.replace("<head>", ROUTES_ON ? `<head>${ROUTE_TAG}` : "<head>") + rest + "\n</body></html>\n";
+  writeFileSync(out, full);
+  if (ROUTES_ON) for (const sec of SECTIONS) {   // R26: events/, packs/, limited/ next to index.html
+    const f = join(dirname(out), sec.dir, "index.html");
+    mkdirSync(dirname(f), { recursive: true });
+    writeFileSync(f, sectionPage(full, sec));
+  }
+  if (ROUTES_ON && existsSync("static/sitemap.xml")) {   // R26: the section addresses in the sitemap
+    const urls = SECTIONS.map((x) => `  <url><loc>${SITE}/${x.dir}/</loc><changefreq>daily</changefreq></url>\n`).join("");
+    writeFileSync(join(dirname(out), "sitemap.xml"),
+      readFileSync("static/sitemap.xml", "utf8").replace("</urlset>", urls + "</urlset>"));
+  }
+  console.log(ROUTES_ON ? `page: routes on; section pages ${SECTIONS.map((x) => x.dir + "/").join(", ")}` :
+    `page: routes off (${ROUTES ? "the page has no routing code yet" : "--no-routes"})`);
   const n = (tags.match(/<(?:title|meta|link|script)\b/gi) || []).length;
   console.log(`page: ${n} head tags moved into <head>`);
 }

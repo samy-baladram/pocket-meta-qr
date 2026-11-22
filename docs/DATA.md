@@ -189,6 +189,10 @@ The pairings do not say which deck a player used in a match. Thus:
 - QR (decision Nov 12, request R12): each QR is written as packed bits `q` ("<n>:<base64>", row-major, MSB first),
   not as an SVG string: about 10x smaller (data.json + v/ + t/ + more.json: about 1.7 MB -> 0.5 MB). The deploy copy
   of the page is minified (terser + csso) by page.mjs.
+- Section addresses (request R26, Nov 22, 2026): page.mjs writes `events/`, `packs/`, `limited/` (copies of the page
+  with their own title, description, canonical and og tags, and `<meta name="pmq-routes" content="1"><base href="/">`
+  first in `<head>`; index.html gets the same 2 tags) and adds the 3 addresses to `sitemap.xml`. Only when the page
+  source has the routing code (the text `pmq-routes`); else the output is the same as before R26.
 - Times (decision Nov 12, request R13): an event's `ts` = its Limitless start time; `at` = the raw file's
   `fetched_at` (when the scraper stored the finished tournament; raw files are written once, so it does not change).
   `changedAt` = the largest `at` of the window's tournaments; `latest` = the single-deck event with the largest `at`.

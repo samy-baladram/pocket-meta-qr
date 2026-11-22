@@ -93,7 +93,7 @@ jobs:
           node pipeline/page.mjs site/index.html public/index.html
           # Static files from the UI chat (R7a): favicon, app icons, manifest, link preview image, robots.txt,
           # sitemap.xml. Served from the site root, next to index.html.
-          find static -maxdepth 1 -type f ! -name README.md -exec cp {} public/ \;
+          find static -maxdepth 1 -type f ! -name README.md -exec cp --update=none {} public/ \;   # --update=none: keep page.mjs's sitemap.xml (R26)
           touch public/.nojekyll
           echo "files: $(find public -type f | wc -l), size: $(du -sh public | cut -f1)"
 
