@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795313409-dab5 -->
+<!-- ui: artifact version 1795315942-0433 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -4064,7 +4064,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   function setMV(v) { if (v === MV) return; MV = v; setDrop(false); pkF.q = ""; pkF.card = ""; if (v === "packs") { clearFilters(); pkFiltUI(); } else { filtMode(false, false); if (data) applyFilter(); }
     if (v === "packs") { if (openId) closeOpen(); track("tab-packs");
       if (!PKV) { if (!(PK && STD && CMAP_J && moreP)) renderPacks(); pkLoad().then(() => { if (PK && STD) renderPacks(); else throw 0; }).catch(() => { $("pkv").innerHTML = '<div class="empty">Could not load the packs. Try again later.</div>'; }); } }
-    t10Show(); }
+    t10Show(); syncRoute(true); }
 
   // Nov 22: the filter on the Packs tab: a card name only (like Limited, no energy or deck chips)
   const pkF = { q: "", card: "" }, isPkTab = () => !$("pkv").hidden;
@@ -5704,6 +5704,22 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (typeof fstate !== "undefined" && fstate) { fstate.q = ""; fstate.en.clear(); fstate.card = null; fstate.dk.clear(); fstate.without = null; document.querySelectorAll(".ech, .fdc").forEach((b) => b.setAttribute("aria-pressed", "false")); }
     evQ = ""; evMin = 0; evWin = ""; evDk = ""; $("fq").value = ""; $("fqx").hidden = true;
     lbF.q = ""; lbF.card = null; lbF.without = null; lbF.en.clear(); setPickStyle(null); }
+  // Nov 22: section routes. On the site (page.mjs writes <meta name="pmq-routes"> and a copy of the page in events/, packs/,
+  // limited/ with <base href="/">) each section has its own address, changed with the History API (no page load).
+  // Anywhere else (the artifact, a plain local file) nothing changes: hash links and relative paths as before.
+  const ROUTED = !!document.querySelector('meta[name="pmq-routes"]');
+  const RPATH = { decks: "/", events: "/events/", packs: "/packs/", limited: "/limited/" };
+  const RTITLE = { decks: "Pocket Meta QR \u2013 Pok\u00e9mon TCG Pocket meta decks and tournaments with QR codes", events: "Latest events – Pocket Meta QR", packs: "Booster packs for the meta – Pocket Meta QR", limited: "Limited Battle decks – Pocket Meta QR" };
+  const curSec = () => (curTab === "events" ? "events" : curTab === "limited" ? "limited" : MV === "packs" ? "packs" : "decks");
+  const pathSec = () => { const p = location.pathname.replace(/index\.html$/, ""); return ["events", "packs", "limited"].find((k) => p.endsWith(RPATH[k])) || "decks"; };
+  let rtLock = true; // on while the page starts and while the browser goes back / forward
+  function syncRoute(push) { if (rtLock) return; const s = curSec(); document.title = RTITLE[s]; if (!ROUTED) return;
+    const h = /^#(events|limited)$/.test(location.hash) ? "" : location.hash, u = RPATH[s] + location.search + h;
+    if (location.pathname + location.search + location.hash === u) return;
+    const st = { rt: s, lb: s === "limited" && push ? 1 : undefined }; // lb: a step back leaves Limited (not on a direct visit)
+    history[push ? "pushState" : "replaceState"](push ? st : { ...(history.state || {}), ...st }, "", u); }
+  addEventListener("popstate", () => { if (!ROUTED) return; const s = pathSec(); if (s === curSec()) return;
+    rtLock = true; try { if (s === "events") setTab("events"); else if (s === "limited") { if (lbOn()) setTab("limited"); } else { setTab("decks"); setMV(s === "packs" ? "packs" : "decks"); } } finally { rtLock = false; } document.title = RTITLE[curSec()]; });
   function setTab(t, save = true) {
     if (t === "limited" && !lbOn()) t = "decks";
     const ev = t === "events", lb = t === "limited";
@@ -5711,12 +5727,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     $("tabM").setAttribute("aria-selected", String(!ev && !lb && MV !== "packs")); $("tabP").setAttribute("aria-selected", String(!ev && !lb && MV === "packs")); /* Nov 22: Limited = its own page (the header banner pressed), no tab selected */ $("tabE").setAttribute("aria-selected", String(ev)); $("tabL").setAttribute("aria-selected", String(lb));
     $("list").hidden = ev || lb; $("evl").hidden = !ev; $("lbl").hidden = !lb; t10Show();
     $("filtBtn").hidden = !data; $("filtBtn").disabled = false; setDrop(false); filtMode(ev, lb); if (ev || lb) { $("fnone").hidden = true; } else if (data) applyFilter();
-    if (lb) { if (openId) closeOpen(); evClose(); track("tab-limited"); renderLB(); lbApply(); if (save) try { localStorage.setItem("pmq-tab", t); } catch (err) {} return; }
+    if (lb) { if (openId) closeOpen(); evClose(); track("tab-limited"); renderLB(); lbApply(); if (save) try { localStorage.setItem("pmq-tab", t); } catch (err) {} syncRoute(true); return; }
     lbClose(); if (history.state && history.state.lb) history.replaceState(null, "", location.pathname + location.search); // a tab left Limited: drop its step and #limited
     if (ev) { if (openId) closeOpen(); track("tab-events"); if (!EV) { $("evl").innerHTML = '<div class="empty">Loading events&hellip;</div>'; loadEvents().then(renderEvents); }
       else renderEvents(); } // events.json is loaded early (live line); drawn again on each visit (the filter is cleared when the tab changes)
     else evClose();
     if (save) try { localStorage.setItem("pmq-tab", t); } catch (err) {}
+    syncRoute(true);
   }
   $("tabM").addEventListener("click", () => { setTab("decks"); setMV("decks"); });
   ["pointerenter", "pointerdown", "focus"].forEach((ev) => $("tabP").addEventListener(ev, () => { if (data) pkLoad().catch(() => {}); }, { once: true, passive: true }));
@@ -5727,8 +5744,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const lbLeave = () => { const f = lbFrom || {}; lbFrom = null; $(f.ev ? "tabE" : f.pk ? "tabP" : "tabM").click(); };
   $("lbBan").addEventListener("click", () => { if (curTab === "limited") { if (history.state && history.state.lb) history.back(); else lbLeave(); return; }
     lbFrom = { ev: curTab === "events", pk: curTab !== "events" && MV === "packs" }; track("limited-banner"); setTab("limited"); scrollTo({ top: 0 });
-    history.pushState({ lb: 1 }, "", location.pathname + location.search + "#limited"); });
-  addEventListener("popstate", () => { const st = history.state || {};
+    if (!ROUTED) history.pushState({ lb: 1 }, "", location.pathname + location.search + "#limited"); }); // routed: setTab pushed /limited/
+  addEventListener("popstate", () => { if (ROUTED) return; const st = history.state || {};
     if (curTab === "limited" && !st.lb) lbLeave(); else if (st.lb && curTab !== "limited" && lbOn()) { lbFrom = lbFrom || { ev: curTab === "events", pk: curTab !== "events" && MV === "packs" }; setTab("limited"); } });
   $("tabE").addEventListener("click", () => setTab("events"));
   $("tabL").addEventListener("click", () => setTab("limited"));
@@ -5777,12 +5794,14 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       else if (id && $(id)) openAt(id, hk); // shared link: open that deck (and list); otherwise all rows start closed
       else if (id && id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); openAt(id, hk); } });
       let t0 = null; try { t0 = localStorage.getItem("pmq-tab"); } catch (err) {}
+      if (ROUTED && pathSec() !== "decks") t0 = pathSec(); // the address decides (e.g. /packs/)
       if (id === "events" || (!(id && $(id)) && t0 === "events")) setTab("events", false);
       else if (id === "limited" || (!(id && $(id)) && t0 === "limited")) setTab("limited", false); // ends: setTab falls back to the decks
       else if (!(id && $(id)) && t0 === "packs") setMV("packs"); // Nov 22: the Packs tab
       // After a home-screen refresh (see below): back to the old scroll place when no deck was open, and a short "Updated" note
       let rs = null; try { rs = sessionStorage.getItem("pmq-rs"); sessionStorage.removeItem("pmq-rs"); } catch (err) {}
       if (rs) { if (!id) scrollTo(0, +rs || 0); toast("Updated to the newest data"); }
+      rtLock = false; syncRoute(false); // the address and title of the section shown (old #events / #limited links become /events/ / /limited/)
     })
     .catch(() => {
       $("meta").innerHTML = "<span>Deck data did not load.</span>";
