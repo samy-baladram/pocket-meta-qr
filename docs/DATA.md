@@ -208,6 +208,12 @@ The pairings do not say which deck a player used in a match. Thus:
   `about/index.html` (the section without `hidden`, its own title, description, subtitle, BreadcrumbList + FAQPage
   JSON-LD from the section's h4 / p pairs), sets the routes tag to `content="1 about"` in every copy and adds `/about/`
   to the sitemap. Without the section: the R26-R28 output.
+- Shared code and deck pages (request R30, Nov 22, 2026): page.mjs writes the page's CSS to `app.<hash>.css` and the
+  app script to `app.<hash>.js` (all copies use them; each copy about 40 KB; the previous build's 2 files are kept in
+  the deploy from `cache/app/`). When the page has the deck code (`pmq-deck`): `decks/<id>/index.html` for every deck
+  with a list (data.json + more.json `decks`), routes tag `content="1 about decks"`, the deck addresses in the
+  sitemap, and `data/decks_seen.json` (committed by site.yml, about once a day): a deck that leaves the data keeps
+  its page for 30 days (`on: 0`, in the sitemap), then up to 90 days with `noindex`, then the page and record go.
 - Times (decision Nov 12, request R13): an event's `ts` = its Limitless start time; `at` = the raw file's
   `fetched_at` (when the scraper stored the finished tournament; raw files are written once, so it does not change).
   `changedAt` = the largest `at` of the window's tournaments; `latest` = the single-deck event with the largest `at`.

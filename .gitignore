@@ -9,3 +9,4 @@ site/*
 !site/index.html
 images.json
 cache/
+public/

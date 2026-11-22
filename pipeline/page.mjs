@@ -40,8 +40,25 @@
 // <section class="abv" id="abv" ... hidden>: the routes tag becomes content="1 about" in every copy (the page turns its
 // /about/ view on only then), about/index.html shows the section (no `hidden` in that copy), gets its own title,
 // description, subtitle, BreadcrumbList + FAQPage JSON-LD (from the section's h4 / p pairs), and is in the sitemap.
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+//
+// R30 §1 (Nov 22, 2026): shared code files. After minify, the page's <style> blocks (after the skeleton's own small
+// head style, in document order, joined) go to app.<hash>.css, linked last in <head>; every inline <script> of
+// SCRIPT_MIN bytes or more (the app, about 230 KB; not ld+json) goes to app.<hash>.js, as <script src> at the same place
+// (no defer / async). <hash> = the first 10 hex characters of the SHA-256. All copies use the same files. --prev <dir>:
+// the previous build's app.* files are copied from <dir> into the output too (an HTML page loaded just before a deploy
+// can still ask for them), and <dir> then keeps this build's files for the next run.
+//
+// R30 §2-3 (Nov 22, 2026): a copy per deck, decks/<id>/index.html, for every deck with a list (data.json + more.json
+// `decks`), only when the page has the deck code (the text "pmq-deck"; --decks forces it for tests): routes tag
+// content="1 about decks", a <meta name="pmq-deck" content='{"id","name","seen","on"}'> tag, the deck's title,
+// description, canonical, subtitle, intro text (the 20 cards, the best finish) and BreadcrumbList. --seen <file>
+// (data/decks_seen.json, committed by site.yml): the record of every deck's last day in the data (with its numbers and
+// list 1), so a deck that left the data keeps its page with on: 0 for KEEP_DAYS (in the sitemap), then NOINDEX_DAYS with
+// noindex (not in the sitemap); after that the page and the record go. A record entry is rewritten only on a new day
+// (or for a new deck), so the file changes at most about once a day.
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, rmSync, copyFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { createHash } from "node:crypto";
 import { minify as minifyJS } from "terser";
 import { minify as minifyCSS } from "csso";
 
@@ -61,6 +78,90 @@ const SECTIONS = [
       "the last 7 days) and how the decks and lists are ranked.", img: "og.png" },
 ];
 const SEOI = '<p class="seoi" id="seoi"></p>';
+const KEEP_DAYS = 30, NOINDEX_DAYS = 90;   // R30 §3
+const SCRIPT_MIN = 25 * 1024;   // R30 §1: inline scripts this big or bigger go to app.<hash>.js
+const hash10 = (t) => createHash("sha256").update(t).digest("hex").slice(0, 10);
+// R30 §1: move the page's styles and its big inline scripts to app.<hash>.css / .js in outDir. Returns the new html.
+function shareCode(html, outDir) {
+  const i = html.indexOf("</head>");
+  let head = html.slice(0, i), rest = html.slice(i), css = [];
+  rest = rest.replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gi, (m, c) => { css.push(c); return ""; });
+  const js = [];
+  rest = rest.replace(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi, (m, attrs, code) => {
+    if (/\bsrc=|application\/ld\+json/i.test(attrs) || code.length < SCRIPT_MIN) return m;
+    js.push(code); return `\u0000JS${js.length - 1}\u0000`;
+  });
+  if (js.length > 1) throw new Error(`R30: ${js.length} big inline scripts (1 expected)`);
+  const files = [];
+  if (css.length) {
+    const c = css.join("\n"), f = `app.${hash10(c)}.css`;
+    writeFileSync(join(outDir, f), c); files.push(f);
+    head += `<link rel="stylesheet" href="${f}">`;
+  }
+  if (js.length) {
+    const f = `app.${hash10(js[0])}.js`;
+    writeFileSync(join(outDir, f), js[0]); files.push(f);
+    rest = rest.replace("\u0000JS0\u0000", `<script src="${f}"></script>`);
+  }
+  return { html: head + rest, files };
+}
+// R30 §2-3: the deck pages. Returns [{ dir, on, days, lastmod }] for the sitemap.
+const pct = (x) => (x == null ? null : (+x).toFixed(1));
+const cardsText = (cards) => cards.map(([n, c]) => `${c} ${n}`);
+function deckPages(full, dataDir, outDir, seenFile) {
+  const D = readJSON(join(dataDir, "data.json")), M = readJSON(join(dataDir, "more.json"));
+  if (!D) return [];
+  const today = new Date().toISOString().slice(0, 10), dates = span(D.span[0], D.span[1]);
+  const rec = (seenFile && readJSON(seenFile)) || {};
+  const now = [...(D.decks || []).map((d) => ({ d, more: 0 })), ...((M && M.decks) || []).map((d) => ({ d, more: 1 }))];
+  for (const { d, more } of now) {   // the record: rewritten on a new day or for a new deck
+    if (rec[d.id]?.seen === today) continue;
+    rec[d.id] = { name: d.name, seen: today, rank: d.rank, share: d.share, win: d.win, count: d.count,
+      games: (d.w || 0) + (d.l || 0) + (d.t || 0), more, dates, best: d.pl ? [d.pl, plain(d.ev || ""), d.dt] : null,
+      cards: d.cards.map((c) => [c.n, c.c]) };
+  }
+  const ago = (iso) => Math.round((Date.parse(today) - Date.parse(iso)) / 864e5);
+  for (const id of Object.keys(rec)) if (ago(rec[id].seen) > NOINDEX_DAYS) delete rec[id];
+  if (seenFile) writeFileSync(seenFile, JSON.stringify(rec, null, 1) + "\n");
+  const onIds = new Set(now.map((x) => x.d.id)), out = [];
+  for (const [id, e] of Object.entries(rec)) {
+    const on = onIds.has(id) ? 1 : 0, days = ago(e.seen);
+    const cards = cardsText(e.cards), win = pct(e.win), share = pct(e.share);
+    const stats = `${share}% share${win ? `, ${win}% win` : ""}, ${e.count} players`;
+    const best = e.best ? ` Best finish: ${e.best[0]}${e.best[1] ? ` at ${e.best[1]}` : ""} (${day(e.best[2])}).` : "";
+    const lead = e.more ? `A smaller Pokémon TCG Pocket deck this week (${e.dates})` : `#${e.rank} in the Pokémon TCG Pocket meta (${e.dates})`;
+    const title = on ? `${e.name} Deck (${MONTH}): List & QR Code | Pocket Meta QR`
+      : `${e.name} Deck: List & QR Code (last seen ${day(e.seen)}) | Pocket Meta QR`;
+    const desc = on ? fit(`${lead}: ${stats}. Full list with `, cards, "and a QR code to import it.").replace(/([.…]) and a QR/, (m, p1) => (p1 === "…" ? "… and a QR" : " and a QR")).replace(/\. and a QR/, " and a QR")
+      : fit(`Not in this week's Pokémon TCG Pocket meta (last seen ${day(e.seen)}): ${stats}. Its list: `, cards, "");
+    const intro = on
+      ? `${e.name}: #${e.rank} of this week's Pokémon TCG Pocket decks (${e.dates}), ${share}% of players` +
+        `${win ? `, ${win}% win rate in ${e.games} games` : ""}. List 1: ${cards.join(", ")}.${best}` +
+        " Open the list and tap its QR code to import it in the game."
+      : `Not in this week's meta. Last seen ${day(e.seen)}: #${e.rank} of the Pokémon TCG Pocket decks (${e.dates}), ` +
+        `${share}% of players${win ? `, ${win}% win rate in ${e.games} games` : ""}. Its list: ${cards.join(", ")}.${best}`;
+    const tag = `<meta name="pmq-deck" content='${JSON.stringify({ id, name: e.name, seen: e.seen, on })
+      .replace(/&/g, "&amp;").replace(/'/g, "&#39;").replace(/</g, "&lt;")}'>`;
+    const extra = tag + (!on && days > KEEP_DAYS ? '<meta name="robots" content="noindex">' : "");
+    const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Pocket Meta QR", item: `${SITE}/` },
+      { "@type": "ListItem", position: 2, name: "Meta decks", item: `${SITE}/` },
+      { "@type": "ListItem", position: 3, name: e.name, item: `${SITE}/decks/${id}/` }] };
+    const dir = `decks/${id}`, f = join(outDir, dir, "index.html");
+    mkdirSync(dirname(f), { recursive: true });
+    writeFileSync(f, fillIntro(sectionPage(full, { dir, title, desc, img: "og.png", hsec: `${e.name} deck`, ld, extra }), intro));
+    out.push({ dir, on, days, title, desc });
+  }
+  return out;
+}
+function keepPrevious(prevDir, outDir, files) {   // R30 §1.4
+  const old = [];
+  if (existsSync(prevDir)) for (const f of readdirSync(prevDir))
+    if (/^app\.[0-9a-f]{10}\.(css|js)$/.test(f) && !files.includes(f)) { copyFileSync(join(prevDir, f), join(outDir, f)); old.push(f); }
+  rmSync(prevDir, { recursive: true, force: true }); mkdirSync(prevDir, { recursive: true });
+  for (const f of files) copyFileSync(join(outDir, f), join(prevDir, f));
+  return old;
+}
 // R28: titles (topic + month first) and subtitles, the same strings as the page's RTITLES / RHEAD.
 const MONTH = new Date().toLocaleString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
 const TITLES = { "": `Pokémon TCG Pocket Meta Decks (${MONTH}) with QR Codes | Pocket Meta QR`,
@@ -98,7 +199,7 @@ const day = (iso) => { const [, m, d] = iso.slice(0, 10).split("-"); return `${M
 const span = (a, b) => (a.slice(0, 10) === b.slice(0, 10) ? day(a) :
   a.slice(0, 7) === b.slice(0, 7) ? `${day(a)} – ${+b.slice(8, 10)}` : `${day(a)} – ${day(b)}`);
 // Event names without emoji and decoration symbols (link previews and search snippets): "✧❀🌸 Festival 🌸❀✧" -> "Festival"
-const plain = (t) => t.replace(/[\p{Extended_Pictographic}\p{So}\u2700-\u27BF\uFE0F\u200D\uFF5C\uFE31]/gu, " ")
+const plain = (t) => t.replace(/[\p{Extended_Pictographic}\p{So}\u2700-\u27BF\uFE0F\u200D\uFF5C\uFE31\u3010\u3011\u300C-\u300F]/gu, " ")
   .replace(/\s*[|︱]\s*/g, " | ").replace(/\s+/g, " ").replace(/^[\s|:.,-]+|[\s|:.,-]+$/g, "");
 const readJSON = (f) => { try { return JSON.parse(readFileSync(f, "utf8")); } catch { return null; } };
 function limitedEvent(page) {
@@ -148,7 +249,7 @@ const esc = (t) => t.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g
 
 // R26: the copy of the page for 1 section folder. Changes only the head part (before </head>), and (R28) the
 // section subtitle. R28: also used for index.html (dir "": url, image and route check unchanged).
-function sectionPage(html, { dir, title, desc, img, hsec, ld }) {
+function sectionPage(html, { dir, title, desc, img, hsec, ld, extra }) {
   const i = html.indexOf("</head>");
   let head = html.slice(0, i);
   const url = `${SITE}/${dir ? dir + "/" : ""}`, set = (re, val, what) => {
@@ -169,6 +270,7 @@ function sectionPage(html, { dir, title, desc, img, hsec, ld }) {
     set(/<meta property="og:image:alt" content="[^"]*">/i, `<meta property="og:image:alt" content="${esc(title)}">`);
   }
   if (dir && !head.startsWith(`<!doctype html><html lang="en"><head>${RT}`)) throw new Error("R26: no route tag first in <head>");
+  if (extra) head += extra;   // R30: the deck tag, noindex
   if (ld) head += `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`;
   let rest = html.slice(i);
   if (hsec) {   // R28: the section subtitle (the page sets the same text after a tab switch)
@@ -177,11 +279,12 @@ function sectionPage(html, { dir, title, desc, img, hsec, ld }) {
   }
   return head + rest;
 }
-const [src = "site/index.html", out = "public/index.html"] = args.filter((a) => !a.startsWith("--"));
+const [src = "site/index.html", out = "public/index.html"] = args.filter((a, i) => !a.startsWith("--") && !["--prev", "--seen"].includes(args[i - 1]));
 const body = readFileSync(src, "utf8");
 const ROUTES_ON = ROUTES && body.includes("pmq-routes");   // R26: the page supports the section addresses
 const ABOUT_ON = ROUTES_ON && ABV_RE.test(body);              // R29: the page has the static FAQ section
-const RT = ABOUT_ON ? ROUTE_TAG.replace('content="1"', 'content="1 about"') : ROUTE_TAG;
+const DECKS_ON = ROUTES_ON && (body.includes("pmq-deck") || args.includes("--decks"));   // R30 §2: the page's deck code
+const RT = ROUTE_TAG.replace('content="1"', `content="${["1", ABOUT_ON && "about", DECKS_ON && "decks"].filter(Boolean).join(" ")}"`);
 const SECS = SECTIONS.filter((x) => !x.about || ABOUT_ON);
 
 // One head item at the start of the text: whitespace, then a comment, <title>..</title>, <meta>, <link>,
@@ -227,7 +330,11 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     "padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}" +
     "body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}" +
     "img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>\n";
-  const full = head.replace("<head>", ROUTES_ON ? `<head>${RT}` : "<head>") + rest + "\n</body></html>\n";
+  const page0 = head.replace("<head>", ROUTES_ON ? `<head>${RT}` : "<head>") + rest + "\n</body></html>\n";
+  const { html: full, files: shared } = shareCode(page0, dirname(out));   // R30 §1
+  const pi = args.indexOf("--prev"), old = pi > 0 ? keepPrevious(args[pi + 1], dirname(out), shared) : [];
+  console.log(`page: shared code ${shared.map((f) => `${f} (${(readFileSync(join(dirname(out), f)).length / 1024).toFixed(0)} KB)`).join(", ")}` +
+    `; each copy ${(full.length / 1024).toFixed(0)} KB${pi > 0 ? `; previous build's files kept: ${old.join(", ") || "none"}` : ""}`);
   const { t: intro, d: descs, lb } = intros(dirname(src), body), hasSlot = full.includes(SEOI);
   const lbOnNow = lb && Date.parse(lb.to) > Date.now();
   const rootDesc = (full.match(/<meta name="description" content="([^"]*)">/i) || [])[1];
@@ -255,13 +362,22 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     }
     writeFileSync(f, html);
   }
+  const si = args.indexOf("--seen"), seenFile = si > 0 ? args[si + 1] : null;
+  const decks = DECKS_ON ? deckPages(full, dirname(src), dirname(out), seenFile) : [];
+  if (DECKS_ON) {
+    const on = decks.filter((x) => x.on), kept = decks.filter((x) => !x.on);
+    console.log(`page: deck pages ${decks.length} (${on.length} in the data, ${kept.filter((x) => x.days <= KEEP_DAYS).length} kept,` +
+      ` ${kept.filter((x) => x.days > KEEP_DAYS).length} noindex)${seenFile ? `; record ${seenFile}` : ""}`);
+    if (on[0]) console.log(`page: e.g. ${on[0].dir}/ title "${on[0].title}"; description ${on[0].desc.length} chars: ${on[0].desc}`);
+  } else console.log(`page: no deck pages (${ROUTES_ON ? "the page has no deck code yet" : "routes off"})`);
   if (ROUTES_ON) for (const [k, v] of Object.entries({ "/": { title: TITLES[""], desc: descs[""] || rootDesc }, ...heads }))
     console.log(`page: ${k.padEnd(8)} title "${v.title}"; description ${v.desc.length} chars${descs[k === "/" ? "" : k] ? "" : " (fixed text)"}`);
   if (ROUTES_ON) {   // R26 + R27: sitemap.xml with the section addresses and <lastmod>
     const today = new Date().toISOString().slice(0, 10);
     const lbOn = !lb || Date.parse(lb.to) > Date.now();
     const urls = [["", "hourly"], ...SECS.filter((x) => x.dir !== "limited" || lbOn)
-      .map((x) => [x.dir + "/", x.about ? "monthly" : "daily"])];
+      .map((x) => [x.dir + "/", x.about ? "monthly" : "daily"]),
+      ...decks.filter((x) => x.on || x.days <= KEEP_DAYS).map((x) => [x.dir + "/", "daily"])];   // R30 §2.9 / §3
     writeFileSync(join(dirname(out), "sitemap.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n' +
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       urls.map(([u, f]) => `  <url><loc>${SITE}/${u}</loc><lastmod>${today}</lastmod><changefreq>${f}</changefreq></url>\n`).join("") +
