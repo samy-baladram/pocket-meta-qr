@@ -3788,5 +3788,76 @@
    ]
   ],
   "xs": []
+ },
+ "mega-greninja-ex-c1-greninja-a1": {
+  "name": "Mega Greninja ex Greninja",
+  "seen": "2026-11-22",
+  "rank": 37,
+  "share": 0.39,
+  "win": 43.18,
+  "count": 10,
+  "games": 44,
+  "more": 1,
+  "dates": "Nov 16 – 22",
+  "best": [
+   "56th of 325",
+   "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
+   "2026-11-21"
+  ],
+  "cards": [
+   [
+    "Froakie",
+    2
+   ],
+   [
+    "Frogadier",
+    2
+   ],
+   [
+    "Greninja",
+    2
+   ],
+   [
+    "Mega Greninja ex",
+    1
+   ],
+   [
+    "Chingling",
+    2
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Copycat",
+    2
+   ],
+   [
+    "Cyrus",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Rare Candy",
+    1
+   ],
+   [
+    "Pokémon Communication",
+    1
+   ],
+   [
+    "Lucky Egg",
+    1
+   ],
+   [
+    "Inflatable Boat",
+    1
+   ]
+  ],
+  "xs": []
  }
 }

@@ -4774,5 +4774,62 @@
     1
    ]
   ]
+ },
+ "Squirtle": {
+  "id": "c1-029",
+  "seen": "2026-11-22",
+  "dates": "Nov 16 – 22",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Dual Fusion Mega Mewtwo X pack",
+   "Dual Fusion pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Suicune ex Blastoise",
+    2,
+    1
+   ]
+  ]
+ },
+ "Blastoise": {
+  "id": "c1-031",
+  "seen": "2026-11-22",
+  "dates": "Nov 16 – 22",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Dual Fusion Mega Mewtwo X pack",
+   "Dual Fusion pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Suicune ex Blastoise",
+    2,
+    1
+   ]
+  ]
+ },
+ "Max Repel": {
+  "id": "c1-121",
+  "seen": "2026-11-22",
+  "dates": "Nov 16 – 22",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Dual Fusion Mega Mewtwo X pack",
+   "Dual Fusion pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Pikachu ex Pawmot",
+    1,
+    1
+   ]
+  ]
  }
 }
