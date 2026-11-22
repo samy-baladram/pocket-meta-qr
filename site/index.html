@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795334200-ffb8 -->
+<!-- ui: artifact version 1795340273-9a15 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2404,6 +2404,16 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 /* Nov 22: dark mode: every card and pack image 15% darker, like the deck cards (.icons / .picons / .cards above); drop shadows kept */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t1s-c img, :root:not([data-theme="light"]) .t2c img, :root:not([data-theme="light"]) .pkc-i img, :root:not([data-theme="light"]) .pkr-m img, :root:not([data-theme="light"]) .tstk img, :root:not([data-theme="light"]) .swr:not(.out) img, :root:not([data-theme="light"]) .cug img, :root:not([data-theme="light"]) .sgc img, :root:not([data-theme="light"]) .sgi img, :root:not([data-theme="light"]) .ekic img, :root:not([data-theme="light"]) .ektc img, :root:not([data-theme="light"]) .edi img, :root:not([data-theme="light"]) .ait > img:not(.ao), :root:not([data-theme="light"]) .aswl .asc img:not(.ao), :root:not([data-theme="light"]) .anew img, :root:not([data-theme="light"]) .cfg img, :root:not([data-theme="light"]) .shcards img, :root:not([data-theme="light"]) .chip img, :root:not([data-theme="light"]) .evwc img, :root:not([data-theme="light"]) .cpop .zc img, :root:not([data-theme="light"]) .cpop .pk.promo { filter: brightness(0.85); } :root:not([data-theme="light"]) .pks-c img { filter: brightness(0.85) drop-shadow(2px 3px 4px rgba(40, 60, 90, 0.35)); } :root:not([data-theme="light"]) .pkr-t img { filter: brightness(0.85) drop-shadow(1.5px 2px 2px rgba(40, 60, 90, 0.3)); } :root:not([data-theme="light"]) .cpop .pk:not(.promo) { filter: brightness(0.85) drop-shadow(0 2px 3px rgba(var(--sh), calc(0.3 * var(--shk)))); } :root:not([data-theme="light"]) .swr.out img { filter: grayscale(0.35) brightness(0.78); } :root:not([data-theme="light"]) .ait > img.ao, :root:not([data-theme="light"]) .aswl .asc img.ao { filter: grayscale(0.4) brightness(0.85); } }
 :root[data-theme="dark"] .t1s-c img, :root[data-theme="dark"] .t2c img, :root[data-theme="dark"] .pkc-i img, :root[data-theme="dark"] .pkr-m img, :root[data-theme="dark"] .tstk img, :root[data-theme="dark"] .swr:not(.out) img, :root[data-theme="dark"] .cug img, :root[data-theme="dark"] .sgc img, :root[data-theme="dark"] .sgi img, :root[data-theme="dark"] .ekic img, :root[data-theme="dark"] .ektc img, :root[data-theme="dark"] .edi img, :root[data-theme="dark"] .ait > img:not(.ao), :root[data-theme="dark"] .aswl .asc img:not(.ao), :root[data-theme="dark"] .anew img, :root[data-theme="dark"] .cfg img, :root[data-theme="dark"] .shcards img, :root[data-theme="dark"] .chip img, :root[data-theme="dark"] .evwc img, :root[data-theme="dark"] .cpop .zc img, :root[data-theme="dark"] .cpop .pk.promo { filter: brightness(0.85); } :root[data-theme="dark"] .pks-c img { filter: brightness(0.85) drop-shadow(2px 3px 4px rgba(40, 60, 90, 0.35)); } :root[data-theme="dark"] .pkr-t img { filter: brightness(0.85) drop-shadow(1.5px 2px 2px rgba(40, 60, 90, 0.3)); } :root[data-theme="dark"] .cpop .pk:not(.promo) { filter: brightness(0.85) drop-shadow(0 2px 3px rgba(var(--sh), calc(0.3 * var(--shk)))); } :root[data-theme="dark"] .swr.out img { filter: grayscale(0.35) brightness(0.78); } :root[data-theme="dark"] .ait > img.ao, :root[data-theme="dark"] .aswl .asc img.ao { filter: grayscale(0.4) brightness(0.85); }
+/* Nov 22: the row share button (shBtn): only on an open row; phones: on the top-right corner (10px in), 740px+: the right end of the head line */
+.shb { position: absolute; z-index: 6; display: none; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--surface); box-shadow: var(--raised), var(--bevel); color: var(--acc-ico); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.shb svg { position: absolute; left: 50%; top: 50%; display: block; width: 16px; height: 16px; margin: -9px 0 0 -8px; } /* 1px above the centre: the box at the bottom is the heavier part */ /* Nov 22: placed by position, not by the grid (Safari put it off center: the button is a span inside a <button>, and its ::after tap area) */
+.shb::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; } /* a 40px tap area */
+.shb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (hover: hover) { .shb:hover { color: var(--ink); } }
+.arow[aria-expanded="true"] > .shb, .pka.open > .pkr > .shb { display: grid; }
+.arow > .shb, .pkr > .shb { position: absolute; } /* over `.pkr > * { position: relative }` */
+@media (max-width: 739px) { .arow > .shb, .pkr > .shb { top: -4px; right: -4px; } } /* Nov 22: 10px in from the corner point */
+@media (min-width: 740px) { .arow > .shb, .pkr > .shb { top: 50%; right: 14px; margin-top: -14px; } .pka.open > .pkr .pkr-v { padding-right: 40px; } }
 /* Nov 22: Events tab: the Winners shelf (the Top 10 shelf; a 2-line label: event, then winner · players · day), "Most wins" (the Rising / Falling panel style), the count line */
 .evsh { margin: 2px 0 0; }
 .evsh .t1s-lab { top: 5px; height: 42px; }
@@ -3051,6 +3061,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // ---- QR: PNG on the page (long-press saves it); a tap opens the full-screen card (long-press saves that too) ----
   const EXPAND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>';
   const TOUCH = matchMedia("(pointer: coarse)").matches;
+  // Nov 22: one share button for an open deck / event / pack row (phones: on the row's top-right corner; 740px+: the right end of the head line)
+  const SHARE_I = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v11M8 7.5l4-4 4 4"/><path d="M8.5 10.5H6.5a1.5 1.5 0 0 0-1.5 1.5v7a1.5 1.5 0 0 0 1.5 1.5h11a1.5 1.5 0 0 0 1.5-1.5v-7a1.5 1.5 0 0 0-1.5-1.5h-2"/></svg>';
+  const shBtn = (k, id, what) => `<span class="shb" role="button" tabindex="0" data-sh="${k}" data-sid="${esc(id)}" aria-label="${TOUCH ? "Share" : "Copy the link to"} this ${what}">${SHARE_I}</span>`;
+  const LISTLINK = () => (TOUCH ? "Share this list" : "Copy list link"); // the list's own link (the QR panel); the row button shares the deck
   // Small QR caption: phones cannot scan their own screen, so "Tap to save"; on a computer the game's camera can scan it
   const SCAN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 12h8"/></svg>';
   // A QR comes as SVG text (data contract <= 12) or packed (request R12): "<n>:<base64>", n x n modules, row by row,
@@ -3459,7 +3473,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     let ok = false;
     try { await navigator.clipboard.writeText(url); ok = true; } catch (err) {}
     if (!ok) { try { const t = document.createElement("textarea"); t.value = url; t.style.cssText = "position:fixed;opacity:0"; document.body.append(t); t.select(); ok = document.execCommand("copy"); t.remove(); } catch (err) {} }
-    if (ok) { lab.textContent = "Link copied"; setTimeout(() => { if (lab.isConnected) lab.textContent = TOUCH ? "Share link" : "Copy link"; }, 1800); }
+    if (ok) { lab.textContent = "Link copied"; setTimeout(() => { if (lab.isConnected) lab.textContent = LISTLINK(); }, 1800); }
     else qmsgEl().textContent = url;
   }
   // ---- The shared-link view ----
@@ -3534,7 +3548,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const today = !T ? `<div class="ev">\u2026</div>` : !x ? `<div class="ev">Not in the meta now</div>`
       : `<div class="ev"><b>${num(x.share)}</b> \u00b7 <b>${num(x.win)}</b> win</div><div class="tdst">${T.d && T.k >= 0 ? "Still a top list" : "Not a top list now"}</div>`;
     box.innerHTML = `${shHead()}
-      <div class="shslide pd"><div class="pdtop"><div class="pdmain"><div class="cards">${cards}</div><button class="qslink shlink pdlink" type="button">${LINK_ICON}<span>${TOUCH ? "Share link" : "Copy link"}</span></button></div><div class="pdside"><div class="info">
+      <div class="shslide pd"><div class="pdtop"><div class="pdmain"><div class="cards">${cards}</div><button class="qslink shlink pdlink" type="button">${LINK_ICON}<span>${LISTLINK()}</span></button></div><div class="pdside"><div class="info">
         ${SH.src ? `<a class="tile t-sc tlink" href="${SH.src}" target="_blank" rel="noopener" aria-label="Score: the original list on Limitless">` : `<div class="tile t-sc">`}${SH.src ? `<svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>` : ""}<span class="tl">Score${SH.played ? ` \u00b7 ${SH.played}` : ""}</span><div class="sc"><span>${esc(SH.p.s || "\u2013")}</span></div>${place ? `<div class="scd">${place}</div>` : ""}${SH.src ? "</a>" : "</div>"}
         ${T && T.d ? `<button class="tile t-ev t-td tlink shtoday" type="button" data-k="${Math.max(0, T.k)}" aria-label="Open this deck on the site"><svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><span class="tl">Today</span>${today}</button>` : `<div class="tile t-ev t-td"><span class="tl">Today</span>${today}</div>`}</div><div class="qcol"><button class="qr shqr" type="button" aria-label="Show the QR code"><img ${qrImg(SH.packed)} alt="QR code for ${esc(SH.name)}" width="128" height="128"><span class="qcap">${TOUCH ? `${EXPAND}Tap to save` : `${SCAN}Scan in game`}</span></button></div></div></div></div>
       <div class="shfoot pdfoot"><button class="qclose shx" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>`;
@@ -3543,7 +3557,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const box = $("shBox"); box.dataset.mode = "qr"; track("shared-qr");
     box.innerHTML = `${shHead()}
       <div class="qsbox"><div class="qsrow"><img class="qsimg" src="${qrPng(SH.packed, "#eef6f9")}" alt="QR code for ${esc(SH.name)}" width="240" height="240"></div>
-      <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><button class="qslink shlink" type="button">${LINK_ICON}<span>${TOUCH ? "Share link" : "Copy link"}</span></button></div>
+      <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><button class="qslink shlink" type="button">${LINK_ICON}<span>${LISTLINK()}</span></button></div>
       <div class="shfoot"><button class="qclose shback" type="button" aria-label="Back to the cards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button><button class="qsave shsave" type="button">${SAVE_ICON}${TOUCH ? "Save" : "Download"}</button></div><p class="qmsg" id="shMsg" role="status"></p>`;
   }
   // Nov 15: the result list highlights its middle row, and that row's dot in the chart
@@ -3598,7 +3612,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       if (TOUCH && navigator.share) { try { await navigator.share({ title: SH.name + " \u2013 Pocket Meta QR", url }); return; } catch (err) { if (err && err.name === "AbortError") return; } }
       let ok = false; try { await navigator.clipboard.writeText(url); ok = true; } catch (err) {}
       if (!lab) { toast(ok ? "Link copied" : "Copy the address from the address bar"); return; }
-      lab.textContent = ok ? "Link copied" : "Copy the address"; setTimeout(() => { if (lab.isConnected) lab.textContent = TOUCH ? "Share link" : "Copy link"; }, 1800); return; }
+      lab.textContent = ok ? "Link copied" : "Copy the address"; setTimeout(() => { if (lab.isConnected) lab.textContent = LISTLINK(); }, 1800); return; }
     if (e.target.closest(".shback")) { shCards(); return; }
     const td = e.target.closest(".shtoday");
     if (td) { const id = SH && SH.p.k, k = +td.dataset.k; closeShared(); track("shared-today"); if (id && $(id)) openAt(id, k); return; }
@@ -3669,7 +3683,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     return `<div class="qsbox">
       <p class="qsdeck"><b>${esc(d.name)}</b>${name ? `<span class="qsl">${name}</span>` : ""}</p>
       <div class="qsrow"><img class="qsimg" src="${qrPng(svg, "#eef6f9")}" alt="QR code for ${esc(d.name)}" width="240" height="240"></div>
-      <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><button class="qslink" type="button">${LINK_ICON}<span>${TOUCH ? "Share link" : "Copy link"}</span></button></div>
+      <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><button class="qslink" type="button">${LINK_ICON}<span>${LISTLINK()}</span></button></div>
       <button class="qsave qssave" type="button">${SAVE_ICON}${TOUCH ? "Save image" : "Download image"}</button><p class="qmsg" id="qsMsg" role="status"></p>`;
   }
   async function openQRSheet(anchor, d, i, ak = null) {
@@ -4081,7 +4095,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     return out.sort((a, z) => (z.rel > a.rel ? 1 : z.rel < a.rel ? -1 : a.id < z.id ? 1 : -1));
   }
   const pkRow = (x, old) => { const m = pkMeta(x), w = x.cards.length - m;
-    return `<section class="pka${x.cards.length ? "" : " z"}${old ? " old" : ""}" id="pk-${esc(x.id)}"><button type="button" class="pkr"${x.cards.length ? ' aria-expanded="false"' : " disabled"}><span class="pkr-t"><img data-src="p/${esc(x.img)}.webp" alt=""></span><span class="pkr-n"><b>${esc(x.setName)}</b><small><span class="pkcode">${esc(x.set)}</span>${esc(pkSub(x))}</small></span><span class="pkr-v">${m ? `<b>${m}</b> meta card${m > 1 ? "s" : ""}` : x.cards.length ? "" : "no meta cards"}${w ? `<small>${m ? "+" : ""}${w} in small decks</small>` : ""}</span></button>${x.cards.length ? '<div class="pkp"></div>' : ""}</section>`; };
+    return `<section class="pka${x.cards.length ? "" : " z"}${old ? " old" : ""}" id="pk-${esc(x.id)}"><button type="button" class="pkr"${x.cards.length ? ' aria-expanded="false"' : " disabled"}><span class="pkr-t"><img data-src="p/${esc(x.img)}.webp" alt=""></span><span class="pkr-n"><b>${esc(x.setName)}</b><small><span class="pkcode">${esc(x.set)}</span>${esc(pkSub(x))}</small></span><span class="pkr-v">${m ? `<b>${m}</b> meta card${m > 1 ? "s" : ""}` : x.cards.length ? "" : "no meta cards"}${w ? `<small>${m ? "+" : ""}${w} in small decks</small>` : ""}</span>${x.cards.length && (RPACK || !ROUTED) ? shBtn("pk", x.id, "pack") : ""}</button>${x.cards.length ? '<div class="pkp"></div>' : ""}</section>`; };
   // the card grid is built when the row opens (not for every pack at once)
   const pkGrid = (x) => { const w = x.cards.some((c) => !c.st); return `<div class="pkg-w"><div class="pkg">${x.cards.map((c, k) => `<button type="button" class="pkc${k ? "" : " on"}${c.st ? "" : " lo"}" data-k="${k}" aria-label="${esc(c.n)}, in ${c.decks.length} deck${c.decks.length > 1 ? "s" : ""}"><span class="pkc-i"><span>${esc(c.n)}</span><img src="c/${esc(c.img)}.webp" alt="" data-n="${esc(c.n)}" loading="lazy"></span><small>${c.decks.length} deck${c.decks.length > 1 ? "s" : ""}</small></button>`).join("")}</div>${w ? '<p class="pkg-f"><i></i>Faded: only in decks under 1.0% share</p>' : ""}</div><div class="pkd"></div>`; };
   const pkFill = (a) => { const p = a.querySelector(".pkp"); if (p && !p.innerHTML) { const x = PKV.find((y) => "pk-" + y.id === a.id); if (x) p.innerHTML = pkGrid(x); } };
@@ -4089,7 +4103,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     sec.querySelectorAll(".pkc").forEach((b) => b.classList.toggle("on", +b.dataset.k === k));
     sec.querySelector(".pkd").innerHTML = `<p class="pkd-h"><b>${esc(c.n)}</b> &middot; in ${c.decks.length} meta deck${c.decks.length > 1 ? "s" : ""}</p><div class="pkd-l">${c.decks.slice(0, 5).map((r) => `<button type="button" class="pkd-r" data-go="${esc(r.d.id)}">${t2c(r.d, 26, 42, 34, 15, 5)}<span class="pkd-n">${esc(r.d.name)}</span><span class="pkd-s"><b>${pct(r.d.share)}</b>${r.c > 1 ? " &middot; ×" + r.c : ""}</span></button>`).join("")}</div>${c.decks.length > 5 ? `<p class="pkd-m">+${c.decks.length - 5} more</p>` : ""}`; }
   // Nov 22: from a card popup ("Booster pack" tile) to the Packs tab, filtered by that card
-  let pkTarget = null;
+  let pkTarget = null, pkCur = null, pkWant = null; // R31: pkCur = the last opened pack (its address on the site), pkWant = a pack to open when the view is built
+  const pkRt = () => { if (typeof RPACK !== "undefined" && RPACK && !rtLock) syncRoute(false); };
+  function pkWantGo() { const id = pkWant; if (!id || !PKV || !$("pkl")) return; pkWant = null;
+    if (!$("pk-" + id) && PKV.some((x) => x.id === id)) { pkOld = true; pkList(); } // an older series pack: show the older packs
+    const a = $("pk-" + id); if (!a || a.hidden) return; if (a.classList.contains("z")) { centerEl(a); return; } /* no meta cards: nothing to open */ if (!a.classList.contains("open")) pkOpen(a, true); requestAnimationFrame(() => requestAnimationFrame(() => centerEl(a))); }
   function pkGo(ids, name) { pkTarget = { ids, name }; setTab("decks"); setMV("packs"); if (PKV) pkGoNow(); /* the view was built before: filter now (else renderPacks does it) */ try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} }
   function pkGoNow() { const t = pkTarget; if (!t || !PKV || !$("pkl")) return; pkTarget = null;
     if (PKV.some((x) => x.cards.some((c) => c.n === t.name))) { // the card is in the view: filter the packs by it (as a pick in the filter), the first pack opens with the card picked
@@ -4100,12 +4118,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const x = t.ids.map((id) => PKV.find((y) => y.id === id)).find(Boolean); if (!x) return; // not a card of the meta decks: show its pack
     if (!pkOld && !pkAct().has(pkSer(x))) { pkOld = true; pkList(); }
     const a = $("pk-" + x.id); if (a) requestAnimationFrame(() => centerEl(a)); }
-  const pkOpen = (a, on) => { if (on !== false) pkFill(a); const o = a.classList.toggle("open", on), r = a.querySelector(".pkr"); if (r) r.setAttribute("aria-expanded", String(o)); if (o && !a.querySelector(".pkd").innerHTML) pkPick(a, +(a.querySelector(".pkc.on") || { dataset: { k: 0 } }).dataset.k); return o; };
+  const pkOpen = (a, on) => { if (on !== false) pkFill(a); const o = a.classList.toggle("open", on), r = a.querySelector(".pkr"); if (r) r.setAttribute("aria-expanded", String(o)); if (o && !a.querySelector(".pkd").innerHTML) pkPick(a, +(a.querySelector(".pkc.on") || { dataset: { k: 0 } }).dataset.k);
+    const id = a.id.slice(3); if (o) pkCur = id; else if (pkCur === id) { const z = document.querySelector("#pkl .pka.open"); pkCur = z ? z.id.slice(3) : null; } pkRt(); return o; }; // R31: /packs/<id>/ on the site
   function pkList() { const L = $("pkl"); if (!L || !PKV) return; const act = pkAct(), A = PKV.filter((x) => act.has(pkSer(x))), O = PKV.filter((x) => !act.has(pkSer(x)));
     const srt = (a) => (pkSort === "meta" ? [...a].sort((x, z) => pkMeta(z) - pkMeta(x) || z.cards.length - x.cards.length) : a), ser = [...new Set(O.map(pkSer))].join(", ");
-    if (pkSort === "meta") { L.innerHTML = srt(PKV).map((x) => pkRow(x, false)).join(""); L.classList.remove("old-on"); pkApply(); pkLazy(L); return; } // Nov 22: "Most meta" ranks every pack, the older series too (no older box)
+    if (pkSort === "meta") { L.innerHTML = srt(PKV).map((x) => pkRow(x, false)).join(""); L.classList.remove("old-on"); pkApply(); pkLazy(L); pkRt(); return; } // Nov 22: "Most meta" ranks every pack, the older series too (no older box)
     L.innerHTML = srt(A).map((x) => pkRow(x, false)).join("") + (O.length ? (pkOld ? "" : `<div class="moreb"><button class="morelink" type="button" id="pkOldBtn"><b>Show ${O.length} older packs</b><svg class="mcar" viewBox="0 0 10 10" aria-hidden="true"><path d="m2.5 4 2.5 2.5L7.5 4" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${esc(ser)} series &middot; the older sets</span></button></div>`) + srt(O).map((x) => pkRow(x, true)).join("") : "");
-    L.classList.toggle("old-on", pkOld); pkApply(); pkLazy(L); }
+    L.classList.toggle("old-on", pkOld); pkApply(); pkLazy(L); pkRt(); }
   function renderPacks() { const el = $("pkv"); if (!el) return;
     if (!data || !STD || !PK || !CMAP_J) { el.className = "t1s"; el.innerHTML = `<p class="t1s-h"><b>Top 10 packs</b> <span class="t1s-hw">for the meta ${winWk()}</span></p><div class="t1s-sh" aria-hidden="true"><div class="t1s-vp"></div></div><div class="lsh pk-lh"><span>All packs</span></div><div class="pk-l" aria-busy="true">${'<section class="pka sk"><div class="pkr"><span class="pkr-t"></span><span class="pkr-n"></span><span></span></div></section>'.repeat(4)}</div>`; return; } // a skeleton while the files load
     PKV = pkBuild(CMAP_J); const act = pkAct(), L = PKV.filter((x) => pkMeta(x) > 0).sort((x, z) => pkMeta(z) - pkMeta(x) || z.cards.length - x.cards.length).slice(0, 10) /* Nov 22: the top 10 packs by meta cards, all series (was: the 2 newest series, newest first) */, nA = PKV.filter((x) => act.has(pkSer(x))).length;
@@ -4114,7 +4133,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       <div class="t1s-sh"><div class="t1s-lab" aria-live="polite"><div></div><div></div></div><div class="t1s-vp" tabindex="0" aria-label="Top 10 packs by meta cards"><div class="t1s-tr">${[0, 1, 2].map((r) => `<div class="t1s-set"${r !== 1 ? ' aria-hidden="true"' : ""}>${L.map((x) => `<button type="button" class="pks-c" data-pk="${esc(x.id)}" aria-label="${esc(x.setName)}${pkSub(x) ? " " + esc(pkSub(x)) : ""}"${r !== 1 ? ' tabindex="-1"' : ""}><img src="p/${esc(x.img)}.webp" alt="" draggable="false" loading="lazy"></button>`).join("")}</div>`).join("")}</div></div></div>
       <div class="lsh pk-lh"><span>All packs<b> &middot; ${nA === PKV.length ? nA : nA + " + " + (PKV.length - nA) + " older"}</b></span><span class="t1s-seg" role="group" aria-label="Sort packs"><button type="button" data-s="new" aria-pressed="${pkSort === "new"}">Newest</button><button type="button" data-s="meta" aria-pressed="${pkSort === "meta"}">Most meta</button></span></div>
       <div class="pk-l" id="pkl"></div>`;
-    pkList(); if (L.length) pkCar(el, L); if (pkTarget) pkGoNow(); }
+    pkList(); if (L.length) pkCar(el, L); if (pkTarget) pkGoNow(); if (pkWant) pkWantGo(); }
   // The pack shelf: the Top 10 carousel (loop of 3 copies, transform only, slow auto-move, flick momentum, snap), with packs
   // Nov 22: the shelf carousel for the Packs and the Events tabs (o.sel = the item buttons, o.lab(x) = the label HTML, o.tap(button) = after the glide to it); returns the stop function
   function pkCar(el, L) { if (pkKill) pkKill(); pkKill = shelfCar(el, L, { sel: ".pks-c",
@@ -4246,7 +4265,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, d.name.length)}">${esc(d.name)}${NEWD.has(d.id) ? '<span class="newb" title="New in the top 10 since your last visit">NEW</span>' : ""}</span>
             <span class="asub">${d.bc ? `<span class="bcn" title="No top player ${winWk()}">${bcI(d)}${bcN(d).toLowerCase()}</span>` : ""}<span class="asw"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win</span>
               <span class="sm"><span class="sep">&middot; </span><span class="nw">${d.count} players</span> <span class="nw">&middot; ${d.w}-${d.l}-${d.t}</span></span></span></span>
-          ${dpill(d)}
+          ${dpill(d)}${shBtn("dk", d.id, "deck")}
         </button>
         <div class="apanel" id="p-${d.id}" hidden></div>
       </section>`;
@@ -5362,6 +5381,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     setTimeout(() => { const vars = p.querySelector(".vars"), sl = p.querySelectorAll(".slide"); if (openId === id && sl[k]) vars.scrollTo({ left: sl[k].offsetLeft - sl[0].offsetLeft, behavior: "auto" }); }, 60);
   }
   window.addEventListener("hashchange", () => { if (location.hash.startsWith("#x=")) { if (data) openShared(location.hash.slice(1)); return; }
+    const evH = (location.hash.match(/^#e=([0-9a-z]{6,40})$/i) || [])[1]; if (evH) { if (!data) return; if (evOpen && evOpen.tid === evH) return; evWant = evH; if (curTab !== "events") setTab("events"); else if (EV) renderEvents(); return; } // R31: an event link
     const [id, k] = hashParts(); if (!data || !id || id === openId) return;
     if (MV === "packs" && id !== "events") setMV("decks"); // Nov 21: a deck link from the Packs view
     if ($(id)) openAt(id, k); else if (id !== "events" && data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); openAt(id, k); } }); });
@@ -5504,7 +5524,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (e.target.closest(".evclr")) { evWin = ""; evQ = ""; evMin = 0; evDk = ""; $("fq").value = ""; filtMode(true); renderEvents(); return; }
     const bar = e.target.closest(".evbars i[data-day]"); if (bar) { const t = $("evd-" + bar.dataset.day); if (t) t.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
     const bg = e.target.closest(".evbig[data-go], .evbg[data-go], .evjust [data-go]"); if (bg && bg.dataset.go) { const t = $("ev-" + bg.dataset.go); if (t) { const r = t.querySelector(".arow"); if (r.getAttribute("aria-expanded") === "true") centerEl(t); else r.click(); } } }); // Nov 22: opens, then moves to the middle (evCtr)
-  let evShEl = null, evShKill = null; // Nov 22: the Winners shelf (kept while only the "Most wins" pick changes)
+  let evShEl = null, evShKill = null, evWant = null; // R31: evWant = an event to open after the list draws (#e=<tid> link) // Nov 22: the Winners shelf (kept while only the "Most wins" pick changes)
   function renderEvents() { evPre();
     const box = $("evl");
     if (!EV || !EV.events || !EV.events.length) { box.innerHTML = `<div class="empty">No events ${winLast()} yet.</div>`; return; }
@@ -5547,11 +5567,14 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           <span class="icons${w && w.art && w.art.length === 1 ? " one" : ""}">${(w && w.art ? w.art : []).slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>${w ? `<svg class="wcrown" viewBox="0 0 18 14" aria-hidden="true"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg>` : ""}
           <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, shortEv(e.name).length)}" title="${esc(e.name)}">${esc(shortEv(e.name))}${NEWE.has(e.tid) ? '<span class="newb" title="New since your last visit">NEW</span>' : ""}</span>
             <span class="evsub">${e.players} players${(() => { const hit = hitOf(e); return hit ? ` \u00b7 <span class="evhit"><b>${ordF(hit.p)}</b> ${esc(dn(hit.id))}</span>` : fresh; })()}</span></span>
-          <span class="dpill epb" role="button" tabindex="0" data-ek="${e.tid}" aria-haspopup="dialog" aria-label="Event stats"><b>Event stats</b>${SPCH}</span>
+          <span class="dpill epb" role="button" tabindex="0" data-ek="${e.tid}" aria-haspopup="dialog" aria-label="Event stats"><b>Event stats</b>${SPCH}</span>${shBtn("ev", e.tid, "event")}
         </button>
         <div class="apanel" id="evp-${e.tid}" hidden></div>
       </section>`;
     }).join("");
+    if (evWant) { const t = evWant; evWant = null; const sec = $("ev-" + t);
+      if (sec) requestAnimationFrame(() => { const r = sec.querySelector(".arow"); if (r.getAttribute("aria-expanded") !== "true") r.click(); });
+      else { if (location.hash.startsWith("#e=")) history.replaceState(history.state, "", location.pathname + location.search); notice(`That event is not in the list anymore: it shows the events ${esc(winLast())}.`, null, 7000); } }
     if (keep) { $("evshP").replaceWith(keep); keep._vis && requestAnimationFrame(keep._vis); }
     else { if (evShKill) evShKill(); evShKill = null; evShEl = $("evsh");
       if (evShEl) { evShEl._k = sk; evShKill = shelfCar(evShEl, SL, { sel: ".t1s-c",
@@ -5576,6 +5599,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (!evOpen) return;
     const sec = $("ev-" + evOpen.tid);
     evOpen = null;
+    if (location.hash.startsWith("#e=")) history.replaceState(history.state, "", location.pathname + location.search);
     if (evIo) { evIo.disconnect(); evIo = null; }
     if (!sec) return;
     const snap = sec; snap.classList.add("snap");
@@ -5589,6 +5613,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const pin = sec.getBoundingClientRect().top; evClose();
     { const sh = sec.getBoundingClientRect().top - pin; if (Math.abs(sh) > 1) { barHold = Date.now() + 400; scrollBy(0, sh); } glide($("evl"), sec, pin); } // Nov 19: an event above closed: the tapped row stays in place
     evOpen = { tid, e };
+    if (location.hash !== "#e=" + tid) history.replaceState(history.state, "", location.pathname + location.search + "#e=" + tid); // R31: the event's link (copy the address to share it)
     track("event/" + tid);
     const p = sec.querySelector(".apanel");
     sec.classList.add("snap"); sec.querySelector(".arow").setAttribute("aria-expanded", "true");
@@ -5841,8 +5866,25 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const RDECK = ROUTED && /\bdecks\b/.test(document.querySelector('meta[name="pmq-routes"]').content); // R30: page.mjs writes decks/<id>/ too (content "1 about decks")
   const pathDeck = () => { if (!RDECK) return null; const m = location.pathname.match(/\/decks\/([a-z0-9-]+)\/?(?:index\.html)?$/); return m ? m[1] : null; }; // R30: /decks/<deck id>/
   const RDTITLE = (d) => `${d.name} Deck (${RMON()}): List & QR Code | Pocket Meta QR`; // R30: the same formula as page.mjs
+  const RPACK = ROUTED && /\bpacks\b/.test(document.querySelector('meta[name="pmq-routes"]').content); // R31: page.mjs writes packs/<pack id>/ too
+  const pathPack = () => { if (!RPACK) return null; const m = location.pathname.match(/\/packs\/([a-z0-9-]+)\/?(?:index\.html)?$/); return m ? m[1] : null; };
+  const pkName = (x) => x.setName + (pkSub(x) ? " " + pkSub(x) : "");
+  const RPTITLE = (x) => `${pkName(x)} Pack (${RMON()}): Meta Cards & Decks | Pocket Meta QR`; // R31: the same formula as page.mjs
+  const rPack = () => { if (!RPACK || curSec() !== "packs" || !pkCur || !PKV) return null; const a = $("pk-" + pkCur); return a && a.classList.contains("open") && !a.hidden ? PKV.find((x) => x.id === pkCur) || null : null; };
   const rDeck = () => (RDECK && curSec() === "decks" && openId && data && data.decks.find((x) => x.id === openId)) || null; // the open deck, when its address is shown
-  function rtHead() { const s = curSec(), d = rDeck(); document.title = d ? RDTITLE(d) : RTITLE[s]; setHead(d ? d.name + " deck" : s); }
+  // Nov 22: the row share button: the page address of that deck / event / pack (always the site's address, so a link from the artifact works too)
+  async function shareRow(b) { const k = b.dataset.sh, id = b.dataset.sid, S = "https://pocketmetaqr.com";
+    let url = S + "/", title = "Pocket Meta QR";
+    if (k === "dk") { const d = data && data.decks.find((x) => x.id === id); url = `${S}/decks/${id}/`; if (d) title = `${d.name} deck \u2013 Pocket Meta QR`; }
+    else if (k === "ev") { const e = EV && EV.events.find((x) => x.tid === id); url = `${S}/events/#e=${id}`; if (e) title = `${shortEv(e.name)}: top lists \u2013 Pocket Meta QR`; }
+    else if (k === "pk") { const x = PKV && PKV.find((y) => y.id === id); url = `${S}/packs/${id}/`; if (x) title = `${pkName(x)} pack \u2013 Pocket Meta QR`; }
+    track("share-" + k);
+    if (TOUCH && navigator.share) { try { await navigator.share({ title, url }); return; } catch (err) { if (err && err.name === "AbortError") return; } }
+    let ok = false; try { await navigator.clipboard.writeText(url); ok = true; } catch (err) {}
+    toast(ok ? "Link copied" : "Could not copy: " + url); }
+  document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest(".shb"); if (!b) return; e.preventDefault(); e.stopPropagation(); shareRow(b); }, true); // capture: the row under it does not close
+  document.addEventListener("keydown", (e) => { const b = e.target.closest && e.target.closest(".shb"); if (!b || (e.key !== "Enter" && e.key !== " ")) return; e.preventDefault(); e.stopPropagation(); shareRow(b); }, true);
+  function rtHead() { const s = curSec(), d = rDeck(), x = !d && rPack(); document.title = d ? RDTITLE(d) : x ? RPTITLE(x) : RTITLE[s]; setHead(d ? d.name + " deck" : x ? pkName(x) + " pack" : s); }
   const RPATH = { decks: "/", events: "/events/", packs: "/packs/", limited: "/limited/", about: "/about/" };
   // Nov 22 (R28): titles = topic + month first (the brand last), the same formula as page.mjs; the subtitle under the header per section
   const RMON = () => { const d = new Date((data && data.updatedAt) || Date.now()); return d.toLocaleString("en-US", { month: "short", year: "numeric", timeZone: "UTC" }); }; // "Nov 2026"
@@ -5852,16 +5894,19 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const RHEAD = { decks: "This week\u2019s Pok\u00e9mon TCG Pocket decks", events: "Latest Pok\u00e9mon TCG Pocket tournaments", packs: "Booster packs for this week\u2019s meta", limited: "Limited Battle decks", about: "About and FAQ" };
   const setHead = (s) => { const t = RHEAD[s] || s, h = document.querySelector(".hsec"); if (h && h.textContent !== t) h.textContent = t; }; // a section key or a text (a deck)
   const curSec = () => (curTab === "events" ? "events" : curTab === "limited" ? "limited" : curTab === "about" ? "about" : MV === "packs" ? "packs" : "decks");
-  const pathSec = () => { if (pathDeck()) return "decks"; const p = location.pathname.replace(/index\.html$/, ""); return ["events", "packs", "limited", "about"].find((k) => p.endsWith(RPATH[k]) && (k !== "about" || RABOUT)) || "decks"; };
+  const pathSec = () => { if (pathDeck()) return "decks"; if (pathPack()) return "packs"; const p = location.pathname.replace(/index\.html$/, ""); return ["events", "packs", "limited", "about"].find((k) => p.endsWith(RPATH[k]) && (k !== "about" || RABOUT)) || "decks"; };
   let rtLock = true; // on while the page starts and while the browser goes back / forward
-  function syncRoute(push) { if (rtLock) return; const s = curSec(), d = rDeck(); rtHead(); if (!ROUTED) return;
-    const h = /^#(events|limited)$/.test(location.hash) || (d && location.hash.slice(1).split("/")[0] === d.id) ? "" : location.hash, u = (d ? `/decks/${d.id}/` : RPATH[s]) + location.search + h; // R30: an open deck = /decks/<id>/ (its old #id hash dropped)
+  function syncRoute(push) { if (rtLock) return; const s = curSec(), d = rDeck(), x = !d && rPack(); rtHead(); if (!ROUTED) return;
+    const hs = location.hash, h = /^#(events|limited)$/.test(hs) || (d && hs.slice(1).split("/")[0] === d.id) || (hs.startsWith("#e=") && s !== "events") ? "" : hs;
+    const u = (d ? `/decks/${d.id}/` : x ? `/packs/${x.id}/` : RPATH[s]) + location.search + h; // R30: an open deck = /decks/<id>/ (its old #id hash dropped); R31: an open pack = /packs/<id>/; an event = #e=<tid> on /events/ only
     if (location.pathname + location.search + location.hash === u) return;
     const st = { rt: s, lb: s === "limited" && push ? 1 : undefined }; // lb: a step back leaves Limited (not on a direct visit)
     history[push ? "pushState" : "replaceState"](push ? st : { ...(history.state || {}), ...st }, "", u); }
-  addEventListener("popstate", () => { if (!ROUTED) return; const s = pathSec(), pd = pathDeck(), dk = RDECK && s === "decks" && (pd || null) !== (openId || null); if (s === curSec() && !dk) return;
+  addEventListener("popstate", () => { if (!ROUTED) return; const s = pathSec(), pd = pathDeck(), dk = RDECK && s === "decks" && (pd || null) !== (openId || null);
+    const pp = pathPack(), pkc = RPACK && s === "packs" && (pp || null) !== ((rPack() || {}).id || null); if (s === curSec() && !dk && !pkc) return;
     rtLock = true; try { if (s !== curSec()) { if (s === "about") setTab("about"); else if (s === "events") setTab("events"); else if (s === "limited") { if (lbOn()) setTab("limited"); } else { setTab("decks"); setMV(s === "packs" ? "packs" : "decks"); } }
-      if (RDECK && s === "decks" && data) { if (pd && pd !== openId) deckGo(pd); else if (!pd && openId) closeOpen(); } } finally { rtLock = false; } rtHead(); }); // R30: back / forward to a deck address opens that deck
+      if (RDECK && s === "decks" && data) { if (pd && pd !== openId) deckGo(pd); else if (!pd && openId) closeOpen(); }
+      if (pkc) { if (pp) { pkWant = pp; pkWantGo(); } else { const a = rPack() && $("pk-" + pkCur); if (a) pkOpen(a, false); } } } finally { rtLock = false; } rtHead(); }); // R31: back / forward to a pack address // R30: back / forward to a deck address opens that deck
   // R30: open a deck by id (also a smaller deck: loads more.json); a deck that is not in this week's data: a notice
   function deckGo(id, k = 0) { if ($(id)) { openAt(id, k); return; }
     const gone = () => { let j = {}; try { j = JSON.parse((document.querySelector('meta[name="pmq-deck"]') || {}).content || "{}"); } catch (err) {}
@@ -5955,6 +6000,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const shared = location.hash.startsWith("#x=");
       let [id, hk] = shared ? [""] : hashParts();
       if (!shared && !id && pathDeck()) { id = pathDeck(); hk = 0; } // R30: a direct visit to /decks/<id>/
+      const evH = (location.hash.match(/^#e=([0-9a-z]{6,40})$/i) || [])[1]; if (evH) { evWant = evH; id = ""; } // R31: an event link (#e=<tid>)
+      if (pathPack()) pkWant = pathPack(); // R31: a direct visit to /packs/<id>/
       if (shared) openShared(location.hash.slice(1)); // a permanent link: the shared list over the page
       else if (id && $(id)) openAt(id, hk); // shared link: open that deck (and list); otherwise all rows start closed
       else if (id && pathDeck() === id) deckGo(id); // R30: a smaller deck (more.json) or a deck that left the meta (notice)
@@ -5962,6 +6009,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       let t0 = null; try { t0 = localStorage.getItem("pmq-tab"); } catch (err) {}
       if (ROUTED && pathSec() !== "decks") t0 = pathSec(); // the address decides (e.g. /packs/)
       if (pathDeck()) t0 = "decks"; // R30: a deck address = the Meta tab
+      if (evWant) t0 = "events";
       if (t0 === "about" && !(id && $(id))) setTab("about", false); else
       if (id === "events" || (!(id && $(id)) && t0 === "events")) setTab("events", false);
       else if (id === "limited" || (!(id && $(id)) && t0 === "limited")) setTab("limited", false); // ends: setTab falls back to the decks
