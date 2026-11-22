@@ -199,6 +199,11 @@ The pairings do not say which deck a player used in a match. Thus:
   32+ players and their winners; the 3 packs with the most cards of the shown lists; the Limited Battle name and
   dates), and sets `og:image` / `twitter:image` to `static/og-events.png` / `og-packs.png` (made by hand with
   `pipeline/og_sections.mjs`; make them again at a set release). `robots.txt` (static) already lists the sitemap.
+- Search result texts (request R28, Nov 22, 2026): page.mjs sets in all 4 copies the `<title>` / `og:title` "topic
+  (Mon YYYY) … | Pocket Meta QR" (the page's `RTITLES`; `/limited/`: the Limited Battle name while it is on), a data
+  description of at most 160 characters (`description` / `og:description`; the fixed text only without data), the
+  subtitle `h2.hsec` (the page's `RHEAD`), and JSON-LD: `WebSite` (with `alternateName`) on `/`, `BreadcrumbList`
+  on each section.
 - Times (decision Nov 12, request R13): an event's `ts` = its Limitless start time; `at` = the raw file's
   `fetched_at` (when the scraper stored the finished tournament; raw files are written once, so it does not change).
   `changedAt` = the largest `at` of the window's tournaments; `latest` = the single-deck event with the largest `at`.

@@ -29,6 +29,12 @@
 // while the page loads, then replaced by the list), plain text from this build's data (data.json, events.json,
 // packs.json next to the page source). (3) og:image / twitter:image per section (static/og-<section>.png when it
 // exists; else og.png stays).
+//
+// R28 (Nov 22, 2026): search result titles and descriptions. All 4 copies (also index.html): <title> + og:title = topic
+// + month first, brand last (the page's RTITLES: "Pokémon TCG Pocket Meta Decks (Nov 2026) with QR Codes | Pocket
+// Meta QR", ...); description + og:description = a short text from the data (up to DESC_MAX characters, cut at a list
+// item; the fixed text only without data); the section subtitle <h2 class="hsec"> per copy (the page's RHEAD);
+// JSON-LD: a WebSite (name, alternateName, url) on index.html and a BreadcrumbList on each section copy.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { minify as minifyJS } from "terser";
@@ -46,6 +52,23 @@ const SECTIONS = [
     desc: "Hand-picked decks with QR codes for the current Limited Battle event.", img: "og-limited.png" },
 ];
 const SEOI = '<p class="seoi" id="seoi"></p>';
+// R28: titles (topic + month first) and subtitles, the same strings as the page's RTITLES / RHEAD.
+const MONTH = new Date().toLocaleString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
+const TITLES = { "": `Pokémon TCG Pocket Meta Decks (${MONTH}) with QR Codes | Pocket Meta QR`,
+  events: `Pokémon TCG Pocket Tournament Results (${MONTH}) | Pocket Meta QR`,
+  packs: `Which Pokémon TCG Pocket Pack to Open (${MONTH}) | Pocket Meta QR`,
+  limited: (lb) => `${lb.name} Decks with QR Codes | Pocket Meta QR` };
+const HSEC = { events: "Latest Pokémon TCG Pocket tournaments", packs: "Booster packs for this week’s meta",
+  limited: "Limited Battle decks" };
+const CRUMB = { events: "Latest events", packs: "Booster packs", limited: "Limited Battle" };
+const DESC_MAX = 160;
+// Join list items into "head items... tail" while it fits DESC_MAX (at least 1 item); "…" when items were left out.
+const fit = (head, items, tail) => {
+  let n = items.length;
+  const make = (k) => head + items.slice(0, k).join(", ") + (k < items.length ? "…" : ".") + (tail ? " " + tail : "");
+  while (n > 1 && make(n).length > DESC_MAX) n--;
+  return make(n);
+};
 
 // R27: the intro texts ("" = no text) and the Limited Battle (null = unknown) from this build's data.
 const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -64,16 +87,20 @@ function limitedEvent(page) {
 }
 function intros(dataDir, page) {
   const D = readJSON(join(dataDir, "data.json")), E = readJSON(join(dataDir, "events.json")),
-    P = readJSON(join(dataDir, "packs.json")), t = {};
+    P = readJSON(join(dataDir, "packs.json")), t = {}, d = {};
   if (D?.decks?.length) {
     const top = D.decks.slice(0, 3).map((d, i) => `#${i + 1} ${d.name} ${d.share.toFixed(1)}%`).join(", ");
     t[""] = `This week's top Pokémon TCG Pocket decks from ${D.summary.tournaments} tournaments ` +
       `(${span(D.span[0], D.span[1])}): ${top}. Every list has a QR code to copy it in the game.`;
+    d[""] = fit(`${span(D.span[0], D.span[1])} meta from ${D.summary.tournaments} tournaments: `,
+      D.decks.slice(0, 5).map((x, i) => `#${i + 1} ${x.name} (${Math.round(x.share)}%)`), "A QR code for every list.");
   }
   if (E?.events?.length) {   // the 3 newest events with 32+ players (else the 3 newest)
     const ev = E.events.filter((x) => x.players >= 32 && x.win), list = (ev.length ? ev : E.events.filter((x) => x.win));
     const s = list.slice(0, 3).map((x) => `${plain(x.name)} (${x.players} players) won by ${x.win.name}`);
     if (s.length) t.events = `The latest Pokémon TCG Pocket tournaments: ${s.join("; ")}. Top 8 decklists with QR codes.`;
+    if (s.length) d.events = fit("Latest tournaments: ", list.slice(0, 5).map((x) => `${plain(x.name)} won by ${x.win.name}`),
+      "Top 8 lists with QR codes.");
   }
   if (D?.decks?.length && P?.cards) {   // packs that give the most cards of the shown decks' lists (not promo)
     const ids = new Set(D.decks.flatMap((d) => (d.cards || []).map((c) => c.id))), n = new Map();
@@ -85,20 +112,24 @@ function intros(dataDir, page) {
     const best = [...n].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 3);
     if (best.length) t.packs = "Which Pokémon TCG Pocket booster packs give the cards of this week's meta decks: " +
       best.map(([k, c], i) => `${nm(k)} (${c}${i ? "" : " meta cards"})`).join(", ") + ".";
+    const best5 = [...n].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 5);
+    if (best5.length) d.packs = fit("Which booster pack to open now: ",
+      best5.map(([k, c], i) => `${nm(k)} (${c}${i ? "" : " meta cards"})`), "");
   }
   const lb = limitedEvent(page);
   if (lb && Date.parse(lb.to) > Date.now())
-    t.limited = `Hand-picked decks for ${lb.name} (${span(lb.from, lb.to)}), with QR codes.`;
-  return { t, lb };
+    t.limited = d.limited = `Hand-picked decks for ${lb.name} (${span(lb.from, lb.to)}), with QR codes.`;
+  return { t, d, lb };
 }
 const fillIntro = (html, text) => (text ? html.replace(SEOI, `<p class="seoi" id="seoi">${esc(text)}</p>`) : html);
 const esc = (t) => t.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
-// R26: the copy of the page for 1 section folder. Changes only the head part (before </head>).
-function sectionPage(html, { dir, title, desc, img }) {
+// R26: the copy of the page for 1 section folder. Changes only the head part (before </head>), and (R28) the
+// section subtitle. R28: also used for index.html (dir "": url, image and route check unchanged).
+function sectionPage(html, { dir, title, desc, img, hsec, ld }) {
   const i = html.indexOf("</head>");
   let head = html.slice(0, i);
-  const url = `${SITE}/${dir}/`, set = (re, val, what) => {
+  const url = `${SITE}/${dir ? dir + "/" : ""}`, set = (re, val, what) => {
     if (!re.test(head)) { if (what) throw new Error(`R26: no ${what} in the page head`); return; }
     head = head.replace(re, val);
   };
@@ -115,8 +146,14 @@ function sectionPage(html, { dir, title, desc, img }) {
     set(/<meta name="twitter:image" content="[^"]*">/i, `<meta name="twitter:image" content="${SITE}/${img}">`);
     set(/<meta property="og:image:alt" content="[^"]*">/i, `<meta property="og:image:alt" content="${esc(title)}">`);
   }
-  if (!head.startsWith(`<!doctype html><html lang="en"><head>${ROUTE_TAG}`)) throw new Error("R26: no route tag first in <head>");
-  return head + html.slice(i);
+  if (dir && !head.startsWith(`<!doctype html><html lang="en"><head>${ROUTE_TAG}`)) throw new Error("R26: no route tag first in <head>");
+  if (ld) head += `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`;
+  let rest = html.slice(i);
+  if (hsec) {   // R28: the section subtitle (the page sets the same text after a tab switch)
+    const re = /(<h2 class="hsec">)[\s\S]*?(<\/h2>)/;
+    if (re.test(rest)) rest = rest.replace(re, `$1${esc(hsec)}$2`); else console.log("page: no h2.hsec in the page (R28)");
+  }
+  return head + rest;
 }
 const [src = "site/index.html", out = "public/index.html"] = args.filter((a) => !a.startsWith("--"));
 const body = readFileSync(src, "utf8");
@@ -166,13 +203,27 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     "body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}" +
     "img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>\n";
   const full = head.replace("<head>", ROUTES_ON ? `<head>${ROUTE_TAG}` : "<head>") + rest + "\n</body></html>\n";
-  const { t: intro, lb } = intros(dirname(src), body), hasSlot = full.includes(SEOI);
-  writeFileSync(out, fillIntro(full, intro[""]));
+  const { t: intro, d: descs, lb } = intros(dirname(src), body), hasSlot = full.includes(SEOI);
+  const lbOnNow = lb && Date.parse(lb.to) > Date.now();
+  const rootDesc = (full.match(/<meta name="description" content="([^"]*)">/i) || [])[1];
+  const rootPage = ROUTES_ON ? sectionPage(full, { dir: "", title: TITLES[""], desc: descs[""] || rootDesc,
+    ld: { "@context": "https://schema.org", "@type": "WebSite", name: "Pocket Meta QR", alternateName: "PocketMetaQR",
+      url: `${SITE}/` } }) : full;
+  writeFileSync(out, fillIntro(rootPage, intro[""]));
+  const heads = {};
   if (ROUTES_ON) for (const sec of SECTIONS) {   // R26: events/, packs/, limited/ next to index.html
     const f = join(dirname(out), sec.dir, "index.html");
     mkdirSync(dirname(f), { recursive: true });
-    writeFileSync(f, fillIntro(sectionPage(full, sec), intro[sec.dir]));
+    const title = sec.dir === "limited" ? (lbOnNow ? TITLES.limited(lb) : sec.title) : TITLES[sec.dir];
+    const s2 = { ...sec, title, desc: descs[sec.dir] || sec.desc, hsec: HSEC[sec.dir],
+      ld: { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Pocket Meta QR", item: `${SITE}/` },
+        { "@type": "ListItem", position: 2, name: CRUMB[sec.dir], item: `${SITE}/${sec.dir}/` }] } };
+    heads[sec.dir] = s2;
+    writeFileSync(f, fillIntro(sectionPage(full, s2), intro[sec.dir]));
   }
+  if (ROUTES_ON) for (const [k, v] of Object.entries({ "/": { title: TITLES[""], desc: descs[""] || rootDesc }, ...heads }))
+    console.log(`page: ${k.padEnd(8)} title "${v.title}"; description ${v.desc.length} chars${descs[k === "/" ? "" : k] ? "" : " (fixed text)"}`);
   if (ROUTES_ON) {   // R26 + R27: sitemap.xml with the section addresses and <lastmod>
     const today = new Date().toISOString().slice(0, 10);
     const lbOn = !lb || Date.parse(lb.to) > Date.now();
