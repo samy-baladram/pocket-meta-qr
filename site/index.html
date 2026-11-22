@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795332446-5b02 -->
+<!-- ui: artifact version 1795334200-ffb8 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -4020,8 +4020,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       bdEl.style.cssText = `left:${(-r.left).toFixed(1)}px;width:${W.toFixed(1)}px;top:${top.toFixed(1)}px;height:${(m.top + m.height / 2 - r.top - top + W * 0.04375).toFixed(1)}px;--bdS:${(W * 0.0875).toFixed(1)}px`;
       const Hb = m.top + m.height / 2 - r.top - top + W * 0.04375, dg = (W + Hb) / Math.SQRT2; bdEl.style.setProperty("--shD", (dg / 2 + 175).toFixed(0) + "px"); bdEl.style.setProperty("--shL", (dg + 60).toFixed(0) + "px"); };
     const ro = new ResizeObserver(() => bdSize()); if (mp) ro.observe(mp);
-    const start = () => { meas(); pos = cx(N) - vp.clientWidth / 2; cur = -1; put(); bdSize(); };
-    const rz = () => { const k = (near(pos) % N) + N; meas(); pos = cx(k) - vp.clientWidth / 2; put(); bdSize(); }; let rt; const onR = () => { clearTimeout(rt); rt = setTimeout(rz, 120); }; addEventListener("resize", onR);
+    const start = () => { meas(); rzW = vp.clientWidth; pos = cx(N) - vp.clientWidth / 2; cur = -1; put(); bdSize(); };
+    const rz = () => { if (!setW) return start(); const w = vp.clientWidth; if (w === rzW) { bdSize(); return; } /* Nov 22: a height-only resize (the phone address bar while scrolling) keeps the shelf where it is (it jumped to the nearest item) */ const c = (pos + rzW / 2) / setW; rzW = w; meas(); pos = c * setW - w / 2; put(); bdSize(); }; let rt, rzW = vp.clientWidth; const onR = () => { clearTimeout(rt); rt = setTimeout(rz, 120); }; addEventListener("resize", onR);
     requestAnimationFrame(() => { start(); vis(); });
     t10Kill = () => { dead = true; cancelAnimationFrame(raf); io.disconnect(); ro.disconnect(); document.removeEventListener("visibilitychange", vis); removeEventListener("resize", onR); };
     el._t10vis = () => { if (!setW) start(); bdSize(); vis(); };
@@ -4159,8 +4159,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const tb = $("tbar"), tbB = tb ? cssR(tb.getBoundingClientRect(), k).bottom : r.top - 14, top = Math.min(-8, tbB - r.top), H = m.top + m.height * 0.5 - r.top - top + W * 0.04375; /* ends at the middle of the shelf */
       bdEl.style.cssText = `left:${(-r.left).toFixed(1)}px;width:${W.toFixed(1)}px;top:${top.toFixed(1)}px;height:${H.toFixed(1)}px;--bdS:${(W * 0.0875).toFixed(1)}px`;
       const dg = (W + H) / Math.SQRT2; bdEl.style.setProperty("--shD", (dg / 2 + 175).toFixed(0) + "px"); bdEl.style.setProperty("--shL", (dg + 60).toFixed(0) + "px"); };
-    const start = () => { if (!vp.offsetParent) return; meas(); pos = cx(N) - vp.clientWidth / 2; cur = -1; put(); bdSize(); };
-    const rz = () => { if (!setW) return start(); const k = (near(pos) % N) + N; meas(); pos = cx(k) - vp.clientWidth / 2; put(); bdSize(); }; let rt; const onR = () => { clearTimeout(rt); rt = setTimeout(rz, 120); }; addEventListener("resize", onR);
+    const start = () => { if (!vp.offsetParent) return; meas(); rzW = vp.clientWidth; pos = cx(N) - vp.clientWidth / 2; cur = -1; put(); bdSize(); };
+    const rz = () => { if (!setW) return start(); const w = vp.clientWidth; if (w === rzW) { bdSize(); return; } /* Nov 22: a height-only resize (the phone address bar while scrolling) keeps the shelf where it is (it jumped to the nearest item) */ const c = (pos + rzW / 2) / setW; rzW = w; meas(); pos = c * setW - w / 2; put(); bdSize(); }; let rt, rzW = vp.clientWidth; const onR = () => { clearTimeout(rt); rt = setTimeout(rz, 120); }; addEventListener("resize", onR);
     requestAnimationFrame(() => { start(); vis(); });
     el._vis = () => { if (!setW) start(); else bdSize(); vis(); };
     return () => { dead = true; cancelAnimationFrame(raf); io.disconnect(); document.removeEventListener("visibilitychange", vis); removeEventListener("resize", onR); };
