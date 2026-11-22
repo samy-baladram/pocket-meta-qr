@@ -204,6 +204,10 @@ The pairings do not say which deck a player used in a match. Thus:
   description of at most 160 characters (`description` / `og:description`; the fixed text only without data), the
   subtitle `h2.hsec` (the page's `RHEAD`), and JSON-LD: `WebSite` (with `alternateName`) on `/`, `BreadcrumbList`
   on each section.
+- About page (request R29, Nov 22, 2026): when the page has the static FAQ section (`#abv`), page.mjs writes
+  `about/index.html` (the section without `hidden`, its own title, description, subtitle, BreadcrumbList + FAQPage
+  JSON-LD from the section's h4 / p pairs), sets the routes tag to `content="1 about"` in every copy and adds `/about/`
+  to the sitemap. Without the section: the R26-R28 output.
 - Times (decision Nov 12, request R13): an event's `ts` = its Limitless start time; `at` = the raw file's
   `fetched_at` (when the scraper stored the finished tournament; raw files are written once, so it does not change).
   `changedAt` = the largest `at` of the window's tournaments; `latest` = the single-deck event with the largest `at`.

@@ -35,6 +35,11 @@
 // Meta QR", ...); description + og:description = a short text from the data (up to DESC_MAX characters, cut at a list
 // item; the fixed text only without data); the section subtitle <h2 class="hsec"> per copy (the page's RHEAD);
 // JSON-LD: a WebSite (name, alternateName, url) on index.html and a BreadcrumbList on each section copy.
+//
+// R29 (Nov 22, 2026): an /about/ copy (About & FAQ), only when the page has the static FAQ section
+// <section class="abv" id="abv" ... hidden>: the routes tag becomes content="1 about" in every copy (the page turns its
+// /about/ view on only then), about/index.html shows the section (no `hidden` in that copy), gets its own title,
+// description, subtitle, BreadcrumbList + FAQPage JSON-LD (from the section's h4 / p pairs), and is in the sitemap.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { minify as minifyJS } from "terser";
@@ -50,6 +55,10 @@ const SECTIONS = [
     desc: "Which Pokémon TCG Pocket booster packs give the cards of this week's meta decks.", img: "og-packs.png" },
   { dir: "limited", title: "Limited Battle decks – Pocket Meta QR",
     desc: "Hand-picked decks with QR codes for the current Limited Battle event.", img: "og-limited.png" },
+  { dir: "about", about: true,   // R29: only when the page has the static FAQ section (#abv)
+    title: "About & FAQ: How to Import Pokémon TCG Pocket Decks by QR | Pocket Meta QR",
+    desc: "How to import a Pokémon TCG Pocket deck from a QR code, where the data comes from (Limitless tournaments, " +
+      "the last 7 days) and how the decks and lists are ranked.", img: "og.png" },
 ];
 const SEOI = '<p class="seoi" id="seoi"></p>';
 // R28: titles (topic + month first) and subtitles, the same strings as the page's RTITLES / RHEAD.
@@ -59,8 +68,21 @@ const TITLES = { "": `Pokémon TCG Pocket Meta Decks (${MONTH}) with QR Codes | 
   packs: `Which Pokémon TCG Pocket Pack to Open (${MONTH}) | Pocket Meta QR`,
   limited: (lb) => `${lb.name} Decks with QR Codes | Pocket Meta QR` };
 const HSEC = { events: "Latest Pokémon TCG Pocket tournaments", packs: "Booster packs for this week’s meta",
-  limited: "Limited Battle decks" };
-const CRUMB = { events: "Latest events", packs: "Booster packs", limited: "Limited Battle" };
+  limited: "Limited Battle decks", about: "About and FAQ" };
+const CRUMB = { events: "Latest events", packs: "Booster packs", limited: "Limited Battle", about: "About & FAQ" };
+// R29: the FAQ of the page's #abv section as FAQPage JSON-LD (h4 = question, the next p = answer, as plain text).
+const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", eacute: "é", rarr: "→", larr: "←",
+  rsquo: "’", lsquo: "‘", ldquo: "“", rdquo: "”", ndash: "–", mdash: "—", hellip: "…", middot: "·", times: "×" };
+const text = (h) => h.replace(/<[^>]+>/g, "").replace(/&(#x?[0-9a-f]+|[a-z]+);/gi, (m, e) => e[0] === "#" ?
+  String.fromCodePoint(e[1].toLowerCase() === "x" ? parseInt(e.slice(2), 16) : +e.slice(1)) : ENT[e.toLowerCase()] ?? m)
+  .replace(/\s+/g, " ").trim();
+const ABV_RE = /<section class="abv" id="abv"[^>]*>[\s\S]*?<\/section>/;
+function faq(html) {
+  const sec = (html.match(ABV_RE) || [""])[0], qa = [];
+  for (const m of sec.matchAll(/<h4>([\s\S]*?)<\/h4>\s*<p>([\s\S]*?)<\/p>/g))
+    qa.push({ "@type": "Question", name: text(m[1]), acceptedAnswer: { "@type": "Answer", text: text(m[2]) } });
+  return qa.length ? { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: qa } : null;
+}
 const DESC_MAX = 160;
 // Join list items into "head items... tail" while it fits DESC_MAX (at least 1 item); "…" when items were left out.
 const fit = (head, items, tail) => {
@@ -146,7 +168,7 @@ function sectionPage(html, { dir, title, desc, img, hsec, ld }) {
     set(/<meta name="twitter:image" content="[^"]*">/i, `<meta name="twitter:image" content="${SITE}/${img}">`);
     set(/<meta property="og:image:alt" content="[^"]*">/i, `<meta property="og:image:alt" content="${esc(title)}">`);
   }
-  if (dir && !head.startsWith(`<!doctype html><html lang="en"><head>${ROUTE_TAG}`)) throw new Error("R26: no route tag first in <head>");
+  if (dir && !head.startsWith(`<!doctype html><html lang="en"><head>${RT}`)) throw new Error("R26: no route tag first in <head>");
   if (ld) head += `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`;
   let rest = html.slice(i);
   if (hsec) {   // R28: the section subtitle (the page sets the same text after a tab switch)
@@ -158,6 +180,9 @@ function sectionPage(html, { dir, title, desc, img, hsec, ld }) {
 const [src = "site/index.html", out = "public/index.html"] = args.filter((a) => !a.startsWith("--"));
 const body = readFileSync(src, "utf8");
 const ROUTES_ON = ROUTES && body.includes("pmq-routes");   // R26: the page supports the section addresses
+const ABOUT_ON = ROUTES_ON && ABV_RE.test(body);              // R29: the page has the static FAQ section
+const RT = ABOUT_ON ? ROUTE_TAG.replace('content="1"', 'content="1 about"') : ROUTE_TAG;
+const SECS = SECTIONS.filter((x) => !x.about || ABOUT_ON);
 
 // One head item at the start of the text: whitespace, then a comment, <title>..</title>, <meta>, <link>,
 // or <script type="application/ld+json">..</script>.
@@ -202,7 +227,7 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     "padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}" +
     "body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}" +
     "img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>\n";
-  const full = head.replace("<head>", ROUTES_ON ? `<head>${ROUTE_TAG}` : "<head>") + rest + "\n</body></html>\n";
+  const full = head.replace("<head>", ROUTES_ON ? `<head>${RT}` : "<head>") + rest + "\n</body></html>\n";
   const { t: intro, d: descs, lb } = intros(dirname(src), body), hasSlot = full.includes(SEOI);
   const lbOnNow = lb && Date.parse(lb.to) > Date.now();
   const rootDesc = (full.match(/<meta name="description" content="([^"]*)">/i) || [])[1];
@@ -211,32 +236,41 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
       url: `${SITE}/` } }) : full;
   writeFileSync(out, fillIntro(rootPage, intro[""]));
   const heads = {};
-  if (ROUTES_ON) for (const sec of SECTIONS) {   // R26: events/, packs/, limited/ next to index.html
+  if (ROUTES_ON) for (const sec of SECS) {   // R26: events/, packs/, limited/ next to index.html
     const f = join(dirname(out), sec.dir, "index.html");
     mkdirSync(dirname(f), { recursive: true });
-    const title = sec.dir === "limited" ? (lbOnNow ? TITLES.limited(lb) : sec.title) : TITLES[sec.dir];
-    const s2 = { ...sec, title, desc: descs[sec.dir] || sec.desc, hsec: HSEC[sec.dir],
-      ld: { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Pocket Meta QR", item: `${SITE}/` },
-        { "@type": "ListItem", position: 2, name: CRUMB[sec.dir], item: `${SITE}/${sec.dir}/` }] } };
+    const title = sec.dir === "limited" ? (lbOnNow ? TITLES.limited(lb) : sec.title) : TITLES[sec.dir] || sec.title;
+    const crumbs = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Pocket Meta QR", item: `${SITE}/` },
+      { "@type": "ListItem", position: 2, name: CRUMB[sec.dir], item: `${SITE}/${sec.dir}/` }] };
+    const fq = sec.about ? faq(full) : null;
+    const s2 = { ...sec, title, desc: descs[sec.dir] || sec.desc, hsec: HSEC[sec.dir], ld: fq ? [crumbs, fq] : crumbs };
     heads[sec.dir] = s2;
-    writeFileSync(f, fillIntro(sectionPage(full, s2), intro[sec.dir]));
+    let html = fillIntro(sectionPage(full, s2), intro[sec.dir]);
+    if (sec.about) {   // R29: the FAQ section is visible in this copy
+      const before = html;
+      html = html.replace(/(<section class="abv" id="abv"[^>]*?)\s+hidden(?=[\s>])/, "$1");
+      if (html === before) throw new Error("R29: no `hidden` on #abv to remove");
+      console.log(`page: about/ FAQ visible; FAQPage JSON-LD ${fq ? fq.mainEntity.length + " questions" : "none"}`);
+    }
+    writeFileSync(f, html);
   }
   if (ROUTES_ON) for (const [k, v] of Object.entries({ "/": { title: TITLES[""], desc: descs[""] || rootDesc }, ...heads }))
     console.log(`page: ${k.padEnd(8)} title "${v.title}"; description ${v.desc.length} chars${descs[k === "/" ? "" : k] ? "" : " (fixed text)"}`);
   if (ROUTES_ON) {   // R26 + R27: sitemap.xml with the section addresses and <lastmod>
     const today = new Date().toISOString().slice(0, 10);
     const lbOn = !lb || Date.parse(lb.to) > Date.now();
-    const urls = [["", "hourly"], ...SECTIONS.filter((x) => x.dir !== "limited" || lbOn).map((x) => [x.dir + "/", "daily"])];
+    const urls = [["", "hourly"], ...SECS.filter((x) => x.dir !== "limited" || lbOn)
+      .map((x) => [x.dir + "/", x.about ? "monthly" : "daily"])];
     writeFileSync(join(dirname(out), "sitemap.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n' +
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       urls.map(([u, f]) => `  <url><loc>${SITE}/${u}</loc><lastmod>${today}</lastmod><changefreq>${f}</changefreq></url>\n`).join("") +
       "</urlset>\n");
     console.log(`page: sitemap ${urls.length} addresses${lb ? `; Limited Battle "${lb.name}" until ${lb.to}` : ""}`);
   }
-  console.log(hasSlot ? `page: intro texts ${["", ...SECTIONS.map((x) => x.dir)].map((k) => `${k || "/"} ${intro[k] ? intro[k].length + " chars" : "none"}`).join(", ")}`
+  console.log(hasSlot ? `page: intro texts ${["", ...SECS.filter((x) => !x.about).map((x) => x.dir)].map((k) => `${k || "/"} ${intro[k] ? intro[k].length + " chars" : "none"}`).join(", ")}`
     : "page: no intro slot in the page (R27)");
-  console.log(ROUTES_ON ? `page: routes on; section pages ${SECTIONS.map((x) => x.dir + "/").join(", ")}` :
+  console.log(ROUTES_ON ? `page: routes on${ABOUT_ON ? " (+ about)" : ""}; section pages ${SECS.map((x) => x.dir + "/").join(", ")}` :
     `page: routes off (${ROUTES ? "the page has no routing code yet" : "--no-routes"})`);
   const n = (tags.match(/<(?:title|meta|link|script)\b/gi) || []).length;
   console.log(`page: ${n} head tags moved into <head>`);
