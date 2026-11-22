@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795310623-3cd5 -->
+<!-- ui: artifact version 1795313409-dab5 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2464,7 +2464,8 @@ a.dkev { text-decoration: none; }
 .lbban .evsub .hg { width: 14px; height: 14px; flex: none; color: var(--acc-ink); }
 .lbban .evsub b { color: var(--acc-ink); font-weight: 600; }
 .lbban .arow { position: relative; padding-right: 36px; }
-.lbban.on { background: var(--bg); box-shadow: inset 0 0 0 2px var(--seld), var(--pin-sh); } /* selected: pressed in + the dark slate ring (no teal) */
+.lbban.on { position: relative; background: var(--bg); box-shadow: var(--pin-sh); }
+.lbban.on::after { content: ""; position: absolute; inset: 0; z-index: 5; border-radius: inherit; box-shadow: inset 0 0 0 2px var(--seld); pointer-events: none; } /* the ring above the color band and the card */ /* selected: pressed in + the dark slate ring (no teal) */
 .lbban.on > .arow { background: transparent; } /* the row's own background covered the tint and the ring */ /* selected while the Limited view is open: teal tint + teal ring, pressed in */
 .lbban.on .lbdash { display: none; }
 .lbban.on .aname, .lbban.on .lbch { color: var(--acc-ink); }
@@ -2510,10 +2511,22 @@ a.dkev { text-decoration: none; }
 /* status: the grey timer chip */
 .lbban .evsub b, .lbh .lbk .lbleft, .sfoot .us.top, .ektc i { padding: 1px 8px; border-radius: 999px; background: var(--chip); color: var(--chip-ink); font-weight: 600; }
 .ektc i { display: inline-block; margin-top: 2px; padding: 0 6px; }
-.lbban .evsub b { flex: none; padding: 1px 6px; font-size: 11px; line-height: 1.35; } /* smaller, so it is never cut */
+.lbban .evsub b { flex: none; padding: 1px 7px 1px 4px; font-size: 10px; line-height: 1.4; } /* smaller, so it is never cut */
+/* Nov 22: a compact banner: lower row, a narrower card column (less space left and right of the card) */
+@media (max-width: 619px) { /* phones only; wide screens keep the full deck-row size (58px, popping card, wide band) */
+:root .lbban.acc > .arow { --bw: 52px; min-height: 50px; padding-block: 4px; padding-left: 8px; grid-template-columns: 58px minmax(0, 1fr); column-gap: 8px; }
+:root .lbban.acc > .arow .icons { --iw: 58px; --ox: 0px; padding: 0; margin: -4px 0; }
+:root .lbban.acc > .arow .icons.one img:first-child, :root .lbban.acc > .arow[aria-expanded="false"] .icons.one img:first-child { left: 7px; top: 6px; width: 46px; transform: rotate(-5deg); }
+}
 .lbban .lbw { font-style: normal; }
 @media (max-width: 359px) { .lbban .lbw { display: none; } } /* very small phones: the days chip only */
 .lbban .evsub > span { display: inline-flex; align-items: center; gap: 4px; min-width: 0; white-space: nowrap; }
+
+/* Nov 22: the time chip = the game's timer: a clock + the time left, white on grey */
+.lbban .evsub b, .lbh .lbk .lbleft { display: inline-flex; align-items: center; gap: 3px; }
+.clk { width: 11px; height: 11px; flex: none; }
+.lbh .lbk .lbleft .clk { width: 13px; height: 13px; }
+.lbban .lbw { color: var(--muted); }
 </style>
 
 <div class="wrap">
@@ -5583,7 +5596,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const lbDecks = LB.decks.map(([id, name, energy, art, cards, q], k) => ({ id, name, energy, art, qr: q, nv: 1, lb: 1, k, rank: k + 1, deckName: name,
     cards: cards.map(([cid, n, c]) => ({ id: cid, n, c })), note: LB.notes[id] || null, evt: "Limited Battle pick", ev: LB.name }));
   const LB_BAND = () => `--eb1:${EGRAD.psychic[0]};--eb2:${EGRAD.psychic[1]}`; // the key card's type (Mega Mewtwo Y ex: Psychic)
-  const lbRowIn = () => `<span class="icons one"><img src="${LB.key}" alt="" width="56" height="78" decoding="async"></span><span class="atext"><span class="aname" style="--nlen: ${LB.name.length}">${esc(LB.name)}</span><span class="evsub">${HG_I}<span><i class="lbw">Limited-time event &middot;</i><b>${lbLeft(true)}</b></span></span></span>`; // Nov 22: the key card as a 1-card icon + the event name (banner and the Limited view's top)
+  const CLK_I = '<svg class="clk" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.6V8l2.3 1.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'; // Nov 22: the game's timer clock (in the grey time chip)
+  const lbRowIn = () => `<span class="icons one"><img src="${LB.key}" alt="" width="56" height="78" decoding="async"></span><span class="atext"><span class="aname" style="--nlen: ${LB.name.length}">${esc(LB.name)}</span><span class="evsub"><span><i class="lbw">Limited-time event</i><b>${CLK_I}${lbLeft(true)}</b></span></span></span>`; // Nov 22: the key card as a 1-card icon + the event name (banner and the Limited view's top)
   function lbTab() { const b = $("tabL"), on = lbOn(); b.hidden = true; /* Nov 22: no Limited tab; a banner under the header's meta line */ const bn = $("lbBan");
     if (bn) { bn.setAttribute("style", LB_BAND());
       bn.innerHTML = on ? `<span class="lbdash" aria-hidden="true"></span><button class="arow" type="button" aria-label="${esc(LB.name)}, ${lbLeft(true)}">${lbRowIn()}<svg class="lbch" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></button>` : ""; lbBanShow(); }
@@ -5599,7 +5613,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const promoTip = `<h3>Cards you can use</h3><p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(", ")}.</p>`;
     lbOpen = -1;
     box.innerHTML = `<div class="lbh">
-        <p class="lbk">${HG_I}Limited-time event<span class="lbleft">${lbLeft(true)}</span></p>
+        <p class="lbk">${HG_I}Limited-time event<span class="lbleft">${CLK_I}${lbLeft(true)}</span></p>
         <h2>${esc(LB.name)}</h2>
         <p class="lbd">${new Date(LB.from).toLocaleDateString(undefined, o)} \u2013 ${endTxt} (your time)</p>
         <ul class="lbf">
