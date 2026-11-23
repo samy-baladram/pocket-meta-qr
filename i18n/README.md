@@ -30,6 +30,17 @@ A language can skip a section for now. `EN_ONLY` in `preview/i18n_patch.py` list
 Spanish (es, Nov 23): `/preview/es/` only, not in the language menu yet. Terms: baraja, lista, jugadores top,
 uso, % de victorias, torneo, sobre, expansión. Name fixes: `preview/i18n/names.fix.json` (es).
 
+Spanish rules (agreed with the owner, Nov 23, 2026; the game has Spain Spanish only, so es-ES):
+- Numbers: decimal comma and a no-break space before %: 12,0 % (code: `fx(v, d)`, `pn(v)` and `pct()` in
+  `es.code.json`). Change only what is inside a `${…}`: the English text around it must stay the same, or its id
+  changes and the text shows in English.
+- Ranks: 1.º (1.º de 35, El puesto pasó de 5.º a 3.º); places in events 3.º de 110.
+- Dates: 14 nov in text, 14/11 in small cells and charts; the year only when not this year; times 9:05 (24 h);
+  relative: hace 5 min, hace 3 h, hoy, ayer.
+- Plurals: the code adds "es" after "jugador" (patches "plural: …", kept last); translations use `jugador{n}`.
+  Event wins: torneos ganados (victorias = match wins). Labels after a number: "de uso", "de victorias".
+- "lista" = a deck list; the deck ranking = "ranking". Score = Balance. Buttons with a count: Ver todo (8).
+
 ## Rules for a translation
 - Keep every `{n}` once and every `{tn}` (order may change). `{n!}` = the code still runs but shows nothing (an English
   plural `s` in Japanese). A translation that breaks this is not used (the report lists it) and the English stays.
