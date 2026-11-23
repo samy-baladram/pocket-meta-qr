@@ -49,8 +49,9 @@ database key `pt-br` (`pipeline/i18n_names.mjs`, SRC). Terms (the game's own: Ba
 baralho, lista, jogadores top, uso, % de vitórias, torneio, pacote, coleção, cartas fixas / flexíveis, saldo (Score),
 posição (rank), lugar (place in an event). Numbers: 12,0% (decimal comma, no space before %); ranks 1º, 3º de 110;
 dates 14/11 in small cells; relative há 5 min, hoje, ontem. Plurals: jogador + "es" (the same code patches as es).
-Not checked yet: the game menu path (Meus baralhos → + → Escanear código → Escanear imagem salva), energy names
-(Grama, Fogo, Água, Raios, Psíquico, Luta, Escuridão, Metal, Incolor, Dragão), A3b set name (shown as Eevee Grove).
+Checked with the owner (Nov 24): the game menu path (Meus baralhos → + → Escanear código → Escanear imagem salva),
+energy names (Planta, Fogo, Água, Raios, Psíquico, Luta, Escuridão, Metal, Incolor, Dragão), A3b = Bosque dos Eevee
+(names.fix.json; the database has the A3 name there).
 
 ## Rules for a translation
 - Keep every `{n}` once and every `{tn}` (order may change). `{n!}` = the code still runs but shows nothing (an English

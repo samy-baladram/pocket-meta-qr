@@ -9,7 +9,7 @@
   {
    "note": "energy names (Fuego, Agua …)",
    "find": "const cap = (s) => s[0].toUpperCase() + s.slice(1);",
-   "replace": "const EN_PT = { grass: \"Grama\", fire: \"Fogo\", water: \"Água\", lightning: \"Raios\", psychic: \"Psíquico\", fighting: \"Luta\", darkness: \"Escuridão\", metal: \"Metal\", colorless: \"Incolor\", dragon: \"Dragão\" }, cap = (s) => EN_PT[s] || s[0].toUpperCase() + s.slice(1);"
+   "replace": "const EN_PT = { grass: \"Planta\", fire: \"Fogo\", water: \"Água\", lightning: \"Raios\", psychic: \"Psíquico\", fighting: \"Luta\", darkness: \"Escuridão\", metal: \"Metal\", colorless: \"Incolor\", dragon: \"Dragão\" }, cap = (s) => EN_PT[s] || s[0].toUpperCase() + s.slice(1);"
   },
   {
    "note": "event: card in the N-place list",
