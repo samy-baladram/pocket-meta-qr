@@ -106,7 +106,7 @@ jobs:
 
       - name: Assemble the site
         env:
-          I18N_LIVE: "ja"   # Phase 1 (Nov 23): live language pages (space-separated); "" = off
+          I18N_LIVE: "ja es"   # Phase 1 (Nov 23; es beta since Nov 23): live language pages (space-separated); "" = off
         run: |
           rm -rf public && mkdir public
           mkdir -p site/v site/t && cp -r site/data.json site/packs.json site/search.json site/events.json site/more.json site/cards.json site/stats.json site/v site/t site/c site/z site/p site/e public/
@@ -116,7 +116,7 @@ jobs:
           # Phase 1 (Nov 23): it also makes the live language pages listed in I18N_LIVE (/ja/: one page, noindex for now).
           # A problem here must never stop the live deploy: it is only a warning.
           if [ -f preview/build.sh ]; then
-            bash preview/build.sh public || { rm -rf public/preview public/ja; echo "::warning title=Languages::the /preview/ and /ja/ pages were not made (see log)"; }
+            bash preview/build.sh public || { rm -rf public/preview public/ja public/es; echo "::warning title=Languages::the /preview/ and /ja/ pages were not made (see log)"; }
           fi
           # Phase 1: the English pages get the language menu (preview/i18n_patch.py --menu-only), only when /ja/ was made;
           # else (or if the patch fails) the page as before. To turn the languages off: I18N_LIVE: "" below.

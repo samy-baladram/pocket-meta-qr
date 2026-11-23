@@ -27,7 +27,8 @@ A language can skip a section for now. `EN_ONLY` in `preview/i18n_patch.py` list
 - `es`: What's new and Limited Battle are in English (not in `es.json`).
 - `de`: What's new is in English.
 
-Spanish (es, Nov 23): `/preview/es/` only, not in the language menu yet. Terms: baraja, lista, jugadores top,
+Spanish (es, Nov 23): live as beta at `/es/` (noindex, like `/ja/`; `I18N_LIVE: "ja es"` in site.yml, `LIVE_L` in
+`preview/i18n_patch.py`), with the Beta tag in the language menu. Terms: baraja, lista, jugadores top,
 uso, % de victorias, torneo, sobre, expansión. Name fixes: `preview/i18n/names.fix.json` (es).
 
 Spanish rules (agreed with the owner, Nov 23, 2026; the game has Spain Spanish only, so es-ES):

@@ -195,6 +195,10 @@
 "Best finish",
 "Mejor resultado"
 ],
+"178d1d75f0": [
+"What is Limitless TCG?",
+"¿Qué es Limitless TCG?"
+],
 "18e4a0dbe7": [
 "Tap {t0}Add to Home screen{t1} or {t2}Install app{t3}.",
 "Toca {t0}Añadir a pantalla de inicio{t1} o {t2}Instalar aplicación{t3}."
@@ -506,6 +510,10 @@
 "393f6cb329": [
 "in {0} pack{1}",
 "en {0} sobre{1}"
+],
+"39a4023d00": [
+"Because every number comes from real tournament games, recorded while the event runs. Each event shows its standings and the result of every match in every round, and players hand in their deck list before the event starts, so each list is the deck that was really played. On top of that, this site counts only public Standard events with 8 or more players and 1 deck per player, and only real matches: no byes, no mirror matches.",
+"Porque cada número sale de partidas reales de torneo, registradas mientras se juega. Cada torneo muestra su clasificación y el resultado de cada partida de cada ronda, y los jugadores entregan su lista antes de empezar, así que cada lista es la baraja que se jugó de verdad. Además, esta web solo cuenta torneos públicos de formato Estándar con 8 o más jugadores y 1 baraja por jugador, y solo partidas reales: sin byes ni duelos espejo."
 ],
 "3a46f4e05d": [
 "Event stats",
@@ -2011,6 +2019,10 @@
 "Records",
 "Balances"
 ],
+"e615ae42b5": [
+"Why Limitless TCG, and can I trust the results?",
+"¿Por qué Limitless TCG? ¿Son fiables los resultados?"
+],
 "e6866f28e4": [
 "Events with this deck in the top 8",
 "Torneos con esta baraja en el top 8"
@@ -2182,6 +2194,10 @@
 "ff3e8e536e": [
 "1 player won more than they lost with this deck {0}, but did not reach a top result. This is their list.",
 "1 jugador ganó más de lo que perdió con esta baraja {0}, pero no llegó a un resultado top. Esta es su lista."
+],
+"ffa4a6d465": [
+"Limitless TCG{t0} is the main place where Pok&eacute;mon TCG Pocket tournaments are played online. New events start there every day, from small cups to open events with more than 300 players, and thousands of players take part every week. Each result is public as soon as an event ends, and this site checks for new ones every hour, so the meta here is days fresher than a tier list made by hand. Pocket Meta QR is not part of Limitless TCG: it reads its public results.",
+"Limitless TCG{t0} es el sitio principal donde se juegan en línea los torneos de JCC Pokémon Pocket. Cada día empiezan torneos nuevos, desde copas pequeñas hasta torneos abiertos con más de 300 jugadores, y miles de jugadores participan cada semana. Cada resultado es público en cuanto termina el torneo, y esta web busca resultados nuevos cada hora, así que el meta de aquí está días más al día que una tier list hecha a mano. Pocket Meta QR no forma parte de Limitless TCG: solo lee sus resultados públicos."
 ],
 "ffa4f00cd6": [
 "slot{0}",
