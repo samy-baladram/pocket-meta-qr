@@ -9,7 +9,7 @@
 ],
 "0105344694": [
 "· {0} player{1}",
-"· {0} jugadores{1!}"
+"· {0} jugador{1}"
 ],
 "01182452b1": [
 "In {t0}{0}{t1} meta deck{1}",
@@ -29,7 +29,7 @@
 ],
 "028fddc250": [
 "Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.",
-"Popular ahora{t0}: la lista que más jugadores top usaron exactamente (al menos 3, y al menos 2 más que cualquier otra lista). La más usada no siempre es la mejor: mira el Resultado y las otras listas."
+"Popular ahora{t0}: la lista que más jugadores top usaron exactamente (al menos 3, y al menos 2 más que cualquier otra lista). La más usada no siempre es la mejor: mira el balance y las otras listas."
 ],
 "02b620b03a": [
 "{0}Top players",
@@ -61,7 +61,7 @@
 ],
 "08d089f97b": [
 "share · {0} win",
-"uso · {0} victorias"
+"de uso · {0} de victorias"
 ],
 "098020c805": [
 "Obtained from",
@@ -109,7 +109,7 @@
 ],
 "0f8c6e4e76": [
 "· {0} share · {1} win",
-"· {0} de uso · {1} victorias"
+"· {0} de uso · {1} de victorias"
 ],
 "0fcd28ef91": [
 "checked &lt; 2 h ago",
@@ -221,7 +221,7 @@
 ],
 "1c1a3f0a7e": [
 "Score{0}",
-"Resultado{0}"
+"Balance{0}"
 ],
 "1cc15542b5": [
 "No top result",
@@ -237,7 +237,7 @@
 ],
 "1d50bf1d8b": [
 "Winners",
-"Ganadores"
+"Barajas ganadoras"
 ],
 "1e6fd9a5e6": [
 "Latest events",
@@ -245,7 +245,7 @@
 ],
 "1eb2b5b879": [
 "top 8{0}",
-"top 8{0}"
+"top 8{0!}"
 ],
 "1f2a787631": [
 "QR code not available for this list.",
@@ -277,7 +277,7 @@
 ],
 "22071c6d00": [
 "tap a deck to see its wins",
-"toca una baraja para ver sus victorias"
+"toca una baraja para ver los torneos que ganó"
 ],
 "22118a1f44": [
 "event{0}",
@@ -399,6 +399,10 @@
 "Too few players for a fair rank, so it has no rank number.",
 "Muy pocos jugadores para un puesto justo, así que no tiene número de puesto."
 ],
+"2e5855d5c2": [
+"0.2–0.5% share",
+"0,2–0,5 % de uso"
+],
 "2eb15e8dda": [
 "Did better",
 "Les fue mejor"
@@ -441,7 +445,7 @@
 ],
 "3262485e3a": [
 "· {0} top player{1}",
-"· {0} jugadores top{1!}"
+"· {0} jugador{1} top"
 ],
 "326a3f7b0a": [
 "Booster Packs",
@@ -525,7 +529,7 @@
 ],
 "3bf7457bfd": [
 "results · {t0}{0}{t1} player{1} · {t2}{2}{t3} event{3}",
-"resultados · {t0}{0}{t1} jugadores{1!} · {t2}{2}{t3} torneo{3}"
+"resultados · {t0}{0}{t1} jugador{1} · {t2}{2}{t3} torneo{3}"
 ],
 "3cc8e39b82": [
 "Tap {t0}Add{t1}.",
@@ -545,7 +549,7 @@
 ],
 "3d506b84fd": [
 "New in the list (the first time since the set came out, for 3 days) and Breakout decks (a rare deck with a top-8 finish at a big event)",
-"Nuevas en la lista (la primera vez desde que salió la expansión, durante 3 días) y barajas revelación (una baraja rara con un top 8 en un torneo grande)"
+"Nuevas en el ranking (la primera vez desde que salió la expansión, durante 3 días) y barajas revelación (una baraja rara con un top 8 en un torneo grande)"
 ],
 "3d81bd05a3": [
 "All packs",
@@ -605,7 +609,7 @@
 ],
 "47bd6e0200": [
 "Up in rank in the last 24 hours, or new in the list",
-"Subieron de puesto en las últimas 24 horas, o son nuevas en la lista"
+"Subieron de puesto en las últimas 24 horas, o son nuevas en el ranking"
 ],
 "4824b2db0a": [
 "– Same rank{t0} as 24 h ago: {t1}{0}{t2}.",
@@ -613,7 +617,7 @@
 ],
 "489f487724": [
 "Score",
-"Resultado"
+"Balance"
 ],
 "48d61bdd8b": [
 "Is it free?",
@@ -705,7 +709,7 @@
 ],
 "521456ffbf": [
 "Cards of the {0} top player{1} (too few for core and flex).",
-"Cartas de los {0} jugadores top{1!} (muy pocos para fijas y flexibles)."
+"Cartas de {0} jugador{1} top (muy pocos para fijas y flexibles)."
 ],
 "532297d7bc": [
 "Top 16",
@@ -769,7 +773,7 @@
 ],
 "56bcd8fe54": [
 "New{t0}: the first time this deck is in the list since {0} came out. The tag shows for 3 days.",
-"Nueva{t0}: la primera vez que esta baraja está en la lista desde que salió {0}. La etiqueta se ve 3 días."
+"Nueva{t0}: la primera vez que esta baraja está en el ranking desde que salió {0}. La etiqueta se ve 3 días."
 ],
 "56ded40877": [
 "Safari on Mac:{t0} File &rarr; {t1}Add to Dock{t2}.",
@@ -825,7 +829,7 @@
 ],
 "5ec8f71f27": [
 "Rank {0}.",
-"Puesto {0}."
+"El puesto {0}."
 ],
 "5f0a456c00": [
 "Meta Decks",
@@ -893,7 +897,7 @@
 ],
 "6833f2bb77": [
 "top player{0}",
-"jugadores top{0!}"
+"jugador{0} top"
 ],
 "68495946bf": [
 "About & FAQ: How to Import Pokémon TCG Pocket Decks by QR | Pocket Meta QR",
@@ -901,7 +905,7 @@
 ],
 "685757d9ff": [
 "Not in the list 24 h ago. Now {t0}{0}{t1}.",
-"No estaba en la lista hace 24 h. Ahora {t0}{0}{t1}."
+"No estaba en el ranking hace 24 h. Ahora {t0}{0}{t1}."
 ],
 "68836c550e": [
 "Core",
@@ -993,7 +997,7 @@
 ],
 "70b8058643": [
 "stayed {t0}#{0}",
-"se mantuvo en {t0}#{0}"
+"se mantuvo en {t0}{0}.º"
 ],
 "719ea396ad": [
 "Clear",
@@ -1009,7 +1013,7 @@
 ],
 "72f2b0dfa1": [
 "Shared with you",
-"Compartida contigo"
+"Lista compartida"
 ],
 "73eace3aa6": [
 "All packs{t0} &middot;",
@@ -1095,13 +1099,9 @@
 "Add to Home Screen",
 "Añadir a pantalla de inicio"
 ],
-"7c0a25c06e": [
-"up",
-"subió"
-],
 "7c1c47bb8c": [
 "Most meta",
-"Más meta"
+"Más cartas meta"
 ],
 "7c5b79c855": [
 "No decks match.",
@@ -1189,7 +1189,7 @@
 ],
 "84e3ee8374": [
 "· {t0}{0}{t1} win",
-"· {t0}{0}{t1} victorias"
+"· {t0}{0}{t1} de victorias"
 ],
 "851ff4d12f": [
 "Show {0} older packs",
@@ -1281,7 +1281,7 @@
 ],
 "8e7fc3f8ed": [
 "New set: {0}{t0} came out {1}. Until {2}, the numbers also include events from before it.",
-"Nueva expansión: {0}{t0} salió {1}. Hasta {2}, los números también incluyen torneos de antes."
+"Nueva expansión: {0}{t0} salió {1}. Hasta el {2}, los números también incluyen torneos de antes."
 ],
 "8eaf38d66f": [
 "Top 32",
@@ -1297,7 +1297,7 @@
 ],
 "9117c24769": [
 "&middot; {t0}{0}{t1} win",
-"&middot; {t0}{0}{t1} victorias"
+"&middot; {t0}{0}{t1} de victorias"
 ],
 "91ea864ee0": [
 "Tap a dot to see the deck.",
@@ -1405,7 +1405,7 @@
 ],
 "9eaea27829": [
 "An event shows here {t0}after it ends{t1}, usually a few hours after it starts. It is listed under the day it was played (your time), so a new event can show under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.",
-"Un torneo aparece aquí {t0}cuando termina{t1}, normalmente unas horas después de empezar. Se muestra en el día en que se jugó (tu hora), así que un torneo nuevo puede aparecer en &ldquo;Ayer&rdquo;: busca &ldquo;añadido hace N h&rdquo;."
+"Un torneo aparece aquí {t0}cuando termina{t1}, normalmente unas horas después de empezar. Se muestra en el día en que se jugó (hora local), así que un torneo nuevo puede aparecer en &ldquo;Ayer&rdquo;: busca &ldquo;añadido hace N h&rdquo;."
 ],
 "9ec76bfa7e": [
 "Yes: no ads and no sign-up. No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter). This browser keeps only your theme and the last tab you used.",
@@ -1489,7 +1489,7 @@
 ],
 "a7f8e7cc0d": [
 "just now",
-"justo ahora"
+"ahora mismo"
 ],
 "a845d3d476": [
 "{0}Popular now",
@@ -1513,7 +1513,7 @@
 ],
 "aab90dfe8c": [
 "share",
-"uso"
+"de uso"
 ],
 "ab09f30675": [
 "deck win rate",
@@ -1533,7 +1533,7 @@
 ],
 "ad0938bfaf": [
 "The 10 decks played most {0}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.",
-"Las 10 barajas más jugadas {0}, en torneos públicos Estándar con 8 o más jugadores en Limitless TCG. La #1 empieza en el centro; el estante gira solo y se para al tocarlo. Arrástralo o deslízalo; toca una baraja para abrirla."
+"Las 10 barajas más jugadas {0}, en torneos públicos Estándar con 8 o más jugadores en Limitless TCG. La 1.ª empieza en el centro; el estante gira solo y se para al tocarlo. Arrástralo o deslízalo; toca una baraja para abrirla."
 ],
 "ad0f717c5c": [
 "in the top",
@@ -1625,7 +1625,7 @@
 ],
 "b7c44ae8ae": [
 "The shelf shows the 10 packs with the most meta cards (#1 in the middle); the list has every pack, the older series under it. Tap a pack to see its cards; tap a card to see the decks that play it.",
-"El estante muestra los 10 sobres con más cartas meta (la #1 en el centro); la lista tiene todos los sobres, con la serie anterior debajo. Toca un sobre para ver sus cartas; toca una carta para ver las barajas que la juegan."
+"El estante muestra los 10 sobres con más cartas meta (el 1.º en el centro); la lista tiene todos los sobres, con la serie anterior debajo. Toca un sobre para ver sus cartas; toca una carta para ver las barajas que la juegan."
 ],
 "b812e498b4": [
 "Pack: Meta Cards & Decks ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
@@ -1657,7 +1657,7 @@
 ],
 "bbb2de672e": [
 "· {0} share · {1} win · {2} players",
-"· {0} de uso · {1} victorias · {2} jugadores"
+"· {0} de uso · {1} de victorias · {2} jugadores"
 ],
 "bbfa773e5a": [
 "Close",
@@ -1737,7 +1737,7 @@
 ],
 "c76ac2e9cd": [
 "win",
-"victorias"
+"de victorias"
 ],
 "c7c4c1e950": [
 "&middot; {t0}{0}{t1} players &middot;",
@@ -1813,15 +1813,15 @@
 ],
 "d044282472": [
 "Newest",
-"Más nuevos"
+"Más recientes"
 ],
 "d0bca8f3af": [
 "went from #{0} to {t0}#{1}",
-"pasó de #{0} a {t0}#{1}"
+"pasó de {0}.º a {t0}{1}.º"
 ],
 "d120d8a5a7": [
 "player{0}",
-"jugadores{0!}"
+"jugador{0}"
 ],
 "d1c174cc6c": [
 "({0} players)",
@@ -1845,7 +1845,7 @@
 ],
 "d3254bb3fb": [
 "share &middot; {t0}{0}{t1} win",
-"uso &middot; {t0}{0}{t1} victorias"
+"de uso &middot; {t0}{0}{t1} de victorias"
 ],
 "d3781a19b2": [
 "Could not copy:",
@@ -1853,7 +1853,7 @@
 ],
 "d579d7b438": [
 "{0}× {1}{2} · {3} top player{4}",
-"{0}× {1}{2} · {3} jugadores top{4!}"
+"{0}× {1}{2} · {3} jugador{4} top"
 ],
 "d5f3362f81": [
 "Since your last visit",
@@ -1901,7 +1901,7 @@
 ],
 "da7ea14ea7": [
 "{0}× · {1} player{2}",
-"{0}× · {1} jugadores{2!}"
+"{0}× · {1} jugador{2}"
 ],
 "da8f262b50": [
 "{0}: top lists – Pocket Meta QR",
@@ -1921,7 +1921,7 @@
 ],
 "dbd6a35e83": [
 "new in the list",
-"nueva en la lista"
+"nueva en el ranking"
 ],
 "dc0d22645d": [
 "2&times; meta share",
@@ -1937,7 +1937,7 @@
 ],
 "ddde1bcb75": [
 "Most wins",
-"Más victorias"
+"Más torneos ganados"
 ],
 "dde3707865": [
 "Above meta",
@@ -2025,7 +2025,7 @@
 ],
 "e7a5c67393": [
 "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the current set&rsquo;s release, so in a new set&rsquo;s first days the results are early ones. The line under the title shows the dates.",
-"Los últimos 7 días. Cuando hay pocos torneos (a menudo al final de una expansión), la página usa los últimos 10 o 14 días, para que cada número tenga suficientes jugadores detrás. Nunca cuenta torneos de antes del lanzamiento de la expansión actual, así que en los primeros días de una expansión nueva los números se basan en menos torneos."
+"Los últimos 7 días. Cuando hay pocos torneos (a menudo al final de una expansión), la página usa los últimos 10 o 14 días, para que cada número tenga suficientes jugadores detrás. Nunca cuenta torneos de antes del lanzamiento de la expansión actual, así que en los primeros días de una expansión nueva los números se basan en menos torneos. La línea bajo el título muestra las fechas."
 ],
 "e903ded5bb": [
 "Showing {0} of {1} decks.",
@@ -2073,7 +2073,7 @@
 ],
 "f0e3ef5401": [
 "New in",
-"Nueva en"
+"Novedades de"
 ],
 "f105cc61c3": [
 "Latest Events",
@@ -2085,7 +2085,7 @@
 ],
 "f19c988b3f": [
 "Decks with QR Codes | Pocket Meta QR",
-"Barajas con códigos QR | Pocket Meta QR"
+"– barajas con códigos QR | Pocket Meta QR"
 ],
 "f1fccaaccd": [
 "Biggest",
@@ -2141,7 +2141,7 @@
 ],
 "f744f6ce38": [
 "Did not load. Swipe away and back.",
-"No se cargó. Desliza fuera y vuelve."
+"No se cargó. Desliza a otra lista y vuelve."
 ],
 "f7e42baf96": [
 "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the set&rsquo;s release.",
@@ -2149,7 +2149,7 @@
 ],
 "f83481bd50": [
 "– {0} (your time)",
-"– {0} (tu hora)"
+"– {0} (hora local)"
 ],
 "f8515d5350": [
 "&middot; Data: {t0}Limitless TCG{t1},",
@@ -2161,7 +2161,7 @@
 ],
 "f9a4b961c0": [
 "share &middot;",
-"uso &middot;"
+"de uso &middot;"
 ],
 "faa9e7e7ef": [
 "Started",
