@@ -22,7 +22,7 @@ const PD = new Map(require("pokemon-tcg-pocket-cards/data/v5/cards.min.json").ma
 // R16b (Nov 13, 2026): tid + pid of a finish (row.key = "<tid>/<pid>") for the page's link to the Limitless decklist.
 const src = (row) => {
   const [tid, pid] = String(row?.key || "").split("/");
-  return /^[0-9a-f]{24}$/.test(tid) && pid ? { tid, pid } : {};
+  return /^[0-9A-Za-z][0-9A-Za-z_-]{0,63}$/.test(tid) && pid ? { tid, pid } : {};   // Nov 23: any Limitless id, also a named one ("pmpt52"); was 24 hex only
 };
 const pdId = (set, num) => `${set.toLowerCase().replace(/^p-/, "p")}-${String(num).padStart(3, "0")}`;
 // R24 (Nov 15, 2026): 1 card = same name and same text (ability, trainer text, attacks with cost and damage), so 2 prints
