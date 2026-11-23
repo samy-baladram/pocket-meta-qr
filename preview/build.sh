@@ -30,12 +30,17 @@ for L in de ja; do
   echo "$line"; SUM="$SUM- $line"$'\n'
   page "$L" "$T/$L.html" "$PUB/preview/$L"
 done
-cp preview/i18n/names.*.json "$PUB/i18n/"
+# names.<lang>.json + preview/i18n/names.fix.json on top (a fix wins)
+node -e '
+const f = require("fs"), fix = JSON.parse(f.readFileSync("preview/i18n/names.fix.json", "utf8"));
+for (const p of f.readdirSync("preview/i18n").filter((x) => /^names\.[a-z]{2}\.json$/.test(x))) {
+  const d = JSON.parse(f.readFileSync("preview/i18n/" + p, "utf8")), x = fix[d.lang] || {};
+  Object.assign(d.n, x.n || {}); Object.assign(d.s, x.s || {}); f.writeFileSync(process.argv[1] + "/" + p, JSON.stringify(d)); }' "$PUB/i18n"
 if [ -d site/i18n ]; then cp -r site/i18n/. "$PUB/i18n/"; fi
 # Names check (Nov 23): card names of the site with no name in names.<lang>.json (they show in English)
-NAMES=$(node -e '
+NAMES=$(PUB="$PUB" node -e '
 const f = require("fs"), c = JSON.parse(f.readFileSync(process.argv[1], "utf8")).c, all = [...new Set(c.map((x) => x[2]).filter(Boolean))];
-for (const l of process.argv.slice(2)) { const n = JSON.parse(f.readFileSync(`preview/i18n/names.${l}.json`, "utf8")).n, m = all.filter((x) => !n[x]);
+for (const l of process.argv.slice(2)) { const n = JSON.parse(f.readFileSync(`${process.env.PUB}/i18n/names.${l}.json`, "utf8")).n, m = all.filter((x) => !n[x]);
   console.log(`- names ${l}: ${all.length - m.length} of ${all.length} card names${m.length ? `; no name (English shown): ${m.slice(0, 20).join(", ")}` : ""}`); }' "$PUB/cards.json" de ja 2>/dev/null || true)
 echo "$NAMES"; SUM="$SUM$NAMES"$'\n'
 if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then printf '### Preview texts\n%s\nMissing texts: /i18n/report.<lang>.json on the site.\n' "$SUM" >> "$GITHUB_STEP_SUMMARY"; fi

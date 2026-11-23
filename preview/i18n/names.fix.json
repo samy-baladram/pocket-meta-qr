@@ -1,0 +1,11 @@
+{
+ "_": "Fixes for the name files (names.<lang>.json, made from TCGdex). The build puts these on top: a name here wins. n: English card name -> name; s: set code -> set name. Add a wrong or missing name here and push.",
+ "ja": {
+  "n": {"Mega Garchomp ex": "メガガブリアスex", "Teal Mask Ogerpon": "オーガポンみどりのめん", "Teal MaskOgerpon": "オーガポンみどりのめん"},
+  "s": {"A4a": "未知なる水域"}
+ },
+ "de": {
+  "n": {"Mega Garchomp ex": "Mega-Knakrack-ex", "Teal Mask Ogerpon": "Türkisgrüne-Maske-Ogerpon", "Teal MaskOgerpon": "Türkisgrüne-Maske-Ogerpon"},
+  "s": {}
+ }
+}
