@@ -136,7 +136,7 @@
   {
    "note": "tip: players, matches",
    "find": "title=\"${sm.players.toLocaleString()} players, ${sm.matches.toLocaleString()} matches\"",
-   "replace": "title=\"${sm.players.toLocaleString()} jogadores, ${sm.matches.toLocaleString()} partidas\""
+   "replace": "title=\"${sm.players.toLocaleString(\"pt-BR\")} jogadores, ${sm.matches.toLocaleString(\"pt-BR\")} partidas\""
   },
   {
    "note": "tip: no top player",
