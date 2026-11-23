@@ -21,12 +21,13 @@ for (const e of readdirSync(root)) {
     if (id && n) sets.push([id, n]); }
 }
 mkdirSync("preview/i18n", { recursive: true });
+const SRC = { pt: "pt-br" }; // the site's code -> the database key (Brazilian Portuguese)
 for (const l of langs) {
-  const votes = {};   // English name -> {localized: count}; the most common one wins (alt arts share a name)
-  for (const c of cards) if (c[l]) { const v = (votes[c.en] ||= {}); v[c[l]] = (v[c[l]] || 0) + 1; }
+  const k0 = SRC[l] || l, votes = {};   // English name -> {localized: count}; the most common one wins (alt arts share a name)
+  for (const c of cards) if (c[k0]) { const v = (votes[c.en] ||= {}); v[c[k0]] = (v[c[k0]] || 0) + 1; }
   const n = {}; let multi = 0;
   for (const [en, v] of Object.entries(votes).sort()) { const k = Object.entries(v).sort((a, b) => b[1] - a[1]); n[en] = k[0][0]; if (k.length > 1) multi++; }
-  const s = {}; for (const [id, nm] of sets.sort()) if (nm[l]) s[id] = nm[l];
+  const s = {}; for (const [id, nm] of sets.sort()) if (nm[k0]) s[id] = nm[k0];
   writeFileSync(`preview/i18n/names.${l}.json`, JSON.stringify({ v: 1, lang: l, src: "wsgtcyx/cards-database", n, s }));
   console.log(`${l}: ${Object.keys(n).length} names (${multi} with 2+ forms, the most common used), ${Object.keys(s).length} sets`);
 }

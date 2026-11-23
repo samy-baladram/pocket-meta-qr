@@ -11,7 +11,7 @@ build time. Nothing changes in the live page, and a built page has no translatio
 - `en.json`: the catalog (made by `extract.mjs`; the build also puts it on the site: `/i18n/en.json`).
 - `de.json`, `ja.json`: `{id: [English, translation]}`; optional 3rd part `{"<code just before the text>": translation}`
   for one English text with two meanings ("Share": the button vs the meta share).
-- `<lang>.code.json` (now `ja.code.json`, `es.code.json`): **code changes** for one language, where a text change is not enough:
+- `<lang>.code.json` (now `ja.code.json`, `es.code.json`, `pt.code.json`): **code changes** for one language, where a text change is not enough:
   ordinals (`3rd` -> `3位`), word order (`<event>で優勝`), dates (`ja-JP`, `11/14`, `11月9日〜14日`), the Limited
   Battle name. `{"patches": [{"note", "find", "replace", "all"?}]}`; `find` = exact code of the page, applied before the
   texts. A `find` that is not in the page is not used: the build prints it and the report lists it (`codeMiss`). The
@@ -26,6 +26,7 @@ A language can skip a section for now. `EN_ONLY` in `preview/i18n_patch.py` list
 
 - `es`: What's new and Limited Battle are in English (not in `es.json`).
 - `de`: What's new is in English.
+- `pt`: What's new and Limited Battle are in English (not in `pt.json`).
 
 Spanish (es, Nov 23): live as beta at `/es/` (noindex, like `/ja/`; `I18N_LIVE: "ja es"` in site.yml, `LIVE_L` in
 `preview/i18n_patch.py`), with the Beta tag in the language menu. Terms: baraja, lista, jugadores top,
@@ -41,6 +42,15 @@ Spanish rules (agreed with the owner, Nov 23, 2026; the game has Spain Spanish o
 - Plurals: the code adds "es" after "jugador" (patches "plural: …", kept last); translations use `jugador{n}`.
   Event wins: torneos ganados (victorias = match wins). Labels after a number: "de uso", "de victorias".
 - "lista" = a deck list; the deck ranking = "ranking". Score = Balance. Buttons with a count: Ver todo (8).
+
+Brazilian Portuguese (pt, Nov 23): `/preview/pt/` only (not in the menu). Made from the reviewed Spanish: the same
+552 texts and the same 164 code changes (`pt.code.json`), in Portuguese. `<html lang="pt-BR">`; names from the
+database key `pt-br` (`pipeline/i18n_names.mjs`, SRC). Terms (the game's own: Baralhos de Aluguel, Pacotes de Booster):
+baralho, lista, jogadores top, uso, % de vitórias, torneio, pacote, coleção, cartas fixas / flexíveis, saldo (Score),
+posição (rank), lugar (place in an event). Numbers: 12,0% (decimal comma, no space before %); ranks 1º, 3º de 110;
+dates 14/11 in small cells; relative há 5 min, hoje, ontem. Plurals: jogador + "es" (the same code patches as es).
+Not checked yet: the game menu path (Meus baralhos → + → Escanear código → Escanear imagem salva), energy names
+(Grama, Fogo, Água, Raios, Psíquico, Luta, Escuridão, Metal, Incolor, Dragão), A3b set name (shown as Eevee Grove).
 
 ## Rules for a translation
 - Keep every `{n}` once and every `{tn}` (order may change). `{n!}` = the code still runs but shows nothing (an English
