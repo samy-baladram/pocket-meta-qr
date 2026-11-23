@@ -245,6 +245,43 @@ def sync(args):
         print("::warning title=i18n images::%d downloads failed (see log)" % failed)
 
 
+# Booster packs (Nov 23): the game's pack art without the set logo (Texture Dump/UI/Textures/System/Pack,
+# PACK_ICON_<series><nn>_<k>0_00_000.png, 256x256 with the pack in the middle). One image for every language
+# (no text on it): site/i18n/p/<site pack id>.webp. The k-th pack of a set = the order of the game's pack list.
+PACK_FOLDER = "17pJdplAg7RG557RR6kjjKFuH-UIZ1w_n"
+PACK_ICONS = {"AN001": ["a1-mewtwo", "a1-charizard", "a1-pikachu"], "AN002": ["a1a-mew"], "AN003": ["a2-dialga", "a2-palkia"],
+              "AN004": ["a2a-arceus"], "AN005": ["a2b-booster"], "AN006": ["a3-solgaleo", "a3-lunala"], "AN007": ["a3a-booster"],
+              "AN008": ["a3b-booster"], "AN009": ["a4-hooh", "a4-lugia"], "AN010": ["a4a-booster"], "AN011": ["a4b-booster"],
+              "BN001": ["b1-megablaziken", "b1-megagyarados", "b1-megaaltaria"], "BN002": ["b1a-booster"], "BN003": ["b2-booster"],
+              "BN004": ["b2a-booster"], "BN005": ["b2b-booster"], "BN006": ["b3-booster"], "BN007": ["b3a-booster"],
+              "BN008": ["b3b-booster"], "BN009": ["b4-booster"], "BN010": ["b4a-booster"], "BN011": ["b4b-booster"]}
+
+
+def packs(args):
+    out = f"{OUT}/p"
+    os.makedirs(out, exist_ok=True)
+    made = 0
+    for f in drive_list(PACK_FOLDER, args.key):
+        m = re.fullmatch(r"PACK_ICON_([A-Z]{2}\d{3})_00(\d)0_00_000\.png", f["name"])
+        ids = PACK_ICONS.get(m.group(1), []) if m else []
+        k = int(m.group(2)) - 1 if m else -1
+        if not (0 <= k < len(ids)):
+            continue
+        dst = f"{out}/{ids[k]}.webp"
+        if os.path.exists(dst) and not args.force:
+            continue
+        url = f"https://www.googleapis.com/drive/v3/files/{f['id']}?alt=media&key={args.key}"
+        with urllib.request.urlopen(url, timeout=60) as r:
+            im = Image.open(io.BytesIO(r.read())).convert("RGBA")
+        box = im.getchannel("A").point(lambda a: 255 if a > 24 else 0).getbbox()   # the pack (and its shadow edge)
+        if box:
+            im = im.crop(box)
+        im.save(dst, "WEBP", quality=88, method=6)
+        made += 1
+        print(f"pack {ids[k]}: {f['name']} {im.width}x{im.height}")
+    print(f"i18n packs: {made} made ({len(os.listdir(out))} in {out})")
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -264,5 +301,8 @@ if __name__ == "__main__":
     y.add_argument("--max-seconds", type=int, default=360)
     y.add_argument("--threads", type=int, default=8)
     y.add_argument("--refresh", action="store_true")
+    k = sub.add_parser("packs", help="CI: booster pack art without the logo (one image for all languages)")
+    k.add_argument("--key", required=True)
+    k.add_argument("--force", action="store_true")
     a = ap.parse_args()
-    {"build": build, "fetch": fetch, "sync": sync}[a.cmd](a)
+    {"build": build, "fetch": fetch, "sync": sync, "packs": packs}[a.cmd](a)

@@ -98,6 +98,7 @@ jobs:
           GDRIVE_API_KEY: ${{ secrets.GDRIVE_API_KEY }}
         run: |
           if [ -z "$GDRIVE_API_KEY" ]; then echo "::notice title=i18n images::no GDRIVE_API_KEY secret, skipped"; exit 0; fi
+          python pipeline/images_i18n.py packs --key "$GDRIVE_API_KEY" || echo "::warning title=i18n packs::pack art not made (see log)"   # Nov 23: pack art without logo
           python pipeline/images_i18n.py sync --key "$GDRIVE_API_KEY" --ids images.json --max-seconds 360 --langs ja,de,es,fr,it,ko,pt,zh   # ja, de first (the preview languages)
 
       - name: Check QR codes

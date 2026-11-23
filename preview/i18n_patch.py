@@ -70,6 +70,12 @@ rawc = '  const RAWC = "https://raw.githubusercontent.com/PocketDecks/'
 one(rawc, r'''  // Nov 23 (i18n test): a card with no localized file (i18n/<lang>/c|z/<id>.webp) falls back to the English file.
   // window capture: runs before the other image error handlers (document capture, and the z/ -> c/ one).
   const I18N_RE = /(^|\/)i18n\/[a-z]{2}\/([cz]\/[a-z0-9]+-\d+\.webp)/;
+  // Nov 23: booster packs on a localized page: the game's art without the set logo (i18n/p/, one image for all
+  // languages); a pack with no such file (C1, promos) falls back to the English image (p/).
+  const PKP = () => (IMGP ? "i18n/" : ""), PK_RE = /(^|\/)i18n\/(p\/[a-z0-9-]+\.webp)/;
+  addEventListener("error", (e) => { const im = e.target; if (!(im instanceof HTMLImageElement)) return;
+    const src = im.getAttribute("src") || ""; if (!PK_RE.test(src)) return;
+    e.stopImmediatePropagation(); im.src = src.replace(PK_RE, "$1$2"); }, true);
   addEventListener("error", (e) => { const im = e.target; if (!(im instanceof HTMLImageElement)) return;
     const src = im.getAttribute("src") || ""; if (!I18N_RE.test(src)) return;
     e.stopImmediatePropagation(); im.src = src.replace(I18N_RE, "$1$2"); }, true);
@@ -93,6 +99,9 @@ one(".then((j) => { SJ = j; if (!$(\"filt\").hidden) renderSug(); })",
 one("noex: (d) => !(d.cards || []).some((c) => isEx(c.n)),", "noex: (d) => !(d.cards || []).some((c) => isEx(c.nEn || c.n)),")  # the English name has \" ex\"
 one('({ id, name, energy, art, qr: q, nv: 1, lb: 1, k, rank: k + 1, deckName: name,', '({ id, nameEn: name, get name() { return trDeck(this.nameEn); }, set name(v) { this.nameEn = v; }, get deckName() { return trDeck(this.nameEn); }, set deckName(v) { this.nameEn = v; }, energy, art, qr: q, nv: 1, lb: 1, k, rank: k + 1,')  # Limited Battle deck names: in the page language when shown (names load later)
 one('cards: cards.map(([cid, n, c]) => ({ id: cid, n, c })), note: LB.notes[id] || null', 'cards: cards.map(([cid, n, c]) => ({ id: cid, nEn: n, get n() { return trCard(this.nEn); }, set n(v) { this.nEn = v; }, c })), note: LB.notes[id] || null')  # Limited Battle card names in the page language
+one('<img data-src="p/${esc(x.img)}.webp', '<img data-src="${PKP()}p/${esc(x.img)}.webp')  # pack art without logo (i18n/p/) on a localized page
+one('<img src="p/${esc(x.img)}.webp', '<img src="${PKP()}p/${esc(x.img)}.webp')  # pack art without logo (i18n/p/) on a localized page
+one('src="p/${p.img}.webp"', 'src="${PKP()}p/${p.img}.webp"')  # pack art without logo (i18n/p/) on a localized page
 one(".then((j) => (EV = j))", ".then((j) => L10NP.then(() => (EV = l10nDeep(j))))")
 one("for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n });", "for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n: trCard(n) });")
 one(".then((r) => (r.ok ? r.json() : null)).then((j) => (PK = j))",
