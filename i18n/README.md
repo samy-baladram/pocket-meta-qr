@@ -23,7 +23,8 @@ build time. Nothing changes in the live page, and a built page has no translatio
 - Keep every `{n}` once and every `{tn}` (order may change). `{n!}` = the code still runs but shows nothing (an English
   plural `s` in Japanese). A translation that breaks this is not used (the report lists it) and the English stays.
 - No translation = the English stays exactly as it is. Leave code-like entries (class names, keys) untranslated.
-- Japanese words: as GameWith / Game8 use them: 環境デッキ, デッキレシピ / レシピ (a deck list), 使用率, 勝率,
+- Japanese words: as GameWith / Game8 use them: 最強デッキ (headings, tab, titles: the search term of Game8 /
+  GameWith / Altema), 環境 for "the meta" in sentences (環境カード, 現在の環境), デッキレシピ / レシピ (a deck list), 使用率, 勝率,
   優勝 / N位 / ベスト8, 参加 N名, 限定バトル, マイデッキ → 新規作成 → コードを読み取る → 保存した画像から読み取る.
 - Japanese: the spaces next to a translation that starts / ends with Japanese are dropped.
 - Words of the game: as in the game (Energie / エネルギー, Booster-Pack / パック, Erweiterung / 拡張パック); card,

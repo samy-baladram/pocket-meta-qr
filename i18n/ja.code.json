@@ -2,6 +2,63 @@
  "_": "Code changes for the ja page (i18n/build.mjs applies them before the texts). find: exact code of the page; all: change each place (else the first). A find that is not in the page is reported, not used.",
  "patches": [
   {
+   "note": "breakout: <deck>が<event>で優勝 / 7位（325名）",
+   "find": "<b>${esc(b.name)}</b> ${b.place === 1 ? \"won\" : `took ${ordF(b.place)} at`} ${esc(shortEv(b.ev || \"\"))} (${b.players} players)",
+   "replace": "<b>${esc(b.name)}</b>が${esc(shortEv(b.ev || \"\"))}（${b.players}名）で${b.place === 1 ? \"優勝\" : ordF(b.place)}"
+  },
+  {
+   "note": "label: rank, same as 24 h ago",
+   "find": "aria-label=\"Rank ${d.rank}, same rank as 24 hours ago\"",
+   "replace": "aria-label=\"${d.rank}位（24時間前と同じ）\""
+  },
+  {
+   "note": "label: rank, 24 h change",
+   "find": "aria-label=\"Rank ${d.rank}, ${d.nw ? \"new in the list\" : \"change in 24 hours\"}\"",
+   "replace": "aria-label=\"${d.rank}位（${d.nw ? \"新登場\" : \"24時間の変動\"}）\""
+  },
+  {
+   "note": "label: rank: deck",
+   "find": "aria-label=\"Rank ${d.rank}: ${esc(d.name)}\"",
+   "replace": "aria-label=\"${d.rank}位：${esc(d.name)}\""
+  },
+  {
+   "note": "label: deck: rank, share",
+   "find": "aria-label=\"${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}\"",
+   "replace": "aria-label=\"${esc(d.name)}：${d.rank}位、使用率${pct(d.share)}\"",
+   "all": true
+  },
+  {
+   "note": "label: About <x>",
+   "find": "aria-label=\"About ${esc(label)}\"",
+   "replace": "aria-label=\"${esc(label)}について\"",
+   "all": true
+  },
+  {
+   "note": "label: data status",
+   "find": "aria-label=\"Data status: checked ${agoTxt(data.updatedAt)}. Details\"",
+   "replace": "aria-label=\"データの状態：${agoTxt(data.updatedAt)}に確認。詳細\""
+  },
+  {
+   "note": "tip: players, matches",
+   "find": "title=\"${sm.players.toLocaleString()} players, ${sm.matches.toLocaleString()} matches\"",
+   "replace": "title=\"${sm.players.toLocaleString()}名・${sm.matches.toLocaleString()}試合\""
+  },
+  {
+   "note": "tip: no top player",
+   "find": "title=\"No top player ${winWk()}\"",
+   "replace": "title=\"${winWk()}上位プレイヤーなし\""
+  },
+  {
+   "note": "tip: few players",
+   "find": "title=\"Only ${d.count} players: this win rate is less certain\"",
+   "replace": "title=\"${d.count}人のみ：この勝率は確実性が低めです\""
+  },
+  {
+   "note": "tip: no top player with k swapped",
+   "find": "title=\"No top player with ${k} card${k > 1 ? \"s\" : \"\"} swapped\"",
+   "replace": "title=\"${k}枚入れ替えの上位プレイヤーなし\""
+  },
+  {
    "note": "date range in a month: 11月9日〜14日",
    "find": "} \\u2013 ${B.getUTCDate()}`",
    "replace": "}〜${B.getUTCDate()}日`"

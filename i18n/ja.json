@@ -764,7 +764,7 @@
 ],
 "55eee3040e": [
 "Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes",
-"Pocket Meta QR – ポケポケの環境デッキと大会結果をQRコード付きで"
+"Pocket Meta QR – ポケポケの最強デッキランキングと大会結果をQRコード付きで"
 ],
 "566bcc7a1f": [
 "Each day = the window that ends on that day (7–14 days, wider when there are few events), so the numbers move slowly. Faded: under 30 players.{0}",
@@ -836,7 +836,7 @@
 ],
 "5f0a456c00": [
 "Meta Decks",
-"環境デッキ"
+"最強デッキ"
 ],
 "60907e38f7": [
 "Scan Code",
@@ -972,7 +972,7 @@
 ],
 "6fa55b2f97": [
 "This week&rsquo;s Pok&eacute;mon TCG Pocket decks",
-"今週のポケポケ環境デッキ"
+"今週のポケポケ最強デッキ"
 ],
 "6fa5fbbc16": [
 "older",
@@ -1576,7 +1576,7 @@
 ],
 "b247ad081c": [
 "This week’s Pokémon TCG Pocket decks",
-"今週のポケポケ環境デッキ"
+"今週のポケポケ最強デッキ"
 ],
 "b273fb2877": [
 "Won",
@@ -1668,7 +1668,7 @@
 ],
 "bf3d48422f": [
 "Pokémon TCG Pocket Meta Decks ({0}) with QR Codes | Pocket Meta QR",
-"ポケポケ環境デッキ（{0}）QRコード付き | Pocket Meta QR"
+"ポケポケ最強デッキランキング（{0}）Tier表・QRコード付き | Pocket Meta QR"
 ],
 "bff84ca9c5": [
 "Why is the win rate different from other sites?",
@@ -1752,7 +1752,7 @@
 ],
 "c95db6211f": [
 "Meta decks{t0}{t1}Latest tournaments{t2}{t3}Which pack to open{t4}{t5}Limited Battle",
-"環境デッキ{t0}{t1}最新の大会{t2}{t3}開けるべきパック{t4}{t5}限定バトル"
+"最強デッキ{t0}{t1}最新の大会{t2}{t3}開けるべきパック{t4}{t5}限定バトル"
 ],
 "c9929a6b53": [
 "players won more than they lost with this deck {0}, but none reached a top result. This is the best of them.",
