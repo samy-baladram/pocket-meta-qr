@@ -19,6 +19,9 @@ on:
       - pipeline/images.py
       - pipeline/qrcheck.mjs
       - pipeline/page.mjs
+      - pipeline/images_i18n.py
+      - preview/index.html
+      - preview/head.html
       - package.json
       - package-lock.json
       - .github/workflows/site.yml
@@ -66,6 +69,7 @@ jobs:
             site/z
             site/p
             site/e
+            site/i18n
           key: images-${{ github.run_id }}
           restore-keys: images-
 
@@ -82,6 +86,19 @@ jobs:
       - name: Make images
         run: python pipeline/images.py || echo "::warning title=Images::some card or energy images failed (see log)"
 
+      # Nov 23 (card languages, /preview/ only): localized card images from the public "TCGPocket" Google Drive
+      # (images_i18n.py sync: only the missing files, at most 6 min per run; the next runs go on). Kept in the
+      # image cache (site/i18n). No GDRIVE_API_KEY secret = no images (the preview then shows English cards).
+      # Never stops the deploy.
+      - name: Localized card images
+        continue-on-error: true
+        timeout-minutes: 9
+        env:
+          GDRIVE_API_KEY: ${{ secrets.GDRIVE_API_KEY }}
+        run: |
+          if [ -z "$GDRIVE_API_KEY" ]; then echo "::notice title=i18n images::no GDRIVE_API_KEY secret, skipped"; exit 0; fi
+          python pipeline/images_i18n.py sync --key "$GDRIVE_API_KEY" --ids images.json --max-seconds 360
+
       - name: Check QR codes
         run: node pipeline/qrcheck.mjs
 
@@ -92,6 +109,19 @@ jobs:
           rm -f public/c/.width public/p/.width
           # R30: shared app.<hash>.css/.js (the previous build's files kept from cache/app), deck pages + their record
           node pipeline/page.mjs site/index.html public/index.html --prev cache/app --seen data/decks_seen.json --cards-seen data/cards_seen.json
+          # Nov 23: test page /preview/ = preview/index.html (the page + card languages). Not linked, noindex, not in
+          # the sitemap. preview/head.html (<base href="/">, noindex, keeps "#" addresses on /preview/): data and images load from
+          # the site root, so its app.* files go there too.
+          # A problem here must never stop the live deploy: it is only a warning.
+          if [ -f preview/index.html ]; then
+            { rm -rf /tmp/pv && mkdir -p /tmp/pv public/preview &&
+              node pipeline/page.mjs preview/index.html /tmp/pv/index.html --no-routes &&
+              cp /tmp/pv/app.* public/ &&
+              node -e 'const f = require("fs"), h = f.readFileSync("preview/head.html", "utf8").trim();
+                f.writeFileSync("public/preview/index.html", f.readFileSync("/tmp/pv/index.html", "utf8").replace("<head>", "<head>" + h));' &&
+              if [ -d site/i18n ]; then cp -r site/i18n public/; fi
+            } || { rm -rf public/preview; echo "::warning title=Preview::the /preview/ page was not made (see log)"; }
+          fi
           # Static files from the UI chat (R7a): favicon, app icons, manifest, link preview image, robots.txt,
           # sitemap.xml. Served from the site root, next to index.html.
           find static -maxdepth 1 -type f ! -name README.md -exec cp --update=none {} public/ \;   # --update=none: keep page.mjs's sitemap.xml (R26)
