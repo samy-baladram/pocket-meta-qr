@@ -33,6 +33,21 @@ build time. Nothing changes in the live page, and a built page has no translatio
 - Words of the game: as in the game (Energie / エネルギー, Booster-Pack / パック, Erweiterung / 拡張パック); card,
   deck, set and pack names come from `preview/i18n/names.<lang>.json`, not from here.
 
+## Limited Battle: English only (Nov 23, 2026)
+- The content of each Limited Battle stays English in every language: the deck notes and their labels ("Why it's good",
+  "Tip" …), the event name (`LB.name`) and the card pool ("Only cards from …", "Dual Fusion, Promo-C Vol. 1 …").
+  They change with each event, so do not add text entries or code patches for them.
+- The parts that do not change with an event stay translated: the banner, "Limited-time event", the days left, the
+  filter and the deck panel, and the page's fixed sentences ("Hand-picked decks, not tournament data …").
+- `ja.code.json` / `de.code.json` add one line on the page: "デッキのメモは英語のみです。" / "Die Deck-Notizen gibt es nur
+  auf Englisch." (find: `<p class="lbnote"><b class="lbup">`).
+
+## Attributes the extractor does not find (Nov 23, 2026)
+- `aria-label`, `title` and `alt` inside JS templates, and the `alt` of the What's new images, are not in the catalog.
+  In Japanese they are code patches in `ja.code.json` (notes "label: …", "alt: …", "What's new image: …").
+  A new What's new entry with an image needs one more patch for its `alt`. To find English that is left:
+  build the page, then look for attributes with Latin words and no Japanese.
+
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in
 `/i18n/report.<lang>.json` (and in the run summary); the page shows them in English until they are translated. To

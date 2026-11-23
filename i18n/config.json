@@ -16,7 +16,8 @@
   "KO",
   "PT",
   "ZH",
-  "Pocket Meta QR"
+  "Pocket Meta QR",
+  "up"
  ],
  "skipScripts": [
   "qrcode-generator"

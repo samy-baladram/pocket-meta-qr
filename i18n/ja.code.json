@@ -24,7 +24,7 @@
   {
    "note": "event: did worse line",
    "find": "`#${o.d.rank} \\u00b7 ${pc(o.d.share)}% share ${winWk()} \\u00b7 about ${Math.round(o.x)} lists expected, got <b>${o.g}</b>`, `${o.g} of ~${Math.round(o.x)}`",
-   "replace": "`#${o.d.rank} \\u00b7 ${winWk()}使用率${pc(o.d.share)}% \\u00b7 予想約${Math.round(o.x)}レシピ、実際<b>${o.g}</b>`, `${o.g}／約${Math.round(o.x)}`"
+   "replace": "`#${o.d.rank} \\u00b7 ${winWk()}の使用率${pc(o.d.share)}% \\u00b7 予想約${Math.round(o.x)}レシピ、実際<b>${o.g}</b>`, `${o.g}／約${Math.round(o.x)}`"
   },
   {
    "note": "event: new-set cards",
@@ -39,22 +39,22 @@
   {
    "note": "event: only here tip",
    "find": "'<span class=\"ekfm z\" title=\"No top 8 at other events ${winWk()}\">only here</span>'",
-   "replace": "`<span class=\"ekfm z\" title=\"${winWk()}他の大会でベスト8なし\">ここだけ</span>`"
+   "replace": "`<span class=\"ekfm z\" title=\"${winWk()}の他の大会でベスト8なし\">ここだけ</span>`"
   },
   {
    "note": "event: top 8s tip",
    "find": "title=\"Top 8s at other events ${winWk()}\"",
-   "replace": "title=\"${winWk()}他の大会でのベスト8\""
+   "replace": "title=\"${winWk()}の他の大会でのベスト8\""
   },
   {
    "note": "event: new tip",
    "find": "title=\"Under 0.3% share ${winWk()}\"",
-   "replace": "title=\"${winWk()}使用率0.3%未満\""
+   "replace": "title=\"${winWk()}の使用率0.3%未満\""
   },
   {
    "note": "event: share ratio tip",
    "find": "title=\"Its share of the top ${n}: ${Math.round(r)}\\u00d7 its share ${winWk()}\"",
-   "replace": "title=\"上位${n}名での使用率：${winWk()}の${Math.round(r)}\\u00d7\""
+   "replace": "title=\"上位${n}名での使用率：${winWk()}の${Math.round(r)}倍\""
   },
   {
    "note": "winners: label",
@@ -122,166 +122,6 @@
    "replace": "b.setAttribute(\"aria-label\", `限定バトル、${lbLeft(true)}`)"
   },
   {
-   "note": "Limited Battle note label: Why it's good",
-   "find": "[\"Why it's good\", ",
-   "replace": "[\"強み\", ",
-   "all": true
-  },
-  {
-   "note": "Limited Battle note label: Tip",
-   "find": "[\"Tip\", ",
-   "replace": "[\"ポイント\", ",
-   "all": true
-  },
-  {
-   "note": "Limited Battle note label: Watch out",
-   "find": "[\"Watch out\", ",
-   "replace": "[\"注意点\", ",
-   "all": true
-  },
-  {
-   "note": "Limited Battle note label: The plan",
-   "find": "[\"The plan\", ",
-   "replace": "[\"立ち回り\", ",
-   "all": true
-  },
-  {
-   "note": "Limited Battle note label: The combo",
-   "find": "[\"The combo\", ",
-   "replace": "[\"コンボ\", ",
-   "all": true
-  },
-  {
-   "note": "Limited Battle note (change with LB): Zoroark hard-counters Pikachu ex and Clo",
-   "find": "\"Zoroark hard-counters Pikachu ex and Clodsire, two of the decks you'll see the most. It honestly fits in almost any list.\"",
-   "replace": "\"よく当たるピカチュウexとパルデアドオーにゾロアークが強く刺さる。正直ほとんどのデッキに入る。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Blastoise is its best partner, and Blue'",
-   "find": "\"Blastoise is its best partner, and Blue's Provocation fits right in.\"",
-   "replace": "\"相方はカメックスが最適。グリーンの挑発との相性も抜群。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Lapras snipes the Bench, and Blastoise +",
-   "find": "\"Lapras snipes the Bench, and Blastoise + Blue's Provocation lets you pick who eats the damage. Chip whatever you want.\"",
-   "replace": "\"ラプラスでベンチを狙え、カメックス＋グリーンの挑発でダメージを受けるポケモンも選べる。好きな相手を削れる。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Energy is rarely a problem, so you almos",
-   "find": "\"Energy is rarely a problem, so you almost never brick on attacks.\"",
-   "replace": "\"エネルギー不足になりにくく、ワザが撃てない事故がほぼない。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Low Energy and fast. You've got options ",
-   "find": "\"Low Energy and fast. You've got options for Basics and options for Evos.\"",
-   "replace": "\"少ないエネルギーで速く動ける。たね対策も進化対策もある。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Blue's Provocation is in the pool, so yo",
-   "find": "\"Blue's Provocation is in the pool, so you get access to some Bench shenanigans!\"",
-   "replace": "\"グリーンの挑発が使えるので、ベンチを絡めた動きも狙える。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Super tanky. Umbreon cleans up a ton of ",
-   "find": "\"Super tanky. Umbreon cleans up a ton of Basics while Mega Tyranitar ex ramps up in the back.\"",
-   "replace": "\"とにかく硬い。ブラッキーがたねポケモンを倒している間に、後ろでメガバンギラスexを準備できる。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Got Shiny Celebi? Swap one of the healin",
-   "find": "\"Got Shiny Celebi? Swap one of the healing items for it and the deck gets even better.\"",
-   "replace": "\"色違いのセレビィがあれば、回復グッズ1枚と入れ替えるとさらに強い。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Straightforward and super easy to spam. ",
-   "find": "\"Straightforward and super easy to spam. No Bench to build, no combo to set up.\"",
-   "replace": "\"シンプルで回しやすい。ベンチ作りもコンボの準備も不要。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Stack Energy on Pikachu ex and attack. R",
-   "find": "\"Stack Energy on Pikachu ex and attack. Repeat. Zero thinking needed, perfect for grinding wins.\"",
-   "replace": "\"ピカチュウexにエネルギーを付けて攻撃、の繰り返し。考えることが少なく、周回に最適。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Clodsire's attack also chips your own Be",
-   "find": "\"Clodsire's attack also chips your own Bench, and normally Cyrus punishes that by dragging up your damaged mon for a free KO. No Cyrus in this event, so that weakness is just gone.\"",
-   "replace": "\"パルデアドオーのワザは自分のベンチも削るため、普段はアカギで傷ついたポケモンを呼ばれて倒されやすい。このイベントにはアカギがないので、その弱点がない。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Lycanroc ex gives you a second big hitte",
-   "find": "\"Lycanroc ex gives you a second big hitter, so Clodsire can do its thing with a lot less risk.\"",
-   "replace": "\"ルガルガンexが2体目のアタッカーになり、パルデアドオーを安心して動かせる。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): The fastest deck in the format once it's",
-   "find": "\"The fastest deck in the format once it's set up. Draw the pieces and it's GG.\"",
-   "replace": "\"そろえばこの環境で最速のデッキ。パーツを引ければほぼ勝ち。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): No way to boost HP, so Megas can tank it",
-   "find": "\"No way to boost HP, so Megas can tank it. Slightly unfavored there.\"",
-   "replace": "\"HPを上げる手段がなく、メガシンカに耐えられやすい。そこはやや不利。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Big HP and big damage in one package. Bu",
-   "find": "\"Big HP and big damage in one package. Bullies the other ex decks.\"",
-   "replace": "\"高いHPと高い火力を両立。他のexデッキに強い。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Pulled Mega Mewtwo Y ex from the event p",
-   "find": "\"Pulled Mega Mewtwo Y ex from the event packs? Swap it in for Jigglypuff.\"",
-   "replace": "\"イベントパックでメガミュウツーYexが出たら、プリンと入れ替えるのがおすすめ。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Fuecoco ex is straight-up busted in this",
-   "find": "\"Fuecoco ex is straight-up busted in this format.\"",
-   "replace": "\"この環境ではホゲータexが圧倒的に強い。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Not feeling Charizard? Run it with Salaz",
-   "find": "\"Not feeling Charizard? Run it with Salazzle instead.\"",
-   "replace": "\"リザードンが合わなければ、エンニュートと組むのもあり。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Almost nothing in this card pool can gus",
-   "find": "\"Almost nothing in this card pool can gust, so Mega Greninja ex's no-retreat lock just wins games.\"",
-   "replace": "\"このカードプールには入れ替え手段がほぼないため、メガゲッコウガexのにげる封じがそのまま勝ちにつながる。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): 200 HP makes it a real pain to take down",
-   "find": "\"200 HP makes it a real pain to take down.\"",
-   "replace": "\"HP200で倒されにくい。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Pikachu ex + Light Ball = turbo aggro. K",
-   "find": "\"Pikachu ex + Light Ball = turbo aggro. KOs most Basics early, so you're ahead on points fast.\"",
-   "replace": "\"ピカチュウex＋でんきだまで超速攻。序盤から多くのたねポケモンを倒せ、ポイントで先行しやすい。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Zoroark is the go-to counter in this for",
-   "find": "\"Zoroark is the go-to counter in this format, so expect to see it.\"",
-   "replace": "\"この環境ではゾロアークが定番の対策。当たる前提で考えたい。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Coin-flip heavy, but very few decks can ",
-   "find": "\"Coin-flip heavy, but very few decks can hard-wall it.\"",
-   "replace": "\"コイン頼みが多いが、完全に止められるデッキはほとんどない。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Low HP, so Pikachu ex is a nightmare mat",
-   "find": "\"Low HP, so Pikachu ex is a nightmare matchup.\"",
-   "replace": "\"HPが低く、ピカチュウexは苦手。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Get the setup right and it hits surprisi",
-   "find": "\"Get the setup right and it hits surprisingly hard with little effort.\"",
-   "replace": "\"準備が整えば、少ない手間で意外なほど大きなダメージが出る。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): HP is on the low side, so Fire decks hit",
-   "find": "\"HP is on the low side, so Fire decks hitting Weakness will wreck you.\"",
-   "replace": "\"HPが低めで、弱点を突く炎デッキには一気に崩される。\""
-  },
-  {
    "note": "breakout: <deck>が<event>で優勝 / 7位（325名）",
    "find": "<b>${esc(b.name)}</b> ${b.place === 1 ? \"won\" : `took ${ordF(b.place)} at`} ${esc(shortEv(b.ev || \"\"))} (${b.players} players)",
    "replace": "<b>${esc(b.name)}</b>が${esc(shortEv(b.ev || \"\"))}（${b.players}名）で${b.place === 1 ? \"優勝\" : ordF(b.place)}"
@@ -326,7 +166,7 @@
   {
    "note": "tip: no top player",
    "find": "title=\"No top player ${winWk()}\"",
-   "replace": "title=\"${winWk()}上位プレイヤーなし\""
+   "replace": "title=\"${winWk()}は上位プレイヤーなし\""
   },
   {
    "note": "tip: few players",
@@ -357,11 +197,6 @@
    "note": "end date, time: no comma",
    "find": "${end.toLocaleDateString(undefined, o)}, ${end.toLocaleTimeString(",
    "replace": "${end.toLocaleDateString(undefined, o)} ${end.toLocaleTimeString("
-  },
-  {
-   "note": "Limited Battle name (GameWith: デュアルフュージョン限定バトル); change it with LB",
-   "find": "name: \"Dual Fusion Limited Battle\"",
-   "replace": "name: \"デュアルフュージョン限定バトル\""
   },
   {
    "note": "ordinals: 3rd -> 3位",
@@ -510,6 +345,453 @@
    "note": "short time left (hours)",
    "find": "left` : `${hr}h`; };",
    "replace": "left` : `${hr}時間`; };"
+  },
+  {
+   "note": "Limited Battle days left (long): 残り9日 / 残り5時間",
+   "find": "(long ? `${d} days left`",
+   "replace": "(long ? `残り${d}日`"
+  },
+  {
+   "note": "Limited Battle hours left (long)",
+   "find": "long ? `${hr} hour${hr > 1 ? \"s\" : \"\"} left`",
+   "replace": "long ? `残り${hr}時間`"
+  },
+  {
+   "note": "core/flex preview: 確定枠12 · 自由枠8",
+   "find": "`${cells.length} core \\u00b7 ${nf} flex`",
+   "replace": "`確定枠${cells.length} \\u00b7 自由枠${nf}`"
+  },
+  {
+   "note": "matchup preview: ピカチュウ戦 62%",
+   "find": "`${Math.round(mu[0].p)}% vs ${esc(nameOf(mu[0].o)).split(\" \")[0]}`",
+   "replace": "`${esc(nameOf(mu[0].o)).split(\" \")[0]}戦 ${Math.round(mu[0].p)}%`"
+  },
+  {
+   "note": "top players sheet: 今週の成績",
+   "find": "<p class=\"slg sl2\">Results ${winWk()} <span>",
+   "replace": "<p class=\"slg sl2\">${winWk()}の成績 <span>"
+  },
+  {
+   "note": "top players sheet: dates in the chart 11/14",
+   "find": "`${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}`",
+   "replace": "`${+dy.slice(5, 7)}/${+dy.slice(8)}`"
+  },
+  {
+   "note": "top players sheet: dates in the rows 11/14",
+   "find": "MON[+dt.slice(5, 7) - 1] + \" \" + +dt.slice(8)",
+   "replace": "+dt.slice(5, 7) + \"/\" + +dt.slice(8)"
+  },
+  {
+   "note": "no-top-player sheet: date 11/14",
+   "find": "`${MON[+v.dt.slice(5, 7) - 1]} ${+v.dt.slice(8)}`",
+   "replace": "`${+v.dt.slice(5, 7)}/${+v.dt.slice(8)}`"
+  },
+  {
+   "note": "no-top-player sheet: players tile",
+   "find": "[d.count, \"players\", winWk()]",
+   "replace": "[d.count, \"プレイヤー\", winWk()]"
+  },
+  {
+   "note": "top players tile: tip",
+   "find": "title=\"${T} top players: this list or 1\\u20133 cards swapped\"",
+   "replace": "title=\"上位プレイヤー${T}人：このレシピまたは1〜3枚入れ替え\""
+  },
+  {
+   "note": "top players tile: label",
+   "find": "aria-label=\"Top players: ${T} with this list or 1 to 3 cards swapped, of ${v.of}\"",
+   "replace": "aria-label=\"上位プレイヤー：${v.of}人中${T}人がこのレシピまたは1〜3枚入れ替えで使用\""
+  },
+  {
+   "note": "swap selector: label",
+   "find": "aria-label=\"Show this list or a version with cards swapped\"",
+   "replace": "aria-label=\"このレシピまたは入れ替え版を表示\""
+  },
+  {
+   "note": "swap selector: exact tip and label",
+   "find": "title=\"${ex} top player${ex === 1 ? \"\" : \"s\"} with exactly this list\" aria-label=\"Exact list: ${ex} top player${ex === 1 ? \"\" : \"s\"}\"",
+   "replace": "title=\"完全一致：上位プレイヤー${ex}人\" aria-label=\"完全一致：上位プレイヤー${ex}人\""
+  },
+  {
+   "note": "swap selector: swap tip and label",
+   "find": "title=\"${n} top player${n > 1 ? \"s\" : \"\"} with ${k} card${k > 1 ? \"s\" : \"\"} swapped\" aria-label=\"${n} top player${n > 1 ? \"s\" : \"\"} with ${sw(k)}: show them\"",
+   "replace": "title=\"${k}枚入れ替え：上位プレイヤー${n}人\" aria-label=\"${k}枚入れ替え：上位プレイヤー${n}人を表示\""
+  },
+  {
+   "note": "event: only N% share",
+   "find": "<em>only ${ws.toFixed(ws < 1 ? 2 : 1)}% share ${winWk()}</em>",
+   "replace": "<em>${winWk()}の使用率わずか${ws.toFixed(ws < 1 ? 2 : 1)}%</em>"
+  },
+  {
+   "note": "event: did better line",
+   "find": "`${cnt[id]} lists \\u00b7 best <b>${ordF(best[id])}</b> \\u00b7 ${pc(sh(id))}% share ${winWk()}`",
+   "replace": "`${cnt[id]}レシピ \\u00b7 最高<b>${ordF(best[id])}</b> \\u00b7 ${winWk()}の使用率${pc(sh(id))}%`"
+  },
+  {
+   "note": "event cards: in N% of top players' lists",
+   "find": "`in ${Math.round(t.u * 100)}% of its top players\\u2019 lists ${winWk()}`",
+   "replace": "`${winWk()}、上位プレイヤーのレシピの${Math.round(t.u * 100)}%に採用`"
+  },
+  {
+   "note": "event cards: in no other list",
+   "find": "`in no other top player\\u2019s list ${winWk()}`",
+   "replace": "`${winWk()}、他の上位プレイヤーのレシピにはなし`"
+  },
+  {
+   "note": "ghost row: no public list tip",
+   "find": "title=\"No public decklist ${winLast()} yet\"",
+   "replace": "title=\"${winLast()}の公開レシピなし\""
+  },
+  {
+   "note": "event decks: new (no meta share)",
+   "find": ": \"new\"}</span></button>",
+   "replace": ": \"新登場\"}</span></button>"
+  },
+  {
+   "note": "top 10: new",
+   "find": "(f < 0.05 ? \"new\" : pct(f))",
+   "replace": "(f < 0.05 ? \"新登場\" : pct(f))"
+  },
+  {
+   "note": "matchup tip",
+   "find": "title=\"${Math.round(m.p)}% in ${m.g} games${unsure ? \" (too few to be sure)\" : \"\"}\"",
+   "replace": "title=\"${m.g}戦で${Math.round(m.p)}%${unsure ? \"（データ不足）\" : \"\"}\""
+  },
+  {
+   "note": "likely range tip",
+   "find": "title=\"Likely range: ${lo.toFixed(1)}\\u2013${hi.toFixed(1)}%\"",
+   "replace": "title=\"推定範囲：${lo.toFixed(1)}〜${hi.toFixed(1)}%\""
+  },
+  {
+   "note": "new in top 10 tip",
+   "find": "title=\"New in the top 10 since your last visit\"",
+   "replace": "title=\"前回の訪問以降にトップ10入り\""
+  },
+  {
+   "note": "new since last visit tip",
+   "find": "title=\"New since your last visit\"",
+   "replace": "title=\"前回の訪問以降に追加\""
+  },
+  {
+   "note": "event energy tip",
+   "find": "title=\"Energy in the top ${n}\"",
+   "replace": "title=\"上位${n}名のエネルギー\""
+  },
+  {
+   "note": "search card tip (top players)",
+   "find": "title=\"${esc(c.n)} \\u00b7 ${c.u} top players \\u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
+   "replace": "title=\"${esc(c.n)} \\u00b7 上位プレイヤー${c.u}人 \\u00b7 ${c.decks.size}デッキで使用\""
+  },
+  {
+   "note": "search card label (top players)",
+   "find": "aria-label=\"${c.u} top players\"",
+   "replace": "aria-label=\"上位プレイヤー${c.u}人\""
+  },
+  {
+   "note": "filter card tip",
+   "find": "title=\"${esc(c.n)} \\u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
+   "replace": "title=\"${esc(c.n)} \\u00b7 ${c.decks.size}デッキで使用\""
+  },
+  {
+   "note": "What's new image: A card page: the card, its pack and the ",
+   "find": "alt=\"A card page: the card, its pack and the meta decks that play it\"",
+   "replace": "alt=\"カードのページ：カード、収録パック、そのカードを使う環境デッキ\""
+  },
+  {
+   "note": "What's new image: Two Breakout deck rows with a gold crown",
+   "find": "alt=\"Two Breakout deck rows with a gold crown in place of the rank\"",
+   "replace": "alt=\"順位の代わりに金の王冠が付いた2つの躍進デッキの行\""
+  },
+  {
+   "note": "What's new image: The Top 10 shelf with the middle deck br",
+   "find": "alt=\"The Top 10 shelf with the middle deck bright and the others faded\"",
+   "replace": "alt=\"中央のデッキが明るく、他が薄く表示されたトップ10の棚\""
+  },
+  {
+   "note": "What's new image: An event list foot with the tiles ending",
+   "find": "alt=\"An event list foot with the tiles ending at the bottom of the QR code\"",
+   "replace": "alt=\"タイルがQRコードの下端で終わる大会のレシピの下部\""
+  },
+  {
+   "note": "What's new image: The Booster Packs tab with the Dual Fusi",
+   "find": "alt=\"The Booster Packs tab with the Dual Fusion Pikachu pack open\"",
+   "replace": "alt=\"デュアルフュージョンのピカチュウのパックを開いた「パック」タブ\""
+  },
+  {
+   "note": "What's new image: The Winners shelf and the Most wins pane",
+   "find": "alt=\"The Winners shelf and the Most wins panel\"",
+   "replace": "alt=\"優勝デッキの棚と「優勝が多いデッキ」\""
+  },
+  {
+   "note": "What's new image: The Limited Battle banner with the days ",
+   "find": "alt=\"The Limited Battle banner with the days left\"",
+   "replace": "alt=\"残り日数が表示された限定バトルのバナー\""
+  },
+  {
+   "note": "What's new image: An open deck row with its share button i",
+   "find": "alt=\"An open deck row with its share button in the top right corner\"",
+   "replace": "alt=\"右上に共有ボタンがある、開いたデッキの行\""
+  },
+  {
+   "note": "What's new image: The Top 10 shelf with its pack backdrop ",
+   "find": "alt=\"The Top 10 shelf with its pack backdrop and the Rising and Falling panel\"",
+   "replace": "alt=\"パックを背景にしたトップ10の棚と、上昇・下降の一覧\""
+  },
+  {
+   "note": "What's new image: An open event with its stats on a wide s",
+   "find": "alt=\"An open event with its stats on a wide screen\"",
+   "replace": "alt=\"大きな画面で統計を表示した、開いた大会\""
+  },
+  {
+   "note": "What's new image: An open deck on a wide screen, the list ",
+   "find": "alt=\"An open deck on a wide screen, the list next to its stats\"",
+   "replace": "alt=\"大きな画面で開いたデッキ。レシピの横に統計\""
+  },
+  {
+   "note": "What's new image: The swap selector with the 2-swap versio",
+   "find": "alt=\"The swap selector with the 2-swap versions open\"",
+   "replace": "alt=\"2枚入れ替えのバージョンを開いた入れ替えの選択\""
+  },
+  {
+   "note": "What's new image: The Limited Battle page with its hand-pi",
+   "find": "alt=\"The Limited Battle page with its hand-picked decks\"",
+   "replace": "alt=\"厳選デッキを載せた限定バトルのページ\""
+  },
+  {
+   "note": "What's new image: The deck stats panel: share, win rate, m",
+   "find": "alt=\"The deck stats panel: share, win rate, matchups and the meta map\"",
+   "replace": "alt=\"デッキの統計：使用率、勝率、相性、環境マップ\""
+  },
+  {
+   "note": "What's new image: The Events filter with the 50+, 100+ and",
+   "find": "alt=\"The Events filter with the 50+, 100+ and 200+ chips\"",
+   "replace": "alt=\"50名・100名・200名以上のチップがある大会の絞り込み\""
+  },
+  {
+   "note": "What's new image: A list card with the Popular now chip",
+   "find": "alt=\"A list card with the Popular now chip\"",
+   "replace": "alt=\"「いま人気」のラベルが付いたレシピ\""
+  },
+  {
+   "note": "What's new image: The Top players sheet with its dot chart",
+   "find": "alt=\"The Top players sheet with its dot chart and results\"",
+   "replace": "alt=\"ドットグラフと成績がある上位プレイヤーのシート\""
+  },
+  {
+   "note": "What's new image: A deck row with the Unproven label",
+   "find": "alt=\"A deck row with the Unproven label\"",
+   "replace": "alt=\"「実績なし」のラベルが付いたデッキの行\""
+  },
+  {
+   "note": "What's new image: Deck rows with their rank change badges",
+   "find": "alt=\"Deck rows with their rank change badges\"",
+   "replace": "alt=\"順位の変動バッジが付いたデッキの行\""
+  },
+  {
+   "note": "What's new image: The energy types and the deck chips of t",
+   "find": "alt=\"The energy types and the deck chips of the filter\"",
+   "replace": "alt=\"絞り込みのエネルギーとデッキのチップ\""
+  },
+  {
+   "note": "What's new image: A shared list: its cards, its score, how",
+   "find": "alt=\"A shared list: its cards, its score, how it does today and its QR code\"",
+   "replace": "alt=\"共有されたレシピ：カード、戦績、現在の状況、QRコード\""
+  },
+  {
+   "note": "What's new image: The Live status panel with the last and ",
+   "find": "alt=\"The Live status panel with the last and next check\"",
+   "replace": "alt=\"前回と次回の確認を表示したライブ表示\""
+  },
+  {
+   "note": "What's new image: The banner, the title and the tab band",
+   "find": "alt=\"The banner, the title and the tab band\"",
+   "replace": "alt=\"バナー、タイトル、タブの帯\""
+  },
+  {
+   "note": "What's new image: The Latest Events list with one event op",
+   "find": "alt=\"The Latest Events list with one event open\"",
+   "replace": "alt=\"大会を1つ開いた「最新の大会」\""
+  },
+  {
+   "note": "What's new image: The Show all smaller decks button",
+   "find": "alt=\"The Show all smaller decks button\"",
+   "replace": "alt=\"「小規模デッキをすべて表示」ボタン\""
+  },
+  {
+   "note": "What's new image: The About &amp; FAQ page",
+   "find": "alt=\"The About &amp; FAQ page\"",
+   "replace": "alt=\"「サイトについて・FAQ」のページ\""
+  },
+  {
+   "note": "What's new image: The link preview image of the site",
+   "find": "alt=\"The link preview image of the site\"",
+   "replace": "alt=\"サイトのリンクのプレビュー画像\""
+  },
+  {
+   "note": "What's new image: A list compared with List 1: the 4 swapp",
+   "find": "alt=\"A list compared with List 1: the 4 swapped cards\"",
+   "replace": "alt=\"レシピ1と比較したレシピ：入れ替えた4枚\""
+  },
+  {
+   "note": "What's new image: The top of the Meta deck list",
+   "find": "alt=\"The top of the Meta deck list\"",
+   "replace": "alt=\"最強デッキの一覧の上部\""
+  },
+  {
+   "note": "What's new image: An open deck: its 20 cards, the QR code ",
+   "find": "alt=\"An open deck: its 20 cards, the QR code and the tiles\"",
+   "replace": "alt=\"開いたデッキ：20枚のカード、QRコード、タイル\""
+  },
+  {
+   "note": "What's new image: The card sheet: a larger card with its s",
+   "find": "alt=\"The card sheet: a larger card with its set and pack\"",
+   "replace": "alt=\"カードのシート：大きなカードと拡張パック・収録パック\""
+  },
+  {
+   "note": "What's new image: The search box with the new-card suggest",
+   "find": "alt=\"The search box with the new-card suggestions\"",
+   "replace": "alt=\"新しいカードの候補を表示した検索欄\""
+  },
+  {
+   "note": "label: cards swapped vs list 1",
+   "find": "aria-label=\"${nd} card${nd > 1 ? \"s\" : \"\"} swapped versus list 1\"",
+   "replace": "aria-label=\"レシピ1と比べて${nd}枚入れ替え\""
+  },
+  {
+   "note": "label: pack",
+   "find": "aria-label=\"${esc(x.setName)}${pkSub(x) ? \" \" + esc(pkSub(x)) : \"\"}\"",
+   "replace": "aria-label=\"${esc(x.setName)}${pkSub(x) ? \" \" + esc(pkSub(x)) : \"\"}のパック\""
+  },
+  {
+   "note": "label: list dots",
+   "find": "aria-label=\"Show list ${i + 1} of ${n}${i === 0 ? \" (\" + L1n(d) + \")\" : \"\"}\"",
+   "replace": "aria-label=\"レシピ${i + 1}／${n}を表示\""
+  },
+  {
+   "note": "label: deck stats",
+   "find": "aria-label=\"Deck stats: ${pct(d.share)} share, ${pct(d.win)} win\"",
+   "replace": "aria-label=\"デッキの統計：使用率${pct(d.share)}、勝率${pct(d.win)}\""
+  },
+  {
+   "note": "label: close",
+   "find": "aria-label=\"Close\"",
+   "replace": "aria-label=\"閉じる\"",
+   "all": true
+  },
+  {
+   "note": "label: breakout deck",
+   "find": "aria-label=\"Breakout deck\"",
+   "replace": "aria-label=\"躍進デッキ\""
+  },
+  {
+   "note": "label: lists",
+   "find": "aria-label=\"Lists\"",
+   "replace": "aria-label=\"レシピ\"",
+   "all": true
+  },
+  {
+   "note": "label: event stats",
+   "find": "aria-label=\"Event stats\"",
+   "replace": "aria-label=\"大会の統計\""
+  },
+  {
+   "note": "label: share icon in the install steps",
+   "find": "aria-label=\"Share\" style=\"vertical-align:-2px\"",
+   "replace": "aria-label=\"共有\" style=\"vertical-align:-2px\""
+  },
+  {
+   "note": "alt: card out",
+   "find": "alt=\"${esc(x.out.n)} (out)\"",
+   "replace": "alt=\"${esc(x.out.n)}（抜いたカード）\""
+  },
+  {
+   "note": "label: cards swapped tabs",
+   "find": "role=\"tablist\" aria-label=\"Cards swapped\"",
+   "replace": "role=\"tablist\" aria-label=\"入れ替えたカード\""
+  },
+  {
+   "note": "label: card full screen",
+   "find": "aria-label=\"Show ${esc(n)} full screen\"",
+   "replace": "aria-label=\"${esc(n)}を全画面で表示\""
+  },
+  {
+   "note": "label: Limitless link",
+   "find": "aria-label=\"Score: the original list on Limitless\"",
+   "replace": "aria-label=\"戦績：Limitlessの元のレシピ\""
+  },
+  {
+   "note": "label: open deck",
+   "find": "aria-label=\"Open this deck on the site\"",
+   "replace": "aria-label=\"このデッキをサイトで開く\""
+  },
+  {
+   "note": "label: show QR",
+   "find": "aria-label=\"Show the QR code\"",
+   "replace": "aria-label=\"QRコードを表示\""
+  },
+  {
+   "note": "alt: shared QR",
+   "find": "alt=\"QR code for ${esc(SH.name)}\"",
+   "replace": "alt=\"${esc(SH.name)}のQRコード\"",
+   "all": true
+  },
+  {
+   "note": "label: back to cards",
+   "find": "aria-label=\"Back to the cards\"",
+   "replace": "aria-label=\"カードに戻る\""
+  },
+  {
+   "note": "label: forget shared list",
+   "find": "aria-label=\"Forget this shared list\"",
+   "replace": "aria-label=\"この共有レシピを消す\""
+  },
+  {
+   "note": "alt: QR",
+   "find": "alt=\"QR code for ${esc(d.name)}\"",
+   "replace": "alt=\"${esc(d.name)}のQRコード\""
+  },
+  {
+   "note": "label: previous list",
+   "find": "aria-label=\"Previous list\"",
+   "replace": "aria-label=\"前のレシピ\"",
+   "all": true
+  },
+  {
+   "note": "label: next list",
+   "find": "aria-label=\"Next list\"",
+   "replace": "aria-label=\"次のレシピ\"",
+   "all": true
+  },
+  {
+   "note": "label: deck stats, all lists",
+   "find": "aria-label=\"Deck stats, all lists\"",
+   "replace": "aria-label=\"デッキの統計（全レシピ）\""
+  },
+  {
+   "note": "label: version QR",
+   "find": "aria-label=\"QR code for this version\"",
+   "replace": "aria-label=\"このバージョンのQRコード\""
+  },
+  {
+   "note": "label: cards swapped vs list 1 (sheet)",
+   "find": "aria-label=\"Cards swapped vs ${esc(L1n(d))}\"",
+   "replace": "aria-label=\"${esc(L1n(d))}と比べて入れ替えたカード\""
+  },
+  {
+   "note": "label: card details",
+   "find": "aria-label=\"${esc(c.n)}: card details\"",
+   "replace": "aria-label=\"${esc(c.n)}：カードの詳細\""
+  },
+  {
+   "note": "label: decks without",
+   "find": "aria-label=\"Decks without ${esc(c.n)}\"",
+   "replace": "aria-label=\"${esc(c.n)}を使わないデッキ\"",
+   "all": true
+  },
+  {
+   "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
+   "find": "<p class=\"lbnote\"><b class=\"lbup\">",
+   "replace": "<p class=\"lbn lben\">デッキのメモは英語のみです。</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
   }
- ]
+ ],
+ "_lb": "Limited Battle: deck notes, note labels, the event name and the card pool stay English. Do not add patches for them."
 }

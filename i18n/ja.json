@@ -9,7 +9,7 @@
 ],
 "0105344694": [
 "· {0} player{1}",
-"· {0}人{1!}"
+"· {0}名{1!}"
 ],
 "01182452b1": [
 "In {t0}{0}{t1} meta deck{1}",
@@ -33,7 +33,7 @@
 ],
 "028fddc250": [
 "Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.",
-"人気{t0}：最も多くの上位プレイヤーがまったく同じ形で使ったレシピです（3人以上、かつ他のどのレシピより2人以上多い）。一番使われているレシピが一番強いとは限りません。成績と他のレシピも見てください。"
+"いま人気{t0}：最も多くの上位プレイヤーがまったく同じ形で使ったレシピです（3人以上、かつ他のどのレシピより2人以上多い）。一番使われているレシピが一番強いとは限りません。戦績と他のレシピも見てください。"
 ],
 "029205c659": [
 "A Pokéball in the corner of the QR logo, on the site, the saved QR images and the app icon.",
@@ -61,7 +61,7 @@
 ],
 "045b64f6a3": [
 "Top 4",
-"上位4"
+"ベスト4"
 ],
 "0575b7b5d6": [
 "days left",
@@ -69,7 +69,7 @@
 ],
 "05a0b1c0a2": [
 "See which booster pack gives the cards of this week’s meta decks, and which decks play each card.",
-"今週の環境デッキのカードがどの拡張パックから出るか、各カードをどのデッキが使っているかがわかります。"
+"今週の環境デッキのカードがどのパックから出るか、各カードをどのデッキが使っているかがわかります。"
 ],
 "06ac8d6ac7": [
 "a deck",
@@ -112,7 +112,7 @@
 ],
 "0cae74747c": [
 "Exact",
-"同じ"
+"完全一致"
 ],
 "0e0987ccae": [
 "Nov 16, 2026",
@@ -156,7 +156,7 @@
 ],
 "10ab7e88e4": [
 "(all {0} together {1}, {2}%)",
-"（{0}人合計{1}、{2}%）"
+"（{0}人の合計{1}、勝率{2}%）"
 ],
 "10c23975d7": [
 "win{0}",
@@ -188,7 +188,7 @@
 ],
 "1385294543": [
 "×N: share here vs {0} · top 8s at other events",
-"×N：この大会での使用率と{0}の比較 · 他の大会でのベスト8入り"
+"×N：この大会での使用率と{0}の使用率の比較 · 他の大会でのベスト8入り"
 ],
 "13d4b964c6": [
 "One event is {t0}{0}%{t1} of these results, so it moves the numbers more than usual.",
@@ -212,11 +212,11 @@
 ],
 "158436f0e7": [
 "This link is broken or was changed",
-"このリンクは壊れているか、変更されています"
+"このリンクは無効か、変更されています"
 ],
 "166c895601": [
 "top {0} vs",
-"上位{0}名 対"
+"上位{0}名 vs"
 ],
 "168e4932a6": [
 "Deck",
@@ -268,7 +268,7 @@
 ],
 "1c1a3f0a7e": [
 "Score{0}",
-"成績{0}"
+"戦績{0}"
 ],
 "1cc15542b5": [
 "No top result",
@@ -309,10 +309,6 @@
 "1fd840594a": [
 "This{t0}List",
 "この{t0}レシピ"
-],
-"206374cef8": [
-"Only cards from {t0}Dual Fusion{t1} (C1), the {t2}Promo-C Vol. 1{t3} pack of this event, and these 7 shop promos:",
-"{t0}Dual Fusion{t1}（C1）、このイベントの{t2}Promo-C Vol. 1{t3}パック、そしてショップのプロモ7枚のカードだけ："
 ],
 "20e3fe935b": [
 "Nov 15, 2026",
@@ -378,10 +374,6 @@
 "Show {0} older update{1}",
 "以前の更新{0}件{1!}を表示"
 ],
-"24adf89e1b": [
-"Hand-picked decks with QR codes for the Dual Fusion Limited Battle, with notes on why each one works.",
-"デュアルフュージョン限定バトル向けに厳選したデッキをQRコード付きで掲載。それぞれの強みのメモ付きです。"
-],
 "24ea1f77f4": [
 "Last change",
 "前回の更新"
@@ -396,7 +388,7 @@
 ],
 "262e0e8a01": [
 "(last seen {0})",
-"（最後に見たのは{0}）"
+"（最後の登場：{0}）"
 ],
 "26b1ca6b96": [
 "Card details",
@@ -440,7 +432,7 @@
 ],
 "295df348e1": [
 "“1 player”, not “1 players”.",
-"英語版で「1 players」ではなく「1 player」と表示するようにしました。"
+"人数の表記を修正しました。"
 ],
 "2a08f40ca1": [
 "Ranks are compared with the data of 24 h earlier.",
@@ -504,7 +496,7 @@
 ],
 "30d4653f8e": [
 "▲ = at least 2&times; its meta share in this event's top {0}.",
-"▲ ＝ この大会の上位{0}名で、環境の使用率の2&times;以上。"
+"▲ ＝ この大会の上位{0}名で、環境の使用率の2倍以上。"
 ],
 "311bee6a56": [
 "Copy the address",
@@ -628,15 +620,15 @@
 ],
 "3b9f38b850": [
 "▲ Up {0} place{1}{t0}: {t1}{2}{t2} 24 h ago, now {t3}{3}{t4}.",
-"▲ {0}位上昇{1!}{t0}：24時間前{t1}{2}{t2}、現在{t3}{3}{t4}。"
+"▲ 順位が{0}つ上昇{1!}{t0}：24時間前{t1}{2}{t2}、現在{t3}{3}{t4}。"
 ],
 "3bf7457bfd": [
 "results · {t0}{0}{t1} player{1} · {t2}{2}{t3} event{3}",
-"件の成績 · {t0}{0}{t1}人{1!} · {t2}{2}{t3}大会{3!}"
+"件の成績 · {t0}{0}{t1}名{1!} · {t2}{2}{t3}大会{3!}"
 ],
 "3c041c3212": [
 "Filter by energy, or with the chips No ex, Rising, New and the new set’s cards. New finds the decks that just entered the list, marked with a gold ✦. A card in the search also has “Without”: the decks that do not play it. Dark mode is on the moon button.",
-"エネルギーや、「exなし」「上昇」「新登場」「新パックのカード」のチップで絞り込めます。「新登場」では、ランキングに入ったばかりのデッキ（金色の✦付き）が見つかります。検索でカードを選ぶと「なし」も選べ、そのカードを使わないデッキを表示します。ダークモードは月のボタンで切り替えます。"
+"エネルギーや、「exなし」「上昇」「新登場」「新パックのカード」のチップで絞り込めます。「新登場」では、ランキングに入ったばかりのデッキ（金色の✦付き）が見つかります。検索でカードを選ぶと「除外」も選べ、そのカードを使わないデッキを表示します。ダークモードは月のボタンで切り替えます。"
 ],
 "3cc8e39b82": [
 "Tap {t0}Add{t1}.",
@@ -660,7 +652,7 @@
 ],
 "3d506b84fd": [
 "New in the list (the first time since the set came out, for 3 days) and Breakout decks (a rare deck with a top-8 finish at a big event)",
-"リストに新登場したデッキ（拡張パックの発売以降で初めて、3日間）と躍進デッキ（大きな大会でベスト8に入った珍しいデッキ）"
+"ランキングに新登場したデッキ（拡張パックの発売以降で初めて、3日間）と躍進デッキ（大きな大会でベスト8に入った珍しいデッキ）"
 ],
 "3d81bd05a3": [
 "All packs",
@@ -680,7 +672,7 @@
 ],
 "3f98ce935b": [
 "Every deck gets its share, win rate and rank from public Limitless tournaments of the last days. The win rate counts real matches only: no byes, no mirror matches.",
-"各デッキの使用率・勝率・順位は、直近のLimitlessの公開大会から集計します。勝率は実際の対戦だけを数え、不戦勝とミラーマッチは含みません。"
+"各デッキの使用率・勝率・順位は、直近のLimitlessの公開大会から集計します。勝率は実際の対戦だけを数え、不戦勝とミラー対戦は含みません。"
 ],
 "41ce3c6eaf": [
 "1 card",
@@ -688,7 +680,7 @@
 ],
 "41e4e149fd": [
 "(too few to be sure)",
-"（少なくて確かではありません）"
+"（データ不足）"
 ],
 "41e97088bb": [
 "Promo card, not from a booster pack",
@@ -728,7 +720,7 @@
 ],
 "47bd6e0200": [
 "Up in rank in the last 24 hours, or new in the list",
-"直近24時間で順位が上がったデッキ、またはリストに新登場したデッキ"
+"直近24時間で順位が上がったデッキ、またはランキングに新登場したデッキ"
 ],
 "4816b7397c": [
 "A link to the site shows a preview card in Reddit, Discord and chat apps.",
@@ -740,11 +732,11 @@
 ],
 "489f487724": [
 "Score",
-"成績"
+"戦績"
 ],
 "48d61bdd8b": [
 "Is it free?",
-"無料？"
+"無料で使える？"
 ],
 "48d6857f6b": [
 "Breakout",
@@ -852,7 +844,7 @@
 ],
 "532297d7bc": [
 "Top 16",
-"上位16"
+"ベスト16"
 ],
 "5351e118ae": [
 "Updated {0}.{t0} Ranked best first, from our testing so far (it can change). Deck notes made with help from {t1}GameWith{t2}.",
@@ -916,7 +908,7 @@
 ],
 "56bcd8fe54": [
 "New{t0}: the first time this deck is in the list since {0} came out. The tag shows for 3 days.",
-"新登場{t0}：{0}の発売以降、このデッキが初めてリストに入りました。この表示は3日間です。"
+"新登場{t0}：{0}の発売以降、このデッキが初めてランキングに入りました。この表示は3日間です。"
 ],
 "56ded40877": [
 "Safari on Mac:{t0} File &rarr; {t1}Add to Dock{t2}.",
@@ -980,7 +972,7 @@
 ],
 "5ec8f71f27": [
 "Rank {0}.",
-"順位{0}。"
+"{0}位。"
 ],
 "5f0a456c00": [
 "Meta Decks",
@@ -1072,7 +1064,7 @@
 ],
 "685757d9ff": [
 "Not in the list 24 h ago. Now {t0}{0}{t1}.",
-"24時間前はリストにありませんでした。現在{t0}{0}{t1}。"
+"24時間前はランキングにありませんでした。現在{t0}{0}{t1}。"
 ],
 "68836c550e": [
 "Core",
@@ -1088,7 +1080,7 @@
 ],
 "699c230b55": [
 "Under every list, the QR code, tiles and buttons line up with the cards above them. On event lists, the Energy and Score tiles are shorter, so the tiles end with the QR code.",
-"各レシピの下で、QRコード・タイル・ボタンが上のカードとそろうようにしました。大会のレシピでは、エネルギーと成績のタイルを短くし、タイルがQRコードの位置で終わります。"
+"各レシピの下で、QRコード・タイル・ボタンが上のカードとそろうようにしました。大会のレシピでは、エネルギーと戦績のタイルを短くし、タイルがQRコードの位置で終わります。"
 ],
 "69b8c08eae": [
 "Did worse",
@@ -1192,7 +1184,7 @@
 ],
 "70b8058643": [
 "stayed {t0}#{0}",
-"{t0}#{0}のまま"
+"{t0}{0}位のまま"
 ],
 "719ea396ad": [
 "Clear",
@@ -1212,7 +1204,7 @@
 ],
 "72f2b0dfa1": [
 "Shared with you",
-"あなたに共有されました"
+"共有されたレシピ"
 ],
 "73eace3aa6": [
 "All packs{t0} &middot;",
@@ -1256,7 +1248,7 @@
 ],
 "769a2e5ffd": [
 "Unproven and No top result",
-"「実績なし」の表示"
+"「実績なし」と「上位入賞なし」の表示"
 ],
 "769e229569": [
 "years ago",
@@ -1300,7 +1292,7 @@
 ],
 "79f4d6da67": [
 "No events {0} yet.",
-"{0}まだ大会はありません。"
+"{0}の大会はまだありません。"
 ],
 "7a2b42f199": [
 "Tweaks: 1 or 2 cards changed",
@@ -1313,10 +1305,6 @@
 "7bd938bc58": [
 "Add to Home Screen",
 "ホーム画面に追加"
-],
-"7c0a25c06e": [
-"up",
-"成績"
 ],
 "7c1c47bb8c": [
 "Most meta",
@@ -1420,7 +1408,7 @@
 ],
 "857fa3b382": [
 "List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. {t0}&#9733; Popular now{t1} marks a list 1 that clearly more top players used exactly than any other list.",
-"デッキのレシピ1は、最も多くの上位プレイヤーが使ったレシピです。入れ替えが1〜3枚だけのレシピはこれに含めます。レシピの下のタイルに、まったく同じレシピまたは1〜3枚の入れ替えで使った上位プレイヤーの人数を表示します（タイルをタップすると、それぞれQRコード付きでそのバージョンを見られます）。4枚以上入れ替えたレシピは、2人以上の上位プレイヤーが使ったとき、または32人以上の大会で1人がベスト8に入ったときに、別のレシピとして表示します。{t0}&#9733; 人気{t1}は、まったく同じレシピを使った上位プレイヤーが他のどのレシピよりもはっきり多いレシピ1の印です。"
+"デッキのレシピ1は、最も多くの上位プレイヤーが使ったレシピです。入れ替えが1〜3枚だけのレシピはこれに含めます。レシピの下のタイルに、まったく同じレシピまたは1〜3枚の入れ替えで使った上位プレイヤーの人数を表示します（タイルをタップすると、それぞれQRコード付きでそのバージョンを見られます）。4枚以上入れ替えたレシピは、2人以上の上位プレイヤーが使ったとき、または32人以上の大会で1人がベスト8に入ったときに、別のレシピとして表示します。{t0}&#9733; いま人気{t1}は、まったく同じレシピを使った上位プレイヤーが他のどのレシピよりもはっきり多いレシピ1の印です。"
 ],
 "861edba005": [
 "Suggestions",
@@ -1436,7 +1424,7 @@
 ],
 "8799002486": [
 "Which Pokémon TCG Pocket Pack to Open ({0}) | Pocket Meta QR",
-"ポケポケで開けるべきパック（{0}）| Pocket Meta QR"
+"ポケポケで引くべきパック（{0}）| Pocket Meta QR"
 ],
 "87d370a29e": [
 "match win rate; a tie counts as half a win. Mirror matches are not counted.{0}",
@@ -1456,7 +1444,7 @@
 ],
 "88c70db626": [
 ", and {t0}{0}{t1} more with 1 to 3 cards swapped{1}",
-"、さらに{t0}{0}{t1}人が1〜3枚入れ替え{1}"
+"、さらに{t0}{0}{t1}人が1〜3枚入れ替えて使用{1}"
 ],
 "8924cc152b": [
 "Which days count?",
@@ -1464,11 +1452,7 @@
 ],
 "892ce04a73": [
 "A top result: at least 2 more wins than losses at an event {0}.",
-"上位の成績：{0}大会で勝ち数が負け数より2以上多いこと。"
-],
-"893572be77": [
-"Dual Fusion, Promo-C Vol. 1 and 7 shop promos",
-"Dual Fusion、Promo-C Vol. 1、ショップのプロモ7枚"
+"上位の成績：{0}の大会で勝ち数が負け数より2以上多いこと。"
 ],
 "899e85d0d1": [
 "A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.",
@@ -1527,7 +1511,7 @@
 ],
 "8eaf38d66f": [
 "Top 32",
-"上位32"
+"ベスト32"
 ],
 "8f6b90919f": [
 ": decks that use it",
@@ -1559,11 +1543,11 @@
 ],
 "9342efff03": [
 "· {0} players",
-"· {0}人"
+"· {0}名"
 ],
 "9364147f96": [
 "Booster Packs tab",
-"拡張パックのタブ"
+"「パック」タブ"
 ],
 "93897fabdc": [
 "Small fixes",
@@ -1575,7 +1559,7 @@
 ],
 "953d4f3666": [
 "A {t0}top player{t1} won at least 2 more matches than they lost (ties do not count) at a single-deck event {0}.",
-"{t0}上位プレイヤー{t1}とは、{0}1人1デッキの大会で、勝った対戦が負けより2以上多いプレイヤーです（引き分けは数えません）。"
+"{t0}上位プレイヤー{t1}とは、{0}の1人1デッキの大会で、勝った対戦が負けより2以上多いプレイヤーです（引き分けは数えません）。"
 ],
 "95d5a43fa7": [
 "Nov 14, 2026",
@@ -1591,7 +1575,7 @@
 ],
 "96c12df622": [
 "swap{0}",
-"入れ替え{0!}"
+"枚入れ替え{0!}"
 ],
 "96e7f0180e": [
 "Share links that keep the list",
@@ -1607,7 +1591,7 @@
 ],
 "972758b2df": [
 "A rare deck (under 0.2% share {0}) with a top-8 finish at a big event (128+ players): {t0}{1}{t1}.",
-"大きな大会（128人以上）でベスト8に入った、使用率0.2%未満{0}の珍しいデッキ：{t0}{1}{t1}。"
+"大きな大会（128人以上）でベスト8に入った、{0}の使用率が0.2%未満の珍しいデッキ：{t0}{1}{t1}。"
 ],
 "97fe84b71c": [
 "has instead:",
@@ -1615,7 +1599,7 @@
 ],
 "9843ef2356": [
 "All events{t0} &middot; {0} &middot; {1} players",
-"全大会{t0} &middot; {0} &middot; {1}人"
+"全大会{t0} &middot; {0} &middot; {1}名"
 ],
 "984bbca8a1": [
 "Pokémon TCG Pocket deck",
@@ -1671,7 +1655,7 @@
 ],
 "9eaea27829": [
 "An event shows here {t0}after it ends{t1}, usually a few hours after it starts. It is listed under the day it was played (your time), so a new event can show under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.",
-"大会は{t0}終了後に{t1}表示され、たいてい開始から数時間後です。開催日（あなたの時間）の下に並ぶため、新しい大会が「昨日」の下に出ることがあります。「N時間前に追加」の表示を見てください。"
+"大会は{t0}終了後に{t1}表示され、たいてい開始から数時間後です。開催日（端末の時刻）の下に並ぶため、新しい大会が「昨日」の下に出ることがあります。「N時間前に追加」の表示を見てください。"
 ],
 "9ec76bfa7e": [
 "Yes: no ads and no sign-up. No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter). This browser keeps only your theme and the last tab you used.",
@@ -1783,7 +1767,7 @@
 ],
 "a845d3d476": [
 "{0}Popular now",
-"{0}人気"
+"{0}いま人気"
 ],
 "a9a48e26e0": [
 "A deck plays a card when half or more of its lists play it. A {t0}meta card{t1} is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded, with “small” under them, and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.",
@@ -1823,7 +1807,7 @@
 ],
 "acfa231857": [
 "Decks with 30+ players {0}: share against win rate. Lines: the median share and 50% win rate.",
-"{0}30人以上のデッキ：使用率と勝率の関係。線は使用率の中央値と勝率50%です。"
+"{0}の使用者が30人以上のデッキ：使用率と勝率の関係。線は使用率の中央値と勝率50%です。"
 ],
 "ad0938bfaf": [
 "The 10 decks played most {0}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.",
@@ -1859,7 +1843,7 @@
 ],
 "b1142f7843": [
 "Not on the map yet: fewer than 30 players {0} (too few to place it).",
-"まだマップにありません：{0}30人未満のため、位置を決められません。"
+"まだマップにありません：{0}の使用者が30人未満のため、位置を決められません。"
 ],
 "b139b7fa68": [
 "New event stats",
@@ -1959,7 +1943,7 @@
 ],
 "ba79e67b9b": [
 "{0}Popular now{1}",
-"{0}人気{1}"
+"{0}いま人気{1}"
 ],
 "bb6a897f64": [
 "Improved",
@@ -1967,7 +1951,7 @@
 ],
 "bbb2de672e": [
 "· {0} share · {1} win · {2} players",
-"· 使用率{0} · 勝率{1} · {2}人"
+"· 使用率{0} · 勝率{1} · {2}名"
 ],
 "bbfa773e5a": [
 "Close",
@@ -2087,7 +2071,7 @@
 ],
 "c8d3756e45": [
 "cards",
-"カード"
+"「パック」ページを開く"
 ],
 "c93fd9c78b": [
 "7-day trend",
@@ -2095,7 +2079,7 @@
 ],
 "c95db6211f": [
 "Meta decks{t0}{t1}Latest tournaments{t2}{t3}Which pack to open{t4}{t5}Limited Battle",
-"最強デッキ{t0}{t1}最新の大会{t2}{t3}開けるべきパック{t4}{t5}限定バトル"
+"最強デッキ{t0}{t1}最新の大会{t2}{t3}引くべきパック{t4}{t5}限定バトル"
 ],
 "c9929a6b53": [
 "players won more than they lost with this deck {0}, but none reached a top result. This is the best of them.",
@@ -2127,7 +2111,7 @@
 ],
 "cd708dcb83": [
 "Top player: at least 2 more wins than losses at an event {0}.",
-"上位プレイヤー：{0}大会で勝ち数が負け数より2以上多いプレイヤー。"
+"上位プレイヤー：{0}の大会で勝ち数が負け数より2以上多いプレイヤー。"
 ],
 "cdc3ce9c70": [
 "Top 10 packs",
@@ -2159,7 +2143,7 @@
 ],
 "d0bca8f3af": [
 "went from #{0} to {t0}#{1}",
-"#{0} → {t0}#{1}"
+"{0}位 → {t0}{1}位"
 ],
 "d120d8a5a7": [
 "player{0}",
@@ -2231,7 +2215,7 @@
 ],
 "d82857eb60": [
 "Exact list",
-"まったく同じレシピ"
+"完全一致"
 ],
 "d878b544f3": [
 "Breakout decks",
@@ -2267,7 +2251,7 @@
 ],
 "da7ea14ea7": [
 "{0}× · {1} player{2}",
-"{0}× · {1}人{2!}"
+"{0}× · {1}名{2!}"
 ],
 "da8f262b50": [
 "{0}: top lists – Pocket Meta QR",
@@ -2287,11 +2271,11 @@
 ],
 "dbd6a35e83": [
 "new in the list",
-"リストに新登場"
+"ランキングに新登場"
 ],
 "dc0d22645d": [
 "2&times; meta share",
-"環境の使用率の2&times;"
+"環境の使用率の2倍"
 ],
 "dc6066a3a3": [
 "Search a deck or card",
@@ -2307,7 +2291,7 @@
 ],
 "dde3707865": [
 "Above meta",
-"環境以上"
+"環境比2倍以上"
 ],
 "de04fa0e29": [
 "of",
@@ -2319,7 +2303,7 @@
 ],
 "deb2079c55": [
 "▼ Down {0} place{1}{t0}: {t1}{2}{t2} 24 h ago, now {t3}{3}{t4}.",
-"▼ {0}位下降{1!}{t0}：24時間前{t1}{2}{t2}、現在{t3}{3}{t4}。"
+"▼ 順位が{0}つ下降{1!}{t0}：24時間前{t1}{2}{t2}、現在{t3}{3}{t4}。"
 ],
 "decd7ca800": [
 "Latest",
@@ -2359,7 +2343,7 @@
 ],
 "e16297c400": [
 "Checked every hour. The numbers change only when a new event is added. Times are in your time zone.",
-"1時間ごとに確認しています。数値は新しい大会が追加されたときだけ変わります。時刻はあなたのタイムゾーンです。"
+"1時間ごとに確認しています。数値は新しい大会が追加されたときだけ変わります。時刻はお使いの端末のタイムゾーンで表示します。"
 ],
 "e2caee56cc": [
 "Event names keep short codes like PMPT in capitals.",
@@ -2399,7 +2383,7 @@
 ],
 "e6ba8f5770": [
 "Colours, shadows, the tab band and the banner now follow the style of Pokémon TCG Pocket. On Nov 21 it got a lighter look with a teal accent.",
-"色・影・タブの帯・バナーを『ポケポケ』のスタイルに合わせました。11月21日には、ティールのアクセントカラーで明るい見た目になりました。"
+"色・影・タブの帯・バナーを『ポケポケ』のスタイルに合わせました。11月21日には、青緑のアクセントカラーで明るい見た目になりました。"
 ],
 "e710900662": [
 "Hand-picked",
@@ -2499,7 +2483,7 @@
 ],
 "f22a80a34b": [
 "Which booster packs give the cards of the meta decks {0}.",
-"{0}環境デッキのカードが出るパックです。"
+"{0}の環境デッキのカードが出るパックです。"
 ],
 "f2335414bf": [
 "multi-deck event{0} (players bring more than one deck) {1} not listed: their results do not show which deck won each match.",
@@ -2511,7 +2495,7 @@
 ],
 "f33788fa9c": [
 "top players used this deck; {t0}{0}{t1} used exactly this list{1}{2}.",
-"人の上位プレイヤーがこのデッキを使い、{t0}{0}{t1}人がまったく同じレシピ{1}{2}。"
+"人の上位プレイヤーがこのデッキを使い、{t0}{0}{t1}人がまったく同じレシピを使用{1}{2}。"
 ],
 "f383cb9878": [
 ", and their place:",
@@ -2547,7 +2531,7 @@
 ],
 "f744f6ce38": [
 "Did not load. Swipe away and back.",
-"読み込めませんでした。スワイプして戻してください。"
+"読み込めませんでした。一度スワイプで閉じて、もう一度開いてください。"
 ],
 "f7e42baf96": [
 "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the set&rsquo;s release.",
@@ -2555,7 +2539,7 @@
 ],
 "f83481bd50": [
 "– {0} (your time)",
-"〜{0}（あなたの時間）"
+"〜{0}（端末の時刻）"
 ],
 "f8515d5350": [
 "&middot; Data: {t0}Limitless TCG{t1},",
