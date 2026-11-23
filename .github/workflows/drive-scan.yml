@@ -1,0 +1,24 @@
+name: Drive scan (manual)
+# Lists the public TCGPocket Drive folder (names only) to find assets, e.g. localized pack images.
+on:
+  workflow_dispatch:
+    inputs:
+      pattern: { description: "regex for file names", default: "pack", required: false }
+      folder: { description: "start folder id (empty = TCGPocket root)", default: "", required: false }
+      depth: { description: "max folder depth", default: "6", required: false }
+permissions: { contents: read }
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Scan
+        env: { GDRIVE_API_KEY: "${{ secrets.GDRIVE_API_KEY }}" }
+        run: |
+          python tools/drive_scan.py "${{ inputs.pattern }}" "${{ inputs.folder }}" "${{ inputs.depth }}" | tee scan.log
+          { echo '```'; head -c 60000 drive_scan.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with: { name: drive-scan, path: drive_scan.txt }
