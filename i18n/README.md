@@ -26,7 +26,12 @@ A language can skip a section for now. `EN_ONLY` in `preview/i18n_patch.py` list
 
 - `es`: What's new and Limited Battle are in English (not in `es.json`).
 - `de`: What's new is in English.
-- `pt`: What's new and Limited Battle are in English (not in `pt.json`).
+- `pt`: What's new is in English. Limited Battle: the fixed parts are translated, the deck notes stay English (like ja).
+
+`enOnly` in `config.json` (Nov 24): the ids of static HTML sections that `build.mjs` leaves in English per language
+(`nwl` = the What's new list). Without it, What's new headlines that are also texts elsewhere ("Breakout decks", the
+New / Improved tags) were translated and the section was half English, half translated. Text made by the page script
+(Limited Battle) cannot be skipped this way.
 
 Spanish (es, Nov 23): live as beta at `/es/` (noindex, like `/ja/`; `I18N_LIVE: "ja es"` in site.yml, `LIVE_L` in
 `preview/i18n_patch.py`), with the Beta tag in the language menu. Terms: baraja, lista, jugadores top,
@@ -46,12 +51,16 @@ Spanish rules (agreed with the owner, Nov 23, 2026; the game has Spain Spanish o
 Brazilian Portuguese (pt, Nov 23): `/preview/pt/` only (not in the menu). Made from the reviewed Spanish: the same
 552 texts and the same 164 code changes (`pt.code.json`), in Portuguese. `<html lang="pt-BR">`; names from the
 database key `pt-br` (`pipeline/i18n_names.mjs`, SRC). Terms (the game's own: Baralhos de Aluguel, Pacotes de Booster):
-baralho, lista, jogadores top, uso, % de vitórias, torneio, pacote, coleção, cartas fixas / flexíveis, saldo (Score),
-posição (rank), lugar (place in an event). Numbers: 12,0% (decimal comma, no space before %); ranks 1º, 3º de 110;
+baralho, lista, jogadores top, uso, % de vitórias, torneio, pacote, coleção, cartas fixas / flexíveis, campanha (Score
+and a record 10-2-0; "com saldo positivo" = a winning record), posição (rank), lugar (place in an event). Numbers: 12,0% (decimal comma, no space before %); ranks 1º, 3º de 110;
 dates 14/11 in small cells; relative há 5 min, hoje, ontem. Plurals: jogador + "es" (the same code patches as es).
 Checked with the owner (Nov 24): the game menu path (Meus baralhos → + → Escanear código → Escanear imagem salva),
 energy names (Planta, Fogo, Água, Raios, Psíquico, Luta, Escuridão, Metal, Incolor, Dragão), A3b = Bosque dos Eevee
 (names.fix.json; the database has the A3 name there).
+Review (Nov 24): "Share" alone = the meta share (Uso; the share button has its own code patch); "this week" = nesta
+semana (it follows a noun or a verb: "Resultados nesta semana", "top 32 vs. o meta nesta semana"); event stats "Acima /
+Abaixo do esperado"; "Série A · as coleções anteriores"; "3º maior de 12 torneios"; numbers ▲1,9 and ±2,8 (fx);
+relative times always "há …" (also the Limited Battle "Atualizado em …"). Pokémon names stay as in English (the game).
 
 ## Rules for a translation
 - Keep every `{n}` once and every `{tn}` (order may change). `{n!}` = the code still runs but shows nothing (an English

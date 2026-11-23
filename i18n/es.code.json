@@ -795,6 +795,26 @@
    "replace": "'<span class=\"newb\" title=\"Nuevo desde tu última visita\">NUEVO</span>'"
   },
   {
+   "note": "numbers: share tile, 7-day change ▲1,9",
+   "find": "${sD > 0 ? \"\\u25b2\" : \"\\u25bc\"}${Math.abs(sD).toFixed(1)}</span>",
+   "replace": "${sD > 0 ? \"\\u25b2\" : \"\\u25bc\"}${fx(Math.abs(sD), 1)}</span>"
+  },
+  {
+   "note": "numbers: win rate ±2,8",
+   "find": "\\u00b1${hw.toFixed(1)}",
+   "replace": "\\u00b1${fx(hw, 1)}"
+  },
+  {
+   "note": "sobres: Serie A · las expansiones anteriores",
+   "find": "<span>${esc(ser)} series &middot; the older sets</span>",
+   "replace": "<span>Serie ${esc(ser)} &middot; las expansiones anteriores</span>"
+  },
+  {
+   "note": "Limited Battle: updated … (hace 5 días)",
+   "find": "`${m} min ago` : h < 24 ? `${h} h ago` : `${d} day${d > 1 ? \"s\" : \"\"} ago`",
+   "replace": "`hace ${m} min` : h < 24 ? `hace ${h} h` : `hace ${d} día${d > 1 ? \"s\" : \"\"}`"
+  },
+  {
    "note": "plural: jugador / jugadores (player${T === 1 ? \"\" : \"s\"})",
    "find": "player${T === 1 ? \"\" : \"s\"}",
    "replace": "player${T === 1 ? \"\" : \"es\"}",
