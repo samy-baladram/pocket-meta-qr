@@ -1021,6 +1021,26 @@
    "replace": "`${fdate(set.release)}発売`"
   },
   {
+   "note": "time: Live panel newest event (土) 9:05",
+   "find": "new Date(e.ts).toLocaleString(\"ja-JP\", { weekday: \"short\", hour: \"2-digit\", minute: \"2-digit\" })",
+   "replace": "`(${new Date(e.ts).toLocaleDateString(\"ja-JP\", { weekday: \"short\" })}) ${new Date(e.ts).toLocaleTimeString(\"ja-JP\", { hour: \"numeric\", minute: \"2-digit\" })}`"
+  },
+  {
+   "note": "time: 9:05 (no leading zero)",
+   "find": "toLocaleTimeString(\"ja-JP\", { hour: \"2-digit\", minute: \"2-digit\" })",
+   "replace": "toLocaleTimeString(\"ja-JP\", { hour: \"numeric\", minute: \"2-digit\" })"
+  },
+  {
+   "note": "date: pack release, year only when not this year",
+   "find": "toLocaleDateString(\"ja-JP\", { month: \"short\", day: \"numeric\", year: \"numeric\" })",
+   "replace": "toLocaleDateString(\"ja-JP\", { month: \"short\", day: \"numeric\", year: new Date(s + \"T00:00:00\").getFullYear() !== new Date().getFullYear() ? \"numeric\" : undefined })"
+  },
+  {
+   "note": "date: What's new headings 11月23日 (year only when not this year)",
+   "find": "let nwSeen = () => {};",
+   "replace": "let nwSeen = () => {}; document.querySelectorAll(\".nwdt time[datetime]\").forEach((t) => { const d = new Date(t.dateTime + \"T00:00:00Z\"); t.textContent = d.toLocaleDateString(\"ja-JP\", { month: \"long\", day: \"numeric\", year: d.getUTCFullYear() !== new Date().getFullYear() ? \"numeric\" : undefined, timeZone: \"UTC\" }); });"
+  },
+  {
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
    "find": "<p class=\"lbnote\"><b class=\"lbup\">",
    "replace": "<p class=\"lbn lben\">デッキのメモは英語のみです。</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
