@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795400030-a3cb -->
+<!-- ui: artifact version 1795404601-fb63 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1278,6 +1278,11 @@ html { -webkit-tap-highlight-color: transparent; }
 /* the tiles fill the QR box height (2 rows); the event name can use 2 lines */
 .sfoot > .info { align-self: stretch; align-content: stretch; grid-template-rows: 1fr 1fr; } .sfoot > .info > .tile { display: flex; flex-direction: column; justify-content: center; }
 .sfoot > .info .t-ev .ev { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+/* Nov 23: event lists: the tiles end with the QR (the QR sets the height: contain: size); the Deck tile (3 lines) keeps its height, Energy and Score take the rest (tighter) */
+.slide.evs > .sfoot > .info { grid-template-rows: minmax(0, 1fr) auto; contain: size; }
+.slide.evs > .sfoot > .info > .t-en, .slide.evs > .sfoot > .info > .t-sc { padding-block: 3px; }
+.slide.evs > .sfoot > .info > .t-dk { padding-block: 5px; }
+.slide.evs > .sfoot .t-en .energy img { width: 22px; height: 22px; }
 :root .swt > .swl.altb { cursor: pointer; }
 :root .swt .dcar, :root .swt .spch { display: none; position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; margin: 0; color: inherit; opacity: 0.6; }
 :root .swt > .swl.altb[aria-expanded="true"] { background: none; } :root .swt > .swl.altb[aria-expanded="true"] .dcar { transform: rotate(180deg); }
@@ -2041,6 +2046,9 @@ a.dkev { text-decoration: none; }
   background: #ffffff; box-shadow: 0 1px 2px rgba(var(--sh), calc(0.18 * var(--shk))); font-family: var(--font-display); font-variant-numeric: tabular-nums; pointer-events: none;
   transition: transform var(--t-slow) ease; transform-origin: top left; }
 .rb.rbt { pointer-events: auto; cursor: pointer; }
+.rb.rb.rbk { align-items: center; padding: 0 5px; background: color-mix(in srgb, #e8b52e 24%, #ffffff); } .rb.rbk .brki { top: 0; width: 15px; height: 11.5px; } /* Nov 23: Breakout deck: the crown, no rank number */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rb.rb.rbk { background: color-mix(in srgb, #e3b25a 22%, #2a3242); } }
+:root[data-theme="dark"] .rb.rb.rbk { background: color-mix(in srgb, #e3b25a 22%, #2a3242); }
 .rb .rn { position: relative; display: grid; place-items: center; min-width: 18px; padding: 0 3px 0 4px; font-weight: 700; font-size: 13px; color: #66758a; line-height: 1; }
 .rb.solo .rn { padding: 0 4px; min-width: 22px; }
 .rb.rb.solo:not(.pm) .rn { padding: 0 5px; } .rb.rb.solo.pm .rn { padding: 0 6px; } /* rank only (no change): the same space on both sides (rows 5px, podium 6px) */
@@ -2750,7 +2758,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 (() => {
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  const pct = (n) => (n == null ? "\u2013" : (Math.round(n * 10) / 10).toFixed(1) + "%"); // win can be null (no matches)
+  const pct = (n) => (n == null ? "\u2013" : n > 0 && n < 0.1 ? (+n).toFixed(2) + "%" : (Math.round(n * 10) / 10).toFixed(1) + "%"); // Nov 23: under 0.1 (Breakout decks): 2 decimals, "0.04%" // win can be null (no matches)
   const cap = (s) => s[0].toUpperCase() + s.slice(1);
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   // iPad portrait and larger: no scroll-to-top when a deck opens (phones scroll the opened deck to the top)
@@ -2930,7 +2938,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       .replace(/[$\u20AC\u00A3]\s?\d+\S*|\b\d+\s?(?:[$\u20AC\u00A3]+|usd)|\+\s?FAs?|\bFAs?\b|card prizes?|\bprize pool\b|\bupdate (?:your )?game\b|\b[a-z]?\s?series legal\b|!+/gi, " ")
       .replace(/^the\s/i, "").replace(/[-|:,.+&\s$\u20AC\u00A3]+$/g, "").replace(/^[-|:,.+\s#]+/, "").replace(/\s{2,}/g, " ").trim();
     if (/[a-z]/.test(s) === false || (s.match(/\b[A-Z]{4,}\b/g) || []).length >= 2)
-      s = s.replace(/\b([A-Z])([A-Z]{3,})\b/g, (m, a, b) => a + b.toLowerCase());
+      s = s.replace(/\b([A-Z])([A-Z]{3,})\b/g, (m, a, b) => (/[AEIOU]/.test(m) ? a + b.toLowerCase() : m));   // Nov 23: a word with no vowel is a code (PMPT, PGX): stays caps
     return s.length >= 3 ? s : String(n).slice(0, 24);
   };
   // R21: tweak results (alt[].fin) join the dot chart (a small 1 / 2 = cards changed) and the scroll list (sections)
@@ -3360,7 +3368,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       if (k < steps.length - 1) { x.fillStyle = C.muted; x.textAlign = "center"; x.fillText("→", sx + aw / 2, sy + 35); x.textAlign = "left"; sx += aw; }
     });
     x.font = F(500, 21); x.fillStyle = "#7d8aa0"; x.textAlign = "center";
-    x.fillText([`Set ${data.set}${data.setName ? " " + data.setName : ""}`, d.evt ? d.evt : `#${d.rank} in the meta`, d.evt ? "" : spanTxt].filter(Boolean).join("  ·  "), W / 2, sy + sh + 40);
+    x.fillText([`Set ${data.set}${data.setName ? " " + data.setName : ""}`, d.evt ? d.evt : d.brk ? "Breakout deck" : `#${d.rank} in the meta`, d.evt ? "" : spanTxt].filter(Boolean).join("  ·  "), W / 2, sy + sh + 40);
     x.font = F(800, 30); x.fillStyle = "#04768b"; x.fillText("pocketmetaqr.com", W / 2, H - 14); // under the card: every shared image carries the address
     x.textAlign = "left";
     return new Promise((res, rej) => c.toBlob((b) => (b ? res(b) : rej(new Error("png"))), "image/png"));
@@ -3821,7 +3829,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const nDk = [...data.decks, ...((MORE && MORE.decks) || [])].length;
     const top = `<div class="dk3"><div><span>Share</span><b>${pct(d.share)}</b><i class="dkm">${tr ? lineSvg(tr.s, { w: 84, h: 16, span: 4, cls: "lsh lnar", fw: 1, z: 1 }) + lineSvg(tr.s, { w: 140, h: 40, span: 4, cls: "lsh lwid", fw: 1, z: 1, area: 1, pad: 3 }) : ""}</i><small class="dkd">${sD == null ? "" : Math.abs(sD) < 0.3 ? `steady in ${tr.s.length} days` : `<span class="${sD > 0 ? "tup" : "tdn"}">${sD > 0 ? "\u25b2" : "\u25bc"}${Math.abs(sD).toFixed(1)}</span> in ${tr.s.length} days`}</small></div>
       <div${few ? ' class="lw"' : ""}><span>Win rate</span><b>${pct(d.win)}${hw != null ? `<small class="wpm">\u00b1${hw.toFixed(1)}</small>` : ""}</b><i class="dkm">${wBar}</i>${verd}</div>
-      <div><span>Rank</span><b>#${d.rank} ${rkTxt}</b><i class="dkm dko">of ${nDk} decks</i><small>${d.count} players</small></div></div>`;
+      <div><span>Rank</span><b>${d.brk ? "Breakout" : `#${d.rank} ${rkTxt}`}</b><i class="dkm dko">${d.brk ? "too rare to rank" : `of ${nDk} decks`}</i><small>${d.count} player${d.count === 1 ? "" : "s"}</small></div></div>`;
     const fold = (t, pv, body, open) => `<details class="sfold dkf"${open ? " open" : ""}><summary><b>${t}</b><span class="dpv">${pv}</span>${CHD}</summary><div class="dfb">${body}</div></details>`;
     // 1. matchups
     const mu = (S.mu || []).map(([o, w, l, t]) => ({ o, w, l, t, g: w + l + t, p: (w + t / 2) / (w + l + t) * 100 })).sort((a, b) => b.p - a.p);
@@ -3923,6 +3931,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     return `<h3>Rank ${d.rank}</h3>${body}<p class="inote">Ranks are compared with the data of 24 h earlier.</p>`;
   }
   function rbHTML(d, pod) {
+    if (d.brk && d.brk.length) return `<span class="rb rbt rbk solo" data-tip="${esc(`<h3>Breakout deck</h3><p>A rare deck (under 0.2% share ${winWk()}) with a top-8 finish at a big event (128+ players): <b>${esc(b0(d))}</b>.</p><p>Too few players for a fair rank, so it has no rank number.</p>`)}" aria-label="Breakout deck">${BRK_I}</span>`; // Nov 23: no rank number (not a fair rank at this size)
     const cls = pod ? ` pm ${["g", "s", "b"][pod - 1]}` : "";
     const rn = `<span class="rn">${pod ? RB_CR : ""}<span class="mn">${d.rank}</span></span>`;
     if (!hasTrend() || (!("rk0" in d) && !d.nw)) return `<span class="rb${cls} solo" aria-hidden="true">${rn}</span>`; // no R14 data for this deck
@@ -4281,7 +4290,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           <span class="picons${d.art.length === 1 ? " one" : ""}">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="52" height="73" decoding="async">`).join("")}</span>
           <span class="pname">${esc(d.name)}</span>
           <span class="asub psub"><b>${pct(d.share)}</b> share<span class="ow"> &middot; <b>${pct(d.win)}</b> win</span>
-            <span class="sm"><span class="nw">${d.count} players</span> <span class="nw"><span class="sep">&middot; </span>${d.w}-${d.l}-${d.t}</span></span></span>
+            <span class="sm"><span class="nw">${d.count} player${d.count === 1 ? "" : "s"}</span> <span class="nw"><span class="sep">&middot; </span>${d.w}-${d.l}-${d.t}</span></span></span>
           ${dpill(d)}
         </button>
         <div class="apanel" id="p-${d.id}" hidden></div>
@@ -4311,7 +4320,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           <span class="icons${d.art.length === 1 ? " one" : ""}">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>
           <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, d.name.length)}">${esc(d.name)}${NEWD.has(d.id) ? '<span class="newb" title="New in the top 10 since your last visit">NEW</span>' : ""}</span>
             <span class="asub">${brkChip(d)}${d.bc ? `<span class="bcn" title="No top player ${winWk()}">${bcI(d)}${bcN(d).toLowerCase()}</span>` : ""}<span class="asw"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win</span>
-              <span class="sm"><span class="sep">&middot; </span><span class="nw">${d.count} players</span> <span class="nw">&middot; ${d.w}-${d.l}-${d.t}</span></span></span></span>
+              <span class="sm"><span class="sep">&middot; </span><span class="nw">${d.count} player${d.count === 1 ? "" : "s"}</span> <span class="nw">&middot; ${d.w}-${d.l}-${d.t}</span></span></span></span>
           ${dpill(d)}${shBtn("dk", d.id, "deck")}
         </button>
         <div class="apanel" id="p-${d.id}" hidden></div>
@@ -4396,7 +4405,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const ev = box.querySelector(":scope > .dkev"); if (ev) body.append(ev);
     const sn = box.querySelector(":scope > .snotes"); if (sn) body.append(sn);
     const nDk = [...data.decks, ...((MORE && MORE.decks) || [])].length;
-    return { name, head: `<p class="dksh">This deck \u00b7 all lists<span>#${d.rank} of ${nDk} \u00b7 ${d.count} players</span></p>`, body };
+    return { name, head: `<p class="dksh">This deck \u00b7 all lists<span>${d.brk ? "Breakout" : `#${d.rank} of ${nDk}`} \u00b7 ${d.count} player${d.count === 1 ? "" : "s"}</span></p>`, body };
   }
   const dkSheet2 = (d, st, M, V) => { const v = dkV2(d, st, M, V); return (v.name ? v.name.outerHTML : "") + v.head + v.body.outerHTML; };
   async function dkSide(p, d) {
@@ -5129,7 +5138,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const ENERGY_ORDER = ["grass", "fire", "water", "lightning", "psychic", "fighting", "darkness", "metal"];
   const fstate = { q: "", en: new Set(), card: null, cardAll: false, dk: new Set(), without: null }; // cardAll (R32): the picked card counts all its prints (the card view) // dk: deck chips; without: a card id the decks must not use // card: a card id picked from the suggestions (exact card, not by name)
   // Nov 18 fix: a new deck usually has a small share, so it is in more.json (not data.json): the New chip waits for it
-  const nwAny = () => [...data.decks, ...((MORE && MORE.decks) || [])].some((d) => d.nw) || (!!data.more && !MORE);
+  const nwAny = () => [...data.decks, ...((MORE && MORE.decks) || [])].some((d) => d.nw || d.brk) || !!(data.brk && data.brk.length) || (!!data.more && !MORE); // Nov 23: Breakout decks count as new
   const nwSync = () => { const b = document.querySelector('#fdk .fdc[data-k="nw"]'); if (b) b.disabled = !nwAny(); };
   function setupFilter() {
     // All 8 energy types, always (so Metal shows too). A type with no deck in the meta right now can still be chosen:
@@ -5137,7 +5146,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     $("fen").innerHTML = ENERGY_ORDER.map((e) =>
       `<button class="ech" type="button" data-e="${e}" aria-pressed="false" title="${cap(e)}"><img src="e/${e}.webp" alt="${cap(e)}" width="22" height="22"></button>`).join("");
     $("fdk").innerHTML = [["noex", "No ex", "Decks whose main list has no Pok\u00e9mon ex"], 
-      ["rise", "Rising", "Up in rank in the last 24 hours, or new in the list"], ["nw", "New", "New in the list: the first time since the set came out (for 3 days)"], ["new", `${esc(data.set || "set")} cards`, `Decks that use a card from ${esc(data.setName || data.set || "the newest set")}`]]
+      ["rise", "Rising", "Up in rank in the last 24 hours, or new in the list"], ["nw", "New", "New in the list (the first time since the set came out, for 3 days) and Breakout decks (a rare deck with a top-8 finish at a big event)"], ["new", `${esc(data.set || "set")} cards`, `Decks that use a card from ${esc(data.setName || data.set || "the newest set")}`]]
       .map(([k, t, tip]) => `<button class="fdc" type="button" data-k="${k}" aria-pressed="false" title="${tip}"${(k === "rise" && !hasTrend()) || (k === "nw" && !nwAny()) ? " disabled" : ""}>${k === "rise" ? `<span class="fup">${RB_UP}</span>` : k === "nw" ? `<span class="fnw">${SPARK}</span>` : ""}${t}</button>`).join("");
     $("filtBtn").hidden = false;
   }
@@ -5145,7 +5154,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const isEx = (n) => /(^|\s)ex$/i.test(String(n || "").trim());
   const DK = {
     noex: (d) => !(d.cards || []).some((c) => isEx(c.n)),
-    nw: (d) => !!d.nw, // Nov 18: replaces "2 energy" (new in the list in the last 72 h)
+    nw: (d) => !!d.nw || !!(d.brk && d.brk.length), // Nov 23: + Breakout decks. Nov 18: replaces "2 energy" (new in the list in the last 72 h)
     rise: (d) => !!d.nw || ("rk0" in d && (d.rk0 === 0 || d.rk0 > d.rank)),
     new: (d) => { const pre = String(data.set || "").toLowerCase() + "-"; return !!pre.length && (d.cards || []).some((c) => c.id.startsWith(pre)); },
   };
@@ -5371,7 +5380,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       .sort((a, b) => a.staple - b.staple || rank(a.n) - rank(b.n) || (b.u || 0) - (a.u || 0) || b.decks.size - a.decks.size || a.n.localeCompare(b.n)).slice(0, 6);
     $("fsug").innerHTML = (decks.length ? `<span class="sgh">Decks</span>` + decks.map((d) => `<button class="sg" type="button" role="option" data-deck="${d.id}">
         <span class="sgi">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="150" height="209" loading="lazy">`).join("")}</span>
-        <span class="sgt"><b>${hl(d.name, q)}</b><small>#${d.rank} · ${pct(d.share)} share · ${pct(d.win)} win</small></span></button>`).join("") : "")
+        <span class="sgt"><b>${hl(d.name, q)}</b><small>${d.brk ? "Breakout" : "#" + d.rank} · ${pct(d.share)} share · ${pct(d.win)} win</small></span></button>`).join("") : "")
       + (cards.length ? `<span class="sgh">Cards</span>` + cards.map((c) => `<div class="sgrow"><button class="sg" type="button" role="option" data-card="${c.id}">
         <span class="sgi one"><img src="c/${c.id}.webp" alt="" width="150" height="209" loading="lazy"></span>
         <span class="sgt"><b>${hl(c.n, q)}${sgSet(c)}</b><small>${c.staple ? "in almost every deck" : `in ${c.decks.size} deck${c.decks.size > 1 ? "s" : ""}${c.u ? ` \u00b7 ${c.u} top player${c.u > 1 ? "s" : ""}` : ""}`}</small></span></button><button class="sgw" type="button" data-without="${c.id}" aria-label="Decks without ${esc(c.n)}">Without</button></div>`).join("") : "")
@@ -5441,6 +5450,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // "#<deck>/<list>": open the deck at that list (a shared link); list numbers start at 1
   const hashParts = () => { const [id, k] = decodeURIComponent(location.hash.slice(1)).split("/"); return [id, Math.max(0, (parseInt(k, 10) || 1) - 1)]; };
   function openAt(id, k) {
+    const d0 = data.decks.find((x) => x.id === id); if (d0 && d0._more && !moreShown) { moreShown = true; applyFilter(); } // Nov 23: a smaller deck (e.g. a Breakout deck) when more.json is loaded but its rows are hidden
     open(id);
     if (!k) return;
     const d = data.decks.find((x) => x.id === id), p = $(id) && $(id).querySelector(".apanel");
