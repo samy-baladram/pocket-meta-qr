@@ -193,7 +193,8 @@ def sync(args):
     t0 = time.time()
     db = load_db(args.refresh)
     ids = [c["id"] for c in json.load(open(args.ids, encoding="utf8"))["cards"]] if args.ids else sorted(db)
-    want = [l for l in LANGS if not args.langs or LANGS[l] in args.langs.split(",")]
+    order = args.langs.split(",") if args.langs else list(LANGS.values())   # --langs order = the order they are made
+    want = sorted((l for l in LANGS if LANGS[l] in order), key=lambda l: order.index(LANGS[l]))
     todo = [(l, cid) for l in want for cid in ids
             if cid in db and not all(os.path.exists(f"{OUT}/{LANGS[l]}/{d}/{cid}.webp") for d in SIZES)]
     if not todo:
