@@ -74,7 +74,7 @@
   {
    "note": "events: total players",
    "find": "All events<b> &middot; ${all.length} &middot; ${pl.toLocaleString(\"en-US\")} players</b>",
-   "replace": "全大会<b> &middot; ${all.length} &middot; ${pl.toLocaleString(\"ja-JP\")}名</b>"
+   "replace": "全大会<b> &middot; ${all.length}件 &middot; ${pl.toLocaleString(\"ja-JP\")}名</b>"
   },
   {
    "note": "QR: enlarge label",
@@ -334,7 +334,7 @@
   {
    "note": "about-button labels",
    "find": "\"the decks\" : \"the records\"",
-   "replace": "\"デッキ\" : \"成績\""
+   "replace": "\"デッキ\" : \"戦績\""
   },
   {
    "note": "short time left: 10日 / 5時間",
@@ -829,8 +829,8 @@
   },
   {
    "note": "event: biggest button 543名",
-   "find": "<b>${big.players}</b>${SPCH}",
-   "replace": "<b>${big.players}</b>名${SPCH}"
+   "find": "Biggest <b>${big.players}</b>${SPCH}",
+   "replace": "最大<b>${big.players}</b>名${SPCH}"
   },
   {
    "note": "event: decks in the top N (fold)",
@@ -953,6 +953,46 @@
    "note": "trend chart rank labels: 3位",
    "find": "${r ? \"#\" + r : \"\\u2013\"}",
    "replace": "${r ? r + \"位\" : \"\\u2013\"}"
+  },
+  {
+   "note": "events filter line: ピカチュウexが優勝・参加50名以上：5大会",
+   "find": "<p class=\"evnote\">${L.length ? `${L.length} event${L.length > 1 ? \"s\" : \"\"}` : \"No events\"}${evWin ? ` won by ${esc((wins[evWin] || {}).w ? wins[evWin].w.name : \"\")}` : \"\"}${evDk ? ` with ${esc(dn(evDk))} in the top 8` : \"\"}${evMin ? ` with ${evMin}+ players` : \"\"}${q && !evDk ? ` for &ldquo;${esc(evQ.trim())}&rdquo;` : \"\"}",
+   "replace": "<p class=\"evnote\">${[evWin ? `${esc((wins[evWin] || {}).w ? wins[evWin].w.name : \"\")}が優勝` : \"\", evDk ? `${esc(dn(evDk))}がベスト8` : \"\", evMin ? `参加${evMin}名以上` : \"\", q && !evDk ? `「${esc(evQ.trim())}」` : \"\"].filter(Boolean).join(\"・\")}：${L.length ? `${L.length}大会` : \"大会はありません\"}"
+  },
+  {
+   "note": "event rows: 3時間前に追加",
+   "find": " \\u00b7 <span class=\"evadd\">added ${addAgo(e.at)}</span>",
+   "replace": " \\u00b7 <span class=\"evadd\">${addAgo(e.at)}に追加</span>"
+  },
+  {
+   "note": "event sheet: 11/23 14:00開始",
+   "find": "`Started ${tLoc(e.ts)}`",
+   "replace": "`${tLoc(e.ts)}開始`"
+  },
+  {
+   "note": "event sheet: record dot tip 3位：5-1",
+   "find": "title=\"${ordF(r.pl)}: ${r.w}-${r.l}\"",
+   "replace": "title=\"${ordF(r.pl)}：${r.w}-${r.l}\""
+  },
+  {
+   "note": "event sheet: energy tip 炎：25%",
+   "find": "title=\"${cap(x)}: ${Math.round(c / n * 100)}%\"",
+   "replace": "title=\"${cap(x)}：${Math.round(c / n * 100)}%\""
+  },
+  {
+   "note": "most wins: すべて表示（N） (tap)",
+   "find": "\"Show less\" : \"Show all \" + ma.dataset.n",
+   "replace": "\"閉じる\" : \"すべて表示（\" + ma.dataset.n + \"）\""
+  },
+  {
+   "note": "most wins: すべて表示（N）",
+   "find": "${mAll ? \"Show less\" : \"Show all \" + wl.length}",
+   "replace": "${mAll ? \"閉じる\" : \"すべて表示（\" + wl.length + \"）\"}"
+  },
+  {
+   "note": "top 10 rising/falling: すべて表示（N） (tap)",
+   "find": "\"Show less\" : \"Show all \" + c.querySelectorAll(\".t1s-r\").length",
+   "replace": "\"閉じる\" : \"すべて表示（\" + c.querySelectorAll(\".t1s-r\").length + \"）\""
   },
   {
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",

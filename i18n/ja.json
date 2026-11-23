@@ -380,7 +380,7 @@
 ],
 "24ecb68c93": [
 "Show all {0} lists",
-"全{0}レシピを表示"
+"レシピをすべて表示（{0}）"
 ],
 "250cd1927b": [
 "in almost every deck",
@@ -1743,7 +1743,7 @@
 ],
 "a5916d4b4b": [
 "&middot; added {0}, after it ended",
-"&middot; 終了後の{0}に追加"
+"&middot; 終了後に追加（{0}）"
 ],
 "a5f4beceba": [
 "The tab band slides away when you scroll down and comes back when you scroll up.",
@@ -2299,7 +2299,7 @@
 ],
 "de18b941e8": [
 "Show all {0} decks",
-"全{0}デッキを表示"
+"デッキをすべて表示（{0}）"
 ],
 "deb2079c55": [
 "▼ Down {0} place{1}{t0}: {t1}{2}{t2} 24 h ago, now {t3}{3}{t4}.",
