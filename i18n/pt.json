@@ -29,7 +29,7 @@
 ],
 "028fddc250": [
 "Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.",
-"Popular agora{t0}: a lista que mais jogadores top usaram exata (pelo menos 3, e pelo menos 2 a mais que qualquer outra lista). A mais usada nem sempre é a melhor: veja o saldo e as outras listas."
+"Popular agora{t0}: a lista que mais jogadores top usaram exatamente igual (pelo menos 3, e pelo menos 2 a mais que qualquer outra lista). A mais usada nem sempre é a melhor: veja a campanha e as outras listas."
 ],
 "02b620b03a": [
 "{0}Top players",
@@ -69,7 +69,7 @@
 ],
 "09ca55ca52": [
 "Share",
-"Compartilhar"
+"Uso"
 ],
 "0a8dd6adce": [
 "7 days",
@@ -79,9 +79,9 @@
 "Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.",
 "Espelhos (o mesmo baralho dos dois lados) e torneios em que os jogadores levam mais de 1 baralho não são contados. Um empate conta como meia vitória."
 ],
-"0b57ba73fb": [
-"Live status",
-"Status ao vivo"
+"0b638f7e80": [
+"It shows only the current meta, the decks, lists and events of the last 7 to 14 days, so it does not keep a history, list every card or build decks.",
+"Ele mostra só o meta atual: os baralhos, as listas e os torneios dos últimos 7 a 14 dias. Por isso, não guarda histórico, não lista todas as cartas e não monta baralhos."
 ],
 "0bec14f205": [
 "Rising",
@@ -149,7 +149,7 @@
 ],
 "1385294543": [
 "×N: share here vs {0} · top 8s at other events",
-"×N: uso aqui vs. {0} · top 8 em outros torneios"
+"×N: uso aqui vs. uso {0} · top 8 em outros torneios"
 ],
 "13d4b964c6": [
 "One event is {t0}{0}%{t1} of these results, so it moves the numbers more than usual.",
@@ -177,7 +177,7 @@
 ],
 "166c895601": [
 "top {0} vs",
-"top {0} vs."
+"top {0} vs. o meta"
 ],
 "168e4932a6": [
 "Deck",
@@ -190,6 +190,10 @@
 "172415f02e": [
 "added",
 "adicionado"
+],
+"1761c5f76c": [
+"Hand-picked decks, not tournament data. This view goes away when the event ends.",
+"Baralhos escolhidos a dedo, não dados de torneio. Esta página some quando o evento termina."
 ],
 "17709dbc6f": [
 "Best finish",
@@ -225,7 +229,7 @@
 ],
 "1c1a3f0a7e": [
 "Score{0}",
-"Saldo{0}"
+"Campanha{0}"
 ],
 "1cc15542b5": [
 "No top result",
@@ -258,6 +262,10 @@
 "1faeee71ba": [
 "week{0} ago",
 "semana{0} atrás"
+],
+"1fc6434234": [
+"No deck history:{t0} the 7-day trend in a deck&rsquo;s stats is the longest view.",
+"Sem histórico de baralhos:{t0} a tendência de 7 dias nas estatísticas de um baralho é o período mais longo."
 ],
 "1fd12296da": [
 "deck{0}",
@@ -319,10 +327,6 @@
 "Today",
 "Hoje"
 ],
-"2451222400": [
-"Show {0} older update{1}",
-"Ver {0} atualizações anteriores{1!}"
-],
 "24ea1f77f4": [
 "Last change",
 "Última mudança"
@@ -353,7 +357,7 @@
 ],
 "275a700078": [
 "record",
-"saldo"
+"campanha"
 ],
 "2781bff12a": [
 "deck{0} use{1} {2}{3}.",
@@ -383,6 +387,10 @@
 "Ranks are compared with the data of 24 h earlier.",
 "As posições são comparadas com os dados de 24 h antes."
 ],
+"2a231249ff": [
+"Cards in these decks",
+"Cartas destes baralhos"
+],
 "2aca25531e": [
 "This is the list of its best-placed player{0}{1}. A starting point, not a proven list.",
 "Esta é a lista do jogador com a melhor colocação{0}{1}. Um ponto de partida, não uma lista comprovada."
@@ -409,7 +417,7 @@
 ],
 "2eb15e8dda": [
 "Did better",
-"Foram melhor"
+"Acima do esperado"
 ],
 "2f8d136cf7": [
 "What’s New: Site Updates | Pocket Meta QR",
@@ -625,7 +633,7 @@
 ],
 "489f487724": [
 "Score",
-"Saldo"
+"Campanha"
 ],
 "48d61bdd8b": [
 "Is it free?",
@@ -641,7 +649,7 @@
 ],
 "49ac8d4bf8": [
 ", record",
-", saldo"
+", campanha"
 ],
 "49d00effb2": [
 "▲▼ share change · {0} days",
@@ -722,6 +730,10 @@
 "532297d7bc": [
 "Top 16",
 "Top 16"
+],
+"5351e118ae": [
+"Updated {0}.{t0} Ranked best first, from our testing so far (it can change). Deck notes made with help from {t1}GameWith{t2}.",
+"Atualizado em {0}.{t0} Do melhor para o pior, pelos nossos testes até agora (pode mudar). Notas dos baralhos feitas com a ajuda do {t1}GameWith{t2}."
 ],
 "53668c4b2c": [
 ". Card images: PocketDecks. Details in About &amp; FAQ.",
@@ -806,10 +818,6 @@
 "58197254f8": [
 "with {0}+ players",
 "com {0}+ jogadores"
-],
-"5a798665b4": [
-"Deck stats",
-"Estatísticas do baralho"
 ],
 "5a7b059de5": [
 "▼ Falling",
@@ -919,13 +927,9 @@
 "Core",
 "Fixas"
 ],
-"68eb21ad56": [
-"Latest Events tab",
-"Aba Últimos torneios"
-],
 "69b8c08eae": [
 "Did worse",
-"Foram pior"
+"Abaixo do esperado"
 ],
 "69bb0fdaac": [
 "{0}Tap to save",
@@ -933,7 +937,7 @@
 ],
 "69bd4ef9fb": [
 "View",
-"Visão"
+"Seções"
 ],
 "6a589c299f": [
 "Whole set",
@@ -1006,6 +1010,10 @@
 "70b8058643": [
 "stayed {t0}#{0}",
 "ficou em {t0}{0}º"
+],
+"7164a73633": [
+"This is on purpose, so every number on the page is about the game as it is played today. For past results and every Pok&eacute;mon TCG Pocket card, {t0}Limitless TCG{t1} keeps the full archive.",
+"Isso é de propósito, para que cada número da página seja sobre o jogo como ele é jogado hoje. Para resultados antigos e todas as cartas de Pok&eacute;mon TCG Pocket, o {t0}Limitless TCG{t1} guarda o arquivo completo."
 ],
 "719ea396ad": [
 "Clear",
@@ -1205,7 +1213,7 @@
 ],
 "857fa3b382": [
 "List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. {t0}&#9733; Popular now{t1} marks a list 1 that clearly more top players used exactly than any other list.",
-"A lista 1 de um baralho é a lista que mais jogadores top usaram. Uma lista com só 1, 2 ou 3 cartas trocadas conta junto com ela: os blocos embaixo da lista mostram quantos jogadores top a usaram exata ou com 1, 2 ou 3 trocas (toque em um bloco para ver essas versões, cada uma com o seu código QR). Uma lista com 4 ou mais cartas trocadas aparece como lista própria quando 2 ou mais jogadores top a usaram, ou 1 jogador ficou no top 8 de um torneio com 32 ou mais jogadores. {t0}&#9733; Popular agora{t1} marca uma lista 1 que claramente mais jogadores top usaram exata do que qualquer outra lista."
+"A lista 1 de um baralho é a lista que mais jogadores top usaram. Uma lista com só 1, 2 ou 3 cartas trocadas conta junto com ela: os blocos embaixo da lista mostram quantos jogadores top a usaram exata ou com 1, 2 ou 3 trocas (toque em um bloco para ver essas versões, cada uma com o seu código QR). Uma lista com 4 ou mais cartas trocadas aparece como lista própria quando 2 ou mais jogadores top a usaram, ou 1 jogador ficou no top 8 de um torneio com 32 ou mais jogadores. {t0}&#9733; Popular agora{t1} marca uma lista 1 usada exatamente igual por bem mais jogadores top do que qualquer outra lista."
 ],
 "861edba005": [
 "Suggestions",
@@ -1246,6 +1254,10 @@
 "892ce04a73": [
 "A top result: at least 2 more wins than losses at an event {0}.",
 "Um resultado top: pelo menos 2 vitórias a mais que derrotas em um torneio {0}."
+],
+"8948bad5c9": [
+"No deck builder:{t0} import a list with its QR code, then change it in the game.",
+"Sem montador de baralhos:{t0} importe uma lista pelo código QR e depois altere no jogo."
 ],
 "899e85d0d1": [
 "A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.",
@@ -1301,7 +1313,7 @@
 ],
 "90499d9de4": [
 "new deck{0}{t0} in the top 10",
-"novidades{0!}{t0} no top 10"
+"novidade{0}{t0} no top 10"
 ],
 "9117c24769": [
 "&middot; {t0}{0}{t1} win",
@@ -1326,10 +1338,6 @@
 "9342efff03": [
 "· {0} players",
 "· {0} jogadores"
-],
-"9364147f96": [
-"Booster Packs tab",
-"Aba Pacotes"
 ],
 "93daa2f17e": [
 "The decks that win in Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, the {t2}latest events{t3} with their top 8, and a {t4}QR code{t5} for every list, so you can import a deck in a few taps.",
@@ -1447,13 +1455,9 @@
 "entries with this deck",
 "inscrições com este baralho"
 ],
-"a2e22daa21": [
-"Popular now",
-"Popular agora"
-],
 "a30fa0929b": [
 "top 8 finish{0}",
-"vezes no top 8{0!}"
+"top 8{0!}"
 ],
 "a32b8cd11b": [
 "won",
@@ -1470,6 +1474,10 @@
 "a452ac820f": [
 "Tap {t0}Share{t1} {0} (Safari: at the bottom, or at the top on iPad).",
 "Toque em {t0}Compartilhar{t1} {0} (Safari: embaixo, ou em cima no iPad)."
+],
+"a46c612784": [
+"Cards you can use",
+"Cartas que você pode usar"
 ],
 "a479c9c34e": [
 "Download",
@@ -1526,10 +1534,6 @@
 "ab09f30675": [
 "deck win rate",
 "% de vitórias do baralho"
-],
-"ab98f5b857": [
-"Fixed",
-"Corrigido"
 ],
 "ac58ab84ed": [
 "too rare to rank",
@@ -1611,6 +1615,10 @@
 "in the {0}-place",
 "no {0} lugar"
 ],
+"b56d5ef151": [
+"Limited Battle pick",
+"Escolha para a Batalha Limitada"
+],
 "b5b2a49247": [
 "Matchups",
 "Confrontos"
@@ -1645,7 +1653,7 @@
 ],
 "b86f70d930": [
 "The match record ({t0}wins-losses-ties{t1}) of the player who used this list{0}{1}.",
-"O saldo ({t0}vitórias-derrotas-empates{t1}) do jogador que usou esta lista{0}{1}."
+"A campanha ({t0}vitórias-derrotas-empates{t1}) do jogador que usou esta lista{0}{1}."
 ],
 "b8be7266fc": [
 "{0}Limited-time event",
@@ -1658,10 +1666,6 @@
 "ba79e67b9b": [
 "{0}Popular now{1}",
 "{0}Popular agora{1}"
-],
-"bb6a897f64": [
-"Improved",
-"Melhorado"
 ],
 "bbb2de672e": [
 "· {0} share · {1} win · {2} players",
@@ -1678,10 +1682,6 @@
 "bd81811d71": [
 "Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks from public tournaments on Limitless, like a tier list built from real results: share, win rate and the lists the top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster pack gives the cards of the meta.",
 "O Pocket Meta QR classifica os baralhos de Pok&eacute;mon TCG Pocket desta semana a partir de torneios públicos no Limitless, como uma tier list feita com resultados reais: uso, % de vitórias e as listas que os jogadores top usam. Cada lista tem um código QR que você pode escanear no jogo para importar o baralho, e a página Pacotes mostra qual Pacote de Booster dá as cartas do meta."
-],
-"bde2eabf31": [
-"Smaller decks",
-"Baralhos pequenos"
 ],
 "bf3d48422f": [
 "Pokémon TCG Pocket Meta Decks ({0}) with QR Codes | Pocket Meta QR",
@@ -1722,6 +1722,10 @@
 "c38f356b28": [
 "This list has not shown that yet.",
 "Esta lista ainda não mostrou isso."
+],
+"c5406d81f3": [
+"&middot; most used first",
+"&middot; as mais usadas primeiro"
 ],
 "c5497bca58": [
 "Events",
@@ -1859,6 +1863,10 @@
 "Could not copy:",
 "Não foi possível copiar:"
 ],
+"d50280bff1": [
+"What does this site not do?",
+"O que este site não faz?"
+],
 "d579d7b438": [
 "{0}× {1}{2} · {3} top player{4}",
 "{0}× {1}{2} · {3} jogador{4} top"
@@ -1891,10 +1899,6 @@
 "Exact list",
 "Lista exata"
 ],
-"d878b544f3": [
-"Breakout decks",
-"Baralhos revelação"
-],
 "d97686b37a": [
 "Saving is not available here: right-click the QR code instead.",
 "Não é possível salvar aqui: clique com o botão direito no código QR."
@@ -1917,7 +1921,7 @@
 ],
 "dae1e5f83a": [
 "this week",
-"esta semana"
+"nesta semana"
 ],
 "db866831c3": [
 "Packs",
@@ -2007,17 +2011,13 @@
 "&middot; most played first",
 "&middot; as mais jogadas primeiro"
 ],
-"e48b172777": [
-"Top 10 shelf",
-"Prateleira do top 10"
-],
 "e491f9748c": [
 "is not in this week’s meta decks{0}.",
 "não está nos baralhos meta desta semana{0}."
 ],
 "e51c55255b": [
 "Records",
-"Saldos"
+"Campanhas"
 ],
 "e615ae42b5": [
 "Why Limitless TCG, and can I trust the results?",
@@ -2033,7 +2033,7 @@
 ],
 "e710900662": [
 "Hand-picked",
-"Escolhido"
+"Selecionado"
 ],
 "e7a5c67393": [
 "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the current set&rsquo;s release, so in a new set&rsquo;s first days the results are early ones. The line under the title shows the dates.",
@@ -2063,6 +2063,10 @@
 "No ex",
 "Sem ex"
 ],
+"eb7de7b83e": [
+"cards you can use",
+"cartas que você pode usar"
+],
 "ebbb7e9b8b": [
 "Works in Safari, Chrome, Edge, Firefox and most other browsers (iOS 16.4 or later).",
 "Funciona no Safari, Chrome, Edge, Firefox e na maioria dos navegadores (iOS 16.4 ou mais recente)."
@@ -2074,6 +2078,10 @@
 "efc007a393": [
 "Save",
 "Salvar"
+],
+"effb665832": [
+"in every deck",
+"em todos os baralhos"
 ],
 "f004f8b2da": [
 "One row per number of wins, one dot per player. Blue: the top 8.",
@@ -2131,9 +2139,9 @@
 "Won by{t0} {0} ·",
 "Vencedor{t0} {0} ·"
 ],
-"f434bf32bf": [
-"Limited Battle banner",
-"Banner da Batalha Limitada"
+"f3f9391cee": [
+"Not every tournament:{t0} only public Standard events with 8 or more players and 1 deck per player.",
+"Nem todos os torneios:{t0} só torneios públicos do formato Padrão com 8 ou mais jogadores e 1 baralho por jogador."
 ],
 "f4b15c9c91": [
 "Top 10 decks",
@@ -2147,6 +2155,10 @@
 "Used by",
 "Usada por"
 ],
+"f5967e775f": [
+"Not every card:{t0} the Packs tab and the card pages show only the cards that this week&rsquo;s meta decks play.",
+"Nem todas as cartas:{t0} a aba Pacotes e as páginas de cartas mostram só as cartas que os baralhos meta desta semana jogam."
+],
 "f6bb0f468a": [
 "Days",
 "Dias"
@@ -2158,6 +2170,10 @@
 "f7e42baf96": [
 "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the set&rsquo;s release.",
 "Os últimos 7 dias. Quando há poucos torneios (muitas vezes no fim de uma coleção), a página usa os últimos 10 ou 14 dias, para que cada número tenha jogadores suficientes. Ela nunca conta torneios de antes do lançamento da coleção."
+],
+"f80619bbf4": [
+"No older weeks or past sets:{t0} no results or tier lists from before the days shown under the title.",
+"Sem semanas anteriores nem coleções passadas:{t0} nenhum resultado ou tier list de antes dos dias mostrados embaixo do título."
 ],
 "f83481bd50": [
 "– {0} (your time)",

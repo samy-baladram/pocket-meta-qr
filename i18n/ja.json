@@ -106,6 +106,10 @@
 "Live status",
 "更新状況"
 ],
+"0b638f7e80": [
+"It shows only the current meta, the decks, lists and events of the last 7 to 14 days, so it does not keep a history, list every card or build decks.",
+"表示するのは今の環境だけです。直近7〜14日のデッキ、レシピ、大会だけなので、過去の記録、全カードの一覧、デッキ作成はありません。"
+],
 "0bec14f205": [
 "Rising",
 "上昇"
@@ -305,6 +309,10 @@
 "1faeee71ba": [
 "week{0} ago",
 "週間前{0!}"
+],
+"1fc6434234": [
+"No deck history:{t0} the 7-day trend in a deck&rsquo;s stats is the longest view.",
+"デッキの履歴はなし：{t0}デッキの統計にある7日間の推移が、いちばん長い期間です。"
 ],
 "1fd12296da": [
 "deck{0}",
@@ -1194,6 +1202,10 @@
 "stayed {t0}#{0}",
 "{t0}{0}位のまま"
 ],
+"7164a73633": [
+"This is on purpose, so every number on the page is about the game as it is played today. For past results and every Pok&eacute;mon TCG Pocket card, {t0}Limitless TCG{t1} keeps the full archive.",
+"これは、ページのすべての数値を今のゲームの状況にするためです。過去の結果やポケポケの全カードは、{t0}Limitless TCG{t1}にすべて残っています。"
+],
 "719ea396ad": [
 "Clear",
 "クリア"
@@ -1461,6 +1473,10 @@
 "892ce04a73": [
 "A top result: at least 2 more wins than losses at an event {0}.",
 "上位の成績：{0}の大会で勝ち数が負け数より2以上多いこと。"
+],
+"8948bad5c9": [
+"No deck builder:{t0} import a list with its QR code, then change it in the game.",
+"デッキ作成機能はなし：{t0}QRコードでレシピを読み込み、ゲーム内で変更してください。"
 ],
 "899e85d0d1": [
 "A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.",
@@ -2185,6 +2201,10 @@
 "Could not copy:",
 "コピーできませんでした："
 ],
+"d50280bff1": [
+"What does this site not do?",
+"このサイトでできないことは？"
+],
 "d532eb8b7f": [
 "On a tablet or computer, an open deck shows its list and its stats next to each other. The iPad gets bigger lists and texts, and on large monitors the whole page scales up.",
 "タブレットやパソコンでは、開いたデッキのレシピと統計を横に並べて表示します。iPadではレシピと文字が大きくなり、大きなモニターではページ全体が拡大されます。"
@@ -2521,6 +2541,10 @@
 "Won by{t0} {0} ·",
 "優勝{t0} {0} ·"
 ],
+"f3f9391cee": [
+"Not every tournament:{t0} only public Standard events with 8 or more players and 1 deck per player.",
+"すべての大会ではありません：{t0}参加8名以上・1人1デッキの公開スタンダード大会だけです。"
+],
 "f434bf32bf": [
 "Limited Battle banner",
 "限定バトルのバナー"
@@ -2537,6 +2561,10 @@
 "Used by",
 "使用："
 ],
+"f5967e775f": [
+"Not every card:{t0} the Packs tab and the card pages show only the cards that this week&rsquo;s meta decks play.",
+"全カードは載せていません：{t0}パックタブとカードのページに出るのは、今週の環境デッキが使うカードだけです。"
+],
 "f6bb0f468a": [
 "Days",
 "日数"
@@ -2548,6 +2576,10 @@
 "f7e42baf96": [
 "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the set&rsquo;s release.",
 "直近7日間です。大会が少ないとき（拡張パックの終盤に多い）は、どの数値にも十分な人数があるように直近10日または14日を使います。拡張パックの発売前の大会は数えません。"
+],
+"f80619bbf4": [
+"No older weeks or past sets:{t0} no results or tier lists from before the days shown under the title.",
+"過去の週・以前の弾はなし：{t0}タイトルの下にある期間より前の結果やティア表は載せていません。"
 ],
 "f83481bd50": [
 "– {0} (your time)",

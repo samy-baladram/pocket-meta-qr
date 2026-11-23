@@ -1,5 +1,5 @@
 {
- "_": "Code changes for the es page (i18n/build.mjs applies them before the texts). Same format as ja.code.json. Limited Battle and What's new are English on this page (enOnly in config.json): no patches for them.",
+ "_": "Code changes for the es page (i18n/build.mjs applies them before the texts). Same format as ja.code.json. What's new is English on this page (enOnly in config.json). Limited Battle: the fixed parts are translated, the deck notes stay English (note on the page).",
  "patches": [
   {
    "note": "share button label: Copiar el enlace de este torneo",
@@ -134,9 +134,9 @@
    "replace": "aria-label=\"Estado de los datos: comprobado ${agoTxt(data.updatedAt)}. Detalles\""
   },
   {
-   "note": "tip: players, matches",
+   "note": "tip: players, matches (es-ES numbers: 1921, 12.345)",
    "find": "title=\"${sm.players.toLocaleString()} players, ${sm.matches.toLocaleString()} matches\"",
-   "replace": "title=\"${sm.players.toLocaleString()} jugadores, ${sm.matches.toLocaleString()} partidas\""
+   "replace": "title=\"${sm.players.toLocaleString(\"es-ES\")} jugadores, ${sm.matches.toLocaleString(\"es-ES\")} partidas\""
   },
   {
    "note": "tip: no top player",
@@ -793,6 +793,36 @@
    "note": "NEW badge (events): NUEVO (torneo) + tip",
    "find": "'<span class=\"newb\" title=\"New since your last visit\">NEW</span>'",
    "replace": "'<span class=\"newb\" title=\"Nuevo desde tu última visita\">NUEVO</span>'"
+  },
+  {
+   "note": "numbers: share tile, 7-day change ▲1,9",
+   "find": "${sD > 0 ? \"\\u25b2\" : \"\\u25bc\"}${Math.abs(sD).toFixed(1)}</span>",
+   "replace": "${sD > 0 ? \"\\u25b2\" : \"\\u25bc\"}${fx(Math.abs(sD), 1)}</span>"
+  },
+  {
+   "note": "numbers: win rate ±2,8",
+   "find": "\\u00b1${hw.toFixed(1)}",
+   "replace": "\\u00b1${fx(hw, 1)}"
+  },
+  {
+   "note": "sobres: Serie A · las expansiones anteriores",
+   "find": "<span>${esc(ser)} series &middot; the older sets</span>",
+   "replace": "<span>Serie ${esc(ser)} &middot; las expansiones anteriores</span>"
+  },
+  {
+   "note": "Limited Battle: updated … (hace 5 días)",
+   "find": "`${m} min ago` : h < 24 ? `${h} h ago` : `${d} day${d > 1 ? \"s\" : \"\"} ago`",
+   "replace": "`hace ${m} min` : h < 24 ? `hace ${h} h` : `hace ${d} día${d > 1 ? \"s\" : \"\"}`"
+  },
+  {
+   "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
+   "find": "<p class=\"lbnote\"><b class=\"lbup\">",
+   "replace": "<p class=\"lbn lben\">Las notas de las barajas solo están en inglés.</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
+  },
+  {
+   "note": "loading text next to the intro slot (the extractor does not find it)",
+   "find": "<div class=\"empty\">Loading decks&hellip;<p class=\"seoi\"",
+   "replace": "<div class=\"empty\">Cargando barajas&hellip;<p class=\"seoi\""
   },
   {
    "note": "plural: jugador / jugadores (player${T === 1 ? \"\" : \"s\"})",

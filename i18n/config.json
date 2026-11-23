@@ -25,5 +25,16 @@
  "forceText": [
   "won"
  ],
- "_note": "skipVars: consts whose values are data; skipScripts: library scripts (text at their start); skipText: never translated; forceText: one-word texts the rules would skip"
+ "_note": "skipVars: consts whose values are data; skipScripts: library scripts (text at their start); skipText: never translated; forceText: one-word texts the rules would skip; enOnly: per language, ids of static HTML sections left in English (What's new list = nwl)",
+ "enOnly": {
+  "de": [
+   "nwl"
+  ],
+  "es": [
+   "nwl"
+  ],
+  "pt": [
+   "nwl"
+  ]
+ }
 }

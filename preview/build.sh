@@ -20,7 +20,7 @@ head_for() { # <lang> [root] -> the head insert for that page (root: the English
 page() { # <lang> <source html> <out dir> [root]
   rm -rf "$T/p" && mkdir -p "$T/p" "$3"
   # --prev: keep the previous build's app.<hash> files of this page (a page cached for 10 min still finds its code)
-  node pipeline/page.mjs "$2" "$T/p/index.html" --no-routes --prev "cache/app-$(printf '%s' "${3#"$PUB"/}" | tr / -)" > /dev/null
+  node pipeline/page.mjs "$2" "$T/p/index.html" --no-routes --lang "$1" --data site --prev "cache/app-$(printf '%s' "${3#"$PUB"/}" | tr / -)" > /dev/null
   cp "$T/p"/app.* "$PUB/"   # <base href="/">: the page loads them from the site root
   # + the head insert; <html lang>, canonical and og:url of the page's own address (out dir under $PUB)
   HEAD="$(head_for "$1" "${4:-}")" L="$1" U="https://pocketmetaqr.com/${3#"$PUB"/}/" node -e '

@@ -7,6 +7,8 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { translatePage, catalog, runId } from "./lib.mjs";
 const args = process.argv.slice(2), [src, lang, out] = args, ri = args.indexOf("--report");
 const cfg = JSON.parse(readFileSync(new URL("./config.json", import.meta.url)));
+// enOnly: {lang: [element ids]}: static HTML sections that stay English on that language's page (What's new = nwl)
+cfg.skipIds = (cfg.enOnly || {})[lang] || [];
 const f = new URL(`./${lang}.json`, import.meta.url), T = existsSync(f) ? JSON.parse(readFileSync(f)) : {};
 const page0 = readFileSync(src, "utf8"), bad = [];
 // i18n/<lang>.code.json: code changes for that language (word order, ordinals), applied before the texts

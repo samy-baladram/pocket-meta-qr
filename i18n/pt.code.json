@@ -1,5 +1,5 @@
 {
- "_": "Code changes for the pt page (Brazilian Portuguese) (i18n/build.mjs applies them before the texts). Same format as ja.code.json. Limited Battle and What's new are English on this page (enOnly in config.json): no patches for them.",
+ "_": "Code changes for the pt page (Brazilian Portuguese) (i18n/build.mjs applies them before the texts). Same format as ja.code.json. What's new is English on this page (enOnly in config.json). Limited Battle: the fixed parts are translated, the deck notes stay English (note on the page).",
  "patches": [
   {
    "note": "share button label: Copiar el enlace de este torneo",
@@ -109,7 +109,7 @@
   {
    "note": "label: rank, 24 h change",
    "find": "aria-label=\"Rank ${d.rank}, ${d.nw ? \"new in the list\" : \"change in 24 hours\"}\"",
-   "replace": "aria-label=\"Posição ${d.rank}, ${d.nw ? \"nova no ranking\" : \"mudança em 24 horas\"}\""
+   "replace": "aria-label=\"Posição ${d.rank}, ${d.nw ? \"novo no ranking\" : \"mudança em 24 horas\"}\""
   },
   {
    "note": "label: rank: deck",
@@ -415,7 +415,7 @@
   {
    "note": "event players tile: el más grande / 3.º de 12 torneos",
    "find": "<small>${big === 1 ? \"biggest\" : `#${big}`} of ${evs.length} events</small>",
-   "replace": "<small>${big === 1 ? \"o maior\" : `${big}º`} de ${evs.length} torneios</small>"
+   "replace": "<small>${big === 1 ? \"o maior\" : `${big}º maior`} de ${evs.length} torneios</small>"
   },
   {
    "note": "events: biggest button",
@@ -673,7 +673,7 @@
   {
    "note": "label: Limitless link",
    "find": "aria-label=\"Score: the original list on Limitless\"",
-   "replace": "aria-label=\"Saldo: a lista original no Limitless\""
+   "replace": "aria-label=\"Campanha: a lista original no Limitless\""
   },
   {
    "note": "label: open deck",
@@ -793,6 +793,36 @@
    "note": "NEW badge (events): NUEVO (torneo) + tip",
    "find": "'<span class=\"newb\" title=\"New since your last visit\">NEW</span>'",
    "replace": "'<span class=\"newb\" title=\"Novo desde a sua última visita\">NOVO</span>'"
+  },
+  {
+   "note": "numbers: share tile, 7-day change ▲1,9",
+   "find": "${sD > 0 ? \"\\u25b2\" : \"\\u25bc\"}${Math.abs(sD).toFixed(1)}</span>",
+   "replace": "${sD > 0 ? \"\\u25b2\" : \"\\u25bc\"}${fx(Math.abs(sD), 1)}</span>"
+  },
+  {
+   "note": "numbers: win rate ±2,8",
+   "find": "\\u00b1${hw.toFixed(1)}",
+   "replace": "\\u00b1${fx(hw, 1)}"
+  },
+  {
+   "note": "packs: Série A · as coleções anteriores",
+   "find": "<span>${esc(ser)} series &middot; the older sets</span>",
+   "replace": "<span>Série ${esc(ser)} &middot; as coleções anteriores</span>"
+  },
+  {
+   "note": "Limited Battle: updated … (há 5 dias)",
+   "find": "`${m} min ago` : h < 24 ? `${h} h ago` : `${d} day${d > 1 ? \"s\" : \"\"} ago`",
+   "replace": "`há ${m} min` : h < 24 ? `há ${h} h` : `há ${d} dia${d > 1 ? \"s\" : \"\"}`"
+  },
+  {
+   "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
+   "find": "<p class=\"lbnote\"><b class=\"lbup\">",
+   "replace": "<p class=\"lbn lben\">As notas dos baralhos estão só em inglês.</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
+  },
+  {
+   "note": "loading text next to the intro slot (the extractor does not find it)",
+   "find": "<div class=\"empty\">Loading decks&hellip;<p class=\"seoi\"",
+   "replace": "<div class=\"empty\">Carregando baralhos&hellip;<p class=\"seoi\""
   },
   {
    "note": "plural: jugador / jugadores (player${T === 1 ? \"\" : \"s\"})",

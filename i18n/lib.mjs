@@ -110,7 +110,7 @@ let FORCE = new Set();
 export function scan(page, cfg = {}) {
   FORCE = new Set(cfg.forceText || []);
   const C = []; // {kind, s, e, toks, runs, ctx, node?, q?}
-  const skipVars = new Set(cfg.skipVars || []), skipText = new Set(cfg.skipText || []);
+  const skipVars = new Set(cfg.skipVars || []), skipText = new Set(cfg.skipText || []), skipIds = new Set(cfg.skipIds || []);
   const frag = parseFragment(page, { sourceCodeLocationInfo: true });
   const skipScript = (el) => { const L = el.sourceCodeLocation, head = page.slice(L.startTag.endOffset, L.startTag.endOffset + 300);
     return (cfg.skipScripts || []).some((x) => head.includes(x)); };
@@ -120,6 +120,7 @@ export function scan(page, cfg = {}) {
     for (const c of n.childNodes || []) {
       if (c.nodeName === "script") { if (!(c.attrs || []).some((a) => /ld\+json/.test(a.value)) && !skipScript(c)) js(c); continue; }
       if (c.nodeName === "style" || c.nodeName === "#comment" || c.nodeName === "#text") continue;
+      if (skipIds.size && (c.attrs || []).some((a) => a.name === "id" && skipIds.has(a.value))) continue; // English-only section (cfg.skipIds)
       const L = c.sourceCodeLocation;
       for (const a of c.attrs || []) if (ATTRS.includes(a.name) && !a.value.includes("${")) {
         const l = L.attrs[a.name], raw = page.slice(l.startOffset, l.endOffset), q = raw.indexOf('"') >= 0 ? raw.indexOf('"') : raw.indexOf("'");

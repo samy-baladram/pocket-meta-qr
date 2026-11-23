@@ -67,8 +67,13 @@ import { dirname, join } from "node:path";
 import { createHash } from "node:crypto";
 import { minify as minifyJS } from "terser";
 import { minify as minifyCSS } from "csso";
+import { introText } from "./intro_i18n.mjs";
 
 const args = process.argv.slice(2), MINIFY = !args.includes("--no-minify"), ROUTES = !args.includes("--no-routes");
+// Nov 24 (i18n): --lang <xx> = a language page (its intro text in that language, pipeline/intro_i18n.mjs);
+// --data <dir> = where data.json / events.json / packs.json are (default: next to the page source)
+const argv = (k) => { const i = args.indexOf(k); return i > 0 ? args[i + 1] : null; };
+const LANG = argv("--lang"), DATA = argv("--data");
 const SITE = "https://pocketmetaqr.com";
 const ROUTE_TAG = '<meta name="pmq-routes" content="1"><base href="/">';
 const SECTIONS = [
@@ -554,7 +559,8 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
   const pi = args.indexOf("--prev"), old = pi > 0 ? keepPrevious(args[pi + 1], dirname(out), shared) : [];
   console.log(`page: shared code ${shared.map((f) => `${f} (${(readFileSync(join(dirname(out), f)).length / 1024).toFixed(0)} KB)`).join(", ")}` +
     `; each copy ${(full.length / 1024).toFixed(0)} KB${pi > 0 ? `; previous build's files kept: ${old.join(", ") || "none"}` : ""}`);
-  const { t: intro, d: descs, lb } = intros(dirname(src), body), hasSlot = full.includes(SEOI);
+  const { t: intro, d: descs, lb } = intros(DATA || dirname(src), body), hasSlot = full.includes(SEOI);
+  if (LANG && LANG !== "en") intro[""] = introText(LANG, readJSON(join(DATA || dirname(src), "data.json")));
   const lbOnNow = lb && Date.parse(lb.to) > Date.now();
   const rootDesc = (full.match(/<meta name="description" content="([^"]*)">/i) || [])[1];
   const rootPage = ROUTES_ON ? sectionPage(full, { dir: "", title: TITLES[""], desc: descs[""] || rootDesc,

@@ -6,6 +6,11 @@
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
    "find": "<p class=\"lbnote\"><b class=\"lbup\">",
    "replace": "<p class=\"lbn lben\">Die Deck-Notizen gibt es nur auf Englisch.</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
+  },
+  {
+   "note": "loading text next to the intro slot (the extractor does not find it)",
+   "find": "<div class=\"empty\">Loading decks&hellip;<p class=\"seoi\"",
+   "replace": "<div class=\"empty\">Decks werden geladen&hellip;<p class=\"seoi\""
   }
  ]
 }
