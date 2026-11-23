@@ -54,7 +54,7 @@
   {
    "note": "event: share ratio tip",
    "find": "title=\"Its share of the top ${n}: ${Math.round(r)}\\u00d7 its share ${winWk()}\"",
-   "replace": "title=\"上位${n}名での使用率：${winWk()}の${Math.round(r)}\\u00d7\""
+   "replace": "title=\"上位${n}名での使用率：${winWk()}の${Math.round(r)}倍\""
   },
   {
    "note": "winners: label",
@@ -120,166 +120,6 @@
    "note": "tab label: Limited Battle, 9日残り",
    "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
    "replace": "b.setAttribute(\"aria-label\", `限定バトル、${lbLeft(true)}`)"
-  },
-  {
-   "note": "Limited Battle note label: Why it's good",
-   "find": "[\"Why it's good\", ",
-   "replace": "[\"強み\", ",
-   "all": true
-  },
-  {
-   "note": "Limited Battle note label: Tip",
-   "find": "[\"Tip\", ",
-   "replace": "[\"ポイント\", ",
-   "all": true
-  },
-  {
-   "note": "Limited Battle note label: Watch out",
-   "find": "[\"Watch out\", ",
-   "replace": "[\"注意点\", ",
-   "all": true
-  },
-  {
-   "note": "Limited Battle note label: The plan",
-   "find": "[\"The plan\", ",
-   "replace": "[\"立ち回り\", ",
-   "all": true
-  },
-  {
-   "note": "Limited Battle note label: The combo",
-   "find": "[\"The combo\", ",
-   "replace": "[\"コンボ\", ",
-   "all": true
-  },
-  {
-   "note": "Limited Battle note (change with LB): Zoroark hard-counters Pikachu ex and Clo",
-   "find": "\"Zoroark hard-counters Pikachu ex and Clodsire, two of the decks you'll see the most. It honestly fits in almost any list.\"",
-   "replace": "\"よく当たるピカチュウexとパルデアドオーにゾロアークが強く刺さる。正直ほとんどのデッキに入る。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Blastoise is its best partner, and Blue'",
-   "find": "\"Blastoise is its best partner, and Blue's Provocation fits right in.\"",
-   "replace": "\"相方はカメックスが最適。グリーンの挑発との相性も抜群。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Lapras snipes the Bench, and Blastoise +",
-   "find": "\"Lapras snipes the Bench, and Blastoise + Blue's Provocation lets you pick who eats the damage. Chip whatever you want.\"",
-   "replace": "\"ラプラスでベンチを狙え、カメックス＋グリーンの挑発でダメージを受けるポケモンも選べる。好きな相手を削れる。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Energy is rarely a problem, so you almos",
-   "find": "\"Energy is rarely a problem, so you almost never brick on attacks.\"",
-   "replace": "\"エネルギー不足になりにくく、ワザが撃てない事故がほぼない。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Low Energy and fast. You've got options ",
-   "find": "\"Low Energy and fast. You've got options for Basics and options for Evos.\"",
-   "replace": "\"少ないエネルギーで速く動ける。たね対策も進化対策もある。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Blue's Provocation is in the pool, so yo",
-   "find": "\"Blue's Provocation is in the pool, so you get access to some Bench shenanigans!\"",
-   "replace": "\"グリーンの挑発が使えるので、ベンチを絡めた動きも狙える。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Super tanky. Umbreon cleans up a ton of ",
-   "find": "\"Super tanky. Umbreon cleans up a ton of Basics while Mega Tyranitar ex ramps up in the back.\"",
-   "replace": "\"とにかく硬い。ブラッキーがたねポケモンを倒している間に、後ろでメガバンギラスexを準備できる。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Got Shiny Celebi? Swap one of the healin",
-   "find": "\"Got Shiny Celebi? Swap one of the healing items for it and the deck gets even better.\"",
-   "replace": "\"色違いのセレビィがあれば、回復グッズ1枚と入れ替えるとさらに強い。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Straightforward and super easy to spam. ",
-   "find": "\"Straightforward and super easy to spam. No Bench to build, no combo to set up.\"",
-   "replace": "\"シンプルで回しやすい。ベンチ作りもコンボの準備も不要。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Stack Energy on Pikachu ex and attack. R",
-   "find": "\"Stack Energy on Pikachu ex and attack. Repeat. Zero thinking needed, perfect for grinding wins.\"",
-   "replace": "\"ピカチュウexにエネルギーを付けて攻撃、の繰り返し。考えることが少なく、周回に最適。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Clodsire's attack also chips your own Be",
-   "find": "\"Clodsire's attack also chips your own Bench, and normally Cyrus punishes that by dragging up your damaged mon for a free KO. No Cyrus in this event, so that weakness is just gone.\"",
-   "replace": "\"パルデアドオーのワザは自分のベンチも削るため、普段はアカギで傷ついたポケモンを呼ばれて倒されやすい。このイベントにはアカギがないので、その弱点がない。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Lycanroc ex gives you a second big hitte",
-   "find": "\"Lycanroc ex gives you a second big hitter, so Clodsire can do its thing with a lot less risk.\"",
-   "replace": "\"ルガルガンexが2体目のアタッカーになり、パルデアドオーを安心して動かせる。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): The fastest deck in the format once it's",
-   "find": "\"The fastest deck in the format once it's set up. Draw the pieces and it's GG.\"",
-   "replace": "\"そろえばこの環境で最速のデッキ。パーツを引ければほぼ勝ち。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): No way to boost HP, so Megas can tank it",
-   "find": "\"No way to boost HP, so Megas can tank it. Slightly unfavored there.\"",
-   "replace": "\"HPを上げる手段がなく、メガシンカに耐えられやすい。そこはやや不利。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Big HP and big damage in one package. Bu",
-   "find": "\"Big HP and big damage in one package. Bullies the other ex decks.\"",
-   "replace": "\"高いHPと高い火力を両立。他のexデッキに強い。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Pulled Mega Mewtwo Y ex from the event p",
-   "find": "\"Pulled Mega Mewtwo Y ex from the event packs? Swap it in for Jigglypuff.\"",
-   "replace": "\"イベントパックでメガミュウツーYexが出たら、プリンと入れ替えるのがおすすめ。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Fuecoco ex is straight-up busted in this",
-   "find": "\"Fuecoco ex is straight-up busted in this format.\"",
-   "replace": "\"この環境ではホゲータexが圧倒的に強い。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Not feeling Charizard? Run it with Salaz",
-   "find": "\"Not feeling Charizard? Run it with Salazzle instead.\"",
-   "replace": "\"リザードンが合わなければ、エンニュートと組むのもあり。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Almost nothing in this card pool can gus",
-   "find": "\"Almost nothing in this card pool can gust, so Mega Greninja ex's no-retreat lock just wins games.\"",
-   "replace": "\"このカードプールには入れ替え手段がほぼないため、メガゲッコウガexのにげる封じがそのまま勝ちにつながる。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): 200 HP makes it a real pain to take down",
-   "find": "\"200 HP makes it a real pain to take down.\"",
-   "replace": "\"HP200で倒されにくい。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Pikachu ex + Light Ball = turbo aggro. K",
-   "find": "\"Pikachu ex + Light Ball = turbo aggro. KOs most Basics early, so you're ahead on points fast.\"",
-   "replace": "\"ピカチュウex＋でんきだまで超速攻。序盤から多くのたねポケモンを倒せ、ポイントで先行しやすい。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Zoroark is the go-to counter in this for",
-   "find": "\"Zoroark is the go-to counter in this format, so expect to see it.\"",
-   "replace": "\"この環境ではゾロアークが定番の対策。当たる前提で考えたい。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Coin-flip heavy, but very few decks can ",
-   "find": "\"Coin-flip heavy, but very few decks can hard-wall it.\"",
-   "replace": "\"コイン頼みが多いが、完全に止められるデッキはほとんどない。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Low HP, so Pikachu ex is a nightmare mat",
-   "find": "\"Low HP, so Pikachu ex is a nightmare matchup.\"",
-   "replace": "\"HPが低く、ピカチュウexは苦手。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): Get the setup right and it hits surprisi",
-   "find": "\"Get the setup right and it hits surprisingly hard with little effort.\"",
-   "replace": "\"準備が整えば、少ない手間で意外なほど大きなダメージが出る。\""
-  },
-  {
-   "note": "Limited Battle note (change with LB): HP is on the low side, so Fire decks hit",
-   "find": "\"HP is on the low side, so Fire decks hitting Weakness will wreck you.\"",
-   "replace": "\"HPが低めで、弱点を突く炎デッキには一気に崩される。\""
   },
   {
    "note": "breakout: <deck>が<event>で優勝 / 7位（325名）",
@@ -357,11 +197,6 @@
    "note": "end date, time: no comma",
    "find": "${end.toLocaleDateString(undefined, o)}, ${end.toLocaleTimeString(",
    "replace": "${end.toLocaleDateString(undefined, o)} ${end.toLocaleTimeString("
-  },
-  {
-   "note": "Limited Battle name (GameWith: デュアルフュージョン限定バトル); change it with LB",
-   "find": "name: \"Dual Fusion Limited Battle\"",
-   "replace": "name: \"デュアルフュージョン限定バトル\""
   },
   {
    "note": "ordinals: 3rd -> 3位",
@@ -510,6 +345,32 @@
    "note": "short time left (hours)",
    "find": "left` : `${hr}h`; };",
    "replace": "left` : `${hr}時間`; };"
+  },
+  {
+   "note": "Limited Battle days left (long): 残り9日 / 残り5時間",
+   "find": "(long ? `${d} days left`",
+   "replace": "(long ? `残り${d}日`"
+  },
+  {
+   "note": "Limited Battle hours left (long)",
+   "find": "long ? `${hr} hour${hr > 1 ? \"s\" : \"\"} left`",
+   "replace": "long ? `残り${hr}時間`"
+  },
+  {
+   "note": "core/flex preview: 確定枠12 · 自由枠8",
+   "find": "`${cells.length} core \\u00b7 ${nf} flex`",
+   "replace": "`確定枠${cells.length} \\u00b7 自由枠${nf}`"
+  },
+  {
+   "note": "matchup preview: ピカチュウ戦 62%",
+   "find": "`${Math.round(mu[0].p)}% vs ${esc(nameOf(mu[0].o)).split(\" \")[0]}`",
+   "replace": "`${esc(nameOf(mu[0].o)).split(\" \")[0]}戦 ${Math.round(mu[0].p)}%`"
+  },
+  {
+   "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
+   "find": "<p class=\"lbnote\"><b class=\"lbup\">",
+   "replace": "<p class=\"lbn lben\">デッキのメモは英語のみです。</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
   }
- ]
+ ],
+ "_lb": "Limited Battle: deck notes, note labels, the event name and the card pool stay English. Do not add patches for them."
 }
