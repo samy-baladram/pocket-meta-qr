@@ -156,7 +156,7 @@
   {
    "note": "label: data status",
    "find": "aria-label=\"Data status: checked ${agoTxt(data.updatedAt)}. Details\"",
-   "replace": "aria-label=\"データの状態：${agoTxt(data.updatedAt)}に確認。詳細\""
+   "replace": "aria-label=\"データの状態：${agoTxt(data.updatedAt)}にチェック。詳細\""
   },
   {
    "note": "tip: players, matches",
@@ -599,7 +599,7 @@
   {
    "note": "What's new image: The Live status panel with the last and ",
    "find": "alt=\"The Live status panel with the last and next check\"",
-   "replace": "alt=\"前回と次回の確認を表示した更新状況\""
+   "replace": "alt=\"前回と次回のチェックを表示した更新状況\""
   },
   {
    "note": "What's new image: The banner, the title and the tab band",
@@ -1041,14 +1041,14 @@
    "replace": "let nwSeen = () => {}; document.querySelectorAll(\".nwdt time[datetime]\").forEach((t) => { const d = new Date(t.dateTime + \"T00:00:00Z\"); t.textContent = d.toLocaleDateString(\"ja-JP\", { month: \"long\", day: \"numeric\", year: d.getUTCFullYear() !== new Date().getFullYear() ? \"numeric\" : undefined, timeZone: \"UTC\" }); });"
   },
   {
-   "note": "Live chip: ● 最新 · 5分前 / ● 3時間前に確認",
+   "note": "Live chip: ● 最新 · 5分前 / ● 3時間前にチェック",
    "find": "${fresh ? `<b>Live</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt).replace(/ ago$/, \"\")}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}`}",
-   "replace": "${fresh ? `<b>最新</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt)}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}に確認`}"
+   "replace": "${fresh ? `<b>最新</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt)}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}にチェック`}"
   },
   {
-   "note": "Live panel: 5分前に確認",
+   "note": "Live panel: 5分前にチェック",
    "find": "<b>Checked ${agoTxt(data.updatedAt)}</b>",
-   "replace": "<b>${agoTxt(data.updatedAt)}に確認</b>"
+   "replace": "<b>${agoTxt(data.updatedAt)}にチェック</b>"
   },
   {
    "note": "Live panel: next check 10:05頃",
@@ -1071,9 +1071,9 @@
    "replace": "<span><i class=\"ldot a\"></i>2〜6時間前</span><span><i class=\"ldot\"></i>6時間以上前</span>"
   },
   {
-   "note": "Live: 「たった今確認」 (no に after たった今)",
-   "find": "${agoTxt(data.updatedAt)}に確認",
-   "replace": "${((a) => a === \"たった今\" ? a : a + \"に\")(agoTxt(data.updatedAt))}確認",
+   "note": "Live: 「たった今チェック」 (no に after たった今)",
+   "find": "${agoTxt(data.updatedAt)}にチェック",
+   "replace": "${((a) => a === \"たった今\" ? a : a + \"に\")(agoTxt(data.updatedAt))}チェック",
    "all": true
   },
   {

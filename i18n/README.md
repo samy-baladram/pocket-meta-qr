@@ -68,6 +68,8 @@ uso, % de victorias, torneo, sobre, expansión. Name fixes: `preview/i18n/names.
 - Ranks: N位 (never #N); "N of M": M中N (35デッキ中1位, 上位プレイヤー12人中8人).
 - Counters: Nデッキ (not 個), Nパック, N枚 (cards), N名 (players), N回優勝 (event wins; N勝 = match wins).
 - Number and label: the label first (使用率12.0% · 勝率52%). A button with a count: …をすべて表示（N）.
+- The hourly look for new data = チェック (5分前にチェック, 次回のチェック); 更新 = the numbers changed (前回の更新);
+  the Live chip = 最新 (not ライブ, which reads as a stream). 確認 only for "see / verify" (1枚ずつ確認できます).
 
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in

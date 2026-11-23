@@ -140,7 +140,7 @@
 ],
 "0fcd28ef91": [
 "checked &lt; 2 h ago",
-"2時間以内に確認"
+"2時間以内にチェック"
 ],
 "0fe5041a23": [
 "Nov 11, 2026",
@@ -636,7 +636,7 @@
 ],
 "3cf4d057fe": [
 "The “● Live” chip shows when the data was last checked. Tap it for the next check and the newest event.",
-"「● 最新」のラベルで、データを最後に確認した時刻がわかります。タップすると、次の確認と最新の大会を表示します。"
+"「● 最新」のラベルで、データを最後にチェックした時刻がわかります。タップすると、次回のチェックと最新の大会を表示します。"
 ],
 "3d02399826": [
 "Latest Pokémon TCG Pocket tournaments",
@@ -1240,7 +1240,7 @@
 ],
 "75d4a70295": [
 "Next check",
-"次回の確認"
+"次回のチェック"
 ],
 "761de442e3": [
 "h ago",
@@ -1679,7 +1679,7 @@
 ],
 "a1c9ba95b2": [
 "next check any minute",
-"まもなく次回の確認"
+"まもなく次回のチェック"
 ],
 "a1fffaaafb": [
 "List",
@@ -1871,7 +1871,7 @@
 ],
 "b2bc0c005f": [
 "Checked",
-"確認"
+"チェック"
 ],
 "b309da0a4d": [
 "Where does the data come from?",
@@ -1911,7 +1911,7 @@
 ],
 "b6afb7ea54": [
 "next check in about {0} min",
-"次回の確認は約{0}分後"
+"次回のチェックは約{0}分後"
 ],
 "b7c14969d8": [
 "Latest Events opens with a shelf of the winning decks and a Most wins panel. Tap a deck to see only its wins.",
@@ -2343,7 +2343,7 @@
 ],
 "e16297c400": [
 "Checked every hour. The numbers change only when a new event is added. Times are in your time zone.",
-"1時間ごとに確認しています。数値は新しい大会が追加されたときだけ変わります。時刻はお使いの端末のタイムゾーンで表示します。"
+"1時間ごとに新しい大会をチェックしています。数値は新しい大会が追加されたときだけ変わります。時刻はお使いの端末のタイムゾーンで表示します。"
 ],
 "e2caee56cc": [
 "Event names keep short codes like PMPT in capitals.",
@@ -2519,7 +2519,7 @@
 ],
 "f4b50527b0": [
 "Last check",
-"前回の確認"
+"前回のチェック"
 ],
 "f5060abc58": [
 "Used by",
