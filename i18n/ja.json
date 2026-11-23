@@ -104,7 +104,7 @@
 ],
 "0b57ba73fb": [
 "Live status",
-"ライブ表示"
+"更新状況"
 ],
 "0bec14f205": [
 "Rising",
@@ -636,7 +636,7 @@
 ],
 "3cf4d057fe": [
 "The “● Live” chip shows when the data was last checked. Tap it for the next check and the newest event.",
-"「● ライブ」のラベルで、データを最後に確認した時刻がわかります。タップすると、次の確認と最新の大会を表示します。"
+"「● 最新」のラベルで、データを最後に確認した時刻がわかります。タップすると、次の確認と最新の大会を表示します。"
 ],
 "3d02399826": [
 "Latest Pokémon TCG Pocket tournaments",
@@ -1032,7 +1032,7 @@
 ],
 "65c821a596": [
 "Live",
-"ライブ"
+"最新"
 ],
 "65cad64e1c": [
 "Nov 23, 2026",

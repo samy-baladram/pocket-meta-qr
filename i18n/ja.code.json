@@ -599,7 +599,7 @@
   {
    "note": "What's new image: The Live status panel with the last and ",
    "find": "alt=\"The Live status panel with the last and next check\"",
-   "replace": "alt=\"前回と次回の確認を表示したライブ表示\""
+   "replace": "alt=\"前回と次回の確認を表示した更新状況\""
   },
   {
    "note": "What's new image: The banner, the title and the tab band",
@@ -1039,6 +1039,47 @@
    "note": "date: What's new headings 11月23日 (year only when not this year)",
    "find": "let nwSeen = () => {};",
    "replace": "let nwSeen = () => {}; document.querySelectorAll(\".nwdt time[datetime]\").forEach((t) => { const d = new Date(t.dateTime + \"T00:00:00Z\"); t.textContent = d.toLocaleDateString(\"ja-JP\", { month: \"long\", day: \"numeric\", year: d.getUTCFullYear() !== new Date().getFullYear() ? \"numeric\" : undefined, timeZone: \"UTC\" }); });"
+  },
+  {
+   "note": "Live chip: ● 最新 · 5分前 / ● 3時間前に確認",
+   "find": "${fresh ? `<b>Live</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt).replace(/ ago$/, \"\")}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}`}",
+   "replace": "${fresh ? `<b>最新</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt)}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}に確認`}"
+  },
+  {
+   "note": "Live panel: 5分前に確認",
+   "find": "<b>Checked ${agoTxt(data.updatedAt)}</b>",
+   "replace": "<b>${agoTxt(data.updatedAt)}に確認</b>"
+  },
+  {
+   "note": "Live panel: next check 10:05頃",
+   "find": "\"~\" + clock(next)",
+   "replace": "clock(next) + \"頃\""
+  },
+  {
+   "note": "Live panel: (土) 9:05開始",
+   "find": "\"Started \" + st",
+   "replace": "st + \"開始\""
+  },
+  {
+   "note": "Live panel: 5分前にサイトに追加",
+   "find": "<span>Added to the site ${agoTxt(e.at)}</span>",
+   "replace": "<span>${agoTxt(e.at)}にサイトに追加</span>"
+  },
+  {
+   "note": "Live panel legend: 2〜6時間前 / 6時間以上前",
+   "find": "<span><i class=\"ldot a\"></i>2&ndash;6 h</span><span><i class=\"ldot\"></i>older</span>",
+   "replace": "<span><i class=\"ldot a\"></i>2〜6時間前</span><span><i class=\"ldot\"></i>6時間以上前</span>"
+  },
+  {
+   "note": "Live: 「たった今確認」 (no に after たった今)",
+   "find": "${agoTxt(data.updatedAt)}に確認",
+   "replace": "${((a) => a === \"たった今\" ? a : a + \"に\")(agoTxt(data.updatedAt))}確認",
+   "all": true
+  },
+  {
+   "note": "Live: 「たった今サイトに追加」",
+   "find": "${agoTxt(e.at)}にサイトに追加",
+   "replace": "${((a) => a === \"たった今\" ? a : a + \"に\")(agoTxt(e.at))}サイトに追加"
   },
   {
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
