@@ -1082,6 +1082,26 @@
    "replace": "${((a) => a === \"たった今\" ? a : a + \"に\")(agoTxt(e.at))}サイトに追加"
   },
   {
+   "note": "head: description",
+   "find": "<meta name=\"description\" content=\"This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.\">",
+   "replace": "<meta name=\"description\" content=\"今週のポケポケで勝っているデッキと最新の大会、上位プレイヤーのレシピ。すべてのレシピにゲームで読み込めるQRコード付き。\">"
+  },
+  {
+   "note": "head: og:title",
+   "find": "<meta property=\"og:title\" content=\"Pocket Meta QR – this week's Pokémon TCG Pocket meta and tournaments, with QR codes\">",
+   "replace": "<meta property=\"og:title\" content=\"Pocket Meta QR – 今週のポケポケ最強デッキと大会結果をQRコード付きで\">"
+  },
+  {
+   "note": "head: og:description",
+   "find": "<meta property=\"og:description\" content=\"The decks that win right now, the latest tournaments and their top 8, and a QR code for every list. Free, no sign-up.\">",
+   "replace": "<meta property=\"og:description\" content=\"いま勝っているデッキ、最新の大会のベスト8、すべてのレシピにQRコード。無料・登録不要。\">"
+  },
+  {
+   "note": "head: og:image:alt",
+   "find": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR: this week's winning Pokémon TCG Pocket decks, with a QR code for every list\">",
+   "replace": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR：今週のポケポケ最強デッキ。すべてのレシピにQRコード付き\">"
+  },
+  {
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
    "find": "<p class=\"lbnote\"><b class=\"lbup\">",
    "replace": "<p class=\"lbn lben\">デッキのメモは英語のみです。</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"

@@ -9,7 +9,7 @@
   {
    "note": "energy names (Fuego, Agua …)",
    "find": "const cap = (s) => s[0].toUpperCase() + s.slice(1);",
-   "replace": "const EN_ES = { grass: \"Planta\", fire: \"Fuego\", water: \"Agua\", lightning: \"Rayo\", psychic: \"Psíquico\", fighting: \"Lucha\", darkness: \"Oscuridad\", metal: \"Metal\", colorless: \"Incoloro\", dragon: \"Dragón\" }, cap = (s) => EN_ES[s] || s[0].toUpperCase() + s.slice(1);"
+   "replace": "const EN_ES = { grass: \"Planta\", fire: \"Fuego\", water: \"Agua\", lightning: \"Rayo\", psychic: \"Psíquico\", fighting: \"Lucha\", darkness: \"Oscuro\", metal: \"Metálico\", colorless: \"Incoloro\", dragon: \"Dragón\" }, cap = (s) => EN_ES[s] || s[0].toUpperCase() + s.slice(1);"
   },
   {
    "note": "event: card in the N-place list",
@@ -763,6 +763,36 @@
    "note": "Live chip: comprobado hace 3 h (old data)",
    "find": ": `<span class=\"mu\">${agoTxt(data.updatedAt)}`}",
    "replace": ": `<span class=\"mu\">comprobado ${agoTxt(data.updatedAt)}`}"
+  },
+  {
+   "note": "head: description",
+   "find": "<meta name=\"description\" content=\"This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.\">",
+   "replace": "<meta name=\"description\" content=\"Las barajas que ganan esta semana en JCC Pokémon Pocket y los últimos torneos, las listas de los jugadores top y un código QR para cada lista, para importarla en el juego.\">"
+  },
+  {
+   "note": "head: og:title",
+   "find": "<meta property=\"og:title\" content=\"Pocket Meta QR – this week's Pokémon TCG Pocket meta and tournaments, with QR codes\">",
+   "replace": "<meta property=\"og:title\" content=\"Pocket Meta QR – el meta y los torneos de JCC Pokémon Pocket de esta semana, con códigos QR\">"
+  },
+  {
+   "note": "head: og:description",
+   "find": "<meta property=\"og:description\" content=\"The decks that win right now, the latest tournaments and their top 8, and a QR code for every list. Free, no sign-up.\">",
+   "replace": "<meta property=\"og:description\" content=\"Las barajas que ganan ahora mismo, los últimos torneos con su top 8 y un código QR para cada lista. Gratis y sin registro.\">"
+  },
+  {
+   "note": "head: og:image:alt",
+   "find": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR: this week's winning Pokémon TCG Pocket decks, with a QR code for every list\">",
+   "replace": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR: las barajas ganadoras de JCC Pokémon Pocket de esta semana, con un código QR para cada lista\">"
+  },
+  {
+   "note": "NEW badge (decks): NUEVA + tip",
+   "find": "'<span class=\"newb\" title=\"New in the top 10 since your last visit\">NEW</span>'",
+   "replace": "'<span class=\"newb\" title=\"Nueva en el top 10 desde tu última visita\">NUEVA</span>'"
+  },
+  {
+   "note": "NEW badge (events): NUEVO (torneo) + tip",
+   "find": "'<span class=\"newb\" title=\"New since your last visit\">NEW</span>'",
+   "replace": "'<span class=\"newb\" title=\"Nuevo desde tu última visita\">NUEVO</span>'"
   },
   {
    "note": "plural: jugador / jugadores (player${T === 1 ? \"\" : \"s\"})",
