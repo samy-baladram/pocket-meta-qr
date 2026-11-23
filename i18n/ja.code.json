@@ -492,6 +492,302 @@
    "replace": "title=\"${esc(c.n)} \\u00b7 ${c.decks.size}デッキで使用\""
   },
   {
+   "note": "What's new image: A card page: the card, its pack and the ",
+   "find": "alt=\"A card page: the card, its pack and the meta decks that play it\"",
+   "replace": "alt=\"カードのページ：カード、収録パック、そのカードを使う環境デッキ\""
+  },
+  {
+   "note": "What's new image: Two Breakout deck rows with a gold crown",
+   "find": "alt=\"Two Breakout deck rows with a gold crown in place of the rank\"",
+   "replace": "alt=\"順位の代わりに金の王冠が付いた2つの躍進デッキの行\""
+  },
+  {
+   "note": "What's new image: The Top 10 shelf with the middle deck br",
+   "find": "alt=\"The Top 10 shelf with the middle deck bright and the others faded\"",
+   "replace": "alt=\"中央のデッキが明るく、他が薄く表示されたトップ10の棚\""
+  },
+  {
+   "note": "What's new image: An event list foot with the tiles ending",
+   "find": "alt=\"An event list foot with the tiles ending at the bottom of the QR code\"",
+   "replace": "alt=\"タイルがQRコードの下端で終わる大会のレシピの下部\""
+  },
+  {
+   "note": "What's new image: The Booster Packs tab with the Dual Fusi",
+   "find": "alt=\"The Booster Packs tab with the Dual Fusion Pikachu pack open\"",
+   "replace": "alt=\"デュアルフュージョンのピカチュウのパックを開いた「パック」タブ\""
+  },
+  {
+   "note": "What's new image: The Winners shelf and the Most wins pane",
+   "find": "alt=\"The Winners shelf and the Most wins panel\"",
+   "replace": "alt=\"優勝デッキの棚と「優勝が多いデッキ」\""
+  },
+  {
+   "note": "What's new image: The Limited Battle banner with the days ",
+   "find": "alt=\"The Limited Battle banner with the days left\"",
+   "replace": "alt=\"残り日数が表示された限定バトルのバナー\""
+  },
+  {
+   "note": "What's new image: An open deck row with its share button i",
+   "find": "alt=\"An open deck row with its share button in the top right corner\"",
+   "replace": "alt=\"右上に共有ボタンがある、開いたデッキの行\""
+  },
+  {
+   "note": "What's new image: The Top 10 shelf with its pack backdrop ",
+   "find": "alt=\"The Top 10 shelf with its pack backdrop and the Rising and Falling panel\"",
+   "replace": "alt=\"パックを背景にしたトップ10の棚と、上昇・下降の一覧\""
+  },
+  {
+   "note": "What's new image: An open event with its stats on a wide s",
+   "find": "alt=\"An open event with its stats on a wide screen\"",
+   "replace": "alt=\"大きな画面で統計を表示した、開いた大会\""
+  },
+  {
+   "note": "What's new image: An open deck on a wide screen, the list ",
+   "find": "alt=\"An open deck on a wide screen, the list next to its stats\"",
+   "replace": "alt=\"大きな画面で開いたデッキ。レシピの横に統計\""
+  },
+  {
+   "note": "What's new image: The swap selector with the 2-swap versio",
+   "find": "alt=\"The swap selector with the 2-swap versions open\"",
+   "replace": "alt=\"2枚入れ替えのバージョンを開いた入れ替えの選択\""
+  },
+  {
+   "note": "What's new image: The Limited Battle page with its hand-pi",
+   "find": "alt=\"The Limited Battle page with its hand-picked decks\"",
+   "replace": "alt=\"厳選デッキを載せた限定バトルのページ\""
+  },
+  {
+   "note": "What's new image: The deck stats panel: share, win rate, m",
+   "find": "alt=\"The deck stats panel: share, win rate, matchups and the meta map\"",
+   "replace": "alt=\"デッキの統計：使用率、勝率、相性、環境マップ\""
+  },
+  {
+   "note": "What's new image: The Events filter with the 50+, 100+ and",
+   "find": "alt=\"The Events filter with the 50+, 100+ and 200+ chips\"",
+   "replace": "alt=\"50名・100名・200名以上のチップがある大会の絞り込み\""
+  },
+  {
+   "note": "What's new image: A list card with the Popular now chip",
+   "find": "alt=\"A list card with the Popular now chip\"",
+   "replace": "alt=\"「いま人気」のラベルが付いたレシピ\""
+  },
+  {
+   "note": "What's new image: The Top players sheet with its dot chart",
+   "find": "alt=\"The Top players sheet with its dot chart and results\"",
+   "replace": "alt=\"ドットグラフと成績がある上位プレイヤーのシート\""
+  },
+  {
+   "note": "What's new image: A deck row with the Unproven label",
+   "find": "alt=\"A deck row with the Unproven label\"",
+   "replace": "alt=\"「実績なし」のラベルが付いたデッキの行\""
+  },
+  {
+   "note": "What's new image: Deck rows with their rank change badges",
+   "find": "alt=\"Deck rows with their rank change badges\"",
+   "replace": "alt=\"順位の変動バッジが付いたデッキの行\""
+  },
+  {
+   "note": "What's new image: The energy types and the deck chips of t",
+   "find": "alt=\"The energy types and the deck chips of the filter\"",
+   "replace": "alt=\"絞り込みのエネルギーとデッキのチップ\""
+  },
+  {
+   "note": "What's new image: A shared list: its cards, its score, how",
+   "find": "alt=\"A shared list: its cards, its score, how it does today and its QR code\"",
+   "replace": "alt=\"共有されたレシピ：カード、戦績、現在の状況、QRコード\""
+  },
+  {
+   "note": "What's new image: The Live status panel with the last and ",
+   "find": "alt=\"The Live status panel with the last and next check\"",
+   "replace": "alt=\"前回と次回の確認を表示したライブ表示\""
+  },
+  {
+   "note": "What's new image: The banner, the title and the tab band",
+   "find": "alt=\"The banner, the title and the tab band\"",
+   "replace": "alt=\"バナー、タイトル、タブの帯\""
+  },
+  {
+   "note": "What's new image: The Latest Events list with one event op",
+   "find": "alt=\"The Latest Events list with one event open\"",
+   "replace": "alt=\"大会を1つ開いた「最新の大会」\""
+  },
+  {
+   "note": "What's new image: The Show all smaller decks button",
+   "find": "alt=\"The Show all smaller decks button\"",
+   "replace": "alt=\"「小規模デッキをすべて表示」ボタン\""
+  },
+  {
+   "note": "What's new image: The About &amp; FAQ page",
+   "find": "alt=\"The About &amp; FAQ page\"",
+   "replace": "alt=\"「サイトについて・FAQ」のページ\""
+  },
+  {
+   "note": "What's new image: The link preview image of the site",
+   "find": "alt=\"The link preview image of the site\"",
+   "replace": "alt=\"サイトのリンクのプレビュー画像\""
+  },
+  {
+   "note": "What's new image: A list compared with List 1: the 4 swapp",
+   "find": "alt=\"A list compared with List 1: the 4 swapped cards\"",
+   "replace": "alt=\"レシピ1と比較したレシピ：入れ替えた4枚\""
+  },
+  {
+   "note": "What's new image: The top of the Meta deck list",
+   "find": "alt=\"The top of the Meta deck list\"",
+   "replace": "alt=\"最強デッキの一覧の上部\""
+  },
+  {
+   "note": "What's new image: An open deck: its 20 cards, the QR code ",
+   "find": "alt=\"An open deck: its 20 cards, the QR code and the tiles\"",
+   "replace": "alt=\"開いたデッキ：20枚のカード、QRコード、タイル\""
+  },
+  {
+   "note": "What's new image: The card sheet: a larger card with its s",
+   "find": "alt=\"The card sheet: a larger card with its set and pack\"",
+   "replace": "alt=\"カードのシート：大きなカードと拡張パック・収録パック\""
+  },
+  {
+   "note": "What's new image: The search box with the new-card suggest",
+   "find": "alt=\"The search box with the new-card suggestions\"",
+   "replace": "alt=\"新しいカードの候補を表示した検索欄\""
+  },
+  {
+   "note": "label: cards swapped vs list 1",
+   "find": "aria-label=\"${nd} card${nd > 1 ? \"s\" : \"\"} swapped versus list 1\"",
+   "replace": "aria-label=\"レシピ1と比べて${nd}枚入れ替え\""
+  },
+  {
+   "note": "label: pack",
+   "find": "aria-label=\"${esc(x.setName)}${pkSub(x) ? \" \" + esc(pkSub(x)) : \"\"}\"",
+   "replace": "aria-label=\"${esc(x.setName)}${pkSub(x) ? \" \" + esc(pkSub(x)) : \"\"}のパック\""
+  },
+  {
+   "note": "label: list dots",
+   "find": "aria-label=\"Show list ${i + 1} of ${n}${i === 0 ? \" (\" + L1n(d) + \")\" : \"\"}\"",
+   "replace": "aria-label=\"レシピ${i + 1}／${n}を表示\""
+  },
+  {
+   "note": "label: deck stats",
+   "find": "aria-label=\"Deck stats: ${pct(d.share)} share, ${pct(d.win)} win\"",
+   "replace": "aria-label=\"デッキの統計：使用率${pct(d.share)}、勝率${pct(d.win)}\""
+  },
+  {
+   "note": "label: close",
+   "find": "aria-label=\"Close\"",
+   "replace": "aria-label=\"閉じる\"",
+   "all": true
+  },
+  {
+   "note": "label: breakout deck",
+   "find": "aria-label=\"Breakout deck\"",
+   "replace": "aria-label=\"躍進デッキ\""
+  },
+  {
+   "note": "label: lists",
+   "find": "aria-label=\"Lists\"",
+   "replace": "aria-label=\"レシピ\"",
+   "all": true
+  },
+  {
+   "note": "label: event stats",
+   "find": "aria-label=\"Event stats\"",
+   "replace": "aria-label=\"大会の統計\""
+  },
+  {
+   "note": "label: share icon in the install steps",
+   "find": "aria-label=\"Share\" style=\"vertical-align:-2px\"",
+   "replace": "aria-label=\"共有\" style=\"vertical-align:-2px\""
+  },
+  {
+   "note": "alt: card out",
+   "find": "alt=\"${esc(x.out.n)} (out)\"",
+   "replace": "alt=\"${esc(x.out.n)}（抜いたカード）\""
+  },
+  {
+   "note": "label: cards swapped tabs",
+   "find": "role=\"tablist\" aria-label=\"Cards swapped\"",
+   "replace": "role=\"tablist\" aria-label=\"入れ替えたカード\""
+  },
+  {
+   "note": "label: card full screen",
+   "find": "aria-label=\"Show ${esc(n)} full screen\"",
+   "replace": "aria-label=\"${esc(n)}を全画面で表示\""
+  },
+  {
+   "note": "label: Limitless link",
+   "find": "aria-label=\"Score: the original list on Limitless\"",
+   "replace": "aria-label=\"戦績：Limitlessの元のレシピ\""
+  },
+  {
+   "note": "label: open deck",
+   "find": "aria-label=\"Open this deck on the site\"",
+   "replace": "aria-label=\"このデッキをサイトで開く\""
+  },
+  {
+   "note": "label: show QR",
+   "find": "aria-label=\"Show the QR code\"",
+   "replace": "aria-label=\"QRコードを表示\""
+  },
+  {
+   "note": "alt: shared QR",
+   "find": "alt=\"QR code for ${esc(SH.name)}\"",
+   "replace": "alt=\"${esc(SH.name)}のQRコード\"",
+   "all": true
+  },
+  {
+   "note": "label: back to cards",
+   "find": "aria-label=\"Back to the cards\"",
+   "replace": "aria-label=\"カードに戻る\""
+  },
+  {
+   "note": "label: forget shared list",
+   "find": "aria-label=\"Forget this shared list\"",
+   "replace": "aria-label=\"この共有レシピを消す\""
+  },
+  {
+   "note": "alt: QR",
+   "find": "alt=\"QR code for ${esc(d.name)}\"",
+   "replace": "alt=\"${esc(d.name)}のQRコード\""
+  },
+  {
+   "note": "label: previous list",
+   "find": "aria-label=\"Previous list\"",
+   "replace": "aria-label=\"前のレシピ\"",
+   "all": true
+  },
+  {
+   "note": "label: next list",
+   "find": "aria-label=\"Next list\"",
+   "replace": "aria-label=\"次のレシピ\"",
+   "all": true
+  },
+  {
+   "note": "label: deck stats, all lists",
+   "find": "aria-label=\"Deck stats, all lists\"",
+   "replace": "aria-label=\"デッキの統計（全レシピ）\""
+  },
+  {
+   "note": "label: version QR",
+   "find": "aria-label=\"QR code for this version\"",
+   "replace": "aria-label=\"このバージョンのQRコード\""
+  },
+  {
+   "note": "label: cards swapped vs list 1 (sheet)",
+   "find": "aria-label=\"Cards swapped vs ${esc(L1n(d))}\"",
+   "replace": "aria-label=\"${esc(L1n(d))}と比べて入れ替えたカード\""
+  },
+  {
+   "note": "label: card details",
+   "find": "aria-label=\"${esc(c.n)}: card details\"",
+   "replace": "aria-label=\"${esc(c.n)}：カードの詳細\""
+  },
+  {
+   "note": "label: decks without",
+   "find": "aria-label=\"Decks without ${esc(c.n)}\"",
+   "replace": "aria-label=\"${esc(c.n)}を使わないデッキ\"",
+   "all": true
+  },
+  {
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
    "find": "<p class=\"lbnote\"><b class=\"lbup\">",
    "replace": "<p class=\"lbn lben\">デッキのメモは英語のみです。</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
