@@ -44,3 +44,9 @@ python preview/i18n_patch.py site/index.html /tmp/src.html
 node i18n/pseudo.mjs /tmp/src.html /tmp/xx.html          # then open it (see pseudo.mjs)
 bash preview/build.sh /tmp/pub                           # all preview pages, like the build
 ```
+
+## Layout check (long words)
+Languages with long words (German, Spanish, French ...) can break buttons, chips and titles. A language page gets extra
+CSS in `preview/i18n_patch.py` (scoped to `html:not([lang="en"])`): hyphenation, titles on 2 lines, labels that wrap.
+To test a new language or a UI change: `node i18n/pseudo.mjs <patched page> <out> --long` makes every word 60% longer;
+`tools/layout_check.mjs` lists what sticks out or is cut, compared with the English page.

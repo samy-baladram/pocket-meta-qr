@@ -19,6 +19,17 @@ def one(old, new):
     s = s.replace(old, new, 1)
 css = ".theme-btn svg { width: 16px; height: 16px; display: block; stroke-width: 2; }\n"
 one(css, css + """/* Nov 23 (i18n, Phase 1 design B): language menu = a globe pill left of the theme button + a raised panel */
+/* Nov 23 layout pass: languages with longer words (the build sets <html lang> on a language page; English unchanged) */
+html:not([lang="en"]) body { -webkit-hyphens: auto; hyphens: auto; }
+html:not([lang="en"]) .sgc span, html:not([lang="en"]) .pkr-n b, html:not([lang="en"]) .swpl { overflow-wrap: anywhere; }
+html:not([lang="en"]) .hsec { white-space: normal; text-overflow: clip; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.2; }
+html:not([lang="en"]) .pk-lh { align-items: center; gap: 8px; } html:not([lang="en"]) .pk-lh > :first-child { min-width: 0; }
+html:not([lang="en"]) .pk-lh .t1s-seg { flex: none; } html:not([lang="en"]) .pk-lh .t1s-seg button { white-space: nowrap; padding: 0 10px; }
+html:not([lang="en"]) .evsub, html:not([lang="en"]) .evsub > span { flex-wrap: wrap; row-gap: 1px; }
+html:not([lang="en"]) .pkr-n small { white-space: normal; overflow-wrap: anywhere; }
+html:not([lang="en"]) :root .swt .swpl, html:not([lang="en"]) .swpl { white-space: normal; text-align: center; }
+html:not([lang="en"]) .t1s-h > :first-child { flex: none; white-space: nowrap; }
+html:not([lang="en"]) .t1s-lab > div { inset: 0 10px; gap: 0 4px; font-size: 12px; flex-wrap: wrap; align-content: center; line-height: 1.2; } /* the name keeps its line; the rest moves under it */
 .lang-btn { right: 40px; width: auto; gap: 5px; padding: 0 10px 0 9px; border-radius: 16px; display: flex; align-items: center;
   font: 700 12px/1 inherit; letter-spacing: 0.02em; }
 .lang-btn svg.chev { width: 12px; height: 12px; }
