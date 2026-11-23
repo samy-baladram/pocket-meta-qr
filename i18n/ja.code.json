@@ -1110,6 +1110,21 @@
    "note": "loading text next to the intro slot (the extractor does not find it)",
    "find": "<div class=\"empty\">Loading decks&hellip;<p class=\"seoi\"",
    "replace": "<div class=\"empty\">デッキを読み込み中&hellip;<p class=\"seoi\""
+  },
+  {
+   "note": "tabs: the full Japanese label on phones too (5 characters, shorter than the English short form)",
+   "find": ">Meta<span class=\"tlx\"> Decks</span></a>",
+   "replace": ">最強デッキ</a>"
+  },
+  {
+   "note": "tabs: the full Japanese label on phones too (5 characters, shorter than the English short form)",
+   "find": "><span class=\"tlx\">Latest </span>Events</a>",
+   "replace": ">最新の大会</a>"
+  },
+  {
+   "note": "tabs: the full Japanese label on phones too (5 characters, shorter than the English short form)",
+   "find": "><span class=\"tlx\">Booster </span>Packs</a>",
+   "replace": ">拡張パック</a>"
   }
  ],
  "_lb": "Limited Battle: deck notes, note labels, the event name and the card pool stay English. Do not add patches for them."
