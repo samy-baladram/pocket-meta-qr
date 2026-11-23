@@ -21,7 +21,7 @@
 ],
 "01429c8de9": [
 "swap{0} from List 1",
-"枚入れ替え{0!}（リスト1と比較）"
+"枚入れ替え{0!}（レシピ1と比較）"
 ],
 "01466ff456": [
 "of {0} top players",
@@ -29,7 +29,7 @@
 ],
 "028fddc250": [
 "Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.",
-"人気{t0}：最も多くの上位プレイヤーがまったく同じ形で使ったリストです（3人以上、かつ他のどのリストより2人以上多い）。一番使われているリストが一番強いとは限りません。成績と他のリストも見てください。"
+"人気{t0}：最も多くの上位プレイヤーがまったく同じ形で使ったレシピです（3人以上、かつ他のどのレシピより2人以上多い）。一番使われているレシピが一番強いとは限りません。成績と他のレシピも見てください。"
 ],
 "02b620b03a": [
 "{0}Top players",
@@ -144,11 +144,11 @@
 ],
 "133724e26e": [
 "lists · best {t0}{0}{t1} · {1}% share",
-"リスト · 最高{t0}{0}{t1} · 使用率{1}%"
+"レシピ · 最高{t0}{0}{t1} · 使用率{1}%"
 ],
 "1385294543": [
 "×N: share here vs {0} · top 8s at other events",
-"×N：この大会での使用率と{0}の比較 · 他の大会での上位8名入り"
+"×N：この大会での使用率と{0}の比較 · 他の大会でのベスト8入り"
 ],
 "13d4b964c6": [
 "One event is {t0}{0}%{t1} of these results, so it moves the numbers more than usual.",
@@ -164,7 +164,7 @@
 ],
 "1464926697": [
 "Most used is not always the best: compare the win rates.",
-"一番使われているリストが一番強いとは限りません。勝率を比べてください。"
+"一番使われているレシピが一番強いとは限りません。勝率を比べてください。"
 ],
 "14b0dbb85b": [
 "Pocket Meta QR is a free fan site. It is not affiliated with, endorsed or sponsored by Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK or DeNA. Pok&eacute;mon and all card images are trademarks and &copy; of their owners.",
@@ -184,7 +184,7 @@
 ],
 "16effccb01": [
 "No list was used by more than 1 top player, so the {0} is the list with the best place{1}.",
-"2人以上の上位プレイヤーが使ったリストがないため、{0}は最高順位のリストです{1}。"
+"2人以上の上位プレイヤーが使ったレシピがないため、{0}は最高順位のレシピです{1}。"
 ],
 "172415f02e": [
 "added",
@@ -248,11 +248,11 @@
 ],
 "1eb2b5b879": [
 "top 8{0}",
-"回上位8名{0!}"
+"回ベスト8{0!}"
 ],
 "1f2a787631": [
 "QR code not available for this list.",
-"このリストにはQRコードがありません。"
+"このレシピにはQRコードがありません。"
 ],
 "1faeee71ba": [
 "week{0} ago",
@@ -264,7 +264,7 @@
 ],
 "1fd840594a": [
 "This{t0}List",
-"この{t0}リスト"
+"この{t0}レシピ"
 ],
 "206374cef8": [
 "Only cards from {t0}Dual Fusion{t1} (C1), the {t2}Promo-C Vol. 1{t3} pack of this event, and these 7 shop promos:",
@@ -272,7 +272,7 @@
 ],
 "21c1b89658": [
 "in {0}% of its top players’ lists",
-"上位プレイヤーのリストの{0}%に採用"
+"上位プレイヤーのレシピの{0}%に採用"
 ],
 "21e164cb9e": [
 "· {0} of",
@@ -304,11 +304,11 @@
 ],
 "23cd04792c": [
 "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image.",
-"画像を保存し、ゲームで：マイデッキ → ＋ → コードを読み取る → 保存した画像を読み取る。"
+"画像を保存し、ゲームで：マイデッキ → 新規作成 → コードを読み取る → 保存した画像から読み取る。"
 ],
 "23d7de0ce5": [
 "Most often in a top 8",
-"上位8名に多いデッキ"
+"ベスト8に多いデッキ"
 ],
 "241585c95a": [
 "Can I use it like an app?",
@@ -328,7 +328,7 @@
 ],
 "24ecb68c93": [
 "Show all {0} lists",
-"全{0}リストを表示"
+"全{0}レシピを表示"
 ],
 "250cd1927b": [
 "in almost every deck",
@@ -344,7 +344,7 @@
 ],
 "26e86c0eb6": [
 "{0}+ players",
-"{0}人以上"
+"{0}名以上"
 ],
 "26ed6f1e9b": [
 "in small decks",
@@ -372,7 +372,7 @@
 ],
 "2912fa5e02": [
 "players",
-"人"
+"名"
 ],
 "293325df75": [
 "Show all {0} smaller decks",
@@ -388,7 +388,7 @@
 ],
 "2aca25531e": [
 "This is the list of its best-placed player{0}{1}. A starting point, not a proven list.",
-"最も順位の高いプレイヤーのリストです{0}{1}。出発点であり、実績のあるリストではありません。"
+"最も順位の高いプレイヤーのレシピです{0}{1}。出発点であり、実績のあるレシピではありません。"
 ],
 "2b286f6b1e": [
 "Vs the meta",
@@ -416,7 +416,7 @@
 ],
 "301e37b6c7": [
 "with {0} in the top 8",
-"（{0}が上位8名）"
+"（{0}がベスト8）"
 ],
 "302a69d3b1": [
 "steady in {0} days",
@@ -464,7 +464,7 @@
 ],
 "33bd43999f": [
 "players{0}",
-"人{0!}"
+"名{0!}"
 ],
 "33ce417454": [
 "Loading…",
@@ -484,7 +484,7 @@
 ],
 "35e3987c5b": [
 "Limited Battle decks",
-"期間限定バトルのデッキ"
+"限定バトルのデッキ"
 ],
 "372c9acbf6": [
 "How do I import a deck?",
@@ -548,7 +548,7 @@
 ],
 "3d506b84fd": [
 "New in the list (the first time since the set came out, for 3 days) and Breakout decks (a rare deck with a top-8 finish at a big event)",
-"リストに新登場したデッキ（拡張パックの発売以降で初めて、3日間）と躍進デッキ（大きな大会で上位8名に入った珍しいデッキ）"
+"リストに新登場したデッキ（拡張パックの発売以降で初めて、3日間）と躍進デッキ（大きな大会でベスト8に入った珍しいデッキ）"
 ],
 "3d81bd05a3": [
 "All packs",
@@ -556,7 +556,7 @@
 ],
 "3e6d1fbfd5": [
 "with this exact list",
-"まったく同じリスト"
+"まったく同じレシピ"
 ],
 "3ea7d0f033": [
 "Packs for the meta",
@@ -580,7 +580,7 @@
 ],
 "42b36a9675": [
 "The other lists compare their cards with it. Lists with the same count are sorted by their best place.",
-"他のリストはこのリストとカードを比べています。人数が同じリストは最高順位の順に並べています。"
+"他のレシピはこのレシピとカードを比べています。人数が同じレシピは最高順位の順に並べています。"
 ],
 "42df7965d2": [
 "all match wins, losses and ties of this deck",
@@ -664,7 +664,7 @@
 ],
 "4d8078c8ad": [
 "Shared list: {t0}{0}{t1} &rsaquo;",
-"共有されたリスト：{t0}{0}{t1} &rsaquo;"
+"共有されたレシピ：{t0}{0}{t1} &rsaquo;"
 ],
 "4de41ef9aa": [
 "Tap {t0}Share{t1} {0} in the address bar (top right).",
@@ -684,7 +684,7 @@
 ],
 "50009483b8": [
 "List 1",
-"リスト1"
+"レシピ1"
 ],
 "500c824120": [
 "Win rate against the 10 most played decks {0} (games), best first. Bars from 20% to 80%; light = too few games to be sure it is not 50%. Tap a deck to open it.",
@@ -756,11 +756,11 @@
 ],
 "55b1c3fa21": [
 "No public lists for this event.",
-"この大会の公開リストはありません。"
+"この大会の公開レシピはありません。"
 ],
 "55d0b1f10a": [
 "Top 8",
-"上位8"
+"ベスト8"
 ],
 "55eee3040e": [
 "Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes",
@@ -792,7 +792,7 @@
 ],
 "57c9502a7d": [
 "Lists",
-"リスト"
+"レシピ"
 ],
 "57e1881e37": [
 "share &middot; win",
@@ -800,11 +800,11 @@
 ],
 "57eea71ce1": [
 "This deck · all lists",
-"このデッキ · 全リスト"
+"このデッキ · 全レシピ"
 ],
 "58197254f8": [
 "with {0}+ players",
-"（{0}人以上）"
+"（{0}名以上）"
 ],
 "5a7b059de5": [
 "▼ Falling",
@@ -860,11 +860,11 @@
 ],
 "627c7add13": [
 "top 8 in {0} event{1}",
-"{0}大会{1!}で上位8名"
+"{0}大会{1!}でベスト8"
 ],
 "62eb8f8f88": [
 "The {0} is the list that the most top players used: {t0}{1} of {2}{t1}.",
-"{0}は最も多くの上位プレイヤーが使ったリストです：{t0}{2}人中{1}人{t1}。"
+"{0}は最も多くの上位プレイヤーが使ったレシピです：{t0}{2}人中{1}人{t1}。"
 ],
 "62eea86f4f": [
 "Filter events by size",
@@ -888,7 +888,7 @@
 ],
 "67524d7001": [
 "The deck has no top player in these days. {t0}Unproven{t1}: some players won more than they lost, but none reached a top result; the page shows the best of them. {t2}No top result{t3}: no player won more than they lost; the page shows the best-placed list. Both are a starting point, not a proven list.",
-"この期間、そのデッキに上位プレイヤーがいません。{t0}実績なし{t1}：勝ち越したプレイヤーはいるものの、上位の成績には届いていません。その中で最も良い成績のリストを表示します。{t2}上位入賞なし{t3}：勝ち越したプレイヤーがいません。最も順位の高いリストを表示します。どちらも出発点であり、実績のあるリストではありません。"
+"この期間、そのデッキに上位プレイヤーがいません。{t0}実績なし{t1}：勝ち越したプレイヤーはいるものの、上位の成績には届いていません。その中で最も良い成績のレシピを表示します。{t2}上位入賞なし{t3}：勝ち越したプレイヤーがいません。最も順位の高いレシピを表示します。どちらも出発点であり、実績のあるレシピではありません。"
 ],
 "67b6a61bdd": [
 "Search a card",
@@ -944,11 +944,11 @@
 ],
 "6c3a3bb7b9": [
 "The big number is the deck’s {t0}share{t1}: of {t2}all players{t3} in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the “top players” (that count, under each list, only takes players who won at least 2 more matches than they lost).",
-"大きな数字はデッキの{t0}使用率{t1}です。これらの大会の{t2}全プレイヤー{t3}（結果に関係なく全参加者）のうち、このデッキを使った割合です。12.0%＝およそ8人に1人。「上位プレイヤー」の数ではありません（各リストの下にある人数は、勝った対戦が負けより2以上多いプレイヤーだけを数えます）。"
+"大きな数字はデッキの{t0}使用率{t1}です。これらの大会の{t2}全プレイヤー{t3}（結果に関係なく全参加者）のうち、このデッキを使った割合です。12.0%＝およそ8人に1人。「上位プレイヤー」の数ではありません（各レシピの下にある人数は、勝った対戦が負けより2以上多いプレイヤーだけを数えます）。"
 ],
 "6cb6084c7f": [
 "Deck List ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
-"デッキリスト（{0}）– ポケポケ | Pocket Meta QR"
+"デッキレシピ（{0}）– ポケポケ | Pocket Meta QR"
 ],
 "6cd0edac3e": [
 "with {0} card{1} swapped",
@@ -980,7 +980,7 @@
 ],
 "6fe97729d0": [
 "Shared list{0}",
-"共有されたリスト{0}"
+"共有されたレシピ{0}"
 ],
 "7002659f49": [
 "About &amp; FAQ",
@@ -992,7 +992,7 @@
 ],
 "7046e8f2dd": [
 "The lists did not load. Close and open the event again.",
-"リストを読み込めませんでした。大会を閉じて、もう一度開いてください。"
+"レシピを読み込めませんでした。大会を閉じて、もう一度開いてください。"
 ],
 "70b8058643": [
 "stayed {t0}#{0}",
@@ -1036,11 +1036,11 @@
 ],
 "74dfc10a49": [
 "Not a top list now",
-"現在は上位のリストではありません"
+"現在は上位のレシピではありません"
 ],
 "75367d1a97": [
 "No player of this deck won more matches than they lost {0}, so it has no top-player list.",
-"{0}このデッキで勝ち越したプレイヤーがいないため、上位プレイヤーのリストがありません。"
+"{0}このデッキで勝ち越したプレイヤーがいないため、上位プレイヤーのレシピがありません。"
 ],
 "75ab30ea65": [
 "Added to the site",
@@ -1064,15 +1064,15 @@
 ],
 "775ee8b04a": [
 "The tournaments of the same days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.",
-"同じ期間の大会を新しい順に並べています。大会を開くと、上位8名のリストをそれぞれQRコード付きで見られます。1人が複数のデッキを使う大会は、1人1リストにならないため載せていません。"
+"同じ期間の大会を新しい順に並べています。大会を開くと、ベスト8のレシピをそれぞれQRコード付きで見られます。1人が複数のデッキを使う大会は、1人1レシピにならないため載せていません。"
 ],
 "7789ef8e5a": [
 "Scan Saved Image",
-"保存した画像を読み取る"
+"保存した画像から読み取る"
 ],
 "778e3d21fc": [
 "Event · list {0} of",
-"大会 · リスト{0}／"
+"大会 · レシピ{0}／"
 ],
 "78c6a1f315": [
 "of {0} decks",
@@ -1164,11 +1164,11 @@
 ],
 "816aed3a57": [
 "&times;{0} in this list",
-"このリストに&times;{0}"
+"このレシピに&times;{0}"
 ],
 "81826fc524": [
 "Open a deck, tap its QR code and save the image. In the game: {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. On a computer, you can also point the game&rsquo;s camera at the screen.",
-"デッキを開き、QRコードをタップして画像を保存します。ゲーム内で{t0}マイデッキ → ＋ → コードを読み取る → 保存した画像を読み取る{t1}。パソコンの画面にゲームのカメラを向けて読み取ることもできます。"
+"デッキを開き、QRコードをタップして画像を保存します。ゲーム内で{t0}マイデッキ → 新規作成 → コードを読み取る → 保存した画像から読み取る{t1}。パソコンの画面にゲームのカメラを向けて読み取ることもできます。"
 ],
 "8235bdefc9": [
 "the newest set",
@@ -1200,7 +1200,7 @@
 ],
 "857fa3b382": [
 "List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. {t0}&#9733; Popular now{t1} marks a list 1 that clearly more top players used exactly than any other list.",
-"デッキのリスト1は、最も多くの上位プレイヤーが使ったリストです。入れ替えが1〜3枚だけのリストはこれに含めます。リストの下のタイルに、まったく同じリストまたは1〜3枚の入れ替えで使った上位プレイヤーの人数を表示します（タイルをタップすると、それぞれQRコード付きでそのバージョンを見られます）。4枚以上入れ替えたリストは、2人以上の上位プレイヤーが使ったとき、または32人以上の大会で1人が上位8名に入ったときに、別のリストとして表示します。{t0}&#9733; 人気{t1}は、まったく同じリストを使った上位プレイヤーが他のどのリストよりもはっきり多いリスト1の印です。"
+"デッキのレシピ1は、最も多くの上位プレイヤーが使ったレシピです。入れ替えが1〜3枚だけのレシピはこれに含めます。レシピの下のタイルに、まったく同じレシピまたは1〜3枚の入れ替えで使った上位プレイヤーの人数を表示します（タイルをタップすると、それぞれQRコード付きでそのバージョンを見られます）。4枚以上入れ替えたレシピは、2人以上の上位プレイヤーが使ったとき、または32人以上の大会で1人がベスト8に入ったときに、別のレシピとして表示します。{t0}&#9733; 人気{t1}は、まったく同じレシピを使った上位プレイヤーが他のどのレシピよりもはっきり多いレシピ1の印です。"
 ],
 "861edba005": [
 "Suggestions",
@@ -1212,7 +1212,7 @@
 ],
 "876d097a1a": [
 "Decks whose main list has no Pokémon ex",
-"メインのリストにポケモンexがないデッキ"
+"メインのレシピにポケモンexがないデッキ"
 ],
 "8799002486": [
 "Which Pokémon TCG Pocket Pack to Open ({0}) | Pocket Meta QR",
@@ -1228,7 +1228,7 @@
 ],
 "8896272648": [
 "No one with this deck won more than they lost {0}. This is its best-placed list.",
-"{0}このデッキで勝ち越した人はいません。最も順位の高いリストです。"
+"{0}このデッキで勝ち越した人はいません。最も順位の高いレシピです。"
 ],
 "88c70db626": [
 ", and {t0}{0}{t1} more with 1 to 3 cards swapped{1}",
@@ -1248,7 +1248,7 @@
 ],
 "899e85d0d1": [
 "A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.",
-"順位は大会の人数と合わせて比べます：547人中5位は153人中2位より上です。他のリストはこのリストとカードを比べています。"
+"順位は大会の人数と合わせて比べます：547人中5位は153人中2位より上です。他のレシピはこのレシピとカードを比べています。"
 ],
 "89b86ab0e6": [
 "Language",
@@ -1268,7 +1268,7 @@
 ],
 "8cd38b3544": [
 "Event · list",
-"大会 · リスト"
+"大会 · レシピ"
 ],
 "8d546a6dea": [
 "Meta",
@@ -1316,7 +1316,7 @@
 ],
 "9212d0a9e8": [
 "Share this list",
-"このリストを共有"
+"このレシピを共有"
 ],
 "9259f0b1c8": [
 "Live tournament data",
@@ -1328,7 +1328,7 @@
 ],
 "93daa2f17e": [
 "The decks that win in Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, the {t2}latest events{t3} with their top 8, and a {t4}QR code{t5} for every list, so you can import a deck in a few taps.",
-"{t0}いま{t1}ポケポケの大会で勝っているデッキ、{t2}最新の大会{t3}の上位8名、そしてすべてのリストに{t4}QRコード{t5}。数タップでデッキを読み込めます。"
+"{t0}いま{t1}ポケポケの大会で勝っているデッキ、{t2}最新の大会{t3}のベスト8、そしてすべてのレシピに{t4}QRコード{t5}。数タップでデッキを読み込めます。"
 ],
 "953d4f3666": [
 "A {t0}top player{t1} won at least 2 more matches than they lost (ties do not count) at a single-deck event {0}.",
@@ -1340,7 +1340,7 @@
 ],
 "96980908d1": [
 "cards{t0} in the top {0} (lists):",
-"枚のカード{t0}（上位{0}名のリスト）："
+"枚のカード{t0}（上位{0}名のレシピ）："
 ],
 "96c12df622": [
 "swap{0}",
@@ -1352,11 +1352,11 @@
 ],
 "96fb9c9f0d": [
 "How are the lists chosen?",
-"リストの選び方は？"
+"レシピの選び方は？"
 ],
 "972758b2df": [
 "A rare deck (under 0.2% share {0}) with a top-8 finish at a big event (128+ players): {t0}{1}{t1}.",
-"大きな大会（128人以上）で上位8名に入った、使用率0.2%未満{0}の珍しいデッキ：{t0}{1}{t1}。"
+"大きな大会（128人以上）でベスト8に入った、使用率0.2%未満{0}の珍しいデッキ：{t0}{1}{t1}。"
 ],
 "97fe84b71c": [
 "has instead:",
@@ -1416,7 +1416,7 @@
 ],
 "9fcb4b1bfc": [
 "No lists stored for this event.",
-"この大会のリストは保存されていません。"
+"この大会のレシピは保存されていません。"
 ],
 "a095f62c35": [
 "; {t0}+1{t1} = one more copy of a core card",
@@ -1432,7 +1432,7 @@
 ],
 "a1fffaaafb": [
 "List",
-"リスト"
+"レシピ"
 ],
 "a260c629df": [
 "Clear the search",
@@ -1444,7 +1444,7 @@
 ],
 "a30fa0929b": [
 "top 8 finish{0}",
-"回上位8名{0!}"
+"回ベスト8{0!}"
 ],
 "a32b8cd11b": [
 "won",
@@ -1456,7 +1456,7 @@
 ],
 "a40926803d": [
 "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image.",
-"ゲームで：マイデッキ → ＋ → コードを読み取る を開き、カメラをこのコードに向けます。画像をダウンロードすることもできます。"
+"ゲームで：マイデッキ → 新規作成 → コードを読み取る を開き、カメラをこのコードに向けます。画像をダウンロードすることもできます。"
 ],
 "a452ac820f": [
 "Tap {t0}Share{t1} {0} (Safari: at the bottom, or at the top on iPad).",
@@ -1480,7 +1480,7 @@
 ],
 "a624ce137f": [
 "Results with exactly this list",
-"まったく同じリストの成績"
+"まったく同じレシピの成績"
 ],
 "a6c37a0db5": [
 "Saving is not available here: long-press the QR code instead.",
@@ -1500,7 +1500,7 @@
 ],
 "a9a48e26e0": [
 "A deck plays a card when half or more of its lists play it. A {t0}meta card{t1} is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded, with “small” under them, and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.",
-"デッキのリストの半分以上に入っているカードを、そのデッキで使うカードとします。{t0}環境カード{t1}とは、使用率1.0%以上のデッキが1つ以上使っているカードです。小規模デッキだけが使うカードは薄く表示し、下に「小規模」と付けて別に数えます。ポケモンとトレーナーズが対象で、レアリティや手持ちのカードは考えません。"
+"デッキのレシピの半分以上に入っているカードを、そのデッキで使うカードとします。{t0}環境カード{t1}とは、使用率1.0%以上のデッキが1つ以上使っているカードです。小規模デッキだけが使うカードは薄く表示し、下に「小規模」と付けて別に数えます。ポケモンとトレーナーズが対象で、レアリティや手持ちのカードは考えません。"
 ],
 "aa13831f68": [
 "· {t0}{0}%{t1} of top players",
@@ -1592,15 +1592,15 @@
 ],
 "b3c94b397b": [
 "Shared list",
-"共有されたリスト"
+"共有されたレシピ"
 ],
 "b44a861262": [
 "in the {0}-place",
-"{0}位のリストで"
+"{0}位のレシピで"
 ],
 "b56d5ef151": [
 "Limited Battle pick",
-"期間限定バトルのおすすめ"
+"限定バトルのおすすめ"
 ],
 "b5b2a49247": [
 "Matchups",
@@ -1636,7 +1636,7 @@
 ],
 "b86f70d930": [
 "The match record ({t0}wins-losses-ties{t1}) of the player who used this list{0}{1}.",
-"このリストを使ったプレイヤーの戦績（{t0}勝-負-分{t1}）{0}{1}。"
+"このレシピを使ったプレイヤーの戦績（{t0}勝-負-分{t1}）{0}{1}。"
 ],
 "b8be7266fc": [
 "{0}Limited-time event",
@@ -1664,7 +1664,7 @@
 ],
 "bd81811d71": [
 "Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks from public tournaments on Limitless, like a tier list built from real results: share, win rate and the lists the top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster pack gives the cards of the meta.",
-"Pocket Meta QRは、Limitlessの公開大会の結果から今週のポケポケのデッキを順位付けします。実際の結果から作るティア表のようなもので、使用率、勝率、上位プレイヤーのリストを載せています。すべてのリストにQRコードがあり、ゲームで読み取るとデッキを読み込めます。「パック」ページでは、環境のカードが出るパックがわかります。"
+"Pocket Meta QRは、Limitlessの公開大会の結果から今週のポケポケのデッキを順位付けします。実際の結果から作るティア表のようなもので、使用率、勝率、上位プレイヤーのレシピを載せています。すべてのレシピにQRコードがあり、ゲームで読み取るとデッキを読み込めます。「パック」ページでは、環境のカードが出るパックがわかります。"
 ],
 "bf3d48422f": [
 "Pokémon TCG Pocket Meta Decks ({0}) with QR Codes | Pocket Meta QR",
@@ -1704,7 +1704,7 @@
 ],
 "c38f356b28": [
 "This list has not shown that yet.",
-"このリストはまだその成績を出していません。"
+"このレシピはまだその成績を出していません。"
 ],
 "c5406d81f3": [
 "&middot; most used first",
@@ -1720,11 +1720,11 @@
 ],
 "c5eb8e09c6": [
 "with the exact list",
-"まったく同じリスト"
+"まったく同じレシピ"
 ],
 "c63ee4d0fc": [
 "Still a top list",
-"今も上位のリスト"
+"今も上位のレシピ"
 ],
 "c743e0f584": [
 "Tap the Chrome menu {t0}&#8942;{t1} (top right).",
@@ -1736,7 +1736,7 @@
 ],
 "c7c4c1e950": [
 "&middot; {t0}{0}{t1} players &middot;",
-"&middot; {t0}{0}{t1}人 &middot;"
+"&middot; {t0}{0}{t1}名 &middot;"
 ],
 "c7c6c9a9c7": [
 "months ago",
@@ -1752,11 +1752,11 @@
 ],
 "c95db6211f": [
 "Meta decks{t0}{t1}Latest tournaments{t2}{t3}Which pack to open{t4}{t5}Limited Battle",
-"環境デッキ{t0}{t1}最新の大会{t2}{t3}開けるべきパック{t4}{t5}期間限定バトル"
+"環境デッキ{t0}{t1}最新の大会{t2}{t3}開けるべきパック{t4}{t5}限定バトル"
 ],
 "c9929a6b53": [
 "players won more than they lost with this deck {0}, but none reached a top result. This is the best of them.",
-"人がこのデッキで{0}勝ち越しましたが、上位の成績には届いていません。その中で最も良い成績のリストです。"
+"人がこのデッキで{0}勝ち越しましたが、上位の成績には届いていません。その中で最も良い成績のレシピです。"
 ],
 "c9b4332dc1": [
 "has no data",
@@ -1804,7 +1804,7 @@
 ],
 "ceeaa744c4": [
 "Limited",
-"期間限定"
+"限定"
 ],
 "d044282472": [
 "Newest",
@@ -1820,7 +1820,7 @@
 ],
 "d1c174cc6c": [
 "({0} players)",
-"（{0}人）"
+"（{0}名）"
 ],
 "d1c47b17d6": [
 "Early results{t0} &middot; day",
@@ -1828,7 +1828,7 @@
 ],
 "d1e9c146ea": [
 "Core: in 90%+ of the {0} top players' lists. Flex: share of top players who play it{1}.{2}",
-"確定枠：上位プレイヤー{0}人のリストの90%以上に入っているカード。自由枠：そのカードを使う上位プレイヤーの割合{1}。{2}"
+"確定枠：上位プレイヤー{0}人のレシピの90%以上に入っているカード。自由枠：そのカードを使う上位プレイヤーの割合{1}。{2}"
 ],
 "d27dc1b686": [
 "Faded win rate: fewer than 30 players, so it moves a lot.",
@@ -1836,7 +1836,7 @@
 ],
 "d3235b7b18": [
 "Copy list link",
-"リストのリンクをコピー"
+"レシピのリンクをコピー"
 ],
 "d3254bb3fb": [
 "share &middot; {t0}{0}{t1} win",
@@ -1876,7 +1876,7 @@
 ],
 "d82857eb60": [
 "Exact list",
-"まったく同じリスト"
+"まったく同じレシピ"
 ],
 "d97686b37a": [
 "Saving is not available here: right-click the QR code instead.",
@@ -1888,7 +1888,7 @@
 ],
 "da2ea5bee8": [
 "lists",
-"リスト"
+"レシピ"
 ],
 "da7ea14ea7": [
 "{0}× · {1} player{2}",
@@ -1896,7 +1896,7 @@
 ],
 "da8f262b50": [
 "{0}: top lists – Pocket Meta QR",
-"{0}：上位のリスト – Pocket Meta QR"
+"{0}：上位のレシピ – Pocket Meta QR"
 ],
 "dae1e5f83a": [
 "this week",
@@ -1968,7 +1968,7 @@
 ],
 "e000ac6209": [
 "no public list yet",
-"公開リストはまだありません"
+"公開レシピはまだありません"
 ],
 "e001fb2f40": [
 "meta card{0}",
@@ -1980,7 +1980,7 @@
 ],
 "e314914df8": [
 "The list most top players build from.",
-"最も多くの上位プレイヤーが元にしているリストです。"
+"最も多くの上位プレイヤーが元にしているレシピです。"
 ],
 "e339ba737a": [
 "No events",
@@ -2000,7 +2000,7 @@
 ],
 "e6866f28e4": [
 "Events with this deck in the top 8",
-"このデッキが上位8名に入った大会"
+"このデッキがベスト8に入った大会"
 ],
 "e6ad2f3e33": [
 "Last {0} days",
@@ -2060,7 +2060,7 @@
 ],
 "f004f8b2da": [
 "One row per number of wins, one dot per player. Blue: the top 8.",
-"勝ち数ごとに1行、プレイヤーごとに1点。青は上位8名です。"
+"勝ち数ごとに1行、プレイヤーごとに1点。青はベスト8です。"
 ],
 "f0c4717b8a": [
 "That event is not in the list anymore: it shows the events {0}.",
@@ -2100,7 +2100,7 @@
 ],
 "f33788fa9c": [
 "top players used this deck; {t0}{0}{t1} used exactly this list{1}{2}.",
-"人の上位プレイヤーがこのデッキを使い、{t0}{0}{t1}人がまったく同じリスト{1}{2}。"
+"人の上位プレイヤーがこのデッキを使い、{t0}{0}{t1}人がまったく同じレシピ{1}{2}。"
 ],
 "f383cb9878": [
 ", and their place:",
@@ -2172,7 +2172,7 @@
 ],
 "ff3e8e536e": [
 "1 player won more than they lost with this deck {0}, but did not reach a top result. This is their list.",
-"1人がこのデッキで{0}勝ち越しましたが、上位の成績には届いていません。そのリストです。"
+"1人がこのデッキで{0}勝ち越しましたが、上位の成績には届いていません。そのレシピです。"
 ],
 "ffa4f00cd6": [
 "slot{0}",
@@ -2180,6 +2180,6 @@
 ],
 "ffd5f6df10": [
 "in no other top player’s list",
-"他の上位プレイヤーのリストにはなし"
+"他の上位プレイヤーのレシピにはなし"
 ]
 }

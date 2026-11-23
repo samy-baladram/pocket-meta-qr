@@ -1,0 +1,178 @@
+{
+ "_": "Code changes for the ja page (i18n/build.mjs applies them before the texts). find: exact code of the page; all: change each place (else the first). A find that is not in the page is reported, not used.",
+ "patches": [
+  {
+   "note": "date range in a month: 11月9日〜14日",
+   "find": "} \\u2013 ${B.getUTCDate()}`",
+   "replace": "}〜${B.getUTCDate()}日`"
+  },
+  {
+   "note": "date range: 11月9日〜12月2日",
+   "find": "} \\u2013 ${B.toLocaleDateString(undefined, o)}`",
+   "replace": "}〜${B.toLocaleDateString(undefined, o)}`"
+  },
+  {
+   "note": "date, time: no comma",
+   "find": "\"numeric\" })}, ${t.toLocaleTimeString(",
+   "replace": "\"numeric\" })} ${t.toLocaleTimeString("
+  },
+  {
+   "note": "end date, time: no comma",
+   "find": "${end.toLocaleDateString(undefined, o)}, ${end.toLocaleTimeString(",
+   "replace": "${end.toLocaleDateString(undefined, o)} ${end.toLocaleTimeString("
+  },
+  {
+   "note": "Limited Battle name (GameWith: デュアルフュージョン限定バトル); change it with LB",
+   "find": "name: \"Dual Fusion Limited Battle\"",
+   "replace": "name: \"デュアルフュージョン限定バトル\""
+  },
+  {
+   "note": "ordinals: 3rd -> 3位",
+   "find": "n + (n % 100 >= 11 && n % 100 <= 13 ? \"th\" : [\"th\",\"st\",\"nd\",\"rd\"][n % 10] || \"th\")",
+   "replace": "n + \"位\""
+  },
+  {
+   "note": "ordinals (ord, ordN)",
+   "all": true,
+   "find": "n + (n % 100 >= 11 && n % 100 <= 13 ? \"th\" : [\"th\", \"st\", \"nd\", \"rd\"][n % 10] || \"th\")",
+   "replace": "n + \"位\""
+  },
+  {
+   "note": "medal label: 3位 (not 3位 place)",
+   "find": "aria-label=\"${ordF(p)} place\"",
+   "replace": "aria-label=\"${ordF(p)}\""
+  },
+  {
+   "note": "place tab",
+   "find": "${ordN(pl)} place</span>",
+   "replace": "${ordN(pl)}</span>"
+  },
+  {
+   "note": "list dots",
+   "find": "aria-label=\"${esc(ordN(v.pl))} place\"",
+   "replace": "aria-label=\"${esc(ordN(v.pl))}\""
+  },
+  {
+   "note": "results: 3位／231名",
+   "all": true,
+   "find": "${ordF(p)} <span>of ${of}</span>",
+   "replace": "${ordF(p)}<span>／${of}名</span>"
+  },
+  {
+   "note": "share label",
+   "find": "label: `${ordF(f[0])} of ${f[1]}",
+   "replace": "label: `${ordF(f[0])}／${f[1]}名"
+  },
+  {
+   "note": "shared list place",
+   "find": "`${ordF(+pp[1])} of ${pp[2]}`",
+   "replace": "`${ordF(+pp[1])}／${pp[2]}名`"
+  },
+  {
+   "note": "share card place",
+   "find": "`${ord(+pp[1])} of ${pp[2]}`",
+   "replace": "`${ord(+pp[1])}／${pp[2]}名`"
+  },
+  {
+   "note": "event list label",
+   "find": "evt: `${ordN(v.pl)} of ${e.players} · ${e.name}`",
+   "replace": "evt: `${ordN(v.pl)}／${e.players}名 · ${e.name}`"
+  },
+  {
+   "note": "breakout: <event>で優勝 / <event>で3位",
+   "find": "`${b[1] === 1 ? \"Won\" : ordF(b[1]) + \" at\"} ${shortEv(b[3] || \"\")}`",
+   "replace": "`${shortEv(b[3] || \"\")}で${b[1] === 1 ? \"優勝\" : ordF(b[1])}`"
+  },
+  {
+   "note": "breakout (long)",
+   "find": "`${d.brk[0][1] === 1 ? \"Won\" : ordF(d.brk[0][1]) + \" place at\"} ${d.brk[0][3] || \"an event\"}`",
+   "replace": "`${d.brk[0][3] || \"大会\"}で${d.brk[0][1] === 1 ? \"優勝\" : ordF(d.brk[0][1])}`"
+  },
+  {
+   "note": "dates and times in Japanese: toLocaleDateString",
+   "find": "toLocaleDateString(undefined,",
+   "replace": "toLocaleDateString(\"ja-JP\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Japanese: toLocaleTimeString",
+   "find": "toLocaleTimeString(undefined,",
+   "replace": "toLocaleTimeString(\"ja-JP\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Japanese: toLocaleString",
+   "find": "toLocaleString(undefined,",
+   "replace": "toLocaleString(\"ja-JP\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Japanese: toLocaleDateString",
+   "find": "toLocaleDateString(\"en-US\",",
+   "replace": "toLocaleDateString(\"ja-JP\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Japanese: toLocaleString",
+   "find": "toLocaleString(\"en-US\", { month",
+   "replace": "toLocaleString(\"ja-JP\", { month",
+   "all": true
+  },
+  {
+   "note": "results list date: 11/14",
+   "find": "${MON[+dt.slice(5, 7) - 1]} ${+dt.slice(8)}",
+   "replace": "${+dt.slice(5, 7)}/${+dt.slice(8)}",
+   "all": true
+  },
+  {
+   "note": "trend chart first day: 11/14",
+   "find": "${MON[+x.slice(5, 7) - 1]} ${+x.slice(8)}",
+   "replace": "${+x.slice(5, 7)}/${+x.slice(8)}"
+  },
+  {
+   "note": "winning-record check",
+   "find": "has ${n > 0 ? \"+\" : n < 0 ? \"\\u2212\" : \"\"}${Math.abs(n)} \\u00b7 ${k} more win${k > 1 ? \"s\" : \"\"} in place of ${k > 1 ? \"losses\" : \"a loss\"}",
+   "replace": "現在${n > 0 ? \"+\" : n < 0 ? \"\\u2212\" : \"\"}${Math.abs(n)} \\u00b7 あと${k}敗が勝ちなら達成"
+  },
+  {
+   "note": "trend sentence: mv",
+   "find": "`stayed near <b>${a[1].toFixed(1)}${u}</b>` : `went ${a[1] > a[0] ? \"up\" : \"down\"} from ${a[0].toFixed(1)}${u} to <b>${a[1].toFixed(1)}${u}</b>`",
+   "replace": "`<b>${a[1].toFixed(1)}${u}</b>前後で横ばい` : `${a[0].toFixed(1)}${u}から<b>${a[1].toFixed(1)}${u}</b>に${a[1] > a[0] ? \"上昇\" : \"下降\"}`"
+  },
+  {
+   "note": "trend sentence",
+   "find": "`<p class=\"tsay\">Share ${mv(s, 0.3, \"%\")}. Win rate ${w ? mv(w, 1, \"%\") : \"has no data\"}.${r ? ` Rank ${r[0] === r[1] ? `stayed <b>#${r[1]}</b>` : `went from #${r[0]} to <b>#${r[1]}</b>`}.` : \"\"}</p>`",
+   "replace": "`<p class=\"tsay\">使用率は${mv(s, 0.3, \"%\")}。勝率は${w ? mv(w, 1, \"%\") : \"データなし\"}。${r ? `順位は${r[0] === r[1] ? `<b>${r[1]}位</b>のまま` : `${r[0]}位から<b>${r[1]}位</b>に`}。` : \"\"}</p>`"
+  },
+  {
+   "note": "pack: in all packs of the set",
+   "find": "`In ${all === 2 ? \"both\" : \"all \" + all} ${set.name} packs`",
+   "replace": "`${set.name}の全${all}パックに収録`"
+  },
+  {
+   "note": "swap version",
+   "find": "`a swap version of ${al.map((k) => (k === 1 ? \"the \" + L1n(d) : \"list \" + k)).join(\", \")}`",
+   "replace": "`${al.map((k) => (k === 1 ? L1n(d) : \"レシピ\" + k)).join(\"・\")}の入れ替え版`"
+  },
+  {
+   "note": "list 1",
+   "find": "const L1n = () => \"list 1\", L1s = () => \"List 1\";",
+   "replace": "const L1n = () => \"レシピ1\", L1s = () => \"レシピ1\";"
+  },
+  {
+   "note": "about-button labels",
+   "find": "\"the decks\" : \"the records\"",
+   "replace": "\"デッキ\" : \"成績\""
+  },
+  {
+   "note": "short time left: 10日 / 5時間",
+   "find": ": `${d}d`) : long ?",
+   "replace": ": `${d}日`) : long ?"
+  },
+  {
+   "note": "short time left (hours)",
+   "find": "left` : `${hr}h`; };",
+   "replace": "left` : `${hr}時間`; };"
+  }
+ ]
+}

@@ -11,6 +11,11 @@ build time. Nothing changes in the live page, and a built page has no translatio
 - `en.json`: the catalog (made by `extract.mjs`; the build also puts it on the site: `/i18n/en.json`).
 - `de.json`, `ja.json`: `{id: [English, translation]}`; optional 3rd part `{"<code just before the text>": translation}`
   for one English text with two meanings ("Share": the button vs the meta share).
+- `<lang>.code.json` (now `ja.code.json`): **code changes** for one language, where a text change is not enough:
+  ordinals (`3rd` -> `3位`), word order (`<event>で優勝`), dates (`ja-JP`, `11/14`, `11月9日〜14日`), the Limited
+  Battle name. `{"patches": [{"note", "find", "replace", "all"?}]}`; `find` = exact code of the page, applied before the
+  texts. A `find` that is not in the page is not used: the build prints it and the report lists it (`codeMiss`). The
+  Limited Battle name patch must change when `LB` changes.
 - `build.mjs`: page + language -> translated page and a report (`/i18n/report.<lang>.json` on the site: missing, bad,
   old). `pseudo.mjs`: the safety check (every text as ⟦text⟧).
 
@@ -18,6 +23,8 @@ build time. Nothing changes in the live page, and a built page has no translatio
 - Keep every `{n}` once and every `{tn}` (order may change). `{n!}` = the code still runs but shows nothing (an English
   plural `s` in Japanese). A translation that breaks this is not used (the report lists it) and the English stays.
 - No translation = the English stays exactly as it is. Leave code-like entries (class names, keys) untranslated.
+- Japanese words: as GameWith / Game8 use them: 環境デッキ, デッキレシピ / レシピ (a deck list), 使用率, 勝率,
+  優勝 / N位 / ベスト8, 参加 N名, 限定バトル, マイデッキ → 新規作成 → コードを読み取る → 保存した画像から読み取る.
 - Japanese: the spaces next to a translation that starts / ends with Japanese are dropped.
 - Words of the game: as in the game (Energie / エネルギー, Booster-Pack / パック, Erweiterung / 拡張パック); card,
   deck, set and pack names come from `preview/i18n/names.<lang>.json`, not from here.

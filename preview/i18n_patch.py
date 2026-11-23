@@ -54,10 +54,14 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
   var trSet = (code, en) => { if (!L10N) return en; // set codes: "b4a" in the site data, "B4a" in the file
     if (!L10N.sl) { L10N.sl = {}; for (const [k, v] of Object.entries(L10N.s || {})) L10N.sl[k.toLowerCase()] = v; }
     return L10N.sl[String(code || "").toLowerCase()] || en; };
+  // the place in the data ("3rd of 110") in the page language
+  var trPl = (s) => { const m = /^(\d+)(?:st|nd|rd|th) of (\d+)$/.exec(s); if (!m || !PG_L) return s;
+    return PG_L === "ja" ? `${m[1]}位／${m[2]}名` : PG_L === "de" ? `${m[1]}. von ${m[2]}` : s; };
   var l10nDeep = (o) => { if (!L10N || !o || typeof o !== "object") return o;
     if (Array.isArray(o)) { o.forEach(l10nDeep); return o; }
     if (typeof o.name === "string" && Array.isArray(o.art)) { if (!("nameEn" in o)) o.nameEn = o.name; o.name = trDeck(o.nameEn); }
     if (typeof o.n === "string" && typeof o.id === "string" && /^[a-z0-9]+-\d+$/.test(o.id)) { if (!("nEn" in o)) o.nEn = o.n; o.n = trCard(o.nEn); }
+    if (typeof o.pl === "string") o.pl = trPl(o.pl);
     if (typeof o.setName === "string" && typeof o.set === "string") { if (!("setNameEn" in o)) o.setNameEn = o.setName; o.setName = trSet(o.set, o.setNameEn); }
     for (const v of Object.values(o)) if (v && typeof v === "object") l10nDeep(v);
     return o; };
