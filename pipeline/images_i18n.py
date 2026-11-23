@@ -301,7 +301,7 @@ if __name__ == "__main__":
     y.add_argument("--max-seconds", type=int, default=360)
     y.add_argument("--threads", type=int, default=8)
     y.add_argument("--refresh", action="store_true")
-    k = sub.add_parser("packs", help="CI: booster pack art without the logo (one image for all languages)")
+    k = sub.add_parser("packs", help="booster pack art without the logo (not used since Nov 24: every page uses the English p/ images)")
     k.add_argument("--key", required=True)
     k.add_argument("--force", action="store_true")
     a = ap.parse_args()

@@ -53,6 +53,11 @@ Checked with the owner (Nov 24): the game menu path (Meus baralhos → + → Esc
 energy names (Planta, Fogo, Água, Raios, Psíquico, Luta, Escuridão, Metal, Incolor, Dragão), A3b = Bosque dos Eevee
 (names.fix.json; the database has the A3 name there).
 
+## Images
+- Card images: per language (`site/i18n/<lang>/c|z/`, `images_i18n.py sync`), English file when one is missing.
+- Booster pack art and icons (Nov 24): the English images (`p/`) on every language page. The logo-free art from the
+  game files (`images_i18n.py packs`, `i18n/p/`) was not sharp and had other dimensions, so it is not made or used.
+
 ## Rules for a translation
 - Keep every `{n}` once and every `{tn}` (order may change). `{n!}` = the code still runs but shows nothing (an English
   plural `s` in Japanese). A translation that breaks this is not used (the report lists it) and the English stays.
