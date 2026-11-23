@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795404601-fb63 -->
+<!-- ui: artifact version 1795419773-3e00 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -147,7 +147,6 @@ footer a { color: var(--muted); }
 /* Footer actions are quiet text links (not raised pills): the raised pill style is for actions in the content (Show more decks, Also played, QR) */
 .fbtns .fabout { margin-top: 0; background: none; box-shadow: none; padding: 6px 8px; color: var(--acc-ink); font-weight: 600; font-size: var(--fs-s); }
 .fbtns .fabout svg { color: currentColor; }
-.fbtns .fabout + .fabout:not([hidden])::before { content: "\00b7"; color: var(--muted); margin: 0 6px 0 -8px; font-weight: 400; }
 @media (hover: hover) { .fbtns .fabout:hover { text-decoration: underline; text-underline-offset: 3px; } } #homeBtn[hidden] { display: none; }
 .fsrc, .fleg { margin: 0; max-width: 640px; }
 /* Nov 22: section links + a short "how it works" text (static HTML: read by search engines and link previews) */
@@ -2354,6 +2353,7 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 .t1s-c img.b { left: 8px; top: calc(var(--ch) * 0.5); /* Nov 21: 50% lower (was 45%); the shelf height stays */ box-shadow: 0 -3px 6px rgba(40, 60, 90, 0.35), 2px 2px 5px rgba(40, 60, 90, 0.33); } /* the upward layer (was 0.28): the front card sits on the back one */
 .t1s-set > .t1s-c:first-child::before { content: ""; position: absolute; left: -8.5px; top: -4px; width: 1px; height: calc(var(--ch) * 1.1); background: linear-gradient(rgba(var(--sh), 0), rgba(var(--sh), 1) 15%, rgba(var(--sh), 1) 70%, rgba(var(--sh), 0)); box-shadow: 1px 0 0 rgba(255, 255, 255, 0.8); } /* the loop seam: between #10 and #1 */
 .t1s-c:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.t1s-tr .shi { transition: opacity 0.25s ease; } .t1s-tr .shi:not(.mid) { opacity: 0.5; } /* Nov 23: shelves: only the middle item (the one named in the label) at full strength */
 .t1s-mp { position: relative; z-index: 1; margin-top: 14px; padding: 10px 10px 6px; border-radius: 18px; background: var(--surface); box-shadow: var(--raised), var(--bevel); }
 .t1s-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 3px; margin-bottom: 6px; border-radius: 999px; background: var(--bg); box-shadow: var(--pin-sh); }
 .t1s-seg button { height: 30px; border: 0; border-radius: 999px; background: none; color: var(--muted); font-family: inherit; font-size: 13px; font-weight: 400; cursor: pointer; }
@@ -2620,6 +2620,30 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 .abvc h2 { margin: 0 0 6px; font-size: 1.25rem; }
 .abv .about { max-height: none; overflow: visible; margin: 0; padding: 0; font-size: var(--fs-m); }
 .abv .about h4 { margin-top: 18px; font-size: 1rem; }
+/* Nov 23: What's new entries: days (newest first) > entries (tag, title, text, picture, link); 5 at a time (NW_STEP) */
+.nwv .abvc h2 { margin-bottom: 2px; }
+.nwd { margin-top: 18px; }
+.nwdt { margin: 0 0 8px; font-size: var(--fs-s); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.nwi { padding: 14px 0 16px; border-top: 1px solid var(--line); }
+.nwd .nwi:first-of-type { border-top: 0; padding-top: 4px; }
+.abv .about .nwh { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; font-size: 1rem; color: var(--ink); }
+.nwtag { flex: none; padding: 1px 8px; border-radius: 999px; background: #dde3ea; color: #3f4b5a; font-size: 10.5px; font-weight: 700; letter-spacing: 0.03em; line-height: 17px; } /* Fixed: grey; text pairs pass AA (6.3-8.0 : 1) */
+.nwtag[data-k="new"] { background: #f6e7b8; color: #6e4a00; } .nwtag[data-k="imp"] { background: #d3eedd; color: #155f38; } /* New = the gold of "New" / Breakout, Improved = the rising green */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .nwtag { background: #2f3845; color: #c9d3de; } :root:not([data-theme="light"]) .nwtag[data-k="new"] { background: #4a3c17; color: #ffd98a; } :root:not([data-theme="light"]) .nwtag[data-k="imp"] { background: #1f3d2c; color: #8fe0b0; } }
+:root[data-theme="dark"] .nwtag { background: #2f3845; color: #c9d3de; } :root[data-theme="dark"] .nwtag[data-k="new"] { background: #4a3c17; color: #ffd98a; } :root[data-theme="dark"] .nwtag[data-k="imp"] { background: #1f3d2c; color: #8fe0b0; }
+.abv .about .nwx { margin: 0 0 10px; }
+.nwul { margin: 2px 0 0; padding-left: 18px; } .nwul li { margin: 2px 0; }
+.nwf { margin: 0 0 10px; max-width: 420px; padding: 6px; border-radius: 12px; overflow: hidden; background: var(--bg); box-shadow: var(--pin-sh); }
+.nwf img { display: block; width: 100%; height: auto; border-radius: 8px; } /* light-mode pictures only (owner) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .nwf { background: var(--tile); } :root:not([data-theme="light"]) .nwf img { filter: brightness(0.85); } }
+:root[data-theme="dark"] .nwf { background: var(--tile); } :root[data-theme="dark"] .nwf img { filter: brightness(0.85); }
+.abv .about a.nwa { display: inline-flex; gap: 4px; font-weight: 600; font-size: var(--fs-s); text-decoration: none; }
+@media (hover: hover) { .abv .about a.nwa:hover { text-decoration: underline; text-underline-offset: 3px; } }
+@media (min-width: 740px) { .nwi:has(.nwf) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); grid-template-rows: auto auto 1fr; column-gap: 28px; align-items: start; }
+  .nwi:has(.nwf) > :not(.nwf) { grid-column: 1; } .nwi:has(.nwf) > .nwf { grid-column: 2; grid-row: 1 / span 3; margin: 0; } .nwi:has(.nwf) > .nwa { grid-row: 3; } }
+.nwi.nwh0, .nwd.nwh0 { display: none; }
+.nwmore { display: flex; margin: 18px auto 2px; } .nwmore[hidden] { display: none; }
+.fbtns #newBtn { position: relative; } #newBtn.nwdot::after { content: ""; position: absolute; top: 5px; right: 9px; width: 7px; height: 7px; border-radius: 50%; background: #e8b52e; box-shadow: 0 0 0 2px var(--surface); } /* an update newer than the last visit to What's new */
 .abv .about a { color: var(--ink); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--muted) 60%, transparent); text-underline-offset: 2px; }
 /* Nov 22: the event stats skeleton (wide screens, while the event file loads) */
 .eksk { display: grid; gap: 10px; padding: 14px 16px; }
@@ -2732,13 +2756,14 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
     <h4>Can I use it like an app?</h4><p>Yes: tap <b>Add to Home Screen</b> at the bottom of the page for the steps.</p>
     <h4>Is it free?</h4><p>Yes: no ads and no sign-up. No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter). This browser keeps only your theme and the last tab you used.</p>
     <p class="afine">Made by <a href="https://www.reddit.com/user/Myxas_/" target="_blank" rel="noopener">u/Myxas_</a>.</p></div></div></section>
+  <section class="abv nwv" id="nwv" aria-labelledby="nwvH" hidden><div class="abvc"><h2 id="nwvH">What’s new</h2><div class="about nwl" id="nwl"><section class="nwd"><h3 class="nwdt"><time datetime="2026-11-23">Nov 23, 2026</time></h3><article class="nwi"><p class="nwh"><span class="nwtag" data-k="new">New</span><b>Breakout decks</b></p><p class="nwx">A rare deck that makes the top 8 of a big event (128+ players) now shows on the Meta tab, with a crown in place of its rank. The New filter finds them too.</p><figure class="nwf"><img src="wn-2026-11-23-breakout.webp" width="780" height="362" loading="lazy" decoding="async" alt="Two Breakout deck rows with a gold crown in place of the rank"></figure><a class="nwa" href="/" data-go="decks">See it on the Meta tab <span aria-hidden="true">›</span></a></article><article class="nwi"><p class="nwh"><span class="nwtag" data-k="imp">Improved</span><b>Shelves focus on the middle</b></p><p class="nwx">In the Top 10, Winners and Packs shelves, the item in the middle (the one named above the shelf) stays bright and the others fade.</p><figure class="nwf"><img src="wn-2026-11-23-shelf-fade.webp" width="780" height="432" loading="lazy" decoding="async" alt="The Top 10 shelf with the middle deck bright and the others faded"></figure></article><article class="nwi"><p class="nwh"><span class="nwtag" data-k="imp">Improved</span><b>Event lists line up</b></p><p class="nwx">The Energy and Score tiles of an event list are shorter, so the tiles end with the QR code.</p><figure class="nwf"><img src="wn-2026-11-23-event-tiles.webp" width="628" height="210" loading="lazy" decoding="async" alt="An event list foot with the tiles ending at the bottom of the QR code"></figure><a class="nwa" href="/events/" data-go="events">Open Latest Events <span aria-hidden="true">›</span></a></article><article class="nwi"><p class="nwh"><span class="nwtag" data-k="fix">Fixed</span><b>Small fixes</b></p><ul class="nwul"><li>Shares under 0.1% show 2 decimals (0.04%).</li><li>Event names keep short codes like PMPT in capitals.</li><li>“1 player”, not “1 players”.</li></ul></article></section><section class="nwd"><h3 class="nwdt"><time datetime="2026-11-22">Nov 22, 2026</time></h3><article class="nwi"><p class="nwh"><span class="nwtag" data-k="new">New</span><b>A page for every deck, pack and card</b></p><p class="nwx">Each deck, booster pack and card now has its own address you can share, for example pocketmetaqr.com/packs/c1-pikachu/.</p><a class="nwa" href="/packs/" data-go="packs">Open Booster Packs <span aria-hidden="true">›</span></a></article><article class="nwi"><p class="nwh"><span class="nwtag" data-k="new">New</span><b>Booster Packs tab</b></p><p class="nwx">See which booster pack gives the cards of this week’s meta decks, and which decks play each card.</p></article><article class="nwi"><p class="nwh"><span class="nwtag" data-k="imp">Improved</span><b>Shared links for every list</b></p><p class="nwx">The share button on an open deck, event or pack copies a link that opens it directly.</p></article></section><section class="nwd"><h3 class="nwdt"><time datetime="2026-11-18">Nov 18, 2026</time></h3><article class="nwi"><p class="nwh"><span class="nwtag" data-k="new">New</span><b>Limited Battle decks</b></p><p class="nwx">Hand-picked decks with QR codes for the Dual Fusion Limited Battle, with notes on why each one works.</p></article></section><button class="t1s-all nwmore" id="nwMore" type="button" hidden></button></div></div></section><!-- Nov 23: What’s new (/whats-new/ on the site): the site’s updates, newest first -->
 
 
   <footer class="foot">
     <div class="fmade">
       <span class="fsig"><img src="data:image/webp;base64,UklGRkgMAABXRUJQVlA4IDwMAACQMQCdASpgAGAAPlEgjEQjoiEYevXgOAUEsQBpb7tjQk72n29/ALoDzlOfudX5gHOU8xPm0eiH/BelV1K/oAdLPXhX5j8gPPP8U+Xfr35Jf1j2cP5XxC81+ZX8Z+u/3H+y/td/a/3F50/VJ6gX45/J/75+U39s/dbmWQAfnn9Q/yP5tf4D0gtSPu3/jPcA/lH9V/0P5keqr4GHofsAfzT+q/7r/J/2z9t/i+/z/8P/if249qf51/f/+L/n/gH/k39S/2v9v/e3u//tj7I36+tea3E1OZjRsVrmggET7DIZM/S8S7pwIOmtB+GRGT3yMXlbPv1kxh+y9j5E/JSL6PyEZDbNgu2ga/WF6VtrzmvdkjGc4uiDm5Jc02EW1XP7CWembHm8rT0RjWKp8xFTe9V4giAhn28uJa4/itQU0jBAAI295q5M2+ateS7ETgAx0g5RwO567TzdkflyIWkoIRyxVe4vkQRttE+dhv/jd0yZhvENyuhl/0CJFu76bUCFXy2eAAfW6Tif8DmbKb6ysVq3t22l5AAA/v/+YgCL8AmmS+Xo4uUu31ZX2YIrGEjVPgGuQOo2S0KcQcg3G4FszFnIiFr8rbb3lec6g6le+OIGZXnJzNoLk1OPtxxWgZugtEbLqbJ6eRwGkv/53mG8hj8c72BbeyffTUrE/r5byIQ7SaMZgDHarfVk46Xqryft1QVGdXSuzC/UGJb+KmKlUIQmWiw09alVk50UCpL1PxpiNZR6VWdJHDBuo/r0bH1gnx4TISC+e2XQOj3dZesT68VjP9cAJi2tP4Yz/WxshCwDXN27AsUUS2YC19ZZ+R//yOTx26DfTv7OvqZHrQq9OutH5y3j2zL0OtRzrN85/G2zIg6VZ6b4CQoj/9tv0D6xgChcRPucS7rjlCDpNQK+9FvjNpGkQ9XUzbTSULC7wDviJ980FSxB3RXf+RNxHnf6/om2+h1OrDLuJU0qMvk9AD6tHgyYFmMVyHS9OAuRv7mFjlvk2Q8lt73ANflmmTobIm9F4Ci0pnrpPVbdCkw6XkVtIcHzkRg2ytm5PFVamTwyLJH25pUBmtRH8D59EJSPigt9oY4dIVCn+pTiXMK7h4kwBLpiDktsTSrahOi0Cm7SynMlxDkwawpC2mNgWPxEiB7dWtbY+lVNP+/Cn6Ijkmzzq6x7QolTKLf3LivGOWQPUwaOe+GXYWnulbnrG98Kc8XHubclDllGwQo2fe6Z3BNIq1p9PrrPdbEeDav35hptcszg5Fouv3R7HP4qZR8rj0rH4XbcufPKWNls4/j4tihEN/pZskt/CUnTAE9R3F4sVUibkjlhuNw2Td1/jF8A2TwCNt2y5JHdSGflXxc8pNSKZNGCbywbFZda9jCANnqq0QY2dMVP63jqw7Krh1WkV3MjCa8DZWmvquG1g3UOSQ0Fkj2xixuGS5VMy6qoWKANYuPbcEF/snv6cVqoGtHh5AXcA7df9g9FxQmqRveCdPwM4ZGU+TKX9y7convud/2C2lYx8DM8iUZCvo4qmOBS4TTl26oQh7a0So9F0Fdmf7AKJzqsfBcR7tZfx+oXRWpvWkHkxd0PX+wvqy33x58Zr7pXjmxC0bxV806twtpltM7qVAWvbz4PNcHfu15IHDOCu659RwHMOT4YYT64NPMh8fONzZ/gmHOk07Nnn7j/lvQ3ucftGAaQx6Vf2vQMv6QzijUeNnP8EvLuLI07MuLQ5CfwnB4Kv/zYshFb6z8o2GOIXI6cIleY4HMByvra0zCRy6VL6TYF1aiQUJewb/tM80kNU8PLZh035PESWed57Txt1rkudG9PplhdTwnpdIcpYoKTVqAxGvMbOZHe9JYHzg9JFDNmWNTfq3j5MvhdopGWUZtyt17ifwPk8zhZ0qTn7iu1WEwgLvY0ABmdeYv2pt/3ibS474Uv0gwUFvVKfcjL+sg3jxtv3z6SHW+Ca0gu55qvATyxqR1A7Ht/TIGZnQeUg4CsSr4nRLijQK3isAczkoSDvnsVzoBym4T/eiN8f/c8rbpNd9j63g6BTWYhwb6k4Qaf4t3Vej2RnJMZa11DZS6tErroGEO/VdZPgnavmey7eybQRFAEdJd8s69MqADJk6Iq7XXpzyfWTHDzP9E8YtZEMKLwfEORISBUSpfDMAU8+MMI7aZO1JXZ3r1rSa32MbELvppgDCjSyaX1uwPfUJYfriiaAz4GZJNMFQmvEceVTOuESEf82QrHs80CPfv1H5aC+Le1Ww2vmGnU6arrtVzfl6TyYVGQGMUuc7QZYFwTLeIbq9/zP2El86EJe5eOESkvK+MlRgnR3h9gHPVVRlI2vqaXMTcfurgEWy8Qt2VCRZOmyCECJcYzWjdvvpSXJP/Fbw7SSNFXJlmGzdXtpSbey/YQCL2r4Sv16Ao77fTY1Lj4eeZcIjjrKjmsixee4xc60shHwaO6uCgSv/xpvPj1EbpSM/rD74fB3B5Vd6sfT/jG5nvgqYaXLu1yR96BmQe+K2mWzkH5I9acVZaYhOKikuTunDG3ry8aY/3lCiuRCELbooFgFAI84X3Hv+OSnKv12Xl6GlUt8oPLG/9U8+PD+naxceZ91FPKZHmfiwiM7rNKhdnq9oMqk8bvi593rjoeEpaTJFNEHzdvG+IV298l5VEPWYxGJUZaUjdPJaNWsukRCv3ne5bld9YHUhr1irprea9AM7cD0RQQY9lNo2AQuuYjrhLQg9Df110jJAcvrrTaWGZAyvSCZl59p0FPO066xYnwtvMcTJOrCFWF0A08OUYuzvcSB+886oapDPh7pE/BZCjzUMj+TbyaR+YW0P4Q/U9cdP0VN43KZDqehHv4/8BP5fbhadhfOLwtAfW3Fnrb0DTvFZLNT1yAYb1M+jeE2iWX9tPS8xavfIV+vLuOlln0ikX3Uq9WGB1v8LrSYVs622QXZyL8aFK+MFlOqQdwQc+zdUrSsEJ2fVeRnePbaeTy3hrlq5r/lgfjqU4IH/BpuAuDu9/O4396llBmF0b0Sv6GIu37F4m9QgvdroY9WRm8M6+NAhWiOyU1Zr+GL1AIT/gtszS8Zzq1jOxbXPIGOGJIkPYli8+M3ZFo0pxJLm8Ymdnv27vQLnWj/Y5tiZ4mcR5snbs5DR3cNXS1lIHbAnZ6cZyLEyZiDr2FkMD4kGABBfgiOW/QFaqZPoG5/sW/6iKU0Ywzg2cyO/D+MIAqv3SCe/jpndyXlfTWTNb/G0lu6yU0hF4eqSQg3V39pCJBh0khzQh8lSAk9oHVAJyYWOMrLrpOcM5cqltHnc4jSlsS3eT7tZ0pBvt9sCYB/Zx1RxWJMaU018soJQMFIzkqxGV74jm+BKDynXOJhxjzr6NiWdtWWygWaFb+xwvt9J3Wnf1n0rwzDDjppjq4gibpYW5/gVhl+ZwmGY7GaRrDiy7wRMAlWyo4XNmh+7cWgYi6UQGWU4VFL/UUiVuIWczBQPv8y4DPhauFxnPX6n6dV/I3z/DPrquc89FG27tOQ9Z4r7SscFYxICfFu53kIQCKX+QnsH7j/u3+Jqi+3UE2NMUzxunC51F716aYphyEv8MlV/zF8IV88GfFN17gHs4XIfj+mexbzkLSB7a1iWOPmUfUTQPJbJ6kr8lrOOTW11sjyUb7g/dIq9JjV1TkaqNB+Ous52t5kXLO87KbJfmMNMit8z8t3t4qPTJbBzLFtYLg/aOUFOfYxSy5HHko59eFVaBh/DqMN67AMBo25ciwH+Oymi56FXYZd1O5MPx1u5WRZzc5bLdRgq42mkkp12qRu27/WE+GU6jWTIS3biM0Gq4HKOOUzikPoMQzqX6lAebCsz9CUkDRFWBV7HZPUxhZtDaLH2j7M0ULs26lLbYJuFLzRF71w5zvMRHS9nV2XyyH0U2/jBkpjPHdMhkd2ZSAuFYbh/z9agW2TwgXoAIzw7YCXb2UypTK8dnSN0vmB4EtgRNuVGA8v5FEVHD7WS0K8Mx96uS8kaUrI9bjoGJj56lQ5P3MBYFL4HeI3s7uRdQj+wr8FS+zE/2fHDirOgDMHQ27j3t4ztoRFLu92dHR9viCeHdszUPcaFImWjMmkWLTiP3Je0ecJvYIJswzh+LzBcsCeAA4MQskDVl6w/U4jr6IHJR/GmujWtcIQRl/MRnN1R8CB87IicmnvXWZROJqEiIUC1e2YAA=" alt="" width="40" height="40"><span>Made by <a href="https://www.reddit.com/user/Myxas_/" target="_blank" rel="noopener">u/Myxas_</a></span></span>
       <span class="ffb">Feedback or a bug? <a href="https://www.reddit.com/message/compose/?to=Myxas_" target="_blank" rel="noopener">Send me a message</a></span>
-      <span class="fbtns"><button class="fabout" id="aboutBtn" type="button" aria-expanded="false"><svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5.25" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="3.6" r="0.8" fill="currentColor"/><path d="M6 5.4v3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>About &amp; FAQ</button>
+      <span class="fbtns"><button class="fabout" id="aboutBtn" type="button" aria-expanded="false"><svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5.25" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="3.6" r="0.8" fill="currentColor"/><path d="M6 5.4v3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>About &amp; FAQ</button><button class="fabout" id="newBtn" type="button"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 .9c.35 2.6 1.5 3.75 4.1 4.1C7.5 5.35 6.35 6.5 6 9.1 5.65 6.5 4.5 5.35 1.9 5 4.5 4.65 5.65 3.5 6 .9Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M9.6 8.2c.12.75.45 1.08 1.2 1.2-.75.12-1.08.45-1.2 1.2-.12-.75-.45-1.08-1.2-1.2.75-.12 1.08-.45 1.2-1.2Z" fill="currentColor"/></svg>What’s new</button>
       <button class="fabout" id="homeBtn" type="button" aria-expanded="false" hidden><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="3" y="0.9" width="6" height="10.2" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.6v3.6M4.5 5.7 6 7.2l1.5-1.5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Add to Home Screen</button></span>
     </div>
     <nav class="fnav" aria-label="Sections"><a href="/" data-tab="tabM">Meta decks</a><a href="/events/" data-tab="tabE">Latest tournaments</a><a href="/packs/" data-tab="tabP">Which pack to open</a><a href="/limited/" data-tab="lbBan" id="fnavL">Limited Battle</a></nav>
@@ -4039,7 +4064,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const meas = () => { setW = its[N].offsetLeft - its[0].offsetLeft; };
     const near = (p) => { const c = p + vp.clientWidth / 2; let b = 0, bd = 1e9; for (let i = 0; i < its.length; i++) { const d = Math.abs(cx(i) - c); if (d < bd) { bd = d; b = i; } } return b; };
     const hl = (id) => el.querySelectorAll(".t1s-r").forEach((r) => r.classList.toggle("hl", r.dataset.go === id));
-    const label = () => { const d = top[near(pos) % N]; if (d.rank === cur) return; cur = d.rank;
+    let midI = -1; its.forEach((x) => x.classList.add("shi")); // Nov 23: as shelfCar: the middle item stays, the others fade
+    const label = () => { const bi = near(pos); if (bi !== midI) { if (its[midI]) its[midI].classList.remove("mid"); its[bi].classList.add("mid"); midI = bi; } const d = top[bi % N]; if (d.rank === cur) return; cur = d.rank;
       const a = labs[lb], o = labs[1 - lb]; lb = 1 - lb; a.innerHTML = `<span class="t1s-ln"><i>#${d.rank}</i>${esc(d.name)}</span><span class="t1s-ls"><b>${pct(d.share)}</b>${dTxt((trOf(d.id) ? trD(trOf(d.id).s) : null))}</span>`; a.classList.add("on"); o.classList.remove("on"); hl(d.id); };
     const put = () => { if (setW) { if (pos < setW * 0.5) { pos += setW; if (A) { A.from += setW; A.to += setW; } } else if (pos > setW * 1.5) { pos -= setW; if (A) { A.from -= setW; A.to -= setW; } } }
       tr.style.transform = `translate3d(${(-pos).toFixed(2)}px,0,0)`; label(); };
@@ -4085,14 +4111,14 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   function t10Show() { const el = $("t10"); if (!el) return;
     const f = typeof fstate !== "undefined" && fstate && (fstate.q.trim() || fstate.card || fstate.en.size || fstate.dk.size || fstate.without);
-    const pv = MV === "packs" && curTab !== "events" && curTab !== "limited" && curTab !== "about"; // Nov 21: the Packs view
-    el.hidden = !el.innerHTML || curTab === "events" || curTab === "limited" || curTab === "about" || !!f || pv;
-    $("pkv").hidden = !pv; $("list").hidden = curTab === "events" || curTab === "limited" || curTab === "about" || pv; $("filtBtn").hidden = !data || curTab === "about"; if (pv) pkApply();
+    const pv = MV === "packs" && curTab !== "events" && curTab !== "limited" && !PGV(curTab); // Nov 21: the Packs view
+    el.hidden = !el.innerHTML || curTab === "events" || curTab === "limited" || PGV(curTab) || !!f || pv;
+    $("pkv").hidden = !pv; $("list").hidden = curTab === "events" || curTab === "limited" || PGV(curTab) || pv; $("filtBtn").hidden = !data || PGV(curTab); if (pv) pkApply();
     if (pv && $("pkv")._vis) requestAnimationFrame($("pkv")._vis);
-    lbBanShow(); $("tabM").setAttribute("aria-selected", String(curTab !== "events" && curTab !== "limited" && curTab !== "about" && !pv)); $("tabP").setAttribute("aria-selected", String(pv));
+    lbBanShow(); $("tabM").setAttribute("aria-selected", String(curTab !== "events" && curTab !== "limited" && !PGV(curTab) && !pv)); $("tabP").setAttribute("aria-selected", String(pv));
     if (!el.hidden) requestAnimationFrame(t10Fit); // Nov 16: size the mover boxes when the card shows (also after a tab switch)
     if (el._t10vis) requestAnimationFrame(el._t10vis); // Nov 21: the shelf runs only while it shows
-    const lh = $("lsh"); if (lh) { lh.hidden = curTab === "events" || curTab === "limited" || curTab === "about" || !!f || !data || pv; // Nov 16: "ALL DECKS · 32 + 22 smaller" (all: "· 54")
+    const lh = $("lsh"); if (lh) { lh.hidden = curTab === "events" || curTab === "limited" || PGV(curTab) || !!f || !data || pv; // Nov 16: "ALL DECKS · 32 + 22 smaller" (all: "· 54")
       if (data) { const n0 = data.decks.filter((d) => !d._more).length, nm = MORE ? data.decks.length - n0 : data.more || 0;
         $("lshN").textContent = " \u00b7 " + (moreShown || !nm ? n0 + nm : n0 + " + " + nm + " smaller"); } } }
   $("t10").addEventListener("click", (e) => { const b = e.target.closest("[data-go]"); if (!b) return; if (b.tagName === "A") { if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; e.preventDefault(); } const id = b.dataset.go; track("top10-deck"); // R30: a link; Ctrl / Cmd click = a new tab
@@ -4193,7 +4219,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const cx = (i) => its[i].offsetLeft + its[i].offsetWidth / 2;
     const meas = () => { setW = its[N].offsetLeft - its[0].offsetLeft; };
     const near = (p) => { const c = p + vp.clientWidth / 2; let b = 0, bd = 1e9; for (let i = 0; i < its.length; i++) { const d = Math.abs(cx(i) - c); if (d < bd) { bd = d; b = i; } } return b; };
-    const label = () => { const k = near(pos) % N; if (k === cur) return; cur = k; const a = labs[lb], z = labs[1 - lb]; lb = 1 - lb;
+    let midI = -1; its.forEach((x) => x.classList.add("shi")); // Nov 23: the item in the middle stays, the others fade (.shi:not(.mid))
+    const label = () => { const b = near(pos); if (b !== midI) { if (its[midI]) its[midI].classList.remove("mid"); its[b].classList.add("mid"); midI = b; } const k = b % N; if (k === cur) return; cur = k; const a = labs[lb], z = labs[1 - lb]; lb = 1 - lb;
       a.innerHTML = o.lab(L[k]); a.classList.add("on"); z.classList.remove("on"); };
     const put = () => { if (setW) { if (pos < setW * 0.5) { pos += setW; if (A) { A.from += setW; A.to += setW; } } else if (pos > setW * 1.5) { pos -= setW; if (A) { A.from -= setW; A.to -= setW; } } }
       tr.style.transform = `translate3d(${(-pos).toFixed(2)}px,0,0)`; label(); };
@@ -5089,7 +5116,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (e.target.closest(".lchk")) track("live-tip");
     if (e.target.closest(".rbt")) track("rank-tip");
     const b = e.target.closest(".ii, .altb, .fabout, .lchk, .rbt");
-    if (b && b.id === "aboutBtn" && RABOUT) return; // Nov 22: the /about/ page view (its own handler), not the sheet
+    if (b && (b.id === "newBtn" || (b.id === "aboutBtn" && RABOUT))) return; // Nov 22: the /about/ page view (its own handler), not the sheet
     if (b) { e.preventDefault(); e.stopPropagation(); showTip(b); return; }
     if (!ipop.hidden && !e.target.closest("#iPop, #cPop, dialog, #shv")) { if (FLOAT) hideTip(); else { dropState("tip"); hideTip(true); } }
   }, true);
@@ -5939,6 +5966,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // limited/ with <base href="/">) each section has its own address, changed with the History API (no page load).
   // Anywhere else (the artifact, a plain local file) nothing changes: hash links and relative paths as before.
   const ROUTED = !!document.querySelector('meta[name="pmq-routes"]');
+  const RNEW = ROUTED && /\bnew\b/.test(document.querySelector('meta[name="pmq-routes"]').content); // Nov 23: page.mjs writes whats-new/ too (the word "new" in the routes tag)
+  let nwSeen = () => {}; // Nov 23: set by the What's new block (clears the footer dot)
+  function PGV(t) { return t === "about" || t === "new"; } // Nov 23 (hoisted: the list code can run first): the page views with no tab selected (About & FAQ, What’s new)
   const RABOUT = ROUTED && /\babout\b/.test(document.querySelector('meta[name="pmq-routes"]').content); // R29: page.mjs writes about/ too (content "1 about")
   const RDECK = ROUTED && /\bdecks\b/.test(document.querySelector('meta[name="pmq-routes"]').content); // R30: page.mjs writes decks/<id>/ too (content "1 about decks")
   const pathDeck = () => { if (!RDECK) return null; const m = location.pathname.match(/\/decks\/([a-z0-9-]+)\/?(?:index\.html)?$/); return m ? m[1] : null; }; // R30: /decks/<deck id>/
@@ -5971,27 +6001,27 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest(".shb"); if (!b) return; e.preventDefault(); e.stopPropagation(); shareRow(b); }, true); // capture: the row under it does not close
   document.addEventListener("keydown", (e) => { const b = e.target.closest && e.target.closest(".shb"); if (!b || (e.key !== "Enter" && e.key !== " ")) return; e.preventDefault(); e.stopPropagation(); shareRow(b); }, true);
   function rtHead() { const s = curSec(), d = rDeck(), x = !d && rPack(), c = !d && !x && rCard(); document.title = d ? RDTITLE(d) : x ? RPTITLE(x) : c ? RCTITLE(c) : RTITLE[s]; setHead(d ? d.name + " deck" : x ? pkName(x) + " pack" : c ? c.n + ": decks that use it" : s); }
-  const RPATH = { decks: "/", events: "/events/", packs: "/packs/", limited: "/limited/", about: "/about/" };
+  const RPATH = { decks: "/", events: "/events/", packs: "/packs/", limited: "/limited/", about: "/about/", new: "/whats-new/" };
   // Nov 22 (R28): titles = topic + month first (the brand last), the same formula as page.mjs; the subtitle under the header per section
   const RMON = () => { const d = new Date((data && data.updatedAt) || Date.now()); return d.toLocaleString("en-US", { month: "short", year: "numeric", timeZone: "UTC" }); }; // "Nov 2026"
   const RTITLES = { decks: (m) => `Pok\u00e9mon TCG Pocket Meta Decks (${m}) with QR Codes | Pocket Meta QR`, events: (m) => `Pok\u00e9mon TCG Pocket Tournament Results (${m}) | Pocket Meta QR`,
-    packs: (m) => `Which Pok\u00e9mon TCG Pocket Pack to Open (${m}) | Pocket Meta QR`, about: () => "About & FAQ: How to Import Pok\u00e9mon TCG Pocket Decks by QR | Pocket Meta QR", limited: () => `${LB.name} Decks with QR Codes | Pocket Meta QR` };
+    packs: (m) => `Which Pok\u00e9mon TCG Pocket Pack to Open (${m}) | Pocket Meta QR`, about: () => "About & FAQ: How to Import Pok\u00e9mon TCG Pocket Decks by QR | Pocket Meta QR", new: () => "What\u2019s New: Site Updates | Pocket Meta QR", limited: () => `${LB.name} Decks with QR Codes | Pocket Meta QR` };
   const RTITLE = new Proxy({}, { get: (o, k) => (RTITLES[k] || RTITLES.decks)(RMON()) });
-  const RHEAD = { decks: "This week\u2019s Pok\u00e9mon TCG Pocket decks", events: "Latest Pok\u00e9mon TCG Pocket tournaments", packs: "Booster packs for this week\u2019s meta", limited: "Limited Battle decks", about: "About and FAQ" };
+  const RHEAD = { decks: "This week\u2019s Pok\u00e9mon TCG Pocket decks", events: "Latest Pok\u00e9mon TCG Pocket tournaments", packs: "Booster packs for this week\u2019s meta", limited: "Limited Battle decks", about: "About and FAQ", new: "What\u2019s new on Pocket Meta QR" };
   const setHead = (s) => { const t = RHEAD[s] || s, h = document.querySelector(".hsec"); if (h && h.textContent !== t) h.textContent = t; }; // a section key or a text (a deck)
-  const curSec = () => (curTab === "events" ? "events" : curTab === "limited" ? "limited" : curTab === "about" ? "about" : MV === "packs" ? "packs" : "decks");
-  const pathSec = () => { if (pathDeck() || pathCard()) return "decks"; if (pathPack()) return "packs"; const p = location.pathname.replace(/index\.html$/, ""); return ["events", "packs", "limited", "about"].find((k) => p.endsWith(RPATH[k]) && (k !== "about" || RABOUT)) || "decks"; };
+  const curSec = () => (curTab === "events" ? "events" : curTab === "limited" ? "limited" : curTab === "about" ? "about" : curTab === "new" ? "new" : MV === "packs" ? "packs" : "decks");
+  const pathSec = () => { if (pathDeck() || pathCard()) return "decks"; if (pathPack()) return "packs"; const p = location.pathname.replace(/index\.html$/, ""); return ["events", "packs", "limited", "about", "new"].find((k) => p.endsWith(RPATH[k]) && (k !== "about" || RABOUT) && (k !== "new" || RNEW)) || "decks"; };
   let rtLock = true; // on while the page starts and while the browser goes back / forward
   function syncRoute(push) { if (rtLock) return; const s = curSec(), d = rDeck(), x = !d && rPack(), c = !d && !x && rCard(); rtHead(); if (!ROUTED) return;
     const hs = location.hash, h = /^#(events|limited)$/.test(hs) || (d && hs.slice(1).split("/")[0] === d.id) || (hs.startsWith("#e=") && s !== "events") ? "" : hs;
-    const u = (d ? `/decks/${d.id}/` : x ? `/packs/${x.id}/` : c ? `/cards/${c.id}/` : RPATH[s]) + location.search + h; // R32: a card view = /cards/<id>/ // R30: an open deck = /decks/<id>/ (its old #id hash dropped); R31: an open pack = /packs/<id>/; an event = #e=<tid> on /events/ only
+    const u = (d ? `/decks/${d.id}/` : x ? `/packs/${x.id}/` : c ? `/cards/${c.id}/` : s === "new" && !RNEW ? location.pathname : RPATH[s]) + location.search + h; // R32: a card view = /cards/<id>/ // R30: an open deck = /decks/<id>/ (its old #id hash dropped); R31: an open pack = /packs/<id>/; an event = #e=<tid> on /events/ only
     if (location.pathname + location.search + location.hash === u) return;
     const st = { rt: s, lb: s === "limited" && push ? 1 : undefined }; // lb: a step back leaves Limited (not on a direct visit)
     history[push ? "pushState" : "replaceState"](push ? st : { ...(history.state || {}), ...st }, "", u); }
   addEventListener("popstate", () => { if (!ROUTED) return; const s = pathSec(), pd = pathDeck(), dk = RDECK && s === "decks" && (pd || null) !== (openId || null);
     const pp = pathPack(), pkc = RPACK && s === "packs" && (pp || null) !== ((rPack() || {}).id || null);
     const pc = pathCard(), cdc = RCARD && s === "decks" && !pd && (pc || null) !== ((rCard() || {}).id || null); if (s === curSec() && !dk && !pkc && !cdc) return;
-    rtLock = true; try { if (s !== curSec()) { if (s === "about") setTab("about"); else if (s === "events") setTab("events"); else if (s === "limited") { if (lbOn()) setTab("limited"); } else { setTab("decks"); setMV(s === "packs" ? "packs" : "decks"); } }
+    rtLock = true; try { if (s !== curSec()) { if (s === "about" || s === "new") setTab(s); else if (s === "events") setTab("events"); else if (s === "limited") { if (lbOn()) setTab("limited"); } else { setTab("decks"); setMV(s === "packs" ? "packs" : "decks"); } }
       if (RDECK && s === "decks" && data) { if (pd && pd !== openId) deckGo(pd); else if (!pd && openId) closeOpen(); }
       if (pkc) { if (pp) { pkWant = pp; pkWantGo(); } else { const a = rPack() && $("pk-" + pkCur); if (a) pkOpen(a, false); } }
       if (cdc && data) { if (pc) cardGo(pc); else if (rCard()) $("fqx").click(); } } finally { rtLock = false; } rtHead(); }); // R32: back / forward to a card address // R31: back / forward to a pack address // R30: back / forward to a deck address opens that deck
@@ -6003,12 +6033,12 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (data.more) loadMore().then(() => { if ($(id)) { moreShown = true; applyFilter(); const was = rtLock; rtLock = false; openAt(id, k); rtLock = was; } else gone(); }).catch(gone); else gone(); }
   function setTab(t, save = true) {
     if (t === "limited" && !lbOn()) t = "decks";
-    const ev = t === "events", lb = t === "limited", ab = t === "about";
+    const ev = t === "events", lb = t === "limited", ab = t === "about", nw = t === "new"; // Nov 23: nw = What’s new (a page view like About)
     if (curTab && curTab !== t) clearFilters(); curTab = t;
     $("tabM").setAttribute("aria-selected", String(!ev && !lb && MV !== "packs")); $("tabP").setAttribute("aria-selected", String(!ev && !lb && MV === "packs")); /* Nov 22: Limited = its own page (the header banner pressed), no tab selected */ $("tabE").setAttribute("aria-selected", String(ev)); $("tabL").setAttribute("aria-selected", String(lb));
-    $("list").hidden = ev || lb || ab; $("evl").hidden = !ev; $("lbl").hidden = !lb; $("abv").hidden = !ab; t10Show();
+    $("list").hidden = ev || lb || ab || nw; $("evl").hidden = !ev; $("lbl").hidden = !lb; $("abv").hidden = !ab; $("nwv").hidden = !nw; t10Show();
     $("filtBtn").hidden = !data; $("filtBtn").disabled = false; setDrop(false); filtMode(ev, lb); if (ev || lb) { $("fnone").hidden = true; } else if (data) applyFilter();
-    if (ab) { if (openId) closeOpen(); evClose(); lbClose(); $("filtBtn").hidden = true; track("page-about"); syncRoute(true); return; } // Nov 22: About & FAQ (not remembered as the last tab)
+    if (ab || nw) { if (openId) closeOpen(); evClose(); lbClose(); $("filtBtn").hidden = true; track(nw ? "page-new" : "page-about"); if (nw) nwSeen(); syncRoute(true); return; } // Nov 22: About & FAQ (not remembered as the last tab)
     if (lb) { if (openId) closeOpen(); evClose(); track("tab-limited"); renderLB(); lbApply(); if (save) try { localStorage.setItem("pmq-tab", t); } catch (err) {} syncRoute(true); return; }
     lbClose(); if (history.state && history.state.lb) history.replaceState(null, "", location.pathname + location.search); // a tab left Limited: drop its step and #limited
     if (ev) { if (openId) closeOpen(); track("tab-events"); if (!EV) { $("evl").innerHTML = '<div class="empty">Loading events&hellip;</div>'; loadEvents().then(renderEvents); }
@@ -6030,6 +6060,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const t = $(a.dataset.tab); if (!t) return; if (a.dataset.tab === "lbBan") { if (curTab !== "limited") t.click(); } else t.click(); scrollTo({ top: 0 }); });
   document.querySelector(".fnav").addEventListener("keydown", (e) => { const a = e.target.closest("a[data-tab]"); if (a && !a.hasAttribute("href") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); a.click(); } });
   // Nov 22: on the site the About & FAQ button opens the /about/ page view (the sheet elsewhere)
+  // Nov 23: What's new: the newest NW_STEP entries, "Show N older updates" adds NW_STEP more; the footer dot = an entry newer than the last visit (pmq-wn)
+  const NW_STEP = 5;
+  (() => { const its = [...document.querySelectorAll("#nwl .nwi")], b = $("nwMore"); let n = NW_STEP;
+    const show = () => { its.forEach((x, i) => x.classList.toggle("nwh0", i >= n)); document.querySelectorAll("#nwl .nwd").forEach((d) => d.classList.toggle("nwh0", !d.querySelector(".nwi:not(.nwh0)")));
+      const k = Math.min(NW_STEP, its.length - n); b.hidden = k <= 0; if (k > 0) b.textContent = `Show ${k} older update${k === 1 ? "" : "s"}`; };
+    b.addEventListener("click", () => { n += NW_STEP; show(); track("new-more"); }); show();
+    $("nwl").addEventListener("click", (e) => { const a = e.target.closest("a.nwa[data-go]"); if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); const g = a.dataset.go; track("new-go-" + g);
+      if (g === "events") setTab("events"); else { setTab("decks"); setMV(g === "packs" ? "packs" : "decks"); } scrollTo({ top: 0 }); });
+    const top = (document.querySelector("#nwl time") || {}).dateTime || ""; let seen = ""; try { seen = localStorage.getItem("pmq-wn") || ""; } catch (err) {}
+    $("newBtn").classList.toggle("nwdot", !!top && top > seen);
+    nwSeen = () => { $("newBtn").classList.remove("nwdot"); try { localStorage.setItem("pmq-wn", top); } catch (err) {} }; })();
+  $("newBtn").addEventListener("click", (e) => { e.preventDefault(); if (curTab !== "new") setTab("new"); scrollTo({ top: 0 }); }); // Nov 23: What’s new = a page view everywhere (no sheet)
   $("aboutBtn").addEventListener("click", (e) => { if (!RABOUT) return; e.preventDefault(); if (curTab !== "about") setTab("about"); scrollTo({ top: 0 }); }, true);
   $("tabs").addEventListener("keydown", (e) => { const a = e.target.closest("a[role=tab]"); if (a && !a.hasAttribute("href") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); a.click(); } });
   $("tabM").addEventListener("click", () => { setTab("decks"); setMV("decks"); });
@@ -6099,7 +6141,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       if (ROUTED && pathSec() !== "decks") t0 = pathSec(); // the address decides (e.g. /packs/)
       if (pathDeck() || pathCard()) t0 = "decks"; // R30 / R32: a deck or card address = the Meta tab
       if (evWant) t0 = "events";
-      if (t0 === "about" && !(id && $(id))) setTab("about", false); else
+      if ((t0 === "about" || t0 === "new") && !(id && $(id))) setTab(t0, false); else
       if (id === "events" || (!(id && $(id)) && t0 === "events")) setTab("events", false);
       else if (id === "limited" || (!(id && $(id)) && t0 === "limited")) setTab("limited", false); // ends: setTab falls back to the decks
       else if (!(id && $(id)) && t0 === "packs") setMV("packs"); // Nov 22: the Packs tab

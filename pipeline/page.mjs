@@ -82,6 +82,9 @@ const SECTIONS = [
     title: "About & FAQ: How to Import Pokémon TCG Pocket Decks by QR | Pocket Meta QR",
     desc: "How to import a Pokémon TCG Pocket deck from a QR code, where the data comes from (Limitless tournaments, " +
       "the last 7 days) and how the decks and lists are ranked.", img: "og.png" },
+  { dir: "whats-new", page: "new",   // Nov 23 (UI chat): What's new, only when the page has the static section #nwv
+    title: "What’s New: Site Updates | Pocket Meta QR",
+    desc: "What changed on Pocket Meta QR: new features and fixes for the Pokémon TCG Pocket meta decks, events and packs, newest first.", img: "og.png" },
 ];
 const SEOI = '<p class="seoi" id="seoi"></p>';
 const KEEP_DAYS = 30, NOINDEX_DAYS = 90;   // R30 §3
@@ -379,8 +382,8 @@ const TITLES = { "": `Pokémon TCG Pocket Meta Decks (${MONTH}) with QR Codes | 
   packs: `Which Pokémon TCG Pocket Pack to Open (${MONTH}) | Pocket Meta QR`,
   limited: (lb) => `${lb.name} Decks with QR Codes | Pocket Meta QR` };
 const HSEC = { events: "Latest Pokémon TCG Pocket tournaments", packs: "Booster packs for this week’s meta",
-  limited: "Limited Battle decks", about: "About and FAQ" };
-const CRUMB = { events: "Latest events", packs: "Booster packs", limited: "Limited Battle", about: "About & FAQ" };
+  limited: "Limited Battle decks", about: "About and FAQ", "whats-new": "What’s new on Pocket Meta QR" };
+const CRUMB = { events: "Latest events", packs: "Booster packs", limited: "Limited Battle", about: "About & FAQ", "whats-new": "What’s new" };
 // R29: the FAQ of the page's #abv section as FAQPage JSON-LD (h4 = question, the next p = answer, as plain text).
 const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", eacute: "é", rarr: "→", larr: "←",
   rsquo: "’", lsquo: "‘", ldquo: "“", rdquo: "”", ndash: "–", mdash: "—", hellip: "…", middot: "·", times: "×" };
@@ -492,14 +495,16 @@ function sectionPage(html, { dir, title, desc, img, hsec, ld, extra }) {
 const [src = "site/index.html", out = "public/index.html"] = args.filter((a, i) => !a.startsWith("--") && !["--prev", "--seen", "--cards-seen"].includes(args[i - 1]));
 const body = readFileSync(src, "utf8");
 const ROUTES_ON = ROUTES && body.includes("pmq-routes");   // R26: the page supports the section addresses
+const NWV_RE = /<section class="abv nwv" id="nwv"[^>]*\shidden[\s>]/;   // Nov 23: What's new (whats-new/)
 const ABOUT_ON = ROUTES_ON && ABV_RE.test(body);              // R29: the page has the static FAQ section
+const NEW_ON = ROUTES_ON && NWV_RE.test(body);                // Nov 23: the page has the static What's new section
 const DECKS_ON = ROUTES_ON && (body.includes("pmq-deck") || args.includes("--decks"));   // R30 §2: the page's deck code
 const PACKS_ON = ROUTES_ON && (body.includes("/\\bpacks\\b/") || args.includes("--packs")); // R31: the page's RPACK check
 const CARDS_ON = ROUTES_ON && (body.includes("/\\bcards\\b/") || args.includes("--cards")); // R32: the page's RCARD check
 const NEWT = body.includes(" Deck List (") || args.includes("--newt");   // R32: the page's new title formulas
 const RT = ROUTE_TAG.replace('content="1"',
-  `content="${["1", ABOUT_ON && "about", DECKS_ON && "decks", PACKS_ON && "packs", CARDS_ON && "cards"].filter(Boolean).join(" ")}"`);
-const SECS = SECTIONS.filter((x) => !x.about || ABOUT_ON);
+  `content="${["1", ABOUT_ON && "about", NEW_ON && "new", DECKS_ON && "decks", PACKS_ON && "packs", CARDS_ON && "cards"].filter(Boolean).join(" ")}"`);
+const SECS = SECTIONS.filter((x) => (!x.about || ABOUT_ON) && (!x.page || NEW_ON));
 
 // One head item at the start of the text: whitespace, then a comment, <title>..</title>, <meta>, <link>,
 // or <script type="application/ld+json">..</script>.
@@ -574,6 +579,12 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
       if (html === before) throw new Error("R29: no `hidden` on #abv to remove");
       console.log(`page: about/ FAQ visible; FAQPage JSON-LD ${fq ? fq.mainEntity.length + " questions" : "none"}`);
     }
+    if (sec.page === "new") {   // Nov 23: the What's new section is visible in this copy
+      const before = html;
+      html = html.replace(/(<section class="abv nwv" id="nwv"[^>]*?)\s+hidden(?=[\s>])/, "$1");
+      if (html === before) throw new Error("no `hidden` on #nwv to remove");
+      console.log("page: whats-new/ visible");
+    }
     writeFileSync(f, html);
   }
   const si = args.indexOf("--seen"), seenFile = si > 0 ? args[si + 1] : null;
@@ -604,7 +615,7 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     const today = new Date().toISOString().slice(0, 10);
     const lbOn = !lb || Date.parse(lb.to) > Date.now();
     const urls = [["", "hourly"], ...SECS.filter((x) => x.dir !== "limited" || lbOn)
-      .map((x) => [x.dir + "/", x.about ? "monthly" : "daily"]),
+      .map((x) => [x.dir + "/", x.about ? "monthly" : x.page ? "weekly" : "daily"]),
       ...decks.filter((x) => x.on || x.days <= KEEP_DAYS).map((x) => [x.dir + "/", "daily"]),   // R30 §2.9 / §3
       ...packs.map((x) => [x.dir + "/", "daily"]),   // R31
       ...cards.filter((x) => x.on).map((x) => [x.dir + "/", "daily"])];   // R32: cards in this week's lists only
@@ -614,9 +625,9 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
       "</urlset>\n");
     console.log(`page: sitemap ${urls.length} addresses${lb ? `; Limited Battle "${lb.name}" until ${lb.to}` : ""}`);
   }
-  console.log(hasSlot ? `page: intro texts ${["", ...SECS.filter((x) => !x.about).map((x) => x.dir)].map((k) => `${k || "/"} ${intro[k] ? intro[k].length + " chars" : "none"}`).join(", ")}`
+  console.log(hasSlot ? `page: intro texts ${["", ...SECS.filter((x) => !x.about && !x.page).map((x) => x.dir)].map((k) => `${k || "/"} ${intro[k] ? intro[k].length + " chars" : "none"}`).join(", ")}`
     : "page: no intro slot in the page (R27)");
-  console.log(ROUTES_ON ? `page: routes on${ABOUT_ON ? " (+ about)" : ""}; section pages ${SECS.map((x) => x.dir + "/").join(", ")}` :
+  console.log(ROUTES_ON ? `page: routes on${ABOUT_ON ? " (+ about)" : ""}${NEW_ON ? " (+ new)" : ""}; section pages ${SECS.map((x) => x.dir + "/").join(", ")}` :
     `page: routes off (${ROUTES ? "the page has no routing code yet" : "--no-routes"})`);
   const n = (tags.match(/<(?:title|meta|link|script)\b/gi) || []).length;
   console.log(`page: ${n} head tags moved into <head>`);
