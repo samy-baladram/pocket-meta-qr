@@ -55,6 +55,10 @@
 "days left",
 "日残り"
 ],
+"05a0b1c0a2": [
+"See which booster pack gives the cards of this week’s meta decks, and which decks play each card.",
+"今週の環境デッキのカードがどの拡張パックから出るか、各カードをどのデッキが使っているかがわかります。"
+],
 "06ac8d6ac7": [
 "a deck",
 "デッキ"
@@ -322,6 +326,14 @@
 "Today",
 "今日"
 ],
+"2451222400": [
+"Show {0} older update{1}",
+"以前の更新{0}件{1!}を表示"
+],
+"24adf89e1b": [
+"Hand-picked decks with QR codes for the Dual Fusion Limited Battle, with notes on why each one works.",
+"デュアルフュージョン限定バトル向けに厳選したデッキをQRコード付きで掲載。それぞれの強みのメモ付きです。"
+],
 "24ea1f77f4": [
 "Last change",
 "前回の更新"
@@ -378,6 +390,10 @@
 "Show all {0} smaller decks",
 "小規模デッキ{0}個をすべて表示"
 ],
+"295df348e1": [
+"“1 player”, not “1 players”.",
+"英語版で「1 players」ではなく「1 player」と表示するようにしました。"
+],
 "2a08f40ca1": [
 "Ranks are compared with the data of 24 h earlier.",
 "順位は24時間前のデータと比べています。"
@@ -414,6 +430,10 @@
 "Did better",
 "好成績"
 ],
+"2f8d136cf7": [
+"What’s New: Site Updates | Pocket Meta QR",
+"更新情報：サイトのアップデート | Pocket Meta QR"
+],
 "301e37b6c7": [
 "with {0} in the top 8",
 "（{0}がベスト8）"
@@ -446,6 +466,10 @@
 "Not in the meta now",
 "現在は環境外"
 ],
+"31c9011c45": [
+"A page for every deck, pack and card",
+"デッキ・パック・カードごとのページ"
+],
 "3262485e3a": [
 "· {0} top player{1}",
 "· 上位プレイヤー{0}人{1!}"
@@ -457,6 +481,10 @@
 "327955ac28": [
 "Share {0}. Win rate {1}.{2}",
 "使用率{0}。勝率{1}。{2}"
+],
+"3300a134ee": [
+"Shelves focus on the middle",
+"棚は中央を強調"
 ],
 "33a6685cd7": [
 "in the last {0} days",
@@ -486,9 +514,17 @@
 "Limited Battle decks",
 "限定バトルのデッキ"
 ],
+"3697024201": [
+"What’s new",
+"更新情報"
+],
 "372c9acbf6": [
 "How do I import a deck?",
 "デッキの読み込み方は？"
+],
+"373ec13f0a": [
+"A rare deck that makes the top 8 of a big event (128+ players) now shows on the Meta tab, with a crown in place of its rank. The New filter finds them too.",
+"大きな大会（128名以上）でベスト8に入った珍しいデッキを、最強デッキのタブに順位の代わりに王冠付きで表示します。「新登場」の絞り込みでも見つかります。"
 ],
 "380b549c34": [
 "Copy the address from the address bar",
@@ -597,6 +633,10 @@
 "45360d530e": [
 "Cards swapped vs the",
 "入れ替えたカード・比較対象："
+],
+"4670030797": [
+"Shared links for every list",
+"すべてのレシピに共有リンク"
 ],
 "46c45a8cc8": [
 "· {0} win{1}",
@@ -838,6 +878,14 @@
 "Meta Decks",
 "最強デッキ"
 ],
+"605f6741e3": [
+"Open Latest Events",
+"最新の大会を開く"
+],
+"6082b594a2": [
+"See it on the Meta tab",
+"最強デッキで見る"
+],
 "60907e38f7": [
 "Scan Code",
 "コードを読み取る"
@@ -881,6 +929,10 @@
 "65c821a596": [
 "Live",
 "ライブ"
+],
+"65cad64e1c": [
+"Nov 23, 2026",
+"2026年11月23日"
 ],
 "66aabd91fc": [
 "NEW",
@@ -966,9 +1018,17 @@
 "Popular + winning",
 "人気・好成績"
 ],
+"6e3a9caaf3": [
+"Nov 18, 2026",
+"2026年11月18日"
+],
 "6f02931a8a": [
 "which days count",
 "対象の期間"
+],
+"6f0ac3b621": [
+"Shares under 0.1% show 2 decimals (0.04%).",
+"0.1%未満の使用率は小数点以下2桁で表示します（0.04%）。"
 ],
 "6fa55b2f97": [
 "This week&rsquo;s Pok&eacute;mon TCG Pocket decks",
@@ -1329,6 +1389,14 @@
 "· {0} players",
 "· {0}人"
 ],
+"9364147f96": [
+"Booster Packs tab",
+"拡張パックのタブ"
+],
+"93897fabdc": [
+"Small fixes",
+"細かい修正"
+],
 "93daa2f17e": [
 "The decks that win in Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, the {t2}latest events{t3} with their top 8, and a {t4}QR code{t5} for every list, so you can import a deck in a few taps.",
 "{t0}いま{t1}ポケポケの大会で勝っているデッキ、{t2}最新の大会{t3}のベスト8、そしてすべてのレシピに{t4}QRコード{t5}。数タップでデッキを読み込めます。"
@@ -1453,6 +1521,10 @@
 "won",
 "が優勝："
 ],
+"a376cc7a7f": [
+"The share button on an open deck, event or pack copies a link that opens it directly.",
+"開いているデッキ・大会・パックの共有ボタンで、それを直接開くリンクをコピーできます。"
+],
 "a3b2737ace": [
 "Search and filter",
 "検索・絞り込み"
@@ -1525,6 +1597,10 @@
 "deck win rate",
 "デッキの勝率"
 ],
+"ab98f5b857": [
+"Fixed",
+"修正"
+],
 "ac58ab84ed": [
 "too rare to rank",
 "少なすぎて順位なし"
@@ -1561,6 +1637,10 @@
 "Booster pack",
 "パック"
 ],
+"af98ac02a4": [
+"Each deck, booster pack and card now has its own address you can share, for example pocketmetaqr.com/packs/c1-pikachu/.",
+"デッキ、拡張パック、カードごとに共有できるアドレスができました。例：pocketmetaqr.com/packs/c1-pikachu/"
+],
 "b0638c43ba": [
 "No download, no sign-up.",
 "ダウンロードも登録も不要です。"
@@ -1568,6 +1648,10 @@
 "b1142f7843": [
 "Not on the map yet: fewer than 30 players {0} (too few to place it).",
 "まだマップにありません：{0}30人未満のため、位置を決められません。"
+],
+"b1582a29b3": [
+"What’s new on Pocket Meta QR",
+"Pocket Meta QRの更新情報"
 ],
 "b1a5c8ef4d": [
 "Decks",
@@ -1645,6 +1729,10 @@
 "{0}Limited-time event",
 "{0}期間限定イベント"
 ],
+"b9206692de": [
+"The Energy and Score tiles of an event list are shorter, so the tiles end with the QR code.",
+"大会のレシピのエネルギーと成績のタイルを短くし、タイルがQRコードの位置で終わるようにしました。"
+],
 "ba6d08e61d": [
 "Full standings on Limitless {t0}↗",
 "Limitlessで全順位を見る {t0}↗"
@@ -1652,6 +1740,10 @@
 "ba79e67b9b": [
 "{0}Popular now{1}",
 "{0}人気{1}"
+],
+"bb6a897f64": [
+"Improved",
+"改善"
 ],
 "bbb2de672e": [
 "· {0} share · {1} win · {2} players",
@@ -1745,6 +1837,10 @@
 "months ago",
 "か月前"
 ],
+"c810d05ccb": [
+"Open Booster Packs",
+"拡張パックを開く"
+],
 "c8d3756e45": [
 "cards",
 "カード"
@@ -1804,6 +1900,10 @@
 "cead6614c0": [
 "min ago",
 "分前"
+],
+"ced5d3d204": [
+"Nov 22, 2026",
+"2026年11月22日"
 ],
 "ceeaa744c4": [
 "Limited",
@@ -1880,6 +1980,10 @@
 "d82857eb60": [
 "Exact list",
 "まったく同じレシピ"
+],
+"d878b544f3": [
+"Breakout decks",
+"躍進デッキ"
 ],
 "d97686b37a": [
 "Saving is not available here: right-click the QR code instead.",
@@ -1981,6 +2085,10 @@
 "Checked every hour. The numbers change only when a new event is added. Times are in your time zone.",
 "1時間ごとに確認しています。数値は新しい大会が追加されたときだけ変わります。時刻はあなたのタイムゾーンです。"
 ],
+"e2caee56cc": [
+"Event names keep short codes like PMPT in capitals.",
+"PMPTなどの大会名の略称は大文字のまま表示します。"
+],
 "e314914df8": [
 "The list most top players build from.",
 "最も多くの上位プレイヤーが元にしているレシピです。"
@@ -1992,6 +2100,10 @@
 "e40b725417": [
 "&middot; most played first",
 "&middot; よく使われている順"
+],
+"e469929b50": [
+"Event lists line up",
+"大会のレシピの表示をそろえました"
 ],
 "e491f9748c": [
 "is not in this week’s meta decks{0}.",
@@ -2048,6 +2160,10 @@
 "ebbb7e9b8b": [
 "Works in Safari, Chrome, Edge, Firefox and most other browsers (iOS 16.4 or later).",
 "Safari、Chrome、Edge、Firefoxなど、ほとんどのブラウザで使えます（iOS 16.4以降）。"
+],
+"ebd1488e61": [
+"In the Top 10, Winners and Packs shelves, the item in the middle (the one named above the shelf) stays bright and the others fade.",
+"トップ10・優勝デッキ・パックの棚では、中央の項目（棚の上に名前が出るもの）が明るく、他は薄く表示されます。"
 ],
 "ebdf15db38": [
 "smaller decks only",

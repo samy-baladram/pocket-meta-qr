@@ -68,8 +68,8 @@
   },
   {
    "note": "events: total players",
-   "find": "${pl.toLocaleString(\"en-US\")} players</b>",
-   "replace": "${pl.toLocaleString(\"ja-JP\")}名</b>"
+   "find": "All events<b> &middot; ${all.length} &middot; ${pl.toLocaleString(\"en-US\")} players</b>",
+   "replace": "全大会<b> &middot; ${all.length} &middot; ${pl.toLocaleString(\"ja-JP\")}名</b>"
   },
   {
    "note": "QR: enlarge label",
