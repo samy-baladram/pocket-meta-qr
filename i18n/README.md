@@ -11,13 +11,24 @@ build time. Nothing changes in the live page, and a built page has no translatio
 - `en.json`: the catalog (made by `extract.mjs`; the build also puts it on the site: `/i18n/en.json`).
 - `de.json`, `ja.json`: `{id: [English, translation]}`; optional 3rd part `{"<code just before the text>": translation}`
   for one English text with two meanings ("Share": the button vs the meta share).
-- `<lang>.code.json` (now `ja.code.json`): **code changes** for one language, where a text change is not enough:
+- `<lang>.code.json` (now `ja.code.json`, `es.code.json`): **code changes** for one language, where a text change is not enough:
   ordinals (`3rd` -> `3位`), word order (`<event>で優勝`), dates (`ja-JP`, `11/14`, `11月9日〜14日`), the Limited
   Battle name. `{"patches": [{"note", "find", "replace", "all"?}]}`; `find` = exact code of the page, applied before the
   texts. A `find` that is not in the page is not used: the build prints it and the report lists it (`codeMiss`). The
   Limited Battle name patch must change when `LB` changes.
 - `build.mjs`: page + language -> translated page and a report (`/i18n/report.<lang>.json` on the site: missing, bad,
   old). `pseudo.mjs`: the safety check (every text as ⟦text⟧).
+
+## Sections in English only
+
+A language can skip a section for now. `EN_ONLY` in `preview/i18n_patch.py` lists them per language
+(`new` = What's new, `limited` = Limited Battle); the page shows a short note at the top of each (`EN_ONLY_T`).
+
+- `es`: What's new and Limited Battle are in English (not in `es.json`).
+- `de`: What's new is in English.
+
+Spanish (es, Nov 23): `/preview/es/` only, not in the language menu yet. Terms: baraja, lista, jugadores top,
+uso, % de victorias, torneo, sobre, expansión. Name fixes: `preview/i18n/names.fix.json` (es).
 
 ## Rules for a translation
 - Keep every `{n}` once and every `{tn}` (order may change). `{n!}` = the code still runs but shows nothing (an English

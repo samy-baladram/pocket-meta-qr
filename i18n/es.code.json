@@ -1,0 +1,255 @@
+{
+ "_": "Code changes for the es page (i18n/build.mjs applies them before the texts). Same format as ja.code.json. Limited Battle and What's new are English on this page (enOnly in config.json): no patches for them.",
+ "patches": [
+  {
+   "note": "share button label: Copiar el enlace de este torneo",
+   "find": "aria-label=\"${TOUCH ? \"Share\" : \"Copy the link to\"} this ${what}\"",
+   "replace": "aria-label=\"${TOUCH ? \"Compartir\" : \"Copiar el enlace de\"} ${({ event: \"este torneo\", deck: \"esta baraja\", list: \"esta lista\", pack: \"este sobre\", card: \"esta carta\" })[what] || what}\""
+  },
+  {
+   "note": "energy names (Fuego, Agua …)",
+   "find": "const cap = (s) => s[0].toUpperCase() + s.slice(1);",
+   "replace": "const EN_ES = { grass: \"Planta\", fire: \"Fuego\", water: \"Agua\", lightning: \"Rayo\", psychic: \"Psíquico\", fighting: \"Lucha\", darkness: \"Oscuridad\", metal: \"Metal\", colorless: \"Incoloro\", dragon: \"Dragón\" }, cap = (s) => EN_ES[s] || s[0].toUpperCase() + s.slice(1);"
+  },
+  {
+   "note": "event: card in the N-place list",
+   "find": "<small>in the ${ordF(t.l.pl)}-place ${esc(dn(t.l.deck))}</small>",
+   "replace": "<small>en la baraja ${esc(dn(t.l.deck))} (${ordF(t.l.pl)} puesto)</small>"
+  },
+  {
+   "note": "event: did worse line",
+   "find": "`#${o.d.rank} \\u00b7 ${pc(o.d.share)}% share ${winWk()} \\u00b7 about ${Math.round(o.x)} lists expected, got <b>${o.g}</b>`, `${o.g} of ~${Math.round(o.x)}`",
+   "replace": "`#${o.d.rank} \\u00b7 ${pc(o.d.share)}% de uso ${winWk()} \\u00b7 se esperaban unas ${Math.round(o.x)} listas, hubo <b>${o.g}</b>`, `${o.g} de ~${Math.round(o.x)}`"
+  },
+  {
+   "note": "event: new-set cards",
+   "find": "<b>${esc(data.set)} cards</b> in the top ${n} (lists): ",
+   "replace": "<b>Cartas de ${esc(data.set)}</b> en el top ${n} (listas): "
+  },
+  {
+   "note": "event: decks in the top N",
+   "find": "<b>Decks in the top ${n}</b><span>lists</span>",
+   "replace": "<b>Barajas en el top ${n}</b><span>listas</span>"
+  },
+  {
+   "note": "event: only here tip (fixes the literal ${winWk()})",
+   "find": "'<span class=\"ekfm z\" title=\"No top 8 at other events ${winWk()}\">only here</span>'",
+   "replace": "`<span class=\"ekfm z\" title=\"Sin top 8 en otros torneos ${winWk()}\">solo aquí</span>`"
+  },
+  {
+   "note": "event: top 8s tip",
+   "find": "title=\"Top 8s at other events ${winWk()}\"",
+   "replace": "title=\"Top 8 en otros torneos ${winWk()}\""
+  },
+  {
+   "note": "event: new tip",
+   "find": "title=\"Under 0.3% share ${winWk()}\"",
+   "replace": "title=\"Menos del 0,3 % de uso ${winWk()}\""
+  },
+  {
+   "note": "event: share ratio tip",
+   "find": "title=\"Its share of the top ${n}: ${Math.round(r)}\\u00d7 its share ${winWk()}\"",
+   "replace": "title=\"Su uso en el top ${n}: ${Math.round(r)}\\u00d7 su uso ${winWk()}\""
+  },
+  {
+   "note": "winners: label",
+   "find": "aria-label=\"${esc(shortEv(e.name))}: won by ${esc(e.win.name)}, ${e.players} players\"",
+   "replace": "aria-label=\"${esc(shortEv(e.name))}: ganó ${esc(e.win.name)}, ${e.players} jugadores\""
+  },
+  {
+   "note": "winners: shelf label",
+   "find": "aria-label=\"Event winners, newest first\"",
+   "replace": "aria-label=\"Ganadores de los torneos, primero los más recientes\""
+  },
+  {
+   "note": "events: biggest button",
+   "find": "aria-label=\"Open the biggest event\"",
+   "replace": "aria-label=\"Abrir el torneo más grande\""
+  },
+  {
+   "note": "QR: enlarge label",
+   "find": "aria-label=\"Enlarge the QR code for ${esc(d.name)}\"",
+   "replace": "aria-label=\"Ampliar el código QR de ${esc(d.name)}\""
+  },
+  {
+   "note": "QR: image alt",
+   "find": "alt=\"Deck share code for ${esc(d.name)}\"",
+   "replace": "alt=\"Código de la baraja ${esc(d.name)}\""
+  },
+  {
+   "note": "packs: + cards in small decks",
+   "find": "<small>${m ? \"+\" : \"\"}${w} in small decks</small>",
+   "replace": "<small>${m ? \"+\" : \"\"}${w} en barajas pequeñas</small>"
+  },
+  {
+   "note": "packs: shelf label",
+   "find": "aria-label=\"Top 10 packs by meta cards\"",
+   "replace": "aria-label=\"Los 10 sobres con más cartas meta\""
+  },
+  {
+   "note": "packs: sort label",
+   "find": "aria-label=\"Sort packs\"",
+   "replace": "aria-label=\"Ordenar sobres\""
+  },
+  {
+   "note": "packs: card count under a card",
+   "find": "<small>${c.st ? `${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} small`}</small>",
+   "replace": "<small>${c.st ? `${c.decks.length} baraja${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} peq.`}</small>"
+  },
+  {
+   "note": "packs: card label",
+   "find": "aria-label=\"${esc(c.n)}, in ${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}\"",
+   "replace": "aria-label=\"${esc(c.n)}, en ${c.decks.length} baraja${c.decks.length > 1 ? \"s\" : \"\"}\""
+  },
+  {
+   "note": "label: rank, same as 24 h ago",
+   "find": "aria-label=\"Rank ${d.rank}, same rank as 24 hours ago\"",
+   "replace": "aria-label=\"Puesto ${d.rank}, el mismo que hace 24 horas\""
+  },
+  {
+   "note": "label: rank, 24 h change",
+   "find": "aria-label=\"Rank ${d.rank}, ${d.nw ? \"new in the list\" : \"change in 24 hours\"}\"",
+   "replace": "aria-label=\"Puesto ${d.rank}, ${d.nw ? \"nueva en la lista\" : \"cambio en 24 horas\"}\""
+  },
+  {
+   "note": "label: rank: deck",
+   "find": "aria-label=\"Rank ${d.rank}: ${esc(d.name)}\"",
+   "replace": "aria-label=\"Puesto ${d.rank}: ${esc(d.name)}\""
+  },
+  {
+   "note": "label: deck: rank, share",
+   "find": "aria-label=\"${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}\"",
+   "replace": "aria-label=\"${esc(d.name)}: puesto ${d.rank}, ${pct(d.share)}\"",
+   "all": true
+  },
+  {
+   "note": "label: About <x>",
+   "find": "aria-label=\"About ${esc(label)}\"",
+   "replace": "aria-label=\"Sobre ${esc(label)}\"",
+   "all": true
+  },
+  {
+   "note": "label: data status",
+   "find": "aria-label=\"Data status: checked ${agoTxt(data.updatedAt)}. Details\"",
+   "replace": "aria-label=\"Estado de los datos: comprobado ${agoTxt(data.updatedAt)}. Detalles\""
+  },
+  {
+   "note": "tip: players, matches",
+   "find": "title=\"${sm.players.toLocaleString()} players, ${sm.matches.toLocaleString()} matches\"",
+   "replace": "title=\"${sm.players.toLocaleString()} jugadores, ${sm.matches.toLocaleString()} partidas\""
+  },
+  {
+   "note": "tip: no top player",
+   "find": "title=\"No top player ${winWk()}\"",
+   "replace": "title=\"Sin jugadores top ${winWk()}\""
+  },
+  {
+   "note": "tip: few players",
+   "find": "title=\"Only ${d.count} players: this win rate is less certain\"",
+   "replace": "title=\"Solo ${d.count} jugadores: este % de victorias es menos fiable\""
+  },
+  {
+   "note": "tip: no top player with k swapped",
+   "find": "title=\"No top player with ${k} card${k > 1 ? \"s\" : \"\"} swapped\"",
+   "replace": "title=\"Ningún jugador top con ${k} carta${k > 1 ? \"s\" : \"\"} cambiada${k > 1 ? \"s\" : \"\"}\""
+  },
+  {
+   "note": "date range in a month: 9–14 nov",
+   "find": "`${A.toLocaleDateString(undefined, o)} \\u2013 ${B.getUTCDate()}`",
+   "replace": "`${A.getUTCDate()}\\u2013${B.toLocaleDateString(undefined, o)}`"
+  },
+  {
+   "note": "ordinals: 3rd -> 3.º",
+   "find": "n + (n % 100 >= 11 && n % 100 <= 13 ? \"th\" : [\"th\",\"st\",\"nd\",\"rd\"][n % 10] || \"th\")",
+   "replace": "n + \".º\""
+  },
+  {
+   "note": "ordinals (ord, ordN)",
+   "all": true,
+   "find": "n + (n % 100 >= 11 && n % 100 <= 13 ? \"th\" : [\"th\", \"st\", \"nd\", \"rd\"][n % 10] || \"th\")",
+   "replace": "n + \".º\""
+  },
+  {
+   "note": "dates and times in Spanish: toLocaleDateString",
+   "find": "toLocaleDateString(undefined,",
+   "replace": "toLocaleDateString(\"es-ES\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Spanish: toLocaleTimeString",
+   "find": "toLocaleTimeString(undefined,",
+   "replace": "toLocaleTimeString(\"es-ES\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Spanish: toLocaleString",
+   "find": "toLocaleString(undefined,",
+   "replace": "toLocaleString(\"es-ES\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Spanish: toLocaleDateString",
+   "find": "toLocaleDateString(\"en-US\",",
+   "replace": "toLocaleDateString(\"es-ES\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Spanish: toLocaleString",
+   "find": "toLocaleString(\"en-US\", { month",
+   "replace": "toLocaleString(\"es-ES\", { month",
+   "all": true
+  },
+  {
+   "note": "numbers: 1.833 (es-ES)",
+   "find": "toLocaleString(\"en-US\")",
+   "replace": "toLocaleString(\"es-ES\")",
+   "all": true
+  },
+  {
+   "note": "results list date: 14 nov",
+   "find": "${MON[+dt.slice(5, 7) - 1]} ${+dt.slice(8)}",
+   "replace": "${+dt.slice(8)} ${MON[+dt.slice(5, 7) - 1]}",
+   "all": true
+  },
+  {
+   "note": "trend chart first day: 14 nov",
+   "find": "${MON[+x.slice(5, 7) - 1]} ${+x.slice(8)}",
+   "replace": "${+x.slice(8)} ${MON[+x.slice(5, 7) - 1]}"
+  },
+  {
+   "note": "winning-record check",
+   "find": "has ${n > 0 ? \"+\" : n < 0 ? \"\\u2212\" : \"\"}${Math.abs(n)} \\u00b7 ${k} more win${k > 1 ? \"s\" : \"\"} in place of ${k > 1 ? \"losses\" : \"a loss\"}",
+   "replace": "tiene ${n > 0 ? \"+\" : n < 0 ? \"\\u2212\" : \"\"}${Math.abs(n)} \\u00b7 ${k} victoria${k > 1 ? \"s\" : \"\"} más en lugar de ${k > 1 ? \"derrotas\" : \"una derrota\"}"
+  },
+  {
+   "note": "trend sentence: mv",
+   "find": "`stayed near <b>${a[1].toFixed(1)}${u}</b>` : `went ${a[1] > a[0] ? \"up\" : \"down\"} from ${a[0].toFixed(1)}${u} to <b>${a[1].toFixed(1)}${u}</b>`",
+   "replace": "`se mantuvo cerca de <b>${a[1].toFixed(1)}${u}</b>` : `${a[1] > a[0] ? \"subió\" : \"bajó\"} de ${a[0].toFixed(1)}${u} a <b>${a[1].toFixed(1)}${u}</b>`"
+  },
+  {
+   "note": "pack: in all packs of the set",
+   "find": "`In ${all === 2 ? \"both\" : \"all \" + all} ${set.name} packs`",
+   "replace": "`En ${all === 2 ? \"los dos\" : \"los \" + all} sobres de ${set.name}`"
+  },
+  {
+   "note": "swap version",
+   "find": "`a swap version of ${al.map((k) => (k === 1 ? \"the \" + L1n(d) : \"list \" + k)).join(\", \")}`",
+   "replace": "`una versión con cambios de ${al.map((k) => (k === 1 ? \"la \" + L1n(d) : \"la lista \" + k)).join(\", \")}`"
+  },
+  {
+   "note": "list 1",
+   "find": "const L1n = () => \"list 1\", L1s = () => \"List 1\";",
+   "replace": "const L1n = () => \"lista 1\", L1s = () => \"Lista 1\";"
+  },
+  {
+   "note": "about-button labels",
+   "find": "\"the decks\" : \"the records\"",
+   "replace": "\"las barajas\" : \"los resultados\""
+  },
+  {
+   "note": "month names",
+   "find": "const MON = [\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\",\"Oct\",\"Nov\",\"Dec\"];",
+   "replace": "const MON = [\"ene\",\"feb\",\"mar\",\"abr\",\"may\",\"jun\",\"jul\",\"ago\",\"sept\",\"oct\",\"nov\",\"dic\"];"
+  }
+ ]
+}

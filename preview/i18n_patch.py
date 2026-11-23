@@ -30,6 +30,9 @@ html:not([lang="en"]) .pkr-n small { white-space: normal; overflow-wrap: anywher
 html:not([lang="en"]) :root .swt .swpl, html:not([lang="en"]) .swpl { white-space: normal; text-align: center; }
 html:not([lang="en"]) .t1s-h > :first-child { flex: none; white-space: nowrap; }
 html:not([lang="en"]) .t1s-lab > div { inset: 0 10px; gap: 0 4px; font-size: 12px; flex-wrap: wrap; align-content: center; line-height: 1.2; } /* the name keeps its line; the rest moves under it */
+/* Nov 23: sections a language does not translate yet (EN_ONLY in the page script) get a short note at the top */
+[data-en-only]::before { content: attr(data-en-only); display: block; margin: 0 0 12px; padding: 9px 12px; border-radius: 12px;
+  font-size: 13px; line-height: 1.35; color: var(--muted); background: var(--surface, #fff); box-shadow: inset 0 0 0 1px var(--line-strong, #c9d6e2); }
 .lang-btn { right: 40px; width: auto; gap: 5px; padding: 0 10px 0 9px; border-radius: 16px; display: flex; align-items: center;
   font: 700 12px/1 inherit; letter-spacing: 0.02em; }
 .lang-btn svg.chev { width: 12px; height: 12px; }
@@ -57,10 +60,10 @@ th = '  $("themeBtn").addEventListener("click", () => {'
 MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["ja", "日本語", "日本語"], ["de", "Deutsch", "DE"], ["es", "Español", "ES"], ["fr", "Français", "FR"],
       ["it", "Italiano", "IT"], ["pt", "Português (Brasil)", "PT"], ["ko", "한국어", "KO"], ["zh", "繁體中文", "ZH"]];
     const JA = PG_L === "ja", btn = $("langBtn"), pop = $("langPop"), list = $("langList"), cur = LN.find((x) => x[0] === PG_L) || LN[0];
-    $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : "Language";
-    btn.setAttribute("aria-label", (JA ? "言語：" : "Language: ") + cur[1]);
+    const ES = PG_L === "es"; $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : ES ? "Idioma" : "Language";
+    btn.setAttribute("aria-label", (JA ? "言語：" : ES ? "Idioma: " : "Language: ") + cur[1]);
     list.innerHTML = LN.map(([c, n]) => { const live = LIVE_L.includes(c), on = c === PG_L;
-      const tag = c === "ja" ? `<span class="lang-tag beta">${JA ? "ベータ" : "Beta"}</span>` : live ? "" : `<span class="lang-tag soon">${JA ? "準備中" : "Coming soon"}</span>`;
+      const tag = c === "ja" ? `<span class="lang-tag beta">${JA ? "ベータ" : "Beta"}</span>` : live ? "" : `<span class="lang-tag soon">${JA ? "準備中" : ES ? "Próximamente" : "Coming soon"}</span>`;
       return `<li><button type="button" role="radio" lang="${c}" data-l="${c}" aria-checked="${on}"${live || on ? "" : ' aria-disabled="true"'}>${n}${tag}</button></li>`; }).join("");
     const close = (f) => { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); if (f) btn.focus(); };
     btn.addEventListener("click", (e) => { e.stopPropagation(); const o = pop.hidden; pop.hidden = !o; btn.setAttribute("aria-expanded", String(o));
@@ -101,18 +104,24 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
   // Phase 1 (Nov 23): the page language = its text, names and card images. A text page (/preview/ja/ ...: the build
   // sets PMQ_LANG) has its language. The English page stays English (no redirect by browser language), but a saved
   // choice of a live language (pmq-lang, set in the menu) opens that page. LIVE_L: the languages the menu offers.
-  var TXT_L = ["de", "ja"], LIVE_L = ["en", "ja"], PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
+  var TXT_L = ["de", "es", "ja"], LIVE_L = ["en", "ja"], PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
   var IMGL = (() => { if (PG_L !== "en") return PG_L; let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
     return l && l !== "en" && LIVE_L.includes(l) && TXT_L.includes(l) ? l : "en"; })();
   // PMQ_ROOT (set by the build): the English page's folder, "/preview/" (test) or "/" (the live /ja/ page)
   var PMQ_R = (typeof PMQ_ROOT === "string" && PMQ_ROOT) || "/preview/", langPath = (l) => PMQ_R + (TXT_L.includes(l) ? l + "/" : "");
   if (PG_L === "en" && IMGL !== "en" && (location.pathname === PMQ_R || location.pathname === PMQ_R + "index.html")) location.replace(langPath(IMGL) + location.hash);
   var IMGP = IMGL === "en" ? "" : `i18n/${IMGL}/`;
-  // Names (de, ja): i18n/names.<lang>.json = {n: {English card name: name}, s: {set code: set name}}. Other languages:
+  // Names (de, es, ja): i18n/names.<lang>.json = {n: {English card name: name}, s: {set code: set name}}. Other languages:
   // card images only, English names.
-  var LANG_N = ["de", "ja"].includes(IMGL) ? IMGL : "en", L10N = null;
+  var LANG_N = TXT_L.includes(IMGL) ? IMGL : "en", L10N = null;
   var L10NP = LANG_N === "en" ? Promise.resolve(null) : fetch(`i18n/names.${LANG_N}.json`).then((r) => (r.ok ? r.json() : null)).then((j) => (L10N = j)).catch(() => null);
   try { document.documentElement.lang = IMGL; } catch (err) {}
+  // Nov 23: sections in English only on a language page (not translated yet): a note at the top of each.
+  // new = What's new (#nwl), limited = Limited Battle (#lbl).
+  var EN_ONLY = { de: ["new"], es: ["new", "limited"] }, EN_ONLY_T = { de: "Dieser Bereich ist vorerst nur auf Englisch verfügbar.",
+    es: "Esta sección solo está disponible en inglés por ahora." };
+  if (EN_ONLY[PG_L]) addEventListener("DOMContentLoaded", () => { for (const [k, id] of [["new", "nwl"], ["limited", "lbl"]]) {
+    const el = document.getElementById(id); if (el && EN_ONLY[PG_L].includes(k)) { el.setAttribute("data-en-only", EN_ONLY_T[PG_L]); el.lang = "en"; } } });
   var trCard = (en) => (L10N && en && L10N.n[en]) || en;
   var trDeck = (en) => { // a deck name = card names: "Mega Charizard Y ex Entei ex" -> each name (longest first); else English
     if (!L10N || !en) return en; const w = en.split(" "), out = []; let i = 0;
@@ -127,7 +136,7 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
     return L10N.sl[String(code || "").toLowerCase()] || en; };
   // the place in the data ("3rd of 110") in the page language
   var trPl = (s) => { const m = /^(\d+)(?:st|nd|rd|th) of (\d+)$/.exec(s); if (!m || !PG_L) return s;
-    return PG_L === "ja" ? `${m[1]}位／${m[2]}名` : PG_L === "de" ? `${m[1]}. von ${m[2]}` : s; };
+    return PG_L === "ja" ? `${m[1]}位／${m[2]}名` : PG_L === "de" ? `${m[1]}. von ${m[2]}` : PG_L === "es" ? `${m[1]}.º de ${m[2]}` : s; };
   var l10nDeep = (o) => { if (!L10N || !o || typeof o !== "object") return o;
     if (Array.isArray(o)) { o.forEach(l10nDeep); return o; }
     if (typeof o.name === "string" && Array.isArray(o.art)) { if (!("nameEn" in o)) o.nameEn = o.name; o.name = trDeck(o.nameEn); }

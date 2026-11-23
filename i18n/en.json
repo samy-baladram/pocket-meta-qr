@@ -18,14 +18,8 @@
   "id": "89b86ab0e6",
   "en": "Language",
   "where": [
-   "attr <select aria-label>"
-  ]
- },
- {
-  "id": "4a8867f122",
-  "en": "Language (card images and names)",
-  "where": [
-   "attr <select title>"
+   "html <h2>",
+   "js  $(\"langTtl\").textContent = JA ? \"言語\" : "
   ]
  },
  {
@@ -69,7 +63,8 @@
   "id": "26b1ca6b96",
   "en": "Card details",
   "where": [
-   "attr <div aria-label>"
+   "attr <div aria-label>",
+   "html <p>"
   ]
  },
  {
@@ -276,6 +271,7 @@
   "en": "Limited Battle decks",
   "where": [
    "attr <section aria-label>",
+   "html <p>",
    "js ks for this week\\u2019s meta\", limited: "
   ]
  },
@@ -443,6 +439,777 @@
   ]
  },
  {
+  "id": "3697024201",
+  "en": "What’s new",
+  "where": [
+   "html <h2>",
+   "html <button>"
+  ]
+ },
+ {
+  "id": "65cad64e1c",
+  "en": "Nov 23, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "6403f2b7eb",
+  "en": "New",
+  "where": [
+   "html <p>",
+   "html <p>",
+   "html <p>"
+  ]
+ },
+ {
+  "id": "6e8afb4a96",
+  "en": "A page for every card",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "8a4ebcfeac",
+  "en": "Each card has its own page with the meta decks that play it and the pack it comes from. Pick a card in the search to go there.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "6082b594a2",
+  "en": "See it on the Meta tab",
+  "where": [
+   "html <a>",
+   "html <a>",
+   "html <a>"
+  ]
+ },
+ {
+  "id": "d878b544f3",
+  "en": "Breakout decks",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "373ec13f0a",
+  "en": "A rare deck that makes the top 8 of a big event (128+ players) now shows on the Meta tab, with a crown in place of its rank. The New filter finds them too.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "bb6a897f64",
+  "en": "Improved",
+  "where": [
+   "html <p>",
+   "html <p>",
+   "html <p>"
+  ]
+ },
+ {
+  "id": "3300a134ee",
+  "en": "Shelves focus on the middle",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "ebd1488e61",
+  "en": "In the Top 10, Winners and Packs shelves, the item in the middle (the one named above the shelf) stays bright and the others fade.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "3f0d4e4459",
+  "en": "Lists line up",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "699c230b55",
+  "en": "Under every list, the QR code, tiles and buttons line up with the cards above them. On event lists, the Energy and Score tiles are shorter, so the tiles end with the QR code.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "605f6741e3",
+  "en": "Open Latest Events",
+  "where": [
+   "html <a>",
+   "html <a>",
+   "html <a>"
+  ]
+ },
+ {
+  "id": "ab98f5b857",
+  "en": "Fixed",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "93897fabdc",
+  "en": "Small fixes",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "6f0ac3b621",
+  "en": "Shares under 0.1% show 2 decimals (0.04%).",
+  "where": [
+   "html <li>"
+  ]
+ },
+ {
+  "id": "e2caee56cc",
+  "en": "Event names keep short codes like PMPT in capitals.",
+  "where": [
+   "html <li>"
+  ]
+ },
+ {
+  "id": "295df348e1",
+  "en": "“1 player”, not “1 players”.",
+  "where": [
+   "html <li>"
+  ]
+ },
+ {
+  "id": "5191e9ee60",
+  "en": "The Top players sheet shows the event name of every result.",
+  "where": [
+   "html <li>"
+  ]
+ },
+ {
+  "id": "5dcb3959b6",
+  "en": "The winning deck of each event has a small crown.",
+  "where": [
+   "html <li>"
+  ]
+ },
+ {
+  "id": "ced5d3d204",
+  "en": "Nov 22, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "9364147f96",
+  "en": "Booster Packs tab",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "05a0b1c0a2",
+  "en": "See which booster pack gives the cards of this week’s meta decks, and which decks play each card.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "c810d05ccb",
+  "en": "Open Booster Packs",
+  "where": [
+   "html <a>",
+   "html <a>"
+  ]
+ },
+ {
+  "id": "79393e6bfb",
+  "en": "Winners shelf and Most wins",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "b7c14969d8",
+  "en": "Latest Events opens with a shelf of the winning decks and a Most wins panel. Tap a deck to see only its wins.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "f434bf32bf",
+  "en": "Limited Battle banner",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "1284d794b4",
+  "en": "The Limited Battle event has its own page, opened from the banner at the top, with the days left.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "c642c3bcf3",
+  "en": "Open Limited Battle",
+  "where": [
+   "html <a>",
+   "html <a>"
+  ]
+ },
+ {
+  "id": "c379bcaf21",
+  "en": "A page for every deck and pack",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "581db8aa37",
+  "en": "Each deck and booster pack has its own address you can share, for example pocketmetaqr.com/packs/c1-pikachu/.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "6e452864dc",
+  "en": "Share button on every open row",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "bcdcacfac9",
+  "en": "An open deck, event or pack has a share button in its corner that copies a link to it.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "fb189f93dd",
+  "en": "Nov 21, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "e48b172777",
+  "en": "Top 10 shelf",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "d93b81d053",
+  "en": "The Top 10 of the week is now a shelf of card pairs that moves by itself, with the decks that rose or fell the most under it. Swipe it, or tap a deck to open it.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "b139b7fa68",
+  "en": "New event stats",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "72816a6576",
+  "en": "An open event shows the cut line, its top 8 against the meta, the decks that did better or worse than expected, the energy mix and cards to look at.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "d64554a07f",
+  "en": "Nov 19, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "8293134533",
+  "en": "Wide screens: list and stats side by side",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "d532eb8b7f",
+  "en": "On a tablet or computer, an open deck shows its list and its stats next to each other. The iPad gets bigger lists and texts, and on large monitors the whole page scales up.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "6e3a9caaf3",
+  "en": "Nov 18, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "eba9c70585",
+  "en": "Swap selector",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "d8be4679ca",
+  "en": "Under each list: Exact, 1, 2 or 3 swaps. Tap a level to see the versions that top players made with that many cards changed, each with its own QR code and results.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "24adf89e1b",
+  "en": "Hand-picked decks with QR codes for the Dual Fusion Limited Battle, with notes on why each one works.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "0e0987ccae",
+  "en": "Nov 16, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "1865e8ab4e",
+  "en": "No jumps while loading",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "38307172dc",
+  "en": "The page keeps its layout while the data loads, so nothing jumps under your finger.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "20e3fe935b",
+  "en": "Nov 15, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "5a798665b4",
+  "en": "Deck stats",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "3b87f22071",
+  "en": "Tap the stats pill of an open deck: share and win rate over 7 days, matchups against the top 10, the meta map and the core and flex cards. Matchup bars share one scale, and a bar is light when there are too few games to tell.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "9c4b9abf27",
+  "en": "A stable window of days",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "3032417f05",
+  "en": "The numbers use the last 7 to 14 days, whatever is needed for enough players, so they stay stable when a new set comes out.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "2ecf15a5cd",
+  "en": "Event filter",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "d8e47bc791",
+  "en": "On Latest Events, search an event or a deck, or show only events with 50+, 100+ or 200+ players.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "f8568211f9",
+  "en": "More room while you scroll",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "a5f4beceba",
+  "en": "The tab band slides away when you scroll down and comes back when you scroll up.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "95d5a43fa7",
+  "en": "Nov 14, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "a2e22daa21",
+  "en": "Popular now",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "7040eaf9cd",
+  "en": "The list most top players copy gets a “Popular now” chip on its card.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "df791c1791",
+  "en": "Top players of a list",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "c7174c01e1",
+  "en": "“Used by N top players” opens every result of that list: a dot chart, the win rate and the events. Tap a result to open that player’s exact list.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "769a2e5ffd",
+  "en": "Unproven and No top result",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "aac1ebec4e",
+  "en": "A top player now needs 2 more wins than losses. Decks with no such player get a clear label, and a sheet that says why.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "0348d57802",
+  "en": "Nov 13, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "796a417d58",
+  "en": "Rank changes",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "a2c4ff5617",
+  "en": "Each deck shows how its rank moved (▲ +2, −1 ▼). Tap the badge for the details.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "ead131ce50",
+  "en": "Deck filters",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "3c041c3212",
+  "en": "Filter by energy, or with the chips No ex, Rising, New and the new set’s cards. New finds the decks that just entered the list, marked with a gold ✦. A card in the search also has “Without”: the decks that do not play it. Dark mode is on the moon button.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "96e7f0180e",
+  "en": "Share links that keep the list",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "11345633b2",
+  "en": "“Share this list” makes a link that holds the list itself. It still opens weeks later and says if the list is still a top list today.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "7bd938bc58",
+  "en": "Add to Home Screen",
+  "where": [
+   "html <p>",
+   "html <button>",
+   "tpl </li></ol>`; $(\"homeBtn\").dataset.tip = "
+  ]
+ },
+ {
+  "id": "32d4ba42b0",
+  "en": "Add the site to your home screen and it opens like an app on iPhone and Android.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "d5f3362f81",
+  "en": "Since your last visit",
+  "where": [
+   "html <p>",
+   "tpl e top 10` : \"\"].filter(Boolean); notice("
+  ]
+ },
+ {
+  "id": "b6897efb30",
+  "en": "A notice drops in from the top with the new events and the new top-10 decks since your last visit.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "88420f77e5",
+  "en": "New logo",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "029205c659",
+  "en": "A Pokéball in the corner of the QR logo, on the site, the saved QR images and the app icon.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "da516ef8b7",
+  "en": "Nov 12, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "0b57ba73fb",
+  "en": "Live status",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "3cf4d057fe",
+  "en": "The “● Live” chip shows when the data was last checked. Tap it for the next check and the newest event.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "2109b28296",
+  "en": "A faster site",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "f858a8d8f9",
+  "en": "The data files are about 4 times smaller, so the site opens faster on a phone.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "63d69fa4be",
+  "en": "A look like the game",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "e6ba8f5770",
+  "en": "Colours, shadows, the tab band and the banner now follow the style of Pokémon TCG Pocket. On Nov 21 it got a lighter look with a teal accent.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "0fe5041a23",
+  "en": "Nov 11, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "68eb21ad56",
+  "en": "Latest Events tab",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "a333da9fe8",
+  "en": "The tournaments of the last days, newest first, with the winner, the top 8 decks and their lists with QR codes.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "bde2eabf31",
+  "en": "Smaller decks",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "06c3249338",
+  "en": "“Show all smaller decks” adds the decks with 0.2–0.5% share under the main list. A deck with no public list yet keeps its place in the ranking.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "4ca34be557",
+  "en": "Nov 10, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "8dc0c0c584",
+  "en": "pocketmetaqr.com, updated every hour",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "49865a4f4d",
+  "en": "The site moved to its own address, and new tournament results now come in every hour.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "7002659f49",
+  "en": "About &amp; FAQ",
+  "where": [
+   "html <p>",
+   "html <button>"
+  ]
+ },
+ {
+  "id": "9db9c8ab5f",
+  "en": "How to import a deck by QR code, where the data comes from and how decks are ranked, in one place.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "9b57e687c1",
+  "en": "Open About &amp; FAQ",
+  "where": [
+   "html <a>"
+  ]
+ },
+ {
+  "id": "a56ebf805d",
+  "en": "Link previews",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "4816b7397c",
+  "en": "A link to the site shows a preview card in Reddit, Discord and chat apps.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "01405fc75e",
+  "en": "Compare a list with List 1",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "a0f8b90116",
+  "en": "See which cards a list swaps compared with the most played list, card by card.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "bf77d4812d",
+  "en": "Nov 9, 2026",
+  "where": [
+   "html <h3>"
+  ]
+ },
+ {
+  "id": "691425452b",
+  "en": "Meta decks from real tournaments",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "3f98ce935b",
+  "en": "Every deck gets its share, win rate and rank from public Limitless tournaments of the last days. The win rate counts real matches only: no byes, no mirror matches.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "e0676b2649",
+  "en": "A QR code for every list",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "ed625caa39",
+  "en": "Open a deck to see the lists top players used. Scan a list’s QR code in the game to import it, or save the image and use “Scan Saved Image”.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "530ef18748",
+  "en": "Tap a card to see it larger, with its set, number and booster pack.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "346a0d6dab",
+  "en": "Search decks and cards",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "790579bc84",
+  "en": "Search a deck or a card. Pick a card to see every deck that plays it. The empty search box shows the new cards that top players use.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
   "id": "e985a02c4a",
   "en": "Made by {t0}u/Myxas_",
   "where": [
@@ -454,21 +1221,6 @@
   "en": "Feedback or a bug? {t0}Send me a message",
   "where": [
    "html <span>"
-  ]
- },
- {
-  "id": "7002659f49",
-  "en": "About &amp; FAQ",
-  "where": [
-   "html <button>"
-  ]
- },
- {
-  "id": "7bd938bc58",
-  "en": "Add to Home Screen",
-  "where": [
-   "html <button>",
-   "tpl </li></ol>`; $(\"homeBtn\").dataset.tip = "
   ]
  },
  {
@@ -535,6 +1287,13 @@
   ]
  },
  {
+  "id": "b37fdb0b21",
+  "en": "{0}. von",
+  "where": [
+   "tpl ? `${m[1]}位／${m[2]}名` : PG_L === \"de\" ? "
+  ]
+ },
+ {
   "id": "fc45091249",
   "en": "Switch to light mode",
   "where": [
@@ -553,6 +1312,62 @@
   "en": "Dark mode",
   "where": [
    "js (\"themeBtn\").title = d ? \"Light mode\" : "
+  ]
+ },
+ {
+  "id": "649df08a44",
+  "en": "English",
+  "where": [
+   "js  Nov 21: = --bg }; { const LN = [[\"en\", "
+  ]
+ },
+ {
+  "id": "a6a7709266",
+  "en": "Deutsch",
+  "where": [
+   "js h\", \"EN\"], [\"ja\", \"日本語\", \"日本語\"], [\"de\", "
+  ]
+ },
+ {
+  "id": "2001ca082b",
+  "en": "Español",
+  "where": [
+   "js \"日本語\"], [\"de\", \"Deutsch\", \"DE\"], [\"es\", "
+  ]
+ },
+ {
+  "id": "2ca514ebd7",
+  "en": "Français",
+  "where": [
+   "js  \"DE\"], [\"es\", \"Español\", \"ES\"], [\"fr\", "
+  ]
+ },
+ {
+  "id": "21df73947a",
+  "en": "Italiano",
+  "where": [
+   "js \"ES\"], [\"fr\", \"Français\", \"FR\"], [\"it\", "
+  ]
+ },
+ {
+  "id": "d53cc7ed60",
+  "en": "Português (Brasil)",
+  "where": [
+   "js \"FR\"], [\"it\", \"Italiano\", \"IT\"], [\"pt\", "
+  ]
+ },
+ {
+  "id": "f03b60f7e5",
+  "en": "Beta",
+  "where": [
+   "js an class=\"lang-tag beta\">${JA ? \"ベータ\" : "
+  ]
+ },
+ {
+  "id": "e4115be258",
+  "en": "Coming soon",
+  "where": [
+   "js an class=\"lang-tag soon\">${JA ? \"準備中\" : "
   ]
  },
  {
@@ -1267,6 +2082,20 @@
   "en": "Copy list link",
   "where": [
    "js NK = () => (TOUCH ? \"Share this list\" : "
+  ]
+ },
+ {
+  "id": "6a29833b42",
+  "en": "700 {0}px Figtree, system-ui, sans-serif",
+  "where": [
+   "tpl ab) { x.fillStyle = \"#3f4b5a\"; x.font = "
+  ]
+ },
+ {
+  "id": "7512270ddb",
+  "en": "700 20px Figtree",
+  "where": [
+   "js aset.q]); }); try { document.fonts.load("
   ]
  },
  {
@@ -3050,14 +3879,6 @@
   ]
  },
  {
-  "id": "6403f2b7eb",
-  "en": "New",
-  "where": [
-   "js  24 hours, or new in the list\"], [\"nw\", ",
-   "tpl deck); if (s == null || s < 0.3) return "
-  ]
- },
- {
   "id": "3d506b84fd",
   "en": "New in the list (the first time since the set came out, for 3 days) and Breakout decks (a rare deck with a top-8 finish at a big event)",
   "where": [
@@ -3822,7 +4643,7 @@
   "id": "49a26dcc49",
   "en": "of {0} ·",
   "where": [
-   "tpl pl: v.place, ev: e.name, dt: e.dt, evt: "
+   "tpl Pl(v.place), ev: e.name, dt: e.dt, evt: "
   ]
  },
  {
@@ -4129,10 +4950,17 @@
   ]
  },
  {
+  "id": "2f8d136cf7",
+  "en": "What’s New: Site Updates | Pocket Meta QR",
+  "where": [
+   "js cks by QR | Pocket Meta QR\", new: () => "
+  ]
+ },
+ {
   "id": "f19c988b3f",
   "en": "Decks with QR Codes | Pocket Meta QR",
   "where": [
-   "tpl by QR | Pocket Meta QR\", limited: () => "
+   "tpl dates | Pocket Meta QR\", limited: () => "
   ]
  },
  {
@@ -4164,6 +4992,13 @@
   ]
  },
  {
+  "id": "b1582a29b3",
+  "en": "What’s new on Pocket Meta QR",
+  "where": [
+   "js le decks\", about: \"About and FAQ\", new: "
+  ]
+ },
+ {
   "id": "af20be5975",
   "en": "is not in this week’s meta{0}.",
   "where": [
@@ -4175,6 +5010,13 @@
   "en": "Loading events&hellip;",
   "where": [
    "js ents\"); if (!EV) { $(\"evl\").innerHTML = "
+  ]
+ },
+ {
+  "id": "2451222400",
+  "en": "Show {0} older update{1}",
+  "where": [
+   "tpl en = k <= 0; if (k > 0) b.textContent = "
   ]
  },
  {
@@ -4343,13 +5185,6 @@
   "en": "new deck{0}{t0} in the top 10",
   "where": [
    "tpl ent${ne > 1 ? \"s\" : \"\"}</b>` : \"\", nd ? "
-  ]
- },
- {
-  "id": "d5f3362f81",
-  "en": "Since your last visit",
-  "where": [
-   "tpl e top 10` : \"\"].filter(Boolean); notice("
   ]
  },
  {
