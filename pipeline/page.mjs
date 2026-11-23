@@ -154,8 +154,14 @@ const crumbs = (last, url) => ({ "@context": "https://schema.org", "@type": "Bre
   { "@type": "ListItem", position: 2, name: "Meta decks", item: `${SITE}/` },
   { "@type": "ListItem", position: 3, name: last, item: url }] });
 
+// R33 (Nov 23, 2026): a Breakout deck's best result, for its page: "won PMPT #52" / "took 3rd at PMPT #52". The event
+// name is cut at its first " - " / " | " ("PMPT #52 - FEROCIOUS FUSION!!! | $100 USD" -> "PMPT #52").
+const ordinal = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th");
+const shortEvent = (t) => plain(t).split(/\s+[-|–:]\s+/)[0].trim() || plain(t);
+const brkVerb = (b) => (b.place === 1 ? `won ${b.ev}` : `took ${ordinal(b.place)} at ${b.ev}`);
 function deckPages(full, dataDir, outDir, seenFile) {
   const D = readJSON(join(dataDir, "data.json")), M = readJSON(join(dataDir, "more.json")), ST = readJSON(join(dataDir, "stats.json"));
+  const EVD = new Map(((readJSON(join(dataDir, "events.json")) || {}).events || []).map((x) => [x.tid, x.dt]));
   if (!D) return [];
   const today = new Date().toISOString().slice(0, 10), dates = span(D.span[0], D.span[1]), N = names(dataDir);
   const rec = (seenFile && readJSON(seenFile)) || {};
@@ -166,7 +172,8 @@ function deckPages(full, dataDir, outDir, seenFile) {
     facts.set(d.id, f);
     live.set(d.id, { name: d.name, seen: today, rank: d.rank, share: d.share, win: d.win, count: d.count,
       games: (d.w || 0) + (d.l || 0) + (d.t || 0), more, dates, best: d.pl ? [d.pl, plain(d.ev || ""), d.dt] : null,
-      cards: d.cards.map((c) => [c.n, c.c]), xs: f.sentences });
+      cards: d.cards.map((c) => [c.n, c.c]), xs: f.sentences,
+      ...(d.brk ? { brk: { ev: shortEvent(d.brk[0][3]), place: d.brk[0][1], players: d.brk[0][2], dt: EVD.get(d.brk[0][0]) || null } } : {}) });
     // the record (for the page after the deck leaves): rewritten on a new day or for a new deck, so the file changes
     // about once a day; the pages of decks in the data use this build's numbers (live)
     if (!(rec[d.id]?.seen === today && rec[d.id].xs)) rec[d.id] = live.get(d.id);
@@ -176,13 +183,18 @@ function deckPages(full, dataDir, outDir, seenFile) {
   const onIds = new Set(now.map((x) => x.d.id)), out = [];
   for (const [id, e0] of Object.entries(rec)) {
     const on = onIds.has(id) ? 1 : 0, days = daysAgo(today, e0.seen), f = facts.get(id), e = on ? live.get(id) : e0;
-    const cards = cardsText(e.cards), win = pct(e.win), share = pct(e.share);
+    const cards = cardsText(e.cards), win = pct(e.win), share = e.share < 0.1 ? (+e.share).toFixed(2) : pct(e.share);   // R33: 0.04
     const best = e.best ? ` Best finish: ${e.best[0]}${e.best[1] ? ` at ${e.best[1]}` : ""} (${day(e.best[2])}).` : "";
     const title = NEWT ? (on ? `${e.name} Deck List (${MONTH}) ${GAME}` : `${e.name} Deck List (last seen ${day(e.seen)}) ${GAME}`)
       : on ? `${e.name} Deck (${MONTH}): List & QR Code | Pocket Meta QR`
       : `${e.name} Deck: List & QR Code (last seen ${day(e.seen)}) | Pocket Meta QR`;
     let desc;
-    if (on) {   // R32 §2: numbers first, then the best matchup, then the QR
+    if (on && e.brk) {   // R33: a Breakout deck: its result first
+      const b = e.brk;
+      desc = [`${e.name} ${brkVerb(b)} (${b.players} players) in Pokémon TCG Pocket. Full list with a QR code to import.`,
+        `${e.name} ${brkVerb(b)} (${b.players} players) in Pokémon TCG Pocket. List + QR code.`].find((x) => x.length <= DESC_MAX) ||
+        `${e.name} ${brkVerb(b)} (${b.players} players) in Pokémon TCG Pocket.`;
+    } else if (on) {   // R32 §2: numbers first, then the best matchup, then the QR
       const head = `${e.name} is ${e.more ? "a smaller Pokémon TCG Pocket deck this week" : `#${e.rank} in the Pokémon TCG Pocket meta`}: ` +
         `${sharePct(e.share)}% of players${e.win != null ? `, ${Math.round(e.win)}% win rate` : ""}.`;
       // the order of what goes when it is too long: the QR sentence gets shorter, then goes, then the matchup goes
@@ -192,8 +204,10 @@ function deckPages(full, dataDir, outDir, seenFile) {
     } else desc = fit(`Not in this week's Pokémon TCG Pocket meta (last seen ${day(e.seen)}): ${share}% share` +
       `${win ? `, ${win}% win` : ""}, ${e.count} players. Its list: `, cards, "");
     const xs = (e.xs || []).join(" ");
+    const lead = on && e.brk ? `${e.name} ${brkVerb(e.brk)} (${e.brk.players} players${e.brk.dt ? ", " + day(e.brk.dt) : ""}) – ` +
+      `a rare deck this week (${e.share < 0.1 ? (+e.share).toFixed(2) : (+e.share).toFixed(1)}% of players). ` : "";
     const intro = on
-      ? `${e.name}: #${e.rank} of this week's Pokémon TCG Pocket decks (${e.dates}), ${share}% of players` +
+      ? `${lead}${e.name}: #${e.rank} of this week's Pokémon TCG Pocket decks (${e.dates}), ${share}% of players` +
         `${win ? `, ${win}% win rate in ${e.games} games` : ""}. The most played ${e.name} list: ${cards.join(", ")}.` +
         `${xs ? " " + xs : ""}${best} Open the list and tap its QR code to import it in the game.`
       : `Not in this week's meta. Last seen ${day(e.seen)}: #${e.rank} of the Pokémon TCG Pocket decks (${e.dates}), ` +

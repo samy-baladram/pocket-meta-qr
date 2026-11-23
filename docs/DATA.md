@@ -228,6 +228,10 @@ The pairings do not say which deck a player used in a match. Thus:
   copies, top players, % of all top players, packs) and BreadcrumbList; `data/cards_seen.json` keeps a card that leaves
   the lists 30 days (`on: 0`, not in the sitemap), then noindex to 90 days. Pages in the data use this build's numbers;
   the records (rewritten about once a day) are only for pages that left.
+- Breakout decks (request R33, Nov 23, 2026): a deck under 0.2 % share with a top-8 finish (`BRK_PLACE`) at a
+  single-deck event of the window with 128+ players (`BRK_PLAYERS`) goes to more.json with `brk`, and to the
+  data.json `brk` list; its deck page starts with the result ("Entei ex won PMPT #52 (325 players, Nov 21) – a rare
+  deck this week (0.04% of players).").
 - Times (decision Nov 12, request R13): an event's `ts` = its Limitless start time; `at` = the raw file's
   `fetched_at` (when the scraper stored the finished tournament; raw files are written once, so it does not change).
   `changedAt` = the largest `at` of the window's tournaments; `latest` = the single-deck event with the largest `at`.

@@ -405,7 +405,7 @@ for (const [rank, d] of input.decks.entries()) {
   const { art, ...best } = vars[0];
   // R14: rk0 = rank 24 h before this build (0 = not in the list then); nw = first time in the list in the last 72 h.
   decks.push({ id, rank: rank + 1, ...(d.rk0 != null ? { rk0: d.rk0 } : {}), ...(d.nw ? { nw: 1 } : {}), name, count, share, w, l, t, win, art,
-    nv: vars.length, ...best });
+    nv: vars.length, ...best, ...(d.brk ? { brk: d.brk } : {}) });   // R33: brk = [[tid, place, players, event], ...]
   if (d.more) moreIds.add(id);
 }
 
@@ -413,6 +413,13 @@ for (const [rank, d] of input.decks.entries()) {
 const data = { updatedAt: new Date().toISOString(), set: input.set, setName: input.setName || "", format: input.format,
   window: input.window, span: input.span, summary: input.summary,
   decks: decks.filter((d) => !moreIds.has(d.id)), more: moreIds.size,
+  // R33 (Nov 23, 2026): Breakout decks (under 0.2 % share, a top-8 finish at a 128+ player event; in more.json): their
+  // best finish each, best first (place, then the bigger event), so the Meta tab can show them before more.json loads.
+  ...(() => {
+    const b = decks.filter((d) => d.brk).map((d) => ({ id: d.id, name: d.name, art: d.art, tid: d.brk[0][0],
+      place: d.brk[0][1], players: d.brk[0][2], ev: d.brk[0][3] })).sort((a, z) => a.place - z.place || z.players - a.players);
+    return b.length ? { brk: b } : {};
+  })(),
   nolist: nolist.filter((x) => !x.more).map(({ more, from, ...x }) => x),
   ...(input.changedAt ? { changedAt: input.changedAt } : {}),
   // R15a: release day of the current set (the newest set Limitless lists).

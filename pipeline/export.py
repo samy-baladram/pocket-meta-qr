@@ -32,6 +32,7 @@ MORE_SHARE = 0.2  # % for the "Show more decks" file (more.json, R9)
 WINDOW_DAYS = 7   # the page's window (7d), also for rk0 / nw (R14)
 TOP_MIN_NET, TOP_PCT = 2, 0      # R23 (Nov 14, 2026, user): top player = W - L >= 2 only (TOP_PCT 0 turns the top 25 % part off; R22 had 0.25)
 MAX_DECKS = 40
+BRK_PLAYERS, BRK_PLACE = 128, 8   # R33: a deck under MORE_SHARE with a top-BRK_PLACE finish at a BRK_PLAYERS+ event
 TREND_DAYS = 7    # R24: days in the stats.json trend (same as build_db.py)
 TOP_MU, MU_MIN = 10, 10   # R24: matchups against the TOP_MU decks with the highest share, with MU_MIN+ games
 MAX_ROWS = 0      # finishes read per deck; 0 = all (build.mjs keeps up to 10 distinct lists from them)
@@ -95,10 +96,22 @@ def main():
               AND EXISTS (SELECT 1 FROM decklists x WHERE x.tid = d.tid AND x.pid = d.pid AND x.energy IS NOT NULL)""",
             (arch, *scope))]
 
-    decks = []
+    # R33 (Nov 23, 2026): Breakout decks = decks under MORE_SHARE with a top-BRK_PLACE finish at a single-deck event of
+    # the window with BRK_PLAYERS+ players. They go to more.json (after the others: fewer players) with "brk".
+    brk = {}
+    for arch, tid, place, size, name in db.execute(f"""
+            SELECT d.archetype, e.tid, e.place, t.players, t.name
+            FROM entry_decks d JOIN entries e USING (tid, pid) JOIN tournaments t ON t.id = e.tid
+            WHERE t.multi_deck = 0 AND e.place IS NOT NULL AND e.place <= ? AND t.players >= ? AND d.tid IN ({q})""",
+            (BRK_PLACE, BRK_PLAYERS, *tids)):
+        brk.setdefault(arch, []).append([tid, place, size, name])
+    for v in brk.values():
+        v.sort(key=lambda x: (x[1], -x[2]))
+    decks, qb = [], ",".join("?" * len(brk)) or "''"
     for k, (arch, players, share, w, l, t, win) in enumerate(db.execute(
             "SELECT archetype, players, share, w, l, t, win_rate FROM archetype_stats "
-            "WHERE window = ? AND share >= ? ORDER BY players DESC, archetype", (a.window, MORE_SHARE)).fetchall()):
+            f"WHERE window = ? AND (share >= ? OR archetype IN ({qb})) "
+            "ORDER BY players DESC, archetype", (a.window, MORE_SHARE, *brk)).fetchall()):
         more = share < MIN_SHARE or k >= MAX_DECKS
         # R22: level 0 = any record, 1 = W > L, 2 = W - L >= TOP_MIN_NET or place <= players * TOP_PCT (top player).
         def finishes(level, limit):
@@ -129,6 +142,8 @@ def main():
                 "bc": bc,
                 # R22: bn = the deck's finishes with a winning record (W > L) and a list; for bc 1 it is 0.
                 "bn": len(finishes(1, -1)) if bc else None}
+        if share < MORE_SHARE:
+            deck["brk"] = brk[arch]   # R33: [[tid, place, players, event name], ...], best first
         if not rows:
             # R10 (Nov 11, 2026): no list in the window -> the deck is a "nolist" row. For its art and energy: the newest
             # decklist page of the deck in the current set (any event, also multi-deck); build.mjs falls back to the slug.

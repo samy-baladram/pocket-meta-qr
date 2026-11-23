@@ -1,6 +1,6 @@
 # Pocket Meta QR — data contract (what the page reads)
 
-Version: 28 (Nov 15, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
+Version: 29 (Nov 23, 2026). Written by the GitHub pipeline (`pipeline/build.mjs`) in the repo
 `samy-baladram/pocket-meta-qr`. The page (`index.html`) loads these files by relative paths.
 The pipeline never edits `index.html`: the UI is made in the Claude artifact, then copied to the repo.
 
@@ -10,6 +10,9 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
   Thus our numbers differ a little from the Limitless deck table (see "Definitions").
 - `rank` can skip numbers in `decks`: a deck without a list in the window is not in `decks`. Since v12 it is in
   `nolist` (same file), so `decks` + `nolist` of `data.json` and `more.json` together have no gap.
+- Version 29 (request R33 of the UI chat, owner decision Nov 23): **Breakout decks**: a deck under 0.2 % share with a
+  top-8 finish at a single-deck event of the window with 128+ players (`BRK_PLACE`, `BRK_PLAYERS` in export.py) is in
+  `more.json` (after the other decks) with **`brk`**; `data.json` gets a top-level **`brk`** list (see below).
 - Version 28 (request R25 of the UI chat, approved by the user Nov 15): **adaptive window** of 7, 10 or 14 days,
   never before the current set's release (see "Window"). `window` = `"adaptive"`; new top-level fields in `data.json`:
   **`wd`**, **`wr`**, **`wch`**, **`bige`**; new **`tr.wd`** in `stats.json`. Every number that used the 7-day window
@@ -163,6 +166,7 @@ Use the same word in new docs and UI notes.
 | `more` | int | **new in v11.** number of decks in `more.json`; `0` = no button |
 | `latest` | object or absent | **new in v15.** the single-deck event of the window that reached the site last (largest `at`, then latest `ts`): `{tid, name, players, ts, at, dt}`, same values as in `events.json` (open it there by `tid`). Absent when the window has no single-deck event |
 | `changedAt` | ISO time or absent | **new in v15.** the last time a tournament of the window (also multi-deck) reached the site = the largest `at` of the window's tournaments. `updatedAt` is the build time ("checked"); `changedAt` <= `updatedAt` |
+| `brk` | array or absent | **new in v29.** Breakout decks (in `more.json`), 1 entry each with its best finish, best first (place, then the bigger event): `{id, name, art, tid, place, players, ev}` (`ev` = the event name as Limitless shows it). Absent when none |
 | `nolist` | array | **new in v12.** decks with share >= 0.5 % (max-40 rule as `decks`) and no list in the window, by rank (see "nolist"); `[]` = none |
 
 ### deck
@@ -345,7 +349,7 @@ The lists 2..`nv` of the deck, in order (`nu` high first). Same fields as "list"
 |---|---|
 | `updatedAt`, `window` | same as `data.json` (same build) |
 | `min` | the lowest share % in this file (`0.2`) |
-| `decks` | same `<deck>` format as `data.json` (list 1 fields, `alt`, QR), for the decks with `min` <= share < 0.5 %, most players first. **Only decks with at least 1 list** (a deck without a public list is left out). Also a deck with 0.5 % or more that is over the 40-deck limit of `data.json` would go here (none so far) |
+| `decks` | same `<deck>` format as `data.json` (list 1 fields, `alt`, QR), for the decks with `min` <= share < 0.5 %, most players first. **Only decks with at least 1 list** (a deck without a public list is left out). Also a deck with 0.5 % or more that is over the 40-deck limit of `data.json` would go here (none so far). v29: also the **Breakout decks** (share under 0.2 %, a top-8 finish at a 128+ player single-deck event of the window), last, with **`brk`** = `[[tid, place, players, event name], ...]`, their qualifying finishes, best first |
 
 - `nolist` (**new in v12**): the decks with `min` <= share < 0.5 % and no list in the window, same format as in
   `data.json`.
