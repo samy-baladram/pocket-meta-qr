@@ -820,6 +820,11 @@
    "replace": "<p class=\"lbn lben\">As notas dos baralhos estão só em inglês.</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
   },
   {
+   "note": "loading text next to the intro slot (the extractor does not find it)",
+   "find": "<div class=\"empty\">Loading decks&hellip;<p class=\"seoi\"",
+   "replace": "<div class=\"empty\">Carregando baralhos&hellip;<p class=\"seoi\""
+  },
+  {
    "note": "plural: jugador / jugadores (player${T === 1 ? \"\" : \"s\"})",
    "find": "player${T === 1 ? \"\" : \"s\"}",
    "replace": "player${T === 1 ? \"\" : \"es\"}",

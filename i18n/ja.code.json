@@ -1105,6 +1105,11 @@
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
    "find": "<p class=\"lbnote\"><b class=\"lbup\">",
    "replace": "<p class=\"lbn lben\">デッキのメモは英語のみです。</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
+  },
+  {
+   "note": "loading text next to the intro slot (the extractor does not find it)",
+   "find": "<div class=\"empty\">Loading decks&hellip;<p class=\"seoi\"",
+   "replace": "<div class=\"empty\">デッキを読み込み中&hellip;<p class=\"seoi\""
   }
  ],
  "_lb": "Limited Battle: deck notes, note labels, the event name and the card pool stay English. Do not add patches for them."
