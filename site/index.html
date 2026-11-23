@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795422920-a979 -->
+<!-- ui: artifact version 1795431210-c032 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1524,7 +1524,7 @@ a.dkev { text-decoration: none; }
 .qcol { display: flex; flex-direction: column; align-items: center; gap: 1px; align-self: start; margin-right: 0; padding: 0;
   border-radius: var(--r-box); background: transparent; box-shadow: none; } /* Nov 21: no box around the QR (same color as the panel); the padding stays so the QR and its neighbors keep their positions */
 .qr { position: relative; width: calc(134px - var(--qrcut, 0px)); /* Nov 21: the box padding 0 and no edge in the image: the code fills the box = the height of the tiles next to it */ aspect-ratio: 1; padding: 0; border: 0; display: block; background: transparent; cursor: zoom-in; }
-.qr img { display: block; width: 100%; height: auto; }
+.qr img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 0; } /* Nov 23: the image is taller (site name band under the code): the page shows the square only */
 .qr.wait { background: var(--line); cursor: default; }
 .qr .none { display: block; padding-top: 34px; text-align: center; color: #5b6575; font-size: 0.75rem; }
 .qr:has(.qcap) { aspect-ratio: auto; display: flex; flex-direction: column; align-items: center; gap: 4px; }
@@ -1534,9 +1534,9 @@ a.dkev { text-decoration: none; }
 /* Dark: the filter shows the PNG as light dots; its background color turns into the dark card color (no box, no blending).
    A long-press still saves a normal dark-on-light code that the game reads. */
 /* Nov 21: no inverted code any more (the game could not read it): a dark-on-light code on a soft light square, rounded like the tiles */
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .qr img:not([data-q]) { filter: invert(1) hue-rotate(180deg) saturate(1.25); } :root:not([data-theme="light"]) .qr img[data-q] { border-radius: 10px; box-shadow: var(--raised), var(--bevel); } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .qr img:not([data-q]) { filter: invert(1) hue-rotate(180deg) saturate(1.25); } :root:not([data-theme="light"]) .qr img[data-q] { border-radius: 6.7%; box-shadow: var(--raised), var(--bevel); } }
 :root[data-theme="dark"] .qr img:not([data-q]) { filter: invert(1) hue-rotate(180deg) saturate(1.25); } /* other page QRs as before */
-:root[data-theme="dark"] .qr img[data-q] { border-radius: 10px; box-shadow: var(--raised), var(--bevel); } /* dark: the QR is a raised muted tile like its neighbors */
+:root[data-theme="dark"] .qr img[data-q] { border-radius: 6.7%; box-shadow: var(--raised), var(--bevel); } /* dark: the QR is a raised muted tile like its neighbors; Nov 23: corner = the finder square corner (1.9 modules) + the 1-module edge = 2.9 / 43 modules of the width (was 10px) */
 
 /* Narrow list columns (3 per view on wide screens): the same tiles and labels as on the phone, with a smaller QR and text */
 @container (max-width: 300px) {
@@ -1634,7 +1634,7 @@ a.dkev { text-decoration: none; }
 .qsl .qsn { color: var(--muted); font-weight: 500; }
 .qsl .qsv { display: block; font-weight: 500; }
 .qsrow { display: flex; align-items: center; gap: 6px; }
-.qsimg { width: min(236px, 62vw); height: auto; aspect-ratio: 1; display: block; border-radius: 12px; background: #eef6f9; padding: 6px; } /* Nov 12: the panel color, not white */
+.qsimg { width: min(236px, 62vw); height: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 0; display: block; border-radius: 12px; background: #eef6f9; padding: 6px; } /* Nov 12: the panel color, not white */
 .qsh { margin: 0; font-size: var(--fs-s); color: var(--muted); line-height: 1.4; }
 .ipop .qssave { margin: 12px auto 0; display: flex; }
 /* Phone sheet: Save sits on the same line as the round ×, at the lower right (easy to reach with a thumb) */
@@ -3186,13 +3186,17 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // into the dark panel color. Both keep a normal dark-on-light code for a long-press save.
   const QR_BG = () => (isDark() ? "#d5dce4" : "#eef6f9"); // light: the card color; dark: the filter turns #d5dce4 into the card color #1d252f
   const pngCache = new Map(), qrSvgs = [];
-  function qrPng(svg, bg = QR_BG(), e = 1, solid = "") { // e = edge in modules (the page QR: 0, so the code fills its box; saved / shared images keep 1)
-    const k = bg + e + solid + svg;
+  function qrPng(svg, bg = QR_BG(), e = 1, solid = "", lab = false) { // e = edge in modules (the page QR: 0, so the code fills its box; saved / shared images keep 1)
+    // Nov 23: lab = a band under the code with the site name. The page shows only the square (object-fit: cover from the top),
+    // so the page looks the same, but a long-press / right-click "Save image" saves the code with the credit under it.
+    const k = bg + e + solid + (lab ? "L" : "") + svg;
     if (pngCache.has(k)) return pngCache.get(k);
     const q = qrParse(svg), mod = 8, c = document.createElement("canvas");
-    c.width = c.height = (q.n + 2 * e) * mod;
+    const W = (q.n + 2 * e) * mod, band = lab ? Math.round(W * 0.15) : 0;
+    c.width = W; c.height = W + band;
     const x = c.getContext("2d"); x.fillStyle = bg; x.fillRect(0, 0, c.width, c.height);
     drawQR(x, q, mod * e, mod * e, mod, solid);
+    if (lab) { x.fillStyle = "#3f4b5a"; x.font = `700 ${Math.round(W * 0.075)}px Figtree, system-ui, sans-serif`; x.textAlign = "center"; x.textBaseline = "middle"; x.fillText("pocketmetaqr.com", W / 2, W + band * 0.48); }
     const url = c.toDataURL("image/png"); pngCache.set(k, url);
     if (pngCache.size > 80) pngCache.delete(pngCache.keys().next().value); // about 37 KB each: keep the newest 80
     return url;
@@ -3200,10 +3204,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Nov 21: the page QR. Light: no edge (the code fills the box). Dark: a normal dark-on-light code (scanners do not read light-on-dark) on a soft
   // light square with its 1-module edge inside the same box (still lined up with the tiles)
   // Nov 21: dark = a muted light tile (#bccad7) with the gradient dots and a 1-module edge (the game cannot read light-on-dark codes; a white code was tried)
-  const qrPage = (svg) => isDark() ? qrPng(svg, "#bccad7", 1) : qrPng(svg, QR_BG(), 0); // dark: the same gradient dots as light mode
+  const qrPage = (svg) => isDark() ? qrPng(svg, "#bccad7", 1, "", true) : qrPng(svg, QR_BG(), 0, "", true); // dark: the same gradient dots as light mode; Nov 23: + the site name band (hidden on the page)
   const qrImg = (svg) => { const n = qrSvgs.indexOf(svg) < 0 ? qrSvgs.push(svg) - 1 : qrSvgs.indexOf(svg); return `data-q="${n}" src="${qrPage(svg)}"`; };
   // Theme change: draw the open QR codes again with the new background.
   const repaintQR = () => document.querySelectorAll(".qr img[data-q]").forEach((im) => { im.src = qrPage(qrSvgs[+im.dataset.q]); });
+  try { document.fonts.load("700 20px Figtree").then(() => { pngCache.clear(); repaintQR(); }).catch(() => {}); } catch (err) {} // Nov 23: the site name band in Figtree
   // Nov 14: a card image that does not load (c/ or z/) becomes a gray card with its name: an SVG made here, so the <img> stays
   // (size, taps, zoom, highlight and the swap preview keep working). One capture listener for every place that shows cards.
   const phSvg = (name, id) => {
@@ -3572,7 +3577,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const srcUrl = o.tid && o.pid ? `https://play.limitlesstcg.com/tournament/${o.tid}/player/${encodeURIComponent(o.pid)}/decklist` : "";
     SH = { o, playedOk, label: opt && opt.label, p, code, dk, name: deckNameOf(p.k), when, played: playedOk ? fmtDay(o.played) : "", src: srcUrl, packed: packCode(code), M: null, today: null };
     shName = (p.k || "shared-list") + ".png"; shBlob = null;
-    { const c = document.createElement("canvas"), img = new Image(); img.onload = () => { c.width = img.width; c.height = img.height; c.getContext("2d").drawImage(img, 0, 0); c.toBlob((b) => { shBlob = b; }); }; img.src = qrPng(SH.packed, "#ffffff"); }
+    { const c = document.createElement("canvas"), img = new Image(); img.onload = () => { c.width = img.width; c.height = img.height; c.getContext("2d").drawImage(img, 0, 0); c.toBlob((b) => { shBlob = b; }); }; img.src = qrPng(SH.packed, "#ffffff", 1, "", true); } // Nov 23: + the site name band
     if ($("shv").hidden && !(history.state && history.state.sh)) pushH({ ...(history.state || {}), sh: 1 }, "", location.href); // Back closes the list (only)
     $("shv").hidden = false; document.documentElement.style.overflow = "hidden"; $("shChip").hidden = true;
     shCards();
@@ -3623,7 +3628,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   function shQR() {
     const box = $("shBox"); box.dataset.mode = "qr"; track("shared-qr");
     box.innerHTML = `${shHead()}
-      <div class="qsbox"><div class="qsrow"><img class="qsimg" src="${qrPng(SH.packed, "#eef6f9")}" alt="QR code for ${esc(SH.name)}" width="240" height="240"></div>
+      <div class="qsbox"><div class="qsrow"><img class="qsimg" src="${qrPng(SH.packed, "#eef6f9", 1, "", true)}" alt="QR code for ${esc(SH.name)}" width="240" height="240"></div>
       <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><button class="qslink shlink" type="button">${LINK_ICON}<span>${LISTLINK()}</span></button></div>
       <div class="shfoot"><button class="qclose shback" type="button" aria-label="Back to the cards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button><button class="qsave shsave" type="button">${SAVE_ICON}${TOUCH ? "Save" : "Download"}</button></div><p class="qmsg" id="shMsg" role="status"></p>`;
   }
@@ -3749,7 +3754,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       : n > 1 ? `${i === 0 ? L1(d) : `List ${i + 1}`} <span class="qsn">· ${i + 1} of ${n}</span>` : "";
     return `<div class="qsbox">
       <p class="qsdeck"><b>${esc(d.name)}</b>${name ? `<span class="qsl">${name}</span>` : ""}</p>
-      <div class="qsrow"><img class="qsimg" src="${qrPng(svg, "#eef6f9")}" alt="QR code for ${esc(d.name)}" width="240" height="240"></div>
+      <div class="qsrow"><img class="qsimg" src="${qrPng(svg, "#eef6f9", 1, "", true)}" alt="QR code for ${esc(d.name)}" width="240" height="240"></div>
       <p class="qsh">${TOUCH ? "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image." : "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image."}</p><button class="qslink" type="button">${LINK_ICON}<span>${LISTLINK()}</span></button></div>
       <button class="qsave qssave" type="button">${SAVE_ICON}${TOUCH ? "Save image" : "Download image"}</button><p class="qmsg" id="qsMsg" role="status"></p>`;
   }
