@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795374602-331d -->
+<!-- ui: artifact version 1795395404-b48b -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2139,6 +2139,9 @@ a.dkev { text-decoration: none; }
   stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 1px 1.5px rgba(var(--sh), calc(0.35 * var(--shk)))); transform: rotate(-9deg); transition: transform var(--t-slow) ease; }
 .wcrown .cb { fill: none; stroke: #fff8e1; stroke-width: 0.7; stroke-linecap: round; }
 .arow[aria-expanded="true"] > .wcrown { display: none; } /* open: no crown */
+@media (max-width: 619px) { .acc.evr > .arow > .wcrown { left: 23px; top: 4px; } .acc.evr > .arow > .icons.one + .wcrown { left: 48px; top: -4px; } }
+.acc.evr > .arow > .icons.one + .wcrown { transform: rotate(-5deg); } /* Nov 23: a single card is turned -5deg (2 cards: -9deg), the crown follows it */ /* Nov 23: phones, a 1-card winner: the crown 25px right, 8px up (over the single card) */
+@media (min-width: 620px) { :root:not(#_) .acc.evr > .arow > .wcrown { z-index: 3; width: 13px; height: 10px; left: var(--crx, 38px); top: var(--cry, -16px); } :root:not(#_) .acc.evr > .arow > .icons.one + .wcrown { --crx: 69px; --cry: -16px; } } /* Nov 23: wide rows: a smaller crown on the top middle of the first card (it was hidden behind the popped-up cards) */
 .evr .arow > .icons { z-index: 2; } .evr .arow > .wcrown { z-index: 1; } /* Nov 15: the crown (with its shadow) sits behind the card images */
 @media (min-width: 1024px) { .arow > .wcrown { left: 26px; top: 5px; width: 18px; height: 13.5px; } }
 /* Dark: like the dark medal crown (darker gold, outline in the dark card color) */
