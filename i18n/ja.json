@@ -238,6 +238,10 @@
 "Best finish",
 "最高成績"
 ],
+"178d1d75f0": [
+"What is Limitless TCG?",
+"Limitless TCGとは？"
+],
 "1865e8ab4e": [
 "No jumps while loading",
 "読み込み中に画面がずれない"
@@ -597,6 +601,10 @@
 "393f6cb329": [
 "in {0} pack{1}",
 "{0}パック{1!}"
+],
+"39a4023d00": [
+"Because every number comes from real tournament games, recorded while the event runs. Each event shows its standings and the result of every match in every round, and players hand in their deck list before the event starts, so each list is the deck that was really played. On top of that, this site counts only public Standard events with 8 or more players and 1 deck per player, and only real matches: no byes, no mirror matches.",
+"すべての数値が、大会中に記録された実際の対戦から出ているためです。各大会では順位と全ラウンドの全対戦の結果が公開され、プレイヤーは大会の開始前にデッキレシピを提出するため、各レシピは実際に使われたデッキです。さらにこのサイトでは、参加者8人以上・1人1デッキの公開スタンダード大会の、実際の対戦だけを数えます（不戦勝とミラー対戦は含みません）。"
 ],
 "3a46f4e05d": [
 "Event stats",
@@ -2373,6 +2381,10 @@
 "Records",
 "戦績"
 ],
+"e615ae42b5": [
+"Why Limitless TCG, and can I trust the results?",
+"なぜLimitless TCG？結果は信頼できる？"
+],
 "e6866f28e4": [
 "Events with this deck in the top 8",
 "このデッキがベスト8に入った大会"
@@ -2584,6 +2596,10 @@
 "ff3e8e536e": [
 "1 player won more than they lost with this deck {0}, but did not reach a top result. This is their list.",
 "1人がこのデッキで{0}勝ち越しましたが、上位の成績には届いていません。そのレシピです。"
+],
+"ffa4a6d465": [
+"Limitless TCG{t0} is the main place where Pok&eacute;mon TCG Pocket tournaments are played online. New events start there every day, from small cups to open events with more than 300 players, and thousands of players take part every week. Each result is public as soon as an event ends, and this site checks for new ones every hour, so the meta here is days fresher than a tier list made by hand. Pocket Meta QR is not part of Limitless TCG: it reads its public results.",
+"Limitless TCG{t0}は、ポケポケの大会がオンラインで開かれる主要な場所です。毎日新しい大会が始まり、小さな大会から300人を超えるオープン大会まであり、毎週数千人が参加しています。結果は大会が終わるとすぐに公開され、このサイトは1時間ごとに新しい結果をチェックしているため、手作業で作るティア表より数日新しい環境がわかります。Pocket Meta QRはLimitless TCGの一部ではなく、公開された結果を読み込んでいるだけです。"
 ],
 "ffa4f00cd6": [
 "slot{0}",
