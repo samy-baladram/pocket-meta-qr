@@ -118,7 +118,7 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
   try { document.documentElement.lang = IMGL === "pt" ? "pt-BR" : IMGL; } catch (err) {}
   // Nov 23: sections in English only on a language page (not translated yet): a note at the top of each.
   // new = What's new (#nwl), limited = Limited Battle (#lbl).
-  var EN_ONLY = { de: ["new"], es: ["new", "limited"], pt: ["new"] }, EN_ONLY_T = { de: "Dieser Bereich ist vorerst nur auf Englisch verfügbar.",
+  var EN_ONLY = { de: ["new"], es: ["new"], pt: ["new"] }, EN_ONLY_T = { de: "Dieser Bereich ist vorerst nur auf Englisch verfügbar.",
     es: "Esta sección solo está disponible en inglés por ahora.", pt: "Por enquanto, esta seção só está disponível em inglês." };
   if (EN_ONLY[PG_L]) addEventListener("DOMContentLoaded", () => { for (const [k, id] of [["new", "nwl"], ["limited", "lbl"]]) {
     const el = document.getElementById(id); if (el && EN_ONLY[PG_L].includes(k)) { el.setAttribute("data-en-only", EN_ONLY_T[PG_L]); el.lang = "en"; } } });

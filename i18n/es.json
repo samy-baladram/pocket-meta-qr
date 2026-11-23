@@ -191,6 +191,10 @@
 "added",
 "añadido"
 ],
+"1761c5f76c": [
+"Hand-picked decks, not tournament data. This view goes away when the event ends.",
+"Barajas elegidas a mano, no datos de torneos. Esta vista desaparece cuando termina el evento."
+],
 "17709dbc6f": [
 "Best finish",
 "Mejor resultado"
@@ -382,6 +386,10 @@
 "2a08f40ca1": [
 "Ranks are compared with the data of 24 h earlier.",
 "Los puestos se comparan con los datos de 24 h antes."
+],
+"2a231249ff": [
+"Cards in these decks",
+"Cartas de estas barajas"
 ],
 "2aca25531e": [
 "This is the list of its best-placed player{0}{1}. A starting point, not a proven list.",
@@ -722,6 +730,10 @@
 "532297d7bc": [
 "Top 16",
 "Top 16"
+],
+"5351e118ae": [
+"Updated {0}.{t0} Ranked best first, from our testing so far (it can change). Deck notes made with help from {t1}GameWith{t2}.",
+"Actualizado el {0}.{t0} De mejor a peor, según nuestras pruebas hasta ahora (puede cambiar). Notas de las barajas hechas con ayuda de {t1}GameWith{t2}."
 ],
 "53668c4b2c": [
 ". Card images: PocketDecks. Details in About &amp; FAQ.",
@@ -1463,6 +1475,10 @@
 "Tap {t0}Share{t1} {0} (Safari: at the bottom, or at the top on iPad).",
 "Toca {t0}Compartir{t1} {0} (Safari: abajo, o arriba en iPad)."
 ],
+"a46c612784": [
+"Cards you can use",
+"Cartas que puedes usar"
+],
 "a479c9c34e": [
 "Download",
 "Descargar"
@@ -1599,6 +1615,10 @@
 "in the {0}-place",
 "en el {0} puesto"
 ],
+"b56d5ef151": [
+"Limited Battle pick",
+"Elegida para la Batalla limitada"
+],
 "b5b2a49247": [
 "Matchups",
 "Enfrentamientos"
@@ -1702,6 +1722,10 @@
 "c38f356b28": [
 "This list has not shown that yet.",
 "Esta lista aún no lo ha demostrado."
+],
+"c5406d81f3": [
+"&middot; most used first",
+"&middot; las más usadas primero"
 ],
 "c5497bca58": [
 "Events",
@@ -2039,6 +2063,10 @@
 "No ex",
 "Sin ex"
 ],
+"eb7de7b83e": [
+"cards you can use",
+"cartas que puedes usar"
+],
 "ebbb7e9b8b": [
 "Works in Safari, Chrome, Edge, Firefox and most other browsers (iOS 16.4 or later).",
 "Funciona en Safari, Chrome, Edge, Firefox y la mayoría de navegadores (iOS 16.4 o posterior)."
@@ -2050,6 +2078,10 @@
 "efc007a393": [
 "Save",
 "Guardar"
+],
+"effb665832": [
+"in every deck",
+"en todas las barajas"
 ],
 "f004f8b2da": [
 "One row per number of wins, one dot per player. Blue: the top 8.",

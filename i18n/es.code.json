@@ -1,5 +1,5 @@
 {
- "_": "Code changes for the es page (i18n/build.mjs applies them before the texts). Same format as ja.code.json. Limited Battle and What's new are English on this page (enOnly in config.json): no patches for them.",
+ "_": "Code changes for the es page (i18n/build.mjs applies them before the texts). Same format as ja.code.json. What's new is English on this page (enOnly in config.json). Limited Battle: the fixed parts are translated, the deck notes stay English (note on the page).",
  "patches": [
   {
    "note": "share button label: Copiar el enlace de este torneo",
@@ -813,6 +813,11 @@
    "note": "Limited Battle: updated … (hace 5 días)",
    "find": "`${m} min ago` : h < 24 ? `${h} h ago` : `${d} day${d > 1 ? \"s\" : \"\"} ago`",
    "replace": "`hace ${m} min` : h < 24 ? `hace ${h} h` : `hace ${d} día${d > 1 ? \"s\" : \"\"}`"
+  },
+  {
+   "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
+   "find": "<p class=\"lbnote\"><b class=\"lbup\">",
+   "replace": "<p class=\"lbn lben\">Las notas de las barajas solo están en inglés.</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
   },
   {
    "note": "plural: jugador / jugadores (player${T === 1 ? \"\" : \"s\"})",

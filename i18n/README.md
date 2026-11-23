@@ -24,7 +24,7 @@ build time. Nothing changes in the live page, and a built page has no translatio
 A language can skip a section for now. `EN_ONLY` in `preview/i18n_patch.py` lists them per language
 (`new` = What's new, `limited` = Limited Battle); the page shows a short note at the top of each (`EN_ONLY_T`).
 
-- `es`: What's new and Limited Battle are in English (not in `es.json`).
+- `es`: What's new is in English. Limited Battle: the fixed parts are translated, the deck notes stay English (like ja; Nov 24).
 - `de`: What's new is in English.
 - `pt`: What's new is in English. Limited Battle: the fixed parts are translated, the deck notes stay English (like ja).
 
