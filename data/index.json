@@ -548,6 +548,12 @@
    "path": "raw/2026/11/pmpt52.json",
    "players": 325,
    "rule": "wl2"
+  },
+  "6b03615bada8eea1c94d0752": {
+   "date": "2026-11-23T03:30:00Z",
+   "path": "raw/2026/11/6b03615bada8eea1c94d0752.json",
+   "players": 88,
+   "rule": "wl2"
   }
  },
  "skipped": {
