@@ -10,3 +10,4 @@ site/*
 images.json
 cache/
 public/
+site/index.menu.html

@@ -12,16 +12,23 @@ T=$(mktemp -d)
 mkdir -p "$PUB/preview" "$PUB/i18n"
 python preview/i18n_patch.py site/index.html "$T/src.html"
 node i18n/extract.mjs "$T/src.html" "$PUB/i18n/en.json"
-head_for() { # <lang> -> the head insert for that page
+head_for() { # <lang> [root] -> the head insert for that page (root: the English page's folder, default /preview/)
   local h; h=$(tr '\n' ' ' < preview/head.html)
-  if [ "$1" != en ]; then h="<script>var PMQ_LANG = \"$1\";</script>$h"; fi
+  if [ "$1" != en ]; then h="<script>var PMQ_LANG = \"$1\", PMQ_ROOT = \"${2:-/preview/}\";</script>$h"; fi
   printf '%s' "$h"
 }
-page() { # <lang> <source html> <out dir>
+page() { # <lang> <source html> <out dir> [root]
   rm -rf "$T/p" && mkdir -p "$T/p" "$3"
-  node pipeline/page.mjs "$2" "$T/p/index.html" --no-routes > /dev/null
+  # --prev: keep the previous build's app.<hash> files of this page (a page cached for 10 min still finds its code)
+  node pipeline/page.mjs "$2" "$T/p/index.html" --no-routes --prev "cache/app-$(printf '%s' "${3#"$PUB"/}" | tr / -)" > /dev/null
   cp "$T/p"/app.* "$PUB/"   # <base href="/">: the page loads them from the site root
-  HEAD="$(head_for "$1")" node -e 'const f = require("fs"); f.writeFileSync(process.argv[2], f.readFileSync(process.argv[1], "utf8").replace("<head>", "<head>" + process.env.HEAD));' "$T/p/index.html" "$3/index.html"
+  # + the head insert; <html lang>, canonical and og:url of the page's own address (out dir under $PUB)
+  HEAD="$(head_for "$1" "${4:-}")" L="$1" U="https://pocketmetaqr.com/${3#"$PUB"/}/" node -e '
+const f = require("fs"), e = process.env; let h = f.readFileSync(process.argv[1], "utf8").replace("<head>", "<head>" + e.HEAD);
+if (e.L !== "en") h = h.replace(/<html lang="en"/, `<html lang="${e.L}"`)
+  .replace(/(<link rel="canonical" href=")https:\/\/pocketmetaqr\.com\/(")/, `$1${e.U}$2`)
+  .replace(/(<meta property="og:url" content=")https:\/\/pocketmetaqr\.com\/(")/, `$1${e.U}$2`);
+f.writeFileSync(process.argv[2], h);' "$T/p/index.html" "$3/index.html"
 }
 page en "$T/src.html" "$PUB/preview"
 SUM=""
@@ -29,6 +36,9 @@ for L in de ja; do
   line=$(node i18n/build.mjs "$T/src.html" "$L" "$T/$L.html" --report "$PUB/i18n/report.$L.json")
   echo "$line"; SUM="$SUM- $line"$'\n'
   page "$L" "$T/$L.html" "$PUB/preview/$L"
+  # Phase 1 (Nov 23): the live Japanese page /ja/ (one page, sections as tabs; noindex for now). I18N_LIVE (site.yml)
+  # lists the live languages; empty = none.
+  if [[ " ${I18N_LIVE:-} " == *" $L "* ]]; then page "$L" "$T/$L.html" "$PUB/$L" "/"; echo "live: /$L/"; SUM="$SUM- live: /$L/"$'\n'; fi
 done
 # names.<lang>.json + preview/i18n/names.fix.json on top (a fix wins)
 node -e '

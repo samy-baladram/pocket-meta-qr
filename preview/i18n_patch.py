@@ -10,10 +10,9 @@ python3 preview/i18n_patch.py <in.html> <out.html>      (site.yml runs it on eve
    (/preview/ja/: i18n/build.mjs, PMQ_LANG set by the build). No redirect by browser language."""
 import re, sys
 src, dst = sys.argv[1], sys.argv[2]
+MENU_ONLY = "--menu-only" in sys.argv[3:]   # Phase 1 (Nov 23): the English live page gets only the language menu
 s = open(src, encoding="utf8").read()
-assert "IMGP" not in s, "already patched"
-s, n = re.subn(r'(["\'`])(c|z)/\$\{', r'\1${IMGP}\2/${', s)
-print("paths prefixed:", n)
+assert "IMGP" not in s and "langBtn" not in s, "already patched"
 def one(old, new):
     global s
     assert s.count(old) == 1, old[:60]
@@ -43,7 +42,48 @@ GLOBE = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-line
 CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'
 one(btn, btn + f'\n    <button class="theme-btn lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langPop">{GLOBE}<span id="langCur">EN</span>{CHEV}</button>'
     '\n    <div class="lang-pop" id="langPop" hidden><h2 id="langTtl">Language</h2><ul id="langList" role="radiogroup" aria-labelledby="langTtl"></ul></div>')
+th = '  $("themeBtn").addEventListener("click", () => {'
+MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["ja", "日本語", "日本語"], ["de", "Deutsch", "DE"], ["es", "Español", "ES"], ["fr", "Français", "FR"],
+      ["it", "Italiano", "IT"], ["pt", "Português (Brasil)", "PT"], ["ko", "한국어", "KO"], ["zh", "繁體中文", "ZH"]];
+    const JA = PG_L === "ja", btn = $("langBtn"), pop = $("langPop"), list = $("langList"), cur = LN.find((x) => x[0] === PG_L) || LN[0];
+    $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : "Language";
+    btn.setAttribute("aria-label", (JA ? "言語：" : "Language: ") + cur[1]);
+    list.innerHTML = LN.map(([c, n]) => { const live = LIVE_L.includes(c), on = c === PG_L;
+      const tag = c === "ja" ? `<span class="lang-tag beta">${JA ? "ベータ" : "Beta"}</span>` : live ? "" : `<span class="lang-tag soon">${JA ? "準備中" : "Coming soon"}</span>`;
+      return `<li><button type="button" role="radio" lang="${c}" data-l="${c}" aria-checked="${on}"${live || on ? "" : ' aria-disabled="true"'}>${n}${tag}</button></li>`; }).join("");
+    const close = (f) => { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); if (f) btn.focus(); };
+    btn.addEventListener("click", (e) => { e.stopPropagation(); const o = pop.hidden; pop.hidden = !o; btn.setAttribute("aria-expanded", String(o));
+      if (o) (list.querySelector('[aria-checked="true"]') || list.querySelector("button")).focus(); });
+    list.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b || b.getAttribute("aria-disabled") === "true") return;
+      const l = b.dataset.l; close(); if (l !== PG_L) setImgLang(l); });
+    document.addEventListener("click", (e) => { if (!pop.hidden && !pop.contains(e.target)) close(); });
+    pop.addEventListener("keydown", (e) => { const bs = [...list.querySelectorAll("button")], i = bs.indexOf(document.activeElement);
+      if (e.key === "Escape") close(true); else if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault();
+        bs[(i + (e.key === "ArrowDown" ? 1 : bs.length - 1)) % bs.length].focus(); } }); }
+"""
+
+MINI_JS = r"""  // Phase 1 (Nov 23): language menu on the English site (preview/i18n_patch.py --menu-only). The English page stays
+  // English; a saved choice of a live language (pmq-lang, set in the menu) opens that page from the home address.
+  var TXT_L = ["ja"], LIVE_L = ["en", "ja"], PG_L = "en", langPath = (l) => "/" + (l === "en" ? "" : l + "/");
+  (() => { let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
+    if (l && l !== "en" && LIVE_L.includes(l) && /^\/(index\.html)?$/.test(location.pathname)) location.replace(langPath(l) + location.hash); })();
+  function setImgLang(l) { try { localStorage.setItem("pmq-lang", l); } catch (err) {} try { track("lang-" + l); } catch (err) {}
+    // the same view on the one-page /ja/: /events/ -> #events, /limited/ -> #limited, /decks/<id>/ -> #<id>, /packs/ -> Packs tab
+    const m = location.pathname.match(/^\/(events|limited|packs|decks)\/(?:([a-z0-9-]+)\/)?/); let h = location.hash;
+    if (m) { if (m[1] === "decks") h = m[2] ? "#" + m[2] : ""; else if (m[1] === "packs") { h = ""; try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} } else h = "#" + m[1]; }
+    location.href = langPath(l) + h; }
+"""
 top = '  const $ = (id) => document.getElementById(id);\n'
+if MENU_ONLY:
+    one(top, top + MINI_JS)
+    one(th, MENU_JS + th)
+    open(dst, "w", encoding="utf8").write(s)
+    print("menu only:", dst)
+    sys.exit(0)
+one(th, MENU_JS + th)
+if not MENU_ONLY:
+    s, n = re.subn(r'(["\'`])(c|z)/\$\{', r'\1${IMGP}\2/${', s)
+    print("paths prefixed:", n)
 one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path prefix of every card image ("" = English).
   // Saved choice, else the browser language, else English. var: set before any code that builds an image path.
   var LANGS_I = ["de", "es", "fr", "it", "ja", "ko", "pt", "zh"];
@@ -53,8 +93,9 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
   var TXT_L = ["de", "ja"], LIVE_L = ["en", "ja"], PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
   var IMGL = (() => { if (PG_L !== "en") return PG_L; let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
     return l && l !== "en" && LIVE_L.includes(l) && TXT_L.includes(l) ? l : "en"; })();
-  var langPath = (l) => "/preview/" + (TXT_L.includes(l) ? l + "/" : "");
-  if (PG_L === "en" && IMGL !== "en" && /^\/preview\/?$/.test(location.pathname)) location.replace(langPath(IMGL) + location.hash);
+  // PMQ_ROOT (set by the build): the English page's folder, "/preview/" (test) or "/" (the live /ja/ page)
+  var PMQ_R = (typeof PMQ_ROOT === "string" && PMQ_ROOT) || "/preview/", langPath = (l) => PMQ_R + (TXT_L.includes(l) ? l + "/" : "");
+  if (PG_L === "en" && IMGL !== "en" && (location.pathname === PMQ_R || location.pathname === PMQ_R + "index.html")) location.replace(langPath(IMGL) + location.hash);
   var IMGP = IMGL === "en" ? "" : `i18n/${IMGL}/`;
   // Names (de, ja): i18n/names.<lang>.json = {n: {English card name: name}, s: {set code: set name}}. Other languages:
   // card images only, English names.
@@ -106,26 +147,7 @@ one(rawc, r'''  // Nov 23 (i18n test): a card with no localized file (i18n/<lang
     try { track("card-lang-" + l); } catch (err) {}
     setTimeout(() => { const to = langPath(l); if (location.pathname !== to) location.href = to + location.hash; else location.reload(); }, 150); }
 ''' + rawc)
-th = '  $("themeBtn").addEventListener("click", () => {'
-MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["ja", "日本語", "日本語"], ["de", "Deutsch", "DE"], ["es", "Español", "ES"], ["fr", "Français", "FR"],
-      ["it", "Italiano", "IT"], ["pt", "Português (Brasil)", "PT"], ["ko", "한국어", "KO"], ["zh", "繁體中文", "ZH"]];
-    const JA = PG_L === "ja", btn = $("langBtn"), pop = $("langPop"), list = $("langList"), cur = LN.find((x) => x[0] === PG_L) || LN[0];
-    $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : "Language";
-    btn.setAttribute("aria-label", (JA ? "言語：" : "Language: ") + cur[1]);
-    list.innerHTML = LN.map(([c, n]) => { const live = LIVE_L.includes(c), on = c === PG_L;
-      const tag = c === "ja" ? `<span class="lang-tag beta">${JA ? "ベータ" : "Beta"}</span>` : live ? "" : `<span class="lang-tag soon">${JA ? "準備中" : "Coming soon"}</span>`;
-      return `<li><button type="button" role="radio" lang="${c}" data-l="${c}" aria-checked="${on}"${live || on ? "" : ' aria-disabled="true"'}>${n}${tag}</button></li>`; }).join("");
-    const close = (f) => { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); if (f) btn.focus(); };
-    btn.addEventListener("click", (e) => { e.stopPropagation(); const o = pop.hidden; pop.hidden = !o; btn.setAttribute("aria-expanded", String(o));
-      if (o) (list.querySelector('[aria-checked="true"]') || list.querySelector("button")).focus(); });
-    list.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b || b.getAttribute("aria-disabled") === "true") return;
-      const l = b.dataset.l; close(); if (l !== PG_L) setImgLang(l); });
-    document.addEventListener("click", (e) => { if (!pop.hidden && !pop.contains(e.target)) close(); });
-    pop.addEventListener("keydown", (e) => { const bs = [...list.querySelectorAll("button")], i = bs.indexOf(document.activeElement);
-      if (e.key === "Escape") close(true); else if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault();
-        bs[(i + (e.key === "ArrowDown" ? 1 : bs.length - 1)) % bs.length].focus(); } }); }
-"""
-one(th, MENU_JS + th)
+
 
 one("  const normQ = (o) => { if (Array.isArray(o)) o.forEach(normQ); else if (o && typeof o === \"object\") { if (o.q && !o.qr) o.qr = o.q; Object.values(o).forEach(normQ); } return o; };",
     "  const normQ1 = (o) => { if (Array.isArray(o)) o.forEach(normQ1); else if (o && typeof o === \"object\") { if (o.q && !o.qr) o.qr = o.q; Object.values(o).forEach(normQ1); } return o; };\n"
@@ -140,6 +162,8 @@ one('<img data-src="p/${esc(x.img)}.webp', '<img data-src="${PKP()}p/${esc(x.img
 one('<img src="p/${esc(x.img)}.webp', '<img src="${PKP()}p/${esc(x.img)}.webp')  # pack art without logo (i18n/p/) on a localized page
 one('src="p/${p.img}.webp"', 'src="${PKP()}p/${p.img}.webp"')  # pack art without logo (i18n/p/) on a localized page
 one('return { ...v, id: `${v.deck}-${e.tid}-${v.pl}`, name: dk.name || v.deck, art: dk.art || [], rank: v.pl, nv: 1, pl: v.place,', 'return { ...v, id: `${v.deck}-${e.tid}-${v.pl}`, name: dk.name || v.deck, art: dk.art || [], rank: v.pl, nv: 1, pl: v.place && trPl(v.place),')  # event lists: the place pill in the page language
+one('const siteBase = () => /pocketmetaqr\\.com$/.test(location.hostname) ? "https://pocketmetaqr.com/" : location.origin + location.pathname;',
+    'const siteBase = () => /pocketmetaqr\\.com$/.test(location.hostname) ? "https://pocketmetaqr.com" + (PG_L === "en" ? "/" : langPath(PG_L)) : location.origin + location.pathname;')  # Phase 1: share links of /ja/ open /ja/
 one(".then((j) => (EV = j))", ".then((j) => L10NP.then(() => (EV = l10nDeep(j))))")
 one("for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n });", "for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n: trCard(n) });")
 one(".then((r) => (r.ok ? r.json() : null)).then((j) => (PK = j))",

@@ -1,6 +1,6 @@
 <base href="/"><meta name="robots" content="noindex, nofollow">
-<script>/* /preview/ only: <base href="/"> loads data and images from the site root; keep the page's own "#..." addresses
-   (and "#..." link clicks) on /preview/, not on the live page at "/". */
+<script>/* A page in a folder (/preview/..., /ja/): <base href="/"> loads data and images from the site root; keep the page's
+   own "#..." addresses (and "#..." link clicks) on its folder, not on the English page at "/". */
 (() => { for (const k of ["pushState", "replaceState"]) { const o = history[k].bind(history);
     history[k] = (s, t, u) => o(s, t, typeof u === "string" && u.startsWith("#") ? location.pathname + location.search + u : u); }
   addEventListener("click", (e) => { const a = e.target.closest && e.target.closest('a[href^="#"]');

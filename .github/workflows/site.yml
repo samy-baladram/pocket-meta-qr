@@ -105,18 +105,26 @@ jobs:
         run: node pipeline/qrcheck.mjs
 
       - name: Assemble the site
+        env:
+          I18N_LIVE: "ja"   # Phase 1 (Nov 23): live language pages (space-separated); "" = off
         run: |
           rm -rf public && mkdir public
           mkdir -p site/v site/t && cp -r site/data.json site/packs.json site/search.json site/events.json site/more.json site/cards.json site/stats.json site/v site/t site/c site/z site/p site/e public/
           rm -f public/c/.width public/p/.width
-          # R30: shared app.<hash>.css/.js (the previous build's files kept from cache/app), deck pages + their record
-          node pipeline/page.mjs site/index.html public/index.html --prev cache/app --seen data/decks_seen.json --cards-seen data/cards_seen.json
           # Nov 23: test pages /preview/ (+ /preview/de/, /preview/ja/) = the live page + languages: preview/build.sh
           # (card images, names and texts; i18n/<lang>.json). Not linked, noindex, not in the sitemap.
+          # Phase 1 (Nov 23): it also makes the live language pages listed in I18N_LIVE (/ja/: one page, noindex for now).
           # A problem here must never stop the live deploy: it is only a warning.
           if [ -f preview/build.sh ]; then
-            bash preview/build.sh public || { rm -rf public/preview; echo "::warning title=Preview::the /preview/ pages were not made (see log)"; }
+            bash preview/build.sh public || { rm -rf public/preview public/ja; echo "::warning title=Languages::the /preview/ and /ja/ pages were not made (see log)"; }
           fi
+          # Phase 1: the English pages get the language menu (preview/i18n_patch.py --menu-only), only when /ja/ was made;
+          # else (or if the patch fails) the page as before. To turn the languages off: I18N_LIVE: "" below.
+          SRC=site/index.html
+          if [ -n "$I18N_LIVE" ] && [ -f public/ja/index.html ] && python preview/i18n_patch.py site/index.html site/index.menu.html --menu-only; then SRC=site/index.menu.html
+          else echo "::notice title=Languages::English pages without the language menu"; fi
+          # R30: shared app.<hash>.css/.js (the previous build's files kept from cache/app), deck pages + their record
+          node pipeline/page.mjs "$SRC" public/index.html --prev cache/app --seen data/decks_seen.json --cards-seen data/cards_seen.json
           # Static files from the UI chat (R7a): favicon, app icons, manifest, link preview image, robots.txt,
           # sitemap.xml. Served from the site root, next to index.html.
           find static -maxdepth 1 -type f ! -name README.md -exec cp --update=none {} public/ \;   # --update=none: keep page.mjs's sitemap.xml (R26)
