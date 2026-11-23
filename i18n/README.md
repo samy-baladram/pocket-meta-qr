@@ -48,7 +48,7 @@ Spanish rules (agreed with the owner, Nov 23, 2026; the game has Spain Spanish o
   Event wins: torneos ganados (victorias = match wins). Labels after a number: "de uso", "de victorias".
 - "lista" = a deck list; the deck ranking = "ranking". Score = Balance. Buttons with a count: Ver todo (8).
 
-Brazilian Portuguese (pt, Nov 23): `/preview/pt/` only (not in the menu). Made from the reviewed Spanish: the same
+Brazilian Portuguese (pt, Nov 23): live as beta at `/pt/` since Nov 24 (noindex, like `/ja/` and `/es/`; `I18N_LIVE`, `LIVE_L`). Made from the reviewed Spanish: the same
 552 texts and the same 164 code changes (`pt.code.json`), in Portuguese. `<html lang="pt-BR">`; names from the
 database key `pt-br` (`pipeline/i18n_names.mjs`, SRC). Terms (the game's own: Baralhos de Aluguel, Pacotes de Booster):
 baralho, lista, jogadores top, uso, % de vitórias, torneio, pacote, coleção, cartas fixas / flexíveis, campanha (Score
@@ -61,6 +61,10 @@ Review (Nov 24): "Share" alone = the meta share (Uso; the share button has its o
 semana (it follows a noun or a verb: "Resultados nesta semana", "top 32 vs. o meta nesta semana"); event stats "Acima /
 Abaixo do esperado"; "Série A · as coleções anteriores"; "3º maior de 12 torneios"; numbers ▲1,9 and ±2,8 (fx);
 relative times always "há …" (also the Limited Battle "Atualizado em …"). Pokémon names stay as in English (the game).
+
+Intro text (Nov 24): `pipeline/intro_i18n.mjs` writes the language page's intro (`<p class="seoi">`, shown while the
+page loads and read by search engines) in its language from data.json; `preview/build.sh` passes `--lang <xx> --data site`
+to `page.mjs`. A new language needs one sentence there.
 
 ## Rules for a translation
 - Keep every `{n}` once and every `{tn}` (order may change). `{n!}` = the code still runs but shows nothing (an English

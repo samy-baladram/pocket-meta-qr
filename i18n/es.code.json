@@ -134,9 +134,9 @@
    "replace": "aria-label=\"Estado de los datos: comprobado ${agoTxt(data.updatedAt)}. Detalles\""
   },
   {
-   "note": "tip: players, matches",
+   "note": "tip: players, matches (es-ES numbers: 1921, 12.345)",
    "find": "title=\"${sm.players.toLocaleString()} players, ${sm.matches.toLocaleString()} matches\"",
-   "replace": "title=\"${sm.players.toLocaleString()} jugadores, ${sm.matches.toLocaleString()} partidas\""
+   "replace": "title=\"${sm.players.toLocaleString(\"es-ES\")} jugadores, ${sm.matches.toLocaleString(\"es-ES\")} partidas\""
   },
   {
    "note": "tip: no top player",
