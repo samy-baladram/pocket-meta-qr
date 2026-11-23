@@ -1,4 +1,6 @@
 // Card and set names in other languages for the card-language preview (Nov 23, 2026).
+// Set names that the source lacks (Nov 23: checked on Bulbapedia / Pokémon Wiki)
+const SET_FIX = { ja: { A4a: "未知なる水域" } };
 // Source: the TCGdex card database fork github.com/wsgtcyx/cards-database (names from the game's own text, all 9 languages;
 // checked: German agrees with official TCGdex in 1,234 of 1,253 cards, the rest are fork fixes such as "-ex").
 // Use: git clone --depth 1 --filter=blob:none --sparse https://github.com/wsgtcyx/cards-database <dir>
@@ -26,6 +28,7 @@ for (const l of langs) {
   const n = {}; let multi = 0;
   for (const [en, v] of Object.entries(votes).sort()) { const k = Object.entries(v).sort((a, b) => b[1] - a[1]); n[en] = k[0][0]; if (k.length > 1) multi++; }
   const s = {}; for (const [id, nm] of sets.sort()) if (nm[l]) s[id] = nm[l];
+  Object.assign(s, Object.fromEntries(Object.entries(SET_FIX[l] || {}).filter(([k]) => !s[k]))); // names the source lacks
   writeFileSync(`preview/i18n/names.${l}.json`, JSON.stringify({ v: 1, lang: l, src: "wsgtcyx/cards-database", n, s }));
   console.log(`${l}: ${Object.keys(n).length} names (${multi} with 2+ forms, the most common used), ${Object.keys(s).length} sets`);
 }

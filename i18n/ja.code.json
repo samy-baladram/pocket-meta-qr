@@ -2,6 +2,21 @@
  "_": "Code changes for the ja page (i18n/build.mjs applies them before the texts). find: exact code of the page; all: change each place (else the first). A find that is not in the page is reported, not used.",
  "patches": [
   {
+   "note": "packs: + cards in small decks",
+   "find": "<small>${m ? \"+\" : \"\"}${w} in small decks</small>",
+   "replace": "<small>小規模デッキで${m ? \"+\" : \"\"}${w}枚</small>"
+  },
+  {
+   "note": "packs: shelf label",
+   "find": "aria-label=\"Top 10 packs by meta cards\"",
+   "replace": "aria-label=\"環境カードが多いパック トップ10\""
+  },
+  {
+   "note": "packs: sort label",
+   "find": "aria-label=\"Sort packs\"",
+   "replace": "aria-label=\"パックの並び順\""
+  },
+  {
    "note": "packs: card count under a card",
    "find": "<small>${c.st ? `${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} small`}</small>",
    "replace": "<small>${c.st ? `${c.decks.length}デッキ` : `小規模${c.decks.length}`}</small>"
