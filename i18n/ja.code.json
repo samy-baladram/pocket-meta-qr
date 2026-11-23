@@ -74,7 +74,7 @@
   {
    "note": "events: total players",
    "find": "All events<b> &middot; ${all.length} &middot; ${pl.toLocaleString(\"en-US\")} players</b>",
-   "replace": "全大会<b> &middot; ${all.length} &middot; ${pl.toLocaleString(\"ja-JP\")}名</b>"
+   "replace": "全大会<b> &middot; ${all.length}件 &middot; ${pl.toLocaleString(\"ja-JP\")}名</b>"
   },
   {
    "note": "QR: enlarge label",
@@ -104,7 +104,7 @@
   {
    "note": "packs: card count under a card",
    "find": "<small>${c.st ? `${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} small`}</small>",
-   "replace": "<small>${c.st ? `${c.decks.length}デッキ` : `小規模${c.decks.length}`}</small>"
+   "replace": "<small>${c.st ? `${c.decks.length}デッキ` : `小規模${c.decks.length}デッキ`}</small>"
   },
   {
    "note": "packs: card label",
@@ -156,7 +156,7 @@
   {
    "note": "label: data status",
    "find": "aria-label=\"Data status: checked ${agoTxt(data.updatedAt)}. Details\"",
-   "replace": "aria-label=\"データの状態：${agoTxt(data.updatedAt)}に確認。詳細\""
+   "replace": "aria-label=\"データの状態：${agoTxt(data.updatedAt)}にチェック。詳細\""
   },
   {
    "note": "tip: players, matches",
@@ -334,7 +334,7 @@
   {
    "note": "about-button labels",
    "find": "\"the decks\" : \"the records\"",
-   "replace": "\"デッキ\" : \"成績\""
+   "replace": "\"デッキ\" : \"戦績\""
   },
   {
    "note": "short time left: 10日 / 5時間",
@@ -599,7 +599,7 @@
   {
    "note": "What's new image: The Live status panel with the last and ",
    "find": "alt=\"The Live status panel with the last and next check\"",
-   "replace": "alt=\"前回と次回の確認を表示したライブ表示\""
+   "replace": "alt=\"前回と次回のチェックを表示した更新状況\""
   },
   {
    "note": "What's new image: The banner, the title and the tab band",
@@ -829,8 +829,8 @@
   },
   {
    "note": "event: biggest button 543名",
-   "find": "<b>${big.players}</b>${SPCH}",
-   "replace": "<b>${big.players}</b>名${SPCH}"
+   "find": "Biggest <b>${big.players}</b>${SPCH}",
+   "replace": "最大<b>${big.players}</b>名${SPCH}"
   },
   {
    "note": "event: decks in the top N (fold)",
@@ -953,6 +953,133 @@
    "note": "trend chart rank labels: 3位",
    "find": "${r ? \"#\" + r : \"\\u2013\"}",
    "replace": "${r ? r + \"位\" : \"\\u2013\"}"
+  },
+  {
+   "note": "events filter line: ピカチュウexが優勝・参加50名以上：5大会",
+   "find": "<p class=\"evnote\">${L.length ? `${L.length} event${L.length > 1 ? \"s\" : \"\"}` : \"No events\"}${evWin ? ` won by ${esc((wins[evWin] || {}).w ? wins[evWin].w.name : \"\")}` : \"\"}${evDk ? ` with ${esc(dn(evDk))} in the top 8` : \"\"}${evMin ? ` with ${evMin}+ players` : \"\"}${q && !evDk ? ` for &ldquo;${esc(evQ.trim())}&rdquo;` : \"\"}",
+   "replace": "<p class=\"evnote\">${[evWin ? `${esc((wins[evWin] || {}).w ? wins[evWin].w.name : \"\")}が優勝` : \"\", evDk ? `${esc(dn(evDk))}がベスト8` : \"\", evMin ? `参加${evMin}名以上` : \"\", q && !evDk ? `「${esc(evQ.trim())}」` : \"\"].filter(Boolean).join(\"・\")}：${L.length ? `${L.length}大会` : \"大会はありません\"}"
+  },
+  {
+   "note": "event rows: 3時間前に追加",
+   "find": " \\u00b7 <span class=\"evadd\">added ${addAgo(e.at)}</span>",
+   "replace": " \\u00b7 <span class=\"evadd\">${addAgo(e.at)}に追加</span>"
+  },
+  {
+   "note": "event sheet: 11/23 14:00開始",
+   "find": "`Started ${tLoc(e.ts)}`",
+   "replace": "`${tLoc(e.ts)}開始`"
+  },
+  {
+   "note": "event sheet: record dot tip 3位：5-1",
+   "find": "title=\"${ordF(r.pl)}: ${r.w}-${r.l}\"",
+   "replace": "title=\"${ordF(r.pl)}：${r.w}-${r.l}\""
+  },
+  {
+   "note": "event sheet: energy tip 炎：25%",
+   "find": "title=\"${cap(x)}: ${Math.round(c / n * 100)}%\"",
+   "replace": "title=\"${cap(x)}：${Math.round(c / n * 100)}%\""
+  },
+  {
+   "note": "most wins: すべて表示（N） (tap)",
+   "find": "\"Show less\" : \"Show all \" + ma.dataset.n",
+   "replace": "\"閉じる\" : \"すべて表示（\" + ma.dataset.n + \"）\""
+  },
+  {
+   "note": "most wins: すべて表示（N）",
+   "find": "${mAll ? \"Show less\" : \"Show all \" + wl.length}",
+   "replace": "${mAll ? \"閉じる\" : \"すべて表示（\" + wl.length + \"）\"}"
+  },
+  {
+   "note": "top 10 rising/falling: すべて表示（N） (tap)",
+   "find": "\"Show less\" : \"Show all \" + c.querySelectorAll(\".t1s-r\").length",
+   "replace": "\"閉じる\" : \"すべて表示（\" + c.querySelectorAll(\".t1s-r\").length + \"）\""
+  },
+  {
+   "note": "pack row: 環境カード5枚",
+   "find": "`<b>${m}</b> meta card${m > 1 ? \"s\" : \"\"}` : x.cards.length ? \"\" : \"no meta cards\"",
+   "replace": "`環境カード<b>${m}</b>枚` : x.cards.length ? \"\" : \"環境カードなし\""
+  },
+  {
+   "note": "packs header: 今週の環境向け",
+   "find": "for the meta ${winWk()}",
+   "replace": "${winWk()}の環境向け",
+   "all": true
+  },
+  {
+   "note": "packs list count: 12件（ほか以前30件）",
+   "find": "${nA === PKV.length ? nA : nA + \" + \" + (PKV.length - nA) + \" older\"}",
+   "replace": "${nA === PKV.length ? nA + \"件\" : nA + \"件（ほか以前\" + (PKV.length - nA) + \"件）\"}"
+  },
+  {
+   "note": "card popup: packs joined with ・",
+   "find": "ps.map((p) => p.name).join(\" or \")",
+   "replace": "ps.map((p) => p.name).join(\"・\")"
+  },
+  {
+   "note": "card popup: 11月1日発売",
+   "find": "`Released ${fdate(set.release)}`",
+   "replace": "`${fdate(set.release)}発売`"
+  },
+  {
+   "note": "time: Live panel newest event (土) 9:05",
+   "find": "new Date(e.ts).toLocaleString(\"ja-JP\", { weekday: \"short\", hour: \"2-digit\", minute: \"2-digit\" })",
+   "replace": "`(${new Date(e.ts).toLocaleDateString(\"ja-JP\", { weekday: \"short\" })}) ${new Date(e.ts).toLocaleTimeString(\"ja-JP\", { hour: \"numeric\", minute: \"2-digit\" })}`"
+  },
+  {
+   "note": "time: 9:05 (no leading zero)",
+   "find": "toLocaleTimeString(\"ja-JP\", { hour: \"2-digit\", minute: \"2-digit\" })",
+   "replace": "toLocaleTimeString(\"ja-JP\", { hour: \"numeric\", minute: \"2-digit\" })"
+  },
+  {
+   "note": "date: pack release, year only when not this year",
+   "find": "toLocaleDateString(\"ja-JP\", { month: \"short\", day: \"numeric\", year: \"numeric\" })",
+   "replace": "toLocaleDateString(\"ja-JP\", { month: \"short\", day: \"numeric\", year: new Date(s + \"T00:00:00\").getFullYear() !== new Date().getFullYear() ? \"numeric\" : undefined })"
+  },
+  {
+   "note": "date: What's new headings 11月23日 (year only when not this year)",
+   "find": "let nwSeen = () => {};",
+   "replace": "let nwSeen = () => {}; document.querySelectorAll(\".nwdt time[datetime]\").forEach((t) => { const d = new Date(t.dateTime + \"T00:00:00Z\"); t.textContent = d.toLocaleDateString(\"ja-JP\", { month: \"long\", day: \"numeric\", year: d.getUTCFullYear() !== new Date().getFullYear() ? \"numeric\" : undefined, timeZone: \"UTC\" }); });"
+  },
+  {
+   "note": "Live chip: ● 最新 · 5分前 / ● 3時間前にチェック",
+   "find": "${fresh ? `<b>Live</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt).replace(/ ago$/, \"\")}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}`}",
+   "replace": "${fresh ? `<b>最新</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt)}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}にチェック`}"
+  },
+  {
+   "note": "Live panel: 5分前にチェック",
+   "find": "<b>Checked ${agoTxt(data.updatedAt)}</b>",
+   "replace": "<b>${agoTxt(data.updatedAt)}にチェック</b>"
+  },
+  {
+   "note": "Live panel: next check 10:05頃",
+   "find": "\"~\" + clock(next)",
+   "replace": "clock(next) + \"頃\""
+  },
+  {
+   "note": "Live panel: (土) 9:05開始",
+   "find": "\"Started \" + st",
+   "replace": "st + \"開始\""
+  },
+  {
+   "note": "Live panel: 5分前にサイトに追加",
+   "find": "<span>Added to the site ${agoTxt(e.at)}</span>",
+   "replace": "<span>${agoTxt(e.at)}にサイトに追加</span>"
+  },
+  {
+   "note": "Live panel legend: 2〜6時間前 / 6時間以上前",
+   "find": "<span><i class=\"ldot a\"></i>2&ndash;6 h</span><span><i class=\"ldot\"></i>older</span>",
+   "replace": "<span><i class=\"ldot a\"></i>2〜6時間前</span><span><i class=\"ldot\"></i>6時間以上前</span>"
+  },
+  {
+   "note": "Live: 「たった今チェック」 (no に after たった今)",
+   "find": "${agoTxt(data.updatedAt)}にチェック",
+   "replace": "${((a) => a === \"たった今\" ? a : a + \"に\")(agoTxt(data.updatedAt))}チェック",
+   "all": true
+  },
+  {
+   "note": "Live: 「たった今サイトに追加」",
+   "find": "${agoTxt(e.at)}にサイトに追加",
+   "replace": "${((a) => a === \"たった今\" ? a : a + \"に\")(agoTxt(e.at))}サイトに追加"
   },
   {
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",

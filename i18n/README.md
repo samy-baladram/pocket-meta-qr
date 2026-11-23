@@ -59,6 +59,18 @@ uso, % de victorias, torneo, sobre, expansión. Name fixes: `preview/i18n/names.
   A new What's new entry with an image needs one more patch for its `alt`. To find English that is left:
   build the page, then look for attributes with Latin words and no Japanese.
 
+## Japanese dates, times and numbers (agreed with the owner, Nov 23, 2026)
+- Dates in text and labels: 11月14日. Small cells and chart axes (result rows, Top players rows, trend axes): 11/14.
+- The year only when it is not the current year: 2025年11月14日. This also goes for the What's new headings
+  (`ja.code.json` sets them from `<time datetime>`) and the pack release dates.
+- Times: 24-hour with no zero in front: 9:05, 11月14日 9:05; a weekday as (土): (土) 9:05.
+- Ranges: 11月9日〜14日, 11月28日〜12月2日. Relative: 3時間前, 3時間前に追加.
+- Ranks: N位 (never #N); "N of M": M中N (35デッキ中1位, 上位プレイヤー12人中8人).
+- Counters: Nデッキ (not 個), Nパック, N枚 (cards), N名 (players), N回優勝 (event wins; N勝 = match wins).
+- Number and label: the label first (使用率12.0% · 勝率52%). A button with a count: …をすべて表示（N）.
+- The hourly look for new data = チェック (5分前にチェック, 次回のチェック); 更新 = the numbers changed (前回の更新);
+  the Live chip = 最新 (not ライブ, which reads as a stream). 確認 only for "see / verify" (1枚ずつ確認できます).
+
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in
 `/i18n/report.<lang>.json` (and in the run summary); the page shows them in English until they are translated. To
