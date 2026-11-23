@@ -92,6 +92,7 @@ one(".then((j) => { SJ = j; if (!$(\"filt\").hidden) renderSug(); })",
     ".then((j) => L10NP.then(() => { SJ = l10nDeep(j); if (!$(\"filt\").hidden) renderSug(); }))")  # search.json: card names
 one("noex: (d) => !(d.cards || []).some((c) => isEx(c.n)),", "noex: (d) => !(d.cards || []).some((c) => isEx(c.nEn || c.n)),")  # the English name has \" ex\"
 one('({ id, name, energy, art, qr: q, nv: 1, lb: 1, k, rank: k + 1, deckName: name,', '({ id, nameEn: name, get name() { return trDeck(this.nameEn); }, set name(v) { this.nameEn = v; }, get deckName() { return trDeck(this.nameEn); }, set deckName(v) { this.nameEn = v; }, energy, art, qr: q, nv: 1, lb: 1, k, rank: k + 1,')  # Limited Battle deck names: in the page language when shown (names load later)
+one('cards: cards.map(([cid, n, c]) => ({ id: cid, n, c })), note: LB.notes[id] || null', 'cards: cards.map(([cid, n, c]) => ({ id: cid, nEn: n, get n() { return trCard(this.nEn); }, set n(v) { this.nEn = v; }, c })), note: LB.notes[id] || null')  # Limited Battle card names in the page language
 one(".then((j) => (EV = j))", ".then((j) => L10NP.then(() => (EV = l10nDeep(j))))")
 one("for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n });", "for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n: trCard(n) });")
 one(".then((r) => (r.ok ? r.json() : null)).then((j) => (PK = j))",

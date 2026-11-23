@@ -2,6 +2,21 @@
  "_": "Code changes for the ja page (i18n/build.mjs applies them before the texts). find: exact code of the page; all: change each place (else the first). A find that is not in the page is reported, not used.",
  "patches": [
   {
+   "note": "packs: card count under a card",
+   "find": "<small>${c.st ? `${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} small`}</small>",
+   "replace": "<small>${c.st ? `${c.decks.length}デッキ` : `小規模${c.decks.length}`}</small>"
+  },
+  {
+   "note": "packs: card label",
+   "find": "aria-label=\"${esc(c.n)}, in ${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}\"",
+   "replace": "aria-label=\"${esc(c.n)}、${c.decks.length}デッキで使用\""
+  },
+  {
+   "note": "packs: picked card line",
+   "find": "&middot; in ${c.decks.length} ${c.st ? \"meta \" : \"\"}deck${c.decks.length > 1 ? \"s\" : \"\"}${c.st ? \"\" : ' <span class=\"pkd-chip\">smaller decks only</span>'}",
+   "replace": "&middot; ${c.st ? \"環境デッキ\" : \"デッキ\"}${c.decks.length}個で使用${c.st ? \"\" : ' <span class=\"pkd-chip\">小規模デッキのみ</span>'}"
+  },
+  {
    "note": "tab label: Limited Battle, 9日残り",
    "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
    "replace": "b.setAttribute(\"aria-label\", `限定バトル、${lbLeft(true)}`)"
