@@ -22,7 +22,7 @@ one(css, css + """/* Nov 23 (i18n, Phase 1 design B): language menu = a globe pi
 .lang-btn { right: 40px; width: auto; gap: 5px; padding: 0 10px 0 9px; border-radius: 16px; display: flex; align-items: center;
   font: 700 12px/1 inherit; letter-spacing: 0.02em; }
 .lang-btn svg.chev { width: 12px; height: 12px; }
-.lang-pop { position: absolute; z-index: 20; top: 32px; right: 0; width: 264px; padding: 10px; border-radius: 18px;
+.lang-pop { position: absolute; z-index: 59; /* above the title row (.hrow, z 20, later in the page) and the tab band */ top: 32px; right: 0; width: 264px; padding: 10px; border-radius: 18px;
   background: var(--surface); box-shadow: var(--raised), var(--bevel); }
 .lang-pop[hidden] { display: none; }
 .lang-pop h2 { margin: 2px 0 8px; font-size: 12px; font-weight: 700; color: var(--muted); text-align: center; }
