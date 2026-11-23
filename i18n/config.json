@@ -1,0 +1,28 @@
+{
+ "skipVars": [
+  "LB",
+  "RAWC",
+  "SUN",
+  "MOON",
+  "EN_IDS"
+ ],
+ "skipText": [
+  "EN",
+  "DE",
+  "ES",
+  "FR",
+  "IT",
+  "JA",
+  "KO",
+  "PT",
+  "ZH",
+  "Pocket Meta QR"
+ ],
+ "skipScripts": [
+  "qrcode-generator"
+ ],
+ "forceText": [
+  "won"
+ ],
+ "_note": "skipVars: consts whose values are data; skipScripts: library scripts (text at their start); skipText: never translated; forceText: one-word texts the rules would skip"
+}

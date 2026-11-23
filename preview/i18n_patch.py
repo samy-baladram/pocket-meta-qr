@@ -5,7 +5,8 @@ python3 preview/i18n_patch.py <in.html> <out.html>      (site.yml runs it on eve
 2. Names (de, ja): deck, card, set and pack names from i18n/names.<lang>.json (pipeline/i18n_names.mjs), switched in
    the data as it loads (normQ, events.json, packs.json, cards.json). English names stay in nameEn / nEn.
 3. A language picker next to the dark-mode button (#langSel, localStorage pmq-lang; default = the browser language
-   when the game has it). A change reloads the page."""
+   when the game has it). German and Japanese have their own text pages (/preview/de/, /preview/ja/: i18n/build.mjs,
+   PMQ_LANG set by site.yml); a change opens the right page (other languages: card images on the English page)."""
 import re, sys
 src, dst = sys.argv[1], sys.argv[2]
 s = open(src, encoding="utf8").read()
@@ -27,9 +28,14 @@ top = '  const $ = (id) => document.getElementById(id);\n'
 one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path prefix of every card image ("" = English).
   // Saved choice, else the browser language, else English. var: set before any code that builds an image path.
   var LANGS_I = ["de", "es", "fr", "it", "ja", "ko", "pt", "zh"];
-  var IMGL = (() => { let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
+  // A text page (/preview/de/, /preview/ja/: the build sets PMQ_LANG) has its language; else the saved choice, else the
+  // browser language. On the English page a German / Japanese choice opens that page (text languages: TXT_L).
+  var TXT_L = ["de", "ja"], PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
+  var IMGL = (() => { if (PG_L !== "en") return PG_L; let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
     if (l === "en" || LANGS_I.includes(l)) return l;
     const b = String(navigator.language || "").toLowerCase().slice(0, 2); return LANGS_I.includes(b) ? b : "en"; })();
+  var langPath = (l) => "/preview/" + (TXT_L.includes(l) ? l + "/" : "");
+  if (PG_L === "en" && TXT_L.includes(IMGL) && /^\/preview\/?$/.test(location.pathname)) location.replace(langPath(IMGL) + location.hash);
   var IMGP = IMGL === "en" ? "" : `i18n/${IMGL}/`;
   // Names (de, ja): i18n/names.<lang>.json = {n: {English card name: name}, s: {set code: set name}}. Other languages:
   // card images only, English names.
@@ -69,7 +75,7 @@ one(rawc, r'''  // Nov 23 (i18n test): a card with no localized file (i18n/<lang
     document.querySelectorAll("img").forEach((im) => { for (const a of ["src", "data-src"]) { const v = im.getAttribute(a);
       if (v && !v.startsWith("http") && /(^|\/)(i18n\/[a-z]{2}\/)?[cz]\/[a-z0-9]+-\d+\.webp/.test(v)) im.setAttribute(a, fix(v)); } });
     try { track("card-lang-" + l); } catch (err) {}
-    setTimeout(() => location.reload(), 150); }
+    setTimeout(() => { const to = langPath(l); if (location.pathname !== to) location.href = to + location.hash; else location.reload(); }, 150); }
 ''' + rawc)
 th = '  $("themeBtn").addEventListener("click", () => {'
 one(th, '  { const ls = $("langSel"); ls.value = IMGL; ls.addEventListener("change", () => setImgLang(ls.value)); }\n' + th)

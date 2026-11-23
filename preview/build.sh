@@ -1,0 +1,36 @@
+#!/bin/bash
+# The /preview/ pages (Nov 23, 2026). site.yml runs it after page.mjs; a failure here is only a warning there.
+#   bash preview/build.sh <public dir>
+# 1. preview/i18n_patch.py: the live page (site/index.html) + card images, names and the language picker
+# 2. i18n/extract.mjs: the English texts of that page -> <public>/i18n/en.json (the catalog to translate)
+# 3. i18n/build.mjs per text language (de, ja): the texts of i18n/<lang>.json put in; report -> <public>/i18n/report.<lang>.json
+# 4. pipeline/page.mjs per page (as the live page, no routes) + preview/head.html (+ the page language) first in <head>
+# Out: <public>/preview/, <public>/preview/de/, <public>/preview/ja/, <public>/i18n/ (names, images, catalog, reports)
+set -euo pipefail
+PUB=${1:-public}
+T=$(mktemp -d)
+mkdir -p "$PUB/preview" "$PUB/i18n"
+python preview/i18n_patch.py site/index.html "$T/src.html"
+node i18n/extract.mjs "$T/src.html" "$PUB/i18n/en.json"
+head_for() { # <lang> -> the head insert for that page
+  local h; h=$(tr '\n' ' ' < preview/head.html)
+  if [ "$1" != en ]; then h="<script>var PMQ_LANG = \"$1\";</script>$h"; fi
+  printf '%s' "$h"
+}
+page() { # <lang> <source html> <out dir>
+  rm -rf "$T/p" && mkdir -p "$T/p" "$3"
+  node pipeline/page.mjs "$2" "$T/p/index.html" --no-routes > /dev/null
+  cp "$T/p"/app.* "$PUB/"   # <base href="/">: the page loads them from the site root
+  HEAD="$(head_for "$1")" node -e 'const f = require("fs"); f.writeFileSync(process.argv[2], f.readFileSync(process.argv[1], "utf8").replace("<head>", "<head>" + process.env.HEAD));' "$T/p/index.html" "$3/index.html"
+}
+page en "$T/src.html" "$PUB/preview"
+SUM=""
+for L in de ja; do
+  line=$(node i18n/build.mjs "$T/src.html" "$L" "$T/$L.html" --report "$PUB/i18n/report.$L.json")
+  echo "$line"; SUM="$SUM- $line"$'\n'
+  page "$L" "$T/$L.html" "$PUB/preview/$L"
+done
+cp preview/i18n/names.*.json "$PUB/i18n/"
+if [ -d site/i18n ]; then cp -r site/i18n/. "$PUB/i18n/"; fi
+if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then printf '### Preview texts\n%s\nMissing texts: /i18n/report.<lang>.json on the site.\n' "$SUM" >> "$GITHUB_STEP_SUMMARY"; fi
+rm -rf "$T"

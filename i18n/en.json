@@ -1,0 +1,4467 @@
+[
+ {
+  "id": "55eee3040e",
+  "en": "Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes",
+  "where": [
+   "html <title>"
+  ]
+ },
+ {
+  "id": "c29220f958",
+  "en": "Switch to dark mode",
+  "where": [
+   "attr <button aria-label>",
+   "js ia-label\", d ? \"Switch to light mode\" : "
+  ]
+ },
+ {
+  "id": "89b86ab0e6",
+  "en": "Language",
+  "where": [
+   "attr <select aria-label>"
+  ]
+ },
+ {
+  "id": "4a8867f122",
+  "en": "Language (card images and names)",
+  "where": [
+   "attr <select title>"
+  ]
+ },
+ {
+  "id": "6fa55b2f97",
+  "en": "This week&rsquo;s Pok&eacute;mon TCG Pocket decks",
+  "where": [
+   "html <h1>"
+  ]
+ },
+ {
+  "id": "145a83266e",
+  "en": "Loading&hellip;",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "4d4ce73b15",
+  "en": "Card",
+  "where": [
+   "attr <dialog aria-label>"
+  ]
+ },
+ {
+  "id": "bbfa773e5a",
+  "en": "Close",
+  "where": [
+   "attr <button aria-label>",
+   "attr <button aria-label>",
+   "attr <button aria-label>"
+  ]
+ },
+ {
+  "id": "98d3809299",
+  "en": "About this label",
+  "where": [
+   "attr <div aria-label>"
+  ]
+ },
+ {
+  "id": "26b1ca6b96",
+  "en": "Card details",
+  "where": [
+   "attr <div aria-label>"
+  ]
+ },
+ {
+  "id": "69bd4ef9fb",
+  "en": "View",
+  "where": [
+   "attr <div aria-label>"
+  ]
+ },
+ {
+  "id": "5f0a456c00",
+  "en": "Meta Decks",
+  "where": [
+   "attr <a aria-label>"
+  ]
+ },
+ {
+  "id": "8d546a6dea",
+  "en": "Meta",
+  "where": [
+   "html <a>",
+   "tpl pan></button>`; }; const deckBody = n ? "
+  ]
+ },
+ {
+  "id": "b1a5c8ef4d",
+  "en": "Decks",
+  "where": [
+   "html <a>",
+   "js  (ids.length ? `<span class=\"sgh\">${q ? ",
+   "tpl ; $(\"fsug\").innerHTML = (decks.length ? "
+  ]
+ },
+ {
+  "id": "f105cc61c3",
+  "en": "Latest Events",
+  "where": [
+   "attr <a aria-label>"
+  ]
+ },
+ {
+  "id": "decd7ca800",
+  "en": "Latest",
+  "where": [
+   "html <a>"
+  ]
+ },
+ {
+  "id": "c5497bca58",
+  "en": "Events",
+  "where": [
+   "html <a>",
+   "tpl utton>`).join(\"\") : \"\") + (evs.length ? ",
+   "tpl ice(0, 4); const skipTip = ii(\"events\", "
+  ]
+ },
+ {
+  "id": "326a3f7b0a",
+  "en": "Booster Packs",
+  "where": [
+   "attr <a aria-label>"
+  ]
+ },
+ {
+  "id": "8e4caec080",
+  "en": "Booster",
+  "where": [
+   "html <a>"
+  ]
+ },
+ {
+  "id": "db866831c3",
+  "en": "Packs",
+  "where": [
+   "html <a>",
+   "js ss=\"t1s-hw\">for the meta ${winWk()}${ii("
+  ]
+ },
+ {
+  "id": "ce5c3baf3a",
+  "en": "Search and filter decks",
+  "where": [
+   "attr <button aria-label>"
+  ]
+ },
+ {
+  "id": "a3b2737ace",
+  "en": "Search and filter",
+  "where": [
+   "attr <button title>"
+  ]
+ },
+ {
+  "id": "dc6066a3a3",
+  "en": "Search a deck or card",
+  "where": [
+   "attr <input placeholder>",
+   "js ard\" : ev ? \"Search an event or deck\" : "
+  ]
+ },
+ {
+  "id": "c0648ef361",
+  "en": "Search decks by deck or card name",
+  "where": [
+   "attr <input aria-label>"
+  ]
+ },
+ {
+  "id": "a260c629df",
+  "en": "Clear the search",
+  "where": [
+   "attr <button aria-label>"
+  ]
+ },
+ {
+  "id": "861edba005",
+  "en": "Suggestions",
+  "where": [
+   "attr <div aria-label>"
+  ]
+ },
+ {
+  "id": "56820cd9a6",
+  "en": "Filter by energy",
+  "where": [
+   "attr <div aria-label>"
+  ]
+ },
+ {
+  "id": "5dbde22d9a",
+  "en": "Filter by deck",
+  "where": [
+   "attr <div aria-label>"
+  ]
+ },
+ {
+  "id": "62eea86f4f",
+  "en": "Filter events by size",
+  "where": [
+   "attr <div aria-label>"
+  ]
+ },
+ {
+  "id": "7ca4d4b9e1",
+  "en": "The picked card",
+  "where": [
+   "attr <section aria-label>"
+  ]
+ },
+ {
+  "id": "719ea396ad",
+  "en": "Clear",
+  "where": [
+   "html <button>"
+  ]
+ },
+ {
+  "id": "f4b15c9c91",
+  "en": "Top 10 decks",
+  "where": [
+   "attr <section aria-label>"
+  ]
+ },
+ {
+  "id": "5a99c00759",
+  "en": "Top 10",
+  "where": [
+   "html <p>",
+   "tpl perty(\"--bd2\", bd[1]); } el.innerHTML = ",
+   "js /b> <span class=\"t1s-hw\">${winWk()}${ii("
+  ]
+ },
+ {
+  "id": "961d9b56f9",
+  "en": "All decks",
+  "where": [
+   "html <div>"
+  ]
+ },
+ {
+  "id": "57e1881e37",
+  "en": "share &middot; win",
+  "where": [
+   "html <div>"
+  ]
+ },
+ {
+  "id": "3ea7d0f033",
+  "en": "Packs for the meta",
+  "where": [
+   "attr <section aria-label>",
+   "tpl w\">for the meta ${winWk()}${ii(\"Packs\", "
+  ]
+ },
+ {
+  "id": "1e6fd9a5e6",
+  "en": "Latest events",
+  "where": [
+   "attr <section aria-label>"
+  ]
+ },
+ {
+  "id": "35e3987c5b",
+  "en": "Limited Battle decks",
+  "where": [
+   "attr <section aria-label>",
+   "js ks for this week\\u2019s meta\", limited: "
+  ]
+ },
+ {
+  "id": "3b8d64bb18",
+  "en": "About Pocket Meta QR",
+  "where": [
+   "html <h2>",
+   "tpl info points $(\"aboutBtn\").dataset.tip = "
+  ]
+ },
+ {
+  "id": "93daa2f17e",
+  "en": "The decks that win in Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, the {t2}latest events{t3} with their top 8, and a {t4}QR code{t5} for every list, so you can import a deck in a few taps.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "372c9acbf6",
+  "en": "How do I import a deck?",
+  "where": [
+   "html <h4>"
+  ]
+ },
+ {
+  "id": "81826fc524",
+  "en": "Open a deck, tap its QR code and save the image. In the game: {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. On a computer, you can also point the game&rsquo;s camera at the screen.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "b309da0a4d",
+  "en": "Where does the data come from?",
+  "where": [
+   "html <h4>"
+  ]
+ },
+ {
+  "id": "516dd47a55",
+  "en": "Public Standard events with 8 or more players on {t0}Limitless TCG{t1}, from the last 7 days, because the meta changes fast (up to 14 days when there are few events, late in a set; never before the set&rsquo;s release). The numbers are computed here, so they can differ a little from other sites.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "8924cc152b",
+  "en": "Which days count?",
+  "where": [
+   "html <h4>",
+   "tpl  the days since the release const tip = "
+  ]
+ },
+ {
+  "id": "e7a5c67393",
+  "en": "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the current set&rsquo;s release, so in a new set&rsquo;s first days the results are early ones. The line under the title shows the dates.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "a79387a4ad",
+  "en": "What is in Latest Events?",
+  "where": [
+   "html <h4>"
+  ]
+ },
+ {
+  "id": "775ee8b04a",
+  "en": "The tournaments of the same days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "c0ee3cda6e",
+  "en": "What is a &ldquo;top player&rdquo;?",
+  "where": [
+   "html <h4>"
+  ]
+ },
+ {
+  "id": "347bbc504b",
+  "en": "A player with at least 2 more wins than losses at a single-deck event.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "741e5bd528",
+  "en": "What do &ldquo;Unproven&rdquo; and &ldquo;No top result&rdquo; mean?",
+  "where": [
+   "html <h4>"
+  ]
+ },
+ {
+  "id": "67524d7001",
+  "en": "The deck has no top player in these days. {t0}Unproven{t1}: some players won more than they lost, but none reached a top result; the page shows the best of them. {t2}No top result{t3}: no player won more than they lost; the page shows the best-placed list. Both are a starting point, not a proven list.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "96fb9c9f0d",
+  "en": "How are the lists chosen?",
+  "where": [
+   "html <h4>"
+  ]
+ },
+ {
+  "id": "857fa3b382",
+  "en": "List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. {t0}&#9733; Popular now{t1} marks a list 1 that clearly more top players used exactly than any other list.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "bff84ca9c5",
+  "en": "Why is the win rate different from other sites?",
+  "where": [
+   "html <h4>"
+  ]
+ },
+ {
+  "id": "0acb187723",
+  "en": "Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "241585c95a",
+  "en": "Can I use it like an app?",
+  "where": [
+   "html <h4>"
+  ]
+ },
+ {
+  "id": "dfe3c5d44a",
+  "en": "Yes: tap {t0}Add to Home Screen{t1} at the bottom of the page for the steps.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "48d61bdd8b",
+  "en": "Is it free?",
+  "where": [
+   "html <h4>"
+  ]
+ },
+ {
+  "id": "9ec76bfa7e",
+  "en": "Yes: no ads and no sign-up. No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter). This browser keeps only your theme and the last tab you used.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "aa9ecbb82a",
+  "en": "Made by {t0}u/Myxas_{t1}.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "e985a02c4a",
+  "en": "Made by {t0}u/Myxas_",
+  "where": [
+   "html <span>"
+  ]
+ },
+ {
+  "id": "28e599d2bd",
+  "en": "Feedback or a bug? {t0}Send me a message",
+  "where": [
+   "html <span>"
+  ]
+ },
+ {
+  "id": "7002659f49",
+  "en": "About &amp; FAQ",
+  "where": [
+   "html <button>"
+  ]
+ },
+ {
+  "id": "7bd938bc58",
+  "en": "Add to Home Screen",
+  "where": [
+   "html <button>",
+   "tpl </li></ol>`; $(\"homeBtn\").dataset.tip = "
+  ]
+ },
+ {
+  "id": "7ff5a6dafd",
+  "en": "Sections",
+  "where": [
+   "attr <nav aria-label>"
+  ]
+ },
+ {
+  "id": "c95db6211f",
+  "en": "Meta decks{t0}{t1}Latest tournaments{t2}{t3}Which pack to open{t4}{t5}Limited Battle",
+  "where": [
+   "html <nav>"
+  ]
+ },
+ {
+  "id": "bd81811d71",
+  "en": "Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks from public tournaments on Limitless, like a tier list built from real results: share, win rate and the lists the top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster pack gives the cards of the meta.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "76f1727abf",
+  "en": "pocketmetaqr.com",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "f8515d5350",
+  "en": "&middot; Data: {t0}Limitless TCG{t1},",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "7252f9e8d5",
+  "en": "last 7 days",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "53668c4b2c",
+  "en": ". Card images: PocketDecks. Details in About &amp; FAQ.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "14b0dbb85b",
+  "en": "Pocket Meta QR is a free fan site. It is not affiliated with, endorsed or sponsored by Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK or DeNA. Pok&eacute;mon and all card images are trademarks and &copy; of their owners.",
+  "where": [
+   "html <p>"
+  ]
+ },
+ {
+  "id": "e066133fdb",
+  "en": "ex",
+  "where": [
+   "js d name without ex const b = L10N.n[en + "
+  ]
+ },
+ {
+  "id": "fc45091249",
+  "en": "Switch to light mode",
+  "where": [
+   "js emeBtn\").setAttribute(\"aria-label\", d ? "
+  ]
+ },
+ {
+  "id": "3d3791aae5",
+  "en": "Light mode",
+  "where": [
+   "js  dark mode\"); $(\"themeBtn\").title = d ? "
+  ]
+ },
+ {
+  "id": "9cf83d1f40",
+  "en": "Dark mode",
+  "where": [
+   "js (\"themeBtn\").title = d ? \"Light mode\" : "
+  ]
+ },
+ {
+  "id": "01466ff456",
+  "en": "of {0} top players",
+  "where": [
+   "tpl nst usedBy = (v) => (v.of > 1 && v.nu ? "
+  ]
+ },
+ {
+  "id": "489f487724",
+  "en": "Score",
+  "where": [
+   "tpl on)); }, true); const scoreTip = (v) => ",
+   "js c\"><span class=\"tl\">Score${i === 0 ? ii(",
+   "js + (plW ? 14 + plW : 0)); tile(inL, t1W, "
+  ]
+ },
+ {
+  "id": "b86f70d930",
+  "en": "The match record ({t0}wins-losses-ties{t1}) of the player who used this list{0}{1}.",
+  "where": [
+   "tpl on)); }, true); const scoreTip = (v) => "
+  ]
+ },
+ {
+  "id": "f383cb9878",
+  "en": ", and their place:",
+  "where": [
+   "tpl ? `: <b>${esc(v.sc)}</b>` : \"\"}${v.pl ? "
+  ]
+ },
+ {
+  "id": "efed3690ea",
+  "en": "Jan",
+  "where": [
+   "js  x) => a + (x.u || 0), 0); const MON = ["
+  ]
+ },
+ {
+  "id": "dc8415ccfe",
+  "en": "Feb",
+  "where": [
+   "js  a + (x.u || 0), 0); const MON = [\"Jan\","
+  ]
+ },
+ {
+  "id": "c4ba082246",
+  "en": "Mar",
+  "where": [
+   "js x.u || 0), 0); const MON = [\"Jan\",\"Feb\","
+  ]
+ },
+ {
+  "id": "befde54a10",
+  "en": "Apr",
+  "where": [
+   "js  0), 0); const MON = [\"Jan\",\"Feb\",\"Mar\","
+  ]
+ },
+ {
+  "id": "c94f479833",
+  "en": "May",
+  "where": [
+   "js ); const MON = [\"Jan\",\"Feb\",\"Mar\",\"Apr\","
+  ]
+ },
+ {
+  "id": "6d90df3be4",
+  "en": "Jun",
+  "where": [
+   "js st MON = [\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\","
+  ]
+ },
+ {
+  "id": "b737558468",
+  "en": "Jul",
+  "where": [
+   "js  = [\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\","
+  ]
+ },
+ {
+  "id": "75629af51d",
+  "en": "Aug",
+  "where": [
+   "js an\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\","
+  ]
+ },
+ {
+  "id": "fdd289e370",
+  "en": "Sep",
+  "where": [
+   "js eb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\","
+  ]
+ },
+ {
+  "id": "51327aef98",
+  "en": "Oct",
+  "where": [
+   "js ar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\","
+  ]
+ },
+ {
+  "id": "bb9bfefd53",
+  "en": "Nov",
+  "where": [
+   "js pr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\",\"Oct\","
+  ]
+ },
+ {
+  "id": "997f59bc99",
+  "en": "Dec",
+  "where": [
+   "js ay\",\"Jun\",\"Jul\",\"Aug\",\"Sep\",\"Oct\",\"Nov\","
+  ]
+ },
+ {
+  "id": "de04fa0e29",
+  "en": "of",
+  "where": [
+   "tpl fins\">${f.map(([p, of, w, l, t, dt]) => ",
+   "tpl class=\"shero\"><b>${n}</b>${of != null ? ",
+   "tpl \"fen\">${en}</span>` : \"\"}` : en; return "
+  ]
+ },
+ {
+  "id": "9b448c2524",
+  "en": "+ {0} more",
+  "where": [
+   "tpl  finLi(f.slice(0, 5)) + (f.length > 5 ? ",
+   "tpl .slice(5))}</details>` : n > f.length ? ",
+   "tpl ).join(\"\")}</ol></div>${ex > f.length ? "
+  ]
+ },
+ {
+  "id": "ea7be4e7a5",
+  "en": "Top players",
+  "where": [
+   "tpl st ch = altSum(v), ex = nxOf(v); return "
+  ]
+ },
+ {
+  "id": "953d4f3666",
+  "en": "A {t0}top player{t1} won at least 2 more matches than they lost (ties do not count) at a single-deck event {0}.",
+  "where": [
+   "tpl st ch = altSum(v), ex = nxOf(v); return "
+  ]
+ },
+ {
+  "id": "f33788fa9c",
+  "en": "top players used this deck; {t0}{0}{t1} used exactly this list{1}{2}.",
+  "where": [
+   "tpl st ch = altSum(v), ex = nxOf(v); return "
+  ]
+ },
+ {
+  "id": "dbc8cb4e68",
+  "en": "(together {t0}{0}{t1}, {1}% win)",
+  "where": [
+   "tpl ex}</b> used exactly this list${v.rec ? "
+  ]
+ },
+ {
+  "id": "88c70db626",
+  "en": ", and {t0}{0}{t1} more with 1 to 3 cards swapped{1}",
+  "where": [
+   "tpl /b>, ${wrPct(v.rec)}% win)` : \"\"}${ch ? "
+  ]
+ },
+ {
+  "id": "10ab7e88e4",
+  "en": "(all {0} together {1}, {2}%)",
+  "where": [
+   "tpl ore with 1 to 3 cards swapped${v.grec ? "
+  ]
+ },
+ {
+  "id": "a624ce137f",
+  "en": "Results with exactly this list",
+  "where": [
+   "tpl  \"\"}.</p> ${v.fin && v.fin.length > 1 ? "
+  ]
+ },
+ {
+  "id": "028fddc250",
+  "en": "Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.",
+  "where": [
+   "tpl h4>${finRows(v.fin, ex)}` : \"\"} ${pop ? "
+  ]
+ },
+ {
+  "id": "7dccc5da07",
+  "en": "list 1",
+  "where": [
+   "js  isHot = () => false; const L1n = () => "
+  ]
+ },
+ {
+  "id": "50009483b8",
+  "en": "List 1",
+  "where": [
+   "js const L1n = () => \"list 1\", L1s = () => ",
+   "tpl  L1s = () => \"List 1\"; const L1 = () => ",
+   "js \" aria-current=\"${i === 0}\">${i === 0 ? "
+  ]
+ },
+ {
+  "id": "9b9a24074d",
+  "en": "{0}: most played",
+  "where": [
+   "tpl = (L0.nu || 0) >= 2; const tip = most ? "
+  ]
+ },
+ {
+  "id": "62eb8f8f88",
+  "en": "The {0} is the list that the most top players used: {t0}{1} of {2}{t1}.",
+  "where": [
+   "tpl = (L0.nu || 0) >= 2; const tip = most ? "
+  ]
+ },
+ {
+  "id": "42b36a9675",
+  "en": "The other lists compare their cards with it. Lists with the same count are sorted by their best place.",
+  "where": [
+   "tpl = (L0.nu || 0) >= 2; const tip = most ? "
+  ]
+ },
+ {
+  "id": "318169ffe2",
+  "en": "{0}: best place",
+  "where": [
+   "tpl  are sorted by their best place.</p>` : "
+  ]
+ },
+ {
+  "id": "16effccb01",
+  "en": "No list was used by more than 1 top player, so the {0} is the list with the best place{1}.",
+  "where": [
+   "tpl  are sorted by their best place.</p>` : "
+  ]
+ },
+ {
+  "id": "899e85d0d1",
+  "en": "A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.",
+  "where": [
+   "tpl  are sorted by their best place.</p>` : "
+  ]
+ },
+ {
+  "id": "7ca2635390",
+  "en": "Unproven",
+  "where": [
+   "js _I : NTR_I), bcN = (v) => (v.bc === 2 ? "
+  ]
+ },
+ {
+  "id": "1cc15542b5",
+  "en": "No top result",
+  "where": [
+   "js bcN = (v) => (v.bc === 2 ? \"Unproven\" : "
+  ]
+ },
+ {
+  "id": "6cd0edac3e",
+  "en": "with {0} card{1} swapped",
+  "where": [
+   "tpl  = (n, k) => `<small class=\"swpl\">${k ? ",
+   "tpl {c} top player${c > 1 ? \"s\" : \"\"} ${j ? "
+  ]
+ },
+ {
+  "id": "3e6d1fbfd5",
+  "en": "with this exact list",
+  "where": [
+   "js ${k} card${k > 1 ? \"s\" : \"\"} swapped` : "
+  ]
+ },
+ {
+  "id": "96c12df622",
+  "en": "swap{0}",
+  "where": [
+   "tpl num = (n) => `<b>${n}</b>`, sw = (k) => ",
+   "tpl st\", exRows)}${[1, 2, 3].map((k) => sec(",
+   "tpl me as under the list. const sw = (k) => "
+  ]
+ },
+ {
+  "id": "f5060abc58",
+  "en": "Used by",
+  "where": [
+   "tpl  `${k} swap${k > 1 ? \"s\" : \"\"}`; return "
+  ]
+ },
+ {
+  "id": "6833f2bb77",
+  "en": "top player{0}",
+  "where": [
+   "tpl  `${k} swap${k > 1 ? \"s\" : \"\"}`; return ",
+   "tpl += r; return s; }; const tt = (c, j) => "
+  ]
+ },
+ {
+  "id": "23bf8384bf",
+  "en": "Top 25%",
+  "where": [
+   "js lace\"></span>` : of && p / of <= 0.25 ? "
+  ]
+ },
+ {
+  "id": "c5eb8e09c6",
+  "en": "with the exact list",
+  "where": [
+   "js ${j} card${j > 1 ? \"s\" : \"\"} swapped` : "
+  ]
+ },
+ {
+  "id": "a845d3d476",
+  "en": "{0}Popular now",
+  "where": [
+   "tpl pped` : \"with the exact list\"}`; return "
+  ]
+ },
+ {
+  "id": "e314914df8",
+  "en": "The list most top players build from.",
+  "where": [
+   "tpl pped` : \"with the exact list\"}`; return "
+  ]
+ },
+ {
+  "id": "1464926697",
+  "en": "Most used is not always the best: compare the win rates.",
+  "where": [
+   "tpl pped` : \"with the exact list\"}`; return "
+  ]
+ },
+ {
+  "id": "a1fffaaafb",
+  "en": "List",
+  "where": [
+   "tpl t s = seg(x), nu = x.nu || s[0]; return ",
+   "tpl ; const name = a ? `${i === 0 ? L1(d) : ",
+   "tpl </span>` : n > 1 ? `${i === 0 ? L1(d) : "
+  ]
+ },
+ {
+  "id": "b1c1d8736f",
+  "en": "me",
+  "where": [
+   "js s[0]; return `<div class=\"sbr${k ? \"\" : "
+  ]
+ },
+ {
+  "id": "3afa94025a",
+  "en": "since the {0} release",
+  "where": [
+   "tpl \"early\"); const winWk = () => EARLY() ? ",
+   "tpl s week\" const winLast = () => EARLY() ? "
+  ]
+ },
+ {
+  "id": "dae1e5f83a",
+  "en": "this week",
+  "where": [
+   "js {esc(data.set)} release` : WD() === 7 ? "
+  ]
+ },
+ {
+  "id": "33a6685cd7",
+  "en": "in the last {0} days",
+  "where": [
+   "tpl } release` : WD() === 7 ? \"this week\" : ",
+   "tpl  `since the ${esc(data.set)} release` : "
+  ]
+ },
+ {
+  "id": "7f03c5d36f",
+  "en": "Since the {0} release",
+  "where": [
+   "tpl 10)); }; const winCap = () => EARLY() ? "
+  ]
+ },
+ {
+  "id": "7b72883e07",
+  "en": "This week",
+  "where": [
+   "js {esc(data.set)} release` : WD() === 7 ? "
+  ]
+ },
+ {
+  "id": "e6ad2f3e33",
+  "en": "Last {0} days",
+  "where": [
+   "tpl } release` : WD() === 7 ? \"This week\" : "
+  ]
+ },
+ {
+  "id": "892ce04a73",
+  "en": "A top result: at least 2 more wins than losses at an event {0}.",
+  "where": [
+   "tpl t TOP_PCT = 0.25; const topRule = () => "
+  ]
+ },
+ {
+  "id": "612e12d292",
+  "en": "Results",
+  "where": [
+   "tpl  const wk = days.length && all.length ? "
+  ]
+ },
+ {
+  "id": "1117ffe1c9",
+  "en": "1st–3rd {t0}{t1}top 25%",
+  "where": [
+   "tpl  const wk = days.length && all.length ? "
+  ]
+ },
+ {
+  "id": "4d13ad2e9a",
+  "en": "1{t0}{t1}{t2}{t3}2{t4}{t5}{t6}{t7}3{t8}cards swapped",
+  "where": [
+   "js lass=\"q\"></i>top 25%</span></p>${hasT ? "
+  ]
+ },
+ {
+  "id": "213ed3ea45",
+  "en": "last",
+  "where": [
+   "js div class=\"swd${k === days.length - 1 ? "
+  ]
+ },
+ {
+  "id": "9802a8358d",
+  "en": "nol",
+  "where": [
+   "js gth > 10 && (days.length - 1 - k) % 2 ? "
+  ]
+ },
+ {
+  "id": "3bf7457bfd",
+  "en": "results · {t0}{0}{t1} player{1} · {t2}{2}{t3} event{3}",
+  "where": [
+   "tpl ; const spread = nP && all.length > 1 ? "
+  ]
+ },
+ {
+  "id": "d82857eb60",
+  "en": "Exact list",
+  "where": [
+   "js  list = hasT ? `<div class=\"fscr\">${sec("
+  ]
+ },
+ {
+  "id": "d120d8a5a7",
+  "en": "player{0}",
+  "where": [
+   "tpl 0, 0]); const cell = (ic, lab, r, n) => ",
+   "tpl MORE.decks) || [])].length; const top = ",
+   "tpl <div class=\"podium\">${top.map((d, k) => "
+  ]
+ },
+ {
+  "id": "c9f63eb795",
+  "en": "Win rate by version",
+  "where": [
+   "tpl ? \"\" : \"s\"}</small></div>`; const top = "
+  ]
+ },
+ {
+  "id": "0cae74747c",
+  "en": "Exact",
+  "where": [
+   "js r((k) => T[k]).length}\">${cell(EXACT_I, "
+  ]
+ },
+ {
+  "id": "02b620b03a",
+  "en": "{0}Top players",
+  "where": [
+   "tpl ft, results right. Nov 21: tiles return "
+  ]
+ },
+ {
+  "id": "cd708dcb83",
+  "en": "Top player: at least 2 more wins than losses at an event {0}.",
+  "where": [
+   "tpl ft, results right. Nov 21: tiles return "
+  ]
+ },
+ {
+  "id": "4e1f459a5a",
+  "en": "top players",
+  "where": [
+   "js  class=\"sh3\">${TOPP_I}Top players ${hib("
+  ]
+ },
+ {
+  "id": "c9929a6b53",
+  "en": "players won more than they lost with this deck {0}, but none reached a top result. This is the best of them.",
+  "where": [
+   "tpl = v.bn || 0; const sub = un ? (bn > 1 ? "
+  ]
+ },
+ {
+  "id": "ff3e8e536e",
+  "en": "1 player won more than they lost with this deck {0}, but did not reach a top result. This is their list.",
+  "where": [
+   "tpl op result. This is the best of them.` : "
+  ]
+ },
+ {
+  "id": "8896272648",
+  "en": "No one with this deck won more than they lost {0}. This is its best-placed list.",
+  "where": [
+   "tpl h a top result. This is their list.`) : "
+  ]
+ },
+ {
+  "id": "0345f0f3d0",
+  "en": "2+ more wins than losses",
+  "where": [
+   "tpl  This is its best-placed list.`; return "
+  ]
+ },
+ {
+  "id": "69e3fb87d5",
+  "en": "has {0}{1} · {2} more win{3} in place of",
+  "where": [
+   "tpl  This is its best-placed list.`; return "
+  ]
+ },
+ {
+  "id": "17709dbc6f",
+  "en": "Best finish",
+  "where": [
+   "js hero ${un ? \"un\" : \"nr\"}\"><small>${un ? "
+  ]
+ },
+ {
+  "id": "242feab371",
+  "en": "Best-placed finish",
+  "where": [
+   "js  : \"nr\"}\"><small>${un ? \"Best finish\" : "
+  ]
+ },
+ {
+  "id": "4f57658445",
+  "en": "a loss",
+  "where": [
+   "js  : \"\"} in place of ${k > 1 ? \"losses\" : "
+  ]
+ },
+ {
+  "id": "4cf0a9e934",
+  "en": "winning record{0}",
+  "where": [
+   "tpl s\"}</span></div></li> </ul> ${sT3([[bn, "
+  ]
+ },
+ {
+  "id": "ab09f30675",
+  "en": "deck win rate",
+  "where": [
+   "js )] : null, d.win != null ? [pct(d.win), "
+  ]
+ },
+ {
+  "id": "c38f356b28",
+  "en": "This list has not shown that yet.",
+  "where": [
+   "js ])} <p class=\"snote\">${topRule()}${un ? "
+  ]
+ },
+ {
+  "id": "bbb2de672e",
+  "en": "· {0} share · {1} win · {2} players",
+  "where": [
+   "tpl n\"); svg.nextElementSibling.innerHTML = ",
+   "tpl n\"); svg.nextElementSibling.innerHTML = "
+  ]
+ },
+ {
+  "id": "1affc37b23",
+  "en": "Below the cut",
+  "where": [
+   "tpl dataset.r); } }); const bcLine = (v) => ",
+   "tpl cTip(v))}</span>`; const bcTip = (v) => "
+  ]
+ },
+ {
+  "id": "5712ba0728",
+  "en": "below the cut",
+  "where": [
+   "js t bcx\">${SAD_I}<b>Below the cut</b>${ii(",
+   "js \"dnote bctab\">&#9888; Below the cut${ii("
+  ]
+ },
+ {
+  "id": "75367d1a97",
+  "en": "No player of this deck won more matches than they lost {0}, so it has no top-player list.",
+  "where": [
+   "tpl cTip(v))}</span>`; const bcTip = (v) => ",
+   "tpl 888; Below the cut${ii(\"below the cut\", "
+  ]
+ },
+ {
+  "id": "2aca25531e",
+  "en": "This is the list of its best-placed player{0}{1}. A starting point, not a proven list.",
+  "where": [
+   "tpl cTip(v))}</span>`; const bcTip = (v) => ",
+   "tpl 888; Below the cut${ii(\"below the cut\", "
+  ]
+ },
+ {
+  "id": "49ac8d4bf8",
+  "en": ", record",
+  "where": [
+   "tpl ? `: <b>${esc(v.pl)}</b>` : \"\"}${v.sc ? ",
+   "tpl ? `: <b>${esc(v.pl)}</b>` : \"\"}${v.sc ? "
+  ]
+ },
+ {
+  "id": "9bb5b01475",
+  "en": "&#9888; Below the cut{0}",
+  "where": [
+   "tpl proven list.</p>`; const bcTab = (v) => "
+  ]
+ },
+ {
+  "id": "54907cba83",
+  "en": "&#9888; Below the cut",
+  "where": [
+   "tpl 888; Below the cut${ii(\"below the cut\", "
+  ]
+ },
+ {
+  "id": "437bcb1511",
+  "en": "Energy",
+  "where": [
+   "tpl const info = (v, energyHtml, i = -1) => "
+  ]
+ },
+ {
+  "id": "1c1a3f0a7e",
+  "en": "Score{0}",
+  "where": [
+   "tpl const info = (v, energyHtml, i = -1) => ",
+   "tpl  top list now\"}</div>`; box.innerHTML = "
+  ]
+ },
+ {
+  "id": "ad8919ace0",
+  "en": "Event",
+  "where": [
+   "tpl const info = (v, energyHtml, i = -1) => ",
+   "js  ? `Event · list ${i + 1} of ${d.nv}` : "
+  ]
+ },
+ {
+  "id": "01429c8de9",
+  "en": "swap{0} from List 1",
+  "where": [
+   "tpl  list: added; List 1: removed) curCmp = "
+  ]
+ },
+ {
+  "id": "ba79e67b9b",
+  "en": "{0}Popular now{1}",
+  "where": [
+   "tpl n>` : i === 0 && !d.evt && popular(d) ? "
+  ]
+ },
+ {
+  "id": "ae58ffb155",
+  "en": "(not in the {0})",
+  "where": [
+   "tpl {c.id}.webp\" alt=\"${esc(c.n)}${dif[k] ? "
+  ]
+ },
+ {
+  "id": "1f2a787631",
+  "en": "QR code not available for this list.",
+  "where": [
+   "js =\"128\" height=\"128\"></button> </div>` : "
+  ]
+ },
+ {
+  "id": "09ca55ca52",
+  "en": "Share",
+  "where": [
+   "js -sid=\"${esc(id)}\" aria-label=\"${TOUCH ? ",
+   "tpl ixed(1)}</text>` : \"\"}`).join(\"\"); s += ",
+   "tpl MORE.decks) || [])].length; const top = "
+  ]
+ },
+ {
+  "id": "1cdae7eaea",
+  "en": "Copy the link to",
+  "where": [
+   "js c(id)}\" aria-label=\"${TOUCH ? \"Share\" : "
+  ]
+ },
+ {
+  "id": "9212d0a9e8",
+  "en": "Share this list",
+  "where": [
+   "js span>`; const LISTLINK = () => (TOUCH ? "
+  ]
+ },
+ {
+  "id": "d3235b7b18",
+  "en": "Copy list link",
+  "where": [
+   "js NK = () => (TOUCH ? \"Share this list\" : "
+  ]
+ },
+ {
+  "id": "3fad35edbb",
+  "en": "{0}/{1}.webp",
+  "where": [
+   "tpl d+)\\.webp$/.exec(src || \"\"); return m ? "
+  ]
+ },
+ {
+  "id": "bd8ab80b1e",
+  "en": "800 52px \"Figtree\"",
+  "where": [
+   "js i, varLabel) { try { await Promise.all(["
+  ]
+ },
+ {
+  "id": "a9bada7e33",
+  "en": "700 50px \"Figtree\"",
+  "where": [
+   "js wait Promise.all(['800 52px \"Figtree\"', "
+  ]
+ },
+ {
+  "id": "7ead6cc7f3",
+  "en": "600 26px \"Figtree\"",
+  "where": [
+   "js  52px \"Figtree\"', '700 50px \"Figtree\"', "
+  ]
+ },
+ {
+  "id": "7653cae461",
+  "en": "500 26px \"Figtree\"",
+  "where": [
+   "js  50px \"Figtree\"', '600 26px \"Figtree\"', "
+  ]
+ },
+ {
+  "id": "2b30287381",
+  "en": "{0}px \"Figtree\", \"Segoe UI\", sans-serif",
+  "where": [
+   "tpl 27789\" }; const F = (w, sz, it = \"\") => "
+  ]
+ },
+ {
+  "id": "251674d33d",
+  "en": "M2.009 6A4.8 4.8 0 0 1 11.491 6H9.448A2.8 2.8 0 0 0 4.052 6ZM2.009 7.5A4.8 4.8 0 0 0 11.491 7.5H9.448A2.8 2.8 0 0 1 4.052 7.5Z",
+  "where": [
+   "js th as the page glyph) x.fill(new Path2D("
+  ]
+ },
+ {
+  "id": "4513cbb56b",
+  "en": "{0}c/{1}.webp",
+  "where": [
+   "tpl t || []).slice(0, 2).map((a) => loadImg("
+  ]
+ },
+ {
+  "id": "08d089f97b",
+  "en": "share · {0} win",
+  "where": [
+   "tpl ull && d.win != null) x.fillText(fit(x, "
+  ]
+ },
+ {
+  "id": "8cd38b3544",
+  "en": "Event · list",
+  "where": [
+   "tpl  + inW - t2L; tile(t2L, t2W, varLabel ? "
+  ]
+ },
+ {
+  "id": "778e3d21fc",
+  "en": "Event · list {0} of",
+  "where": [
+   "tpl list ${i + 1} ${varLabel}` : d.nv > 1 ? "
+  ]
+ },
+ {
+  "id": "4f32916ced",
+  "en": "My Decks",
+  "where": [
+   "js es, then the source line const steps = ["
+  ]
+ },
+ {
+  "id": "60907e38f7",
+  "en": "Scan Code",
+  "where": [
+   "js ce line const steps = [\"My Decks\", \"+\", "
+  ]
+ },
+ {
+  "id": "7789ef8e5a",
+  "en": "Scan Saved Image",
+  "where": [
+   "js  steps = [\"My Decks\", \"+\", \"Scan Code\", "
+  ]
+ },
+ {
+  "id": "448ab73ba1",
+  "en": "Set",
+  "where": [
+   "tpl 0\"; x.textAlign = \"center\"; x.fillText(["
+  ]
+ },
+ {
+  "id": "426ec07bcd",
+  "en": "Breakout deck",
+  "where": [
+   "js setName : \"\"}`, d.evt ? d.evt : d.brk ? ",
+   "tpl class=\"rb rbt rbk solo\" data-tip=\"${esc("
+  ]
+ },
+ {
+  "id": "7803ee2525",
+  "en": "Byte",
+  "where": [
+   "js nst q = qrcode(0, \"M\"); q.addData(code, "
+  ]
+ },
+ {
+  "id": "df0b70f961",
+  "en": "– Pocket Meta QR",
+  "where": [
+   "js await navigator.share({ title: d.name + ",
+   "js wait navigator.share({ title: SH.name + "
+  ]
+ },
+ {
+  "id": "c2e98476ef",
+  "en": "Link copied",
+  "where": [
+   "js  (err) {} } if (ok) { lab.textContent = ",
+   "js } catch (err) {} if (!lab) { toast(ok ? ",
+   "js bar\"); return; } lab.textContent = ok ? "
+  ]
+ },
+ {
+  "id": "984bbca8a1",
+  "en": "Pokémon TCG Pocket deck",
+  "where": [
+   "js oUpperCase() + w.slice(1)).join(\" \") || "
+  ]
+ },
+ {
+  "id": "158436f0e7",
+  "en": "This link is broken or was changed",
+  "where": [
+   "js (h.replace(/^x=/, \"\")); if (!o) { toast("
+  ]
+ },
+ {
+  "id": "b20b4f433a",
+  "en": "days ago",
+  "where": [
+   "tpl oday\" : n === 1 ? \"yesterday\" : n < 7 ? ",
+   "tpl  * 60 ? `${Math.round(m / 60)} h ago` : "
+  ]
+ },
+ {
+  "id": "1faeee71ba",
+  "en": "week{0} ago",
+  "where": [
+   "tpl y\" : n < 7 ? `${n} days ago` : n < 60 ? "
+  ]
+ },
+ {
+  "id": "c7c6c9a9c7",
+  "en": "months ago",
+  "where": [
+   "tpl ek${n < 14 ? \"\" : \"s\"} ago` : n < 730 ? "
+  ]
+ },
+ {
+  "id": "769e229569",
+  "en": "years ago",
+  "where": [
+   "tpl  ? `${Math.floor(n / 30)} months ago` : "
+  ]
+ },
+ {
+  "id": "6fe97729d0",
+  "en": "Shared list{0}",
+  "where": [
+   "tpl lass=\"shk\">${SH.label ? esc(SH.label) : "
+  ]
+ },
+ {
+  "id": "b3c94b397b",
+  "en": "Shared list",
+  "where": [
+   "js ull, win: x ? x.win : null, nv: 1, evt: "
+  ]
+ },
+ {
+  "id": "f361d2bf24",
+  "en": "'+this.alt+'",
+  "where": [
+   "tpl r.get(nr), n = c ? c.n : \"\"; return c ? "
+  ]
+ },
+ {
+  "id": "31c63feec3",
+  "en": "Not in the meta now",
+  "where": [
+   "tpl ? `<div class=\"ev\">\\u2026</div>` : !x ? "
+  ]
+ },
+ {
+  "id": "84e3ee8374",
+  "en": "· {t0}{0}{t1} win",
+  "where": [
+   "tpl class=\"ev\">Not in the meta now</div>` : "
+  ]
+ },
+ {
+  "id": "c63ee4d0fc",
+  "en": "Still a top list",
+  "where": [
+   "js v><div class=\"tdst\">${T.d && T.k >= 0 ? "
+  ]
+ },
+ {
+  "id": "74dfc10a49",
+  "en": "Not a top list now",
+  "where": [
+   "js {T.d && T.k >= 0 ? \"Still a top list\" : "
+  ]
+ },
+ {
+  "id": "24345a1437",
+  "en": "Today",
+  "where": [
+   "tpl H.src ? \"</a>\" : \"</div>\"} ${T && T.d ? ",
+   "tpl s=\"tl\">Today</span>${today}</button>` : ",
+   "js viewer's own date return iso === f(t) ? "
+  ]
+ },
+ {
+  "id": "69bb0fdaac",
+  "en": "{0}Tap to save",
+  "where": [
+   "tpl ight=\"128\"><span class=\"qcap\">${TOUCH ? "
+  ]
+ },
+ {
+  "id": "7ec0137917",
+  "en": "{0}Scan in game",
+  "where": [
+   "tpl cap\">${TOUCH ? `${EXPAND}Tap to save` : "
+  ]
+ },
+ {
+  "id": "23cd04792c",
+  "en": "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image.",
+  "where": [
+   "js t=\"240\"></div> <p class=\"qsh\">${TOUCH ? ",
+   "js t=\"240\"></div> <p class=\"qsh\">${TOUCH ? "
+  ]
+ },
+ {
+  "id": "a40926803d",
+  "en": "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image.",
+  "where": [
+   "js  → + → Scan Code → Scan Saved Image.\" : ",
+   "js  → + → Scan Code → Scan Saved Image.\" : "
+  ]
+ },
+ {
+  "id": "efc007a393",
+  "en": "Save",
+  "where": [
+   "js ve\" type=\"button\">${SAVE_ICON}${TOUCH ? "
+  ]
+ },
+ {
+  "id": "a479c9c34e",
+  "en": "Download",
+  "where": [
+   "js \"button\">${SAVE_ICON}${TOUCH ? \"Save\" : "
+  ]
+ },
+ {
+  "id": "72f2b0dfa1",
+  "en": "Shared with you",
+  "where": [
+   "tpl v 15: a top notice, once per tab notice("
+  ]
+ },
+ {
+  "id": "0fe53f9dbc",
+  "en": "&middot; open again",
+  "where": [
+   "tpl v 15: a top notice, once per tab notice("
+  ]
+ },
+ {
+  "id": "06ac8d6ac7",
+  "en": "a deck",
+  "where": [
+   "js >Shared with you</small><b>${esc(v.n || ",
+   "js 11\"/></svg>Shared list: <b>${esc(v.n || "
+  ]
+ },
+ {
+  "id": "4d8078c8ad",
+  "en": "Shared list: {t0}{0}{t1} &rsaquo;",
+  "where": [
+   "tpl Shared(v.h); }); return; el.innerHTML = "
+  ]
+ },
+ {
+  "id": "380b549c34",
+  "en": "Copy the address from the address bar",
+  "where": [
+   "js  if (!lab) { toast(ok ? \"Link copied\" : "
+  ]
+ },
+ {
+  "id": "311bee6a56",
+  "en": "Copy the address",
+  "where": [
+   "js  lab.textContent = ok ? \"Link copied\" : "
+  ]
+ },
+ {
+  "id": "749107fc55",
+  "en": "The image is not ready. Try again.",
+  "where": [
+   "js if (!shBlob) { $(\"shMsg\").textContent = ",
+   "js  } catch (err) { qmsgEl().textContent = "
+  ]
+ },
+ {
+  "id": "a6c37a0db5",
+  "en": "Saving is not available here: long-press the QR code instead.",
+  "where": [
+   "js  () => { qmsgEl().textContent = TOUCH ? "
+  ]
+ },
+ {
+  "id": "d97686b37a",
+  "en": "Saving is not available here: right-click the QR code instead.",
+  "where": [
+   "js ere: long-press the QR code instead.\" : "
+  ]
+ },
+ {
+  "id": "003ebf20c8",
+  "en": "One moment, then try again.",
+  "where": [
+   "js rate_limited\") { qmsgEl().textContent = "
+  ]
+ },
+ {
+  "id": "21e164cb9e",
+  "en": "· {0} of",
+  "where": [
+   "tpl ap(cName).join(\", \")}</span>` : n > 1 ? "
+  ]
+ },
+ {
+  "id": "2c1469f758",
+  "en": "Save image",
+  "where": [
+   "js ve\" type=\"button\">${SAVE_ICON}${TOUCH ? "
+  ]
+ },
+ {
+  "id": "d6f34a97a5",
+  "en": "Download image",
+  "where": [
+   "js n\">${SAVE_ICON}${TOUCH ? \"Save image\" : "
+  ]
+ },
+ {
+  "id": "24449a2a14",
+  "en": "--eb1:{0};--eb2:{1}",
+  "where": [
+   "tpl  EBAND[e]); if (es.length === 1) return ",
+   "tpl ${EGRAD[es[0]][1]}`; return es.length ? ",
+   "tpl  ev: LB.name })); const LB_BAND = () => "
+  ]
+ },
+ {
+  "id": "aab90dfe8c",
+  "en": "share",
+  "where": [
+   "tpl  players, record const deckTip = (d) => ",
+   "tpl <div class=\"podium\">${top.map((d, k) => "
+  ]
+ },
+ {
+  "id": "60e0efbbb5",
+  "en": "of all decks played",
+  "where": [
+   "tpl  players, record const deckTip = (d) => "
+  ]
+ },
+ {
+  "id": "c76ac2e9cd",
+  "en": "win",
+  "where": [
+   "tpl  players, record const deckTip = (d) => ",
+   "tpl  like Top players) const dpill = (d) => "
+  ]
+ },
+ {
+  "id": "87d370a29e",
+  "en": "match win rate; a tie counts as half a win. Mirror matches are not counted.{0}",
+  "where": [
+   "tpl  players, record const deckTip = (d) => "
+  ]
+ },
+ {
+  "id": "2912fa5e02",
+  "en": "players",
+  "where": [
+   "tpl  players, record const deckTip = (d) => ",
+   "js d \" + st : st), e.players ? e.players + "
+  ]
+ },
+ {
+  "id": "a2b4d0d476",
+  "en": "entries with this deck",
+  "where": [
+   "tpl  players, record const deckTip = (d) => "
+  ]
+ },
+ {
+  "id": "275a700078",
+  "en": "record",
+  "where": [
+   "tpl  players, record const deckTip = (d) => "
+  ]
+ },
+ {
+  "id": "42df7965d2",
+  "en": "all match wins, losses and ties of this deck",
+  "where": [
+   "tpl  players, record const deckTip = (d) => "
+  ]
+ },
+ {
+  "id": "84022162f8",
+  "en": "Faded: fewer than 30 players, so this rate is less certain.",
+  "where": [
+   "js atches are not counted.${d.count < 30 ? "
+  ]
+ },
+ {
+  "id": "f9a4b961c0",
+  "en": "share &middot;",
+  "where": [
+   "tpl  like Top players) const dpill = (d) => ",
+   "tpl  skipped const ghostHTML = (g, more) => "
+  ]
+ },
+ {
+  "id": "b4af52290e",
+  "en": "stayed near",
+  "where": [
+   "tpl  th, u) => Math.abs(a[1] - a[0]) < th ? "
+  ]
+ },
+ {
+  "id": "57bd8b6ed1",
+  "en": "went {0} from {1}{2} to",
+  "where": [
+   "tpl d near <b>${a[1].toFixed(1)}${u}</b>` : "
+  ]
+ },
+ {
+  "id": "327955ac28",
+  "en": "Share {0}. Win rate {1}.{2}",
+  "where": [
+   "tpl  <b>${a[1].toFixed(1)}${u}</b>`; return "
+  ]
+ },
+ {
+  "id": "c9b4332dc1",
+  "en": "has no data",
+  "where": [
+   "js , \"%\")}. Win rate ${w ? mv(w, 1, \"%\") : "
+  ]
+ },
+ {
+  "id": "5ec8f71f27",
+  "en": "Rank {0}.",
+  "where": [
+   "tpl  ? mv(w, 1, \"%\") : \"has no data\"}.${r ? "
+  ]
+ },
+ {
+  "id": "70b8058643",
+  "en": "stayed {t0}#{0}",
+  "where": [
+   "tpl o data\"}.${r ? ` Rank ${r[0] === r[1] ? "
+  ]
+ },
+ {
+  "id": "d0bca8f3af",
+  "en": "went from #{0} to {t0}#{1}",
+  "where": [
+   "tpl ] === r[1] ? `stayed <b>#${r[1]}</b>` : "
+  ]
+ },
+ {
+  "id": "79bcb3dd18",
+  "en": "Win rate",
+  "where": [
+   "tpl  SY = (v) => 142 - v / sm * 44; let s = ",
+   "tpl MORE.decks) || [])].length; const top = "
+  ]
+ },
+ {
+  "id": "dca582139c",
+  "en": "lfd",
+  "where": [
+   "js  rx=\"3\" class=\"tbar2${fade && fade[i] ? "
+  ]
+ },
+ {
+  "id": "5e2cbfa6f1",
+  "en": "tl",
+  "where": [
+   "js & fade[i] ? \" lfd\" : \"\"}${i === n - 1 ? "
+  ]
+ },
+ {
+  "id": "29d657be69",
+  "en": "lvt",
+  "where": [
+   "js chor=\"middle\" class=\"ltx${i === n - 1 ? "
+  ]
+ },
+ {
+  "id": "dd48a11495",
+  "en": "Rank",
+  "where": [
+   "tpl lass=\"ltx\">${d}</text>`).join(\"\"); s += ",
+   "tpl MORE.decks) || [])].length; const top = ",
+   "tpl o: <b>${ordN(d.rank)}</b>.</p>`; return "
+  ]
+ },
+ {
+  "id": "f6bb0f468a",
+  "en": "Days",
+  "where": [
+   "tpl && t.wd.some((x) => x && x !== 7)) s += "
+  ]
+ },
+ {
+  "id": "112c04145c",
+  "en": "wch",
+  "where": [
+   "js e\" class=\"ltx${i && x !== t.wd[i - 1] ? "
+  ]
+ },
+ {
+  "id": "c2a6b03f19",
+  "en": "new",
+  "where": [
+   "js sTrend() || !(\"rk0\" in d) ? \"\" : !was ? "
+  ]
+ },
+ {
+  "id": "aa8507b62a",
+  "en": "Above 50%",
+  "where": [
+   "js onst verd = hw == null ? \"\" : lo > 50 ? "
+  ]
+ },
+ {
+  "id": "8e3f944b07",
+  "en": "Below 50%",
+  "where": [
+   "js lass=\"wv g\">Above 50%</em>' : hi < 50 ? "
+  ]
+ },
+ {
+  "id": "626a3de075",
+  "en": "Close to 50%",
+  "where": [
+   "js 0 ? '<em class=\"wv r\">Below 50%</em>' : "
+  ]
+ },
+ {
+  "id": "302a69d3b1",
+  "en": "steady in {0} days",
+  "where": [
+   "tpl {sD == null ? \"\" : Math.abs(sD) < 0.3 ? "
+  ]
+ },
+ {
+  "id": "0e70e686b6",
+  "en": "in {0} days",
+  "where": [
+   "tpl 0.3 ? `steady in ${tr.s.length} days` : "
+  ]
+ },
+ {
+  "id": "48d6857f6b",
+  "en": "Breakout",
+  "where": [
+   "js div> <div><span>Rank</span><b>${d.brk ? ",
+   "js is deck \\u00b7 all lists<span>${d.brk ? ",
+   "js <b>${hl(d.name, q)}</b><small>${d.brk ? "
+  ]
+ },
+ {
+  "id": "ac58ab84ed",
+  "en": "too rare to rank",
+  "where": [
+   "js kTxt}`}</b><i class=\"dkm dko\">${d.brk ? "
+  ]
+ },
+ {
+  "id": "78c6a1f315",
+  "en": "of {0} decks",
+  "where": [
+   "tpl dkm dko\">${d.brk ? \"too rare to rank\" : "
+  ]
+ },
+ {
+  "id": "5fc7e38bff",
+  "en": "open",
+  "where": [
+   "js  => `<details class=\"sfold dkf\"${open ? "
+  ]
+ },
+ {
+  "id": "2783723f92",
+  "en": "mfz",
+  "where": [
+   "js tton type=\"button\" class=\"mur${unsure ? "
+  ]
+ },
+ {
+  "id": "41e4e149fd",
+  "en": "(too few to be sure)",
+  "where": [
+   "js .round(m.p)}% in ${m.g} games${unsure ? "
+  ]
+ },
+ {
+  "id": "06e45e3843",
+  "en": "cut",
+  "where": [
+   "js i class=\"${dlt >= 0 ? \"g\" : \"r\"}${cut ? "
+  ]
+ },
+ {
+  "id": "9d6e7e027b",
+  "en": "Not enough games against the top decks yet (a matchup needs 10+ games).",
+  "where": [
+   "tpl utton>`; }; const muBody = !mu.length ? "
+  ]
+ },
+ {
+  "id": "500c824120",
+  "en": "Win rate against the 10 most played decks {0} (games), best first. Bars from 20% to 80%; light = too few games to be sure it is not 50%. Tap a deck to open it.",
+  "where": [
+   "tpl yet (a matchup needs 10+ games).</p>` : "
+  ]
+ },
+ {
+  "id": "df3749649f",
+  "en": "{0}% vs",
+  "where": [
+   "tpl nst muPv = mu.length ? (mu.length < 2 ? "
+  ]
+ },
+ {
+  "id": "1b45bdc8b5",
+  "en": "best {0}%",
+  "where": [
+   "tpl {esc(nameOf(mu[0].o)).split(\" \")[0]}` : "
+  ]
+ },
+ {
+  "id": "6d1b9da07c",
+  "en": "worst {0}%",
+  "where": [
+   "tpl {esc(nameOf(mu[0].o)).split(\" \")[0]}` : "
+  ]
+ },
+ {
+  "id": "ea0bcd944e",
+  "en": "not enough games",
+  "where": [
+   "js round(mu[mu.length - 1].p)}%</span>`) : "
+  ]
+ },
+ {
+  "id": "566bcc7a1f",
+  "en": "Each day = the window that ends on that day (7–14 days, wider when there are few events), so the numbers move slowly. Faded: under 30 players.{0}",
+  "where": [
+   "tpl +x.slice(8))) : []; const trBody = tr ? "
+  ]
+ },
+ {
+  "id": "c31ba3ef37",
+  "en": "Days = how many days that window had.",
+  "where": [
+   "js wd && tr.wd.some((x) => x && x !== 7) ? "
+  ]
+ },
+ {
+  "id": "6d3ae60352",
+  "en": "Popular + winning",
+  "where": [
+   "js  (x) => x.share >= med ? (x.win >= 50 ? ",
+   "tpl T}\" y2=\"${H - B}\" class=\"lref\"/>`; s += "
+  ]
+ },
+ {
+  "id": "89be098394",
+  "en": "Popular, weak",
+  "where": [
+   "js  ? (x.win >= 50 ? \"Popular + winning\" : ",
+   "tpl T}\" y2=\"${H - B}\" class=\"lref\"/>`; s += "
+  ]
+ },
+ {
+  "id": "ce12647f54",
+  "en": "Hidden gem",
+  "where": [
+   "js ng\" : \"Popular, weak\") : (x.win >= 50 ? ",
+   "tpl T}\" y2=\"${H - B}\" class=\"lref\"/>`; s += "
+  ]
+ },
+ {
+  "id": "d6aa410291",
+  "en": "Niche",
+  "where": [
+   "js  weak\") : (x.win >= 50 ? \"Hidden gem\" : ",
+   "tpl T}\" y2=\"${H - B}\" class=\"lref\"/>`; s += "
+  ]
+ },
+ {
+  "id": "5def453be8",
+  "en": "This deck",
+  "where": [
+   "tpl st cx = X(d.share), cy = Y(d.win); s += "
+  ]
+ },
+ {
+  "id": "91ea864ee0",
+  "en": "Tap a dot to see the deck.",
+  "where": [
+   "tpl \" class=\"lvt\">This deck</text>`; return "
+  ]
+ },
+ {
+  "id": "521456ffbf",
+  "en": "Cards of the {0} top player{1} (too few for core and flex).",
+  "where": [
+   "tpl  && cu.length) { if (of < 3) { cuBody = "
+  ]
+ },
+ {
+  "id": "c8d3756e45",
+  "en": "cards",
+  "where": [
+   "tpl 00d7${c[2]}`)).join(\"\")}</div>`; cuPv = ",
+   "tpl ></figure>`).join(\"\")}</div>`; cuBody = ",
+   "tpl top-8 finish at a big event)\"], [\"new\", "
+  ]
+ },
+ {
+  "id": "6b1f893805",
+  "en": "Flex",
+  "where": [
+   "js \"56\" height=\"78\"></figure>`).join(\"\")}${",
+   "tpl ></figure>`).join(\"\")}</div>`; cuBody = "
+  ]
+ },
+ {
+  "id": "5ec6670c6d",
+  "en": "No flex cards.",
+  "where": [
+   "js )}</div>`; const flexH = !flex.length ? "
+  ]
+ },
+ {
+  "id": "68836c550e",
+  "en": "Core",
+  "where": [
+   "tpl ></figure>`).join(\"\")}</div>`; cuBody = "
+  ]
+ },
+ {
+  "id": "ffa4f00cd6",
+  "en": "slot{0}",
+  "where": [
+   "tpl ></figure>`).join(\"\")}</div>`; cuBody = "
+  ]
+ },
+ {
+  "id": "d1e9c146ea",
+  "en": "Core: in 90%+ of the {0} top players' lists. Flex: share of top players who play it{1}.{2}",
+  "where": [
+   "tpl ></figure>`).join(\"\")}</div>`; cuBody = "
+  ]
+ },
+ {
+  "id": "a095f62c35",
+  "en": "; {t0}+1{t1} = one more copy of a core card",
+  "where": [
+   "js of top players who play it${ex.length ? "
+  ]
+ },
+ {
+  "id": "03733db7eb",
+  "en": "+ {0} more card{1} under 10%.",
+  "where": [
+   "tpl ore copy of a core card\" : \"\"}.${rare ? "
+  ]
+ },
+ {
+  "id": "ea2408d695",
+  "en": "core · {0} flex",
+  "where": [
+   "tpl s\" : \"\"} under 10%.` : \"\"}</p>`; cuPv = "
+  ]
+ },
+ {
+  "id": "8434bf2392",
+  "en": "Share, win rate, rank and matchups count all players; Cards counts the top players. A tie is half a win; mirror matches are not counted.",
+  "where": [
+   "tpl th} core \\u00b7 ${nf} flex`; } } return "
+  ]
+ },
+ {
+  "id": "b5b2a49247",
+  "en": "Matchups",
+  "where": [
+   "js =\"sh3\">${esc(d.name)}</h3>${top} ${fold("
+  ]
+ },
+ {
+  "id": "c93fd9c78b",
+  "en": "7-day trend",
+  "where": [
+   "js tchups\", muPv, muBody, 1)}${trOk ? fold("
+  ]
+ },
+ {
+  "id": "72a90a7332",
+  "en": "share {0} · win",
+  "where": [
+   "tpl muBody, 1)}${trOk ? fold(\"7-day trend\", "
+  ]
+ },
+ {
+  "id": "96f550255d",
+  "en": "Meta map",
+  "where": [
+   "js  trBody, 1) : \"\"} ${d.count < 30 ? fold(",
+   "js eek looked like a hidden gem) */ : fold("
+  ]
+ },
+ {
+  "id": "b1142f7843",
+  "en": "Not on the map yet: fewer than 30 players {0} (too few to place it).",
+  "where": [
+   "tpl } ${d.count < 30 ? fold(\"Meta map\", \"\", "
+  ]
+ },
+ {
+  "id": "acfa231857",
+  "en": "Decks with 30+ players {0}: share against win rate. Lines: the median share and 50% win rate.",
+  "where": [
+   "tpl Meta map\", `<b class=\"mqh\">${myQ}</b>`, "
+  ]
+ },
+ {
+  "id": "0f830bc25e",
+  "en": "Cards",
+  "where": [
+   "js n rate.</p>${mapSvg}`)} ${cuBody ? fold(",
+   "tpl 0, 6); $(\"fsug\").innerHTML = L.length ? ",
+   "tpl ton>`).join(\"\") : \"\") + (cards.length ? "
+  ]
+ },
+ {
+  "id": "e6866f28e4",
+  "en": "Events with this deck in the top 8",
+  "where": [
+   "tpl p || []).some(([id]) => id === d.id)) ? "
+  ]
+ },
+ {
+  "id": "d27dc1b686",
+  "en": "Faded win rate: fewer than 30 players, so it moves a lot.",
+  "where": [
+   "js or matches are not counted.</li>${few ? "
+  ]
+ },
+ {
+  "id": "13d4b964c6",
+  "en": "One event is {t0}{0}%{t1} of these results, so it moves the numbers more than usual.",
+  "where": [
+   "tpl const big = data.bige && data.bige[1] ? "
+  ]
+ },
+ {
+  "id": "f7e42baf96",
+  "en": "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the set&rsquo;s release.",
+  "where": [
+   "tpl  the days since the release const tip = "
+  ]
+ },
+ {
+  "id": "2274cb3617",
+  "en": "is new: these are the results of its first {0}, so the numbers can change fast.",
+  "where": [
+   "tpl the set&rsquo;s release.</p>${EARLY() ? "
+  ]
+ },
+ {
+  "id": "5548ae4f34",
+  "en": "days",
+  "where": [
+   "tpl re the results of its first ${day > 1 ? ",
+   "tpl middot; day ${day || 1}` : WD() !== 7 ? "
+  ]
+ },
+ {
+  "id": "7d8bdc5e6b",
+  "en": "Now: {t0}{0} days{t1}, because fewer events were played in the last 7 days.",
+  "where": [
+   "tpl hange fast.</p>` : data.wr === \"late\" ? "
+  ]
+ },
+ {
+  "id": "1be44ea15f",
+  "en": "The window length changed today, so the 24 h rank arrows are hidden today.",
+  "where": [
+   "js st 7 days.</p>` : \"\"}${big}${data.wch ? "
+  ]
+ },
+ {
+  "id": "d1c47b17d6",
+  "en": "Early results{t0} &middot; day",
+  "where": [
+   "tpl day.</p>\" : \"\"}`; const lab = EARLY() ? "
+  ]
+ },
+ {
+  "id": "0a8dd6adce",
+  "en": "7 days",
+  "where": [
+   "js b || big ? `<span class=\"mwin\">${lab || "
+  ]
+ },
+ {
+  "id": "6f02931a8a",
+  "en": "which days count",
+  "where": [
+   "js pan class=\"mwin\">${lab || \"7 days\"}${ii("
+  ]
+ },
+ {
+  "id": "b82fb89618",
+  "en": "this set",
+  "where": [
+   "js , set = esc(data.setName || data.set || "
+  ]
+ },
+ {
+  "id": "56bcd8fe54",
+  "en": "New{t0}: the first time this deck is in the list since {0} came out. The tag shows for 3 days.",
+  "where": [
+   "tpl set || \"this set\"); const body = d.nw ? "
+  ]
+ },
+ {
+  "id": "685757d9ff",
+  "en": "Not in the list 24 h ago. Now {t0}{0}{t1}.",
+  "where": [
+   "tpl The tag shows for 3 days.</p>` : !was ? "
+  ]
+ },
+ {
+  "id": "3b9f38b850",
+  "en": "▲ Up {0} place{1}{t0}: {t1}{2}{t2} 24 h ago, now {t3}{3}{t4}.",
+  "where": [
+   "tpl <b>${ordN(d.rank)}</b>.</p>` : mv > 0 ? "
+  ]
+ },
+ {
+  "id": "deb2079c55",
+  "en": "▼ Down {0} place{1}{t0}: {t1}{2}{t2} 24 h ago, now {t3}{3}{t4}.",
+  "where": [
+   "tpl <b>${ordN(d.rank)}</b>.</p>` : mv < 0 ? "
+  ]
+ },
+ {
+  "id": "4824b2db0a",
+  "en": "– Same rank{t0} as 24 h ago: {t1}{0}{t2}.",
+  "where": [
+   "tpl ago, now <b>${ordN(d.rank)}</b>.</p>` : "
+  ]
+ },
+ {
+  "id": "2a08f40ca1",
+  "en": "Ranks are compared with the data of 24 h earlier.",
+  "where": [
+   "tpl o: <b>${ordN(d.rank)}</b>.</p>`; return "
+  ]
+ },
+ {
+  "id": "972758b2df",
+  "en": "A rare deck (under 0.2% share {0}) with a top-8 finish at a big event (128+ players): {t0}{1}{t1}.",
+  "where": [
+   "tpl class=\"rb rbt rbk solo\" data-tip=\"${esc("
+  ]
+ },
+ {
+  "id": "2cb2bd4021",
+  "en": "Too few players for a fair rank, so it has no rank number.",
+  "where": [
+   "tpl class=\"rb rbt rbk solo\" data-tip=\"${esc("
+  ]
+ },
+ {
+  "id": "c4dcbb4b94",
+  "en": "pm",
+  "where": [
+   "tpl ir rank at this size) const cls = pod ? "
+  ]
+ },
+ {
+  "id": "dbd6a35e83",
+  "en": "new in the list",
+  "where": [
+   "js }\" aria-label=\"Rank ${d.rank}, ${d.nw ? "
+  ]
+ },
+ {
+  "id": "6b6bb5df03",
+  "en": "change in 24 hours",
+  "where": [
+   "js ${d.rank}, ${d.nw ? \"new in the list\" : "
+  ]
+ },
+ {
+  "id": "e000ac6209",
+  "en": "no public list yet",
+  "where": [
+   "tpl  skipped const ghostHTML = (g, more) => "
+  ]
+ },
+ {
+  "id": "fe05bcdcdc",
+  "en": "one",
+  "where": [
+   "js =\"gicons${g.art && g.art.length === 1 ? ",
+   "js pan class=\"picons${d.art.length === 1 ? ",
+   "js span class=\"icons${d.art.length === 1 ? "
+  ]
+ },
+ {
+  "id": "293325df75",
+  "en": "Show all {0} smaller decks",
+  "where": [
+   "tpl o bring them back const moreTxt = () => "
+  ]
+ },
+ {
+  "id": "2e5855d5c2",
+  "en": "0.2–0.5% share",
+  "where": [
+   "tpl o bring them back const moreTxt = () => "
+  ]
+ },
+ {
+  "id": "73bc8c219b",
+  "en": "dn",
+  "where": [
+   "js turn `${dkA(d)} class=\"t1s-r${up ? \"\" : ",
+   "js /small></span><span class=\"ektag${dn2 ? "
+  ]
+ },
+ {
+  "id": "0bec14f205",
+  "en": "Rising",
+  "where": [
+   "js  \"\\u25b2\" : \"\\u25bc\"}</i>${k === \"up\" ? ",
+   "js list has no Pok\\u00e9mon ex\"], [\"rise\", "
+  ]
+ },
+ {
+  "id": "f39d173d91",
+  "en": "Falling",
+  "where": [
+   "js  \"\\u25bc\"}</i>${k === \"up\" ? \"Rising\" : "
+  ]
+ },
+ {
+  "id": "50a279de82",
+  "en": "Show all",
+  "where": [
+   "tpl  \"up\")).join(\"\")}</div>${L.length > 3 ? ",
+   "js ll\"); b.textContent = o ? \"Show less\" : ",
+   "js l\"); ma.textContent = o ? \"Show less\" : "
+  ]
+ },
+ {
+  "id": "117bc3bfd7",
+  "en": "No big moves",
+  "where": [
+   "js Show all ${L.length}</button>` : \"\"}` : "
+  ]
+ },
+ {
+  "id": "49d00effb2",
+  "en": "▲▼ share change · {0} days",
+  "where": [
+   "tpl perty(\"--bd2\", bd[1]); } el.innerHTML = "
+  ]
+ },
+ {
+  "id": "33ddf66a55",
+  "en": "▲ Rising",
+  "where": [
+   "tpl perty(\"--bd2\", bd[1]); } el.innerHTML = "
+  ]
+ },
+ {
+  "id": "5a7b059de5",
+  "en": "▼ Falling",
+  "where": [
+   "tpl perty(\"--bd2\", bd[1]); } el.innerHTML = "
+  ]
+ },
+ {
+  "id": "ad0938bfaf",
+  "en": "The 10 decks played most {0}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.",
+  "where": [
+   "tpl class=\"t1s-hw\">${winWk()}${ii(\"Top 10\", "
+  ]
+ },
+ {
+  "id": "6c3a3bb7b9",
+  "en": "The big number is the deck’s {t0}share{t1}: of {t2}all players{t3} in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the “top players” (that count, under each list, only takes players who won at least 2 more matches than they lost).",
+  "where": [
+   "tpl class=\"t1s-hw\">${winWk()}${ii(\"Top 10\", "
+  ]
+ },
+ {
+  "id": "5128e386a1",
+  "en": "The ▲ / ▼ number is how much the share went up or down over the last {0} days, in percentage points (8.3% → 12.0% = ▲3.7).",
+  "where": [
+   "tpl class=\"t1s-hw\">${winWk()}${ii(\"Top 10\", "
+  ]
+ },
+ {
+  "id": "a54f387207",
+  "en": "Rising{t0} / {t1}Falling{t2}: the decks whose share moved most.",
+  "where": [
+   "tpl class=\"t1s-hw\">${winWk()}${ii(\"Top 10\", "
+  ]
+ },
+ {
+  "id": "4c852b26d1",
+  "en": "Show less",
+  "where": [
+   "js List.toggle(\"all\"); b.textContent = o ? ",
+   "js List.toggle(\"all\"); s.textContent = o ? ",
+   "js ist.toggle(\"all\"); ma.textContent = o ? "
+  ]
+ },
+ {
+  "id": "9c3c295f07",
+  "en": "smaller",
+  "where": [
+   "js wn || !nm ? n0 + nm : n0 + \" + \" + nm + "
+  ]
+ },
+ {
+  "id": "c00dbbc9da",
+  "en": "old",
+  "where": [
+   "js pka${x.cards.length ? \"\" : \" z\"}${old ? "
+  ]
+ },
+ {
+  "id": "07596f183f",
+  "en": "disabled",
+  "where": [
+   "js rds.length ? ' aria-expanded=\"false\"' : ",
+   "js sTrend()) || (k === \"nw\" && !nwAny()) ? "
+  ]
+ },
+ {
+  "id": "e001fb2f40",
+  "en": "meta card{0}",
+  "where": [
+   "tpl /small></span><span class=\"pkr-v\">${m ? "
+  ]
+ },
+ {
+  "id": "d646073d7c",
+  "en": "no meta cards",
+  "where": [
+   "js  1 ? \"s\" : \"\"}` : x.cards.length ? \"\" : "
+  ]
+ },
+ {
+  "id": "26ed6f1e9b",
+  "en": "in small decks",
+  "where": [
+   "tpl rds.length ? \"\" : \"no meta cards\"}${w ? "
+  ]
+ },
+ {
+  "id": "db3d405b10",
+  "en": "on",
+  "where": [
+   "js tton type=\"button\" class=\"pkc${k ? \"\" : ",
+   "js n type=\"button\" class=\"t1s-r evmr${on ? "
+  ]
+ },
+ {
+  "id": "638e8f0171",
+  "en": "lo",
+  "where": [
+   "js lass=\"pkc${k ? \"\" : \" on\"}${c.st ? \"\" : "
+  ]
+ },
+ {
+  "id": "1fd12296da",
+  "en": "deck{0}",
+  "where": [
+   "tpl \" loading=\"lazy\"></span><small>${c.st ? "
+  ]
+ },
+ {
+  "id": "89f6229a11",
+  "en": "small",
+  "where": [
+   "tpl deck${c.decks.length > 1 ? \"s\" : \"\"}` : "
+  ]
+ },
+ {
+  "id": "544face5f8",
+  "en": "&middot; in {0} {1}deck{2}",
+  "where": [
+   "tpl o sec.querySelector(\".pkd\").innerHTML = "
+  ]
+ },
+ {
+  "id": "cb03049115",
+  "en": "meta",
+  "where": [
+   "js  &middot; in ${c.decks.length} ${c.st ? "
+  ]
+ },
+ {
+  "id": "ebdf15db38",
+  "en": "smaller decks only",
+  "where": [
+   "js cks.length > 1 ? \"s\" : \"\"}${c.st ? \"\" : "
+  ]
+ },
+ {
+  "id": "851ff4d12f",
+  "en": "Show {0} older packs",
+  "where": [
+   "tpl )).join(\"\") + (O.length ? (pkOld ? \"\" : "
+  ]
+ },
+ {
+  "id": "d6a99999ca",
+  "en": "series &middot; the older sets",
+  "where": [
+   "tpl )).join(\"\") + (O.length ? (pkOld ? \"\" : "
+  ]
+ },
+ {
+  "id": "cdc3ce9c70",
+  "en": "Top 10 packs",
+  "where": [
+   "tpl  { el.className = \"t1s\"; el.innerHTML = ",
+   "tpl perty(\"--bd2\", bd[1]); } el.innerHTML = "
+  ]
+ },
+ {
+  "id": "76a893e205",
+  "en": "for the meta",
+  "where": [
+   "tpl  { el.className = \"t1s\"; el.innerHTML = ",
+   "tpl perty(\"--bd2\", bd[1]); } el.innerHTML = "
+  ]
+ },
+ {
+  "id": "3d81bd05a3",
+  "en": "All packs",
+  "where": [
+   "tpl  { el.className = \"t1s\"; el.innerHTML = "
+  ]
+ },
+ {
+  "id": "e50ddb5453",
+  "en": "t1s-on",
+  "where": [
+   "js data.set]; el.className = \"t1s\" + (bd ? ",
+   "js hP\"></i>' : `<div class=\"t1s evsh${bd ? "
+  ]
+ },
+ {
+  "id": "73eace3aa6",
+  "en": "All packs{t0} &middot;",
+  "where": [
+   "tpl perty(\"--bd2\", bd[1]); } el.innerHTML = "
+  ]
+ },
+ {
+  "id": "d044282472",
+  "en": "Newest",
+  "where": [
+   "tpl perty(\"--bd2\", bd[1]); } el.innerHTML = "
+  ]
+ },
+ {
+  "id": "7c1c47bb8c",
+  "en": "Most meta",
+  "where": [
+   "tpl perty(\"--bd2\", bd[1]); } el.innerHTML = "
+  ]
+ },
+ {
+  "id": "f22a80a34b",
+  "en": "Which booster packs give the cards of the meta decks {0}.",
+  "where": [
+   "tpl w\">for the meta ${winWk()}${ii(\"Packs\", "
+  ]
+ },
+ {
+  "id": "a9a48e26e0",
+  "en": "A deck plays a card when half or more of its lists play it. A {t0}meta card{t1} is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded, with “small” under them, and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.",
+  "where": [
+   "tpl w\">for the meta ${winWk()}${ii(\"Packs\", "
+  ]
+ },
+ {
+  "id": "b7c44ae8ae",
+  "en": "The shelf shows the 10 packs with the most meta cards (#1 in the middle); the list has every pack, the older series under it. Tap a pack to see its cards; tap a card to see the decks that play it.",
+  "where": [
+   "tpl w\">for the meta ${winWk()}${ii(\"Packs\", "
+  ]
+ },
+ {
+  "id": "6fa5fbbc16",
+  "en": "older",
+  "where": [
+   "js ? nA : nA + \" + \" + (PKV.length - nA) + ",
+   "tpl && e.dt ? evDay(e.dt) : \"\"; const tip = "
+  ]
+ },
+ {
+  "id": "7e450a53b3",
+  "en": "&middot; {t0}{0}{t1} meta card{1}",
+  "where": [
+   "tpl b: (x) => { const m = pkMeta(x); return "
+  ]
+ },
+ {
+  "id": "91fe8a113e",
+  "en": "Could not load the packs. Try again later.",
+  "where": [
+   "js ; }).catch(() => { $(\"pkv\").innerHTML = "
+  ]
+ },
+ {
+  "id": "67b6a61bdd",
+  "en": "Search a card",
+  "where": [
+   "js \").hidden = true; $(\"fq\").placeholder = ",
+   "js te.q) || \"\"; $(\"fq\").placeholder = lb ? "
+  ]
+ },
+ {
+  "id": "54df5b93d8",
+  "en": "No pack has that card.",
+  "where": [
+   "js  act); $(\"fnoneTxt\").textContent = !n ? "
+  ]
+ },
+ {
+  "id": "1455ab70a1",
+  "en": "is in {0} pack{1}.",
+  "where": [
+   "tpl ? \"No pack has that card.\" : pkF.card ? "
+  ]
+ },
+ {
+  "id": "00079a3837",
+  "en": "Showing {0} of {1} packs.",
+  "where": [
+   "tpl  is in ${n} pack${n > 1 ? \"s\" : \"\"}.` : "
+  ]
+ },
+ {
+  "id": "74c5266f10",
+  "en": "Meta cards in packs",
+  "where": [
+   "tpl sh).slice(0, 20); $(\"fsug\").innerHTML = "
+  ]
+ },
+ {
+  "id": "e40b725417",
+  "en": "&middot; most played first",
+  "where": [
+   "tpl sh).slice(0, 20); $(\"fsug\").innerHTML = ",
+   "tpl ayers $(\"fsug\").innerHTML = nw.length ? "
+  ]
+ },
+ {
+  "id": "393f6cb329",
+  "en": "in {0} pack{1}",
+  "where": [
+   "tpl lass=\"sgh\">Cards</span>` + L.map((c) => "
+  ]
+ },
+ {
+  "id": "536e31ed82",
+  "en": "No card found",
+  "where": [
+   "tpl all></span></button></div>`).join(\"\") : ",
+   "tpl hout</button>` : \"\"}</div>`).join(\"\") : "
+  ]
+ },
+ {
+  "id": "9117c24769",
+  "en": "&middot; {t0}{0}{t1} win",
+  "where": [
+   "tpl <div class=\"podium\">${top.map((d, k) => "
+  ]
+ },
+ {
+  "id": "4acadb5e3c",
+  "en": "{0}Breakout",
+  "where": [
+   "tpl ss=\"t1s-brk\">${L.slice(0, 2).map((b) => "
+  ]
+ },
+ {
+  "id": "d1c174cc6c",
+  "en": "({0} players)",
+  "where": [
+   "tpl ss=\"t1s-brk\">${L.slice(0, 2).map((b) => ",
+   "tpl ngth ? `<span class=\"brkc\" title=\"${esc("
+  ]
+ },
+ {
+  "id": "a32b8cd11b",
+  "en": "won",
+  "where": [
+   "js <b>${esc(b.name)}</b> ${b.place === 1 ? "
+  ]
+ },
+ {
+  "id": "0440b7a85c",
+  "en": "took {0} at",
+  "where": [
+   "tpl (b.name)}</b> ${b.place === 1 ? \"won\" : "
+  ]
+ },
+ {
+  "id": "b273fb2877",
+  "en": "Won",
+  "where": [
+   "js ; const brkTxt = (b) => `${b[1] === 1 ? ",
+   "js onst b0 = (d) => `${d.brk[0][1] === 1 ? "
+  ]
+ },
+ {
+  "id": "27e90dfa57",
+  "en": "at",
+  "where": [
+   "js => `${b[1] === 1 ? \"Won\" : ordF(b[1]) + "
+  ]
+ },
+ {
+  "id": "87e68ae82c",
+  "en": "place at",
+  "where": [
+   "js [1] === 1 ? \"Won\" : ordF(d.brk[0][1]) + "
+  ]
+ },
+ {
+  "id": "c597de40c1",
+  "en": "an event",
+  "where": [
+   "js [0][1]) + \" place at\"} ${d.brk[0][3] || "
+  ]
+ },
+ {
+  "id": "d3254bb3fb",
+  "en": "share &middot; {t0}{0}{t1} win",
+  "where": [
+   "tpl ent\"}`; const rowHTML = (d, pod = 0) => "
+  ]
+ },
+ {
+  "id": "66aabd91fc",
+  "en": "NEW",
+  "where": [
+   "js gth)}\">${esc(d.name)}${NEWD.has(d.id) ? ",
+   "js sc(shortEv(e.name))}${NEWE.has(e.tid) ? "
+  ]
+ },
+ {
+  "id": "548bcc2f35",
+  "en": "Win rate against the 10 most played decks {0}, best first. Green bar: above 50%, red: below. {t0}Light bar{t1}: too few games to be sure it is not 50%. Right: the number of games.",
+  "where": [
+   "tpl \"mu\") hs.forEach((x) => { x.innerHTML = "
+  ]
+ },
+ {
+  "id": "57eea71ce1",
+  "en": "This deck · all lists",
+  "where": [
+   "tpl s) || [])].length; return { name, head: "
+  ]
+ },
+ {
+  "id": "0105344694",
+  "en": "· {0} player{1}",
+  "where": [
+   "tpl s) || [])].length; return { name, head: "
+  ]
+ },
+ {
+  "id": "4bd8eddacb",
+  "en": "hot",
+  "where": [
+   "js ass=\"dot${i === 0 ? \" l1\" + (isHot(d) ? "
+  ]
+ },
+ {
+  "id": "f744f6ce38",
+  "en": "Did not load. Swipe away and back.",
+  "where": [
+   "js de.querySelector(\".energy\").innerHTML = "
+  ]
+ },
+ {
+  "id": "816aed3a57",
+  "en": "&times;{0} in this list",
+  "where": [
+   "tpl erHTML = `<b>${esc(n)}</b>${count > 1 ? "
+  ]
+ },
+ {
+  "id": "9b55ce7f97",
+  "en": "Not in the",
+  "where": [
+   "tpl s list</span>` : \"\"}${img.dataset.dif ? ",
+   "tpl || \"\")}`; const dif = img.dataset.dif ? "
+  ]
+ },
+ {
+  "id": "97fe84b71c",
+  "en": "has instead:",
+  "where": [
+   "tpl ${img.dataset.dif && grid.dataset.out ? "
+  ]
+ },
+ {
+  "id": "1ac8c9771b",
+  "en": "promo",
+  "where": [
+   "js  ps.map((p) => `<img class=\"pk${promo ? "
+  ]
+ },
+ {
+  "id": "af862f9e86",
+  "en": "Booster pack",
+  "where": [
+   "js }.webp\" alt=\"\">`).join(\"\"); let label = "
+  ]
+ },
+ {
+  "id": "098020c805",
+  "en": "Obtained from",
+  "where": [
+   "js ooster pack\", sub; if (promo) { label = "
+  ]
+ },
+ {
+  "id": "41e97088bb",
+  "en": "Promo card, not from a booster pack",
+  "where": [
+   "js promo) { label = \"Obtained from\"; sub = "
+  ]
+ },
+ {
+  "id": "68f8af15b8",
+  "en": "In {0} {1} packs",
+  "where": [
+   "tpl code).length; sub = ps.length === all ? "
+  ]
+ },
+ {
+  "id": "d87c448044",
+  "en": "all",
+  "where": [
+   "js th === all ? `In ${all === 2 ? \"both\" : ",
+   "js </small></p><div class=\"t1s-col${mAll ? "
+  ]
+ },
+ {
+  "id": "21ee87bfbf",
+  "en": "In {0} of the {1} {2} packs",
+  "where": [
+   "tpl h\" : \"all \" + all} ${set.name} packs` : "
+  ]
+ },
+ {
+  "id": "35d9bc5159",
+  "en": "Released",
+  "where": [
+   "tpl  } else sub = ps[0].name === set.name ? "
+  ]
+ },
+ {
+  "id": "0e60c63c9d",
+  "en": "See in Packs",
+  "where": [
+   "tpl iv class=\"pack\">${body}</span></div>` : "
+  ]
+ },
+ {
+  "id": "f6f39fbf67",
+  "en": "has",
+  "where": [
+   "tpl ch(/class=\"chip\"/g) || []).length > 1 ? "
+  ]
+ },
+ {
+  "id": "33de4d6e1a",
+  "en": "parr",
+  "where": [
+   "js p.querySelector(\".parr\"); a.className = ",
+   "js p.querySelector(\".parr\"); a.className = "
+  ]
+ },
+ {
+  "id": "c2290ce35c",
+  "en": "cpop",
+  "where": [
+   "js l); if (cpop.hidden) { cpop.className = "
+  ]
+ },
+ {
+  "id": "772cefb503",
+  "en": ".about, .fscr, .shbox, .edl, .cfl",
+  "where": [
+   "js ining, no pull-to-refresh). const SCR = "
+  ]
+ },
+ {
+  "id": "7e09ecae66",
+  "en": "cpop ipop",
+  "where": [
+   "js ; } if (ipop.hidden) { ipop.className = "
+  ]
+ },
+ {
+  "id": "414768af9d",
+  "en": "wide",
+  "where": [
+   "js et\") + (btn.matches(\".altb, .fabout\") ? "
+  ]
+ },
+ {
+  "id": "fc165ac761",
+  "en": "stat",
+  "where": [
+   "js \"iPopIn\").querySelector(\".sh3, .dk3\") ? "
+  ]
+ },
+ {
+  "id": "45360d530e",
+  "en": "Cards swapped vs the",
+  "where": [
+   "tpl acar\" role=\"listbox\" aria-label=\"${sw ? "
+  ]
+ },
+ {
+  "id": "7a2b42f199",
+  "en": "Tweaks: 1 or 2 cards changed",
+  "where": [
+   "js sw ? `Cards swapped vs the ${L1n(d)}` : "
+  ]
+ },
+ {
+  "id": "98b9f35697",
+  "en": "tight",
+  "where": [
+   "js  `<div class=\"aswl${pairs.length >= 3 ? "
+  ]
+ },
+ {
+  "id": "af10ef20dd",
+  "en": "in",
+  "where": [
+   "js )}\" width=\"150\" height=\"209\">${nm(x.in, ",
+   "js )).join(\", \")}`); return parts.length ? "
+  ]
+ },
+ {
+  "id": "3d581ebf72",
+  "en": "{0}QR",
+  "where": [
+   "tpl 150\" height=\"209\">`).join(\"\")} ${a.qr ? "
+  ]
+ },
+ {
+  "id": "6cff9e3a16",
+  "en": "· best",
+  "where": [
+   "tpl /b> player${a.u > 1 ? \"s\" : \"\"}${a.pl ? ",
+   "tpl id].w} win${st[id].w > 1 ? \"s\" : \"\"}` : "
+  ]
+ },
+ {
+  "id": "41ce3c6eaf",
+  "en": "1 card",
+  "where": [
+   "tpl  n1; return `<div class=\"adots2\">${n1 ? "
+  ]
+ },
+ {
+  "id": "3d42976c7a",
+  "en": "2 cards",
+  "where": [
+   "tpl span class=\"adsep\"></span>' : \"\"}${n2 ? "
+  ]
+ },
+ {
+  "id": "3953f9ddf9",
+  "en": "lab",
+  "where": [
+   "js ${esc(L1n(d))}\"><div class=\"swin${lab ? "
+  ]
+ },
+ {
+  "id": "1fd840594a",
+  "en": "This{t0}List",
+  "where": [
+   "js \"/></svg></span> <div class=\"swrw\">${lb("
+  ]
+ },
+ {
+  "id": "eabe30a8f2",
+  "en": "No ex",
+  "where": [
+   "js oin(\"\"); $(\"fdk\").innerHTML = [[\"noex\", "
+  ]
+ },
+ {
+  "id": "876d097a1a",
+  "en": "Decks whose main list has no Pokémon ex",
+  "where": [
+   "js $(\"fdk\").innerHTML = [[\"noex\", \"No ex\", "
+  ]
+ },
+ {
+  "id": "47bd6e0200",
+  "en": "Up in rank in the last 24 hours, or new in the list",
+  "where": [
+   "js o Pok\\u00e9mon ex\"], [\"rise\", \"Rising\", "
+  ]
+ },
+ {
+  "id": "6403f2b7eb",
+  "en": "New",
+  "where": [
+   "js  24 hours, or new in the list\"], [\"nw\", ",
+   "tpl deck); if (s == null || s < 0.3) return "
+  ]
+ },
+ {
+  "id": "3d506b84fd",
+  "en": "New in the list (the first time since the set came out, for 3 days) and Breakout decks (a rare deck with a top-8 finish at a big event)",
+  "where": [
+   "js rs, or new in the list\"], [\"nw\", \"New\", "
+  ]
+ },
+ {
+  "id": "67c1cc65e8",
+  "en": "Decks that use a card from",
+  "where": [
+   "tpl ew\", `${esc(data.set || \"set\")} cards`, "
+  ]
+ },
+ {
+  "id": "8235bdefc9",
+  "en": "the newest set",
+  "where": [
+   "js  from ${esc(data.setName || data.set || "
+  ]
+ },
+ {
+  "id": "7027cc19ac",
+  "en": "Search an event or deck",
+  "where": [
+   "js aceholder = lb ? \"Search a card\" : ev ? "
+  ]
+ },
+ {
+  "id": "26e86c0eb6",
+  "en": "{0}+ players",
+  "where": [
+   "tpl ).innerHTML = [50, 100, 200].map((n) => "
+  ]
+ },
+ {
+  "id": "23d7de0ce5",
+  "en": "Most often in a top 8",
+  "where": [
+   "js th ? `<span class=\"sgh\">${q ? \"Decks\" : "
+  ]
+ },
+ {
+  "id": "627c7add13",
+  "en": "top 8 in {0} event{1}",
+  "where": [
+   "tpl  in a top 8\"}</span>` + ids.map((id) => "
+  ]
+ },
+ {
+  "id": "46c45a8cc8",
+  "en": "· {0} win{1}",
+  "where": [
+   "tpl t${st[id].n > 1 ? \"s\" : \"\"}${st[id].w ? "
+  ]
+ },
+ {
+  "id": "9342efff03",
+  "en": "· {0} players",
+  "where": [
+   "tpl s=\"sgh\">Events</span>` + evs.map((e) => "
+  ]
+ },
+ {
+  "id": "3b4a56a122",
+  "en": "No deck or event found",
+  "where": [
+   "tpl ll></span></button>`).join(\"\") : \"\") || "
+  ]
+ },
+ {
+  "id": "d579d7b438",
+  "en": "{0}× {1}{2} · {3} top player{4}",
+  "where": [
+   "tpl .use.get(d.id); if (use) { const full = "
+  ]
+ },
+ {
+  "id": "da7ea14ea7",
+  "en": "{0}× · {1} player{2}",
+  "where": [
+   "tpl \".psub\").insertAdjacentHTML(\"afterend\", "
+  ]
+ },
+ {
+  "id": "50832fb363",
+  "en": "deck{0} without {1}.",
+  "where": [
+   "tpl (\"fnoneTxt\").textContent = pickW && n ? ",
+   "tpl  !n ? \"No decks match.\" : lbF.without ? "
+  ]
+ },
+ {
+  "id": "2781bff12a",
+  "en": "deck{0} use{1} {2}{3}.",
+  "where": [
+   "tpl ? \"s\" : \"\"} without ${wn}.` : pc && n ? "
+  ]
+ },
+ {
+  "id": "e903ded5bb",
+  "en": "Showing {0} of {1} decks.",
+  "where": [
+   "tpl lit(\"-\")[0].toUpperCase() : \"\"}.` : n ? ",
+   "tpl ${n > 1 ? \"\" : \"s\"} ${nm(lbF.card)}.` : "
+  ]
+ },
+ {
+  "id": "b5cd5cad73",
+  "en": "No {0} decks in the meta right now ({1}).",
+  "where": [
+   "tpl ata.more || 0)} decks.` : none.length ? "
+  ]
+ },
+ {
+  "id": "7c5b79c855",
+  "en": "No decks match.",
+  "where": [
+   "js  (${winLast().replace(/^in /, \"\")}).` : ",
+   "js  act); $(\"fnoneTxt\").textContent = !n ? "
+  ]
+ },
+ {
+  "id": "53a6ed6f32",
+  "en": "Promo card (not in a booster pack)",
+  "where": [
+   "tpl  PK.packs[k]); if (!set.release) return "
+  ]
+ },
+ {
+  "id": "b68d372d0c",
+  "en": "Get it from",
+  "where": [
+   "tpl Fusion Mega Mewtwo X or Pikachu\" return "
+  ]
+ },
+ {
+  "id": "0e4dc9ba50",
+  "en": "pack{0}",
+  "where": [
+   "tpl Fusion Mega Mewtwo X or Pikachu\" return "
+  ]
+ },
+ {
+  "id": "01182452b1",
+  "en": "In {t0}{0}{t1} meta deck{1}",
+  "where": [
+   "tpl  return; h.dataset.k = k; h.innerHTML = "
+  ]
+ },
+ {
+  "id": "aa13831f68",
+  "en": "· {t0}{0}%{t1} of top players",
+  "where": [
+   "tpl eck${n === 1 ? \"\" : \"s\"}${pct != null ? "
+  ]
+ },
+ {
+  "id": "2aac366ec5",
+  "en": "a swap version of",
+  "where": [
+   "tpl oin(\", \")}`); if (al.length) parts.push("
+  ]
+ },
+ {
+  "id": "bbccdf2efb",
+  "en": "the",
+  "where": [
+   "js p version of ${al.map((k) => (k === 1 ? "
+  ]
+ },
+ {
+  "id": "38b62be4bd",
+  "en": "list",
+  "where": [
+   "js map((k) => (k === 1 ? \"the \" + L1n(d) : "
+  ]
+ },
+ {
+  "id": "f0e3ef5401",
+  "en": "New in",
+  "where": [
+   "tpl ayers $(\"fsug\").innerHTML = nw.length ? "
+  ]
+ },
+ {
+  "id": "0f8c6e4e76",
+  "en": "· {0} share · {1} win",
+  "where": [
+   "tpl =\"sgh\">Decks</span>` + decks.map((d) => "
+  ]
+ },
+ {
+  "id": "cb7353567e",
+  "en": "Without",
+  "where": [
+   "tpl =\"sgh\">Cards</span>` + cards.map((c) => ",
+   "js  = null; fstate.q = \"\"; $(\"fq\").value = ",
+   "tpl ll></span></button>${c.decks.size < N ? "
+  ]
+ },
+ {
+  "id": "250cd1927b",
+  "en": "in almost every deck",
+  "where": [
+   "js , q)}${sgSet(c)}</b><small>${c.staple ? "
+  ]
+ },
+ {
+  "id": "cc8998d99b",
+  "en": "in {0} deck{1}",
+  "where": [
+   "tpl l>${c.staple ? \"in almost every deck\" : ",
+   "tpl {c.decks.size === N ? \"in every deck\" : "
+  ]
+ },
+ {
+  "id": "3262485e3a",
+  "en": "· {0} top player{1}",
+  "where": [
+   "tpl ck${c.decks.size > 1 ? \"s\" : \"\"}${c.u ? "
+  ]
+ },
+ {
+  "id": "518e73b3a3",
+  "en": "No deck or card found",
+  "where": [
+   "tpl hout</button></div>`).join(\"\") : \"\") || "
+  ]
+ },
+ {
+  "id": "33ce417454",
+  "en": "Loading…",
+  "where": [
+   "js ore-decks\"); $(\"moreBtn\").textContent = "
+  ]
+ },
+ {
+  "id": "cead6614c0",
+  "en": "min ago",
+  "where": [
+   "tpl { const hh = agoH(iso); return hh < 1 ? ",
+   "tpl nst ago = m < 2 ? \"just now\" : m < 60 ? ",
+   "tpl ); return m < 1 ? \"just now\" : m < 60 ? "
+  ]
+ },
+ {
+  "id": "761de442e3",
+  "en": "h ago",
+  "where": [
+   "tpl h.round(hh * 60))} min ago` : hh < 24 ? ",
+   "tpl w\" : m < 60 ? `${m} min ago` : h < 24 ? ",
+   "tpl m < 60 ? `${m} min ago` : m < 48 * 60 ? "
+  ]
+ },
+ {
+  "id": "2c552bbeec",
+  "en": "d ago",
+  "where": [
+   "tpl : hh < 24 ? `${Math.round(hh)} h ago` : "
+  ]
+ },
+ {
+  "id": "da24830f1f",
+  "en": "Yesterday",
+  "where": [
+   "js iso === f(t) ? \"Today\" : iso === f(y) ? "
+  ]
+ },
+ {
+  "id": "9da8f1fa7d",
+  "en": "place",
+  "where": [
+   "tpl ; }; const placeTab = (pl) => pl <= 3 ? "
+  ]
+ },
+ {
+  "id": "045b64f6a3",
+  "en": "Top 4",
+  "where": [
+   "js : `<span class=\"dnote ptab\">${pl <= 4 ? "
+  ]
+ },
+ {
+  "id": "55d0b1f10a",
+  "en": "Top 8",
+  "where": [
+   "js e ptab\">${pl <= 4 ? \"Top 4\" : pl <= 8 ? ",
+   "tpl \")}</span></button>`; const t8 = wide ? ",
+   "js ${s.querySelectorAll(\".ek8\").length}` : "
+  ]
+ },
+ {
+  "id": "532297d7bc",
+  "en": "Top 16",
+  "where": [
+   "js Top 4\" : pl <= 8 ? \"Top 8\" : pl <= 16 ? "
+  ]
+ },
+ {
+  "id": "8eaf38d66f",
+  "en": "Top 32",
+  "where": [
+   "js  <= 8 ? \"Top 8\" : pl <= 16 ? \"Top 16\" : "
+  ]
+ },
+ {
+  "id": "9fcb4b1bfc",
+  "en": "No lists stored for this event.",
+  "where": [
+   "js  - b.pl), n = Ls.length; if (!n) return ",
+   "tpl  share in this event's top ${n}.</p>` : "
+  ]
+ },
+ {
+  "id": "1eb2b5b879",
+  "en": "top 8{0}",
+  "where": [
+   "tpl  1; }); }); const fm = (id) => o8[id] ? "
+  ]
+ },
+ {
+  "id": "4eb0d455b4",
+  "en": "only here",
+  "where": [
+   "js  < 0.3 ? '<span class=\"ekfm\"></span>' : "
+  ]
+ },
+ {
+  "id": "3056cb84f8",
+  "en": "or better made the top {0} · {t0}Limitless ↗",
+  "where": [
+   "tpl ce((s, x) => s + x[1], 0); const head = "
+  ]
+ },
+ {
+  "id": "8d7bf5bf13",
+  "en": "Others",
+  "where": [
+   "tpl c}</span>`).join(\"\")}${ens.length > 4 ? "
+  ]
+ },
+ {
+  "id": "1385294543",
+  "en": "×N: share here vs {0} · top 8s at other events",
+  "where": [
+   "tpl \")}</span></button>`; const t8 = wide ? "
+  ]
+ },
+ {
+  "id": "24ecb68c93",
+  "en": "Show all {0} lists",
+  "where": [
+   "tpl slice(0, 8).map(row).join(\"\")}${n > 8 ? ",
+   "tpl ontent = s.classList.contains(\"ekt8\") ? "
+  ]
+ },
+ {
+  "id": "f3dc433d0b",
+  "en": "Won by{t0} {0} ·",
+  "where": [
+   "tpl s = sh(W.deck); const won = wide ? \"\" : "
+  ]
+ },
+ {
+  "id": "fac60a2133",
+  "en": "· {t0}only {0}% share",
+  "where": [
+   "tpl sc(W.sc || \"\")}${ws != null && ws < 3 ? "
+  ]
+ },
+ {
+  "id": "2b286f6b1e",
+  "en": "Vs the meta",
+  "where": [
+   "tpl st vs = better.length || worse.length ? "
+  ]
+ },
+ {
+  "id": "166c895601",
+  "en": "top {0} vs",
+  "where": [
+   "tpl st vs = better.length || worse.length ? "
+  ]
+ },
+ {
+  "id": "2eb15e8dda",
+  "en": "Did better",
+  "where": [
+   "tpl winWk()}</span></div> ${better.length ? "
+  ]
+ },
+ {
+  "id": "133724e26e",
+  "en": "lists · best {t0}{0}{t1} · {1}% share",
+  "where": [
+   "tpl better</p>${better.map((id) => vrow(id, "
+  ]
+ },
+ {
+  "id": "69b8c08eae",
+  "en": "Did worse",
+  "where": [
+   "tpl )}`)).join(\"\")}` : \"\"} ${worse.length ? "
+  ]
+ },
+ {
+  "id": "7415782d70",
+  "en": "of ~{0}",
+  "where": [
+   "tpl x)} lists expected, got <b>${o.g}</b>`, "
+  ]
+ },
+ {
+  "id": "cbd7f79d44",
+  "en": "Cards to look at",
+  "where": [
+   "tpl nst cards = tech.length || ncs.length ? "
+  ]
+ },
+ {
+  "id": "b44a861262",
+  "en": "in the {0}-place",
+  "where": [
+   "tpl </b></div>${tech.slice(0, 3).map((t) => "
+  ]
+ },
+ {
+  "id": "21c1b89658",
+  "en": "in {0}% of its top players’ lists",
+  "where": [
+   "tpl  ${esc(dn(t.l.deck))}</small><i>${t.u ? "
+  ]
+ },
+ {
+  "id": "ffd5f6df10",
+  "en": "in no other top player’s list",
+  "where": [
+   "tpl s top players\\u2019 lists ${winWk()}` : "
+  ]
+ },
+ {
+  "id": "96980908d1",
+  "en": "cards{t0} in the top {0} (lists):",
+  "where": [
+   "tpl an></button>`).join(\"\")} ${ncs.length ? "
+  ]
+ },
+ {
+  "id": "2861d0ece7",
+  "en": "Decks in the top",
+  "where": [
+   "tpl est[b]), mx = cnt[dk[0]]; const decks = ",
+   "tpl h3>${top} <div class=\"dkv2 ekv2\">${fold("
+  ]
+ },
+ {
+  "id": "da2ea5bee8",
+  "en": "lists",
+  "where": [
+   "tpl est[b]), mx = cnt[dk[0]]; const decks = "
+  ]
+ },
+ {
+  "id": "de18b941e8",
+  "en": "Show all {0} decks",
+  "where": [
+   "tpl ></button>`).join(\"\")}${dk.length > 6 ? ",
+   "tpl ll\"); s.textContent = o ? \"Show less\" : ",
+   "tpl erySelectorAll(\".ek8\").length} lists` : "
+  ]
+ },
+ {
+  "id": "faa9e7e7ef",
+  "en": "Started",
+  "where": [
+   "tpl ers).length + 1; const when = `${e.ts ? ",
+   "js {esc(e.name)}</b><span>${[st && (e.ts ? "
+  ]
+ },
+ {
+  "id": "a5916d4b4b",
+  "en": "&middot; added {0}, after it ended",
+  "where": [
+   "tpl ${tLoc(e.ts)}` : fmtDate(e.dt)}${e.at ? "
+  ]
+ },
+ {
+  "id": "392feef07c",
+  "en": "Players",
+  "where": [
+   "tpl )}, after it ended` : \"\"}`; const top = "
+  ]
+ },
+ {
+  "id": "a138db548c",
+  "en": "of {0} events",
+  "where": [
+   "tpl )}, after it ended` : \"\"}`; const top = "
+  ]
+ },
+ {
+  "id": "ad0f717c5c",
+  "en": "in the top",
+  "where": [
+   "tpl )}, after it ended` : \"\"}`; const top = "
+  ]
+ },
+ {
+  "id": "dde3707865",
+  "en": "Above meta",
+  "where": [
+   "tpl )}, after it ended` : \"\"}`; const top = "
+  ]
+ },
+ {
+  "id": "dc0d22645d",
+  "en": "2&times; meta share",
+  "where": [
+   "tpl )}, after it ended` : \"\"}`; const top = "
+  ]
+ },
+ {
+  "id": "c3476ebd0f",
+  "en": "the decks",
+  "where": [
+   "js ass=\"dksech\"><b>${t} ${hib(k === \"ed\" ? "
+  ]
+ },
+ {
+  "id": "78483d7847",
+  "en": "the records",
+  "where": [
+   "js b>${t} ${hib(k === \"ed\" ? \"the decks\" : "
+  ]
+ },
+ {
+  "id": "7c0a25c06e",
+  "en": "up",
+  "where": [
+   "js ])}</small></span><span class=\"edm${u ? "
+  ]
+ },
+ {
+  "id": "168e4932a6",
+  "en": "Deck",
+  "where": [
+   "tpl pan></button>`; }; const deckBody = n ? ",
+   "tpl ks[v.deck]) || {}; if (t) t.outerHTML = "
+  ]
+ },
+ {
+  "id": "57c9502a7d",
+  "en": "Lists",
+  "where": [
+   "tpl pan></button>`; }; const deckBody = n ? "
+  ]
+ },
+ {
+  "id": "30d4653f8e",
+  "en": "▲ = at least 2&times; its meta share in this event's top {0}.",
+  "where": [
+   "tpl pan></button>`; }; const deckBody = n ? "
+  ]
+ },
+ {
+  "id": "f004f8b2da",
+  "en": "One row per number of wins, one dot per player. Blue: the top 8.",
+  "where": [
+   "tpl .sort((a, b) => b - a); const recBody = "
+  ]
+ },
+ {
+  "id": "ba6d08e61d",
+  "en": "Full standings on Limitless {t0}↗",
+  "where": [
+   "tpl {evV2(e, T, st2, false)}</div>`; return "
+  ]
+ },
+ {
+  "id": "e51c55255b",
+  "en": "Records",
+  "where": [
+   "js , deckBody, \"ed\", enL)} ${n >= 8 ? fold("
+  ]
+ },
+ {
+  "id": "1bdcee8370",
+  "en": "{0}–{1} wins",
+  "where": [
+   "tpl  \"ed\", enL)} ${n >= 8 ? fold(\"Records\", "
+  ]
+ },
+ {
+  "id": "79f4d6da67",
+  "en": "No events {0} yet.",
+  "where": [
+   "tpl || !EV.events.length) { box.innerHTML = "
+  ]
+ },
+ {
+  "id": "9eaea27829",
+  "en": "An event shows here {t0}after it ends{t1}, usually a few hours after it starts. It is listed under the day it was played (your time), so a new event can show under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.",
+  "where": [
+   "tpl ice(0, 4); const skipTip = ii(\"events\", "
+  ]
+ },
+ {
+  "id": "f2335414bf",
+  "en": "multi-deck event{0} (players bring more than one deck) {1} not listed: their results do not show which deck won each match.",
+  "where": [
+   "tpl o;added N h ago&rdquo;.</p>${skip > 0 ? "
+  ]
+ },
+ {
+  "id": "1d50bf1d8b",
+  "en": "Winners",
+  "where": [
+   "tpl Sh ? \"\" : keep ? '<i id=\"evshP\"></i>' : "
+  ]
+ },
+ {
+  "id": "876870e87a",
+  "en": "last {0} events{1}",
+  "where": [
+   "tpl Sh ? \"\" : keep ? '<i id=\"evshP\"></i>' : "
+  ]
+ },
+ {
+  "id": "a30fa0929b",
+  "en": "top 8 finish{0}",
+  "where": [
+   "tpl { const on = evWin === t.w.deck; return "
+  ]
+ },
+ {
+  "id": "10c23975d7",
+  "en": "win{0}",
+  "where": [
+   "tpl { const on = evWin === t.w.deck; return "
+  ]
+ },
+ {
+  "id": "ddde1bcb75",
+  "en": "Most wins",
+  "where": [
+   "tpl l.length > 1 && !q && !evMin && !evDk ? "
+  ]
+ },
+ {
+  "id": "22071c6d00",
+  "en": "tap a deck to see its wins",
+  "where": [
+   "tpl l.length > 1 && !q && !evMin && !evDk ? "
+  ]
+ },
+ {
+  "id": "9843ef2356",
+  "en": "All events{t0} &middot; {0} &middot; {1} players",
+  "where": [
+   "tpl </div></div>` : \"\"; const cnt = !anyF ? "
+  ]
+ },
+ {
+  "id": "f1fccaaccd",
+  "en": "Biggest",
+  "where": [
+   "tpl ing(\"en-US\")} players</b></span>${big ? "
+  ]
+ },
+ {
+  "id": "109086774e",
+  "en": "Show all events",
+  "where": [
+   "tpl t strip = `${shelf}${mw}${cnt} ${anyF ? "
+  ]
+ },
+ {
+  "id": "22118a1f44",
+  "en": "event{0}",
+  "where": [
+   "tpl {anyF ? `<p class=\"evnote\">${L.length ? "
+  ]
+ },
+ {
+  "id": "e339ba737a",
+  "en": "No events",
+  "where": [
+   "js gth} event${L.length > 1 ? \"s\" : \"\"}` : "
+  ]
+ },
+ {
+  "id": "11d2a517c8",
+  "en": "won by",
+  "where": [
+   "tpl  1 ? \"s\" : \"\"}` : \"No events\"}${evWin ? "
+  ]
+ },
+ {
+  "id": "301e37b6c7",
+  "en": "with {0} in the top 8",
+  "where": [
+   "tpl ins[evWin].w.name : \"\")}` : \"\"}${evDk ? "
+  ]
+ },
+ {
+  "id": "58197254f8",
+  "en": "with {0}+ players",
+  "where": [
+   "tpl dn(evDk))} in the top 8` : \"\"}${evMin ? "
+  ]
+ },
+ {
+  "id": "6196bbb07c",
+  "en": "for &ldquo;{0}&rdquo;",
+  "where": [
+   "tpl  ${evMin}+ players` : \"\"}${q && !evDk ? "
+  ]
+ },
+ {
+  "id": "1d0730cf62",
+  "en": "Just added",
+  "where": [
+   "tpl `; const justL = just.length && !anyF ? "
+  ]
+ },
+ {
+  "id": "172415f02e",
+  "en": "added",
+  "where": [
+   "tpl const fresh = e.at && agoH(e.at) < 24 ? "
+  ]
+ },
+ {
+  "id": "33bd43999f",
+  "en": "players{0}",
+  "where": [
+   "tpl ed ${addAgo(e.at)}</span>` : \"\"; return "
+  ]
+ },
+ {
+  "id": "3a46f4e05d",
+  "en": "Event stats",
+  "where": [
+   "tpl ed ${addAgo(e.at)}</span>` : \"\"; return "
+  ]
+ },
+ {
+  "id": "f0c4717b8a",
+  "en": "That event is not in the list anymore: it shows the events {0}.",
+  "where": [
+   "tpl ion.pathname + location.search); notice("
+  ]
+ },
+ {
+  "id": "c7c4c1e950",
+  "en": "&middot; {t0}{0}{t1} players &middot;",
+  "where": [
+   "tpl vShEl, SL, { sel: \".t1s-c\", lab: (e) => "
+  ]
+ },
+ {
+  "id": "49a26dcc49",
+  "en": "of {0} ·",
+  "where": [
+   "tpl pl: v.place, ev: e.name, dt: e.dt, evt: "
+  ]
+ },
+ {
+  "id": "7046e8f2dd",
+  "en": "The lists did not load. Close and open the event again.",
+  "where": [
+   "js ; p.querySelector(\".slide\").innerHTML = "
+  ]
+ },
+ {
+  "id": "55b1c3fa21",
+  "en": "No public lists for this event.",
+  "where": [
+   "js { p.querySelector(\".slide\").innerHTML = "
+  ]
+ },
+ {
+  "id": "f314effecd",
+  "en": "Full standings on Limitless",
+  "where": [
+   "tpl iew (like the deck lists) p.innerHTML = "
+  ]
+ },
+ {
+  "id": "e9efe2aea5",
+  "en": "pd",
+  "where": [
+   "js  k) => `<button class=\"dot${v.pl <= 3 ? "
+  ]
+ },
+ {
+  "id": "cae0435c41",
+  "en": "Top",
+  "where": [
+   "tpl Selector(\".dksech b\").textContent = o ? "
+  ]
+ },
+ {
+  "id": "0575b7b5d6",
+  "en": "days left",
+  "where": [
+   "tpl 6e5)); return ms >= 2 * 864e5 ? (long ? "
+  ]
+ },
+ {
+  "id": "7c89708fa9",
+  "en": "hour{0} left",
+  "where": [
+   "tpl  ? `${d} days left` : `${d}d`) : long ? "
+  ]
+ },
+ {
+  "id": "b56d5ef151",
+  "en": "Limited Battle pick",
+  "where": [
+   "js c })), note: LB.notes[id] || null, evt: "
+  ]
+ },
+ {
+  "id": "f191cd2c1d",
+  "en": "Limited-time event",
+  "where": [
+   "tpl e grey time chip) const lbRowIn = () => "
+  ]
+ },
+ {
+  "id": "ceeaa744c4",
+  "en": "Limited",
+  "where": [
+   "tpl  lbBanShow(); } if (on) { b.innerHTML = "
+  ]
+ },
+ {
+  "id": "a7f8e7cc0d",
+  "en": "just now",
+  "where": [
+   "js th.round(m / 1440); const ago = m < 2 ? ",
+   "js  - new Date(t)) / 6e4)); return m < 1 ? "
+  ]
+ },
+ {
+  "id": "801011800f",
+  "en": "day{0} ago",
+  "where": [
+   "tpl ${m} min ago` : h < 24 ? `${h} h ago` : "
+  ]
+ },
+ {
+  "id": "a46c612784",
+  "en": "Cards you can use",
+  "where": [
+   "tpl inute: \"2-digit\" })}`; const promoTip = "
+  ]
+ },
+ {
+  "id": "206374cef8",
+  "en": "Only cards from {t0}Dual Fusion{t1} (C1), the {t2}Promo-C Vol. 1{t3} pack of this event, and these 7 shop promos:",
+  "where": [
+   "tpl inute: \"2-digit\" })}`; const promoTip = "
+  ]
+ },
+ {
+  "id": "b8be7266fc",
+  "en": "{0}Limited-time event",
+  "where": [
+   "tpl \")}.</p>`; lbOpen = -1; box.innerHTML = "
+  ]
+ },
+ {
+  "id": "f83481bd50",
+  "en": "– {0} (your time)",
+  "where": [
+   "tpl \")}.</p>`; lbOpen = -1; box.innerHTML = "
+  ]
+ },
+ {
+  "id": "893572be77",
+  "en": "Dual Fusion, Promo-C Vol. 1 and 7 shop promos",
+  "where": [
+   "tpl \")}.</p>`; lbOpen = -1; box.innerHTML = "
+  ]
+ },
+ {
+  "id": "1761c5f76c",
+  "en": "Hand-picked decks, not tournament data. This view goes away when the event ends.",
+  "where": [
+   "tpl \")}.</p>`; lbOpen = -1; box.innerHTML = "
+  ]
+ },
+ {
+  "id": "5351e118ae",
+  "en": "Updated {0}.{t0} Ranked best first, from our testing so far (it can change). Deck notes made with help from {t1}GameWith{t2}.",
+  "where": [
+   "tpl \")}.</p>`; lbOpen = -1; box.innerHTML = "
+  ]
+ },
+ {
+  "id": "eb7de7b83e",
+  "en": "cards you can use",
+  "where": [
+   "js , Promo-C Vol. 1 and 7 shop promos ${ii("
+  ]
+ },
+ {
+  "id": "e710900662",
+  "en": "Hand-picked",
+  "where": [
+   "tpl eWith</a>.</p>` + lbDecks.map((d, k) => "
+  ]
+ },
+ {
+  "id": "5d37aefd1f",
+  "en": "deck{0} use{1} {2}.",
+  "where": [
+   "tpl thout ${nm(lbF.without)}.` : lbF.card ? "
+  ]
+ },
+ {
+  "id": "2a231249ff",
+  "en": "Cards in these decks",
+  "where": [
+   "tpl n)).slice(0, 20); $(\"fsug\").innerHTML = "
+  ]
+ },
+ {
+  "id": "c5406d81f3",
+  "en": "&middot; most used first",
+  "where": [
+   "tpl n)).slice(0, 20); $(\"fsug\").innerHTML = "
+  ]
+ },
+ {
+  "id": "effb665832",
+  "en": "in every deck",
+  "where": [
+   "js n, q)}</b><small>${c.decks.size === N ? "
+  ]
+ },
+ {
+  "id": "6cb6084c7f",
+  "en": "Deck List ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
+  "where": [
+   "tpl decks/<deck id>/ const RDTITLE = (d) => "
+  ]
+ },
+ {
+  "id": "b812e498b4",
+  "en": "Pack: Meta Cards & Decks ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
+  "where": [
+   "tpl  pkSub(x) : \"\"); const RPTITLE = (x) => "
+  ]
+ },
+ {
+  "id": "1b6d32d996",
+  "en": "{0}: Which Meta Decks Use It ({1}) – Pokémon TCG Pocket | Pocket Meta QR",
+  "where": [
+   "tpl  m[1] : null; }; const RCTITLE = (c) => "
+  ]
+ },
+ {
+  "id": "e491f9748c",
+  "en": "is not in this week’s meta decks{0}.",
+  "where": [
+   "tpl ame ? j.name : id.toUpperCase(); notice("
+  ]
+ },
+ {
+  "id": "262e0e8a01",
+  "en": "(last seen {0})",
+  "where": [
+   "tpl n this week\\u2019s meta decks${j.seen ? ",
+   "tpl > is not in this week\\u2019s meta${sn ? "
+  ]
+ },
+ {
+  "id": "61ac98d6b6",
+  "en": "{0}/decks/{1}/",
+  "where": [
+   "tpl a.decks.find((x) => x.id === id); url = "
+  ]
+ },
+ {
+  "id": "add3a889ec",
+  "en": "deck – Pocket Meta QR",
+  "where": [
+   "tpl l = `${S}/decks/${id}/`; if (d) title = "
+  ]
+ },
+ {
+  "id": "da8f262b50",
+  "en": "{0}: top lists – Pocket Meta QR",
+  "where": [
+   "tpl  `${S}/events/#e=${id}`; if (e) title = "
+  ]
+ },
+ {
+  "id": "497658a729",
+  "en": "{0}/packs/{1}/",
+  "where": [
+   "tpl  && PKV.find((y) => y.id === id); url = "
+  ]
+ },
+ {
+  "id": "7f8b039a83",
+  "en": "pack – Pocket Meta QR",
+  "where": [
+   "tpl l = `${S}/packs/${id}/`; if (x) title = "
+  ]
+ },
+ {
+  "id": "d3781a19b2",
+  "en": "Could not copy:",
+  "where": [
+   "js tch (err) {} toast(ok ? \"Link copied\" : "
+  ]
+ },
+ {
+  "id": "7d340494ae",
+  "en": "deck",
+  "where": [
+   "js LE(c) : RTITLE[s]; setHead(d ? d.name + "
+  ]
+ },
+ {
+  "id": "6acd621280",
+  "en": "pack",
+  "where": [
+   "js (d ? d.name + \" deck\" : x ? pkName(x) + "
+  ]
+ },
+ {
+  "id": "8f6b90919f",
+  "en": ": decks that use it",
+  "where": [
+   "js \" : x ? pkName(x) + \" pack\" : c ? c.n + "
+  ]
+ },
+ {
+  "id": "bf3d48422f",
+  "en": "Pokémon TCG Pocket Meta Decks ({0}) with QR Codes | Pocket Meta QR",
+  "where": [
+   "tpl v 2026\" const RTITLES = { decks: (m) => "
+  ]
+ },
+ {
+  "id": "d6bb22ac07",
+  "en": "Pokémon TCG Pocket Tournament Results ({0}) | Pocket Meta QR",
+  "where": [
+   "tpl Codes | Pocket Meta QR`, events: (m) => "
+  ]
+ },
+ {
+  "id": "8799002486",
+  "en": "Which Pokémon TCG Pocket Pack to Open ({0}) | Pocket Meta QR",
+  "where": [
+   "tpl (${m}) | Pocket Meta QR`, packs: (m) => "
+  ]
+ },
+ {
+  "id": "68495946bf",
+  "en": "About & FAQ: How to Import Pokémon TCG Pocket Decks by QR | Pocket Meta QR",
+  "where": [
+   "js  (${m}) | Pocket Meta QR`, about: () => "
+  ]
+ },
+ {
+  "id": "f19c988b3f",
+  "en": "Decks with QR Codes | Pocket Meta QR",
+  "where": [
+   "tpl by QR | Pocket Meta QR\", limited: () => "
+  ]
+ },
+ {
+  "id": "b247ad081c",
+  "en": "This week’s Pokémon TCG Pocket decks",
+  "where": [
+   "js cks)(RMON()) }); const RHEAD = { decks: "
+  ]
+ },
+ {
+  "id": "3d02399826",
+  "en": "Latest Pokémon TCG Pocket tournaments",
+  "where": [
+   "js Pok\\u00e9mon TCG Pocket decks\", events: "
+  ]
+ },
+ {
+  "id": "faf7c78e36",
+  "en": "Booster packs for this week’s meta",
+  "where": [
+   "js 00e9mon TCG Pocket tournaments\", packs: "
+  ]
+ },
+ {
+  "id": "8bedfe5089",
+  "en": "About and FAQ",
+  "where": [
+   "js limited: \"Limited Battle decks\", about: "
+  ]
+ },
+ {
+  "id": "af20be5975",
+  "en": "is not in this week’s meta{0}.",
+  "where": [
+   "tpl \"short\", day: \"numeric\" }) : \"\"; notice("
+  ]
+ },
+ {
+  "id": "479fe3b7a9",
+  "en": "Loading events&hellip;",
+  "where": [
+   "js ents\"); if (!EV) { $(\"evl\").innerHTML = "
+  ]
+ },
+ {
+  "id": "987f6bde2e",
+  "en": "Sample Set",
+  "where": [
+   "js SOString().slice(0, 10); data.setName = "
+  ]
+ },
+ {
+  "id": "df833fe88d",
+  "en": "Last 7 days",
+  "where": [
+   "js ; }; const win = data.window === \"7d\" ? "
+  ]
+ },
+ {
+  "id": "012deaa0d8",
+  "en": "Last 3 days",
+  "where": [
+   "js  \"Last 7 days\" : data.window === \"3d\" ? "
+  ]
+ },
+ {
+  "id": "6a589c299f",
+  "en": "Whole set",
+  "where": [
+   "js \"Last 3 days\" : data.window === \"set\" ? "
+  ]
+ },
+ {
+  "id": "82d50d9042",
+  "en": "events",
+  "where": [
+   "tpl esc(data.setName)}</span>` : \"\"}`, sm ? "
+  ]
+ },
+ {
+  "id": "b6aae25ceb",
+  "en": "Updated to the newest data",
+  "where": [
+   "js { if (!id) scrollTo(0, +rs || 0); toast("
+  ]
+ },
+ {
+  "id": "232a936a05",
+  "en": "Deck data did not load.",
+  "where": [
+   "js }) .catch(() => { $(\"meta\").innerHTML = "
+  ]
+ },
+ {
+  "id": "c06cdf65c7",
+  "en": "Deck data did not load. Reload the page to try again.",
+  "where": [
+   "js ot load.</span>\"; $(\"list\").innerHTML = "
+  ]
+ },
+ {
+  "id": "9259f0b1c8",
+  "en": "Live tournament data",
+  "where": [
+   "tpl && e.dt ? evDay(e.dt) : \"\"; const tip = "
+  ]
+ },
+ {
+  "id": "b2bc0c005f",
+  "en": "Checked",
+  "where": [
+   "tpl && e.dt ? evDay(e.dt) : \"\"; const tip = "
+  ]
+ },
+ {
+  "id": "f4b50527b0",
+  "en": "Last check",
+  "where": [
+   "tpl && e.dt ? evDay(e.dt) : \"\"; const tip = "
+  ]
+ },
+ {
+  "id": "75d4a70295",
+  "en": "Next check",
+  "where": [
+   "tpl && e.dt ? evDay(e.dt) : \"\"; const tip = "
+  ]
+ },
+ {
+  "id": "24ea1f77f4",
+  "en": "Last change",
+  "where": [
+   "tpl && e.dt ? evDay(e.dt) : \"\"; const tip = "
+  ]
+ },
+ {
+  "id": "e16297c400",
+  "en": "Checked every hour. The numbers change only when a new event is added. Times are in your time zone.",
+  "where": [
+   "tpl && e.dt ? evDay(e.dt) : \"\"; const tip = "
+  ]
+ },
+ {
+  "id": "0fcd28ef91",
+  "en": "checked &lt; 2 h ago",
+  "where": [
+   "tpl && e.dt ? evDay(e.dt) : \"\"; const tip = "
+  ]
+ },
+ {
+  "id": "b6afb7ea54",
+  "en": "next check in about {0} min",
+  "where": [
+   "tpl atedAt)}</b>${fresh ? `<span>${nextIn ? "
+  ]
+ },
+ {
+  "id": "a1c9ba95b2",
+  "en": "next check any minute",
+  "where": [
+   "js ? `next check in about ${nextIn} min` : "
+  ]
+ },
+ {
+  "id": "df39f61cf8",
+  "en": "Newest event",
+  "where": [
+   "tpl dAt) : \"&mdash;\"}</b></div></div> ${e ? "
+  ]
+ },
+ {
+  "id": "569d5ce370",
+  "en": "Open in Latest Events &rsaquo;",
+  "where": [
+   "tpl dAt) : \"&mdash;\"}</b></div></div> ${e ? "
+  ]
+ },
+ {
+  "id": "75ab30ea65",
+  "en": "Added to the site",
+  "where": [
+   "tpl an).join(\" &middot; \")}</span> ${e.at ? "
+  ]
+ },
+ {
+  "id": "65c821a596",
+  "en": "Live",
+  "where": [
+   "tpl {dot}\" aria-hidden=\"true\"></i>${fresh ? "
+  ]
+ },
+ {
+  "id": "8e7fc3f8ed",
+  "en": "New set: {0}{t0} came out {1}. Until {2}, the numbers also include events from before it.",
+  "where": [
+   "tpl te(now).toISOString().slice(0, 10); t = "
+  ]
+ },
+ {
+  "id": "7d88e1c5ea",
+  "en": "+{0} event{1}",
+  "where": [
+   "tpl nd) || off) return; const parts = [ne ? "
+  ]
+ },
+ {
+  "id": "90499d9de4",
+  "en": "new deck{0}{t0} in the top 10",
+  "where": [
+   "tpl ent${ne > 1 ? \"s\" : \"\"}</b>` : \"\", nd ? "
+  ]
+ },
+ {
+  "id": "d5f3362f81",
+  "en": "Since your last visit",
+  "where": [
+   "tpl e top 10` : \"\"].filter(Boolean); notice("
+  ]
+ },
+ {
+  "id": "635acf28be",
+  "en": "New data &middot; {t0}Refresh",
+  "where": [
+   "js ssName = \"toast newp on\"; b.innerHTML = "
+  ]
+ },
+ {
+  "id": "4de41ef9aa",
+  "en": "Tap {t0}Share{t1} {0} in the address bar (top right).",
+  "where": [
+   "tpl nt; const iosShare = /CriOS/.test(ua) ? "
+  ]
+ },
+ {
+  "id": "7e29279cfb",
+  "en": "Tap the menu {t0}&middot;&middot;&middot;{t1}, then {t2}Share{t3} {0}.",
+  "where": [
+   "tpl bar (top right).` : /EdgiOS/.test(ua) ? "
+  ]
+ },
+ {
+  "id": "317720e9e4",
+  "en": "Tap the menu {t0}&#9776;{t1}, then {t2}Share{t3} {0}.",
+  "where": [
+   "tpl are</b> ${SHARE}.` : /FxiOS/.test(ua) ? "
+  ]
+ },
+ {
+  "id": "a452ac820f",
+  "en": "Tap {t0}Share{t1} {0} (Safari: at the bottom, or at the top on iPad).",
+  "where": [
+   "tpl /(DuckDuckGo|OPT|YaBrowser)/.test(ua) ? "
+  ]
+ },
+ {
+  "id": "bc9f609de6",
+  "en": "Open your browser&rsquo;s {t0}Share{t1} {0} menu.",
+  "where": [
+   "tpl  the bottom, or at the top on iPad).` : "
+  ]
+ },
+ {
+  "id": "f98462c968",
+  "en": "Scroll down and tap {t0}Add to Home Screen{t1}.",
+  "where": [
+   "tpl b> ${SHARE} menu.`; const steps = ios ? "
+  ]
+ },
+ {
+  "id": "3cc8e39b82",
+  "en": "Tap {t0}Add{t1}.",
+  "where": [
+   "tpl b> ${SHARE} menu.`; const steps = ios ? "
+  ]
+ },
+ {
+  "id": "ebbb7e9b8b",
+  "en": "Works in Safari, Chrome, Edge, Firefox and most other browsers (iOS 16.4 or later).",
+  "where": [
+   "tpl b> ${SHARE} menu.`; const steps = ios ? "
+  ]
+ },
+ {
+  "id": "c743e0f584",
+  "en": "Tap the Chrome menu {t0}&#8942;{t1} (top right).",
+  "where": [
+   "tpl s (iOS 16.4 or later).</p>` : android ? "
+  ]
+ },
+ {
+  "id": "18e4a0dbe7",
+  "en": "Tap {t0}Add to Home screen{t1} or {t2}Install app{t3}.",
+  "where": [
+   "tpl s (iOS 16.4 or later).</p>` : android ? "
+  ]
+ },
+ {
+  "id": "8c1c189664",
+  "en": "Tap {t0}Install{t1} or {t2}Add{t3}.",
+  "where": [
+   "tpl s (iOS 16.4 or later).</p>` : android ? "
+  ]
+ },
+ {
+  "id": "3854e1a3ed",
+  "en": "Chrome / Edge:{t0} click the install icon at the right end of the address bar, or menu &rarr; {t1}Install Pocket Meta QR{t2}.",
+  "where": [
+   "tpl Install</b> or <b>Add</b>.</li></ol>` : "
+  ]
+ },
+ {
+  "id": "56ded40877",
+  "en": "Safari on Mac:{t0} File &rarr; {t1}Add to Dock{t2}.",
+  "where": [
+   "tpl Install</b> or <b>Add</b>.</li></ol>` : "
+  ]
+ },
+ {
+  "id": "83a0cd42f1",
+  "en": "Open Pocket Meta QR with one tap, full screen like an app. It refreshes itself when you come back.",
+  "where": [
+   "tpl </li></ol>`; $(\"homeBtn\").dataset.tip = "
+  ]
+ },
+ {
+  "id": "b0638c43ba",
+  "en": "No download, no sign-up.",
+  "where": [
+   "tpl </li></ol>`; $(\"homeBtn\").dataset.tip = "
+  ]
+ }
+]

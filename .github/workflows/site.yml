@@ -22,6 +22,7 @@ on:
       - pipeline/images_i18n.py
       - preview/**
       - pipeline/i18n_names.mjs
+      - i18n/**
       - package.json
       - package-lock.json
       - .github/workflows/site.yml
@@ -109,21 +110,11 @@ jobs:
           rm -f public/c/.width public/p/.width
           # R30: shared app.<hash>.css/.js (the previous build's files kept from cache/app), deck pages + their record
           node pipeline/page.mjs site/index.html public/index.html --prev cache/app --seen data/decks_seen.json --cards-seen data/cards_seen.json
-          # Nov 23: test page /preview/ = the live page + preview/i18n_patch.py (card images and names in other languages;
-          # the patch is made again on every build, so the preview follows the live page). Not linked, noindex, not in
-          # the sitemap. preview/head.html (<base href="/">, noindex, keeps "#" addresses on /preview/): data and images load from
-          # the site root, so its app.* files go there too.
+          # Nov 23: test pages /preview/ (+ /preview/de/, /preview/ja/) = the live page + languages: preview/build.sh
+          # (card images, names and texts; i18n/<lang>.json). Not linked, noindex, not in the sitemap.
           # A problem here must never stop the live deploy: it is only a warning.
-          if [ -f preview/i18n_patch.py ]; then
-            { rm -rf /tmp/pv && mkdir -p /tmp/pv public/preview public/i18n &&
-              python preview/i18n_patch.py site/index.html /tmp/pv/src.html &&
-              node pipeline/page.mjs /tmp/pv/src.html /tmp/pv/index.html --no-routes &&
-              cp /tmp/pv/app.* public/ &&
-              node -e 'const f = require("fs"), h = f.readFileSync("preview/head.html", "utf8").trim();
-                f.writeFileSync("public/preview/index.html", f.readFileSync("/tmp/pv/index.html", "utf8").replace("<head>", "<head>" + h));' &&
-              cp preview/i18n/names.*.json public/i18n/ &&
-              if [ -d site/i18n ]; then cp -r site/i18n/. public/i18n/; fi
-            } || { rm -rf public/preview; echo "::warning title=Preview::the /preview/ page was not made (see log)"; }
+          if [ -f preview/build.sh ]; then
+            bash preview/build.sh public || { rm -rf public/preview; echo "::warning title=Preview::the /preview/ pages were not made (see log)"; }
           fi
           # Static files from the UI chat (R7a): favicon, app icons, manifest, link preview image, robots.txt,
           # sitemap.xml. Served from the site root, next to index.html.
