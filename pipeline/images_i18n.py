@@ -199,9 +199,11 @@ def sync(args):
     if not todo:
         print("i18n: all localized images are there"); return
     j, fresh = drive_index(args.key)
+    print(f"i18n: {len(todo)} files to make; Drive list {'made' if fresh else 'from cache'} ({time.time() - t0:.0f} s)")
     miss = [t for t in todo if db[t[1]] not in j["files"].get(t[0], {})]
     if miss and not fresh and time.time() - j["at"] > 86400:   # a new set: list the Drive folder again
         j, fresh = drive_index(args.key, refresh=True)
+        print(f"i18n: Drive list made again for a new set ({time.time() - t0:.0f} s)")
     files = j["files"]
     jobs = {}   # one download per (lang, asset key); reprints share it
     for l, cid in todo:
@@ -225,7 +227,10 @@ def sync(args):
                 return True
             except Exception as e:
                 err = e
-                time.sleep(2 * (attempt + 1))
+                if hasattr(e, "read"):   # HTTPError: Google's reason (e.g. rateLimitExceeded, downloadQuotaExceeded)
+                    try: err = f"{e} {json.loads(e.read())['error']['errors'][0].get('reason', '')}"
+                    except Exception: pass
+                time.sleep(5 * (attempt + 1) if "403" in str(err) or "429" in str(err) else 2 * (attempt + 1))
         print(f"i18n: {l} {k}: {err}"); return False
 
     with ThreadPoolExecutor(args.threads) as ex:
