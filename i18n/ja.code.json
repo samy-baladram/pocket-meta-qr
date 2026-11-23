@@ -24,7 +24,7 @@
   {
    "note": "event: did worse line",
    "find": "`#${o.d.rank} \\u00b7 ${pc(o.d.share)}% share ${winWk()} \\u00b7 about ${Math.round(o.x)} lists expected, got <b>${o.g}</b>`, `${o.g} of ~${Math.round(o.x)}`",
-   "replace": "`#${o.d.rank} \\u00b7 ${winWk()}使用率${pc(o.d.share)}% \\u00b7 予想約${Math.round(o.x)}レシピ、実際<b>${o.g}</b>`, `${o.g}／約${Math.round(o.x)}`"
+   "replace": "`#${o.d.rank} \\u00b7 ${winWk()}の使用率${pc(o.d.share)}% \\u00b7 予想約${Math.round(o.x)}レシピ、実際<b>${o.g}</b>`, `${o.g}／約${Math.round(o.x)}`"
   },
   {
    "note": "event: new-set cards",
@@ -39,17 +39,17 @@
   {
    "note": "event: only here tip",
    "find": "'<span class=\"ekfm z\" title=\"No top 8 at other events ${winWk()}\">only here</span>'",
-   "replace": "`<span class=\"ekfm z\" title=\"${winWk()}他の大会でベスト8なし\">ここだけ</span>`"
+   "replace": "`<span class=\"ekfm z\" title=\"${winWk()}の他の大会でベスト8なし\">ここだけ</span>`"
   },
   {
    "note": "event: top 8s tip",
    "find": "title=\"Top 8s at other events ${winWk()}\"",
-   "replace": "title=\"${winWk()}他の大会でのベスト8\""
+   "replace": "title=\"${winWk()}の他の大会でのベスト8\""
   },
   {
    "note": "event: new tip",
    "find": "title=\"Under 0.3% share ${winWk()}\"",
-   "replace": "title=\"${winWk()}使用率0.3%未満\""
+   "replace": "title=\"${winWk()}の使用率0.3%未満\""
   },
   {
    "note": "event: share ratio tip",
@@ -166,7 +166,7 @@
   {
    "note": "tip: no top player",
    "find": "title=\"No top player ${winWk()}\"",
-   "replace": "title=\"${winWk()}上位プレイヤーなし\""
+   "replace": "title=\"${winWk()}は上位プレイヤーなし\""
   },
   {
    "note": "tip: few players",
@@ -365,6 +365,131 @@
    "note": "matchup preview: ピカチュウ戦 62%",
    "find": "`${Math.round(mu[0].p)}% vs ${esc(nameOf(mu[0].o)).split(\" \")[0]}`",
    "replace": "`${esc(nameOf(mu[0].o)).split(\" \")[0]}戦 ${Math.round(mu[0].p)}%`"
+  },
+  {
+   "note": "top players sheet: 今週の成績",
+   "find": "<p class=\"slg sl2\">Results ${winWk()} <span>",
+   "replace": "<p class=\"slg sl2\">${winWk()}の成績 <span>"
+  },
+  {
+   "note": "top players sheet: dates in the chart 11/14",
+   "find": "`${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}`",
+   "replace": "`${+dy.slice(5, 7)}/${+dy.slice(8)}`"
+  },
+  {
+   "note": "top players sheet: dates in the rows 11/14",
+   "find": "MON[+dt.slice(5, 7) - 1] + \" \" + +dt.slice(8)",
+   "replace": "+dt.slice(5, 7) + \"/\" + +dt.slice(8)"
+  },
+  {
+   "note": "no-top-player sheet: date 11/14",
+   "find": "`${MON[+v.dt.slice(5, 7) - 1]} ${+v.dt.slice(8)}`",
+   "replace": "`${+v.dt.slice(5, 7)}/${+v.dt.slice(8)}`"
+  },
+  {
+   "note": "no-top-player sheet: players tile",
+   "find": "[d.count, \"players\", winWk()]",
+   "replace": "[d.count, \"プレイヤー\", winWk()]"
+  },
+  {
+   "note": "top players tile: tip",
+   "find": "title=\"${T} top players: this list or 1\\u20133 cards swapped\"",
+   "replace": "title=\"上位プレイヤー${T}人：このレシピまたは1〜3枚入れ替え\""
+  },
+  {
+   "note": "top players tile: label",
+   "find": "aria-label=\"Top players: ${T} with this list or 1 to 3 cards swapped, of ${v.of}\"",
+   "replace": "aria-label=\"上位プレイヤー：${v.of}人中${T}人がこのレシピまたは1〜3枚入れ替えで使用\""
+  },
+  {
+   "note": "swap selector: label",
+   "find": "aria-label=\"Show this list or a version with cards swapped\"",
+   "replace": "aria-label=\"このレシピまたは入れ替え版を表示\""
+  },
+  {
+   "note": "swap selector: exact tip and label",
+   "find": "title=\"${ex} top player${ex === 1 ? \"\" : \"s\"} with exactly this list\" aria-label=\"Exact list: ${ex} top player${ex === 1 ? \"\" : \"s\"}\"",
+   "replace": "title=\"完全一致：上位プレイヤー${ex}人\" aria-label=\"完全一致：上位プレイヤー${ex}人\""
+  },
+  {
+   "note": "swap selector: swap tip and label",
+   "find": "title=\"${n} top player${n > 1 ? \"s\" : \"\"} with ${k} card${k > 1 ? \"s\" : \"\"} swapped\" aria-label=\"${n} top player${n > 1 ? \"s\" : \"\"} with ${sw(k)}: show them\"",
+   "replace": "title=\"${k}枚入れ替え：上位プレイヤー${n}人\" aria-label=\"${k}枚入れ替え：上位プレイヤー${n}人を表示\""
+  },
+  {
+   "note": "event: only N% share",
+   "find": "<em>only ${ws.toFixed(ws < 1 ? 2 : 1)}% share ${winWk()}</em>",
+   "replace": "<em>${winWk()}の使用率わずか${ws.toFixed(ws < 1 ? 2 : 1)}%</em>"
+  },
+  {
+   "note": "event: did better line",
+   "find": "`${cnt[id]} lists \\u00b7 best <b>${ordF(best[id])}</b> \\u00b7 ${pc(sh(id))}% share ${winWk()}`",
+   "replace": "`${cnt[id]}レシピ \\u00b7 最高<b>${ordF(best[id])}</b> \\u00b7 ${winWk()}の使用率${pc(sh(id))}%`"
+  },
+  {
+   "note": "event cards: in N% of top players' lists",
+   "find": "`in ${Math.round(t.u * 100)}% of its top players\\u2019 lists ${winWk()}`",
+   "replace": "`${winWk()}、上位プレイヤーのレシピの${Math.round(t.u * 100)}%に採用`"
+  },
+  {
+   "note": "event cards: in no other list",
+   "find": "`in no other top player\\u2019s list ${winWk()}`",
+   "replace": "`${winWk()}、他の上位プレイヤーのレシピにはなし`"
+  },
+  {
+   "note": "ghost row: no public list tip",
+   "find": "title=\"No public decklist ${winLast()} yet\"",
+   "replace": "title=\"${winLast()}の公開レシピなし\""
+  },
+  {
+   "note": "event decks: new (no meta share)",
+   "find": ": \"new\"}</span></button>",
+   "replace": ": \"新登場\"}</span></button>"
+  },
+  {
+   "note": "top 10: new",
+   "find": "(f < 0.05 ? \"new\" : pct(f))",
+   "replace": "(f < 0.05 ? \"新登場\" : pct(f))"
+  },
+  {
+   "note": "matchup tip",
+   "find": "title=\"${Math.round(m.p)}% in ${m.g} games${unsure ? \" (too few to be sure)\" : \"\"}\"",
+   "replace": "title=\"${m.g}戦で${Math.round(m.p)}%${unsure ? \"（データ不足）\" : \"\"}\""
+  },
+  {
+   "note": "likely range tip",
+   "find": "title=\"Likely range: ${lo.toFixed(1)}\\u2013${hi.toFixed(1)}%\"",
+   "replace": "title=\"推定範囲：${lo.toFixed(1)}〜${hi.toFixed(1)}%\""
+  },
+  {
+   "note": "new in top 10 tip",
+   "find": "title=\"New in the top 10 since your last visit\"",
+   "replace": "title=\"前回の訪問以降にトップ10入り\""
+  },
+  {
+   "note": "new since last visit tip",
+   "find": "title=\"New since your last visit\"",
+   "replace": "title=\"前回の訪問以降に追加\""
+  },
+  {
+   "note": "event energy tip",
+   "find": "title=\"Energy in the top ${n}\"",
+   "replace": "title=\"上位${n}名のエネルギー\""
+  },
+  {
+   "note": "search card tip (top players)",
+   "find": "title=\"${esc(c.n)} \\u00b7 ${c.u} top players \\u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
+   "replace": "title=\"${esc(c.n)} \\u00b7 上位プレイヤー${c.u}人 \\u00b7 ${c.decks.size}デッキで使用\""
+  },
+  {
+   "note": "search card label (top players)",
+   "find": "aria-label=\"${c.u} top players\"",
+   "replace": "aria-label=\"上位プレイヤー${c.u}人\""
+  },
+  {
+   "note": "filter card tip",
+   "find": "title=\"${esc(c.n)} \\u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
+   "replace": "title=\"${esc(c.n)} \\u00b7 ${c.decks.size}デッキで使用\""
   },
   {
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",

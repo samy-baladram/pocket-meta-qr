@@ -33,7 +33,7 @@
 ],
 "028fddc250": [
 "Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.",
-"いま人気{t0}：最も多くの上位プレイヤーがまったく同じ形で使ったレシピです（3人以上、かつ他のどのレシピより2人以上多い）。一番使われているレシピが一番強いとは限りません。成績と他のレシピも見てください。"
+"いま人気{t0}：最も多くの上位プレイヤーがまったく同じ形で使ったレシピです（3人以上、かつ他のどのレシピより2人以上多い）。一番使われているレシピが一番強いとは限りません。戦績と他のレシピも見てください。"
 ],
 "029205c659": [
 "A Pokéball in the corner of the QR logo, on the site, the saved QR images and the app icon.",
@@ -156,7 +156,7 @@
 ],
 "10ab7e88e4": [
 "(all {0} together {1}, {2}%)",
-"（{0}人合計{1}、{2}%）"
+"（{0}人の合計{1}、勝率{2}%）"
 ],
 "10c23975d7": [
 "win{0}",
@@ -188,7 +188,7 @@
 ],
 "1385294543": [
 "×N: share here vs {0} · top 8s at other events",
-"×N：この大会での使用率と{0}の比較 · 他の大会でのベスト8入り"
+"×N：この大会での使用率と{0}の使用率の比較 · 他の大会でのベスト8入り"
 ],
 "13d4b964c6": [
 "One event is {t0}{0}%{t1} of these results, so it moves the numbers more than usual.",
@@ -216,7 +216,7 @@
 ],
 "166c895601": [
 "top {0} vs",
-"上位{0}名 対"
+"上位{0}名 vs"
 ],
 "168e4932a6": [
 "Deck",
@@ -1292,7 +1292,7 @@
 ],
 "79f4d6da67": [
 "No events {0} yet.",
-"{0}まだ大会はありません。"
+"{0}の大会はまだありません。"
 ],
 "7a2b42f199": [
 "Tweaks: 1 or 2 cards changed",
@@ -1444,7 +1444,7 @@
 ],
 "88c70db626": [
 ", and {t0}{0}{t1} more with 1 to 3 cards swapped{1}",
-"、さらに{t0}{0}{t1}人が1〜3枚入れ替え{1}"
+"、さらに{t0}{0}{t1}人が1〜3枚入れ替えて使用{1}"
 ],
 "8924cc152b": [
 "Which days count?",
@@ -1452,7 +1452,7 @@
 ],
 "892ce04a73": [
 "A top result: at least 2 more wins than losses at an event {0}.",
-"上位の成績：{0}大会で勝ち数が負け数より2以上多いこと。"
+"上位の成績：{0}の大会で勝ち数が負け数より2以上多いこと。"
 ],
 "899e85d0d1": [
 "A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.",
@@ -1559,7 +1559,7 @@
 ],
 "953d4f3666": [
 "A {t0}top player{t1} won at least 2 more matches than they lost (ties do not count) at a single-deck event {0}.",
-"{t0}上位プレイヤー{t1}とは、{0}1人1デッキの大会で、勝った対戦が負けより2以上多いプレイヤーです（引き分けは数えません）。"
+"{t0}上位プレイヤー{t1}とは、{0}の1人1デッキの大会で、勝った対戦が負けより2以上多いプレイヤーです（引き分けは数えません）。"
 ],
 "95d5a43fa7": [
 "Nov 14, 2026",
@@ -1575,7 +1575,7 @@
 ],
 "96c12df622": [
 "swap{0}",
-"入れ替え{0!}"
+"枚入れ替え{0!}"
 ],
 "96e7f0180e": [
 "Share links that keep the list",
@@ -1591,7 +1591,7 @@
 ],
 "972758b2df": [
 "A rare deck (under 0.2% share {0}) with a top-8 finish at a big event (128+ players): {t0}{1}{t1}.",
-"大きな大会（128人以上）でベスト8に入った、使用率0.2%未満{0}の珍しいデッキ：{t0}{1}{t1}。"
+"大きな大会（128人以上）でベスト8に入った、{0}の使用率が0.2%未満の珍しいデッキ：{t0}{1}{t1}。"
 ],
 "97fe84b71c": [
 "has instead:",
@@ -1807,7 +1807,7 @@
 ],
 "acfa231857": [
 "Decks with 30+ players {0}: share against win rate. Lines: the median share and 50% win rate.",
-"{0}30人以上のデッキ：使用率と勝率の関係。線は使用率の中央値と勝率50%です。"
+"{0}の使用者が30人以上のデッキ：使用率と勝率の関係。線は使用率の中央値と勝率50%です。"
 ],
 "ad0938bfaf": [
 "The 10 decks played most {0}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.",
@@ -1843,7 +1843,7 @@
 ],
 "b1142f7843": [
 "Not on the map yet: fewer than 30 players {0} (too few to place it).",
-"まだマップにありません：{0}30人未満のため、位置を決められません。"
+"まだマップにありません：{0}の使用者が30人未満のため、位置を決められません。"
 ],
 "b139b7fa68": [
 "New event stats",
@@ -2111,7 +2111,7 @@
 ],
 "cd708dcb83": [
 "Top player: at least 2 more wins than losses at an event {0}.",
-"上位プレイヤー：{0}大会で勝ち数が負け数より2以上多いプレイヤー。"
+"上位プレイヤー：{0}の大会で勝ち数が負け数より2以上多いプレイヤー。"
 ],
 "cdc3ce9c70": [
 "Top 10 packs",
@@ -2215,7 +2215,7 @@
 ],
 "d82857eb60": [
 "Exact list",
-"まったく同じレシピ"
+"完全一致"
 ],
 "d878b544f3": [
 "Breakout decks",
@@ -2483,7 +2483,7 @@
 ],
 "f22a80a34b": [
 "Which booster packs give the cards of the meta decks {0}.",
-"{0}環境デッキのカードが出るパックです。"
+"{0}の環境デッキのカードが出るパックです。"
 ],
 "f2335414bf": [
 "multi-deck event{0} (players bring more than one deck) {1} not listed: their results do not show which deck won each match.",
@@ -2495,7 +2495,7 @@
 ],
 "f33788fa9c": [
 "top players used this deck; {t0}{0}{t1} used exactly this list{1}{2}.",
-"人の上位プレイヤーがこのデッキを使い、{t0}{0}{t1}人がまったく同じレシピ{1}{2}。"
+"人の上位プレイヤーがこのデッキを使い、{t0}{0}{t1}人がまったく同じレシピを使用{1}{2}。"
 ],
 "f383cb9878": [
 ", and their place:",
