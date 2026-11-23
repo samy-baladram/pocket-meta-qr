@@ -2,6 +2,86 @@
  "_": "Code changes for the ja page (i18n/build.mjs applies them before the texts). find: exact code of the page; all: change each place (else the first). A find that is not in the page is reported, not used.",
  "patches": [
   {
+   "note": "share button label: この大会のリンクをコピー",
+   "find": "aria-label=\"${TOUCH ? \"Share\" : \"Copy the link to\"} this ${what}\"",
+   "replace": "aria-label=\"${({ event: \"この大会\", deck: \"このデッキ\", list: \"このレシピ\", pack: \"このパック\", card: \"このカード\" })[what] || what}の${TOUCH ? \"共有\" : \"リンクをコピー\"}\""
+  },
+  {
+   "note": "energy names (炎, 水, 超 …)",
+   "find": "const cap = (s) => s[0].toUpperCase() + s.slice(1);",
+   "replace": "const EN_JA = { grass: \"草\", fire: \"炎\", water: \"水\", lightning: \"雷\", psychic: \"超\", fighting: \"闘\", darkness: \"悪\", metal: \"鋼\", colorless: \"無色\", dragon: \"ドラゴン\" }, cap = (s) => EN_JA[s] || s[0].toUpperCase() + s.slice(1);"
+  },
+  {
+   "note": "event: card in the N-place list",
+   "find": "<small>in the ${ordF(t.l.pl)}-place ${esc(dn(t.l.deck))}</small>",
+   "replace": "<small>${ordF(t.l.pl)}の${esc(dn(t.l.deck))}</small>"
+  },
+  {
+   "note": "event: did worse line",
+   "find": "`#${o.d.rank} \\u00b7 ${pc(o.d.share)}% share ${winWk()} \\u00b7 about ${Math.round(o.x)} lists expected, got <b>${o.g}</b>`, `${o.g} of ~${Math.round(o.x)}`",
+   "replace": "`#${o.d.rank} \\u00b7 ${winWk()}使用率${pc(o.d.share)}% \\u00b7 予想約${Math.round(o.x)}レシピ、実際<b>${o.g}</b>`, `${o.g}／約${Math.round(o.x)}`"
+  },
+  {
+   "note": "event: new-set cards",
+   "find": "<b>${esc(data.set)} cards</b> in the top ${n} (lists): ",
+   "replace": "<b>${esc(data.set)}のカード</b>（上位${n}名のレシピ）："
+  },
+  {
+   "note": "event: decks in the top N",
+   "find": "<b>Decks in the top ${n}</b><span>lists</span>",
+   "replace": "<b>上位${n}名のデッキ</b><span>レシピ</span>"
+  },
+  {
+   "note": "event: only here tip",
+   "find": "'<span class=\"ekfm z\" title=\"No top 8 at other events ${winWk()}\">only here</span>'",
+   "replace": "`<span class=\"ekfm z\" title=\"${winWk()}他の大会でベスト8なし\">ここだけ</span>`"
+  },
+  {
+   "note": "event: top 8s tip",
+   "find": "title=\"Top 8s at other events ${winWk()}\"",
+   "replace": "title=\"${winWk()}他の大会でのベスト8\""
+  },
+  {
+   "note": "event: new tip",
+   "find": "title=\"Under 0.3% share ${winWk()}\"",
+   "replace": "title=\"${winWk()}使用率0.3%未満\""
+  },
+  {
+   "note": "event: share ratio tip",
+   "find": "title=\"Its share of the top ${n}: ${Math.round(r)}\\u00d7 its share ${winWk()}\"",
+   "replace": "title=\"上位${n}名での使用率：${winWk()}の${Math.round(r)}\\u00d7\""
+  },
+  {
+   "note": "winners: label",
+   "find": "aria-label=\"${esc(shortEv(e.name))}: won by ${esc(e.win.name)}, ${e.players} players\"",
+   "replace": "aria-label=\"${esc(shortEv(e.name))}：${esc(e.win.name)}が優勝（${e.players}名）\""
+  },
+  {
+   "note": "winners: shelf label",
+   "find": "aria-label=\"Event winners, newest first\"",
+   "replace": "aria-label=\"優勝デッキ（新しい順）\""
+  },
+  {
+   "note": "events: biggest button",
+   "find": "aria-label=\"Open the biggest event\"",
+   "replace": "aria-label=\"最大の大会を開く\""
+  },
+  {
+   "note": "events: total players",
+   "find": "${pl.toLocaleString(\"en-US\")} players</b>",
+   "replace": "${pl.toLocaleString(\"ja-JP\")}名</b>"
+  },
+  {
+   "note": "QR: enlarge label",
+   "find": "aria-label=\"Enlarge the QR code for ${esc(d.name)}\"",
+   "replace": "aria-label=\"${esc(d.name)}のQRコードを拡大\""
+  },
+  {
+   "note": "QR: image alt",
+   "find": "alt=\"Deck share code for ${esc(d.name)}\"",
+   "replace": "alt=\"${esc(d.name)}のデッキコード\""
+  },
+  {
    "note": "packs: + cards in small decks",
    "find": "<small>${m ? \"+\" : \"\"}${w} in small decks</small>",
    "replace": "<small>小規模デッキで${m ? \"+\" : \"\"}${w}枚</small>"

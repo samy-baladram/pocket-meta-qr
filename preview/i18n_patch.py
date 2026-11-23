@@ -102,6 +102,7 @@ one('cards: cards.map(([cid, n, c]) => ({ id: cid, n, c })), note: LB.notes[id] 
 one('<img data-src="p/${esc(x.img)}.webp', '<img data-src="${PKP()}p/${esc(x.img)}.webp')  # pack art without logo (i18n/p/) on a localized page
 one('<img src="p/${esc(x.img)}.webp', '<img src="${PKP()}p/${esc(x.img)}.webp')  # pack art without logo (i18n/p/) on a localized page
 one('src="p/${p.img}.webp"', 'src="${PKP()}p/${p.img}.webp"')  # pack art without logo (i18n/p/) on a localized page
+one('return { ...v, id: `${v.deck}-${e.tid}-${v.pl}`, name: dk.name || v.deck, art: dk.art || [], rank: v.pl, nv: 1, pl: v.place,', 'return { ...v, id: `${v.deck}-${e.tid}-${v.pl}`, name: dk.name || v.deck, art: dk.art || [], rank: v.pl, nv: 1, pl: v.place && trPl(v.place),')  # event lists: the place pill in the page language
 one(".then((j) => (EV = j))", ".then((j) => L10NP.then(() => (EV = l10nDeep(j))))")
 one("for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n });", "for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n: trCard(n) });")
 one(".then((r) => (r.ok ? r.json() : null)).then((j) => (PK = j))",
