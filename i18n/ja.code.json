@@ -2,6 +2,11 @@
  "_": "Code changes for the ja page (i18n/build.mjs applies them before the texts). find: exact code of the page; all: change each place (else the first). A find that is not in the page is reported, not used.",
  "patches": [
   {
+   "note": "list: 上位プレイヤーN人が使用",
+   "find": "<span class=\"tpu\">Used by</span><b>${T}</b><span>top player${T === 1 ? \"\" : \"s\"}</span>",
+   "replace": "<span class=\"tpu\">上位プレイヤー</span><b>${T}</b><span>人が使用</span>"
+  },
+  {
    "note": "share button label: この大会のリンクをコピー",
    "find": "aria-label=\"${TOUCH ? \"Share\" : \"Copy the link to\"} this ${what}\"",
    "replace": "aria-label=\"${({ event: \"この大会\", deck: \"このデッキ\", list: \"このレシピ\", pack: \"このパック\", card: \"このカード\" })[what] || what}の${TOUCH ? \"共有\" : \"リンクをコピー\"}\""
