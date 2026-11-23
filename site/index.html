@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795444904-6b2e -->
+<!-- ui: artifact version 1795447609-4093 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2480,7 +2480,7 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 @media (min-width: 700px) { .evmw .t1s-rows { grid-template-columns: 1fr 1fr; column-gap: 18px; }
   .evmw .t1s-col:not(.all) .t1s-rows > .t1s-r:nth-child(n + 4) { display: grid; } .evmw .t1s-col:not(.all) .t1s-rows > .t1s-r:nth-child(n + 7) { display: none; }
   .evmw .t1s-rows > .t1s-r:nth-child(2) { box-shadow: none; } .evmw .t1s-all[data-w6] { display: none; } }
-#pkv { --pw: calc(var(--cw) * 0.875); margin: 2px 0 10px; }
+#pkv { --pw: calc(var(--cw) * 1.05); margin: 2px 0 10px; } /* Nov 24: larger packs (was 0.875): the shelf edge covers the lower part with the logo and pack name (no localized pack art needed) */
 #pkv[hidden] { display: none; }
 .pks-c { flex: none; position: relative; width: var(--pw); padding: 0; border: 0; background: none; cursor: inherit; transform: rotate(5deg); transform-origin: 50% 0; -webkit-tap-highlight-color: transparent; }
 .pks-c img { display: block; width: 100%; height: auto; aspect-ratio: 200 / 386; filter: drop-shadow(2px 3px 4px rgba(40, 60, 90, 0.35)); pointer-events: none; -webkit-user-drag: none; }
@@ -2688,7 +2688,7 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
   :root:not(#_) .pka { margin-bottom: 12px; }
   :root:not(#_) .pkr-t { margin-block: -8px; }
   :root:not(#_) .pkr-t img { left: 10px; top: 6px; width: 52px; } /* Nov 22: 12px further left (was 22 / 21) */
-  :root:not(#_) .pka.open .pkr-t img { left: 9px; top: -8px; width: 54px; }
+  :root:not(#_) .pka.open .pkr-t img { left: 9px; top: -5px; width: 59px; } /* Nov 24: 3px less pop (was -8px), ~10% wider (was 54px) */
   :root:not(#_) .pkr-n b { font-family: var(--font-display); font-size: 15px; }
   :root:not(#_) .pka.band > .pkr::before { width: 120px; } /* Nov 23: 20px shorter (was 140) */
 }
