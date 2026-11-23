@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795395404-b48b -->
+<!-- ui: artifact version 1795400030-a3cb -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -813,6 +813,7 @@ html { -webkit-tap-highlight-color: transparent; }
 
 /* List footer: Energy / Score / Event (flat tiles) on the left, the QR box (raised) on the right */
 .sfoot { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sp-2) var(--sp-3); align-items: stretch; }
+.slide > .sfoot { margin-inline: 3cqw; --qrcut: 6cqw; } /* Nov 23: the foot (QR + tiles, swap bar, Used by) as wide as the 94% card grid; only the QR gets smaller (the tiles keep their width, and get shorter with it) */
 .sfoot > .info { grid-row: 1; grid-column: 2; } /* Nov 18: QR on the left, tiles and the swap carousel on the right (closer to a right thumb) */
 .sfoot > .qcol, .sfoot > .qr { grid-row: 1; grid-column: 1; }
 /* List 1 identity: one color (cyan --acc-ink) and one star everywhere the page names list 1:
@@ -1518,7 +1519,7 @@ a.dkev { text-decoration: none; }
 /* QR box: raised; a small expand badge on its corner says "tap to enlarge" */
 .qcol { display: flex; flex-direction: column; align-items: center; gap: 1px; align-self: start; margin-right: 0; padding: 0;
   border-radius: var(--r-box); background: transparent; box-shadow: none; } /* Nov 21: no box around the QR (same color as the panel); the padding stays so the QR and its neighbors keep their positions */
-.qr { position: relative; width: 134px; /* Nov 21: the box padding 0 and no edge in the image: the code fills the box = the height of the tiles next to it */ aspect-ratio: 1; padding: 0; border: 0; display: block; background: transparent; cursor: zoom-in; }
+.qr { position: relative; width: calc(134px - var(--qrcut, 0px)); /* Nov 21: the box padding 0 and no edge in the image: the code fills the box = the height of the tiles next to it */ aspect-ratio: 1; padding: 0; border: 0; display: block; background: transparent; cursor: zoom-in; }
 .qr img { display: block; width: 100%; height: auto; }
 .qr.wait { background: var(--line); cursor: default; }
 .qr .none { display: block; padding-top: 34px; text-align: center; color: #5b6575; font-size: 0.75rem; }
@@ -1549,7 +1550,7 @@ a.dkev { text-decoration: none; }
   .pill { padding: 0 6px; }
   .energy { min-height: 20px; }
   .energy img { width: 14px; height: 14px; }
-  .qr { width: 108px; }
+  .qr { width: calc(108px - var(--qrcut, 0px)); }
   .cards { gap: 3px; }
 }
 
@@ -1888,7 +1889,7 @@ a.dkev { text-decoration: none; }
   .ev { font-size: var(--fs-s); }
   .sc { font-size: var(--fs-m); }
   .cards { gap: 3px; }
-  .qr { width: 124px; } /* Nov 21: box padding 0, no image edge. Nov 17/18: was 93px: a taller QR box, so the swap carousel over it is bigger */
+  .qr { width: calc(124px - var(--qrcut, 0px)); } /* Nov 21: box padding 0, no image edge. Nov 17/18: was 93px: a taller QR box, so the swap carousel over it is bigger */
   /* podium: tiles 20px shorter; the medal sits on the tile's corner, like the game */
   .podium { margin-top: 10px; }
   .pod > .pcard { --t0: 10px; --tx: 72px; } /* same layout as wider screens; a taller text area for 2-line names */
@@ -2435,6 +2436,18 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 .pkd-chip { display: inline-block; margin-left: 4px; padding: 1px 7px; border-radius: 999px; background: var(--chip); color: var(--chip-ink); font-size: 10.5px; font-weight: 600; vertical-align: 1px; }
 @media (min-width: 900px) { .pkp .pkd { display: flex; flex-direction: column; contain: size; } /* its content no longer sets the row height: the card grid does */
   .pkp .pkd-l { flex: 1 1 0; min-height: 0; max-height: none; } }
+/* Nov 23: Breakout decks: the gold chip on a deck row, and the line under the Top 10 */
+.brki { position: relative; top: -1px; flex: none; width: 13px; height: 10px; overflow: visible; /* 1px up: centred on the capital letters */ fill: #fff; stroke: #c99a2e; stroke-width: 2; stroke-linejoin: round; paint-order: stroke; }
+.brki .cb { fill: none; stroke: #c99a2e; stroke-width: 0.9; }
+.brkc { display: inline-flex; align-items: center; gap: 4px; margin-right: 6px; padding: 1px 7px 1px 5px; border-radius: 999px; background: color-mix(in srgb, #e8b52e 22%, var(--surface)); color: var(--ink); font-size: 11px; font-weight: 600; white-space: nowrap; vertical-align: 1px; }
+.t1s-brk { position: relative; z-index: 1; display: grid; gap: 6px; margin-top: 10px; }
+.brkr { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 10px; width: 100%; padding: 6px 12px 6px 6px; border: 0; border-radius: var(--r-card, 14px); background: var(--surface); box-shadow: var(--raised), var(--bevel); color: var(--ink); font: inherit; text-align: left; text-decoration: none; cursor: pointer; }
+.brkt { display: grid; gap: 1px; min-width: 0; }
+.brkk { display: inline-flex; align-items: center; gap: 5px; color: #9a7417; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.brkn { overflow: hidden; color: var(--muted); font-size: var(--fs-s); text-overflow: ellipsis; white-space: nowrap; } .brkn b { color: var(--ink); font-weight: 600; }
+.brkr .spch { width: 7px; height: 10px; color: var(--muted); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .brkk { color: #e3b25a; } :root:not([data-theme="light"]) .brkc { background: color-mix(in srgb, #e3b25a 20%, var(--surface)); } :root:not([data-theme="light"]) .brki, :root:not([data-theme="light"]) .brki .cb { stroke: #b08a2e; } }
+:root[data-theme="dark"] .brkk { color: #e3b25a; } :root[data-theme="dark"] .brkc { background: color-mix(in srgb, #e3b25a 20%, var(--surface)); } :root[data-theme="dark"] .brki, :root[data-theme="dark"] .brki .cb { stroke: #b08a2e; }
 /* Nov 22: Events tab: the Winners shelf (the Top 10 shelf; a 2-line label: event, then winner · players · day), "Most wins" (the Rising / Falling panel style), the count line */
 .evsh { margin: 2px 0 0; }
 .evsh .t1s-lab { top: 5px; height: 42px; }
@@ -2932,7 +2945,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const winCap = () => EARLY() ? `Since the ${esc(data.set)} release` : WD() === 7 ? "This week" : `Last ${WD()} days`; // titles
   const TOP_PCT = 0.25; const topRule = () => `A top result: at least 2 more wins than losses at an event ${winWk()}.`; // Nov 14: the top 25 % part is dropped (user) // R22
   const tpSheet = (v) => { const ex = nxOf(v), tw = (v.nu || ex) - ex;
-    const f = v.fin && v.fin.length ? v.fin : v.pl ? [[...((String(v.pl).match(/\d+/g) || [0, 0]).slice(0, 2).map(Number)), ...(v.rec || [0, 0, 0]), v.dt || "", ...(v.tid && v.pid ? [v.tid, v.pid] : [])]] : [];
+    const f = v.fin && v.fin.length ? v.fin : v.pl ? [[...((String(v.pl).match(/\d+/g) || [0, 0]).slice(0, 2).map(Number)), ...(v.rec || [0, 0, 0]), v.dt || "", ...(v.tid ? [v.tid, v.pid || ""] : [])]] : []; // Nov 23: the event also without a player id (the row is then not a link)
     v._f = f; // the rows as shown (1 player: built from the list's own best finish, with its event and player)
     const A = (v.alt || []).flatMap((a, i) => (a.fin || []).map((r, j) => ({ r, k: lvOf(a), key: `a${i}.${j}`, a })));
     const all = [...f.map((r, j) => ({ r, k: 0, key: `x${j}` })), ...A];
@@ -2944,7 +2957,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const chgO = (a) => (a.out || []).map((c) => `<span class="cm">\u2212</span>${c.c > 1 ? c.c + " " : ""}${esc(c.n)}`).join(" ");
     const chgI = (a) => (a.in || []).map((c) => `<span class="cp">+</span>${c.c > 1 ? c.c + " " : ""}${esc(c.n)}`).join(" ");
     const chg = (a) => `${chgO(a)} ${chgI(a)}`;
-    const row = ({ r: [p, of, w, l, t, dt, tid, pid], key, a }) => { const en = tid && evN(tid) ? esc(shortEv(evN(tid))) : "";
+    const row = ({ r: [p, of, w, l, t, dt, tid, pid], key, a }) => { const nm = tid ? evN(tid) || (tid === v.tid ? v.ev || "" : "") : "", en = nm ? esc(shortEv(nm)) : ""; // Nov 23: not in events.json: the list's own event name
       const two = a && lvOf(a) > 1; // 2-3 cards swapped: minus line, then plus line
       const sub = a ? `${two ? `<span class="fch2">${chgO(a)}</span><span class="fch2">${chgI(a)}</span>` : `<span class="fch2">${chg(a)}</span>`}${en ? `<span class="fen">${en}</span>` : ""}` : en;
       return `<li data-k="${key}"${tid && pid ? ` class="frow" data-r="${key}" role="button" tabindex="0"` : ""}><span class="fpl">${ordF(p)} <span>of ${of}</span>${fTag(p, of)}${sub ? `<span class="fev">${sub}</span>` : ""}</span><span class="fsc">${w}-${l}-${t}</span><span class="fdt">${dt ? MON[+dt.slice(5, 7) - 1] + " " + +dt.slice(8) : ""}</span>${tid && pid ? '<span class="fch" aria-hidden="true">\u203a</span>' : ""}</li>`; };
@@ -3010,7 +3023,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const M = await loadCardMap().catch(() => null), code = M && deckCode(cards, v.energy || d.energy, M), pc = code && parseCode(code);
     if (!pc) return;
     const tok = packShare({ nrs: pc.nrs, energy: pc.energy, k: d.deckId || d.id, day: Date.now(), played: f[5] ? Date.parse(f[5] + "T00:00:00Z") : 0, tid: f[6], pid: f[7], w: f[2], l: f[3], t: f[4], pl: f[0], pn: f[1] });
-    const ev = (EV && EV.events || []).find((x) => x.tid === f[6]);
+    const ev = (EV && EV.events || []).find((x) => x.tid === f[6]) || (f[6] && f[6] === v.tid && v.ev ? { name: v.ev } : null);
     track(a ? "result-open-tweak" : "result-open"); // the Top players sheet stays open under the list (closing the list returns to it)
     openShared("x=" + tok, { label: `${ordF(f[0])} of ${f[1]}${ev ? " \u00b7 " + ev.name : ""}` });
   }
@@ -3996,7 +4009,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     el.innerHTML = `${bd ? '<div class="t1s-bd" aria-hidden="true"><i><b></b></i></div>' : ""}<p class="t1s-h"><b>Top 10</b> <span class="t1s-hw">${winWk()}${ii("Top 10", `<h3>Top 10 ${winWk()}</h3><p>The 10 decks played most ${winLast()}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.</p><p>The big number is the deck\u2019s <b>share</b>: of <b>all players</b> in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the \u201ctop players\u201d (that count, under each list, only takes players who won at least 2 more matches than they lost).</p><p>The \u25b2 / \u25bc number is how much the share went up or down over the last ${nd} days, in percentage points (8.3% \u2192 12.0% = \u25b23.7).</p><p><b>Rising</b> / <b>Falling</b>: the decks whose share moved most.</p>`)}</span><span class="t1s-hr">\u25b2\u25bc share change \u00b7 ${nd} days</span></p>
       <div class="t1s-sh"><div class="t1s-lab" aria-live="polite"><div></div><div></div></div><div class="t1s-vp"><div class="t1s-tr">${[0, 1, 2].map((r) => `<div class="t1s-set"${r !== 1 ? ' aria-hidden="true"' : ""}>${top.map(card).join("")}</div>`).join("")}</div></div></div>
       <div class="t1s-mp"><div class="t1s-seg" role="tablist"><button type="button" data-k="up" aria-pressed="true">\u25b2 Rising</button><button type="button" data-k="dn" aria-pressed="false">\u25bc Falling</button></div>
-        <div class="t1s-cols">${col("up", up)}${col("dn", dn)}</div></div>`;
+        <div class="t1s-cols">${col("up", up)}${col("dn", dn)}</div></div>${brkLine()}`;
     t10Car(el, top);
     t10Show(); }
   // Nov 16: each mover box shows 2.5 rows (both boxes the same height: the taller of the two), the rest scrolls
@@ -4283,13 +4296,21 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (on) pod.outerHTML = `<div class="podflat">${top.map((d, k) => rowHTML(d, k + 1)).join("")}</div>`;
     else { flat.outerHTML = podiumHTML(top); podFit(); podGrow(); }
   }
+  // Nov 23: Breakout decks (R33): a rare deck (under 0.2% share) with a top-8 finish at a 128+ player event; d.brk = [[tid, place, players, event name], ...] (best first)
+  // the line under the Top 10 (data.json brk = [{ id, name, art, tid, place, players, ev }]: the deck is in more.json)
+  const brkLine = () => { const L = (data && data.brk) || []; if (!L.length) return "";
+    return `<div class="t1s-brk">${L.slice(0, 2).map((b) => `${typeof RDECK !== "undefined" && RDECK ? `<a href="/decks/${esc(b.id)}/"` : '<button type="button"'} class="brkr" data-go="${esc(b.id)}">${t2c({ art: b.art || [] }, 26, 42, 34, 15, 5)}<span class="brkt"><span class="brkk">${BRK_I}Breakout</span><span class="brkn"><b>${esc(b.name)}</b> ${b.place === 1 ? "won" : `took ${ordF(b.place)} at`} ${esc(shortEv(b.ev || ""))} (${b.players} players)</span></span>${SPCH}${typeof RDECK !== "undefined" && RDECK ? "</a>" : "</button>"}`).join("")}</div>`; };
+  const BRK_I = '<svg class="brki" viewBox="0 0 18 14" aria-hidden="true"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg>';
+  const brkTxt = (b) => `${b[1] === 1 ? "Won" : ordF(b[1]) + " at"} ${shortEv(b[3] || "")}`;
+  const brkChip = (d) => (d.brk && d.brk.length ? `<span class="brkc" title="${esc(`${b0(d)} (${d.brk[0][2]} players)`)}">${BRK_I}${esc(brkTxt(d.brk[0]))}</span>` : "");
+  const b0 = (d) => `${d.brk[0][1] === 1 ? "Won" : ordF(d.brk[0][1]) + " place at"} ${d.brk[0][3] || "an event"}`;
   const rowHTML = (d, pod = 0) => `
       <section class="acc" id="${d.id}" style="${bandStyle(d)}">
         <button class="arow" type="button" data-id="${d.id}" aria-expanded="false" aria-controls="p-${d.id}">
           ${rbHTML(d, pod)}
           <span class="icons${d.art.length === 1 ? " one" : ""}">${d.art.slice(0, 2).map((a) => `<img src="c/${a}.webp" alt="" width="56" height="78" loading="lazy" decoding="async">`).join("")}</span>
           <span class="atext"><span class="aname" style="--nlen: ${Math.max(8, d.name.length)}">${esc(d.name)}${NEWD.has(d.id) ? '<span class="newb" title="New in the top 10 since your last visit">NEW</span>' : ""}</span>
-            <span class="asub">${d.bc ? `<span class="bcn" title="No top player ${winWk()}">${bcI(d)}${bcN(d).toLowerCase()}</span>` : ""}<span class="asw"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win</span>
+            <span class="asub">${brkChip(d)}${d.bc ? `<span class="bcn" title="No top player ${winWk()}">${bcI(d)}${bcN(d).toLowerCase()}</span>` : ""}<span class="asw"><b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class="lown" title="Only ${d.count} players: this win rate is less certain"` : ""}>${pct(d.win)}</b> win</span>
               <span class="sm"><span class="sep">&middot; </span><span class="nw">${d.count} players</span> <span class="nw">&middot; ${d.w}-${d.l}-${d.t}</span></span></span></span>
           ${dpill(d)}${shBtn("dk", d.id, "deck")}
         </button>
