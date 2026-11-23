@@ -24,7 +24,7 @@
   {
    "note": "event: did worse line",
    "find": "`#${o.d.rank} \\u00b7 ${pc(o.d.share)}% share ${winWk()} \\u00b7 about ${Math.round(o.x)} lists expected, got <b>${o.g}</b>`, `${o.g} of ~${Math.round(o.x)}`",
-   "replace": "`#${o.d.rank} \\u00b7 ${winWk()}の使用率${pc(o.d.share)}% \\u00b7 予想約${Math.round(o.x)}レシピ、実際<b>${o.g}</b>`, `${o.g}／約${Math.round(o.x)}`"
+   "replace": "`${o.d.rank}位 \\u00b7 ${winWk()}の使用率${pc(o.d.share)}% \\u00b7 予想約${Math.round(o.x)}レシピ、実際<b>${o.g}</b>`, `${o.g}／約${Math.round(o.x)}`"
   },
   {
    "note": "event: new-set cards",
@@ -114,7 +114,7 @@
   {
    "note": "packs: picked card line",
    "find": "&middot; in ${c.decks.length} ${c.st ? \"meta \" : \"\"}deck${c.decks.length > 1 ? \"s\" : \"\"}${c.st ? \"\" : ' <span class=\"pkd-chip\">smaller decks only</span>'}",
-   "replace": "&middot; ${c.st ? \"環境デッキ\" : \"デッキ\"}${c.decks.length}個で使用${c.st ? \"\" : ' <span class=\"pkd-chip\">小規模デッキのみ</span>'}"
+   "replace": "&middot; ${c.st ? \"環境の\" : \"\"}${c.decks.length}デッキで使用${c.st ? \"\" : ' <span class=\"pkd-chip\">小規模デッキのみ</span>'}"
   },
   {
    "note": "tab label: Limited Battle, 9日残り",
@@ -786,6 +786,173 @@
    "find": "aria-label=\"Decks without ${esc(c.n)}\"",
    "replace": "aria-label=\"${esc(c.n)}を使わないデッキ\"",
    "all": true
+  },
+  {
+   "note": "deck stats header: 35デッキ中1位",
+   "find": "`#${d.rank} of ${nDk}`",
+   "replace": "`${nDk}デッキ中${d.rank}位`"
+  },
+  {
+   "note": "deck stats rank tile: 1位",
+   "find": "`#${d.rank} ${rkTxt}`",
+   "replace": "`${d.rank}位 ${rkTxt}`"
+  },
+  {
+   "note": "rank change sheet title: 1位",
+   "find": "<h3>Rank ${d.rank}</h3>",
+   "replace": "<h3>${d.rank}位</h3>"
+  },
+  {
+   "note": "search deck line: 1位 · 使用率 · 勝率",
+   "find": "\"#\" + d.rank} · ${pct(d.share)} share · ${pct(d.win)} win",
+   "replace": "d.rank + \"位\"} · 使用率${pct(d.share)} · 勝率${pct(d.win)}"
+  },
+  {
+   "note": "top 10 rising/falling: 1位",
+   "find": "#${d.rank} &middot; ${f",
+   "replace": "${d.rank}位 &middot; ${f"
+  },
+  {
+   "note": "top 10 shelf name: 1位",
+   "find": "<i>#${d.rank}</i>",
+   "replace": "<i>${d.rank}位</i>"
+  },
+  {
+   "note": "packs shelf name: 1位",
+   "find": "<i>#${L.indexOf(x) + 1}</i>",
+   "replace": "<i>${L.indexOf(x) + 1}位</i>"
+  },
+  {
+   "note": "event players tile: 12大会中最大 / 3番目",
+   "find": "<small>${big === 1 ? \"biggest\" : `#${big}`} of ${evs.length} events</small>",
+   "replace": "<small>${evs.length}大会中${big === 1 ? \"最大\" : `${big}番目`}</small>"
+  },
+  {
+   "note": "event: biggest button 543名",
+   "find": "<b>${big.players}</b>${SPCH}",
+   "replace": "<b>${big.players}</b>名${SPCH}"
+  },
+  {
+   "note": "event: decks in the top N (fold)",
+   "find": "`Decks in the top ${n}`",
+   "replace": "`上位${n}名のデッキ`"
+  },
+  {
+   "note": "event: decks tile 上位8名",
+   "find": "<small>in the top ${n}</small>",
+   "replace": "<small>上位${n}名</small>"
+  },
+  {
+   "note": "event: top N heading 上位12名",
+   "find": "`Top ${s.querySelectorAll(\".ek8\").length}`",
+   "replace": "`上位${s.querySelectorAll(\".ek8\").length}名`"
+  },
+  {
+   "note": "event: new-set cards (3)",
+   "find": "${esc(nm)} ${c}`).join(\", \")",
+   "replace": "${esc(nm)}（${c}）`).join(\"、\")"
+  },
+  {
+   "note": "share image: 使用率 · 勝率",
+   "find": "`${pct(d.share)} share  ·  ${pct(d.win)} win`",
+   "replace": "`使用率${pct(d.share)}  ·  勝率${pct(d.win)}`"
+  },
+  {
+   "note": "share image: 環境1位",
+   "find": "`#${d.rank} in the meta`",
+   "replace": "`環境${d.rank}位`"
+  },
+  {
+   "note": "share image: set",
+   "find": "`Set ${data.set}${data.setName ? \" \" + data.setName : \"\"}`",
+   "replace": "`拡張パック ${data.set}${data.setName ? \" \" + data.setName : \"\"}`"
+  },
+  {
+   "note": "deck pill: 使用率 · 勝率",
+   "find": "<b>${pct(d.share)}</b><span class=\"psk\" data-sk=\"${esc(d.id)}\">${pSpark(d.id)}</span> share &middot; <span${d.count < 30 ? ' class=\"lw\"' : \"\"}><b>${pct(d.win)}</b> win</span>",
+   "replace": "使用率<b>${pct(d.share)}</b><span class=\"psk\" data-sk=\"${esc(d.id)}\">${pSpark(d.id)}</span> &middot; <span${d.count < 30 ? ' class=\"lw\"' : \"\"}>勝率<b>${pct(d.win)}</b></span>"
+  },
+  {
+   "note": "ghost row: 使用率 · 公開レシピなし",
+   "find": "<b>${pct(g.share)}</b> share &middot; <span class=\"gnl\">no public list yet</span>",
+   "replace": "使用率<b>${pct(g.share)}</b> &middot; <span class=\"gnl\">公開レシピなし</span>"
+  },
+  {
+   "note": "deck row (podium): 使用率 · 勝率",
+   "find": "<b>${pct(d.share)}</b> share<span class=\"ow\"> &middot; <b>${pct(d.win)}</b> win</span>",
+   "replace": "使用率<b>${pct(d.share)}</b><span class=\"ow\"> &middot; 勝率<b>${pct(d.win)}</b></span>"
+  },
+  {
+   "note": "deck row: 使用率 · 勝率",
+   "find": "<b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class=\"lown\" title=\"${d.count}人のみ：この勝率は確実性が低めです\"` : \"\"}>${pct(d.win)}</b> win</span>",
+   "replace": "使用率<b>${pct(d.share)}</b> &middot; 勝率<b${d.count < 30 ? ` class=\"lown\" title=\"${d.count}人のみ：この勝率は確実性が低めです\"` : \"\"}>${pct(d.win)}</b></span>"
+  },
+  {
+   "note": "shared list today: 使用率 · 勝率",
+   "find": "<b>${num(x.share)}</b> \\u00b7 <b>${num(x.win)}</b> win</div>",
+   "replace": "使用率<b>${num(x.share)}</b> \\u00b7 勝率<b>${num(x.win)}</b></div>"
+  },
+  {
+   "note": "top players line: 上位プレイヤー12人中8人",
+   "find": "`${v.nu} of ${v.of} top players`",
+   "replace": "`上位プレイヤー${v.of}人中${v.nu}人`"
+  },
+  {
+   "note": "best place: full-width colon (list 1 tip)",
+   "find": "${L0.pl ? `: <b>${esc(L0.pl)}</b>` : \"\"}",
+   "replace": "${L0.pl ? `：<b>${esc(L0.pl)}</b>` : \"\"}"
+  },
+  {
+   "note": "best place: full-width colon",
+   "find": "${v.pl ? `: <b>${esc(v.pl)}</b>` : \"\"}",
+   "replace": "${v.pl ? `：<b>${esc(v.pl)}</b>` : \"\"}",
+   "all": true
+  },
+  {
+   "note": "top 10 rising/falling: すべて表示（8）",
+   "find": ">Show all ${L.length}</button>",
+   "replace": ">すべて表示（${L.length}）</button>"
+  },
+  {
+   "note": "deck stats cards: 12枚",
+   "find": "`${cu.length} cards`",
+   "replace": "`${cu.length}枚`"
+  },
+  {
+   "note": "deck stats core: 12枚",
+   "find": "<small>${cells.length} cards</small>",
+   "replace": "<small>${cells.length}枚</small>"
+  },
+  {
+   "note": "filter chip: C1のカード",
+   "find": "${esc(data.set || \"set\")} cards`",
+   "replace": "${esc(data.set || \"set\")}のカード`"
+  },
+  {
+   "note": "dates: 今日 / 昨日",
+   "find": "\"today\" : n === 1 ? \"yesterday\"",
+   "replace": "\"今日\" : n === 1 ? \"昨日\""
+  },
+  {
+   "note": "dates: 今日 / 昨日 (check)",
+   "find": "[\"today\", \"yesterday\"].includes",
+   "replace": "[\"今日\", \"昨日\"].includes"
+  },
+  {
+   "note": "trend: 横ばい",
+   "find": "|| \"steady\"",
+   "replace": "|| \"横ばい\"",
+   "all": true
+  },
+  {
+   "note": "new set notice: 今日に発売",
+   "find": "today ? \"today\" : D(rel)",
+   "replace": "today ? \"今日\" : D(rel)"
+  },
+  {
+   "note": "trend chart rank labels: 3位",
+   "find": "${r ? \"#\" + r : \"\\u2013\"}",
+   "replace": "${r ? r + \"位\" : \"\\u2013\"}"
   },
   {
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",

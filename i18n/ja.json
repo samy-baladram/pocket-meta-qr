@@ -13,7 +13,7 @@
 ],
 "01182452b1": [
 "In {t0}{0}{t1} meta deck{1}",
-"環境デッキ{t0}{0}{t1}個{1!}で使用"
+"環境の{t0}{0}{t1}デッキで使用{1!}"
 ],
 "012deaa0d8": [
 "Last 3 days",
@@ -160,7 +160,7 @@
 ],
 "10c23975d7": [
 "win{0}",
-"勝{0!}"
+"回優勝{0!}"
 ],
 "1117ffe1c9": [
 "1st–3rd {t0}{t1}top 25%",
@@ -196,7 +196,7 @@
 ],
 "1455ab70a1": [
 "is in {0} pack{1}.",
-"は{0}つのパックに入っています{1!}。"
+"は{0}パックに収録されています{1!}。"
 ],
 "145a83266e": [
 "Loading&hellip;",
@@ -372,7 +372,7 @@
 ],
 "2451222400": [
 "Show {0} older update{1}",
-"以前の更新{0}件{1!}を表示"
+"以前の更新を表示（{0}）{1!}"
 ],
 "24ea1f77f4": [
 "Last change",
@@ -428,7 +428,7 @@
 ],
 "293325df75": [
 "Show all {0} smaller decks",
-"小規模デッキ{0}個をすべて表示"
+"小規模デッキをすべて表示（{0}）"
 ],
 "295df348e1": [
 "“1 player”, not “1 players”.",
@@ -712,7 +712,7 @@
 ],
 "46c45a8cc8": [
 "· {0} win{1}",
-"· {0}勝{1!}"
+"· {0}回優勝{1!}"
 ],
 "479fe3b7a9": [
 "Loading events&hellip;",
@@ -1272,7 +1272,7 @@
 ],
 "78c6a1f315": [
 "of {0} decks",
-"／{0}デッキ"
+"全{0}デッキ中"
 ],
 "790579bc84": [
 "Search a deck or a card. Pick a card to see every deck that plays it. The empty search box shows the new cards that top players use.",
@@ -1404,7 +1404,7 @@
 ],
 "851ff4d12f": [
 "Show {0} older packs",
-"以前のパック{0}個を表示"
+"以前のパックを表示（{0}）"
 ],
 "857fa3b382": [
 "List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. {t0}&#9733; Popular now{t1} marks a list 1 that clearly more top players used exactly than any other list.",
@@ -2067,11 +2067,11 @@
 ],
 "c810d05ccb": [
 "Open Booster Packs",
-"拡張パックを開く"
+"「パック」ページを開く"
 ],
 "c8d3756e45": [
 "cards",
-"「パック」ページを開く"
+"カード"
 ],
 "c93fd9c78b": [
 "7-day trend",
