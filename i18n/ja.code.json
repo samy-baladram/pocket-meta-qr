@@ -104,7 +104,7 @@
   {
    "note": "packs: card count under a card",
    "find": "<small>${c.st ? `${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} small`}</small>",
-   "replace": "<small>${c.st ? `${c.decks.length}デッキ` : `小規模${c.decks.length}`}</small>"
+   "replace": "<small>${c.st ? `${c.decks.length}デッキ` : `小規模${c.decks.length}デッキ`}</small>"
   },
   {
    "note": "packs: card label",
@@ -993,6 +993,32 @@
    "note": "top 10 rising/falling: すべて表示（N） (tap)",
    "find": "\"Show less\" : \"Show all \" + c.querySelectorAll(\".t1s-r\").length",
    "replace": "\"閉じる\" : \"すべて表示（\" + c.querySelectorAll(\".t1s-r\").length + \"）\""
+  },
+  {
+   "note": "pack row: 環境カード5枚",
+   "find": "`<b>${m}</b> meta card${m > 1 ? \"s\" : \"\"}` : x.cards.length ? \"\" : \"no meta cards\"",
+   "replace": "`環境カード<b>${m}</b>枚` : x.cards.length ? \"\" : \"環境カードなし\""
+  },
+  {
+   "note": "packs header: 今週の環境向け",
+   "find": "for the meta ${winWk()}",
+   "replace": "${winWk()}の環境向け",
+   "all": true
+  },
+  {
+   "note": "packs list count: 12件（ほか以前30件）",
+   "find": "${nA === PKV.length ? nA : nA + \" + \" + (PKV.length - nA) + \" older\"}",
+   "replace": "${nA === PKV.length ? nA + \"件\" : nA + \"件（ほか以前\" + (PKV.length - nA) + \"件）\"}"
+  },
+  {
+   "note": "card popup: packs joined with ・",
+   "find": "ps.map((p) => p.name).join(\" or \")",
+   "replace": "ps.map((p) => p.name).join(\"・\")"
+  },
+  {
+   "note": "card popup: 11月1日発売",
+   "find": "`Released ${fdate(set.release)}`",
+   "replace": "`${fdate(set.release)}発売`"
   },
   {
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
