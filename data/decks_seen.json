@@ -4077,5 +4077,423 @@
    "players": 325,
    "dt": "2026-11-21"
   }
+ },
+ "mega-blaziken-ex-b1": {
+  "name": "Mega Blaziken ex",
+  "seen": "2026-11-23",
+  "rank": 39,
+  "share": 0.35,
+  "win": 53.33,
+  "count": 8,
+  "games": 15,
+  "more": 1,
+  "dates": "Nov 17 – 23",
+  "best": [
+   "30th of 88",
+   "Block Dragon Standard (Any 2 card prize)",
+   "2026-11-23"
+  ],
+  "cards": [
+   [
+    "Torchic",
+    2
+   ],
+   [
+    "Mega Blaziken ex",
+    2
+   ],
+   [
+    "Castform Sunny Form",
+    1
+   ],
+   [
+    "Heatmor",
+    1
+   ],
+   [
+    "Copycat",
+    2
+   ],
+   [
+    "Serena's Choice",
+    2
+   ],
+   [
+    "Cyrus",
+    1
+   ],
+   [
+    "Professor's Research",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Rare Candy",
+    2
+   ],
+   [
+    "Flame Patch",
+    2
+   ],
+   [
+    "Field Blower",
+    1
+   ],
+   [
+    "Hiking Trail",
+    1
+   ]
+  ],
+  "xs": []
+ },
+ "mega-rayquaza-ex-dragonair-b4": {
+  "name": "Mega Rayquaza ex Dragonair",
+  "seen": "2026-11-23",
+  "rank": 42,
+  "share": 0.3,
+  "win": 50,
+  "count": 7,
+  "games": 20,
+  "more": 1,
+  "dates": "Nov 17 – 23",
+  "best": [
+   "2nd of 88",
+   "Block Dragon Standard (Any 2 card prize)",
+   "2026-11-23"
+  ],
+  "cards": [
+   [
+    "Dratini",
+    1
+   ],
+   [
+    "Dratini",
+    1
+   ],
+   [
+    "Dragonair",
+    2
+   ],
+   [
+    "Mega Rayquaza ex",
+    2
+   ],
+   [
+    "Drampa",
+    1
+   ],
+   [
+    "Copycat",
+    2
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Pokémon Center Lady",
+    1
+   ],
+   [
+    "Serena's Choice",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Field Blower",
+    1
+   ],
+   [
+    "Repel",
+    1
+   ],
+   [
+    "Small Balloon",
+    1
+   ],
+   [
+    "Rainbow Cave",
+    2
+   ]
+  ],
+  "xs": []
+ },
+ "mega-mewtwo-y-ex-p-c-giratina-ex-a2b": {
+  "name": "Mega Mewtwo Y ex Giratina ex",
+  "seen": "2026-11-23",
+  "rank": 47,
+  "share": 0.26,
+  "win": 47.83,
+  "count": 6,
+  "games": 23,
+  "more": 1,
+  "dates": "Nov 17 – 23",
+  "best": [
+   "4th of 78",
+   "Project OTS x The Dark League Tournament | FAs",
+   "2026-11-20"
+  ],
+  "cards": [
+   [
+    "Mimikyu ex",
+    2
+   ],
+   [
+    "Mega Mewtwo Y ex",
+    2
+   ],
+   [
+    "Giratina ex",
+    2
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Copycat",
+    2
+   ],
+   [
+    "Serena's Choice",
+    1
+   ],
+   [
+    "Sabrina",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Genome Converter Y",
+    2
+   ],
+   [
+    "Eviolite",
+    2
+   ],
+   [
+    "Peculiar Plaza",
+    2
+   ]
+  ],
+  "xs": []
+ },
+ "mega-mewtwo-y-ex-p-c-mega-diancie-ex-b3b": {
+  "name": "Mega Mewtwo Y ex Mega Diancie ex",
+  "seen": "2026-11-23",
+  "rank": 48,
+  "share": 0.26,
+  "win": 46.15,
+  "count": 6,
+  "games": 26,
+  "more": 1,
+  "dates": "Nov 17 – 23",
+  "best": [
+   "9th of 88",
+   "Block Dragon Standard (Any 2 card prize)",
+   "2026-11-23"
+  ],
+  "cards": [
+   [
+    "Carbink",
+    2
+   ],
+   [
+    "Mega Mewtwo Y ex",
+    1
+   ],
+   [
+    "Mega Diancie ex",
+    1
+   ],
+   [
+    "Flutter Mane",
+    1
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Serena's Choice",
+    2
+   ],
+   [
+    "Sabrina",
+    1
+   ],
+   [
+    "Cyrus",
+    1
+   ],
+   [
+    "Pokémon Center Lady",
+    1
+   ],
+   [
+    "Copycat",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Genome Converter Y",
+    1
+   ],
+   [
+    "Eviolite",
+    2
+   ],
+   [
+    "Peculiar Plaza",
+    2
+   ]
+  ],
+  "xs": []
+ },
+ "ho-oh-ex-a4-charizard-c1": {
+  "name": "Ho-Oh ex Charizard",
+  "seen": "2026-11-23",
+  "rank": 55,
+  "share": 0.22,
+  "win": 48.48,
+  "count": 5,
+  "games": 33,
+  "more": 1,
+  "dates": "Nov 17 – 23",
+  "best": [
+   "53rd of 325",
+   "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
+   "2026-11-21"
+  ],
+  "cards": [
+   [
+    "Charmander",
+    2
+   ],
+   [
+    "Charmeleon",
+    2
+   ],
+   [
+    "Charizard",
+    1
+   ],
+   [
+    "Ho-Oh ex",
+    2
+   ],
+   [
+    "Lugia ex",
+    1
+   ],
+   [
+    "Serena's Choice",
+    2
+   ],
+   [
+    "Copycat",
+    2
+   ],
+   [
+    "Professor's Research",
+    1
+   ],
+   [
+    "May",
+    1
+   ],
+   [
+    "Blue's Provocation",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Flame Patch",
+    2
+   ],
+   [
+    "Eviolite",
+    1
+   ]
+  ],
+  "xs": []
+ },
+ "mega-gengar-ex-b2b-gengar-c1": {
+  "name": "Mega Gengar ex Gengar",
+  "seen": "2026-11-23",
+  "rank": 59,
+  "share": 0.22,
+  "win": 31.25,
+  "count": 5,
+  "games": 16,
+  "more": 1,
+  "dates": "Nov 17 – 23",
+  "best": [
+   "42nd of 88",
+   "Block Dragon Standard (Any 2 card prize)",
+   "2026-11-23"
+  ],
+  "cards": [
+   [
+    "Gastly",
+    2
+   ],
+   [
+    "Gengar",
+    2
+   ],
+   [
+    "Mega Gengar ex",
+    1
+   ],
+   [
+    "Igglybuff",
+    2
+   ],
+   [
+    "Darkrai",
+    2
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Copycat",
+    2
+   ],
+   [
+    "Cyrus",
+    1
+   ],
+   [
+    "Rare Candy",
+    2
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Deceptive Needle",
+    2
+   ]
+  ],
+  "xs": []
  }
 }

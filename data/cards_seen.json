@@ -4562,8 +4562,8 @@
  },
  "Mega Rayquaza ex": {
   "id": "b4-120",
-  "seen": "2026-11-22",
-  "dates": "Nov 16 – 22",
+  "seen": "2026-11-23",
+  "dates": "Nov 17 – 23",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -4573,8 +4573,8 @@
   "nd": 1,
   "L": [
    [
-    "Dragonair Mega Rayquaza ex",
-    1,
+    "Mega Rayquaza ex Dragonair",
+    2,
     1
    ]
   ]
@@ -4707,6 +4707,206 @@
   "L": [
    [
     "Pikachu ex Pawmot",
+    1,
+    1
+   ]
+  ]
+ },
+ "Ho-Oh ex": {
+  "id": "a4-034",
+  "seen": "2026-11-23",
+  "dates": "Nov 17 – 23",
+  "pct": 1,
+  "u": 2,
+  "pack": [
+   "Wisdom of Sea and Sky Ho-Oh pack",
+   "Wisdom of Sea and Sky pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Ho-Oh ex Charizard",
+    2,
+    2
+   ]
+  ]
+ },
+ "Lugia ex": {
+  "id": "a4-149",
+  "seen": "2026-11-23",
+  "dates": "Nov 17 – 23",
+  "pct": 1,
+  "u": 2,
+  "pack": [
+   "Wisdom of Sea and Sky Lugia pack",
+   "Wisdom of Sea and Sky pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Ho-Oh ex Charizard",
+    1,
+    2
+   ]
+  ]
+ },
+ "Mega Mewtwo Y ex": {
+  "id": "pc-002",
+  "seen": "2026-11-23",
+  "dates": "Nov 17 – 23",
+  "pct": 1,
+  "u": 2,
+  "pack": [
+   "Promo-C pack",
+   "Promo-C pack"
+  ],
+  "nd": 2,
+  "L": [
+   [
+    "Mega Mewtwo Y ex Giratina ex",
+    2,
+    1
+   ],
+   [
+    "Mega Mewtwo Y ex Mega Diancie ex",
+    1,
+    1
+   ]
+  ]
+ },
+ "Genome Converter Y": {
+  "id": "pc-009",
+  "seen": "2026-11-23",
+  "dates": "Nov 17 – 23",
+  "pct": 1,
+  "u": 2,
+  "pack": [
+   "Promo-C pack",
+   "Promo-C pack"
+  ],
+  "nd": 2,
+  "L": [
+   [
+    "Mega Mewtwo Y ex Giratina ex",
+    2,
+    1
+   ],
+   [
+    "Mega Mewtwo Y ex Mega Diancie ex",
+    1,
+    1
+   ]
+  ]
+ },
+ "Ilima": {
+  "id": "a3-149",
+  "seen": "2026-11-23",
+  "dates": "Nov 17 – 23",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Celestial Guardians Lunala pack",
+   "Celestial Guardians pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Ho-Oh ex Charizard",
+    1,
+    1
+   ]
+  ]
+ },
+ "Torchic": {
+  "id": "b1-033",
+  "seen": "2026-11-23",
+  "dates": "Nov 17 – 23",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Mega Rising Mega Blaziken pack",
+   "Mega Rising pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Mega Blaziken ex",
+    2,
+    1
+   ]
+  ]
+ },
+ "Mega Blaziken ex": {
+  "id": "b1-036",
+  "seen": "2026-11-23",
+  "dates": "Nov 17 – 23",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Mega Rising Mega Blaziken pack",
+   "Mega Rising pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Mega Blaziken ex",
+    2,
+    1
+   ]
+  ]
+ },
+ "Heatmor": {
+  "id": "b1-044",
+  "seen": "2026-11-23",
+  "dates": "Nov 17 – 23",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Mega Rising Mega Altaria, Mega Blaziken or Mega Gyarados pack",
+   "Mega Rising pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Mega Blaziken ex",
+    1,
+    1
+   ]
+  ]
+ },
+ "Mimikyu ex": {
+  "id": "b2-073",
+  "seen": "2026-11-23",
+  "dates": "Nov 17 – 23",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Fantastical Parade pack",
+   "Fantastical Parade pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Mega Mewtwo Y ex Giratina ex",
+    2,
+    1
+   ]
+  ]
+ },
+ "Castform Sunny Form": {
+  "id": "b3-024",
+  "seen": "2026-11-23",
+  "dates": "Nov 17 – 23",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Pulsing Aura pack",
+   "Pulsing Aura pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Mega Blaziken ex",
     1,
     1
    ]
