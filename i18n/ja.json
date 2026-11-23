@@ -136,7 +136,7 @@
 ],
 "117bc3bfd7": [
 "No big moves",
-"大きな変動はありません"
+"大きな変動なし"
 ],
 "11d2a517c8": [
 "won by",
@@ -444,7 +444,7 @@
 ],
 "31c63feec3": [
 "Not in the meta now",
-"現在の環境にはありません"
+"現在は環境外"
 ],
 "3262485e3a": [
 "· {0} top player{1}",
@@ -1036,7 +1036,7 @@
 ],
 "74dfc10a49": [
 "Not a top list now",
-"現在は上位のレシピではありません"
+"現在は上位レシピ外"
 ],
 "75367d1a97": [
 "No player of this deck won more matches than they lost {0}, so it has no top-player list.",
@@ -1272,7 +1272,10 @@
 ],
 "8d546a6dea": [
 "Meta",
-"環境"
+"環境",
+{
+"<a>": "最強"
+}
 ],
 "8d7bf5bf13": [
 "Others",
@@ -1968,7 +1971,7 @@
 ],
 "e000ac6209": [
 "no public list yet",
-"公開レシピはまだありません"
+"公開レシピなし"
 ],
 "e001fb2f40": [
 "meta card{0}",

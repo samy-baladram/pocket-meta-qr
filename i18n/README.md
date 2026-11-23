@@ -26,6 +26,9 @@ build time. Nothing changes in the live page, and a built page has no translatio
 - Japanese words: as GameWith / Game8 use them: 最強デッキ (headings, tab, titles: the search term of Game8 /
   GameWith / Altema), 環境 for "the meta" in sentences (環境カード, 現在の環境), デッキレシピ / レシピ (a deck list), 使用率, 勝率,
   優勝 / N位 / ベスト8, 参加 N名, 限定バトル, マイデッキ → 新規作成 → コードを読み取る → 保存した画像から読み取る.
+- Japanese style (as GameWith / Game8): sentences in help, FAQ and messages in です/ます; labels, chips and pills end
+  on a noun (実績なし, 大きな変動なし), no 。; short notes and the Limited Battle deck notes in the plain form
+  (〜に強い。〜が低め。), like the bullets of those sites.
 - Japanese: the spaces next to a translation that starts / ends with Japanese are dropped.
 - Words of the game: as in the game (Energie / エネルギー, Booster-Pack / パック, Erweiterung / 拡張パック); card,
   deck, set and pack names come from `preview/i18n/names.<lang>.json`, not from here.

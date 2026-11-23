@@ -88,6 +88,10 @@ one("  const normQ = (o) => { if (Array.isArray(o)) o.forEach(normQ); else if (o
     "  const normQ1 = (o) => { if (Array.isArray(o)) o.forEach(normQ1); else if (o && typeof o === \"object\") { if (o.q && !o.qr) o.qr = o.q; Object.values(o).forEach(normQ1); } return o; };\n"
     "  const normQ = (o) => l10nDeep(normQ1(o)); // i18n preview: names in the chosen language")
 one("    .then((j) => {\n      data = normQ(j);", "    .then((j) => L10NP.then(() => j)) // i18n preview: names first\n    .then((j) => {\n      data = normQ(j);")
+one(".then((j) => { SJ = j; if (!$(\"filt\").hidden) renderSug(); })",
+    ".then((j) => L10NP.then(() => { SJ = l10nDeep(j); if (!$(\"filt\").hidden) renderSug(); }))")  # search.json: card names
+one("noex: (d) => !(d.cards || []).some((c) => isEx(c.n)),", "noex: (d) => !(d.cards || []).some((c) => isEx(c.nEn || c.n)),")  # the English name has \" ex\"
+one('({ id, name, energy, art, qr: q, nv: 1, lb: 1, k, rank: k + 1, deckName: name,', '({ id, nameEn: name, get name() { return trDeck(this.nameEn); }, set name(v) { this.nameEn = v; }, get deckName() { return trDeck(this.nameEn); }, set deckName(v) { this.nameEn = v; }, energy, art, qr: q, nv: 1, lb: 1, k, rank: k + 1,')  # Limited Battle deck names: in the page language when shown (names load later)
 one(".then((j) => (EV = j))", ".then((j) => L10NP.then(() => (EV = l10nDeep(j))))")
 one("for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n });", "for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n: trCard(n) });")
 one(".then((r) => (r.ok ? r.json() : null)).then((j) => (PK = j))",
