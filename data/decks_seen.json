@@ -3923,5 +3923,159 @@
    ]
   ],
   "xs": []
+ },
+ "mega-lucario-ex-b3-greninja-a1": {
+  "name": "Mega Lucario ex Greninja",
+  "seen": "2026-11-23",
+  "rank": 60,
+  "share": 0.14,
+  "win": 69.44,
+  "count": 3,
+  "games": 18,
+  "more": 1,
+  "dates": "Nov 17 – 22",
+  "best": [
+   "7th of 325",
+   "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
+   "2026-11-21"
+  ],
+  "cards": [
+   [
+    "Froakie",
+    2
+   ],
+   [
+    "Greninja",
+    2
+   ],
+   [
+    "Riolu",
+    1
+   ],
+   [
+    "Riolu",
+    1
+   ],
+   [
+    "Mega Lucario ex",
+    1
+   ],
+   [
+    "Chingling",
+    2
+   ],
+   [
+    "Copycat",
+    2
+   ],
+   [
+    "Cyrus",
+    1
+   ],
+   [
+    "Professor's Research",
+    1
+   ],
+   [
+    "Serena's Choice",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Rare Candy",
+    2
+   ],
+   [
+    "Lucky Egg",
+    2
+   ]
+  ],
+  "xs": [],
+  "brk": {
+   "ev": "PMPT #52",
+   "place": 7,
+   "players": 325,
+   "dt": "2026-11-21"
+  }
+ },
+ "entei-ex-a4a": {
+  "name": "Entei ex",
+  "seen": "2026-11-23",
+  "rank": 61,
+  "share": 0.04,
+  "win": 84.62,
+  "count": 1,
+  "games": 13,
+  "more": 1,
+  "dates": "Nov 17 – 22",
+  "best": [
+   "1st of 325",
+   "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
+   "2026-11-21"
+  ],
+  "cards": [
+   [
+    "Entei ex",
+    2
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Serena's Choice",
+    2
+   ],
+   [
+    "Pokémon Center Lady",
+    1
+   ],
+   [
+    "Sabrina",
+    1
+   ],
+   [
+    "Cyrus",
+    1
+   ],
+   [
+    "Lucky Ice Pop",
+    2
+   ],
+   [
+    "Flame Patch",
+    2
+   ],
+   [
+    "Repel",
+    1
+   ],
+   [
+    "Poké Ball",
+    1
+   ],
+   [
+    "Eviolite",
+    2
+   ],
+   [
+    "Rainbow Cave",
+    2
+   ],
+   [
+    "Starting Plains",
+    1
+   ]
+  ],
+  "xs": [],
+  "brk": {
+   "ev": "PMPT #52",
+   "place": 1,
+   "players": 325,
+   "dt": "2026-11-21"
+  }
  }
 }
