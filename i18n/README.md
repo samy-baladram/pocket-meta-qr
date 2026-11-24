@@ -229,7 +229,12 @@ Pack pages (Step 4b, Nov 24): `I18N_PACKS` the same way: `/<l>/packs/<id>/` for 
 (page.mjs `--lang-packs`, langPackPages): title = the page's `RPTITLE`, heading = its `pkName(x) + "…"`, pack name as
 the page (set name from names.<lang>.json `s`, the pack's Pokémon as `trPack`), description + intro = `packText()` in
 intro_i18n.mjs; hreflang (`--alt-packs "$I18N_PACKS"`) and sitemap; the menu keeps the open pack.
-Next: card pages.
+
+Card pages (Step 4c, Nov 25): `I18N_CARDS` the same way: `/<l>/cards/<id>/` for the cards of the English pages
+(page.mjs `--lang-cards --cards-seen data/cards_seen.json`: cardPages with the record read only): title = the page's
+`RCTITLE`, heading = its `c.n + "…"`, description + intro = `cardText()` in intro_i18n.mjs (the decks that use it with
+copies and top players, the main print's pack names as the page shows them, or the promo line); hreflang
+(`--alt-cards "$I18N_CARDS"`) and sitemap (cards in this week's lists); the menu keeps the open card.
 
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in

@@ -216,3 +216,68 @@ export function packText(lang, x, dates, namesDir = "preview/i18n") {
     (small ? (ja ? "" : " ") + T.sm(small) : "");
   return { name: nm, desc, intro };
 }
+
+// Phase 2 Step 4c (Nov 25, 2026): the texts of a language card page (/<lang>/cards/<id>/). en = the English card name,
+// e = the English page's entry ({ pct, nd, L: [{ name, c, tp }], seen }), on = in this week's lists, packs = the main
+// print's booster packs ([{ set, setName, pack, solo }], promo packs left out; [] = a promo card).
+export function cardText(lang, en, e, on, dates, packs, namesDir = "preview/i18n") {
+  const N = names(lang, namesDir), S = setNames(lang, namesDir), ja = lang === "ja";
+  if (!DAY[lang]) return null;
+  const nm = (N && N[en]) || en, P = (n, one, many) => (n === 1 ? one : many);
+  const trPack = (x) => { if (!N) return x; if (N[x]) return N[x]; const b = N[x + " ex"]; return b ? b.replace(/[-\s]?ex$/, "") : x; };
+  const OR = { ja: "または", es: " o ", pt: " ou ", de: " oder ", fr: " ou ", it: " o " }[lang];
+  const orJoin = (L) => (L.length > 1 ? L.slice(0, -1).join(ja ? "、" : ", ") + OR + L.at(-1) : L[0]);
+  const bySet = new Map();
+  for (const p of packs || []) { const sn = S[String(p.set).toLowerCase()] || p.setName;
+    (bySet.get(sn) || bySet.set(sn, []).get(sn)).push(p.solo ? null : trPack(p.pack)); }
+  const pkLong = bySet.size ? orJoin([...bySet].map(([sn, L]) => (L.some((x) => x) ? `${sn}${ja ? " " : " "}${orJoin(L.filter((x) => x))}` : sn))) : null;
+  const pkShort = bySet.size ? orJoin([...bySet.keys()]) : null;
+  const pc = (v) => (v == null ? "?" : ja || lang === "pt" || lang === "it" ? `${v}%` : `${v} %`);
+  const p = pc(e.pct), nd = e.nd ?? (e.L || []).length, sd = e.seen ? DAY[lang](...md(e.seen)) : "";
+  const L = (e.L || []).map((x) => ({ ...x, name: deck(lang, N, x.name) })), more = nd > L.length ? "…" : "";
+  const T = {
+    ja: { pk: (s) => `入手：${s}パック。`, promo: "プロモカード（パックからは出ません）。",
+      use: (x) => `${x.name}（${x.c}枚、上位${x.tp}人）`,
+      d: `${nm}：今週のポケポケ環境デッキ${nd}個で使われ、上位プレイヤーの${p}が採用。主なデッキ：`,
+      i: `${nm}は今週（${dates}）のポケポケのデッキ${nd}個で使われ、上位プレイヤーの${p}が採用しています。使っているデッキ：`,
+      od: `${nm}：今週の環境デッキでは使われていません（最終確認：${sd}）。使われていたデッキ${nd}個：`,
+      oi: `今週の環境デッキでは使われていません。最終確認：${sd}。当時${nd}個のデッキで、上位プレイヤーの${p}が採用。使っていたデッキ：` },
+    es: { pk: (s) => `Consíguela en el sobre ${s}.`, promo: "Carta promocional (no sale en sobres).",
+      use: (x) => `${x.name} (${x.c} ${P(x.c, "copia", "copias")}, ${x.tp} ${P(x.tp, "jugador top", "jugadores top")})`,
+      d: `${nm} está en ${nd} ${P(nd, "baraja", "barajas")} del meta de JCC Pokémon Pocket esta semana, usada por el ${p} de los jugadores top. Barajas principales: `,
+      i: `${nm} se juega en ${nd} de las barajas de JCC Pokémon Pocket de esta semana (${dates}), usada por el ${p} de los jugadores top. Barajas que la usan: `,
+      od: `No está en las barajas del meta de JCC Pokémon Pocket esta semana (vista por última vez el ${sd}). Estaba en ${nd} ${P(nd, "baraja", "barajas")}: `,
+      oi: `No está en las barajas del meta de esta semana. Vista por última vez el ${sd}: en ${nd} ${P(nd, "baraja", "barajas")}, usada por el ${p} de los jugadores top. Barajas que la usaban: ` },
+    pt: { pk: (s) => `Obtenha no pacote ${s}.`, promo: "Carta promocional (não vem em pacotes).",
+      use: (x) => `${x.name} (${x.c} ${P(x.c, "cópia", "cópias")}, ${x.tp} ${P(x.tp, "jogador top", "jogadores top")})`,
+      d: `${nm} está em ${nd} ${P(nd, "baralho", "baralhos")} do meta de Pokémon TCG Pocket nesta semana, usada por ${p} dos jogadores top. Principais baralhos: `,
+      i: `${nm} é jogada em ${nd} dos baralhos de Pokémon TCG Pocket desta semana (${dates}), por ${p} dos jogadores top. Baralhos que a usam: `,
+      od: `Não está nos baralhos do meta de Pokémon TCG Pocket desta semana (vista pela última vez em ${sd}). Estava em ${nd} ${P(nd, "baralho", "baralhos")}: `,
+      oi: `Não está nos baralhos do meta desta semana. Vista pela última vez em ${sd}: em ${nd} ${P(nd, "baralho", "baralhos")}, por ${p} dos jogadores top. Baralhos que a usavam: ` },
+    de: { pk: (s) => `Erhältlich im Pack ${s}.`, promo: "Promo-Karte (nicht in Boosterpacks).",
+      use: (x) => `${x.name} (${x.c} ${P(x.c, "Kopie", "Kopien")}, ${x.tp} Top-Spieler)`,
+      d: `${nm} ist diese Woche in ${nd} ${P(nd, "Meta-Deck", "Meta-Decks")} von Pokémon TCG Pocket, gespielt von ${p} der Top-Spieler. Top-Decks: `,
+      i: `${nm} wird in ${nd} der Pokémon TCG Pocket-Decks dieser Woche (${dates}) gespielt, von ${p} der Top-Spieler. Decks, die sie nutzen: `,
+      od: `Diese Woche in keinem Meta-Deck von Pokémon TCG Pocket (zuletzt gesehen: ${sd}). Sie war in ${nd} ${P(nd, "Deck", "Decks")}: `,
+      oi: `Diese Woche in keinem Meta-Deck. Zuletzt gesehen: ${sd}, in ${nd} ${P(nd, "Deck", "Decks")}, von ${p} der Top-Spieler gespielt. Decks, die sie nutzten: ` },
+    fr: { pk: (s) => `À obtenir dans le booster ${s}.`, promo: "Carte promo (pas dans les boosters).",
+      use: (x) => `${x.name} (${x.c} ${P(x.c, "exemplaire", "exemplaires")}, ${x.tp} ${P(x.tp, "top joueur", "top joueurs")})`,
+      d: `${nm} est dans ${nd} ${P(nd, "deck", "decks")} du méta de Pokémon TCG Pocket cette semaine, jouée par ${p} des top joueurs. Decks principaux : `,
+      i: `${nm} est jouée dans ${nd} des decks de Pokémon TCG Pocket de cette semaine (${dates}), par ${p} des top joueurs. Decks qui l'utilisent : `,
+      od: `Absente des decks du méta de Pokémon TCG Pocket cette semaine (vue pour la dernière fois le ${sd}). Elle était dans ${nd} ${P(nd, "deck", "decks")} : `,
+      oi: `Absente des decks du méta cette semaine. Vue pour la dernière fois le ${sd} : dans ${nd} ${P(nd, "deck", "decks")}, jouée par ${p} des top joueurs. Decks qui l'utilisaient : ` },
+    it: { pk: (s) => `Si trova nella busta ${s}.`, promo: "Carta promo (non nelle buste).",
+      use: (x) => `${x.name} (${x.c} ${P(x.c, "copia", "copie")}, ${x.tp} ${P(x.tp, "giocatore top", "giocatori top")})`,
+      d: `${nm} è in ${nd} ${P(nd, "mazzo", "mazzi")} del meta del GCC Pokémon Pocket questa settimana, usata dal ${p} dei giocatori top. Mazzi principali: `,
+      i: `${nm} è giocata in ${nd} dei mazzi del GCC Pokémon Pocket di questa settimana (${dates}), dal ${p} dei giocatori top. Mazzi che la usano: `,
+      od: `Non è nei mazzi del meta del GCC Pokémon Pocket questa settimana (vista l'ultima volta il ${sd}). Era in ${nd} ${P(nd, "mazzo", "mazzi")}: `,
+      oi: `Non è nei mazzi del meta di questa settimana. Vista l'ultima volta il ${sd}: in ${nd} ${P(nd, "mazzo", "mazzi")}, usata dal ${p} dei giocatori top. Mazzi che la usavano: ` },
+  }[lang];
+  if (!T) return null;
+  const sep = ja ? "、" : ", ", end = ja ? "。" : ".", sp = ja ? "" : " ";
+  const tail = pkShort ? T.pk(pkShort) : T.promo, tailL = pkLong ? T.pk(pkLong) : T.promo;
+  const fitL = (h, items, t) => { const mk = (n) => h + items.slice(0, n).join(sep) + (n < items.length ? "…" : end) + sp + t;
+    let n = items.length; while (n > 1 && mk(n).length > 160) n--; return mk(n); };
+  const used = L.map(T.use).join(sep) + more;
+  return { name: nm, desc: fitL(on ? T.d : T.od, L.map((x) => x.name), tail), intro: (on ? T.i : T.oi) + used + end + sp + tailL };
+}

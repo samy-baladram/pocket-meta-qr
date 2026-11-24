@@ -24,7 +24,7 @@ page() { # <lang> <source html> <out dir> [root]
   local rel="${3#"$PUB"/}" home="" mode=--no-routes idx="" alt=()
   # Phase 2 Steps 3 + 5 (Nov 24): a live page (root "/") gets hreflang (page.mjs --alt); a live language in I18N_INDEX
   # (site.yml) also loses the noindex tag. /preview/ pages: neither.
-  if [ "${4:-}" = / ]; then alt=(--alt "${I18N_INDEX:-}" --alt-routes "${I18N_ROUTES:-}" --alt-decks "${I18N_DECKS:-}" --alt-packs "${I18N_PACKS:-}")
+  if [ "${4:-}" = / ]; then alt=(--alt "${I18N_INDEX:-}" --alt-routes "${I18N_ROUTES:-}" --alt-decks "${I18N_DECKS:-}" --alt-packs "${I18N_PACKS:-}" --alt-cards "${I18N_CARDS:-}")
     if [[ " ${I18N_INDEX:-} " == *" $1 "* ]]; then idx=1; fi; fi
   # Phase 2 Step 1 (Nov 24): a language in I18N_ROUTES (site.yml) gets its section pages too (events/, packs/,
   # limited/, about/ next to its index.html: page.mjs --lang-routes)
@@ -33,7 +33,9 @@ page() { # <lang> <source html> <out dir> [root]
     # only; not the /preview/ copies)
     if [ "${4:-}" = / ] && [[ " ${I18N_DECKS:-} " == *" $1 "* ]]; then mode="$mode --lang-decks --seen data/decks_seen.json"; fi
     # Step 4b: and packs/<id>/ (I18N_PACKS)
-    if [ "${4:-}" = / ] && [[ " ${I18N_PACKS:-} " == *" $1 "* ]]; then mode="$mode --lang-packs"; fi; fi
+    if [ "${4:-}" = / ] && [[ " ${I18N_PACKS:-} " == *" $1 "* ]]; then mode="$mode --lang-packs"; fi
+    # Step 4c: and cards/<id>/ (I18N_CARDS; the English card record, read only)
+    if [ "${4:-}" = / ] && [[ " ${I18N_CARDS:-} " == *" $1 "* ]]; then mode="$mode --lang-cards --cards-seen data/cards_seen.json"; fi; fi
   # --prev: keep the previous build's app.<hash> files of this page (a page cached for 10 min still finds its code)
   # shellcheck disable=SC2086
   node pipeline/page.mjs "$2" "$T/p/index.html" $mode "${alt[@]}" --lang "$1" --data site --prev "cache/app-$(printf '%s' "$rel" | tr / -)" > /dev/null
