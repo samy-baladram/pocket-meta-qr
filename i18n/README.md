@@ -155,7 +155,7 @@ Made from the reviewed Spanish: the same 556 texts (`fr.json`) and 161 of its co
   sauvegardée (the sentences around it say "sauvegardez l’image", as the game); the event name "Combats restreints :
   Fusion Double" is correct.
 
-## Italian (it, Nov 24, 2026): preview only at /preview/it/ (not in the menu)
+## Italian (it, Nov 24, 2026): live as beta at /it/ (noindex, like /ja/, /es/, /pt/, /de/, /fr/)
 Made from the reviewed French: the same 556 texts (`it.json`) and its 170 code changes in Italian, plus the plural patches.
 - Plurals: Italian changes the last vowel (torneo/tornei), so `it.code.json` ends with patches that change the English
   plural code `word${n > 1 ? "s" : ""}` to the Italian endings of that word (`deck${n > 1 ? "i" : "o"}`). The English
