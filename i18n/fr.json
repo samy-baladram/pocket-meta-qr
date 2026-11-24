@@ -81,7 +81,7 @@
 ],
 "0b638f7e80": [
 "It shows only the current meta, the decks, lists and events of the last 7 to 14 days, so it does not keep a history, list every card or build decks.",
-"Il ne montre que le méta actuel : les decks, listes et tournois des 7 à 14 derniers jours. Il n’y a donc ni historique, ni liste complète des cartes, ni constructeur de deck."
+"Il ne montre que la méta actuelle : les decks, listes et tournois des 7 à 14 derniers jours. Il n’y a donc ni historique, ni liste complète des cartes, ni constructeur de deck."
 ],
 "0bec14f205": [
 "Rising",
@@ -397,7 +397,7 @@
 ],
 "2b286f6b1e": [
 "Vs the meta",
-"Face au méta"
+"Face à la méta"
 ],
 "2c1469f758": [
 "Save image",
@@ -437,7 +437,7 @@
 ],
 "30d4653f8e": [
 "▲ = at least 2&times; its meta share in this event's top {0}.",
-"▲ = au moins 2&times; sa présence dans le méta dans le top {0} de ce tournoi."
+"▲ = au moins 2&times; sa présence dans la méta dans le top {0} de ce tournoi."
 ],
 "311bee6a56": [
 "Copy the address",
@@ -453,7 +453,7 @@
 ],
 "31c63feec3": [
 "Not in the meta now",
-"Plus dans le méta"
+"Plus dans la méta"
 ],
 "3262485e3a": [
 "· {0} top player{1}",
@@ -577,7 +577,7 @@
 ],
 "3ea7d0f033": [
 "Packs for the meta",
-"Boosters pour le méta"
+"Boosters pour la méta"
 ],
 "41ce3c6eaf": [
 "1 card",
@@ -713,7 +713,7 @@
 ],
 "516dd47a55": [
 "Public Standard events with 8 or more players on {t0}Limitless TCG{t1}, from the last 7 days, because the meta changes fast (up to 14 days when there are few events, late in a set; never before the set&rsquo;s release). The numbers are computed here, so they can differ a little from other sites.",
-"Pocket Meta QR utilise les tournois publics au format Standard de 8 joueurs ou plus sur {t0}Limitless TCG{t1}, sur les 7 derniers jours, car le méta évolue vite (jusqu’à 14 jours quand il y a peu de tournois, en fin d’extension ; jamais avant la sortie de l’extension). Les chiffres sont calculés par le site lui-même : ils peuvent donc différer légèrement de ceux d’autres sites."
+"Pocket Meta QR utilise les tournois publics au format Standard de 8 joueurs ou plus sur {t0}Limitless TCG{t1}, sur les 7 derniers jours, car la méta évolue vite (jusqu’à 14 jours quand il y a peu de tournois, en fin d’extension ; jamais avant la sortie de l’extension). Les chiffres sont calculés par le site lui-même : ils peuvent donc différer légèrement de ceux d’autres sites."
 ],
 "518e73b3a3": [
 "No deck or card found",
@@ -1073,7 +1073,7 @@
 ],
 "76a893e205": [
 "for the meta",
-"pour le méta"
+"pour la méta"
 ],
 "775ee8b04a": [
 "The tournaments of the same days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.",
@@ -1357,7 +1357,7 @@
 ],
 "96f550255d": [
 "Meta map",
-"Carte du méta"
+"Carte de la méta"
 ],
 "96fb9c9f0d": [
 "How are the lists chosen?",
@@ -1561,7 +1561,7 @@
 ],
 "af20be5975": [
 "is not in this week’s meta{0}.",
-"n’est pas dans le méta de cette semaine{0}."
+"n’est pas dans la méta de cette semaine{0}."
 ],
 "af862f9e86": [
 "Booster pack",
@@ -1621,7 +1621,7 @@
 ],
 "b5cd5cad73": [
 "No {0} decks in the meta right now ({1}).",
-"Aucun deck {0} dans le méta en ce moment ({1})."
+"Aucun deck {0} dans la méta en ce moment ({1})."
 ],
 "b68d372d0c": [
 "Get it from",
@@ -1677,7 +1677,7 @@
 ],
 "bd81811d71": [
 "Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks from public tournaments on Limitless, like a tier list built from real results: share, win rate and the lists the top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster pack gives the cards of the meta.",
-"Pocket Meta QR classe les decks Pok&eacute;mon TCG Pocket de cette semaine à partir des tournois publics sur Limitless, comme une tier list faite avec de vrais résultats : présence, % de victoires et les listes jouées par les top joueurs. Chaque liste a un code QR à scanner dans le jeu pour importer le deck, et la page Boosters montre quel booster donne les cartes du méta."
+"Pocket Meta QR classe les decks Pok&eacute;mon TCG Pocket de cette semaine à partir des tournois publics sur Limitless, comme une tier list faite avec de vrais résultats : présence, % de victoires et les listes jouées par les top joueurs. Chaque liste a un code QR à scanner dans le jeu pour importer le deck, et la page Boosters montre quel booster donne les cartes de la méta."
 ],
 "bf3d48422f": [
 "Pokémon TCG Pocket Meta Decks ({0}) with QR Codes | Pocket Meta QR",
@@ -1933,7 +1933,7 @@
 ],
 "dc0d22645d": [
 "2&times; meta share",
-"2&times; sa présence dans le méta"
+"2&times; sa présence dans la méta"
 ],
 "dc6066a3a3": [
 "Search a deck or card",
@@ -1949,7 +1949,7 @@
 ],
 "dde3707865": [
 "Above meta",
-"Au-dessus du méta"
+"Au-dessus de la méta"
 ],
 "de04fa0e29": [
 "of",
@@ -2197,7 +2197,7 @@
 ],
 "faf7c78e36": [
 "Booster packs for this week’s meta",
-"Boosters pour le méta de cette semaine"
+"Boosters pour la méta de cette semaine"
 ],
 "fc45091249": [
 "Switch to light mode",
@@ -2209,7 +2209,7 @@
 ],
 "ffa4a6d465": [
 "Limitless TCG{t0} is the main place where Pok&eacute;mon TCG Pocket tournaments are played online. New events start there every day, from small cups to open events with more than 300 players, and thousands of players take part every week. Each result is public as soon as an event ends, and this site checks for new ones every hour, so the meta here is days fresher than a tier list made by hand. Pocket Meta QR is not part of Limitless TCG: it reads its public results.",
-"Limitless TCG{t0} est le principal site de tournois en ligne de Pok&eacute;mon TCG Pocket. De nouveaux tournois y démarrent chaque jour, des petites coupes aux tournois ouverts de plus de 300 joueurs, et des milliers de joueurs y participent chaque semaine. Les résultats sont publics dès la fin de chaque tournoi, et ce site vérifie toutes les heures s’il y en a de nouveaux : le méta affiché ici a donc plusieurs jours d’avance sur une tier list faite à la main. Pocket Meta QR n’est pas lié à Limitless TCG : il se contente de lire ses résultats publics."
+"Limitless TCG{t0} est le principal site de tournois en ligne de Pok&eacute;mon TCG Pocket. De nouveaux tournois y démarrent chaque jour, des petites coupes aux tournois ouverts de plus de 300 joueurs, et des milliers de joueurs y participent chaque semaine. Les résultats sont publics dès la fin de chaque tournoi, et ce site vérifie toutes les heures s’il y en a de nouveaux : la méta affichée ici a donc plusieurs jours d’avance sur une tier list faite à la main. Pocket Meta QR n’est pas lié à Limitless TCG : il se contente de lire ses résultats publics."
 ],
 "ffa4f00cd6": [
 "slot{0}",

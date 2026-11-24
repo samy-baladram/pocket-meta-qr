@@ -435,7 +435,7 @@
   {
    "note": "share image: 1.º en el meta",
    "find": "`#${d.rank} in the meta`",
-   "replace": "`${oF(d.rank)} du méta`"
+   "replace": "`${oF(d.rank)} de la méta`"
   },
   {
    "note": "trend chart rank labels: 3.º",
@@ -802,7 +802,7 @@
   {
    "note": "head: og:title",
    "find": "<meta property=\"og:title\" content=\"Pocket Meta QR – this week's Pokémon TCG Pocket meta and tournaments, with QR codes\">",
-   "replace": "<meta property=\"og:title\" content=\"Pocket Meta QR – le méta et les tournois de Pokémon TCG Pocket cette semaine, avec des codes QR\">"
+   "replace": "<meta property=\"og:title\" content=\"Pocket Meta QR – la méta et les tournois de Pokémon TCG Pocket cette semaine, avec des codes QR\">"
   },
   {
    "note": "head: og:description",
