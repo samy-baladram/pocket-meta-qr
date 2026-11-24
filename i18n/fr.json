@@ -185,7 +185,7 @@
 ],
 "16effccb01": [
 "No list was used by more than 1 top player, so the {0} is the list with the best place{1}.",
-"Aucune liste n’a été jouée par plus d’1 top joueur, donc la {0} est la liste avec la meilleure place{1}."
+"Aucune liste n’a été jouée par plus d’un top joueur, donc la {0} est la liste avec la meilleure place{1}."
 ],
 "172415f02e": [
 "added",
@@ -209,7 +209,7 @@
 ],
 "1affc37b23": [
 "Below the cut",
-"Sous le cut"
+"Hors du top cut"
 ],
 "1b45bdc8b5": [
 "best {0}%",
@@ -297,7 +297,7 @@
 ],
 "2274cb3617": [
 "is new: these are the results of its first {0}, so the numbers can change fast.",
-"est nouvelle : voici les résultats de ses {0} premiers, donc les chiffres peuvent changer vite."
+"est nouvelle : voici les résultats de {0}, donc les chiffres peuvent changer vite."
 ],
 "232a936a05": [
 "Deck data did not load.",
@@ -341,7 +341,7 @@
 ],
 "262e0e8a01": [
 "(last seen {0})",
-"(vue pour la dernière fois {0})"
+"(dernière apparition le {0})"
 ],
 "26b1ca6b96": [
 "Card details",
@@ -725,7 +725,7 @@
 ],
 "521456ffbf": [
 "Cards of the {0} top player{1} (too few for core and flex).",
-"Cartes du ou des {0} top joueur{1} (trop peu pour les fixes et les flex)."
+"Cartes de {0} top joueur{1} (trop peu pour les fixes et les flex)."
 ],
 "532297d7bc": [
 "Top 16",
@@ -749,7 +749,7 @@
 ],
 "544face5f8": [
 "&middot; in {0} {1}deck{2}",
-"&middot; dans {0} deck{2} {1}"
+"&middot; dans {0} deck{2}{1}"
 ],
 "548bcc2f35": [
 "Win rate against the 10 most played decks {0}, best first. Green bar: above 50%, red: below. {t0}Light bar{t1}: too few games to be sure it is not 50%. Right: the number of games.",
@@ -757,7 +757,7 @@
 ],
 "54907cba83": [
 "&#9888; Below the cut",
-"&#9888; Sous le cut"
+"&#9888; Hors du top cut"
 ],
 "54df5b93d8": [
 "No pack has that card.",
@@ -801,7 +801,7 @@
 ],
 "5712ba0728": [
 "below the cut",
-"sous le cut"
+"hors du top cut"
 ],
 "57c9502a7d": [
 "Lists",
@@ -1401,7 +1401,7 @@
 ],
 "9bb5b01475": [
 "&#9888; Below the cut{0}",
-"&#9888; Sous le cut{0}"
+"&#9888; Hors du top cut{0}"
 ],
 "9c3c295f07": [
 "smaller",
