@@ -989,6 +989,11 @@
    "note": "tabs: 引くべきパック (the page title and footer use it; the tab ranks packs by meta cards)",
    "find": "><span class=\"tlx\">Booster </span>Packs</a>",
    "replace": ">뽑을 만한 팩</a>"
+  },
+  {
+   "note": "ko: '대회 16개' (counter after the number)",
+   "find": "<b>${sm.tournaments}</b> events</span>",
+   "replace": "대회 <b>${sm.tournaments}</b>개</span>"
   }
  ]
 }
