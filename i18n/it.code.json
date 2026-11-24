@@ -22,9 +22,9 @@
    "replace": "<p>Solo carte di <b>Fusione Duale</b> (C1), della busta <b>Promo-C vol. 1</b> di questo evento e di queste 7 promo del negozio:</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\", \")}.</p>"
   },
   {
-   "note": "Limited Battle: the event name (Lotte limitate, the game's word for battle is lotta; a new event keeps its English name until it is added here)",
+   "note": "Limited Battle: the event name (Lotte esclusive, the game's word for battle is lotta; a new event keeps its English name until it is added here)",
    "find": "const LB_DEMO = ",
-   "replace": "LB.name = { \"Dual Fusion Limited Battle\": \"Lotte limitate: Fusione Duale\" }[LB.name] || LB.name; const LB_DEMO = "
+   "replace": "LB.name = { \"Dual Fusion Limited Battle\": \"Lotte esclusive: Fusione Duale\" }[LB.name] || LB.name; const LB_DEMO = "
   },
   {
    "note": "Limited Battle end time: 2 dic alle 14:59 (before the it-IT date patches)",
@@ -574,9 +574,9 @@
    "replace": "Buste"
   },
   {
-   "note": "label: Limited Battle tab (Lotte limitate)",
+   "note": "label: Limited Battle tab (Lotte esclusive)",
    "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
-   "replace": "b.setAttribute(\"aria-label\", `Lotte limitate, ${lbLeft(true)}`)"
+   "replace": "b.setAttribute(\"aria-label\", `Lotte esclusive, ${lbLeft(true)}`)"
   },
   {
    "note": "label: medal 3º posto",
