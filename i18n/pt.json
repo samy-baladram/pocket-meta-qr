@@ -1049,7 +1049,7 @@
 ],
 "74c5266f10": [
 "Meta cards in packs",
-"Cartas meta nos pacotes"
+"Cartas do meta nos pacotes"
 ],
 "74dfc10a49": [
 "Not a top list now",
@@ -1117,7 +1117,7 @@
 ],
 "7c1c47bb8c": [
 "Most meta",
-"Mais cartas meta"
+"Mais cartas do meta"
 ],
 "7c5b79c855": [
 "No decks match.",
@@ -1153,7 +1153,7 @@
 ],
 "7e450a53b3": [
 "&middot; {t0}{0}{t1} meta card{1}",
-"&middot; {t0}{0}{t1} carta{1} meta"
+"&middot; {t0}{0}{t1} carta{1} do meta"
 ],
 "7ec0137917": [
 "{0}Scan in game",
@@ -1513,7 +1513,7 @@
 ],
 "a9a48e26e0": [
 "A deck plays a card when half or more of its lists play it. A {t0}meta card{t1} is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded, with “small” under them, and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.",
-"Um baralho joga uma carta quando metade ou mais das suas listas a usam. Uma {t0}carta meta{t1} é jogada por pelo menos um baralho com 1,0% de uso ou mais. As cartas que só baralhos pequenos jogam aparecem esmaecidas, com “peq.” embaixo, e são contadas à parte. Contam Pokémon e Treinadores; a raridade e a sua coleção não são usadas."
+"Um baralho joga uma carta quando metade ou mais das suas listas a usam. Uma {t0}carta do meta{t1} é jogada por pelo menos um baralho com 1,0% de uso ou mais. As cartas que só baralhos pequenos jogam aparecem esmaecidas, com “pequeno” embaixo, e são contadas à parte. Contam Pokémon e Treinadores; a raridade e a sua coleção não são usadas."
 ],
 "aa13831f68": [
 "· {t0}{0}%{t1} of top players",
@@ -1641,11 +1641,11 @@
 ],
 "b7c44ae8ae": [
 "The shelf shows the 10 packs with the most meta cards (#1 in the middle); the list has every pack, the older series under it. Tap a pack to see its cards; tap a card to see the decks that play it.",
-"A prateleira mostra os 10 pacotes com mais cartas meta (o 1º no meio); a lista tem todos os pacotes, com a série anterior embaixo. Toque em um pacote para ver as cartas; toque em uma carta para ver os baralhos que a jogam."
+"A prateleira mostra os 10 pacotes com mais cartas do meta (o 1º no meio); a lista tem todos os pacotes, com a série anterior embaixo. Toque em um pacote para ver as cartas; toque em uma carta para ver os baralhos que a jogam."
 ],
 "b812e498b4": [
 "Pack: Meta Cards & Decks ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
-"Pacote: cartas e baralhos meta ({0}) – Pokémon TCG Pocket | Pocket Meta QR"
+"Pacote: cartas e baralhos do meta ({0}) – Pokémon TCG Pocket | Pocket Meta QR"
 ],
 "b82fb89618": [
 "this set",
@@ -1877,7 +1877,7 @@
 ],
 "d646073d7c": [
 "no meta cards",
-"nenhuma carta meta"
+"nenhuma carta do meta"
 ],
 "d6a99999ca": [
 "series &middot; the older sets",
@@ -1993,7 +1993,7 @@
 ],
 "e001fb2f40": [
 "meta card{0}",
-"carta{0} meta"
+"carta{0} do meta"
 ],
 "e16297c400": [
 "Checked every hour. The numbers change only when a new event is added. Times are in your time zone.",
