@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795523425-b346 -->
+<!-- ui: artifact version 1795536609-33a9 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1686,7 +1686,7 @@ a.dkev { text-decoration: none; }
 .cpop .pgo { display: inline-flex; align-items: center; gap: 3px; margin-top: 3px; color: var(--acc-ink); font-size: var(--fs-s); font-weight: 600; }
 .cpop .pgo svg { width: 10px; height: 10px; }
 @media (hover: hover) { .cpop .pack.pkgo:hover { outline: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: -1.5px; } }
-.pka, #fnone { scroll-margin-top: 64px; }
+.pka, #fnone { scroll-margin-top: 12px; } /* Nov 25: 64px with the sticky tab band */
 .cpop .pk { height: 72px; width: auto; display: block; border-radius: 3px; filter: drop-shadow(0 2px 3px rgba(var(--sh), calc(0.3 * var(--shk)))); }
 .cpop .pks.n2 .pk:first-child, .cpop .pks.n3 .pk:first-child { transform: rotate(-4deg); }
 .cpop .pks.n2 .pk + .pk, .cpop .pks.n3 .pk + .pk { margin-left: -18px; transform: rotate(6deg); }
@@ -1942,7 +1942,7 @@ a.dkev { text-decoration: none; }
 .tbar { display: flex; align-items: center; gap: 8px; background: var(--surface);
   /* a straight band across the screen (full width), the tabs stay in the page column */
   margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 4px calc(50vw - 50% + 4px); border-radius: 0;
-  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; /* stays at the top while the list scrolls */
+  position: relative; z-index: 9; /* Nov 25: not sticky (off for now: the pages are short). Sticky was: position: sticky; top: env(safe-area-inset-top, 0px) */
   box-shadow: 0 -2px 3px rgba(var(--sh), calc(0.06 * var(--shk))), 0 -5px 11px rgba(var(--sh), calc(0.10 * var(--shk))), 0 2px 4px rgba(var(--sh), calc(0.06 * var(--shk))), inset 0 1px 0 rgba(255, 255, 255, 0.8); } /* shadow above, a short weak shadow below, light line on top */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tbar { box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.3), 0 -5px 11px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04); } }
 :root[data-theme="dark"] .tbar { box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.3), 0 -5px 11px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04); }
@@ -2813,8 +2813,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   const ZK = () => { const z = parseFloat(getComputedStyle(document.documentElement).zoom) || 1; if (z === 1) return { z: 1, k: 1 };
     const b = document.body, k = b.offsetWidth ? b.getBoundingClientRect().width / b.offsetWidth : 1; return { z, k: k || 1 }; };
   const cssR = (r, k) => k === 1 ? r : { left: r.left / k, right: r.right / k, top: r.top / k, bottom: r.bottom / k, width: r.width / k, height: r.height / k };
+  const TBS = false; // Nov 25: the tab band is not sticky (off for now); true = sticky again (also set the .tbar CSS back)
   const padTop = () => { const b = document.getElementById("tbar"); barHold = Date.now() + 900; if (b) b.classList.remove("bhid"); // the page is about to scroll by itself: keep the band
-    return ((parseFloat(getComputedStyle(document.documentElement).paddingTop) || 0) + (b?.offsetHeight || 0)) * ZK().k; }; // + the sticky tab bar; in rect/scroll px (Nov 15: zoom)
+    return ((parseFloat(getComputedStyle(document.documentElement).paddingTop) || 0) + (TBS ? b?.offsetHeight || 0 : 0)) * ZK().k; }; // + the sticky tab bar; in rect/scroll px (Nov 15: zoom)
   // Extra space under the footer, only while needed, so a deck near the end of the list can also reach the top
   const tail = document.createElement("div");
   tail.setAttribute("aria-hidden", "true");
@@ -3668,10 +3669,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     renderShChip();
   }
   // "Shared with you" chip (Nov 13): the last shared list opened in this browser, for 7 days or until its × is tapped
+  // Nov 25: OFF for now. Cause: a shared link saves "pmq-shared" for 7 days; the notice then shows once in each new browser tab
+  // (sessionStorage), and also right after the shared list is closed (closeShared calls this). A phone opens each link in a new tab: so it shows almost every visit.
+  const SH_NOTE = false;
   function renderShChip() {
     const el = $("shChip"); let v = null;
     try { v = JSON.parse(localStorage.getItem("pmq-shared") || "null"); } catch (err) {}
-    el.hidden = true; let seen = false; try { seen = !!sessionStorage.getItem("pmq-sh-n"); sessionStorage.setItem("pmq-sh-n", "1"); } catch (err) {}
+    el.hidden = true; if (!SH_NOTE) return; let seen = false; try { seen = !!sessionStorage.getItem("pmq-sh-n"); sessionStorage.setItem("pmq-sh-n", "1"); } catch (err) {}
     if (seen || !v || !v.h || Date.now() - v.at > 7 * 864e5 || !$("shv").hidden) return; // Nov 15: a top notice, once per tab
     notice(`<small>Shared with you</small><b>${esc(v.n || "a deck")}</b> &middot; open again`, () => { track("shared-chip"); openShared(v.h); }); return;
     el.innerHTML = `<span class="sinb" role="button" tabindex="0"><span class="shci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>Shared list: <b>${esc(v.n || "a deck")}</b> &rsaquo;</span><button class="sinx" type="button" aria-label="Forget this shared list">&times;</button></span>`;
@@ -5973,8 +5977,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     p.innerHTML = `<div class="vwrap"><div class="vars"><div class="slide evs" data-k="0">${slideBody(d, d, -1)}</div></div></div>`;
     const inf = p.querySelector(".slide .info"); // the energy is on the row: all the tiles are deck notes
     if (inf && d.note) { inf.classList.add("lbinf"); inf.innerHTML = d.note.map(([l, t]) => `<div class="tile t-nt"><span class="tl">${esc(l)}</span><p>${esc(t)}</p></div>`).join(""); }
-    const top = sec.getBoundingClientRect().top + scrollY - ($("tbar").offsetHeight || 0) - 8;
-    if (sec.getBoundingClientRect().top < ($("tbar").offsetHeight || 0) || sec.getBoundingClientRect().top > innerHeight * 0.4) scrollTo({ top, behavior: reduced ? "auto" : "smooth" });
+    const tbh = TBS ? $("tbar").offsetHeight || 0 : 0, top = sec.getBoundingClientRect().top + scrollY - tbh - 8;
+    if (sec.getBoundingClientRect().top < tbh || sec.getBoundingClientRect().top > innerHeight * 0.4) scrollTo({ top, behavior: reduced ? "auto" : "smooth" });
   }
   $("lbl").addEventListener("click", (e) => {
     const ci = e.target.closest(".cards img"); if (ci) { cardClick(ci); return; }
@@ -6308,7 +6312,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Nov 15: the tab band slides away while scrolling down, and comes back on scrolling up (after 12px in one direction).
   // It stays: near the top, with the filter open or on, and for 0.9 s after the page scrolls by itself (padTop: a deck or event
   // opening counts the band's height, so it must stay there).
-  (() => { const bar = $("tbar"); let y0 = scrollY, run = 0, base = 0;
+  (() => { if (!TBS) return; const bar = $("tbar"); let y0 = scrollY, run = 0, base = 0;
     const set = (on) => { if (on && (!$("filt").hidden || $("filtBtn").classList.contains("fon"))) on = false; bar.classList.toggle("bhid", on); };
     addEventListener("scroll", () => { const y = scrollY, dy = y - y0; y0 = y;
       if (Date.now() < barHold) { run = 0; return; }
