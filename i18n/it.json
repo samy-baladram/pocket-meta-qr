@@ -1,0 +1,2226 @@
+{
+"00079a3837": [
+"Showing {0} of {1} packs.",
+"{0} buste su {1}."
+],
+"003ebf20c8": [
+"One moment, then try again.",
+"Un momento, poi riprova."
+],
+"0105344694": [
+"· {0} player{1}",
+"· {0} giocator{1}"
+],
+"01182452b1": [
+"In {t0}{0}{t1} meta deck{1}",
+"In {t0}{0}{t1} mazz{1} meta"
+],
+"012deaa0d8": [
+"Last 3 days",
+"Ultimi 3 giorni"
+],
+"01429c8de9": [
+"swap{0} from List 1",
+"modific{0} rispetto alla Lista 1"
+],
+"01466ff456": [
+"of {0} top players",
+"su {0} giocatori top"
+],
+"028fddc250": [
+"Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.",
+"Popolare{t0}: la lista che il maggior numero di giocatori top ha usato esatta (almeno 3, e almeno 2 in più di ogni altra lista). La più usata non è sempre la migliore: guarda il bilancio e le altre liste."
+],
+"02b620b03a": [
+"{0}Top players",
+"{0}Giocatori top"
+],
+"0345f0f3d0": [
+"2+ more wins than losses",
+"2+ vittorie più delle sconfitte"
+],
+"03733db7eb": [
+"+ {0} more card{1} under 10%.",
+"+ {0} cart{1} in più sotto il 10%."
+],
+"0440b7a85c": [
+"took {0} at",
+"è arrivato {0} a"
+],
+"045b64f6a3": [
+"Top 4",
+"Top 4"
+],
+"0575b7b5d6": [
+"days left",
+"giorni rimasti"
+],
+"06ac8d6ac7": [
+"a deck",
+"un mazzo"
+],
+"08d089f97b": [
+"share · {0} win",
+"di utilizzo · {0} di vittorie"
+],
+"098020c805": [
+"Obtained from",
+"Si ottiene da"
+],
+"09ca55ca52": [
+"Share",
+"Utilizzo"
+],
+"0a8dd6adce": [
+"7 days",
+"7 giorni"
+],
+"0acb187723": [
+"Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.",
+"I mirror (lo stesso mazzo da entrambe le parti) e i tornei in cui i giocatori portano più di 1 mazzo non sono contati. Un pareggio conta come mezza vittoria."
+],
+"0b638f7e80": [
+"It shows only the current meta, the decks, lists and events of the last 7 to 14 days, so it does not keep a history, list every card or build decks.",
+"Mostra solo il meta attuale: i mazzi, le liste e i tornei degli ultimi 7-14 giorni. Quindi non tiene uno storico, non elenca tutte le carte e non costruisce mazzi."
+],
+"0bec14f205": [
+"Rising",
+"In crescita"
+],
+"0cae74747c": [
+"Exact",
+"Esatta"
+],
+"0e4dc9ba50": [
+"pack{0}",
+"bust{0}"
+],
+"0e60c63c9d": [
+"See in Packs",
+"Vedi in Buste"
+],
+"0e70e686b6": [
+"in {0} days",
+"in {0} giorni"
+],
+"0f830bc25e": [
+"Cards",
+"Carte"
+],
+"0f8c6e4e76": [
+"· {0} share · {1} win",
+"· {0} di utilizzo · {1} di vittorie"
+],
+"0fcd28ef91": [
+"checked &lt; 2 h ago",
+"verificato &lt; 2 h fa"
+],
+"0fe53f9dbc": [
+"&middot; open again",
+"&middot; riapri"
+],
+"109086774e": [
+"Show all events",
+"Mostra tutti i tornei"
+],
+"10ab7e88e4": [
+"(all {0} together {1}, {2}%)",
+"(tutti i {0} insieme {1}, {2}%)"
+],
+"10c23975d7": [
+"win{0}",
+"vittorie{0!}"
+],
+"1117ffe1c9": [
+"1st–3rd {t0}{t1}top 25%",
+"1º–3º {t0}{t1}top 25%"
+],
+"117bc3bfd7": [
+"No big moves",
+"Nessun grande cambiamento"
+],
+"11d2a517c8": [
+"won by",
+"vinto da"
+],
+"133724e26e": [
+"lists · best {t0}{0}{t1} · {1}% share",
+"liste · migliore {t0}{0}{t1} · {1}% di utilizzo"
+],
+"1385294543": [
+"×N: share here vs {0} · top 8s at other events",
+"×N: utilizzo qui vs {0} · top 8 in altri tornei"
+],
+"13d4b964c6": [
+"One event is {t0}{0}%{t1} of these results, so it moves the numbers more than usual.",
+"Un solo torneo è il {t0}{0}%{t1} di questi risultati, quindi pesa sui numeri più del solito."
+],
+"1455ab70a1": [
+"is in {0} pack{1}.",
+"è in {0} bust{1}."
+],
+"145a83266e": [
+"Loading&hellip;",
+"Caricamento&hellip;"
+],
+"1464926697": [
+"Most used is not always the best: compare the win rates.",
+"La più usata non è sempre la migliore: confronta le % di vittorie."
+],
+"14b0dbb85b": [
+"Pocket Meta QR is a free fan site. It is not affiliated with, endorsed or sponsored by Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK or DeNA. Pok&eacute;mon and all card images are trademarks and &copy; of their owners.",
+"Pocket Meta QR è un sito di fan gratuito. Non è affiliato, approvato né sponsorizzato da Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK o DeNA. Pok&eacute;mon e tutte le immagini delle carte sono marchi e &copy; dei rispettivi proprietari."
+],
+"158436f0e7": [
+"This link is broken or was changed",
+"Questo link non funziona o è stato modificato"
+],
+"166c895601": [
+"top {0} vs",
+"top {0} vs"
+],
+"168e4932a6": [
+"Deck",
+"Mazzo"
+],
+"16effccb01": [
+"No list was used by more than 1 top player, so the {0} is the list with the best place{1}.",
+"Nessuna lista è stata usata da più di 1 giocatore top, quindi la {0} è la lista con il miglior piazzamento{1}."
+],
+"172415f02e": [
+"added",
+"aggiunto"
+],
+"1761c5f76c": [
+"Hand-picked decks, not tournament data. This view goes away when the event ends.",
+"Mazzi scelti a mano, non dati di torneo. Questa vista sparisce alla fine dell’evento."
+],
+"17709dbc6f": [
+"Best finish",
+"Miglior risultato"
+],
+"178d1d75f0": [
+"What is Limitless TCG?",
+"Che cos’è Limitless TCG?"
+],
+"18e4a0dbe7": [
+"Tap {t0}Add to Home screen{t1} or {t2}Install app{t3}.",
+"Tocca {t0}Aggiungi a schermata Home{t1} o {t2}Installa app{t3}."
+],
+"1affc37b23": [
+"Below the cut",
+"Fuori dal top cut"
+],
+"1b45bdc8b5": [
+"best {0}%",
+"migliore {0}%"
+],
+"1b6d32d996": [
+"{0}: Which Meta Decks Use It ({1}) – Pokémon TCG Pocket | Pocket Meta QR",
+"{0}: quali mazzi meta la usano ({1}) – Pokémon TCG Pocket | Pocket Meta QR"
+],
+"1bdcee8370": [
+"{0}–{1} wins",
+"{0}–{1} vittorie"
+],
+"1be44ea15f": [
+"The window length changed today, so the 24 h rank arrows are hidden today.",
+"La lunghezza della finestra è cambiata oggi, quindi oggi le frecce di posizione a 24 h sono nascoste."
+],
+"1c1a3f0a7e": [
+"Score{0}",
+"Bilancio{0}"
+],
+"1cc15542b5": [
+"No top result",
+"Nessun risultato top"
+],
+"1cdae7eaea": [
+"Copy the link to",
+"Copia il link di"
+],
+"1d0730cf62": [
+"Just added",
+"Appena aggiunto"
+],
+"1d50bf1d8b": [
+"Winners",
+"Vincitori"
+],
+"1e6fd9a5e6": [
+"Latest events",
+"Ultimi tornei"
+],
+"1eb2b5b879": [
+"top 8{0}",
+"top 8{0!}"
+],
+"1f2a787631": [
+"QR code not available for this list.",
+"Codice QR non disponibile per questa lista."
+],
+"1faeee71ba": [
+"week{0} ago",
+"settimane fa{0!}"
+],
+"1fc6434234": [
+"No deck history:{t0} the 7-day trend in a deck&rsquo;s stats is the longest view.",
+"Nessuno storico dei mazzi:{t0} l’andamento a 7 giorni nelle statistiche di un mazzo è la vista più lunga."
+],
+"1fd12296da": [
+"deck{0}",
+"mazz{0}"
+],
+"1fd840594a": [
+"This{t0}List",
+"Questa{t0}Lista"
+],
+"21c1b89658": [
+"in {0}% of its top players’ lists",
+"nel {0}% delle liste dei suoi giocatori top"
+],
+"21e164cb9e": [
+"· {0} of",
+"· {0} su"
+],
+"21ee87bfbf": [
+"In {0} of the {1} {2} packs",
+"In {0} delle {1} buste {2}"
+],
+"22071c6d00": [
+"tap a deck to see its wins",
+"tocca un mazzo per vedere le sue vittorie"
+],
+"22118a1f44": [
+"event{0}",
+"torne{0}"
+],
+"2274cb3617": [
+"is new: these are the results of its first {0}, so the numbers can change fast.",
+"è nuova: questi sono i risultati {0}, quindi i numeri possono cambiare in fretta."
+],
+"232a936a05": [
+"Deck data did not load.",
+"I dati dei mazzi non si sono caricati."
+],
+"23bf8384bf": [
+"Top 25%",
+"Top 25%"
+],
+"23cd04792c": [
+"Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image.",
+"Salva l’immagine, poi nel gioco: I miei mazzi → + → Scansiona codice → Scansiona immagine salvata."
+],
+"23d7de0ce5": [
+"Most often in a top 8",
+"Più spesso in un top 8"
+],
+"241585c95a": [
+"Can I use it like an app?",
+"Posso usarlo come un’app?"
+],
+"242feab371": [
+"Best-placed finish",
+"Miglior piazzamento"
+],
+"24345a1437": [
+"Today",
+"Oggi"
+],
+"24ea1f77f4": [
+"Last change",
+"Ultima modifica"
+],
+"24ecb68c93": [
+"Show all {0} lists",
+"Mostra tutte le {0} liste"
+],
+"250cd1927b": [
+"in almost every deck",
+"in quasi tutti i mazzi"
+],
+"262e0e8a01": [
+"(last seen {0})",
+"(visto l’ultima volta il {0})"
+],
+"26b1ca6b96": [
+"Card details",
+"Dettagli della carta"
+],
+"26e86c0eb6": [
+"{0}+ players",
+"{0}+ giocatori"
+],
+"26ed6f1e9b": [
+"in small decks",
+"in mazzi piccoli"
+],
+"275a700078": [
+"record",
+"bilancio"
+],
+"2781bff12a": [
+"deck{0} use{1} {2}{3}.",
+"mazz{0} con {2}{3}.{1!}"
+],
+"27e90dfa57": [
+"at",
+"a"
+],
+"2861d0ece7": [
+"Decks in the top",
+"Mazzi nel top"
+],
+"28e599d2bd": [
+"Feedback or a bug? {t0}Send me a message",
+"Un’idea o un bug? {t0}Mandami un messaggio"
+],
+"2912fa5e02": [
+"players",
+"giocatori"
+],
+"293325df75": [
+"Show all {0} smaller decks",
+"Mostra tutti i {0} mazzi minori"
+],
+"2a08f40ca1": [
+"Ranks are compared with the data of 24 h earlier.",
+"Le posizioni sono confrontate con i dati di 24 h prima."
+],
+"2a231249ff": [
+"Cards in these decks",
+"Carte di questi mazzi"
+],
+"2aca25531e": [
+"This is the list of its best-placed player{0}{1}. A starting point, not a proven list.",
+"Questa è la lista del suo giocatore meglio piazzato{0}{1}. Un punto di partenza, non una lista collaudata."
+],
+"2b286f6b1e": [
+"Vs the meta",
+"Contro il meta"
+],
+"2c1469f758": [
+"Save image",
+"Salva l’immagine"
+],
+"2c552bbeec": [
+"d ago",
+"g fa"
+],
+"2cb2bd4021": [
+"Too few players for a fair rank, so it has no rank number.",
+"Troppo pochi giocatori per una posizione giusta, quindi non ha un numero di posizione."
+],
+"2e5855d5c2": [
+"0.2–0.5% share",
+"0,2–0,5% di utilizzo"
+],
+"2eb15e8dda": [
+"Did better",
+"Meglio del previsto"
+],
+"2f8d136cf7": [
+"What’s New: Site Updates | Pocket Meta QR",
+"Novità: aggiornamenti del sito | Pocket Meta QR"
+],
+"301e37b6c7": [
+"with {0} in the top 8",
+"con {0} nel top 8"
+],
+"302a69d3b1": [
+"steady in {0} days",
+"stabile in {0} giorni"
+],
+"3056cb84f8": [
+"or better made the top {0} · {t0}Limitless ↗",
+"o meglio sono arrivati nel top {0} · {t0}Limitless ↗"
+],
+"30d4653f8e": [
+"▲ = at least 2&times; its meta share in this event's top {0}.",
+"▲ = almeno 2&times; il suo utilizzo nel meta nel top {0} di questo torneo."
+],
+"311bee6a56": [
+"Copy the address",
+"Copia l’indirizzo"
+],
+"317720e9e4": [
+"Tap the menu {t0}&#9776;{t1}, then {t2}Share{t3} {0}.",
+"Tocca il menu {t0}&#9776;{t1}, poi {t2}Condividi{t3} {0}."
+],
+"318169ffe2": [
+"{0}: best place",
+"{0}: miglior piazzamento"
+],
+"31c63feec3": [
+"Not in the meta now",
+"Non è più nel meta"
+],
+"3262485e3a": [
+"· {0} top player{1}",
+"· {0} giocator{1} top"
+],
+"326a3f7b0a": [
+"Booster Packs",
+"Buste"
+],
+"327955ac28": [
+"Share {0}. Win rate {1}.{2}",
+"Utilizzo {0}. % di vittorie {1}.{2}"
+],
+"33a6685cd7": [
+"in the last {0} days",
+"negli ultimi {0} giorni"
+],
+"33bd43999f": [
+"players{0}",
+"giocatori{0}"
+],
+"33ce417454": [
+"Loading…",
+"Caricamento…"
+],
+"33ddf66a55": [
+"▲ Rising",
+"▲ In crescita"
+],
+"347bbc504b": [
+"A player with at least 2 more wins than losses at a single-deck event.",
+"Un giocatore con almeno 2 vittorie più delle sconfitte in un torneo a mazzo singolo."
+],
+"35d9bc5159": [
+"Released",
+"Uscita"
+],
+"35e3987c5b": [
+"Limited Battle decks",
+"Mazzi per le Lotte limitate"
+],
+"3697024201": [
+"What’s new",
+"Novità"
+],
+"372c9acbf6": [
+"How do I import a deck?",
+"Come importo un mazzo?"
+],
+"380b549c34": [
+"Copy the address from the address bar",
+"Copia l’indirizzo dalla barra degli indirizzi"
+],
+"3854e1a3ed": [
+"Chrome / Edge:{t0} click the install icon at the right end of the address bar, or menu &rarr; {t1}Install Pocket Meta QR{t2}.",
+"Chrome / Edge:{t0} clicca sull’icona di installazione in fondo alla barra degli indirizzi, oppure menu &rarr; {t1}Installa Pocket Meta QR{t2}."
+],
+"392feef07c": [
+"Players",
+"Giocatori"
+],
+"393f6cb329": [
+"in {0} pack{1}",
+"in {0} bust{1}"
+],
+"39a4023d00": [
+"Because every number comes from real tournament games, recorded while the event runs. Each event shows its standings and the result of every match in every round, and players hand in their deck list before the event starts, so each list is the deck that was really played. On top of that, this site counts only public Standard events with 8 or more players and 1 deck per player, and only real matches: no byes, no mirror matches.",
+"Perché ogni numero viene da vere partite di torneo, registrate mentre il torneo si svolge. Ogni torneo mostra la classifica e il risultato di ogni partita in ogni turno, e i giocatori consegnano la lista prima dell’inizio, quindi ogni lista è il mazzo giocato davvero. In più, questo sito conta solo tornei pubblici in formato Standard con 8 o più giocatori e 1 mazzo per giocatore, e solo partite vere: niente bye, niente mirror."
+],
+"3a46f4e05d": [
+"Event stats",
+"Statistiche del torneo"
+],
+"3afa94025a": [
+"since the {0} release",
+"dall’uscita di {0}"
+],
+"3b4a56a122": [
+"No deck or event found",
+"Nessun mazzo o torneo trovati"
+],
+"3b8d64bb18": [
+"About Pocket Meta QR",
+"Info su Pocket Meta QR"
+],
+"3b9f38b850": [
+"▲ Up {0} place{1}{t0}: {t1}{2}{t2} 24 h ago, now {t3}{3}{t4}.",
+"▲ Sale di {0} posizion{1}{t0}: {t1}{2}{t2} 24 h fa, ora {t3}{3}{t4}."
+],
+"3bf7457bfd": [
+"results · {t0}{0}{t1} player{1} · {t2}{2}{t3} event{3}",
+"risultati · {t0}{0}{t1} giocator{1} · {t2}{2}{t3} torne{3}"
+],
+"3cc8e39b82": [
+"Tap {t0}Add{t1}.",
+"Tocca {t0}Aggiungi{t1}."
+],
+"3d02399826": [
+"Latest Pokémon TCG Pocket tournaments",
+"Ultimi tornei di Pokémon TCG Pocket"
+],
+"3d3791aae5": [
+"Light mode",
+"Modalità chiara"
+],
+"3d42976c7a": [
+"2 cards",
+"2 carte"
+],
+"3d506b84fd": [
+"New in the list (the first time since the set came out, for 3 days) and Breakout decks (a rare deck with a top-8 finish at a big event)",
+"Nuovi nella classifica (la prima volta dall’uscita dell’espansione, per 3 giorni) e mazzi rivelazione (un mazzo raro con un top 8 in un grande torneo)"
+],
+"3d81bd05a3": [
+"All packs",
+"Tutte le buste"
+],
+"3e6d1fbfd5": [
+"with this exact list",
+"con questa lista esatta"
+],
+"3ea7d0f033": [
+"Packs for the meta",
+"Buste per il meta"
+],
+"41ce3c6eaf": [
+"1 card",
+"1 carta"
+],
+"41e4e149fd": [
+"(too few to be sure)",
+"(troppo poche per esserne certi)"
+],
+"41e97088bb": [
+"Promo card, not from a booster pack",
+"Carta promo, non da una busta"
+],
+"426ec07bcd": [
+"Breakout deck",
+"Mazzo rivelazione"
+],
+"42b36a9675": [
+"The other lists compare their cards with it. Lists with the same count are sorted by their best place.",
+"Le altre liste confrontano le loro carte con questa. Le liste con lo stesso numero sono ordinate per il miglior piazzamento."
+],
+"42df7965d2": [
+"all match wins, losses and ties of this deck",
+"tutte le vittorie, sconfitte e pareggi di questo mazzo"
+],
+"437bcb1511": [
+"Energy",
+"Energia"
+],
+"448ab73ba1": [
+"Set",
+"Espansione"
+],
+"45360d530e": [
+"Cards swapped vs the",
+"Carte cambiate rispetto alla"
+],
+"46c45a8cc8": [
+"· {0} win{1}",
+"· {0} vittorie{1!}"
+],
+"479fe3b7a9": [
+"Loading events&hellip;",
+"Caricamento dei tornei&hellip;"
+],
+"47bd6e0200": [
+"Up in rank in the last 24 hours, or new in the list",
+"Saliti di posizione nelle ultime 24 ore, o nuovi nella classifica"
+],
+"4824b2db0a": [
+"– Same rank{t0} as 24 h ago: {t1}{0}{t2}.",
+"– Stessa posizione{t0} di 24 h fa: {t1}{0}{t2}."
+],
+"489f487724": [
+"Score",
+"Bilancio"
+],
+"48d61bdd8b": [
+"Is it free?",
+"È gratis?"
+],
+"48d6857f6b": [
+"Breakout",
+"Rivelazione"
+],
+"49a26dcc49": [
+"of {0} ·",
+"su {0} ·"
+],
+"49ac8d4bf8": [
+", record",
+", bilancio"
+],
+"49d00effb2": [
+"▲▼ share change · {0} days",
+"▲▼ variazione di utilizzo · {0} giorni"
+],
+"4acadb5e3c": [
+"{0}Breakout",
+"{0}Rivelazione"
+],
+"4c852b26d1": [
+"Show less",
+"Mostra meno"
+],
+"4cf0a9e934": [
+"winning record{0}",
+"con bilancio positivo{0!}"
+],
+"4d13ad2e9a": [
+"1{t0}{t1}{t2}{t3}2{t4}{t5}{t6}{t7}3{t8}cards swapped",
+"1{t0}{t1}{t2}{t3}2{t4}{t5}{t6}{t7}3{t8}carte cambiate"
+],
+"4d4ce73b15": [
+"Card",
+"Carta"
+],
+"4d8078c8ad": [
+"Shared list: {t0}{0}{t1} &rsaquo;",
+"Lista condivisa: {t0}{0}{t1} &rsaquo;"
+],
+"4de41ef9aa": [
+"Tap {t0}Share{t1} {0} in the address bar (top right).",
+"Tocca {t0}Condividi{t1} {0} nella barra degli indirizzi (in alto a destra)."
+],
+"4e1f459a5a": [
+"top players",
+"giocatori top"
+],
+"4eb0d455b4": [
+"only here",
+"solo qui"
+],
+"4f32916ced": [
+"My Decks",
+"I miei mazzi"
+],
+"50009483b8": [
+"List 1",
+"Lista 1"
+],
+"500c824120": [
+"Win rate against the 10 most played decks {0} (games), best first. Bars from 20% to 80%; light = too few games to be sure it is not 50%. Tap a deck to open it.",
+"% di vittorie contro i 10 mazzi più giocati {0} (partite), dal migliore. Barre dal 20% all’80%; chiara = troppo poche partite per essere sicuri che non sia il 50%. Tocca un mazzo per aprirlo."
+],
+"50832fb363": [
+"deck{0} without {1}.",
+"mazz{0} senza {1}."
+],
+"50a279de82": [
+"Show all",
+"Mostra tutti"
+],
+"5128e386a1": [
+"The ▲ / ▼ number is how much the share went up or down over the last {0} days, in percentage points (8.3% → 12.0% = ▲3.7).",
+"Il numero ▲ / ▼ indica di quanto l’utilizzo è salito o sceso negli ultimi {0} giorni, in punti percentuali (8,3% → 12,0% = ▲3,7)."
+],
+"516dd47a55": [
+"Public Standard events with 8 or more players on {t0}Limitless TCG{t1}, from the last 7 days, because the meta changes fast (up to 14 days when there are few events, late in a set; never before the set&rsquo;s release). The numbers are computed here, so they can differ a little from other sites.",
+"Tornei pubblici in formato Standard con 8 o più giocatori su {t0}Limitless TCG{t1}, degli ultimi 7 giorni, perché il meta cambia in fretta (fino a 14 giorni quando ci sono pochi tornei, verso la fine di un’espansione; mai prima dell’uscita dell’espansione). I numeri sono calcolati qui, quindi possono essere un po’ diversi da quelli di altri siti."
+],
+"518e73b3a3": [
+"No deck or card found",
+"Nessun mazzo o carta trovati"
+],
+"521456ffbf": [
+"Cards of the {0} top player{1} (too few for core and flex).",
+"Carte di {0} giocator{1} top (troppo pochi per fisse e flex)."
+],
+"532297d7bc": [
+"Top 16",
+"Top 16"
+],
+"5351e118ae": [
+"Updated {0}.{t0} Ranked best first, from our testing so far (it can change). Deck notes made with help from {t1}GameWith{t2}.",
+"Aggiornato il {0}.{t0} Dal migliore in giù, secondo i nostri test finora (può cambiare). Note dei mazzi scritte con l’aiuto di {t1}GameWith{t2}."
+],
+"53668c4b2c": [
+". Card images: PocketDecks. Details in About &amp; FAQ.",
+". Immagini delle carte: PocketDecks. Dettagli in Info e FAQ."
+],
+"536e31ed82": [
+"No card found",
+"Nessuna carta trovata"
+],
+"53a6ed6f32": [
+"Promo card (not in a booster pack)",
+"Carta promo (non in una busta)"
+],
+"544face5f8": [
+"&middot; in {0} {1}deck{2}",
+"&middot; in {0} mazz{2}{1}"
+],
+"548bcc2f35": [
+"Win rate against the 10 most played decks {0}, best first. Green bar: above 50%, red: below. {t0}Light bar{t1}: too few games to be sure it is not 50%. Right: the number of games.",
+"% di vittorie contro i 10 mazzi più giocati {0}, dal migliore. Barra verde: sopra il 50%, rossa: sotto. {t0}Barra chiara{t1}: troppo poche partite per essere sicuri che non sia il 50%. A destra: il numero di partite."
+],
+"54907cba83": [
+"&#9888; Below the cut",
+"&#9888; Fuori dal top cut"
+],
+"54df5b93d8": [
+"No pack has that card.",
+"Nessuna busta ha quella carta."
+],
+"5548ae4f34": [
+"days",
+"giorni"
+],
+"55b1c3fa21": [
+"No public lists for this event.",
+"Nessuna lista pubblica per questo torneo."
+],
+"55d0b1f10a": [
+"Top 8",
+"Top 8"
+],
+"55eee3040e": [
+"Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes",
+"Pocket Meta QR – Mazzi meta e tornei di Pokémon TCG Pocket con codici QR"
+],
+"566bcc7a1f": [
+"Each day = the window that ends on that day (7–14 days, wider when there are few events), so the numbers move slowly. Faded: under 30 players.{0}",
+"Ogni giorno = la finestra che finisce quel giorno (7–14 giorni, più lunga quando ci sono pochi tornei), quindi i numeri cambiano lentamente. Sbiadito: meno di 30 giocatori.{0}"
+],
+"56820cd9a6": [
+"Filter by energy",
+"Filtra per energia"
+],
+"569d5ce370": [
+"Open in Latest Events &rsaquo;",
+"Apri in Ultimi tornei &rsaquo;"
+],
+"56bcd8fe54": [
+"New{t0}: the first time this deck is in the list since {0} came out. The tag shows for 3 days.",
+"Nuovo{t0}: la prima volta che questo mazzo è nella classifica dall’uscita di {0}. L’etichetta resta per 3 giorni."
+],
+"56ded40877": [
+"Safari on Mac:{t0} File &rarr; {t1}Add to Dock{t2}.",
+"Safari su Mac:{t0} File &rarr; {t1}Aggiungi al Dock{t2}."
+],
+"5712ba0728": [
+"below the cut",
+"fuori dal top cut"
+],
+"57c9502a7d": [
+"Lists",
+"Liste"
+],
+"57e1881e37": [
+"share &middot; win",
+"utilizzo &middot; vittorie"
+],
+"57eea71ce1": [
+"This deck · all lists",
+"Questo mazzo · tutte le liste"
+],
+"58197254f8": [
+"with {0}+ players",
+"con {0}+ giocatori"
+],
+"5a7b059de5": [
+"▼ Falling",
+"▼ In calo"
+],
+"5a99c00759": [
+"Top 10",
+"Top 10"
+],
+"5d37aefd1f": [
+"deck{0} use{1} {2}.",
+"mazz{0} con {2}.{1!}"
+],
+"5dbde22d9a": [
+"Filter by deck",
+"Filtra per mazzo"
+],
+"5def453be8": [
+"This deck",
+"Questo mazzo"
+],
+"5ec6670c6d": [
+"No flex cards.",
+"Nessuna carta flex."
+],
+"5ec8f71f27": [
+"Rank {0}.",
+"Posizione {0}."
+],
+"5f0a456c00": [
+"Meta Decks",
+"Mazzi meta"
+],
+"60907e38f7": [
+"Scan Code",
+"Scansiona codice"
+],
+"60e0efbbb5": [
+"of all decks played",
+"di tutti i mazzi giocati"
+],
+"612e12d292": [
+"Results",
+"Risultati"
+],
+"6196bbb07c": [
+"for &ldquo;{0}&rdquo;",
+"per «{0}»"
+],
+"626a3de075": [
+"Close to 50%",
+"Vicino al 50%"
+],
+"627c7add13": [
+"top 8 in {0} event{1}",
+"top 8 in {0} torne{1}"
+],
+"62eb8f8f88": [
+"The {0} is the list that the most top players used: {t0}{1} of {2}{t1}.",
+"La {0} è la lista usata dal maggior numero di giocatori top: {t0}{1} su {2}{t1}."
+],
+"62eea86f4f": [
+"Filter events by size",
+"Filtra i tornei per grandezza"
+],
+"635acf28be": [
+"New data &middot; {t0}Refresh",
+"Nuovi dati &middot; {t0}Aggiorna"
+],
+"6403f2b7eb": [
+"New",
+"Nuovo"
+],
+"65c821a596": [
+"Live",
+"In diretta"
+],
+"66aabd91fc": [
+"NEW",
+"NUOVO"
+],
+"67524d7001": [
+"The deck has no top player in these days. {t0}Unproven{t1}: some players won more than they lost, but none reached a top result; the page shows the best of them. {t2}No top result{t3}: no player won more than they lost; the page shows the best-placed list. Both are a starting point, not a proven list.",
+"Il mazzo non ha giocatori top in questi giorni. {t0}Da confermare{t1}: alcuni giocatori hanno vinto più di quanto hanno perso, ma nessuno è arrivato a un risultato top; la pagina mostra il migliore di loro. {t2}Nessun risultato top{t3}: nessun giocatore ha vinto più di quanto ha perso; la pagina mostra la lista meglio piazzata. In entrambi i casi è un punto di partenza, non una lista collaudata."
+],
+"67b6a61bdd": [
+"Search a card",
+"Cerca una carta"
+],
+"67c1cc65e8": [
+"Decks that use a card from",
+"Mazzi che usano una carta di"
+],
+"6833f2bb77": [
+"top player{0}",
+"giocator{0} top"
+],
+"68495946bf": [
+"About & FAQ: How to Import Pokémon TCG Pocket Decks by QR | Pocket Meta QR",
+"Info e FAQ: come importare i mazzi di Pokémon TCG Pocket con il QR | Pocket Meta QR"
+],
+"685757d9ff": [
+"Not in the list 24 h ago. Now {t0}{0}{t1}.",
+"Non era in classifica 24 h fa. Ora {t0}{0}{t1}."
+],
+"68836c550e": [
+"Core",
+"Fisse"
+],
+"69b8c08eae": [
+"Did worse",
+"Peggio del previsto"
+],
+"69bb0fdaac": [
+"{0}Tap to save",
+"{0}Tocca per salvare"
+],
+"69bd4ef9fb": [
+"View",
+"Vista"
+],
+"6a589c299f": [
+"Whole set",
+"Tutta l’espansione"
+],
+"6acd621280": [
+"pack",
+"busta"
+],
+"6b1f893805": [
+"Flex",
+"Flex"
+],
+"6b6bb5df03": [
+"change in 24 hours",
+"variazione in 24 ore"
+],
+"6c3a3bb7b9": [
+"The big number is the deck’s {t0}share{t1}: of {t2}all players{t3} in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the “top players” (that count, under each list, only takes players who won at least 2 more matches than they lost).",
+"Il numero grande è l’{t0}utilizzo{t1} del mazzo: tra {t2}tutti i giocatori{t3} di quei tornei (ogni iscrizione, qualunque sia il risultato), la parte che ha giocato questo mazzo. 12,0% = circa 1 giocatore su 8. Non riguarda i «giocatori top» (quel conteggio, sotto ogni lista, prende solo i giocatori che hanno vinto almeno 2 partite più di quelle perse)."
+],
+"6cb6084c7f": [
+"Deck List ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
+"Lista del mazzo ({0}) – Pokémon TCG Pocket | Pocket Meta QR"
+],
+"6cd0edac3e": [
+"with {0} card{1} swapped",
+"con {0} modific{1}"
+],
+"6cff9e3a16": [
+"· best",
+"· migliore"
+],
+"6d1b9da07c": [
+"worst {0}%",
+"peggiore {0}%"
+],
+"6d3ae60352": [
+"Popular + winning",
+"Popolare e vincente"
+],
+"6f02931a8a": [
+"which days count",
+"quali giorni contano"
+],
+"6fa55b2f97": [
+"This week&rsquo;s Pok&eacute;mon TCG Pocket decks",
+"I mazzi di Pok&eacute;mon TCG Pocket di questa settimana"
+],
+"6fa5fbbc16": [
+"older",
+"precedenti"
+],
+"6fe97729d0": [
+"Shared list{0}",
+"Lista condivisa{0}"
+],
+"7002659f49": [
+"About &amp; FAQ",
+"Info e FAQ"
+],
+"7027cc19ac": [
+"Search an event or deck",
+"Cerca un torneo o un mazzo"
+],
+"7046e8f2dd": [
+"The lists did not load. Close and open the event again.",
+"Le liste non si sono caricate. Chiudi e riapri il torneo."
+],
+"70b8058643": [
+"stayed {t0}#{0}",
+"è rimasto {t0}n. {0}"
+],
+"7164a73633": [
+"This is on purpose, so every number on the page is about the game as it is played today. For past results and every Pok&eacute;mon TCG Pocket card, {t0}Limitless TCG{t1} keeps the full archive.",
+"È voluto: ogni numero della pagina riguarda il gioco come si gioca oggi. Per i risultati passati e tutte le carte di Pok&eacute;mon TCG Pocket, {t0}Limitless TCG{t1} tiene l’archivio completo."
+],
+"719ea396ad": [
+"Clear",
+"Cancella"
+],
+"7252f9e8d5": [
+"last 7 days",
+"ultimi 7 giorni"
+],
+"72a90a7332": [
+"share {0} · win",
+"utilizzo {0} · vittorie"
+],
+"72f2b0dfa1": [
+"Shared with you",
+"Condivisa con te"
+],
+"73eace3aa6": [
+"All packs{t0} &middot;",
+"Tutte le buste{t0} &middot;"
+],
+"7415782d70": [
+"of ~{0}",
+"su ~{0}"
+],
+"741e5bd528": [
+"What do &ldquo;Unproven&rdquo; and &ldquo;No top result&rdquo; mean?",
+"Che cosa vogliono dire «Da confermare» e «Nessun risultato top»?"
+],
+"749107fc55": [
+"The image is not ready. Try again.",
+"L’immagine non è pronta. Riprova."
+],
+"74c5266f10": [
+"Meta cards in packs",
+"Carte meta nelle buste"
+],
+"74dfc10a49": [
+"Not a top list now",
+"Non è più una lista top"
+],
+"75367d1a97": [
+"No player of this deck won more matches than they lost {0}, so it has no top-player list.",
+"Nessun giocatore di questo mazzo ha vinto più partite di quante ne ha perse {0}, quindi non ha una lista di giocatori top."
+],
+"75ab30ea65": [
+"Added to the site",
+"Aggiunto al sito"
+],
+"75d4a70295": [
+"Next check",
+"Prossima verifica"
+],
+"761de442e3": [
+"h ago",
+"h fa"
+],
+"769e229569": [
+"years ago",
+"anni fa"
+],
+"76a893e205": [
+"for the meta",
+"per il meta"
+],
+"775ee8b04a": [
+"The tournaments of the same days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.",
+"I tornei degli stessi giorni, dal più recente. Aprine uno per vedere le liste del suo top 8, con un codice QR per ognuna. I tornei in cui i giocatori portano più di 1 mazzo non sono elencati, perché non hanno una sola lista per giocatore."
+],
+"7789ef8e5a": [
+"Scan Saved Image",
+"Scansiona immagine salvata"
+],
+"778e3d21fc": [
+"Event · list {0} of",
+"Torneo · lista {0} di"
+],
+"78c6a1f315": [
+"of {0} decks",
+"su {0} mazzi"
+],
+"79bcb3dd18": [
+"Win rate",
+"% di vittorie"
+],
+"79f4d6da67": [
+"No events {0} yet.",
+"Ancora nessun torneo {0}."
+],
+"7a2b42f199": [
+"Tweaks: 1 or 2 cards changed",
+"Ritocchi: 1 o 2 carte cambiate"
+],
+"7b72883e07": [
+"This week",
+"Questa settimana"
+],
+"7bd938bc58": [
+"Add to Home Screen",
+"Aggiungi alla schermata Home"
+],
+"7c1c47bb8c": [
+"Most meta",
+"Più carte meta"
+],
+"7c5b79c855": [
+"No decks match.",
+"Nessun mazzo corrisponde."
+],
+"7c89708fa9": [
+"hour{0} left",
+"h rimaste{0!}"
+],
+"7ca2635390": [
+"Unproven",
+"Da confermare"
+],
+"7ca4d4b9e1": [
+"The picked card",
+"La carta scelta"
+],
+"7d340494ae": [
+"deck",
+"mazzo"
+],
+"7d88e1c5ea": [
+"+{0} event{1}",
+"+{0} torne{1}"
+],
+"7d8bdc5e6b": [
+"Now: {t0}{0} days{t1}, because fewer events were played in the last 7 days.",
+"Ora: {t0}{0} giorni{t1}, perché negli ultimi 7 giorni si sono giocati meno tornei."
+],
+"7e29279cfb": [
+"Tap the menu {t0}&middot;&middot;&middot;{t1}, then {t2}Share{t3} {0}.",
+"Tocca il menu {t0}&middot;&middot;&middot;{t1}, poi {t2}Condividi{t3} {0}."
+],
+"7e450a53b3": [
+"&middot; {t0}{0}{t1} meta card{1}",
+"&middot; {t0}{0}{t1} cart{1} meta"
+],
+"7ec0137917": [
+"{0}Scan in game",
+"{0}Scansiona nel gioco"
+],
+"7f03c5d36f": [
+"Since the {0} release",
+"Dall’uscita di {0}"
+],
+"7f8b039a83": [
+"pack – Pocket Meta QR",
+"busta – Pocket Meta QR"
+],
+"7ff5a6dafd": [
+"Sections",
+"Sezioni"
+],
+"801011800f": [
+"day{0} ago",
+"giorni fa{0!}"
+],
+"816aed3a57": [
+"&times;{0} in this list",
+"&times;{0} in questa lista"
+],
+"81826fc524": [
+"Open a deck, tap its QR code and save the image. In the game: {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. On a computer, you can also point the game&rsquo;s camera at the screen.",
+"Apri un mazzo, tocca il suo codice QR e salva l’immagine. Nel gioco: {t0}I miei mazzi &rarr; + &rarr; Scansiona codice &rarr; Scansiona immagine salvata{t1}. Da computer, puoi anche inquadrare lo schermo con la fotocamera del gioco."
+],
+"8235bdefc9": [
+"the newest set",
+"l’espansione più recente"
+],
+"82d50d9042": [
+"events",
+"tornei"
+],
+"83a0cd42f1": [
+"Open Pocket Meta QR with one tap, full screen like an app. It refreshes itself when you come back.",
+"Apri Pocket Meta QR con un tocco, a schermo intero come un’app. Si aggiorna da solo quando torni."
+],
+"84022162f8": [
+"Faded: fewer than 30 players, so this rate is less certain.",
+"Sbiadito: meno di 30 giocatori, quindi questa percentuale è meno affidabile."
+],
+"8434bf2392": [
+"Share, win rate, rank and matchups count all players; Cards counts the top players. A tie is half a win; mirror matches are not counted.",
+"Utilizzo, % di vittorie, posizione e matchup contano tutti i giocatori; Carte conta i giocatori top. Un pareggio vale mezza vittoria; i mirror non sono contati."
+],
+"84e3ee8374": [
+"· {t0}{0}{t1} win",
+"· {t0}{0}{t1} di vittorie"
+],
+"851ff4d12f": [
+"Show {0} older packs",
+"Mostra {0} buste precedenti"
+],
+"857fa3b382": [
+"List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. {t0}&#9733; Popular now{t1} marks a list 1 that clearly more top players used exactly than any other list.",
+"La lista 1 di un mazzo è la lista usata dal maggior numero di giocatori top. Una lista con solo 1, 2 o 3 carte cambiate conta insieme a lei: i riquadri sotto la lista mostrano quanti giocatori top l’hanno usata esatta o con 1, 2 o 3 modifiche (tocca un riquadro per vedere queste varianti, ognuna con il suo codice QR). Una lista con 4 o più carte cambiate compare come lista a sé quando l’hanno usata 2 o più giocatori top, oppure 1 giocatore è arrivato nel top 8 di un torneo con 32 o più giocatori. {t0}&#9733; Popolare{t1} indica una lista 1 che chiaramente più giocatori top hanno usato esatta rispetto a ogni altra lista."
+],
+"861edba005": [
+"Suggestions",
+"Suggerimenti"
+],
+"876870e87a": [
+"last {0} events{1}",
+"ultimi {0} tornei{1}"
+],
+"876d097a1a": [
+"Decks whose main list has no Pokémon ex",
+"Mazzi la cui lista principale non ha Pokémon-ex"
+],
+"8799002486": [
+"Which Pokémon TCG Pocket Pack to Open ({0}) | Pocket Meta QR",
+"Quale busta aprire in Pokémon TCG Pocket ({0}) | Pocket Meta QR"
+],
+"87d370a29e": [
+"match win rate; a tie counts as half a win. Mirror matches are not counted.{0}",
+"% di vittorie per partita; un pareggio conta come mezza vittoria. I mirror non sono contati.{0}"
+],
+"87e68ae82c": [
+"place at",
+"posto a"
+],
+"8896272648": [
+"No one with this deck won more than they lost {0}. This is its best-placed list.",
+"Nessuno con questo mazzo ha vinto più di quanto ha perso {0}. Questa è la sua lista meglio piazzata."
+],
+"88c70db626": [
+", and {t0}{0}{t1} more with 1 to 3 cards swapped{1}",
+", e altri {t0}{0}{t1} con 1-3 carte cambiate{1}"
+],
+"8924cc152b": [
+"Which days count?",
+"Quali giorni contano?"
+],
+"892ce04a73": [
+"A top result: at least 2 more wins than losses at an event {0}.",
+"Un risultato top: almeno 2 vittorie più delle sconfitte in un torneo {0}."
+],
+"8948bad5c9": [
+"No deck builder:{t0} import a list with its QR code, then change it in the game.",
+"Nessun deck builder:{t0} importa una lista con il suo codice QR, poi modificala nel gioco."
+],
+"899e85d0d1": [
+"A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.",
+"Una posizione è confrontata con la grandezza del torneo: 5º su 547 viene prima di 2º su 153. Le altre liste confrontano le loro carte con questa."
+],
+"89b86ab0e6": [
+"Language",
+"Lingua"
+],
+"89be098394": [
+"Popular, weak",
+"Popolare, debole"
+],
+"8bedfe5089": [
+"About and FAQ",
+"Info e FAQ"
+],
+"8c1c189664": [
+"Tap {t0}Install{t1} or {t2}Add{t3}.",
+"Tocca {t0}Installa{t1} o {t2}Aggiungi{t3}."
+],
+"8cd38b3544": [
+"Event · list",
+"Torneo · lista"
+],
+"8d546a6dea": [
+"Meta",
+"Meta"
+],
+"8d7bf5bf13": [
+"Others",
+"Altri"
+],
+"8e3f944b07": [
+"Below 50%",
+"Sotto il 50%"
+],
+"8e4caec080": [
+"Booster",
+"Buste"
+],
+"8e7fc3f8ed": [
+"New set: {0}{t0} came out {1}. Until {2}, the numbers also include events from before it.",
+"Nuova espansione: {0}{t0} è uscita {1}. Fino al {2}, i numeri includono anche tornei di prima."
+],
+"8eaf38d66f": [
+"Top 32",
+"Top 32"
+],
+"8f6b90919f": [
+": decks that use it",
+": mazzi che la usano"
+],
+"90499d9de4": [
+"new deck{0}{t0} in the top 10",
+"novità{0!}{t0} nel top 10"
+],
+"9117c24769": [
+"&middot; {t0}{0}{t1} win",
+"&middot; {t0}{0}{t1} di vittorie"
+],
+"91ea864ee0": [
+"Tap a dot to see the deck.",
+"Tocca un punto per vedere il mazzo."
+],
+"91fe8a113e": [
+"Could not load the packs. Try again later.",
+"Impossibile caricare le buste. Riprova più tardi."
+],
+"9212d0a9e8": [
+"Share this list",
+"Condividi questa lista"
+],
+"9259f0b1c8": [
+"Live tournament data",
+"Dati dei tornei in diretta"
+],
+"9342efff03": [
+"· {0} players",
+"· {0} giocatori"
+],
+"93daa2f17e": [
+"The decks that win in Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, the {t2}latest events{t3} with their top 8, and a {t4}QR code{t5} for every list, so you can import a deck in a few taps.",
+"I mazzi che vincono i tornei di Pok&eacute;mon TCG Pocket {t0}in questo momento{t1}, gli {t2}ultimi tornei{t3} con il loro top 8 e un {t4}codice QR{t5} per ogni lista, così importi un mazzo in pochi tocchi."
+],
+"953d4f3666": [
+"A {t0}top player{t1} won at least 2 more matches than they lost (ties do not count) at a single-deck event {0}.",
+"Un {t0}giocatore top{t1} ha vinto almeno 2 partite più di quelle perse (i pareggi non contano) in un torneo a mazzo singolo {0}."
+],
+"961d9b56f9": [
+"All decks",
+"Tutti i mazzi"
+],
+"96980908d1": [
+"cards{t0} in the top {0} (lists):",
+"carte{t0} nel top {0} (liste):"
+],
+"96c12df622": [
+"swap{0}",
+"modific{0}"
+],
+"96f550255d": [
+"Meta map",
+"Mappa del meta"
+],
+"96fb9c9f0d": [
+"How are the lists chosen?",
+"Come vengono scelte le liste?"
+],
+"972758b2df": [
+"A rare deck (under 0.2% share {0}) with a top-8 finish at a big event (128+ players): {t0}{1}{t1}.",
+"Un mazzo raro (meno dello 0,2% di utilizzo {0}) con un top 8 in un grande torneo (128+ giocatori): {t0}{1}{t1}."
+],
+"97fe84b71c": [
+"has instead:",
+"ha al suo posto:"
+],
+"9843ef2356": [
+"All events{t0} &middot; {0} &middot; {1} players",
+"Tutti i tornei{t0} &middot; {0} &middot; {1} giocatori"
+],
+"984bbca8a1": [
+"Pokémon TCG Pocket deck",
+"Mazzo di Pokémon TCG Pocket"
+],
+"98d3809299": [
+"About this label",
+"Info su questa etichetta"
+],
+"9b448c2524": [
+"+ {0} more",
+"+ altri {0}"
+],
+"9b55ce7f97": [
+"Not in the",
+"Non nella"
+],
+"9b9a24074d": [
+"{0}: most played",
+"{0}: la più giocata"
+],
+"9bb5b01475": [
+"&#9888; Below the cut{0}",
+"&#9888; Fuori dal top cut{0}"
+],
+"9c3c295f07": [
+"smaller",
+"minori"
+],
+"9cf83d1f40": [
+"Dark mode",
+"Modalità scura"
+],
+"9d6e7e027b": [
+"Not enough games against the top decks yet (a matchup needs 10+ games).",
+"Ancora troppe poche partite contro i mazzi top (un matchup richiede 10+ partite)."
+],
+"9da8f1fa7d": [
+"place",
+"posto"
+],
+"9eaea27829": [
+"An event shows here {t0}after it ends{t1}, usually a few hours after it starts. It is listed under the day it was played (your time), so a new event can show under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.",
+"Un torneo compare qui {t0}dopo la fine{t1}, di solito qualche ora dopo l’inizio. È elencato nel giorno in cui si è giocato (ora locale), quindi un torneo nuovo può comparire sotto «Ieri»: cerca «aggiunto N h fa»."
+],
+"9ec76bfa7e": [
+"Yes: no ads and no sign-up. No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter). This browser keeps only your theme and the last tab you used.",
+"Sì: niente pubblicità e niente registrazione. Niente cookie e niente dati personali: il sito conta solo le visite e i tocchi sui pulsanti, in forma anonima (GoatCounter). Questo browser salva solo il tuo tema e l’ultima scheda che hai usato."
+],
+"9fcb4b1bfc": [
+"No lists stored for this event.",
+"Nessuna lista salvata per questo torneo."
+],
+"a095f62c35": [
+"; {t0}+1{t1} = one more copy of a core card",
+"; {t0}+1{t1} = una copia in più di una carta fissa"
+],
+"a138db548c": [
+"of {0} events",
+"su {0} tornei"
+],
+"a1c9ba95b2": [
+"next check any minute",
+"prossima verifica a momenti"
+],
+"a1fffaaafb": [
+"List",
+"Lista"
+],
+"a260c629df": [
+"Clear the search",
+"Cancella la ricerca"
+],
+"a2b4d0d476": [
+"entries with this deck",
+"iscrizioni con questo mazzo"
+],
+"a30fa0929b": [
+"top 8 finish{0}",
+"volte nel top 8{0!}"
+],
+"a32b8cd11b": [
+"won",
+"ha vinto"
+],
+"a3b2737ace": [
+"Search and filter",
+"Cerca e filtra"
+],
+"a40926803d": [
+"In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image.",
+"Nel gioco: I miei mazzi → + → Scansiona codice, poi inquadra questo codice con la fotocamera. Oppure scarica l’immagine."
+],
+"a452ac820f": [
+"Tap {t0}Share{t1} {0} (Safari: at the bottom, or at the top on iPad).",
+"Tocca {t0}Condividi{t1} {0} (Safari: in basso, o in alto su iPad)."
+],
+"a46c612784": [
+"Cards you can use",
+"Carte consentite"
+],
+"a479c9c34e": [
+"Download",
+"Scarica"
+],
+"a54f387207": [
+"Rising{t0} / {t1}Falling{t2}: the decks whose share moved most.",
+"In crescita{t0} / {t1}In calo{t2}: i mazzi il cui utilizzo è cambiato di più."
+],
+"a5916d4b4b": [
+"&middot; added {0}, after it ended",
+"&middot; aggiunto {0}, dopo la fine"
+],
+"a624ce137f": [
+"Results with exactly this list",
+"Risultati con esattamente questa lista"
+],
+"a6c37a0db5": [
+"Saving is not available here: long-press the QR code instead.",
+"Qui non si può salvare: tieni premuto sul codice QR."
+],
+"a79387a4ad": [
+"What is in Latest Events?",
+"Che cosa c’è in Ultimi tornei?"
+],
+"a7f8e7cc0d": [
+"just now",
+"adesso"
+],
+"a845d3d476": [
+"{0}Popular now",
+"{0}Popolare"
+],
+"a9a48e26e0": [
+"A deck plays a card when half or more of its lists play it. A {t0}meta card{t1} is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded, with “small” under them, and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.",
+"Un mazzo gioca una carta quando la metà o più delle sue liste la giocano. Una {t0}carta meta{t1} è giocata da almeno un mazzo con l’1,0% di utilizzo o più. Le carte che giocano solo mazzi piccoli sono sbiadite, con «piccoli» sotto, e contate a parte. Contano Pokémon e Allenatori; la rarità e la tua collezione non contano."
+],
+"aa13831f68": [
+"· {t0}{0}%{t1} of top players",
+"· {t0}{0}%{t1} dei giocatori top"
+],
+"aa8507b62a": [
+"Above 50%",
+"Sopra il 50%"
+],
+"aa9ecbb82a": [
+"Made by {t0}u/Myxas_{t1}.",
+"Creato da {t0}u/Myxas_{t1}."
+],
+"aab90dfe8c": [
+"share",
+"di utilizzo"
+],
+"ab09f30675": [
+"deck win rate",
+"% di vittorie del mazzo"
+],
+"ac58ab84ed": [
+"too rare to rank",
+"troppo raro per la classifica"
+],
+"acfa231857": [
+"Decks with 30+ players {0}: share against win rate. Lines: the median share and 50% win rate.",
+"Mazzi con 30+ giocatori {0}: utilizzo contro % di vittorie. Linee: l’utilizzo mediano e il 50% di vittorie."
+],
+"ad0938bfaf": [
+"The 10 decks played most {0}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.",
+"I 10 mazzi più giocati {0}, nei tornei pubblici in formato Standard con 8 o più giocatori su Limitless TCG. Il n. 1 è al centro; lo scaffale gira da solo e si ferma quando lo tocchi. Trascinalo o scorrilo; tocca un mazzo per aprirlo."
+],
+"ad0f717c5c": [
+"in the top",
+"nel top"
+],
+"ad8919ace0": [
+"Event",
+"Torneo"
+],
+"add3a889ec": [
+"deck – Pocket Meta QR",
+"mazzo – Pocket Meta QR"
+],
+"ae58ffb155": [
+"(not in the {0})",
+"(non nella {0})"
+],
+"af20be5975": [
+"is not in this week’s meta{0}.",
+"non è nel meta di questa settimana{0}."
+],
+"af862f9e86": [
+"Booster pack",
+"Busta"
+],
+"b0638c43ba": [
+"No download, no sign-up.",
+"Niente download, niente registrazione."
+],
+"b1142f7843": [
+"Not on the map yet: fewer than 30 players {0} (too few to place it).",
+"Non ancora sulla mappa: meno di 30 giocatori {0} (troppo pochi per collocarlo)."
+],
+"b1582a29b3": [
+"What’s new on Pocket Meta QR",
+"Novità di Pocket Meta QR"
+],
+"b1a5c8ef4d": [
+"Decks",
+"Mazzi"
+],
+"b20b4f433a": [
+"days ago",
+"giorni fa"
+],
+"b247ad081c": [
+"This week’s Pokémon TCG Pocket decks",
+"I mazzi di Pokémon TCG Pocket di questa settimana"
+],
+"b273fb2877": [
+"Won",
+"Ha vinto"
+],
+"b2bc0c005f": [
+"Checked",
+"Verificato"
+],
+"b309da0a4d": [
+"Where does the data come from?",
+"Da dove vengono i dati?"
+],
+"b3c94b397b": [
+"Shared list",
+"Lista condivisa"
+],
+"b44a861262": [
+"in the {0}-place",
+"al {0} posto"
+],
+"b56d5ef151": [
+"Limited Battle pick",
+"Scelta per le Lotte limitate"
+],
+"b5b2a49247": [
+"Matchups",
+"Matchup"
+],
+"b5cd5cad73": [
+"No {0} decks in the meta right now ({1}).",
+"Nessun mazzo {0} nel meta in questo momento ({1})."
+],
+"b68d372d0c": [
+"Get it from",
+"Si trova in"
+],
+"b6aae25ceb": [
+"Updated to the newest data",
+"Aggiornato con i dati più recenti"
+],
+"b6afb7ea54": [
+"next check in about {0} min",
+"prossima verifica tra circa {0} min"
+],
+"b7c44ae8ae": [
+"The shelf shows the 10 packs with the most meta cards (#1 in the middle); the list has every pack, the older series under it. Tap a pack to see its cards; tap a card to see the decks that play it.",
+"Lo scaffale mostra le 10 buste con più carte meta (la n. 1 al centro); l’elenco ha tutte le buste, la serie precedente sotto. Tocca una busta per vedere le sue carte; tocca una carta per vedere i mazzi che la giocano."
+],
+"b812e498b4": [
+"Pack: Meta Cards & Decks ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
+"Busta: carte e mazzi meta ({0}) – Pokémon TCG Pocket | Pocket Meta QR"
+],
+"b82fb89618": [
+"this set",
+"questa espansione"
+],
+"b86f70d930": [
+"The match record ({t0}wins-losses-ties{t1}) of the player who used this list{0}{1}.",
+"Il bilancio ({t0}vittorie-sconfitte-pareggi{t1}) del giocatore che ha usato questa lista{0}{1}."
+],
+"b8be7266fc": [
+"{0}Limited-time event",
+"{0}Evento a tempo limitato"
+],
+"ba6d08e61d": [
+"Full standings on Limitless {t0}↗",
+"Classifica completa su Limitless {t0}↗"
+],
+"ba79e67b9b": [
+"{0}Popular now{1}",
+"{0}Popolare{1}"
+],
+"bbb2de672e": [
+"· {0} share · {1} win · {2} players",
+"· {0} di utilizzo · {1} di vittorie · {2} giocatori"
+],
+"bbfa773e5a": [
+"Close",
+"Chiudi"
+],
+"bc9f609de6": [
+"Open your browser&rsquo;s {t0}Share{t1} {0} menu.",
+"Apri il menu {t0}Condividi{t1} {0} del tuo browser."
+],
+"bd81811d71": [
+"Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks from public tournaments on Limitless, like a tier list built from real results: share, win rate and the lists the top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster pack gives the cards of the meta.",
+"Pocket Meta QR classifica i mazzi di Pok&eacute;mon TCG Pocket di questa settimana a partire dai tornei pubblici su Limitless, come una tier list fatta con risultati veri: utilizzo, % di vittorie e le liste usate dai giocatori top. Ogni lista ha un codice QR da scansionare nel gioco per importare il mazzo, e la pagina Buste mostra quale busta dà le carte del meta."
+],
+"bf3d48422f": [
+"Pokémon TCG Pocket Meta Decks ({0}) with QR Codes | Pocket Meta QR",
+"Migliori mazzi di Pokémon TCG Pocket ({0}) con codici QR | Pocket Meta QR"
+],
+"bff84ca9c5": [
+"Why is the win rate different from other sites?",
+"Perché la % di vittorie è diversa da altri siti?"
+],
+"c0648ef361": [
+"Search decks by deck or card name",
+"Cerca mazzi per nome del mazzo o della carta"
+],
+"c06cdf65c7": [
+"Deck data did not load. Reload the page to try again.",
+"I dati dei mazzi non si sono caricati. Ricarica la pagina per riprovare."
+],
+"c0ee3cda6e": [
+"What is a &ldquo;top player&rdquo;?",
+"Che cos’è un «giocatore top»?"
+],
+"c29220f958": [
+"Switch to dark mode",
+"Passa alla modalità scura"
+],
+"c2e98476ef": [
+"Link copied",
+"Link copiato"
+],
+"c31ba3ef37": [
+"Days = how many days that window had.",
+"Giorni = quanti giorni aveva quella finestra."
+],
+"c3476ebd0f": [
+"the decks",
+"i mazzi"
+],
+"c38f356b28": [
+"This list has not shown that yet.",
+"Questa lista non l’ha ancora dimostrato."
+],
+"c5406d81f3": [
+"&middot; most used first",
+"&middot; prima le più usate"
+],
+"c5497bca58": [
+"Events",
+"Tornei"
+],
+"c597de40c1": [
+"an event",
+"un torneo"
+],
+"c5eb8e09c6": [
+"with the exact list",
+"con la lista esatta"
+],
+"c63ee4d0fc": [
+"Still a top list",
+"Ancora una lista top"
+],
+"c743e0f584": [
+"Tap the Chrome menu {t0}&#8942;{t1} (top right).",
+"Tocca il menu di Chrome {t0}&#8942;{t1} (in alto a destra)."
+],
+"c76ac2e9cd": [
+"win",
+"di vittorie"
+],
+"c7c4c1e950": [
+"&middot; {t0}{0}{t1} players &middot;",
+"&middot; {t0}{0}{t1} giocatori &middot;"
+],
+"c7c6c9a9c7": [
+"months ago",
+"mesi fa"
+],
+"c8d3756e45": [
+"cards",
+"carte"
+],
+"c93fd9c78b": [
+"7-day trend",
+"Andamento a 7 giorni"
+],
+"c95db6211f": [
+"Meta decks{t0}{t1}Latest tournaments{t2}{t3}Which pack to open{t4}{t5}Limited Battle",
+"Mazzi meta{t0}{t1}Ultimi tornei{t2}{t3}Quale busta aprire{t4}{t5}Lotte limitate"
+],
+"c9929a6b53": [
+"players won more than they lost with this deck {0}, but none reached a top result. This is the best of them.",
+"giocatori hanno vinto più di quanto hanno perso con questo mazzo {0}, ma nessuno è arrivato a un risultato top. Questo è il migliore di loro."
+],
+"c9b4332dc1": [
+"has no data",
+"non ha dati"
+],
+"c9f63eb795": [
+"Win rate by version",
+"% di vittorie per variante"
+],
+"cae0435c41": [
+"Top",
+"Top"
+],
+"cb7353567e": [
+"Without",
+"Senza"
+],
+"cbd7f79d44": [
+"Cards to look at",
+"Carte da tenere d’occhio"
+],
+"cc8998d99b": [
+"in {0} deck{1}",
+"in {0} mazz{1}"
+],
+"cd708dcb83": [
+"Top player: at least 2 more wins than losses at an event {0}.",
+"Giocatore top: almeno 2 vittorie più delle sconfitte in un torneo {0}."
+],
+"cdc3ce9c70": [
+"Top 10 packs",
+"Top 10 delle buste"
+],
+"ce12647f54": [
+"Hidden gem",
+"Chicca"
+],
+"ce5c3baf3a": [
+"Search and filter decks",
+"Cerca e filtra i mazzi"
+],
+"cead6614c0": [
+"min ago",
+"min fa"
+],
+"ceeaa744c4": [
+"Limited",
+"Limitate"
+],
+"d044282472": [
+"Newest",
+"Più recenti"
+],
+"d0bca8f3af": [
+"went from #{0} to {t0}#{1}",
+"è passato dal n. {0} al {t0}n. {1}"
+],
+"d120d8a5a7": [
+"player{0}",
+"giocator{0}"
+],
+"d1c174cc6c": [
+"({0} players)",
+"({0} giocatori)"
+],
+"d1c47b17d6": [
+"Early results{t0} &middot; day",
+"Primi risultati{t0} &middot; giorno"
+],
+"d1e9c146ea": [
+"Core: in 90%+ of the {0} top players' lists. Flex: share of top players who play it{1}.{2}",
+"Fisse: nel 90%+ delle liste dei {0} giocatori top. Flex: quota dei giocatori top che la giocano{1}.{2}"
+],
+"d27dc1b686": [
+"Faded win rate: fewer than 30 players, so it moves a lot.",
+"% di vittorie sbiadita: meno di 30 giocatori, quindi cambia molto."
+],
+"d3235b7b18": [
+"Copy list link",
+"Copia il link della lista"
+],
+"d3254bb3fb": [
+"share &middot; {t0}{0}{t1} win",
+"di utilizzo &middot; {t0}{0}{t1} di vittorie"
+],
+"d3781a19b2": [
+"Could not copy:",
+"Copia non riuscita:"
+],
+"d50280bff1": [
+"What does this site not do?",
+"Che cosa non fa questo sito?"
+],
+"d579d7b438": [
+"{0}× {1}{2} · {3} top player{4}",
+"{0}× {1}{2} · {3} giocator{4} top"
+],
+"d5f3362f81": [
+"Since your last visit",
+"Dalla tua ultima visita"
+],
+"d646073d7c": [
+"no meta cards",
+"nessuna carta meta"
+],
+"d6a99999ca": [
+"series &middot; the older sets",
+"serie &middot; le espansioni precedenti"
+],
+"d6aa410291": [
+"Niche",
+"Di nicchia"
+],
+"d6bb22ac07": [
+"Pokémon TCG Pocket Tournament Results ({0}) | Pocket Meta QR",
+"Risultati dei tornei di Pokémon TCG Pocket ({0}) | Pocket Meta QR"
+],
+"d6f34a97a5": [
+"Download image",
+"Scarica l’immagine"
+],
+"d82857eb60": [
+"Exact list",
+"Lista esatta"
+],
+"d97686b37a": [
+"Saving is not available here: right-click the QR code instead.",
+"Qui non si può salvare: fai clic destro sul codice QR."
+],
+"da24830f1f": [
+"Yesterday",
+"Ieri"
+],
+"da2ea5bee8": [
+"lists",
+"liste"
+],
+"da7ea14ea7": [
+"{0}× · {1} player{2}",
+"{0}× · {1} giocator{2}"
+],
+"da8f262b50": [
+"{0}: top lists – Pocket Meta QR",
+"{0}: liste top – Pocket Meta QR"
+],
+"dae1e5f83a": [
+"this week",
+"questa settimana"
+],
+"db866831c3": [
+"Packs",
+"Buste"
+],
+"dbc8cb4e68": [
+"(together {t0}{0}{t1}, {1}% win)",
+"(insieme {t0}{0}{t1}, {1}% di vittorie)"
+],
+"dbd6a35e83": [
+"new in the list",
+"nuovo nella classifica"
+],
+"dc0d22645d": [
+"2&times; meta share",
+"2&times; il suo utilizzo nel meta"
+],
+"dc6066a3a3": [
+"Search a deck or card",
+"Cerca un mazzo o una carta"
+],
+"dd48a11495": [
+"Rank",
+"Posizione"
+],
+"ddde1bcb75": [
+"Most wins",
+"Più tornei vinti"
+],
+"dde3707865": [
+"Above meta",
+"Sopra il meta"
+],
+"de04fa0e29": [
+"of",
+"su"
+],
+"de18b941e8": [
+"Show all {0} decks",
+"Mostra tutti i {0} mazzi"
+],
+"deb2079c55": [
+"▼ Down {0} place{1}{t0}: {t1}{2}{t2} 24 h ago, now {t3}{3}{t4}.",
+"▼ Scende di {0} posizion{1}{t0}: {t1}{2}{t2} 24 h fa, ora {t3}{3}{t4}."
+],
+"decd7ca800": [
+"Latest",
+"Ultimi"
+],
+"df3749649f": [
+"{0}% vs",
+"{0}% vs"
+],
+"df39f61cf8": [
+"Newest event",
+"Torneo più recente"
+],
+"df833fe88d": [
+"Last 7 days",
+"Ultimi 7 giorni"
+],
+"dfe3c5d44a": [
+"Yes: tap {t0}Add to Home Screen{t1} at the bottom of the page for the steps.",
+"Sì: tocca {t0}Aggiungi alla schermata Home{t1} in fondo alla pagina per vedere i passaggi."
+],
+"e000ac6209": [
+"no public list yet",
+"ancora nessuna lista pubblica"
+],
+"e001fb2f40": [
+"meta card{0}",
+"cart{0} meta"
+],
+"e16297c400": [
+"Checked every hour. The numbers change only when a new event is added. Times are in your time zone.",
+"Verificato ogni ora. I numeri cambiano solo quando si aggiunge un nuovo torneo. Gli orari sono nel tuo fuso orario."
+],
+"e314914df8": [
+"The list most top players build from.",
+"La lista da cui parte il maggior numero di giocatori top."
+],
+"e339ba737a": [
+"No events",
+"Nessun torneo"
+],
+"e40b725417": [
+"&middot; most played first",
+"&middot; prima le più giocate"
+],
+"e491f9748c": [
+"is not in this week’s meta decks{0}.",
+"non è nei mazzi meta di questa settimana{0}."
+],
+"e51c55255b": [
+"Records",
+"Bilanci"
+],
+"e615ae42b5": [
+"Why Limitless TCG, and can I trust the results?",
+"Perché Limitless TCG, e i risultati sono affidabili?"
+],
+"e6866f28e4": [
+"Events with this deck in the top 8",
+"Tornei con questo mazzo nel top 8"
+],
+"e6ad2f3e33": [
+"Last {0} days",
+"Ultimi {0} giorni"
+],
+"e710900662": [
+"Hand-picked",
+"Selezionata"
+],
+"e7a5c67393": [
+"The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the current set&rsquo;s release, so in a new set&rsquo;s first days the results are early ones. The line under the title shows the dates.",
+"Gli ultimi 7 giorni. Quando ci sono pochi tornei (spesso verso la fine di un’espansione) la pagina usa gli ultimi 10 o 14 giorni, così ogni numero ha abbastanza giocatori dietro. Non conta mai tornei di prima dell’uscita dell’espansione attuale, quindi nei primi giorni di una nuova espansione i risultati sono i primi. La riga sotto il titolo mostra le date."
+],
+"e903ded5bb": [
+"Showing {0} of {1} decks.",
+"{0} mazzi su {1}."
+],
+"e985a02c4a": [
+"Made by {t0}u/Myxas_",
+"Creato da {t0}u/Myxas_"
+],
+"ea0bcd944e": [
+"not enough games",
+"partite insufficienti"
+],
+"ea2408d695": [
+"core · {0} flex",
+"fisse · {0} flex"
+],
+"ea7be4e7a5": [
+"Top players",
+"Giocatori top"
+],
+"eabe30a8f2": [
+"No ex",
+"Senza ex"
+],
+"eb7de7b83e": [
+"cards you can use",
+"carte consentite"
+],
+"ebbb7e9b8b": [
+"Works in Safari, Chrome, Edge, Firefox and most other browsers (iOS 16.4 or later).",
+"Funziona su Safari, Chrome, Edge, Firefox e la maggior parte degli altri browser (iOS 16.4 o successivo)."
+],
+"ebdf15db38": [
+"smaller decks only",
+"solo mazzi minori"
+],
+"efc007a393": [
+"Save",
+"Salva"
+],
+"effb665832": [
+"in every deck",
+"in tutti i mazzi"
+],
+"f004f8b2da": [
+"One row per number of wins, one dot per player. Blue: the top 8.",
+"Una riga per numero di vittorie, un punto per giocatore. In blu: il top 8."
+],
+"f0c4717b8a": [
+"That event is not in the list anymore: it shows the events {0}.",
+"Quel torneo non è più nell’elenco: ecco i tornei {0}."
+],
+"f0e3ef5401": [
+"New in",
+"Nuovo in"
+],
+"f105cc61c3": [
+"Latest Events",
+"Ultimi tornei"
+],
+"f191cd2c1d": [
+"Limited-time event",
+"Evento a tempo limitato"
+],
+"f19c988b3f": [
+"Decks with QR Codes | Pocket Meta QR",
+"– mazzi con codici QR | Pocket Meta QR"
+],
+"f1fccaaccd": [
+"Biggest",
+"Il più grande"
+],
+"f22a80a34b": [
+"Which booster packs give the cards of the meta decks {0}.",
+"Quali buste danno le carte dei mazzi meta {0}."
+],
+"f2335414bf": [
+"multi-deck event{0} (players bring more than one deck) {1} not listed: their results do not show which deck won each match.",
+"torne{0} multi-mazzo (i giocatori portano più di un mazzo) fuori elenco{1!}: i loro risultati non mostrano quale mazzo ha vinto ogni partita."
+],
+"f314effecd": [
+"Full standings on Limitless",
+"Classifica completa su Limitless"
+],
+"f33788fa9c": [
+"top players used this deck; {t0}{0}{t1} used exactly this list{1}{2}.",
+"giocatori top hanno usato questo mazzo; {t0}{0}{t1} hanno usato esattamente questa lista{1}{2}."
+],
+"f383cb9878": [
+", and their place:",
+", e la loro posizione:"
+],
+"f39d173d91": [
+"Falling",
+"In calo"
+],
+"f3dc433d0b": [
+"Won by{t0} {0} ·",
+"Vinto da{t0} {0} ·"
+],
+"f3f9391cee": [
+"Not every tournament:{t0} only public Standard events with 8 or more players and 1 deck per player.",
+"Non tutti i tornei:{t0} solo tornei pubblici in formato Standard con 8 o più giocatori e 1 mazzo per giocatore."
+],
+"f4b15c9c91": [
+"Top 10 decks",
+"Top 10 dei mazzi"
+],
+"f4b50527b0": [
+"Last check",
+"Ultima verifica"
+],
+"f5060abc58": [
+"Used by",
+"Usata da"
+],
+"f5967e775f": [
+"Not every card:{t0} the Packs tab and the card pages show only the cards that this week&rsquo;s meta decks play.",
+"Non tutte le carte:{t0} la scheda Buste e le pagine delle carte mostrano solo le carte giocate dai mazzi meta di questa settimana."
+],
+"f6bb0f468a": [
+"Days",
+"Giorni"
+],
+"f744f6ce38": [
+"Did not load. Swipe away and back.",
+"Non caricata. Scorri su un’altra lista e torna."
+],
+"f7e42baf96": [
+"The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the set&rsquo;s release.",
+"Gli ultimi 7 giorni. Quando ci sono pochi tornei (spesso verso la fine di un’espansione) la pagina usa gli ultimi 10 o 14 giorni, così ogni numero ha abbastanza giocatori dietro. Non conta mai tornei di prima dell’uscita dell’espansione."
+],
+"f80619bbf4": [
+"No older weeks or past sets:{t0} no results or tier lists from before the days shown under the title.",
+"Niente settimane o espansioni passate:{t0} nessun risultato o tier list di prima dei giorni indicati sotto il titolo."
+],
+"f83481bd50": [
+"– {0} (your time)",
+"– {0} (ora locale)"
+],
+"f8515d5350": [
+"&middot; Data: {t0}Limitless TCG{t1},",
+"&middot; Dati: {t0}Limitless TCG{t1},"
+],
+"f98462c968": [
+"Scroll down and tap {t0}Add to Home Screen{t1}.",
+"Scorri in basso e tocca {t0}Aggiungi alla schermata Home{t1}."
+],
+"f9a4b961c0": [
+"share &middot;",
+"di utilizzo &middot;"
+],
+"faa9e7e7ef": [
+"Started",
+"Inizio"
+],
+"fac60a2133": [
+"· {t0}only {0}% share",
+"· {t0}solo {0}% di utilizzo"
+],
+"faf7c78e36": [
+"Booster packs for this week’s meta",
+"Buste per il meta di questa settimana"
+],
+"fc45091249": [
+"Switch to light mode",
+"Passa alla modalità chiara"
+],
+"ff3e8e536e": [
+"1 player won more than they lost with this deck {0}, but did not reach a top result. This is their list.",
+"1 giocatore ha vinto più di quanto ha perso con questo mazzo {0}, ma senza arrivare a un risultato top. Questa è la sua lista."
+],
+"ffa4a6d465": [
+"Limitless TCG{t0} is the main place where Pok&eacute;mon TCG Pocket tournaments are played online. New events start there every day, from small cups to open events with more than 300 players, and thousands of players take part every week. Each result is public as soon as an event ends, and this site checks for new ones every hour, so the meta here is days fresher than a tier list made by hand. Pocket Meta QR is not part of Limitless TCG: it reads its public results.",
+"Limitless TCG{t0} è il sito principale dove si giocano online i tornei di Pok&eacute;mon TCG Pocket. Ogni giorno vi iniziano nuovi tornei, dalle piccole coppe ai tornei aperti con più di 300 giocatori, e migliaia di giocatori partecipano ogni settimana. Ogni risultato è pubblico appena il torneo finisce, e questo sito cerca quelli nuovi ogni ora: il meta qui è aggiornato di giorni rispetto a una tier list fatta a mano. Pocket Meta QR non fa parte di Limitless TCG: ne legge solo i risultati pubblici."
+],
+"ffa4f00cd6": [
+"slot{0}",
+"slot{0!}"
+],
+"ffd5f6df10": [
+"in no other top player’s list",
+"in nessun’altra lista di un giocatore top"
+]
+}

@@ -11,7 +11,7 @@ build time. Nothing changes in the live page, and a built page has no translatio
 - `en.json`: the catalog (made by `extract.mjs`; the build also puts it on the site: `/i18n/en.json`).
 - `de.json`, `ja.json`: `{id: [English, translation]}`; optional 3rd part `{"<code just before the text>": translation}`
   for one English text with two meanings ("Share": the button vs the meta share).
-- `<lang>.code.json` (now `ja.code.json`, `es.code.json`, `pt.code.json`, `de.code.json`, `fr.code.json`): **code changes** for one language, where a text change is not enough:
+- `<lang>.code.json` (now `ja.code.json`, `es.code.json`, `pt.code.json`, `de.code.json`, `fr.code.json`, `it.code.json`): **code changes** for one language, where a text change is not enough:
   ordinals (`3rd` -> `3位`), word order (`<event>で優勝`), dates (`ja-JP`, `11/14`, `11月9日〜14日`), the Limited
   Battle name. `{"patches": [{"note", "find", "replace", "all"?}]}`; `find` = exact code of the page, applied before the
   texts. A `find` that is not in the page is not used: the build prints it and the report lists it (`codeMiss`). The
@@ -28,6 +28,7 @@ A language can skip a section for now. `EN_ONLY` in `preview/i18n_patch.py` list
 - `de`: What's new is in English.
 - `pt`: What's new is in English. Limited Battle: the fixed parts are translated, the deck notes stay English (like ja).
 - `fr`: What's new is in English. Limited Battle: the fixed parts are translated, the deck notes stay English (like es).
+- `it`: What's new is in English. Limited Battle: the fixed parts are translated, the deck notes stay English (like fr).
 
 `enOnly` in `config.json` (Nov 24): the ids of static HTML sections that `build.mjs` leaves in English per language
 (`nwl` = the What's new list). Without it, What's new headlines that are also texts elsewhere ("Breakout decks", the
@@ -153,6 +154,30 @@ Made from the reviewed Spanish: the same 556 texts (`fr.json`) and 161 of its co
 - Checked with the owner (Nov 24): the QR import path is Mes decks → + → Scanner un code → Scanner une image
   sauvegardée (the sentences around it say "sauvegardez l’image", as the game); the event name "Combats restreints :
   Fusion Double" is correct.
+
+## Italian (it, Nov 24, 2026): preview only at /preview/it/ (not in the menu)
+Made from the reviewed French: the same 556 texts (`it.json`) and its 170 code changes in Italian, plus the plural patches.
+- Plurals: Italian changes the last vowel (torneo/tornei), so `it.code.json` ends with patches that change the English
+  plural code `word${n > 1 ? "s" : ""}` to the Italian endings of that word (`deck${n > 1 ? "i" : "o"}`). The English
+  text and its id stay the same, and the Italian text writes the stem: mazz{n}, cart{n}, torne{n}, giocator{n},
+  bust{n}, posizion{n}, modific{n} (modific works with the e/a of card too: modifica / modifiche). A word with no
+  patch hides its placeholder ({n!}) and uses a form that fits any number (novità, slot, vittorie in dead texts).
+  Check after a change: no stem followed by an "s" arm, and no English word with an Italian ending (both 0 on Nov 24).
+  A new plural in the English page shows as English text until its word is in the patch list and the text is translated.
+- Numbers: 12,0% (no space before %, it-IT style, as pt); 1.921 (it-IT). Ranks: 1º, "3º su 110" (trPl), "n. 3"
+  where the code gives a bare number. Dates: 14 nov, 14/11 in small cells, 9–14 nov, "2 dic alle 14:59".
+  Relative: 5 min fa, 3 h fa, oggi, ieri, adesso. Quotes: «…». Address: tu.
+- Terms: mazzo (deck, as the game: I miei mazzi), lista, giocatore top, utilizzo (share; "di utilizzo"), % di vittorie,
+  bilancio (Score), torneo, busta (pack, as the game: Buste Deluxe), espansione, Fisse / Flex, modifica (swap),
+  variante, fuori dal top cut, Rivelazione, In crescita / In calo, Popolare, Chicca (Hidden gem), Da confermare,
+  Nessun risultato top, matchup, mappa del meta, mirror. Tabs: Meta (Mazzi meta on wide screens), Tornei (Ultimi
+  tornei), Buste. Titles use "Pokémon TCG Pocket" (the Italian game name is GCC Pokémon Pocket).
+- Game words: energy types Erba, Fuoco, Acqua, Lampo, Psico, Lotta, Oscurità, Metallo, Incolore, Drago; Pokémon names
+  are the English ones. Set names fixed in names.fix.json (it): A3a Crisi Ultradimensionale, A3b Il Bosco di Eevee,
+  A4 La Via del Cielo e del Mare, A4b Busta Deluxe ex, B1 Mega Ascesa; Mega names without the hyphen the database
+  has on 3 cards (Mega Mewtwo X-ex).
+- To check by the owner in the game: the QR import path (I miei mazzi → + → Scansiona codice → Scansiona immagine
+  salvata), the Limited Battle name (Lotte limitate: Fusione Duale) and the promo pack name (Promo-C vol. 1).
 
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in

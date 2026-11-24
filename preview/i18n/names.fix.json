@@ -52,5 +52,22 @@
    "A4b": "Booster de Luxe ex",
    "B1": "Méga-Ascension"
   }
+ },
+ "it": {
+  "n": {
+   "Mega Garchomp ex": "Mega Garchomp-ex",
+   "Teal Mask Ogerpon": "Ogerpon Maschera Turchese",
+   "Teal MaskOgerpon": "Ogerpon Maschera Turchese",
+   "Mega Dragonite ex": "Mega Dragonite-ex",
+   "Mega Mewtwo X ex": "Mega Mewtwo X-ex",
+   "Mega Skarmory ex": "Mega Skarmory-ex"
+  },
+  "s": {
+   "A3a": "Crisi Ultradimensionale",
+   "A3b": "Il Bosco di Eevee",
+   "A4": "La Via del Cielo e del Mare",
+   "A4b": "Busta Deluxe ex",
+   "B1": "Mega Ascesa"
+  }
  }
 }

@@ -2,7 +2,7 @@
 python3 preview/i18n_patch.py <in.html> <out.html>      (site.yml runs it on every build; a failed check = no preview)
 1. Card images: every card image path gets the prefix IMGP ("" = English, else "i18n/<lang>/"); a card with no
    localized file falls back to the English file.
-2. Names (de, es, fr, ja, pt): deck, card, set and pack names from i18n/names.<lang>.json (pipeline/i18n_names.mjs), switched in
+2. Names (de, es, fr, it, ja, pt): deck, card, set and pack names from i18n/names.<lang>.json (pipeline/i18n_names.mjs), switched in
    the data as it loads (normQ, events.json, packs.json, cards.json). English names stay in nameEn / nEn.
 3. Language menu (Nov 23, Phase 1 design B): a globe pill left of the dark-mode button (#langBtn) opens a raised panel
    (#langPop) with every game language in its own script. LIVE_L (English; 日本語, Español, Português (Brasil), Deutsch and Français with a Beta tag) can be chosen; the others
@@ -62,10 +62,10 @@ th = '  $("themeBtn").addEventListener("click", () => {'
 MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["ja", "日本語", "日本語"], ["de", "Deutsch", "DE"], ["es", "Español", "ES"], ["fr", "Français", "FR"],
       ["it", "Italiano", "IT"], ["pt", "Português (Brasil)", "PT"], ["ko", "한국어", "KO"], ["zh", "繁體中文", "ZH"]];
     const JA = PG_L === "ja", btn = $("langBtn"), pop = $("langPop"), list = $("langList"), cur = LN.find((x) => x[0] === PG_L) || LN[0];
-    const ES = PG_L === "es", PT = PG_L === "pt", DE = PG_L === "de", FR = PG_L === "fr"; $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : ES || PT ? "Idioma" : DE ? "Sprache" : FR ? "Langue" : "Language";
-    btn.setAttribute("aria-label", (JA ? "言語：" : ES || PT ? "Idioma: " : DE ? "Sprache: " : FR ? "Langue\u00a0: " : "Language: ") + cur[1]);
+    const ES = PG_L === "es", PT = PG_L === "pt", DE = PG_L === "de", FR = PG_L === "fr", IT = PG_L === "it"; $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : ES || PT ? "Idioma" : DE ? "Sprache" : FR ? "Langue" : IT ? "Lingua" : "Language";
+    btn.setAttribute("aria-label", (JA ? "言語：" : ES || PT ? "Idioma: " : DE ? "Sprache: " : FR ? "Langue\u00a0: " : IT ? "Lingua: " : "Language: ") + cur[1]);
     list.innerHTML = LN.map(([c, n]) => { const live = LIVE_L.includes(c), on = c === PG_L;
-      const tag = c === "ja" || c === "es" || c === "pt" || c === "de" || c === "fr" ? `<span class="lang-tag beta">${JA ? "ベータ" : "Beta"}</span>` : live ? "" : `<span class="lang-tag soon">${JA ? "準備中" : ES ? "Próximamente" : PT ? "Em breve" : DE ? "Demnächst" : FR ? "Bientôt" : "Coming soon"}</span>`;
+      const tag = c === "ja" || c === "es" || c === "pt" || c === "de" || c === "fr" ? `<span class="lang-tag beta">${JA ? "ベータ" : "Beta"}</span>` : live ? "" : `<span class="lang-tag soon">${JA ? "準備中" : ES ? "Próximamente" : PT ? "Em breve" : DE ? "Demnächst" : FR ? "Bientôt" : IT ? "In arrivo" : "Coming soon"}</span>`;
       return `<li><button type="button" role="radio" lang="${c}" data-l="${c}" aria-checked="${on}"${live || on ? "" : ' aria-disabled="true"'}>${n}${tag}</button></li>`; }).join("");
     const close = (f) => { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); if (f) btn.focus(); };
     btn.addEventListener("click", (e) => { e.stopPropagation(); const o = pop.hidden; pop.hidden = !o; btn.setAttribute("aria-expanded", String(o));
@@ -106,23 +106,24 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
   // Phase 1 (Nov 23): the page language = its text, names and card images. A text page (/preview/ja/ ...: the build
   // sets PMQ_LANG) has its language. The English page stays English (no redirect by browser language), but a saved
   // choice of a live language (pmq-lang, set in the menu) opens that page. LIVE_L: the languages the menu offers.
-  var TXT_L = ["de", "es", "ja", "pt", "fr"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr"], PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
+  var TXT_L = ["de", "es", "ja", "pt", "fr", "it"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr"], PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
   var IMGL = (() => { if (PG_L !== "en") return PG_L; let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
     return l && l !== "en" && LIVE_L.includes(l) && TXT_L.includes(l) ? l : "en"; })();
   // PMQ_ROOT (set by the build): the English page's folder, "/preview/" (test) or "/" (the live /ja/ page)
   var PMQ_R = (typeof PMQ_ROOT === "string" && PMQ_ROOT) || "/preview/", langPath = (l) => PMQ_R + (TXT_L.includes(l) ? l + "/" : "");
   if (PG_L === "en" && IMGL !== "en" && (location.pathname === PMQ_R || location.pathname === PMQ_R + "index.html")) location.replace(langPath(IMGL) + location.hash);
   var IMGP = IMGL === "en" ? "" : `i18n/${IMGL}/`;
-  // Names (de, es, fr, ja, pt): i18n/names.<lang>.json = {n: {English card name: name}, s: {set code: set name}}. Other languages:
+  // Names (de, es, fr, it, ja, pt): i18n/names.<lang>.json = {n: {English card name: name}, s: {set code: set name}}. Other languages:
   // card images only, English names.
   var LANG_N = TXT_L.includes(IMGL) ? IMGL : "en", L10N = null;
   var L10NP = LANG_N === "en" ? Promise.resolve(null) : fetch(`i18n/names.${LANG_N}.json`).then((r) => (r.ok ? r.json() : null)).then((j) => (L10N = j)).catch(() => null);
   try { document.documentElement.lang = IMGL === "pt" ? "pt-BR" : IMGL; } catch (err) {}
   // Nov 23: sections in English only on a language page (not translated yet): a note at the top of each.
   // new = What's new (#nwl), limited = Limited Battle (#lbl).
-  var EN_ONLY = { de: ["new"], es: ["new"], pt: ["new"], fr: ["new"] }, EN_ONLY_T = { de: "Dieser Bereich ist vorerst nur auf Englisch verfügbar.",
+  var EN_ONLY = { de: ["new"], es: ["new"], pt: ["new"], fr: ["new"], it: ["new"] }, EN_ONLY_T = { de: "Dieser Bereich ist vorerst nur auf Englisch verfügbar.",
     es: "Esta sección solo está disponible en inglés por ahora.", pt: "Por enquanto, esta seção só está disponível em inglês.",
-    fr: "Pour l’instant, cette section n’est disponible qu’en anglais." };
+    fr: "Pour l’instant, cette section n’est disponible qu’en anglais.",
+    it: "Per ora questa sezione è disponibile solo in inglese." };
   if (EN_ONLY[PG_L]) addEventListener("DOMContentLoaded", () => { for (const [k, id] of [["new", "nwl"], ["limited", "lbl"]]) {
     const el = document.getElementById(id); if (el && EN_ONLY[PG_L].includes(k)) { el.setAttribute("data-en-only", EN_ONLY_T[PG_L]); el.lang = "en"; } } });
   var trCard = (en) => (L10N && en && L10N.n[en]) || en;
@@ -139,7 +140,7 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
     return L10N.sl[String(code || "").toLowerCase()] || en; };
   // the place in the data ("3rd of 110") in the page language
   var trPl = (s) => { const m = /^(\d+)(?:st|nd|rd|th) of (\d+)$/.exec(s); if (!m || !PG_L) return s;
-    return PG_L === "ja" ? `${m[1]}位／${m[2]}名` : PG_L === "de" ? `${m[1]}. von ${m[2]}` : PG_L === "es" ? `${m[1]}.º de ${m[2]}` : PG_L === "pt" ? `${m[1]}º de ${m[2]}` : PG_L === "fr" ? `${m[1] === "1" ? "1er" : m[1] + "e"} sur ${m[2]}` : s; };
+    return PG_L === "ja" ? `${m[1]}位／${m[2]}名` : PG_L === "de" ? `${m[1]}. von ${m[2]}` : PG_L === "es" ? `${m[1]}.º de ${m[2]}` : PG_L === "pt" ? `${m[1]}º de ${m[2]}` : PG_L === "fr" ? `${m[1] === "1" ? "1er" : m[1] + "e"} sur ${m[2]}` : PG_L === "it" ? `${m[1]}º su ${m[2]}` : s; };
   var l10nDeep = (o) => { if (!L10N || !o || typeof o !== "object") return o;
     if (Array.isArray(o)) { o.forEach(l10nDeep); return o; }
     if (typeof o.name === "string" && Array.isArray(o.art)) { if (!("nameEn" in o)) o.nameEn = o.name; o.name = trDeck(o.nameEn); }
