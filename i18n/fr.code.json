@@ -908,6 +908,11 @@
    "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
    "find": "${esc(ordN(v.pl))} place",
    "replace": "${(v.pl === 1 ? \"1re\" : v.pl + \"e\")} place"
+  },
+  {
+   "note": "latest events: multi-deck events left out (singular/plural verb)",
+   "find": "${skip} multi-deck event${skip > 1 ? \"s\" : \"\"} (players bring more than one deck) ${skip > 1 ? \"are\" : \"is\"} not listed: their results do not show which deck won each match.",
+   "replace": "${skip} ${skip > 1 ? \"tournois multi-decks (où chaque joueur apporte plusieurs decks) ne sont pas listés\" : \"tournoi multi-decks (où chaque joueur apporte plusieurs decks) n’est pas listé\"} : impossible de savoir avec quel deck chaque match a été gagné."
   }
  ]
 }

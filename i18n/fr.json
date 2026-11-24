@@ -29,7 +29,7 @@
 ],
 "028fddc250": [
 "Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.",
-"Populaire{t0} : la liste que le plus de top joueurs ont jouée exacte (au moins 3, et au moins 2 de plus que toute autre liste). La plus jouée n’est pas toujours la meilleure : regardez le bilan et les autres listes."
+"Populaire{t0} : la liste que le plus de top joueurs ont jouée à l’identique (au moins 3, et au moins 2 de plus que toute autre liste). Mais la plus jouée n’est pas toujours la meilleure : jetez aussi un œil au bilan et aux autres listes."
 ],
 "02b620b03a": [
 "{0}Top players",
@@ -77,11 +77,11 @@
 ],
 "0acb187723": [
 "Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.",
-"Ici, les miroirs (le même deck des deux côtés) et les tournois où les joueurs apportent plusieurs decks ne sont pas comptés, et une égalité vaut une demi-victoire."
+"Parce qu’ici, les miroirs (le même deck des deux côtés) et les tournois où les joueurs apportent plusieurs decks ne sont pas comptés. Et une égalité vaut une demi-victoire."
 ],
 "0b638f7e80": [
 "It shows only the current meta, the decks, lists and events of the last 7 to 14 days, so it does not keep a history, list every card or build decks.",
-"Il ne montre que la méta actuelle : les decks, listes et tournois des 7 à 14 derniers jours. Il n’y a donc ni historique, ni liste complète des cartes, ni constructeur de deck."
+"Le site se concentre sur la méta du moment : les decks, listes et tournois des 7 à 14 derniers jours. Vous n’y trouverez donc pas :"
 ],
 "0bec14f205": [
 "Rising",
@@ -149,7 +149,7 @@
 ],
 "1385294543": [
 "×N: share here vs {0} · top 8s at other events",
-"×N : présence ici vs {0} · top 8 dans d’autres tournois"
+"×N : combien de fois la présence ici dépasse celle relevée {0} · top 8 dans d’autres tournois"
 ],
 "13d4b964c6": [
 "One event is {t0}{0}%{t1} of these results, so it moves the numbers more than usual.",
@@ -165,7 +165,7 @@
 ],
 "1464926697": [
 "Most used is not always the best: compare the win rates.",
-"La plus jouée n’est pas toujours la meilleure : comparez les % de victoires."
+"La plus jouée n’est pas toujours la meilleure : comparez aussi les % de victoires."
 ],
 "14b0dbb85b": [
 "Pocket Meta QR is a free fan site. It is not affiliated with, endorsed or sponsored by Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK or DeNA. Pok&eacute;mon and all card images are trademarks and &copy; of their owners.",
@@ -185,7 +185,7 @@
 ],
 "16effccb01": [
 "No list was used by more than 1 top player, so the {0} is the list with the best place{1}.",
-"Aucune liste n’a été jouée par plus d’un top joueur, donc la {0} est la liste avec la meilleure place{1}."
+"Aucune liste n’a été jouée par plus d’un top joueur : la {0} est donc celle qui a obtenu la meilleure place{1}."
 ],
 "172415f02e": [
 "added",
@@ -193,7 +193,7 @@
 ],
 "1761c5f76c": [
 "Hand-picked decks, not tournament data. This view goes away when the event ends.",
-"Decks choisis à la main, pas des données de tournoi. Cette vue disparaît à la fin de l’événement."
+"Des decks choisis à la main (ce ne sont pas des données de tournoi). Cette vue disparaîtra à la fin de l’événement."
 ],
 "17709dbc6f": [
 "Best finish",
@@ -225,7 +225,7 @@
 ],
 "1be44ea15f": [
 "The window length changed today, so the 24 h rank arrows are hidden today.",
-"La durée de la fenêtre a changé aujourd’hui, donc les flèches de rang sur 24 h sont masquées aujourd’hui."
+"La période prise en compte a changé aujourd’hui : les flèches d’évolution sur 24 h sont donc masquées pour la journée."
 ],
 "1c1a3f0a7e": [
 "Score{0}",
@@ -265,7 +265,7 @@
 ],
 "1fc6434234": [
 "No deck history:{t0} the 7-day trend in a deck&rsquo;s stats is the longest view.",
-"Pas d’historique des decks :{t0} la période la plus longue est la tendance sur 7 jours, dans les stats d’un deck."
+"L’historique long des decks :{t0} le plus loin que vous puissiez remonter, c’est la tendance sur 7 jours dans les stats d’un deck."
 ],
 "1fd12296da": [
 "deck{0}",
@@ -297,11 +297,11 @@
 ],
 "2274cb3617": [
 "is new: these are the results of its first {0}, so the numbers can change fast.",
-"est nouvelle : voici les résultats de {0}, donc les chiffres peuvent changer vite."
+"vient de sortir : voici les résultats de {0}, les chiffres peuvent donc encore bouger beaucoup."
 ],
 "232a936a05": [
 "Deck data did not load.",
-"Les données des decks n’ont pas chargé."
+"Impossible de charger les données des decks."
 ],
 "23bf8384bf": [
 "Top 25%",
@@ -309,7 +309,7 @@
 ],
 "23cd04792c": [
 "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image.",
-"Sauvegardez l’image, puis dans le jeu : Mes decks → + → Scanner un code → Scanner une image sauvegardée."
+"Sauvegardez l’image, puis dans le jeu, allez dans « Mes decks → + → Scanner un code → Scanner une image sauvegardée »."
 ],
 "23d7de0ce5": [
 "Most often in a top 8",
@@ -393,7 +393,7 @@
 ],
 "2aca25531e": [
 "This is the list of its best-placed player{0}{1}. A starting point, not a proven list.",
-"Voici la liste de son joueur le mieux classé{0}{1}. Un point de départ, pas une liste éprouvée."
+"Voici la liste de son joueur le mieux classé{0}{1}. Voyez-la comme une piste à tester plutôt qu’une valeur sûre."
 ],
 "2b286f6b1e": [
 "Vs the meta",
@@ -409,7 +409,7 @@
 ],
 "2cb2bd4021": [
 "Too few players for a fair rank, so it has no rank number.",
-"Trop peu de joueurs pour un rang juste, donc il n’a pas de numéro de rang."
+"Trop peu de joueurs ont joué ce deck pour lui donner un rang juste : il n’a donc pas de numéro."
 ],
 "2e5855d5c2": [
 "0.2–0.5% share",
@@ -437,7 +437,7 @@
 ],
 "30d4653f8e": [
 "▲ = at least 2&times; its meta share in this event's top {0}.",
-"▲ = au moins 2&times; sa présence dans la méta dans le top {0} de ce tournoi."
+"▲ = dans le top {0} de ce tournoi, sa présence est au moins le double de celle dans la méta."
 ],
 "311bee6a56": [
 "Copy the address",
@@ -485,7 +485,7 @@
 ],
 "347bbc504b": [
 "A player with at least 2 more wins than losses at a single-deck event.",
-"Un joueur qui a obtenu au moins 2 victoires de plus que de défaites dans un tournoi à un seul deck."
+"Un joueur qui termine un tournoi à un seul deck avec au moins 2 victoires de plus que de défaites. Par exemple, un 5-3 ou un 4-2 suffit."
 ],
 "35d9bc5159": [
 "Released",
@@ -521,7 +521,7 @@
 ],
 "39a4023d00": [
 "Because every number comes from real tournament games, recorded while the event runs. Each event shows its standings and the result of every match in every round, and players hand in their deck list before the event starts, so each list is the deck that was really played. On top of that, this site counts only public Standard events with 8 or more players and 1 deck per player, and only real matches: no byes, no mirror matches.",
-"Parce que chaque chiffre vient de vrais matchs, enregistrés pendant les tournois. Chaque tournoi publie son classement et le résultat de chaque match à chaque ronde, et les joueurs envoient leur liste avant le début : chaque liste correspond donc au deck réellement joué. De plus, ce site ne retient que les tournois publics au format Standard de 8 joueurs ou plus, avec 1 deck par joueur, et seulement les vrais matchs : pas de byes, pas de miroirs."
+"Parce que chaque chiffre vient de vrais matchs, enregistrés pendant les tournois. Chaque tournoi publie son classement et le résultat de tous les matchs, ronde par ronde. Et comme les joueurs envoient leur liste avant le début, chaque liste correspond exactement au deck joué. De plus, ce site ne retient que les tournois publics au format Standard de 8 joueurs ou plus, avec 1 deck par joueur, et seulement les matchs réellement disputés (ni byes, ni miroirs)."
 ],
 "3a46f4e05d": [
 "Event stats",
@@ -597,7 +597,7 @@
 ],
 "42b36a9675": [
 "The other lists compare their cards with it. Lists with the same count are sorted by their best place.",
-"Les autres listes comparent leurs cartes avec elle. Les listes au même nombre sont triées par leur meilleure place."
+"Les autres listes montrent ce qui change par rapport à celle-ci. À nombre de joueurs égal, elles sont triées par meilleure place."
 ],
 "42df7965d2": [
 "all match wins, losses and ties of this deck",
@@ -697,7 +697,7 @@
 ],
 "500c824120": [
 "Win rate against the 10 most played decks {0} (games), best first. Bars from 20% to 80%; light = too few games to be sure it is not 50%. Tap a deck to open it.",
-"% de victoires contre les 10 decks les plus joués {0} (matchs), du meilleur au moins bon. Barres de 20 % à 80 % ; claire = trop peu de matchs pour être sûr que ce n’est pas 50 %. Touchez un deck pour l’ouvrir."
+"Comment ce deck s’en sort face aux 10 decks les plus joués {0} (% de victoires et nombre de matchs), du meilleur au moins bon matchup. Les barres vont de 20 % à 80 %. Barre claire = trop peu de matchs pour dire que le résultat s’écarte vraiment de 50 %. Touchez un deck pour l’ouvrir."
 ],
 "50832fb363": [
 "deck{0} without {1}.",
@@ -709,11 +709,11 @@
 ],
 "5128e386a1": [
 "The ▲ / ▼ number is how much the share went up or down over the last {0} days, in percentage points (8.3% → 12.0% = ▲3.7).",
-"Le nombre ▲ / ▼ indique de combien la présence a monté ou baissé sur les {0} derniers jours, en points de pourcentage (8,3 % → 12,0 % = ▲3,7)."
+"Le nombre ▲ / ▼ indique de combien de points la présence a monté ou baissé sur les {0} derniers jours (par exemple, de 8,3 % à 12,0 % = ▲3,7)."
 ],
 "516dd47a55": [
 "Public Standard events with 8 or more players on {t0}Limitless TCG{t1}, from the last 7 days, because the meta changes fast (up to 14 days when there are few events, late in a set; never before the set&rsquo;s release). The numbers are computed here, so they can differ a little from other sites.",
-"Pocket Meta QR utilise les tournois publics au format Standard de 8 joueurs ou plus sur {t0}Limitless TCG{t1}, sur les 7 derniers jours, car la méta évolue vite (jusqu’à 14 jours quand il y a peu de tournois, en fin d’extension ; jamais avant la sortie de l’extension). Les chiffres sont calculés par le site lui-même : ils peuvent donc différer légèrement de ceux d’autres sites."
+"Des tournois publics au format Standard de 8 joueurs ou plus sur {t0}Limitless TCG{t1}. Comme la méta bouge vite, seuls les 7 derniers jours sont pris en compte (jusqu’à 14 jours en fin d’extension, quand il y a peu de tournois ; jamais avant la sortie de l’extension). Tous les chiffres sont calculés par le site lui-même : ils peuvent donc différer un peu de ceux d’autres sites."
 ],
 "518e73b3a3": [
 "No deck or card found",
@@ -729,7 +729,7 @@
 ],
 "5351e118ae": [
 "Updated {0}.{t0} Ranked best first, from our testing so far (it can change). Deck notes made with help from {t1}GameWith{t2}.",
-"Mis à jour le {0}.{t0} Classés du meilleur au moins bon, d’après nos tests jusqu’ici (cela peut changer). Notes des decks faites avec l’aide de {t1}GameWith{t2}."
+"Mis à jour le {0}.{t0} Classés du meilleur au moins bon d’après nos tests jusqu’ici (ça peut encore changer). Les notes des decks ont été rédigées avec l’aide de {t1}GameWith{t2}."
 ],
 "53668c4b2c": [
 ". Card images: PocketDecks. Details in About &amp; FAQ.",
@@ -749,7 +749,7 @@
 ],
 "548bcc2f35": [
 "Win rate against the 10 most played decks {0}, best first. Green bar: above 50%, red: below. {t0}Light bar{t1}: too few games to be sure it is not 50%. Right: the number of games.",
-"% de victoires contre les 10 decks les plus joués {0}, du meilleur au moins bon. Barre verte : au-dessus de 50 %, rouge : en dessous. {t0}Barre claire{t1} : trop peu de matchs pour être sûr que ce n’est pas 50 %. À droite : le nombre de matchs."
+"Comment ce deck s’en sort face aux 10 decks les plus joués {0}, du meilleur au moins bon matchup. Barre verte : au-dessus de 50 % ; rouge : en dessous. {t0}Barre claire{t1} : trop peu de matchs pour dire que le résultat s’écarte vraiment de 50 %. À droite, le nombre de matchs."
 ],
 "54907cba83": [
 "&#9888; Below the cut",
@@ -777,7 +777,7 @@
 ],
 "566bcc7a1f": [
 "Each day = the window that ends on that day (7–14 days, wider when there are few events), so the numbers move slowly. Faded: under 30 players.{0}",
-"Chaque jour = la fenêtre qui finit ce jour-là (7–14 jours, plus longue quand il y a peu de tournois), donc les chiffres bougent lentement. Estompé : moins de 30 joueurs.{0}"
+"Chaque jour correspond à la période qui se termine ce jour-là (7–14 jours, plus longue quand il y a peu de tournois) : les chiffres bougent donc lentement. Estompé : moins de 30 joueurs.{0}"
 ],
 "56820cd9a6": [
 "Filter by energy",
@@ -789,7 +789,7 @@
 ],
 "56bcd8fe54": [
 "New{t0}: the first time this deck is in the list since {0} came out. The tag shows for 3 days.",
-"Nouveau{t0} : la première fois que ce deck est dans le classement depuis la sortie de {0}. L’étiquette reste 3 jours."
+"Nouveau{t0} : ce deck entre dans le classement pour la première fois depuis la sortie de {0}. L’étiquette reste affichée 3 jours."
 ],
 "56ded40877": [
 "Safari on Mac:{t0} File &rarr; {t1}Add to Dock{t2}.",
@@ -873,7 +873,7 @@
 ],
 "62eb8f8f88": [
 "The {0} is the list that the most top players used: {t0}{1} of {2}{t1}.",
-"La {0} est la liste jouée par le plus de top joueurs : {t0}{1} sur {2}{t1}."
+"La {0} est celle que jouent le plus de top joueurs ({t0}{1} sur {2}{t1})."
 ],
 "62eea86f4f": [
 "Filter events by size",
@@ -897,7 +897,7 @@
 ],
 "67524d7001": [
 "The deck has no top player in these days. {t0}Unproven{t1}: some players won more than they lost, but none reached a top result; the page shows the best of them. {t2}No top result{t3}: no player won more than they lost; the page shows the best-placed list. Both are a starting point, not a proven list.",
-"Ces deux étiquettes signifient que le deck n’a aucun top joueur sur la période. {t0}À confirmer{t1} : des joueurs ont gagné plus de matchs qu’ils n’en ont perdu, sans atteindre un résultat top ; la page montre le meilleur d’entre eux. {t2}Aucun résultat top{t3} : aucun joueur n’a gagné plus de matchs qu’il n’en a perdu ; la page montre la liste la mieux classée. Dans les deux cas, c’est un point de départ, pas une liste éprouvée."
+"Ces deux étiquettes signifient qu’aucun top joueur n’a joué ce deck sur la période. {t0}À confirmer{t1} : des joueurs ont gagné plus de matchs qu’ils n’en ont perdu, mais aucun n’a atteint les 2 victoires d’avance. La page montre la liste du meilleur d’entre eux. {t2}Aucun résultat top{t3} : personne n’a gagné plus de matchs qu’il n’en a perdu avec ce deck. La page montre la liste la mieux classée. Dans les deux cas, voyez la liste comme une piste à tester plutôt qu’une valeur sûre."
 ],
 "67b6a61bdd": [
 "Search a card",
@@ -953,7 +953,7 @@
 ],
 "6c3a3bb7b9": [
 "The big number is the deck’s {t0}share{t1}: of {t2}all players{t3} in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the “top players” (that count, under each list, only takes players who won at least 2 more matches than they lost).",
-"Le grand chiffre est la {t0}présence{t1} du deck : parmi {t2}tous les joueurs{t3} de ces tournois (chaque inscription, quel que soit le résultat), la part qui a joué ce deck. 12,0 % = environ 1 joueur sur 8. Ce n’est pas lié aux « top joueurs » (ce compte, sous chaque liste, ne prend que les joueurs qui ont gagné au moins 2 matchs de plus qu’ils n’en ont perdu)."
+"Le grand chiffre est la {t0}présence{t1} du deck : parmi {t2}tous les joueurs{t3} de ces tournois (tous les inscrits, quel que soit leur résultat), la part qui a joué ce deck. 12,0 %, c’est environ 1 joueur sur 8. Rien à voir avec les « top joueurs » (le nombre sous chaque liste ne compte que ceux qui ont terminé avec au moins 2 victoires de plus que de défaites)."
 ],
 "6cb6084c7f": [
 "Deck List ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
@@ -1001,7 +1001,7 @@
 ],
 "7046e8f2dd": [
 "The lists did not load. Close and open the event again.",
-"Les listes n’ont pas chargé. Fermez puis rouvrez le tournoi."
+"Impossible de charger les listes. Fermez puis rouvrez le tournoi."
 ],
 "70b8058643": [
 "stayed {t0}#{0}",
@@ -1053,7 +1053,7 @@
 ],
 "75367d1a97": [
 "No player of this deck won more matches than they lost {0}, so it has no top-player list.",
-"Aucun joueur de ce deck n’a gagné plus de matchs qu’il n’en a perdu {0}, donc il n’a pas de liste de top joueur."
+"Personne n’a gagné plus de matchs qu’il n’en a perdu avec ce deck {0} : il n’a donc pas encore de liste de top joueur."
 ],
 "75ab30ea65": [
 "Added to the site",
@@ -1077,7 +1077,7 @@
 ],
 "775ee8b04a": [
 "The tournaments of the same days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.",
-"Tous les tournois de la même période, du plus récent au plus ancien. Ouvrez-en un pour voir les listes de son top 8, chacune avec son code QR. Les tournois où chaque joueur apporte plusieurs decks n’y figurent pas, car ils n’ont pas une seule liste par joueur."
+"Tous les tournois de la même période, du plus récent au plus ancien. Ouvrez-en un pour voir les listes de son top 8, chacune avec son code QR. Les tournois où chaque joueur apporte plusieurs decks n’y figurent pas : impossible de savoir avec quel deck chaque match a été gagné."
 ],
 "7789ef8e5a": [
 "Scan Saved Image",
@@ -1141,7 +1141,7 @@
 ],
 "7d8bdc5e6b": [
 "Now: {t0}{0} days{t1}, because fewer events were played in the last 7 days.",
-"Maintenant : {t0}{0} jours{t1}, car moins de tournois ont été joués sur les 7 derniers jours."
+"Maintenant : {t0}{0} jours{t1}. Il y a eu peu de tournois ces 7 derniers jours, la période a donc été élargie."
 ],
 "7e29279cfb": [
 "Tap the menu {t0}&middot;&middot;&middot;{t1}, then {t2}Share{t3} {0}.",
@@ -1177,7 +1177,7 @@
 ],
 "81826fc524": [
 "Open a deck, tap its QR code and save the image. In the game: {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. On a computer, you can also point the game&rsquo;s camera at the screen.",
-"Ouvrez un deck, touchez son code QR et sauvegardez l’image. Ensuite, dans le jeu : {t0}Mes decks &rarr; + &rarr; Scanner un code &rarr; Scanner une image sauvegardée{t1}. Sur un ordinateur, vous pouvez aussi scanner directement l’écran avec la caméra du jeu."
+"Ouvrez le deck qui vous intéresse, touchez son code QR et sauvegardez l’image. Ensuite, dans le jeu, il suffit d’aller dans « {t0}Mes decks → + → Scanner un code → Scanner une image sauvegardée{t1} ». Et si vous êtes sur ordinateur, vous pouvez même scanner l’écran directement avec la caméra du jeu."
 ],
 "8235bdefc9": [
 "the newest set",
@@ -1189,15 +1189,15 @@
 ],
 "83a0cd42f1": [
 "Open Pocket Meta QR with one tap, full screen like an app. It refreshes itself when you come back.",
-"Ouvrez Pocket Meta QR d’un seul geste, en plein écran comme une app. Il se met à jour tout seul quand vous revenez."
+"Ouvrez Pocket Meta QR d’un seul geste, en plein écran, comme une app. Quand vous revenez, il se met à jour tout seul."
 ],
 "84022162f8": [
 "Faded: fewer than 30 players, so this rate is less certain.",
-"Estompé : moins de 30 joueurs, donc ce taux est moins fiable."
+"Estompé : moins de 30 joueurs, ce taux est donc à prendre avec des pincettes."
 ],
 "8434bf2392": [
 "Share, win rate, rank and matchups count all players; Cards counts the top players. A tie is half a win; mirror matches are not counted.",
-"La présence, le % de victoires, le rang et les matchups comptent tous les joueurs ; Cartes compte les top joueurs. Une égalité vaut une demi-victoire ; les miroirs ne sont pas comptés."
+"La présence, le % de victoires, le rang et les matchups prennent en compte tous les joueurs ; la partie Cartes, seulement les top joueurs. Une égalité vaut une demi-victoire, et les miroirs ne sont pas comptés."
 ],
 "84e3ee8374": [
 "· {t0}{0}{t1} win",
@@ -1209,7 +1209,7 @@
 ],
 "857fa3b382": [
 "List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. {t0}&#9733; Popular now{t1} marks a list 1 that clearly more top players used exactly than any other list.",
-"La liste 1 d’un deck est celle qu’utilisent le plus de top joueurs. Les listes qui n’en diffèrent que par 1, 2 ou 3 cartes sont comptées avec elle : les cases sous la liste indiquent combien de top joueurs l’ont jouée à l’identique ou avec 1, 2 ou 3 changements (touchez une case pour voir ces variantes, chacune avec son code QR). Une liste qui diffère de 4 cartes ou plus apparaît à part si au moins 2 top joueurs l’ont jouée, ou si un joueur a fini dans le top 8 d’un tournoi de 32 joueurs ou plus. {t0}&#9733; Populaire{t1} signale une liste 1 jouée à l’identique par nettement plus de top joueurs que toute autre liste."
+"La liste 1 est celle qu’utilisent le plus de top joueurs. Les listes qui n’en diffèrent que par 1, 2 ou 3 cartes sont comptées avec elle : les cases sous la liste indiquent combien de top joueurs l’ont jouée à l’identique, et combien avec 1, 2 ou 3 changements (touchez une case pour voir ces variantes, chacune avec son code QR). Une liste qui diffère de 4 cartes ou plus apparaît à part si au moins 2 top joueurs l’ont jouée, ou si un joueur a fini dans le top 8 d’un tournoi de 32 joueurs ou plus. Le badge {t0}★ Populaire{t1} apparaît sur la liste 1 quand nettement plus de top joueurs l’ont jouée à l’identique que n’importe quelle autre liste."
 ],
 "861edba005": [
 "Suggestions",
@@ -1237,7 +1237,7 @@
 ],
 "8896272648": [
 "No one with this deck won more than they lost {0}. This is its best-placed list.",
-"Personne avec ce deck n’a gagné plus qu’il n’a perdu {0}. Voici sa liste la mieux classée."
+"Personne n’a gagné plus de matchs qu’il n’en a perdu avec ce deck {0}. Voici sa liste la mieux classée."
 ],
 "88c70db626": [
 ", and {t0}{0}{t1} more with 1 to 3 cards swapped{1}",
@@ -1249,15 +1249,15 @@
 ],
 "892ce04a73": [
 "A top result: at least 2 more wins than losses at an event {0}.",
-"Un résultat top : au moins 2 victoires de plus que de défaites dans un tournoi {0}."
+"Résultat top : terminer un tournoi {0} avec au moins 2 victoires de plus que de défaites."
 ],
 "8948bad5c9": [
 "No deck builder:{t0} import a list with its QR code, then change it in the game.",
-"Pas de constructeur de deck :{t0} importez une liste avec son code QR, puis modifiez-la dans le jeu."
+"Un constructeur de deck :{t0} importez une liste avec son code QR, puis ajustez-la directement dans le jeu."
 ],
 "899e85d0d1": [
 "A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.",
-"Une place est comparée à la taille du tournoi : 5e sur 547 passe avant 2e sur 153. Les autres listes comparent leurs cartes avec elle."
+"Une place est jugée selon la taille du tournoi : un 5e sur 547 passe devant un 2e sur 153. Les autres listes montrent ce qui change par rapport à celle-ci."
 ],
 "89b86ab0e6": [
 "Language",
@@ -1297,7 +1297,7 @@
 ],
 "8e7fc3f8ed": [
 "New set: {0}{t0} came out {1}. Until {2}, the numbers also include events from before it.",
-"Nouvelle extension : {0}{t0} est sortie {1}. Jusqu’au {2}, les chiffres incluent aussi des tournois d’avant."
+"Nouvelle extension : {0}{t0} est sortie {1}. Jusqu’au {2}, les chiffres incluent aussi des tournois antérieurs à sa sortie."
 ],
 "8eaf38d66f": [
 "Top 32",
@@ -1337,11 +1337,11 @@
 ],
 "93daa2f17e": [
 "The decks that win in Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, the {t2}latest events{t3} with their top 8, and a {t4}QR code{t5} for every list, so you can import a deck in a few taps.",
-"Pocket Meta QR montre les decks qui gagnent les tournois Pok&eacute;mon TCG Pocket {t0}en ce moment{t1}, les {t2}derniers tournois{t3} avec leur top 8, et un {t4}code QR{t5} pour chaque liste, pour importer un deck en quelques gestes."
+"Pocket Meta QR vous montre les decks qui gagnent les tournois Pokémon TCG Pocket {t0}en ce moment{t1}, ainsi que le top 8 des {t2}derniers tournois{t3}. Chaque liste a son {t4}code QR{t5} : il suffit de le scanner pour retrouver le deck dans le jeu en quelques gestes."
 ],
 "953d4f3666": [
 "A {t0}top player{t1} won at least 2 more matches than they lost (ties do not count) at a single-deck event {0}.",
-"Un {t0}top joueur{t1} a gagné au moins 2 matchs de plus qu’il n’en a perdu (les égalités ne comptent pas) dans un tournoi à un seul deck {0}."
+"Un {t0}top joueur{t1}, c’est un joueur qui a terminé un tournoi à un seul deck {0} avec au moins 2 victoires de plus que de défaites (les égalités ne comptent pas)."
 ],
 "961d9b56f9": [
 "All decks",
@@ -1409,7 +1409,7 @@
 ],
 "9d6e7e027b": [
 "Not enough games against the top decks yet (a matchup needs 10+ games).",
-"Pas encore assez de matchs contre les decks top (un matchup demande 10+ matchs)."
+"Pas encore assez de matchs contre les decks top (il en faut au moins 10 par matchup)."
 ],
 "9da8f1fa7d": [
 "place",
@@ -1417,11 +1417,11 @@
 ],
 "9eaea27829": [
 "An event shows here {t0}after it ends{t1}, usually a few hours after it starts. It is listed under the day it was played (your time), so a new event can show under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.",
-"Un tournoi apparaît ici {t0}une fois terminé{t1}, en général quelques heures après son début. Il est classé au jour où il a été joué (votre heure), donc un nouveau tournoi peut apparaître sous « Hier » : cherchez « ajouté il y a N h »."
+"Un tournoi apparaît ici {t0}une fois terminé{t1}, en général quelques heures après son début. Il est rangé au jour où il a été joué (à votre heure) : un nouveau tournoi peut donc apparaître sous « Hier ». Repérez la mention « ajouté il y a N h »."
 ],
 "9ec76bfa7e": [
 "Yes: no ads and no sign-up. No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter). This browser keeps only your theme and the last tab you used.",
-"Oui : pas de pub, pas d’inscription. Pas de cookies ni de données personnelles : le site compte seulement, de façon anonyme, les visites et les touches sur les boutons (GoatCounter). Votre navigateur ne garde que votre thème et le dernier onglet ouvert."
+"Oui, entièrement : pas de pub, pas d’inscription. Pas de cookies ni de données personnelles non plus : le site compte seulement, de façon anonyme, les visites et les clics sur les boutons (GoatCounter). Votre navigateur ne garde que deux choses : votre thème (clair ou sombre) et le dernier onglet ouvert."
 ],
 "9fcb4b1bfc": [
 "No lists stored for this event.",
@@ -1465,7 +1465,7 @@
 ],
 "a40926803d": [
 "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image.",
-"Dans le jeu : Mes decks → + → Scanner un code, puis visez ce code avec la caméra. Ou téléchargez l’image."
+"Dans le jeu, allez dans « Mes decks → + → Scanner un code », puis visez ce code avec la caméra. Vous pouvez aussi télécharger l’image."
 ],
 "a452ac820f": [
 "Tap {t0}Share{t1} {0} (Safari: at the bottom, or at the top on iPad).",
@@ -1509,7 +1509,7 @@
 ],
 "a9a48e26e0": [
 "A deck plays a card when half or more of its lists play it. A {t0}meta card{t1} is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded, with “small” under them, and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.",
-"Un deck joue une carte quand la moitié de ses listes ou plus la jouent. Une {t0}carte méta{t1} est jouée par au moins un deck avec 1,0 % de présence ou plus. Les cartes que seuls de petits decks jouent sont estompées, avec « petit » dessous, et comptées à part. Les Pokémon et les Dresseurs comptent ; la rareté et votre collection ne sont pas prises en compte."
+"Une carte fait partie d’un deck quand au moins la moitié de ses listes la jouent. Une {t0}carte méta{t1} est jouée par au moins un deck avec 1,0 % de présence ou plus. Les cartes que seuls de petits decks jouent sont estompées, avec « petit » dessous, et comptées à part. Les Pokémon et les Dresseurs comptent ; la rareté et votre collection n’entrent pas en jeu."
 ],
 "aa13831f68": [
 "· {t0}{0}%{t1} of top players",
@@ -1537,11 +1537,11 @@
 ],
 "acfa231857": [
 "Decks with 30+ players {0}: share against win rate. Lines: the median share and 50% win rate.",
-"Decks avec 30+ joueurs {0} : présence contre % de victoires. Lignes : la présence médiane et 50 % de victoires."
+"Les decks joués par 30 joueurs ou plus {0}, placés selon leur présence et leur % de victoires. Les lignes marquent la présence médiane et 50 % de victoires."
 ],
 "ad0938bfaf": [
 "The 10 decks played most {0}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.",
-"Les 10 decks les plus joués {0}, dans les tournois publics au format Standard avec 8 joueurs ou plus sur Limitless TCG. Le n° 1 est au centre ; l’étagère tourne toute seule et s’arrête quand vous la touchez. Faites-la glisser ; touchez un deck pour l’ouvrir."
+"Les 10 decks les plus joués {0} dans les tournois publics au format Standard de 8 joueurs ou plus sur Limitless TCG. Le n° 1 démarre au centre, et l’étagère tourne toute seule (elle s’arrête dès que vous la touchez). Vous pouvez la faire glisser, et il suffit de toucher un deck pour l’ouvrir."
 ],
 "ad0f717c5c": [
 "in the top",
@@ -1573,7 +1573,7 @@
 ],
 "b1142f7843": [
 "Not on the map yet: fewer than 30 players {0} (too few to place it).",
-"Pas encore sur la carte : moins de 30 joueurs {0} (trop peu pour le placer)."
+"Pas encore sur la carte : moins de 30 joueurs {0}, trop peu pour le placer."
 ],
 "b1582a29b3": [
 "What’s new on Pocket Meta QR",
@@ -1637,7 +1637,7 @@
 ],
 "b7c44ae8ae": [
 "The shelf shows the 10 packs with the most meta cards (#1 in the middle); the list has every pack, the older series under it. Tap a pack to see its cards; tap a card to see the decks that play it.",
-"L’étagère montre les 10 boosters avec le plus de cartes méta (le n° 1 au centre) ; la liste a tous les boosters, l’ancienne série en dessous. Touchez un booster pour voir ses cartes ; touchez une carte pour voir les decks qui la jouent."
+"L’étagère montre les 10 boosters qui contiennent le plus de cartes méta (le n° 1 au centre). En dessous, la liste reprend tous les boosters, avec l’ancienne série à la fin. Touchez un booster pour voir ses cartes, puis une carte pour voir les decks qui la jouent."
 ],
 "b812e498b4": [
 "Pack: Meta Cards & Decks ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
@@ -1677,7 +1677,7 @@
 ],
 "bd81811d71": [
 "Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks from public tournaments on Limitless, like a tier list built from real results: share, win rate and the lists the top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster pack gives the cards of the meta.",
-"Pocket Meta QR classe les decks Pok&eacute;mon TCG Pocket de cette semaine à partir des tournois publics sur Limitless, comme une tier list faite avec de vrais résultats : présence, % de victoires et les listes jouées par les top joueurs. Chaque liste a un code QR à scanner dans le jeu pour importer le deck, et la page Boosters montre quel booster donne les cartes de la méta."
+"Pocket Meta QR établit le classement des decks Pokémon TCG Pocket de la semaine à partir des tournois publics de Limitless. C’est un peu une tier list basée sur de vrais résultats : présence, % de victoires et listes des top joueurs. Chaque liste a son code QR à scanner dans le jeu pour importer le deck, et la page Boosters vous dit de quel booster viennent les cartes de la méta."
 ],
 "bf3d48422f": [
 "Pokémon TCG Pocket Meta Decks ({0}) with QR Codes | Pocket Meta QR",
@@ -1693,7 +1693,7 @@
 ],
 "c06cdf65c7": [
 "Deck data did not load. Reload the page to try again.",
-"Les données des decks n’ont pas chargé. Rechargez la page pour réessayer."
+"Impossible de charger les données des decks. Rechargez la page pour réessayer."
 ],
 "c0ee3cda6e": [
 "What is a &ldquo;top player&rdquo;?",
@@ -1717,7 +1717,7 @@
 ],
 "c38f356b28": [
 "This list has not shown that yet.",
-"Cette liste ne l’a pas encore montré."
+"Cette liste n’a pas encore obtenu ce résultat."
 ],
 "c5406d81f3": [
 "&middot; most used first",
@@ -1769,7 +1769,7 @@
 ],
 "c9929a6b53": [
 "players won more than they lost with this deck {0}, but none reached a top result. This is the best of them.",
-"joueurs ont gagné plus qu’ils n’ont perdu avec ce deck {0}, mais aucun n’a atteint un résultat top. Voici le meilleur d’entre eux."
+"joueurs ont gagné plus de matchs qu’ils n’en ont perdu avec ce deck {0}, mais aucun n’a atteint les 2 victoires d’avance. Voici la liste du meilleur d’entre eux."
 ],
 "c9b4332dc1": [
 "has no data",
@@ -1797,7 +1797,7 @@
 ],
 "cd708dcb83": [
 "Top player: at least 2 more wins than losses at an event {0}.",
-"Top joueur : au moins 2 victoires de plus que de défaites dans un tournoi {0}."
+"Top joueur : a terminé un tournoi {0} avec au moins 2 victoires de plus que de défaites."
 ],
 "cdc3ce9c70": [
 "Top 10 packs",
@@ -1841,11 +1841,11 @@
 ],
 "d1e9c146ea": [
 "Core: in 90%+ of the {0} top players' lists. Flex: share of top players who play it{1}.{2}",
-"Fixes : dans 90 %+ des listes des {0} top joueurs. Flex : part des top joueurs qui la jouent{1}.{2}"
+"Fixes : présentes dans 90 % ou plus des listes des {0} top joueurs. Flex : la part des top joueurs qui la jouent{1}.{2}"
 ],
 "d27dc1b686": [
 "Faded win rate: fewer than 30 players, so it moves a lot.",
-"% de victoires estompé : moins de 30 joueurs, donc il varie beaucoup."
+"% de victoires estompé : moins de 30 joueurs, il peut donc encore beaucoup varier."
 ],
 "d3235b7b18": [
 "Copy list link",
@@ -1981,7 +1981,7 @@
 ],
 "dfe3c5d44a": [
 "Yes: tap {t0}Add to Home Screen{t1} at the bottom of the page for the steps.",
-"Oui : touchez {t0}Ajouter à l’écran d’accueil{t1} en bas de la page pour voir comment faire."
+"Oui, sans problème ! Touchez « {t0}Ajouter à l’écran d’accueil{t1} » en bas de la page pour voir comment faire. Vous pourrez ensuite ouvrir le site en un geste, comme n’importe quelle app."
 ],
 "e000ac6209": [
 "no public list yet",
@@ -1993,7 +1993,7 @@
 ],
 "e16297c400": [
 "Checked every hour. The numbers change only when a new event is added. Times are in your time zone.",
-"Vérifié toutes les heures. Les chiffres ne changent que quand un nouveau tournoi est ajouté. Les heures sont dans votre fuseau horaire."
+"Le site vérifie toutes les heures s’il y a de nouveaux tournois. Les chiffres ne changent que quand un tournoi est ajouté. Les heures sont affichées dans votre fuseau horaire."
 ],
 "e314914df8": [
 "The list most top players build from.",
@@ -2033,7 +2033,7 @@
 ],
 "e7a5c67393": [
 "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the current set&rsquo;s release, so in a new set&rsquo;s first days the results are early ones. The line under the title shows the dates.",
-"Les 7 derniers jours. Quand il y a peu de tournois (souvent en fin d’extension), la page remonte aux 10 ou 14 derniers jours, pour que chaque chiffre repose sur assez de joueurs. Elle ne compte jamais les tournois antérieurs à la sortie de l’extension actuelle : pendant les premiers jours d’une nouvelle extension, il s’agit donc de premiers résultats. Les dates sont indiquées sous le titre."
+"En temps normal, les 7 derniers jours. Quand il y a peu de tournois (souvent en fin d’extension), la page remonte aux 10 ou 14 derniers jours, pour que chaque chiffre repose sur assez de joueurs. Les tournois antérieurs à la sortie de l’extension actuelle ne sont jamais comptés : les premiers jours d’une nouvelle extension, les chiffres sont donc encore provisoires. Les dates exactes sont indiquées sous le titre."
 ],
 "e903ded5bb": [
 "Showing {0} of {1} decks.",
@@ -2085,7 +2085,7 @@
 ],
 "f0c4717b8a": [
 "That event is not in the list anymore: it shows the events {0}.",
-"Ce tournoi n’est plus dans la liste : voici les tournois {0}."
+"Ce tournoi n’est plus dans la liste, qui affiche maintenant les tournois {0}."
 ],
 "f0e3ef5401": [
 "New in",
@@ -2137,7 +2137,7 @@
 ],
 "f3f9391cee": [
 "Not every tournament:{t0} only public Standard events with 8 or more players and 1 deck per player.",
-"Pas tous les tournois :{t0} seulement les tournois publics au format Standard avec 8 joueurs ou plus et 1 deck par joueur."
+"Tous les tournois :{t0} seuls les tournois publics au format Standard de 8 joueurs ou plus, avec 1 deck par joueur, sont pris en compte."
 ],
 "f4b15c9c91": [
 "Top 10 decks",
@@ -2153,7 +2153,7 @@
 ],
 "f5967e775f": [
 "Not every card:{t0} the Packs tab and the card pages show only the cards that this week&rsquo;s meta decks play.",
-"Pas toutes les cartes :{t0} l’onglet Boosters et les pages des cartes ne montrent que les cartes jouées par les decks méta de cette semaine."
+"Toutes les cartes :{t0} l’onglet Boosters et les pages des cartes ne montrent que celles jouées par les decks méta de la semaine."
 ],
 "f6bb0f468a": [
 "Days",
@@ -2161,15 +2161,15 @@
 ],
 "f744f6ce38": [
 "Did not load. Swipe away and back.",
-"Pas chargé. Glissez vers une autre liste et revenez."
+"Chargement impossible. Glissez vers une autre liste, puis revenez."
 ],
 "f7e42baf96": [
 "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the set&rsquo;s release.",
-"Les 7 derniers jours. Quand il y a peu de tournois (souvent en fin d’extension), la page remonte aux 10 ou 14 derniers jours, pour que chaque chiffre repose sur assez de joueurs. Elle ne compte jamais les tournois antérieurs à la sortie de l’extension."
+"En temps normal, les 7 derniers jours. Quand il y a peu de tournois (souvent en fin d’extension), la page remonte aux 10 ou 14 derniers jours, pour que chaque chiffre repose sur assez de joueurs. Les tournois antérieurs à la sortie de l’extension ne sont jamais comptés."
 ],
 "f80619bbf4": [
 "No older weeks or past sets:{t0} no results or tier lists from before the days shown under the title.",
-"Pas d’anciennes semaines ni d’extensions passées :{t0} aucun résultat ni tier list antérieurs aux dates affichées sous le titre."
+"Les anciennes données :{t0} aucun résultat ni tier list antérieurs aux dates affichées sous le titre."
 ],
 "f83481bd50": [
 "– {0} (your time)",
@@ -2181,7 +2181,7 @@
 ],
 "f98462c968": [
 "Scroll down and tap {t0}Add to Home Screen{t1}.",
-"Faites défiler et touchez {t0}Sur l’écran d’accueil{t1}."
+"Faites défiler vers le bas et touchez {t0}Sur l’écran d’accueil{t1}."
 ],
 "f9a4b961c0": [
 "share &middot;",
@@ -2205,11 +2205,11 @@
 ],
 "ff3e8e536e": [
 "1 player won more than they lost with this deck {0}, but did not reach a top result. This is their list.",
-"1 joueur a gagné plus qu’il n’a perdu avec ce deck {0}, mais sans atteindre un résultat top. Voici sa liste."
+"1 joueur a gagné plus de matchs qu’il n’en a perdu avec ce deck {0}, mais sans atteindre les 2 victoires d’avance. Voici sa liste."
 ],
 "ffa4a6d465": [
 "Limitless TCG{t0} is the main place where Pok&eacute;mon TCG Pocket tournaments are played online. New events start there every day, from small cups to open events with more than 300 players, and thousands of players take part every week. Each result is public as soon as an event ends, and this site checks for new ones every hour, so the meta here is days fresher than a tier list made by hand. Pocket Meta QR is not part of Limitless TCG: it reads its public results.",
-"Limitless TCG{t0} est le principal site de tournois en ligne de Pok&eacute;mon TCG Pocket. De nouveaux tournois y démarrent chaque jour, des petites coupes aux tournois ouverts de plus de 300 joueurs, et des milliers de joueurs y participent chaque semaine. Les résultats sont publics dès la fin de chaque tournoi, et ce site vérifie toutes les heures s’il y en a de nouveaux : la méta affichée ici a donc plusieurs jours d’avance sur une tier list faite à la main. Pocket Meta QR n’est pas lié à Limitless TCG : il se contente de lire ses résultats publics."
+"Limitless TCG{t0} est le principal site de tournois en ligne de Pokémon TCG Pocket. Il y a de nouveaux tournois tous les jours, des petites coupes aux tournois ouverts de plus de 300 joueurs, et des milliers de joueurs y participent chaque semaine. Les résultats sont publiés dès la fin de chaque tournoi, et ce site vérifie toutes les heures s’il y en a de nouveaux. Résultat : la méta affichée ici a plusieurs jours d’avance sur une tier list faite à la main. Précision : Pocket Meta QR n’a aucun lien avec Limitless TCG. Il se contente de lire les résultats publics."
 ],
 "ffa4f00cd6": [
 "slot{0}",
