@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795447609-4093 -->
+<!-- ui: artifact version 1795520066-6d06 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -189,7 +189,7 @@ footer a { color: var(--muted); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ribbon::after, :root:not([data-theme="light"]) .ribbon::before { opacity: 0.8; } }
 :root[data-theme="dark"] .ribbon::after, :root[data-theme="dark"] .ribbon::before { opacity: 0.8; }
 .ribbon { position: relative; z-index: 2; margin: 30px calc(50% - 55vw) 0; width: 110vw; transform: rotate(var(--rot));
-  padding: 9px 0 10px calc(55vw - 50% + 6px); display: flex; align-items: center; gap: 10px;
+  padding: 9px 0 10px calc(55vw - 50% + 1px); display: flex; align-items: center; gap: 10px; /* Nov 24: logo + name 5px left (was + 6px): clear of the language button of the language pages */
   background: linear-gradient(180deg, var(--rib-a), var(--rib-b)); box-shadow: var(--rib-shadow); }
 /* Logo: a QR glyph (no box) in the game's bright icon gradient (sampled from the in-game "Versus" icon), slanted 12deg like the title.
    Three finder rings with large centers; round dots in the bottom-right, so it is not a copy of the game's square glyph. */
@@ -2308,7 +2308,7 @@ a.dkev { text-decoration: none; }
 .eks .ekb { padding-top: 8px; }
 @media (min-width: 740px) { :root:not(#_):not(#_) #evl .dkl .vars { --per: 1; --sw: var(--dklw); --slw: var(--dklw); --mh: calc(var(--dklw) / 2); --vgap: 16px; --pad: 8px; padding-inline: 8px; scroll-padding-inline: 8px; } #evl .dkl .vars::after { display: none; } }
 /* Nov 21: the space kept while the Top 10 shelf loads (= its height: shelf + 3 Rising rows) */
-.t1s.t1s-wait { min-height: 510px; }
+.t1s.t1s-wait { min-height: 526px; } /* Nov 24: +16px (2-line header on phones) */
 @media (min-width: 600px) and (max-width: 1100px) and (pointer: coarse) { .t1s.t1s-wait { min-height: 530px; } }
 @media (min-width: 700px) and (pointer: fine), (min-width: 1101px) { .t1s.t1s-wait { min-height: 548px; } }
 /* Nov 21: Top 10 "shelf" (see t10Car). Wrapper .t10x: section label, shelf (raised rim + pressed well), Rising / Falling panel */
@@ -2319,7 +2319,13 @@ a.dkev { text-decoration: none; }
 .t1s-h b { font-weight: 500; color: var(--ink); }
 .t1s-h .ii { text-transform: none; letter-spacing: 0; }
 .t1s-hw { display: inline-flex; align-items: center; gap: 6px; }
-.t1s-hr { margin-left: auto; font-size: 11.5px; letter-spacing: 0; text-transform: none; }
+.t1s-hr { margin-left: auto; font-size: 11.5px; letter-spacing: 0; text-transform: none; } .t1s-hr.t1s-hr2 { margin-left: -3px; } .t1s-hr2::before { content: "\00b7\00a0"; } /* wide: one line, "share change · N days" */
+@media (max-width: 619px) { /* Nov 24: phones: 2 lines (long translations): the title (+ "share change") on line 1, the explanation (+ "N days") on line 2 */
+  .t1s-h { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1px 10px; }
+  .t1s-h > b { grid-column: 1; grid-row: 1; min-width: 0; }
+  .t1s-hw { flex-wrap: wrap; grid-column: 1; grid-row: 2; min-width: 0; }
+  .t1s-hr, .t1s-hr.t1s-hr2 { grid-column: 2; grid-row: 1; justify-self: end; text-align: end; margin-left: 0; } .t1s-hr.t1s-hr2 { grid-row: 2; } .t1s-hr2::before { content: none; }
+}
 .t1s.t1s-on .t1s-h { color: var(--ink); } /* on the light pack backdrop: ink (more contrast than muted) */
 .t1s-bd { position: absolute; z-index: -1; pointer-events: none; }
 .t1s-bd > i { position: absolute; inset: 0; background: linear-gradient(100deg, var(--bd1), var(--bd2)); clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--bdS, 8.75vw)), 0 100%); } /* --bdS = width x tan 5 deg (set in CSS px: zoom-safe) */
@@ -4045,7 +4051,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const col = (k, L) => `<div class="t1s-col" data-k="${k}"><p class="t1s-k ${k}"><i>${k === "up" ? "\u25b2" : "\u25bc"}</i>${k === "up" ? "Rising" : "Falling"}</p>${L.length ? `<div class="t1s-rows">${L.map((d) => mrow(d, k === "up")).join("")}</div>${L.length > 3 ? `<button type="button" class="t1s-all">Show all ${L.length}</button>` : ""}` : '<p class="t1s-z">No big moves</p>'}</div>`;
     el.className = "t1s";
     const bd = PACKBD[data.set]; el.classList.toggle("t1s-on", !!bd); if (bd) { el.style.setProperty("--bd1", bd[0]); el.style.setProperty("--bd2", bd[1]); }
-    el.innerHTML = `${bd ? '<div class="t1s-bd" aria-hidden="true"><i><b></b></i></div>' : ""}<p class="t1s-h"><b>Top 10</b> <span class="t1s-hw">${winWk()}${ii("Top 10", `<h3>Top 10 ${winWk()}</h3><p>The 10 decks played most ${winLast()}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.</p><p>The big number is the deck\u2019s <b>share</b>: of <b>all players</b> in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the \u201ctop players\u201d (that count, under each list, only takes players who won at least 2 more matches than they lost).</p><p>The \u25b2 / \u25bc number is how much the share went up or down over the last ${nd} days, in percentage points (8.3% \u2192 12.0% = \u25b23.7).</p><p><b>Rising</b> / <b>Falling</b>: the decks whose share moved most.</p>`)}</span><span class="t1s-hr">\u25b2\u25bc share change \u00b7 ${nd} days</span></p>
+    el.innerHTML = `${bd ? '<div class="t1s-bd" aria-hidden="true"><i><b></b></i></div>' : ""}<p class="t1s-h"><b>Top 10</b> <span class="t1s-hw">${winWk()}${ii("Top 10", `<h3>Top 10 ${winWk()}</h3><p>The 10 decks played most ${winLast()}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.</p><p>The big number is the deck\u2019s <b>share</b>: of <b>all players</b> in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the \u201ctop players\u201d (that count, under each list, only takes players who won at least 2 more matches than they lost).</p><p>The \u25b2 / \u25bc number is how much the share went up or down over the last ${nd} days, in percentage points (8.3% \u2192 12.0% = \u25b23.7).</p><p><b>Rising</b> / <b>Falling</b>: the decks whose share moved most.</p>`)}</span><span class="t1s-hr">\u25b2\u25bc share change</span><span class="t1s-hr t1s-hr2">${nd} days</span></p>
       <div class="t1s-sh"><div class="t1s-lab" aria-live="polite"><div></div><div></div></div><div class="t1s-vp"><div class="t1s-tr">${[0, 1, 2].map((r) => `<div class="t1s-set"${r !== 1 ? ' aria-hidden="true"' : ""}>${top.map(card).join("")}</div>`).join("")}</div></div></div>
       <div class="t1s-mp"><div class="t1s-seg" role="tablist"><button type="button" data-k="up" aria-pressed="true">\u25b2 Rising</button><button type="button" data-k="dn" aria-pressed="false">\u25bc Falling</button></div>
         <div class="t1s-cols">${col("up", up)}${col("dn", dn)}</div></div>${brkLine()}`;
@@ -6127,7 +6133,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       $("fwin").textContent = winLast().replace(/^in /, "");
       seenDecks(); // before the rows: the NEW tags of decks new in the top 10
       renderLive(); loadEvents().then(() => { seenEvents(); renderLive(); });
-      if (STD) renderT10(); else { const t = $("t10"); t.className = "t1s t1s-wait"; t.innerHTML = `<p class="t1s-h"><b>Top 10</b> ${winWk()}</p>`; t10Show(); } // Nov 16: keep its space (no jump)
+      if (STD) renderT10(); else { const t = $("t10"); t.className = "t1s t1s-wait"; t.innerHTML = `<p class="t1s-h"><b>Top 10</b> <span class="t1s-hw">${winWk()}</span></p>`; t10Show(); } // Nov 16: keep its space (no jump)
       renderList(); watchMore(); loadStats().then(() => renderT10()).catch(() => { const t = $("t10"); t.innerHTML = ""; t.className = "t1s"; t10Show(); }); // the Top 10 card needs the trends
       setupFilter();
       podFit(); podGrow();
