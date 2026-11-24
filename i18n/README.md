@@ -265,3 +265,14 @@ owner's in-game screenshots (all 27 set names, Limited Battle name, deck code st
   고정/자유, 상성, 한정 배틀 (듀얼 퓨전(C1) 한정 배틀), 교체 (swap). Series: A시리즈 (no space, as the game).
   Promo pack: PROMO-C (game name). Tabs: 메타 덱, 최근 대회, 뽑을 만한 팩.
 - Names: card and set names from the game data (names.ko.json); A3, A4a, B1a and B2 confirmed by screenshots.
+
+## Traditional Chinese (zh, Nov 25, 2026): preview only at /preview/zh/ (not in the menu)
+Made from the Japanese (`zh.json`: 556 texts; `zh.code.json` from `ja.code.json`, in Chinese, Taiwan usage), with the
+owner's zh-TW screenshots (Limited Battle name 雙元融合（C1）限定對戰, 讀取條碼, 讀取已儲存的圖片, 牌組).
+- CJK: zh stays in `tr.cjk` (no spaces next to Chinese text), like ja.
+- Times: 24 h (`hourCycle: "h23"`, zh-TW). Dates: 11月18日, ranges 11月18日～23日. Ranks: 第1名.
+- Terms: 牌組 (deck), 卡表 (list), 頂尖玩家, 使用率, 勝率, 比賽, 擴充包, 環境 / 環境牌組 / 環境卡, 戰績, 八強 (top 8),
+  黑馬牌組 (Breakout), 待驗證 (Unproven), 固定 / 彈性, 對戰相性, 替換 (swap), 小眾牌組 (smaller decks).
+  Tabs: 環境牌組, 最新比賽, 該抽哪個包. Promo pack: Promo-C (game data). Titles use "Pokémon TCG Pocket" (the game keeps
+  its English name in Chinese).
+- Names: card and set names from the game data (names.zh.json); B2 夢幻遊行 is not confirmed (names.fix.json).

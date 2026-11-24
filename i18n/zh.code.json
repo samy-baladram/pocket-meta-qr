@@ -1,0 +1,964 @@
+{
+ "_": "Code changes for the zh page (i18n/build.mjs applies them before the texts). find: exact code of the page; all: change each place (else the first). A find that is not in the page is reported, not used.",
+ "_lb": "Limited Battle: deck notes and note labels stay English; the event name, cards line and tip are Chinese (patches at the top).",
+ "patches": [
+  {
+   "note": "Limited Battle: the event name as in the Chinese game (screenshot, Nov 24: 雙元融合（C1）限定對戰)",
+   "find": "const LB_DEMO = ",
+   "replace": "LB.name = { \"Dual Fusion Limited Battle\": \"雙元融合（C1）限定對戰\" }[LB.name] || LB.name; const LB_DEMO = "
+  },
+  {
+   "note": "Limited Battle: the cards line (Promo-C: the game data name)",
+   "find": "Dual Fusion, Promo-C Vol. 1 and 7 shop promos ${ii(",
+   "replace": "雙元融合、Promo-C、商店宣傳卡7張 ${ii("
+  },
+  {
+   "note": "Limited Battle: cards tip, with Chinese card names",
+   "find": "<p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(\", \")}.</p>",
+   "replace": "<p>只能使用<b>雙元融合</b>（C1）、這次活動的<b>Promo-C</b>，以及下列7張商店宣傳卡：</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\"、\")}。</p>"
+  },
+  {
+   "note": "window tip: 前3天 / 第一天",
+   "find": "${day > 1 ? `${day} days` : \"day\"}",
+   "replace": "${day > 1 ? `前${day}天` : \"第一天\"}"
+  },
+  {
+   "note": "list: 上位プレイヤーN人が使用",
+   "find": "<span class=\"tpu\">Used by</span><b>${T}</b><span>top player${T === 1 ? \"\" : \"s\"}</span>",
+   "replace": "<span class=\"tpu\">頂尖玩家</span><b>${T}</b><span>人使用</span>"
+  },
+  {
+   "note": "share button label: この大会のリンクをコピー",
+   "find": "aria-label=\"${TOUCH ? \"Share\" : \"Copy the link to\"} this ${what}\"",
+   "replace": "aria-label=\"${TOUCH ? \"分享\" : \"複製連結：\"}${({ event: \"這場比賽\", deck: \"這副牌組\", list: \"這份卡表\", pack: \"這個擴充包\", card: \"這張卡牌\" })[what] || what}\""
+  },
+  {
+   "note": "energy names (炎, 水, 超 …)",
+   "find": "const cap = (s) => s[0].toUpperCase() + s.slice(1);",
+   "replace": "const EN_ZH = { grass: \"草\", fire: \"火\", water: \"水\", lightning: \"雷\", psychic: \"超\", fighting: \"鬥\", darkness: \"惡\", metal: \"鋼\", colorless: \"無色\", dragon: \"龍\" }, cap = (s) => EN_ZH[s] || s[0].toUpperCase() + s.slice(1);"
+  },
+  {
+   "note": "event: card in the N-place list",
+   "find": "<small>in the ${ordF(t.l.pl)}-place ${esc(dn(t.l.deck))}</small>",
+   "replace": "<small>${ordF(t.l.pl)}的${esc(dn(t.l.deck))}</small>"
+  },
+  {
+   "note": "event: did worse line",
+   "find": "`#${o.d.rank} \\u00b7 ${pc(o.d.share)}% share ${winWk()} \\u00b7 about ${Math.round(o.x)} lists expected, got <b>${o.g}</b>`, `${o.g} of ~${Math.round(o.x)}`",
+   "replace": "`第${o.d.rank}名 \\u00b7 ${winWk()}使用率${pc(o.d.share)}% \\u00b7 預估約${Math.round(o.x)}份，實際<b>${o.g}</b>份`, `${o.g}／約${Math.round(o.x)}`"
+  },
+  {
+   "note": "event: new-set cards",
+   "find": "<b>${esc(data.set)} cards</b> in the top ${n} (lists): ",
+   "replace": "<b>${esc(data.set)}的卡牌</b>（前${n}名的卡表）："
+  },
+  {
+   "note": "event: decks in the top N",
+   "find": "<b>Decks in the top ${n}</b><span>lists</span>",
+   "replace": "<b>前${n}名的牌組</b><span>卡表</span>"
+  },
+  {
+   "note": "event: only here tip",
+   "find": "'<span class=\"ekfm z\" title=\"No top 8 at other events ${winWk()}\">only here</span>'",
+   "replace": "`<span class=\"ekfm z\" title=\"${winWk()}在其他比賽沒有進入八強\">僅此一場</span>`"
+  },
+  {
+   "note": "event: top 8s tip",
+   "find": "title=\"Top 8s at other events ${winWk()}\"",
+   "replace": "title=\"${winWk()}在其他比賽的八強次數\""
+  },
+  {
+   "note": "event: new tip",
+   "find": "title=\"Under 0.3% share ${winWk()}\"",
+   "replace": "title=\"${winWk()}使用率低於0.3%\""
+  },
+  {
+   "note": "event: share ratio tip",
+   "find": "title=\"Its share of the top ${n}: ${Math.round(r)}\\u00d7 its share ${winWk()}\"",
+   "replace": "title=\"在前${n}名的使用率：${winWk()}使用率的${Math.round(r)}倍\""
+  },
+  {
+   "note": "winners: label",
+   "find": "aria-label=\"${esc(shortEv(e.name))}: won by ${esc(e.win.name)}, ${e.players} players\"",
+   "replace": "aria-label=\"${esc(shortEv(e.name))}：${esc(e.win.name)}奪冠（${e.players}人）\""
+  },
+  {
+   "note": "winners: shelf label",
+   "find": "aria-label=\"Event winners, newest first\"",
+   "replace": "aria-label=\"冠軍牌組（由新到舊）\""
+  },
+  {
+   "note": "events: biggest button",
+   "find": "aria-label=\"Open the biggest event\"",
+   "replace": "aria-label=\"開啟最大的比賽\""
+  },
+  {
+   "note": "events: total players",
+   "find": "All events<b> &middot; ${all.length} &middot; ${pl.toLocaleString(\"en-US\")} players</b>",
+   "replace": "全部比賽<b> &middot; ${all.length}場 &middot; ${pl.toLocaleString(\"zh-TW\")}人</b>"
+  },
+  {
+   "note": "QR: enlarge label",
+   "find": "aria-label=\"Enlarge the QR code for ${esc(d.name)}\"",
+   "replace": "aria-label=\"放大${esc(d.name)}的QR碼\""
+  },
+  {
+   "note": "QR: image alt",
+   "find": "alt=\"Deck share code for ${esc(d.name)}\"",
+   "replace": "alt=\"${esc(d.name)}的牌組代碼\""
+  },
+  {
+   "note": "packs: + cards in small decks",
+   "find": "<small>${m ? \"+\" : \"\"}${w} in small decks</small>",
+   "replace": "<small>小眾牌組${m ? \"+\" : \"\"}${w}張</small>"
+  },
+  {
+   "note": "packs: shelf label",
+   "find": "aria-label=\"Top 10 packs by meta cards\"",
+   "replace": "aria-label=\"環境卡最多的擴充包前10名\""
+  },
+  {
+   "note": "packs: sort label",
+   "find": "aria-label=\"Sort packs\"",
+   "replace": "aria-label=\"擴充包排序\""
+  },
+  {
+   "note": "packs: card count under a card",
+   "find": "<small>${c.st ? `${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} small`}</small>",
+   "replace": "<small>${c.st ? `${c.decks.length}副牌組` : `小眾${c.decks.length}副牌組`}</small>"
+  },
+  {
+   "note": "packs: card label",
+   "find": "aria-label=\"${esc(c.n)}, in ${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}\"",
+   "replace": "aria-label=\"${esc(c.n)}，${c.decks.length}副牌組使用\""
+  },
+  {
+   "note": "packs: picked card line",
+   "find": "&middot; in ${c.decks.length} ${c.st ? \"meta \" : \"\"}deck${c.decks.length > 1 ? \"s\" : \"\"}${c.st ? \"\" : ' <span class=\"pkd-chip\">smaller decks only</span>'}",
+   "replace": "&middot; ${c.st ? \"環境中\" : \"\"}${c.decks.length}副牌組使用${c.st ? \"\" : ' <span class=\"pkd-chip\">僅小眾牌組</span>'}"
+  },
+  {
+   "note": "tab label: Limited Battle, 9日残り",
+   "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
+   "replace": "b.setAttribute(\"aria-label\", `限定對戰，${lbLeft(true)}`)"
+  },
+  {
+   "note": "breakout: <deck>が<event>で優勝 / 7位（325名）",
+   "find": "<b>${esc(b.name)}</b> ${b.place === 1 ? \"won\" : `took ${ordF(b.place)} at`} ${esc(shortEv(b.ev || \"\"))} (${b.players} players)",
+   "replace": "<b>${esc(b.name)}</b>在${esc(shortEv(b.ev || \"\"))}（${b.players}人）${b.place === 1 ? \"奪冠\" : \"取得\" + ordF(b.place)}"
+  },
+  {
+   "note": "label: rank, same as 24 h ago",
+   "find": "aria-label=\"Rank ${d.rank}, same rank as 24 hours ago\"",
+   "replace": "aria-label=\"第${d.rank}名（與24小時前相同）\""
+  },
+  {
+   "note": "label: rank, 24 h change",
+   "find": "aria-label=\"Rank ${d.rank}, ${d.nw ? \"new in the list\" : \"change in 24 hours\"}\"",
+   "replace": "aria-label=\"第${d.rank}名（${d.nw ? \"新上榜\" : \"24小時變動\"}）\""
+  },
+  {
+   "note": "label: rank: deck",
+   "find": "aria-label=\"Rank ${d.rank}: ${esc(d.name)}\"",
+   "replace": "aria-label=\"第${d.rank}名：${esc(d.name)}\""
+  },
+  {
+   "note": "label: deck: rank, share",
+   "find": "aria-label=\"${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}\"",
+   "replace": "aria-label=\"${esc(d.name)}：第${d.rank}名，使用率${pct(d.share)}\"",
+   "all": true
+  },
+  {
+   "note": "label: About <x>",
+   "find": "aria-label=\"About ${esc(label)}\"",
+   "replace": "aria-label=\"關於${esc(label)}\"",
+   "all": true
+  },
+  {
+   "note": "label: data status",
+   "find": "aria-label=\"Data status: checked ${agoTxt(data.updatedAt)}. Details\"",
+   "replace": "aria-label=\"資料狀態：${agoTxt(data.updatedAt)}檢查。詳情\""
+  },
+  {
+   "note": "tip: players, matches",
+   "find": "title=\"${sm.players.toLocaleString()} players, ${sm.matches.toLocaleString()} matches\"",
+   "replace": "title=\"${sm.players.toLocaleString()}人 · ${sm.matches.toLocaleString()}場對戰\""
+  },
+  {
+   "note": "tip: no top player",
+   "find": "title=\"No top player ${winWk()}\"",
+   "replace": "title=\"${winWk()}沒有頂尖玩家\""
+  },
+  {
+   "note": "tip: few players",
+   "find": "title=\"Only ${d.count} players: this win rate is less certain\"",
+   "replace": "title=\"僅${d.count}人：這個勝率較不可靠\""
+  },
+  {
+   "note": "tip: no top player with k swapped",
+   "find": "title=\"No top player with ${k} card${k > 1 ? \"s\" : \"\"} swapped\"",
+   "replace": "title=\"沒有替換${k}張的頂尖玩家\""
+  },
+  {
+   "note": "date range in a month: 11月9日〜14日",
+   "find": "} \\u2013 ${B.getUTCDate()}`",
+   "replace": "}～${B.getUTCDate()}日`"
+  },
+  {
+   "note": "date range: 11月9日〜12月2日",
+   "find": "} \\u2013 ${B.toLocaleDateString(undefined, o)}`",
+   "replace": "}～${B.toLocaleDateString(undefined, o)}`"
+  },
+  {
+   "note": "date, time: no comma",
+   "find": "\"numeric\" })}, ${t.toLocaleTimeString(",
+   "replace": "\"numeric\" })} ${t.toLocaleTimeString("
+  },
+  {
+   "note": "end date, time: no comma",
+   "find": "${end.toLocaleDateString(undefined, o)}, ${end.toLocaleTimeString(",
+   "replace": "${end.toLocaleDateString(undefined, o)} ${end.toLocaleTimeString("
+  },
+  {
+   "note": "ordinals: 3rd -> 3位",
+   "find": "n + (n % 100 >= 11 && n % 100 <= 13 ? \"th\" : [\"th\",\"st\",\"nd\",\"rd\"][n % 10] || \"th\")",
+   "replace": "\"第\" + n + \"名\""
+  },
+  {
+   "note": "ordinals (ord, ordN)",
+   "all": true,
+   "find": "n + (n % 100 >= 11 && n % 100 <= 13 ? \"th\" : [\"th\", \"st\", \"nd\", \"rd\"][n % 10] || \"th\")",
+   "replace": "\"第\" + n + \"名\""
+  },
+  {
+   "note": "medal label: 3位 (not 3位 place)",
+   "find": "aria-label=\"${ordF(p)} place\"",
+   "replace": "aria-label=\"${ordF(p)}\""
+  },
+  {
+   "note": "place tab",
+   "find": "${ordN(pl)} place</span>",
+   "replace": "${ordN(pl)}</span>"
+  },
+  {
+   "note": "list dots",
+   "find": "aria-label=\"${esc(ordN(v.pl))} place\"",
+   "replace": "aria-label=\"${esc(ordN(v.pl))}\""
+  },
+  {
+   "note": "results: 3位／231名",
+   "all": true,
+   "find": "${ordF(p)} <span>of ${of}</span>",
+   "replace": "${ordF(p)}<span>／${of}人</span>"
+  },
+  {
+   "note": "share label",
+   "find": "label: `${ordF(f[0])} of ${f[1]}",
+   "replace": "label: `${ordF(f[0])}／${f[1]}人"
+  },
+  {
+   "note": "shared list place",
+   "find": "`${ordF(+pp[1])} of ${pp[2]}`",
+   "replace": "`${ordF(+pp[1])}／${pp[2]}人`"
+  },
+  {
+   "note": "share card place",
+   "find": "`${ord(+pp[1])} of ${pp[2]}`",
+   "replace": "`${ord(+pp[1])}／${pp[2]}人`"
+  },
+  {
+   "note": "event list label",
+   "find": "evt: `${ordN(v.pl)} of ${e.players} · ${e.name}`",
+   "replace": "evt: `${ordN(v.pl)}／${e.players}人 · ${e.name}`"
+  },
+  {
+   "note": "breakout: <event>で優勝 / <event>で3位",
+   "find": "`${b[1] === 1 ? \"Won\" : ordF(b[1]) + \" at\"} ${shortEv(b[3] || \"\")}`",
+   "replace": "`${shortEv(b[3] || \"\")} ${b[1] === 1 ? \"冠軍\" : ordF(b[1])}`"
+  },
+  {
+   "note": "breakout (long)",
+   "find": "`${d.brk[0][1] === 1 ? \"Won\" : ordF(d.brk[0][1]) + \" place at\"} ${d.brk[0][3] || \"an event\"}`",
+   "replace": "`${d.brk[0][3] || \"比賽\"} ${d.brk[0][1] === 1 ? \"冠軍\" : ordF(d.brk[0][1])}`"
+  },
+  {
+   "note": "dates and times in Japanese: toLocaleDateString",
+   "find": "toLocaleDateString(undefined,",
+   "replace": "toLocaleDateString(\"zh-TW\",",
+   "all": true
+  },
+  {
+   "note": "times in Chinese, 24 h like the game: 14:59",
+   "find": "toLocaleTimeString(undefined, {",
+   "replace": "toLocaleTimeString(\"zh-TW\", { hourCycle: \"h23\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Chinese (24 h)",
+   "find": "toLocaleString(undefined, {",
+   "replace": "toLocaleString(\"zh-TW\", { hourCycle: \"h23\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Japanese: toLocaleDateString",
+   "find": "toLocaleDateString(\"en-US\",",
+   "replace": "toLocaleDateString(\"zh-TW\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Japanese: toLocaleString",
+   "find": "toLocaleString(\"en-US\", { month",
+   "replace": "toLocaleString(\"zh-TW\", { hourCycle: \"h23\", month",
+   "all": true
+  },
+  {
+   "note": "results list date: 11/14",
+   "find": "${MON[+dt.slice(5, 7) - 1]} ${+dt.slice(8)}",
+   "replace": "${+dt.slice(5, 7)}/${+dt.slice(8)}",
+   "all": true
+  },
+  {
+   "note": "trend chart first day: 11/14",
+   "find": "${MON[+x.slice(5, 7) - 1]} ${+x.slice(8)}",
+   "replace": "${+x.slice(5, 7)}/${+x.slice(8)}"
+  },
+  {
+   "note": "winning-record check",
+   "find": "has ${n > 0 ? \"+\" : n < 0 ? \"\\u2212\" : \"\"}${Math.abs(n)} \\u00b7 ${k} more win${k > 1 ? \"s\" : \"\"} in place of ${k > 1 ? \"losses\" : \"a loss\"}",
+   "replace": "目前${n > 0 ? \"+\" : n < 0 ? \"\\u2212\" : \"\"}${Math.abs(n)} \\u00b7 再把${k}場敗場變成勝場即可達成"
+  },
+  {
+   "note": "trend sentence: mv",
+   "find": "`stayed near <b>${a[1].toFixed(1)}${u}</b>` : `went ${a[1] > a[0] ? \"up\" : \"down\"} from ${a[0].toFixed(1)}${u} to <b>${a[1].toFixed(1)}${u}</b>`",
+   "replace": "`在<b>${a[1].toFixed(1)}${u}</b>上下持平` : `從${a[0].toFixed(1)}${u}${a[1] > a[0] ? \"上升\" : \"下降\"}到<b>${a[1].toFixed(1)}${u}</b>`"
+  },
+  {
+   "note": "trend sentence",
+   "find": "`<p class=\"tsay\">Share ${mv(s, 0.3, \"%\")}. Win rate ${w ? mv(w, 1, \"%\") : \"has no data\"}.${r ? ` Rank ${r[0] === r[1] ? `stayed <b>#${r[1]}</b>` : `went from #${r[0]} to <b>#${r[1]}</b>`}.` : \"\"}</p>`",
+   "replace": "`<p class=\"tsay\">使用率${mv(s, 0.3, \"%\")}。勝率${w ? mv(w, 1, \"%\") : \"沒有資料\"}。${r ? `排名${r[0] === r[1] ? `維持<b>第${r[1]}名</b>` : `從第${r[0]}名變為<b>第${r[1]}名</b>`}。` : \"\"}</p>`"
+  },
+  {
+   "note": "pack: in all packs of the set",
+   "find": "`In ${all === 2 ? \"both\" : \"all \" + all} ${set.name} packs`",
+   "replace": "`收錄於${set.name}全部${all}種擴充包`"
+  },
+  {
+   "note": "swap version",
+   "find": "`a swap version of ${al.map((k) => (k === 1 ? \"the \" + L1n(d) : \"list \" + k)).join(\", \")}`",
+   "replace": "`${al.map((k) => (k === 1 ? L1n(d) : \"卡表\" + k)).join(\"、\")}的替換版`"
+  },
+  {
+   "note": "list 1",
+   "find": "const L1n = () => \"list 1\", L1s = () => \"List 1\";",
+   "replace": "const L1n = () => \"卡表1\", L1s = () => \"卡表1\";"
+  },
+  {
+   "note": "about-button labels",
+   "find": "\"the decks\" : \"the records\"",
+   "replace": "\"牌組\" : \"戰績\""
+  },
+  {
+   "note": "short time left: 10日 / 5時間",
+   "find": ": `${d}d`) : long ?",
+   "replace": ": `${d}天`) : long ?"
+  },
+  {
+   "note": "short time left (hours)",
+   "find": "left` : `${hr}h`; };",
+   "replace": "left` : `${hr}小時`; };"
+  },
+  {
+   "note": "Limited Battle days left (long): 残り9日 / 残り5時間",
+   "find": "(long ? `${d} days left`",
+   "replace": "(long ? `剩餘${d}天`"
+  },
+  {
+   "note": "Limited Battle hours left (long)",
+   "find": "long ? `${hr} hour${hr > 1 ? \"s\" : \"\"} left`",
+   "replace": "long ? `剩餘${hr}小時`"
+  },
+  {
+   "note": "core/flex preview: 確定枠12 · 自由枠8",
+   "find": "`${cells.length} core \\u00b7 ${nf} flex`",
+   "replace": "`固定${cells.length} \\u00b7 彈性${nf}`"
+  },
+  {
+   "note": "matchup preview: ピカチュウ戦 62%",
+   "find": "`${Math.round(mu[0].p)}% vs ${esc(nameOf(mu[0].o)).split(\" \")[0]}`",
+   "replace": "`對${esc(nameOf(mu[0].o)).split(\" \")[0]} ${Math.round(mu[0].p)}%`"
+  },
+  {
+   "note": "top players sheet: 今週の成績",
+   "find": "<p class=\"slg sl2\">Results ${winWk()} <span>",
+   "replace": "<p class=\"slg sl2\">${winWk()}的成績 <span>"
+  },
+  {
+   "note": "top players sheet: dates in the chart 11/14",
+   "find": "`${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}`",
+   "replace": "`${+dy.slice(5, 7)}/${+dy.slice(8)}`"
+  },
+  {
+   "note": "top players sheet: dates in the rows 11/14",
+   "find": "MON[+dt.slice(5, 7) - 1] + \" \" + +dt.slice(8)",
+   "replace": "+dt.slice(5, 7) + \"/\" + +dt.slice(8)"
+  },
+  {
+   "note": "no-top-player sheet: date 11/14",
+   "find": "`${MON[+v.dt.slice(5, 7) - 1]} ${+v.dt.slice(8)}`",
+   "replace": "`${+v.dt.slice(5, 7)}/${+v.dt.slice(8)}`"
+  },
+  {
+   "note": "no-top-player sheet: players tile",
+   "find": "[d.count, \"players\", winWk()]",
+   "replace": "[d.count, \"玩家\", winWk()]"
+  },
+  {
+   "note": "top players tile: tip",
+   "find": "title=\"${T} top players: this list or 1\\u20133 cards swapped\"",
+   "replace": "title=\"頂尖玩家${T}人：這份卡表或替換1～3張\""
+  },
+  {
+   "note": "top players tile: label",
+   "find": "aria-label=\"Top players: ${T} with this list or 1 to 3 cards swapped, of ${v.of}\"",
+   "replace": "aria-label=\"頂尖玩家：${v.of}人中有${T}人使用這份卡表或替換1～3張的版本\""
+  },
+  {
+   "note": "swap selector: label",
+   "find": "aria-label=\"Show this list or a version with cards swapped\"",
+   "replace": "aria-label=\"顯示這份卡表或替換版\""
+  },
+  {
+   "note": "swap selector: exact tip and label",
+   "find": "title=\"${ex} top player${ex === 1 ? \"\" : \"s\"} with exactly this list\" aria-label=\"Exact list: ${ex} top player${ex === 1 ? \"\" : \"s\"}\"",
+   "replace": "title=\"完全相同：頂尖玩家${ex}人\" aria-label=\"完全相同：頂尖玩家${ex}人\""
+  },
+  {
+   "note": "swap selector: swap tip and label",
+   "find": "title=\"${n} top player${n > 1 ? \"s\" : \"\"} with ${k} card${k > 1 ? \"s\" : \"\"} swapped\" aria-label=\"${n} top player${n > 1 ? \"s\" : \"\"} with ${sw(k)}: show them\"",
+   "replace": "title=\"替換${k}張：頂尖玩家${n}人\" aria-label=\"替換${k}張：顯示頂尖玩家${n}人\""
+  },
+  {
+   "note": "event: only N% share",
+   "find": "<em>only ${ws.toFixed(ws < 1 ? 2 : 1)}% share ${winWk()}</em>",
+   "replace": "<em>${winWk()}使用率僅${ws.toFixed(ws < 1 ? 2 : 1)}%</em>"
+  },
+  {
+   "note": "event: did better line",
+   "find": "`${cnt[id]} lists \\u00b7 best <b>${ordF(best[id])}</b> \\u00b7 ${pc(sh(id))}% share ${winWk()}`",
+   "replace": "`${cnt[id]}份卡表 \\u00b7 最佳<b>${ordF(best[id])}</b> \\u00b7 ${winWk()}使用率${pc(sh(id))}%`"
+  },
+  {
+   "note": "event cards: in N% of top players' lists",
+   "find": "`in ${Math.round(t.u * 100)}% of its top players\\u2019 lists ${winWk()}`",
+   "replace": "`${winWk()}，${Math.round(t.u * 100)}%的頂尖玩家卡表採用`"
+  },
+  {
+   "note": "event cards: in no other list",
+   "find": "`in no other top player\\u2019s list ${winWk()}`",
+   "replace": "`${winWk()}，其他頂尖玩家的卡表都沒有`"
+  },
+  {
+   "note": "ghost row: no public list tip",
+   "find": "title=\"No public decklist ${winLast()} yet\"",
+   "replace": "title=\"${winLast()}沒有公開卡表\""
+  },
+  {
+   "note": "event decks: new (no meta share)",
+   "find": ": \"new\"}</span></button>",
+   "replace": ": \"新上榜\"}</span></button>"
+  },
+  {
+   "note": "top 10: new",
+   "find": "(f < 0.05 ? \"new\" : pct(f))",
+   "replace": "(f < 0.05 ? \"新上榜\" : pct(f))"
+  },
+  {
+   "note": "matchup tip",
+   "find": "title=\"${Math.round(m.p)}% in ${m.g} games${unsure ? \" (too few to be sure)\" : \"\"}\"",
+   "replace": "title=\"${m.g}場對戰${Math.round(m.p)}%${unsure ? \"（資料不足）\" : \"\"}\""
+  },
+  {
+   "note": "likely range tip",
+   "find": "title=\"Likely range: ${lo.toFixed(1)}\\u2013${hi.toFixed(1)}%\"",
+   "replace": "title=\"推估範圍：${lo.toFixed(1)}～${hi.toFixed(1)}%\""
+  },
+  {
+   "note": "new in top 10 tip",
+   "find": "title=\"New in the top 10 since your last visit\"",
+   "replace": "title=\"上次造訪後進入前10名\""
+  },
+  {
+   "note": "new since last visit tip",
+   "find": "title=\"New since your last visit\"",
+   "replace": "title=\"上次造訪後新增\""
+  },
+  {
+   "note": "event energy tip",
+   "find": "title=\"Energy in the top ${n}\"",
+   "replace": "title=\"前${n}名的能量\""
+  },
+  {
+   "note": "search card tip (top players)",
+   "find": "title=\"${esc(c.n)} \\u00b7 ${c.u} top players \\u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
+   "replace": "title=\"${esc(c.n)} \\u00b7 頂尖玩家${c.u}人 \\u00b7 ${c.decks.size}副牌組使用\""
+  },
+  {
+   "note": "search card label (top players)",
+   "find": "aria-label=\"${c.u} top players\"",
+   "replace": "aria-label=\"頂尖玩家${c.u}人\""
+  },
+  {
+   "note": "filter card tip",
+   "find": "title=\"${esc(c.n)} \\u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
+   "replace": "title=\"${esc(c.n)} \\u00b7 ${c.decks.size}副牌組使用\""
+  },
+  {
+   "note": "label: cards swapped vs list 1",
+   "find": "aria-label=\"${nd} card${nd > 1 ? \"s\" : \"\"} swapped versus list 1\"",
+   "replace": "aria-label=\"與卡表1相比替換${nd}張\""
+  },
+  {
+   "note": "label: pack",
+   "find": "aria-label=\"${esc(x.setName)}${pkSub(x) ? \" \" + esc(pkSub(x)) : \"\"}\"",
+   "replace": "aria-label=\"${esc(x.setName)}${pkSub(x) ? \" \" + esc(pkSub(x)) : \"\"}擴充包\""
+  },
+  {
+   "note": "label: list dots",
+   "find": "aria-label=\"Show list ${i + 1} of ${n}${i === 0 ? \" (\" + L1n(d) + \")\" : \"\"}\"",
+   "replace": "aria-label=\"顯示卡表${i + 1}／${n}\""
+  },
+  {
+   "note": "label: deck stats",
+   "find": "aria-label=\"Deck stats: ${pct(d.share)} share, ${pct(d.win)} win\"",
+   "replace": "aria-label=\"牌組統計：使用率${pct(d.share)}，勝率${pct(d.win)}\""
+  },
+  {
+   "note": "label: close",
+   "find": "aria-label=\"Close\"",
+   "replace": "aria-label=\"關閉\"",
+   "all": true
+  },
+  {
+   "note": "label: breakout deck",
+   "find": "aria-label=\"Breakout deck\"",
+   "replace": "aria-label=\"黑馬牌組\""
+  },
+  {
+   "note": "label: lists",
+   "find": "aria-label=\"Lists\"",
+   "replace": "aria-label=\"卡表\"",
+   "all": true
+  },
+  {
+   "note": "label: event stats",
+   "find": "aria-label=\"Event stats\"",
+   "replace": "aria-label=\"比賽統計\""
+  },
+  {
+   "note": "label: share icon in the install steps",
+   "find": "aria-label=\"Share\" style=\"vertical-align:-2px\"",
+   "replace": "aria-label=\"分享\" style=\"vertical-align:-2px\""
+  },
+  {
+   "note": "alt: card out",
+   "find": "alt=\"${esc(x.out.n)} (out)\"",
+   "replace": "alt=\"${esc(x.out.n)}（換下的卡）\""
+  },
+  {
+   "note": "label: cards swapped tabs",
+   "find": "role=\"tablist\" aria-label=\"Cards swapped\"",
+   "replace": "role=\"tablist\" aria-label=\"替換的卡牌\""
+  },
+  {
+   "note": "label: card full screen",
+   "find": "aria-label=\"Show ${esc(n)} full screen\"",
+   "replace": "aria-label=\"全螢幕顯示${esc(n)}\""
+  },
+  {
+   "note": "label: Limitless link",
+   "find": "aria-label=\"Score: the original list on Limitless\"",
+   "replace": "aria-label=\"戰績：Limitless上的原始卡表\""
+  },
+  {
+   "note": "label: open deck",
+   "find": "aria-label=\"Open this deck on the site\"",
+   "replace": "aria-label=\"在網站上開啟這副牌組\""
+  },
+  {
+   "note": "label: show QR",
+   "find": "aria-label=\"Show the QR code\"",
+   "replace": "aria-label=\"顯示QR碼\""
+  },
+  {
+   "note": "alt: shared QR",
+   "find": "alt=\"QR code for ${esc(SH.name)}\"",
+   "replace": "alt=\"${esc(SH.name)}的QR碼\"",
+   "all": true
+  },
+  {
+   "note": "label: back to cards",
+   "find": "aria-label=\"Back to the cards\"",
+   "replace": "aria-label=\"返回卡牌\""
+  },
+  {
+   "note": "label: forget shared list",
+   "find": "aria-label=\"Forget this shared list\"",
+   "replace": "aria-label=\"清除這份分享的卡表\""
+  },
+  {
+   "note": "alt: QR",
+   "find": "alt=\"QR code for ${esc(d.name)}\"",
+   "replace": "alt=\"${esc(d.name)}的QR碼\""
+  },
+  {
+   "note": "label: previous list",
+   "find": "aria-label=\"Previous list\"",
+   "replace": "aria-label=\"上一份卡表\"",
+   "all": true
+  },
+  {
+   "note": "label: next list",
+   "find": "aria-label=\"Next list\"",
+   "replace": "aria-label=\"下一份卡表\"",
+   "all": true
+  },
+  {
+   "note": "label: deck stats, all lists",
+   "find": "aria-label=\"Deck stats, all lists\"",
+   "replace": "aria-label=\"牌組統計（全部卡表）\""
+  },
+  {
+   "note": "label: version QR",
+   "find": "aria-label=\"QR code for this version\"",
+   "replace": "aria-label=\"這個版本的QR碼\""
+  },
+  {
+   "note": "label: cards swapped vs list 1 (sheet)",
+   "find": "aria-label=\"Cards swapped vs ${esc(L1n(d))}\"",
+   "replace": "aria-label=\"與${esc(L1n(d))}相比替換的卡牌\""
+  },
+  {
+   "note": "label: card details",
+   "find": "aria-label=\"${esc(c.n)}: card details\"",
+   "replace": "aria-label=\"${esc(c.n)}：卡牌詳情\""
+  },
+  {
+   "note": "label: decks without",
+   "find": "aria-label=\"Decks without ${esc(c.n)}\"",
+   "replace": "aria-label=\"不使用${esc(c.n)}的牌組\"",
+   "all": true
+  },
+  {
+   "note": "deck stats header: 35デッキ中1位",
+   "find": "`#${d.rank} of ${nDk}`",
+   "replace": "`${nDk}副牌組中第${d.rank}名`"
+  },
+  {
+   "note": "deck stats rank tile: 1位",
+   "find": "`#${d.rank} ${rkTxt}`",
+   "replace": "`第${d.rank}名 ${rkTxt}`"
+  },
+  {
+   "note": "rank change sheet title: 1位",
+   "find": "<h3>Rank ${d.rank}</h3>",
+   "replace": "<h3>第${d.rank}名</h3>"
+  },
+  {
+   "note": "search deck line: 1位 · 使用率 · 勝率",
+   "find": "\"#\" + d.rank} · ${pct(d.share)} share · ${pct(d.win)} win",
+   "replace": "\"第\" + d.rank + \"名\"} · 使用率${pct(d.share)} · 勝率${pct(d.win)}"
+  },
+  {
+   "note": "top 10 rising/falling: 1位",
+   "find": "#${d.rank} &middot; ${f",
+   "replace": "第${d.rank}名 &middot; ${f"
+  },
+  {
+   "note": "top 10 shelf name: 1位",
+   "find": "<i>#${d.rank}</i>",
+   "replace": "<i>第${d.rank}名</i>"
+  },
+  {
+   "note": "packs shelf name: 1位",
+   "find": "<i>#${L.indexOf(x) + 1}</i>",
+   "replace": "<i>第${L.indexOf(x) + 1}名</i>"
+  },
+  {
+   "note": "event players tile: 12大会中最大 / 3番目",
+   "find": "<small>${big === 1 ? \"biggest\" : `#${big}`} of ${evs.length} events</small>",
+   "replace": "<small>${evs.length}場比賽中${big === 1 ? \"最大\" : `第${big}大`}</small>"
+  },
+  {
+   "note": "event: biggest button 543名",
+   "find": "Biggest <b>${big.players}</b>${SPCH}",
+   "replace": "最大<b>${big.players}</b>人${SPCH}"
+  },
+  {
+   "note": "event: decks in the top N (fold)",
+   "find": "`Decks in the top ${n}`",
+   "replace": "`前${n}名的牌組`"
+  },
+  {
+   "note": "event: decks tile 上位8名",
+   "find": "<small>in the top ${n}</small>",
+   "replace": "<small>前${n}名</small>"
+  },
+  {
+   "note": "event: top N heading 上位12名",
+   "find": "`Top ${s.querySelectorAll(\".ek8\").length}`",
+   "replace": "`前${s.querySelectorAll(\".ek8\").length}名`"
+  },
+  {
+   "note": "event: new-set cards (3)",
+   "find": "${esc(nm)} ${c}`).join(\", \")",
+   "replace": "${esc(nm)}（${c}）`).join(\"、\")"
+  },
+  {
+   "note": "share image: 使用率 · 勝率",
+   "find": "`${pct(d.share)} share  ·  ${pct(d.win)} win`",
+   "replace": "`使用率${pct(d.share)}  ·  勝率${pct(d.win)}`"
+  },
+  {
+   "note": "share image: 環境1位",
+   "find": "`#${d.rank} in the meta`",
+   "replace": "`環境第${d.rank}名`"
+  },
+  {
+   "note": "share image: set",
+   "find": "`Set ${data.set}${data.setName ? \" \" + data.setName : \"\"}`",
+   "replace": "`擴充包 ${data.set}${data.setName ? \" \" + data.setName : \"\"}`"
+  },
+  {
+   "note": "deck pill: 使用率 · 勝率",
+   "find": "<b>${pct(d.share)}</b><span class=\"psk\" data-sk=\"${esc(d.id)}\">${pSpark(d.id)}</span> share &middot; <span${d.count < 30 ? ' class=\"lw\"' : \"\"}><b>${pct(d.win)}</b> win</span>",
+   "replace": "使用率<b>${pct(d.share)}</b><span class=\"psk\" data-sk=\"${esc(d.id)}\">${pSpark(d.id)}</span> &middot; <span${d.count < 30 ? ' class=\"lw\"' : \"\"}>勝率<b>${pct(d.win)}</b></span>"
+  },
+  {
+   "note": "ghost row: 使用率 · 公開レシピなし",
+   "find": "<b>${pct(g.share)}</b> share &middot; <span class=\"gnl\">no public list yet</span>",
+   "replace": "使用率<b>${pct(g.share)}</b> &middot; <span class=\"gnl\">沒有公開卡表</span>"
+  },
+  {
+   "note": "deck row (podium): 使用率 · 勝率",
+   "find": "<b>${pct(d.share)}</b> share<span class=\"ow\"> &middot; <b>${pct(d.win)}</b> win</span>",
+   "replace": "使用率<b>${pct(d.share)}</b><span class=\"ow\"> &middot; 勝率<b>${pct(d.win)}</b></span>"
+  },
+  {
+   "note": "deck row: 使用率 · 勝率",
+   "find": "<b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class=\"lown\" title=\"僅${d.count}人：這個勝率較不可靠\"` : \"\"}>${pct(d.win)}</b> win</span>",
+   "replace": "使用率<b>${pct(d.share)}</b> &middot; 勝率<b${d.count < 30 ? ` class=\"lown\" title=\"僅${d.count}人：這個勝率較不可靠\"` : \"\"}>${pct(d.win)}</b></span>"
+  },
+  {
+   "note": "shared list today: 使用率 · 勝率",
+   "find": "<b>${num(x.share)}</b> \\u00b7 <b>${num(x.win)}</b> win</div>",
+   "replace": "使用率<b>${num(x.share)}</b> \\u00b7 勝率<b>${num(x.win)}</b></div>"
+  },
+  {
+   "note": "top players line: 上位プレイヤー12人中8人",
+   "find": "`${v.nu} of ${v.of} top players`",
+   "replace": "`頂尖玩家${v.of}人中${v.nu}人`"
+  },
+  {
+   "note": "top 10 rising/falling: すべて表示（8）",
+   "find": ">Show all ${L.length}</button>",
+   "replace": ">顯示全部（${L.length}）</button>"
+  },
+  {
+   "note": "deck stats cards: 12枚",
+   "find": "`${cu.length} cards`",
+   "replace": "`${cu.length}張`"
+  },
+  {
+   "note": "deck stats core: 12枚",
+   "find": "<small>${cells.length} cards</small>",
+   "replace": "<small>${cells.length}張</small>"
+  },
+  {
+   "note": "filter chip: C1のカード",
+   "find": "${esc(data.set || \"set\")} cards`",
+   "replace": "${esc(data.set || \"set\")}的卡牌`"
+  },
+  {
+   "note": "dates: 今日 / 昨日",
+   "find": "\"today\" : n === 1 ? \"yesterday\"",
+   "replace": "\"今天\" : n === 1 ? \"昨天\""
+  },
+  {
+   "note": "dates: 今日 / 昨日 (check)",
+   "find": "[\"today\", \"yesterday\"].includes",
+   "replace": "[\"今天\", \"昨天\"].includes"
+  },
+  {
+   "note": "trend: 横ばい",
+   "find": "|| \"steady\"",
+   "replace": "|| \"持平\"",
+   "all": true
+  },
+  {
+   "note": "new set notice: 今日に発売",
+   "find": "today ? \"today\" : D(rel)",
+   "replace": "today ? \"今天\" : D(rel)"
+  },
+  {
+   "note": "trend chart rank labels: 3位",
+   "find": "${r ? \"#\" + r : \"\\u2013\"}",
+   "replace": "${r ? \"第\" + r + \"名\" : \"\\u2013\"}"
+  },
+  {
+   "note": "events filter line: ピカチュウexが優勝・参加50名以上：5大会",
+   "find": "<p class=\"evnote\">${L.length ? `${L.length} event${L.length > 1 ? \"s\" : \"\"}` : \"No events\"}${evWin ? ` won by ${esc((wins[evWin] || {}).w ? wins[evWin].w.name : \"\")}` : \"\"}${evDk ? ` with ${esc(dn(evDk))} in the top 8` : \"\"}${evMin ? ` with ${evMin}+ players` : \"\"}${q && !evDk ? ` for &ldquo;${esc(evQ.trim())}&rdquo;` : \"\"}",
+   "replace": "<p class=\"evnote\">${[evWin ? `${esc((wins[evWin] || {}).w ? wins[evWin].w.name : \"\")}奪冠` : \"\", evDk ? `${esc(dn(evDk))}進入八強` : \"\", evMin ? `${evMin}人以上` : \"\", q && !evDk ? `「${esc(evQ.trim())}」` : \"\"].filter(Boolean).join(\"，\")}：${L.length ? `${L.length}場比賽` : \"沒有比賽\"}"
+  },
+  {
+   "note": "event rows: 3時間前に追加",
+   "find": " \\u00b7 <span class=\"evadd\">added ${addAgo(e.at)}</span>",
+   "replace": " \\u00b7 <span class=\"evadd\">${addAgo(e.at)}新增</span>"
+  },
+  {
+   "note": "event sheet: 11/23 14:00開始",
+   "find": "`Started ${tLoc(e.ts)}`",
+   "replace": "`${tLoc(e.ts)}開始`"
+  },
+  {
+   "note": "most wins: すべて表示（N） (tap)",
+   "find": "\"Show less\" : \"Show all \" + ma.dataset.n",
+   "replace": "\"收起\" : \"顯示全部（\" + ma.dataset.n + \"）\""
+  },
+  {
+   "note": "most wins: すべて表示（N）",
+   "find": "${mAll ? \"Show less\" : \"Show all \" + wl.length}",
+   "replace": "${mAll ? \"收起\" : \"顯示全部（\" + wl.length + \"）\"}"
+  },
+  {
+   "note": "top 10 rising/falling: すべて表示（N） (tap)",
+   "find": "\"Show less\" : \"Show all \" + c.querySelectorAll(\".t1s-r\").length",
+   "replace": "\"收起\" : \"顯示全部（\" + c.querySelectorAll(\".t1s-r\").length + \"）\""
+  },
+  {
+   "note": "pack row: 環境カード5枚",
+   "find": "`<b>${m}</b> meta card${m > 1 ? \"s\" : \"\"}` : x.cards.length ? \"\" : \"no meta cards\"",
+   "replace": "`環境卡<b>${m}</b>張` : x.cards.length ? \"\" : \"沒有環境卡\""
+  },
+  {
+   "note": "packs header: 今週の環境向け",
+   "find": "for the meta ${winWk()}",
+   "replace": "${winWk()}環境適用",
+   "all": true
+  },
+  {
+   "note": "packs list count: 12件（ほか以前30件）",
+   "find": "${nA === PKV.length ? nA : nA + \" + \" + (PKV.length - nA) + \" older\"}",
+   "replace": "${nA === PKV.length ? nA + \"種\" : nA + \"種（另有舊系列\" + (PKV.length - nA) + \"種）\"}"
+  },
+  {
+   "note": "card popup: packs joined with ・",
+   "find": "ps.map((p) => p.name).join(\" or \")",
+   "replace": "ps.map((p) => p.name).join(\"、\")"
+  },
+  {
+   "note": "card popup: 11月1日発売",
+   "find": "`Released ${fdate(set.release)}`",
+   "replace": "`${fdate(set.release)}推出`"
+  },
+  {
+   "note": "time: Live panel newest event (土) 9:05",
+   "find": "new Date(e.ts).toLocaleString(\"zh-TW\", { hourCycle: \"h23\", weekday: \"short\", hour: \"2-digit\", minute: \"2-digit\" })",
+   "replace": "`(${new Date(e.ts).toLocaleDateString(\"zh-TW\", { weekday: \"short\" })}) ${new Date(e.ts).toLocaleTimeString(\"zh-TW\", { hourCycle: \"h23\", hour: \"numeric\", minute: \"2-digit\" })}`"
+  },
+  {
+   "note": "time: 9:05 (no leading zero)",
+   "find": "toLocaleTimeString(\"zh-TW\", { hourCycle: \"h23\", hour: \"2-digit\", minute: \"2-digit\" })",
+   "replace": "toLocaleTimeString(\"zh-TW\", { hourCycle: \"h23\", hour: \"numeric\", minute: \"2-digit\" })"
+  },
+  {
+   "note": "date: pack release, year only when not this year",
+   "find": "toLocaleDateString(\"zh-TW\", { month: \"short\", day: \"numeric\", year: \"numeric\" })",
+   "replace": "toLocaleDateString(\"zh-TW\", { month: \"short\", day: \"numeric\", year: new Date(s + \"T00:00:00\").getFullYear() !== new Date().getFullYear() ? \"numeric\" : undefined })"
+  },
+  {
+   "note": "Live chip: ● 最新 · 5分前 / ● 3時間前にチェック",
+   "find": "${fresh ? `<b>Live</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt).replace(/ ago$/, \"\")}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}`}",
+   "replace": "${fresh ? `<b>最新</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt)}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}檢查`}"
+  },
+  {
+   "note": "Live panel: 5分前にチェック",
+   "find": "<b>Checked ${agoTxt(data.updatedAt)}</b>",
+   "replace": "<b>${agoTxt(data.updatedAt)}檢查</b>"
+  },
+  {
+   "note": "Live panel: next check 10:05頃",
+   "find": "\"~\" + clock(next)",
+   "replace": "\"約\" + clock(next)"
+  },
+  {
+   "note": "Live panel: (土) 9:05開始",
+   "find": "\"Started \" + st",
+   "replace": "st + \"開始\""
+  },
+  {
+   "note": "Live panel: 5分前にサイトに追加",
+   "find": "<span>Added to the site ${agoTxt(e.at)}</span>",
+   "replace": "<span>${agoTxt(e.at)}加入網站</span>"
+  },
+  {
+   "note": "Live panel legend: 2〜6時間前 / 6時間以上前",
+   "find": "<span><i class=\"ldot a\"></i>2&ndash;6 h</span><span><i class=\"ldot\"></i>older</span>",
+   "replace": "<span><i class=\"ldot a\"></i>2～6小時前</span><span><i class=\"ldot\"></i>超過6小時前</span>"
+  },
+  {
+   "note": "head: description",
+   "find": "<meta name=\"description\" content=\"This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.\">",
+   "replace": "<meta name=\"description\" content=\"本週Pokémon TCG Pocket正在獲勝的牌組、最新比賽與頂尖玩家的卡表。每份卡表都附有可在遊戲中讀取的QR碼。\">"
+  },
+  {
+   "note": "head: og:title",
+   "find": "<meta property=\"og:title\" content=\"Pocket Meta QR – this week's Pokémon TCG Pocket meta and tournaments, with QR codes\">",
+   "replace": "<meta property=\"og:title\" content=\"Pocket Meta QR – 本週Pokémon TCG Pocket環境牌組與比賽結果，附QR碼\">"
+  },
+  {
+   "note": "head: og:description",
+   "find": "<meta property=\"og:description\" content=\"The decks that win right now, the latest tournaments and their top 8, and a QR code for every list. Free, no sign-up.\">",
+   "replace": "<meta property=\"og:description\" content=\"現在獲勝的牌組、最新比賽的八強，每份卡表都有QR碼。免費，不需註冊。\">"
+  },
+  {
+   "note": "head: og:image:alt",
+   "find": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR: this week's winning Pokémon TCG Pocket decks, with a QR code for every list\">",
+   "replace": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR：本週Pokémon TCG Pocket環境牌組，每份卡表都附QR碼\">"
+  },
+  {
+   "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
+   "find": "<p class=\"lbnote\"><b class=\"lbup\">",
+   "replace": "<p class=\"lbn lben\">牌組說明僅提供英文。</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
+  },
+  {
+   "note": "loading text next to the intro slot (the extractor does not find it)",
+   "find": "<div class=\"empty\">Loading decks&hellip;<p class=\"seoi\"",
+   "replace": "<div class=\"empty\">正在載入牌組&hellip;<p class=\"seoi\""
+  },
+  {
+   "note": "tabs: the full Japanese label on phones too (5 characters, shorter than the English short form)",
+   "find": ">Meta<span class=\"tlx\"> Decks</span></a>",
+   "replace": ">環境牌組</a>"
+  },
+  {
+   "note": "tabs: the full Japanese label on phones too (5 characters, shorter than the English short form)",
+   "find": "><span class=\"tlx\">Latest </span>Events</a>",
+   "replace": ">最新比賽</a>"
+  },
+  {
+   "note": "tabs: 引くべきパック (the page title and footer use it; the tab ranks packs by meta cards)",
+   "find": "><span class=\"tlx\">Booster </span>Packs</a>",
+   "replace": ">該抽哪個包</a>"
+  },
+  {
+   "note": "card filter: where the card is (lists)",
+   "find": "parts.push(`${ls.length > 1 ? \"lists\" : \"list\"} ${ls.join(\", \")}`);",
+   "replace": "parts.push(`卡表${ls.join(\"、\")}`);"
+  },
+  {
+   "note": "card filter: where the card is (join)",
+   "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
+   "replace": "return parts.length ? parts.join(\"、\") + \"有採用\" : \"\";"
+  }
+ ]
+}

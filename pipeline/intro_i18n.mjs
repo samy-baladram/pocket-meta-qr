@@ -17,19 +17,19 @@ const md = (iso) => [+iso.slice(5, 7), +iso.slice(8, 10)];
 const DAY = {
   ja: (m, d) => `${m}月${d}日`, es: (m, d) => `${d} ${MON.es[m - 1]}`, pt: (m, d) => `${d} de ${MON.pt[m - 1]}`,
   de: (m, d) => `${d}. ${MON.de[m - 1]}`, fr: (m, d) => `${d === 1 ? "1er" : d} ${MON.fr[m - 1]}`, it: (m, d) => `${d} ${MON.it[m - 1]}`,
-  ko: (m, d) => `${m}월 ${d}일`,
+  ko: (m, d) => `${m}월 ${d}일`, zh: (m, d) => `${m}月${d}日`,
 };
 // a window of days: one day, days in one month (17–23 nov), or two months (30 oct – 5 nov)
 function span(lang, a, b) {
   const [ma, da] = md(a), [mb, db] = md(b), f = DAY[lang];
   if (a.slice(0, 10) === b.slice(0, 10)) return f(ma, da);
-  if (ma === mb) return lang === "ja" ? `${ma}月${da}日〜${db}日` : lang === "ko" ? `${ma}월 ${da}일~${db}일` : lang === "es" ? `${da}–${db} ${MON.es[ma - 1]}`
+  if (ma === mb) return lang === "ja" ? `${ma}月${da}日〜${db}日` : lang === "ko" ? `${ma}월 ${da}일~${db}일` : lang === "zh" ? `${ma}月${da}日～${db}日` : lang === "es" ? `${da}–${db} ${MON.es[ma - 1]}`
     : lang === "pt" ? `${da}–${db} de ${MON.pt[ma - 1]}` : lang === "fr" ? `${da === 1 ? "1er" : da}–${db} ${MON.fr[ma - 1]}` : lang === "it" ? `${da}–${db} ${MON.it[ma - 1]}` : `${da}.–${db}. ${MON.de[ma - 1]}`;
-  return lang === "ja" ? `${f(ma, da)}〜${f(mb, db)}` : lang === "ko" ? `${f(ma, da)}~${f(mb, db)}` : `${f(ma, da)} – ${f(mb, db)}`;
+  return lang === "ja" ? `${f(ma, da)}〜${f(mb, db)}` : lang === "ko" ? `${f(ma, da)}~${f(mb, db)}` : lang === "zh" ? `${f(ma, da)}～${f(mb, db)}` : `${f(ma, da)} – ${f(mb, db)}`;
 }
-const pct = (lang, v) => { const s = (+v).toFixed(1); return lang === "ja" || lang === "ko" ? s + "%" : (lang === "pt" || lang === "it") ? s.replace(".", ",") + "%"
+const pct = (lang, v) => { const s = (+v).toFixed(1); return lang === "ja" || lang === "ko" || lang === "zh" ? s + "%" : (lang === "pt" || lang === "it") ? s.replace(".", ",") + "%"
   : s.replace(".", ",") + " %"; };
-const rank = (lang, i) => (lang === "ja" ? `${i}位` : lang === "ko" ? `${i}위` : lang === "es" ? `${i}.º` : lang === "pt" ? `${i}º` : lang === "fr" ? (i === 1 ? "1er" : `${i}e`) : lang === "it" ? `${i}º` : `${i}.`);
+const rank = (lang, i) => (lang === "ja" ? `${i}位` : lang === "ko" ? `${i}위` : lang === "zh" ? `第${i}名` : lang === "es" ? `${i}.º` : lang === "pt" ? `${i}º` : lang === "fr" ? (i === 1 ? "1er" : `${i}e`) : lang === "it" ? `${i}º` : `${i}.`);
 
 function names(lang, dir) {
   const f = `${dir}/names.${lang}.json`;
@@ -54,10 +54,12 @@ export function introText(lang, D, namesDir = "preview/i18n") {
   const N = names(lang, namesDir), n = D.summary.tournaments, w = span(lang, D.span[0], D.span[1]);
   const top = D.decks.slice(0, 3).map((d, i) => lang === "ja" ? `${rank(lang, i + 1)} ${deck(lang, N, d.name)}（使用率${pct(lang, d.share)}）`
     : lang === "ko" ? `${rank(lang, i + 1)} ${deck(lang, N, d.name)} (${pct(lang, d.share)})`
+    : lang === "zh" ? `${rank(lang, i + 1)} ${deck(lang, N, d.name)}（使用率${pct(lang, d.share)}）`
     : `${rank(lang, i + 1)} ${deck(lang, N, d.name)} ${pct(lang, d.share)}`);
   if (lang === "ja") return `今週のポケポケ最強デッキ（${n}大会・${w}）：${top.join("、")}。すべてのレシピにQRコードがあり、ゲームに読み込めます。`;
   if (lang === "ko") return `이번 주 포켓몬 카드 게임 Pocket 메타 덱(대회 ${n}개, ${w}): ${top.join(", ")}. ` +
     "모든 레시피에 게임에서 읽을 수 있는 QR 코드가 있습니다.";
+  if (lang === "zh") return `本週Pokémon TCG Pocket環境牌組（${n}場比賽，${w}）：${top.join("、")}。每份卡表都附有可在遊戲中讀取的QR碼。`;
   if (lang === "es") return `Las mejores barajas de JCC Pokémon Pocket de esta semana, de ${n} torneos (${w}): ${top.join(", ")}. ` +
     "Cada lista tiene un código QR para copiarla en el juego.";
   if (lang === "pt") return `Os melhores baralhos de Pokémon TCG Pocket desta semana, de ${n} torneios (${w}): ${top.join(", ")}. ` +
@@ -101,6 +103,10 @@ const SEC_DESC = {
     packs: "이번 주 메타 덱의 카드가 나오는 포켓몬 카드 게임 Pocket 팩.",
     limited: "진행 중인 한정 배틀을 위해 고른 덱을 QR 코드와 함께.",
     about: "포켓몬 카드 게임 Pocket 덱을 QR 코드로 읽어 오는 방법, 데이터 출처(Limitless 대회, 최근 7일간), 덱과 레시피의 순위를 정하는 방법." },
+  zh: { events: "Pokémon TCG Pocket最新比賽結果：八強卡表，附QR碼。",
+    packs: "本週環境牌組的卡牌出自哪些Pokémon TCG Pocket擴充包。",
+    limited: "為進行中的限定對戰挑選的牌組，附QR碼。",
+    about: "如何用QR碼匯入Pokémon TCG Pocket牌組、資料來源（Limitless比賽，最近7天），以及牌組和卡表的排序方式。" },
 };
 export const sectionDesc = (lang, dir) => SEC_DESC[lang]?.[dir] || "";
 
