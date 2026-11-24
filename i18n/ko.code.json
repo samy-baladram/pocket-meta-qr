@@ -1,0 +1,994 @@
+{
+ "_": "Code changes for the ko page (i18n/build.mjs applies them before the texts). find: exact code of the page; all: change each place (else the first). A find that is not in the page is reported, not used.",
+ "_lb": "Limited Battle: deck notes and note labels stay English; the event name, cards line and tip are Korean (patches at the top).",
+ "patches": [
+  {
+   "note": "Limited Battle: the event name as in the Korean game (screenshot, Nov 24: 듀얼 퓨전(C1) 한정 배틀); a new event keeps its English name until it is added here",
+   "find": "const LB_DEMO = ",
+   "replace": "LB.name = { \"Dual Fusion Limited Battle\": \"듀얼 퓨전(C1) 한정 배틀\" }[LB.name] || LB.name; const LB_DEMO = "
+  },
+  {
+   "note": "Limited Battle: the cards line (promo pack name not confirmed in the Korean game)",
+   "find": "Dual Fusion, Promo-C Vol. 1 and 7 shop promos ${ii(",
+   "replace": "듀얼 퓨전, 프로모 팩 C 시리즈 Vol.1, 상점 프로모 7장 ${ii("
+  },
+  {
+   "note": "Limited Battle: cards tip, with Korean card names",
+   "find": "<p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(\", \")}.</p>",
+   "replace": "<p><b>듀얼 퓨전</b>(C1), 이번 이벤트의 <b>프로모 팩 C 시리즈 Vol.1</b>, 그리고 아래 상점 프로모 7장의 카드만 쓸 수 있습니다.</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\", \")}.</p>"
+  },
+  {
+   "note": "window tip: 처음 3일간 / 첫날 (the text says {0}의 결과)",
+   "find": "${day > 1 ? `${day} days` : \"day\"}",
+   "replace": "${day > 1 ? `처음 ${day}일간` : \"첫날\"}"
+  },
+  {
+   "note": "filter line: 덱 3개가 피카츄 카드를 사용합니다 (Korean order: count after the noun)",
+   "find": "`${n} deck${n > 1 ? \"s\" : \"\"} use${n > 1 ? \"\" : \"s\"} ${pc.n}${pc.dup ? \" \" + pc.id.split(\"-\")[0].toUpperCase() : \"\"}.`",
+   "replace": "`덱 ${n}개가 ${pc.n}${pc.dup ? \" \" + pc.id.split(\"-\")[0].toUpperCase() : \"\"} 카드를 사용합니다.`"
+  },
+  {
+   "note": "filter line: 피카츄 카드 없는 덱 3개",
+   "find": "`${n} deck${n > 1 ? \"s\" : \"\"} without ${wn}.`",
+   "replace": "`${wn} 카드가 없는 덱 ${n}개.`"
+  },
+  {
+   "note": "Limited Battle filter line: 덱 3개가 … 카드를 사용합니다",
+   "find": "`${n} deck${n > 1 ? \"s\" : \"\"} use${n > 1 ? \"\" : \"s\"} ${nm(lbF.card)}.`",
+   "replace": "`덱 ${n}개가 ${nm(lbF.card)} 카드를 사용합니다.`"
+  },
+  {
+   "note": "Limited Battle filter line: … 카드가 없는 덱 3개",
+   "find": "`${n} deck${n > 1 ? \"s\" : \"\"} without ${nm(lbF.without)}.`",
+   "replace": "`${nm(lbF.without)} 카드가 없는 덱 ${n}개.`"
+  },
+  {
+   "note": "no-decks line: 불꽃 또는 물",
+   "find": "none.map(cap).join(\" or \")",
+   "replace": "none.map(cap).join(\" 또는 \")"
+  },
+  {
+   "note": "card sheet: 레시피 1에 없음 (word order)",
+   "find": "<span class=\"cdif\">Not in the ${L1n(deckOf(img))}</span>",
+   "replace": "<span class=\"cdif\">${L1n(deckOf(img))}에 없음</span>"
+  },
+  {
+   "note": "filter chip tip: C1 카드를 쓰는 덱 (word order)",
+   "find": "Decks that use a card from ${esc(data.setName || data.set || \"the newest set\")}",
+   "replace": "${esc(data.setName || data.set || \"최신 확장팩\")} 카드를 쓰는 덱"
+  },
+  {
+   "note": "pack card popup: packs joined with 또는",
+   "find": "${ps.join(\" or \")}",
+   "replace": "${ps.join(\" 또는 \")}"
+  },
+  {
+   "note": "list: 上位プレイヤーN人が使用",
+   "find": "<span class=\"tpu\">Used by</span><b>${T}</b><span>top player${T === 1 ? \"\" : \"s\"}</span>",
+   "replace": "<span class=\"tpu\">상위 플레이어</span><b>${T}</b><span>명이 사용</span>"
+  },
+  {
+   "note": "share button label: この大会のリンクをコピー",
+   "find": "aria-label=\"${TOUCH ? \"Share\" : \"Copy the link to\"} this ${what}\"",
+   "replace": "aria-label=\"${({ event: \"이 대회\", deck: \"이 덱\", list: \"이 레시피\", pack: \"이 팩\", card: \"이 카드\" })[what] || what} ${TOUCH ? \"공유\" : \"링크 복사\"}\""
+  },
+  {
+   "note": "energy names (炎, 水, 超 …)",
+   "find": "const cap = (s) => s[0].toUpperCase() + s.slice(1);",
+   "replace": "const EN_KO = { grass: \"풀\", fire: \"불꽃\", water: \"물\", lightning: \"번개\", psychic: \"초\", fighting: \"격투\", darkness: \"악\", metal: \"강철\", colorless: \"무색\", dragon: \"드래곤\" }, cap = (s) => EN_KO[s] || s[0].toUpperCase() + s.slice(1);"
+  },
+  {
+   "note": "event: card in the N-place list",
+   "find": "<small>in the ${ordF(t.l.pl)}-place ${esc(dn(t.l.deck))}</small>",
+   "replace": "<small>${ordF(t.l.pl)} ${esc(dn(t.l.deck))}</small>"
+  },
+  {
+   "note": "event: did worse line",
+   "find": "`#${o.d.rank} \\u00b7 ${pc(o.d.share)}% share ${winWk()} \\u00b7 about ${Math.round(o.x)} lists expected, got <b>${o.g}</b>`, `${o.g} of ~${Math.round(o.x)}`",
+   "replace": "`${o.d.rank}위 \\u00b7 ${winWk()} 사용률 ${pc(o.d.share)}% \\u00b7 예상 약 ${Math.round(o.x)}개, 실제 <b>${o.g}</b>개`, `${o.g}/약 ${Math.round(o.x)}`"
+  },
+  {
+   "note": "event: new-set cards",
+   "find": "<b>${esc(data.set)} cards</b> in the top ${n} (lists): ",
+   "replace": "<b>${esc(data.set)} 카드</b>(상위 ${n}명의 레시피): "
+  },
+  {
+   "note": "event: decks in the top N",
+   "find": "<b>Decks in the top ${n}</b><span>lists</span>",
+   "replace": "<b>상위 ${n}명의 덱</b><span>레시피</span>"
+  },
+  {
+   "note": "event: only here tip",
+   "find": "'<span class=\"ekfm z\" title=\"No top 8 at other events ${winWk()}\">only here</span>'",
+   "replace": "`<span class=\"ekfm z\" title=\"${winWk()} 다른 대회 TOP 8 없음\">여기만</span>`"
+  },
+  {
+   "note": "event: top 8s tip",
+   "find": "title=\"Top 8s at other events ${winWk()}\"",
+   "replace": "title=\"${winWk()} 다른 대회의 TOP 8\""
+  },
+  {
+   "note": "event: new tip",
+   "find": "title=\"Under 0.3% share ${winWk()}\"",
+   "replace": "title=\"${winWk()} 사용률 0.3% 미만\""
+  },
+  {
+   "note": "event: share ratio tip",
+   "find": "title=\"Its share of the top ${n}: ${Math.round(r)}\\u00d7 its share ${winWk()}\"",
+   "replace": "title=\"상위 ${n}명 내 사용률: ${winWk()} 사용률의 ${Math.round(r)}배\""
+  },
+  {
+   "note": "winners: label",
+   "find": "aria-label=\"${esc(shortEv(e.name))}: won by ${esc(e.win.name)}, ${e.players} players\"",
+   "replace": "aria-label=\"${esc(shortEv(e.name))}: 우승 ${esc(e.win.name)} (${e.players}명)\""
+  },
+  {
+   "note": "winners: shelf label",
+   "find": "aria-label=\"Event winners, newest first\"",
+   "replace": "aria-label=\"우승 덱 (최신순)\""
+  },
+  {
+   "note": "events: biggest button",
+   "find": "aria-label=\"Open the biggest event\"",
+   "replace": "aria-label=\"가장 큰 대회 열기\""
+  },
+  {
+   "note": "events: total players",
+   "find": "All events<b> &middot; ${all.length} &middot; ${pl.toLocaleString(\"en-US\")} players</b>",
+   "replace": "전체 대회<b> &middot; ${all.length}개 &middot; ${pl.toLocaleString(\"ko-KR\")}명</b>"
+  },
+  {
+   "note": "QR: enlarge label",
+   "find": "aria-label=\"Enlarge the QR code for ${esc(d.name)}\"",
+   "replace": "aria-label=\"${esc(d.name)} QR 코드 확대\""
+  },
+  {
+   "note": "QR: image alt",
+   "find": "alt=\"Deck share code for ${esc(d.name)}\"",
+   "replace": "alt=\"${esc(d.name)} 덱 코드\""
+  },
+  {
+   "note": "packs: + cards in small decks",
+   "find": "<small>${m ? \"+\" : \"\"}${w} in small decks</small>",
+   "replace": "<small>소규모 덱에서 ${m ? \"+\" : \"\"}${w}장</small>"
+  },
+  {
+   "note": "packs: shelf label",
+   "find": "aria-label=\"Top 10 packs by meta cards\"",
+   "replace": "aria-label=\"메타 카드가 많은 팩 TOP 10\""
+  },
+  {
+   "note": "packs: sort label",
+   "find": "aria-label=\"Sort packs\"",
+   "replace": "aria-label=\"팩 정렬\""
+  },
+  {
+   "note": "packs: card count under a card",
+   "find": "<small>${c.st ? `${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} small`}</small>",
+   "replace": "<small>${c.st ? `덱 ${c.decks.length}개` : `소규모 덱 ${c.decks.length}개`}</small>"
+  },
+  {
+   "note": "packs: card label",
+   "find": "aria-label=\"${esc(c.n)}, in ${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}\"",
+   "replace": "aria-label=\"${esc(c.n)}, 덱 ${c.decks.length}개에서 사용\""
+  },
+  {
+   "note": "packs: picked card line",
+   "find": "&middot; in ${c.decks.length} ${c.st ? \"meta \" : \"\"}deck${c.decks.length > 1 ? \"s\" : \"\"}${c.st ? \"\" : ' <span class=\"pkd-chip\">smaller decks only</span>'}",
+   "replace": "&middot; ${c.st ? \"메타 \" : \"\"}덱 ${c.decks.length}개에서 사용${c.st ? \"\" : ' <span class=\"pkd-chip\">소규모 덱만</span>'}"
+  },
+  {
+   "note": "tab label: Limited Battle, 9日残り",
+   "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
+   "replace": "b.setAttribute(\"aria-label\", `한정 배틀, ${lbLeft(true)}`)"
+  },
+  {
+   "note": "breakout: <deck>が<event>で優勝 / 7位（325名）",
+   "find": "<b>${esc(b.name)}</b> ${b.place === 1 ? \"won\" : `took ${ordF(b.place)} at`} ${esc(shortEv(b.ev || \"\"))} (${b.players} players)",
+   "replace": "<b>${esc(b.name)}</b> · ${esc(shortEv(b.ev || \"\"))}(${b.players}명)에서 ${b.place === 1 ? \"우승\" : ordF(b.place)}"
+  },
+  {
+   "note": "label: rank, same as 24 h ago",
+   "find": "aria-label=\"Rank ${d.rank}, same rank as 24 hours ago\"",
+   "replace": "aria-label=\"${d.rank}위 (24시간 전과 같음)\""
+  },
+  {
+   "note": "label: rank, 24 h change",
+   "find": "aria-label=\"Rank ${d.rank}, ${d.nw ? \"new in the list\" : \"change in 24 hours\"}\"",
+   "replace": "aria-label=\"${d.rank}위 (${d.nw ? \"신규\" : \"24시간 변동\"})\""
+  },
+  {
+   "note": "label: rank: deck",
+   "find": "aria-label=\"Rank ${d.rank}: ${esc(d.name)}\"",
+   "replace": "aria-label=\"${d.rank}위: ${esc(d.name)}\""
+  },
+  {
+   "note": "label: deck: rank, share",
+   "find": "aria-label=\"${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}\"",
+   "replace": "aria-label=\"${esc(d.name)}: ${d.rank}위, 사용률 ${pct(d.share)}\"",
+   "all": true
+  },
+  {
+   "note": "label: About <x>",
+   "find": "aria-label=\"About ${esc(label)}\"",
+   "replace": "aria-label=\"${esc(label)} 안내\"",
+   "all": true
+  },
+  {
+   "note": "label: data status",
+   "find": "aria-label=\"Data status: checked ${agoTxt(data.updatedAt)}. Details\"",
+   "replace": "aria-label=\"데이터 상태: ${agoTxt(data.updatedAt)} 확인. 자세히\""
+  },
+  {
+   "note": "tip: players, matches",
+   "find": "title=\"${sm.players.toLocaleString()} players, ${sm.matches.toLocaleString()} matches\"",
+   "replace": "title=\"${sm.players.toLocaleString()}명 · ${sm.matches.toLocaleString()}경기\""
+  },
+  {
+   "note": "tip: no top player",
+   "find": "title=\"No top player ${winWk()}\"",
+   "replace": "title=\"${winWk()} 상위 플레이어 없음\""
+  },
+  {
+   "note": "tip: few players",
+   "find": "title=\"Only ${d.count} players: this win rate is less certain\"",
+   "replace": "title=\"${d.count}명뿐: 이 승률은 확실성이 낮습니다\""
+  },
+  {
+   "note": "tip: no top player with k swapped",
+   "find": "title=\"No top player with ${k} card${k > 1 ? \"s\" : \"\"} swapped\"",
+   "replace": "title=\"${k}장 교체한 상위 플레이어 없음\""
+  },
+  {
+   "note": "date range in a month: 11月9日〜14日",
+   "find": "} \\u2013 ${B.getUTCDate()}`",
+   "replace": "}~${B.getUTCDate()}일`"
+  },
+  {
+   "note": "date range: 11月9日〜12月2日",
+   "find": "} \\u2013 ${B.toLocaleDateString(undefined, o)}`",
+   "replace": "}~${B.toLocaleDateString(undefined, o)}`"
+  },
+  {
+   "note": "date, time: no comma",
+   "find": "\"numeric\" })}, ${t.toLocaleTimeString(",
+   "replace": "\"numeric\" })} ${t.toLocaleTimeString("
+  },
+  {
+   "note": "end date, time: no comma",
+   "find": "${end.toLocaleDateString(undefined, o)}, ${end.toLocaleTimeString(",
+   "replace": "${end.toLocaleDateString(undefined, o)} ${end.toLocaleTimeString("
+  },
+  {
+   "note": "ordinals: 3rd -> 3位",
+   "find": "n + (n % 100 >= 11 && n % 100 <= 13 ? \"th\" : [\"th\",\"st\",\"nd\",\"rd\"][n % 10] || \"th\")",
+   "replace": "n + \"위\""
+  },
+  {
+   "note": "ordinals (ord, ordN)",
+   "all": true,
+   "find": "n + (n % 100 >= 11 && n % 100 <= 13 ? \"th\" : [\"th\", \"st\", \"nd\", \"rd\"][n % 10] || \"th\")",
+   "replace": "n + \"위\""
+  },
+  {
+   "note": "medal label: 3位 (not 3位 place)",
+   "find": "aria-label=\"${ordF(p)} place\"",
+   "replace": "aria-label=\"${ordF(p)}\""
+  },
+  {
+   "note": "place tab",
+   "find": "${ordN(pl)} place</span>",
+   "replace": "${ordN(pl)}</span>"
+  },
+  {
+   "note": "list dots",
+   "find": "aria-label=\"${esc(ordN(v.pl))} place\"",
+   "replace": "aria-label=\"${esc(ordN(v.pl))}\""
+  },
+  {
+   "note": "results: 3位／231名",
+   "all": true,
+   "find": "${ordF(p)} <span>of ${of}</span>",
+   "replace": "${ordF(p)}<span>/${of}명</span>"
+  },
+  {
+   "note": "share label",
+   "find": "label: `${ordF(f[0])} of ${f[1]}",
+   "replace": "label: `${ordF(f[0])}/${f[1]}명"
+  },
+  {
+   "note": "shared list place",
+   "find": "`${ordF(+pp[1])} of ${pp[2]}`",
+   "replace": "`${ordF(+pp[1])}/${pp[2]}명`"
+  },
+  {
+   "note": "share card place",
+   "find": "`${ord(+pp[1])} of ${pp[2]}`",
+   "replace": "`${ord(+pp[1])}/${pp[2]}명`"
+  },
+  {
+   "note": "event list label",
+   "find": "evt: `${ordN(v.pl)} of ${e.players} · ${e.name}`",
+   "replace": "evt: `${ordN(v.pl)}/${e.players}명 · ${e.name}`"
+  },
+  {
+   "note": "breakout: <event>で優勝 / <event>で3位",
+   "find": "`${b[1] === 1 ? \"Won\" : ordF(b[1]) + \" at\"} ${shortEv(b[3] || \"\")}`",
+   "replace": "`${shortEv(b[3] || \"\")}에서 ${b[1] === 1 ? \"우승\" : ordF(b[1])}`"
+  },
+  {
+   "note": "breakout (long)",
+   "find": "`${d.brk[0][1] === 1 ? \"Won\" : ordF(d.brk[0][1]) + \" place at\"} ${d.brk[0][3] || \"an event\"}`",
+   "replace": "`${d.brk[0][3] || \"대회\"}에서 ${d.brk[0][1] === 1 ? \"우승\" : ordF(d.brk[0][1])}`"
+  },
+  {
+   "note": "dates and times in Japanese: toLocaleDateString",
+   "find": "toLocaleDateString(undefined,",
+   "replace": "toLocaleDateString(\"ko-KR\",",
+   "all": true
+  },
+  {
+   "note": "times in Korean, 24 h like the game: 14:59",
+   "find": "toLocaleTimeString(undefined, {",
+   "replace": "toLocaleTimeString(\"ko-KR\", { hourCycle: \"h23\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Korean (24 h)",
+   "find": "toLocaleString(undefined, {",
+   "replace": "toLocaleString(\"ko-KR\", { hourCycle: \"h23\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Japanese: toLocaleDateString",
+   "find": "toLocaleDateString(\"en-US\",",
+   "replace": "toLocaleDateString(\"ko-KR\",",
+   "all": true
+  },
+  {
+   "note": "dates and times in Japanese: toLocaleString",
+   "find": "toLocaleString(\"en-US\", { month",
+   "replace": "toLocaleString(\"ko-KR\", { month",
+   "all": true
+  },
+  {
+   "note": "results list date: 11/14",
+   "find": "${MON[+dt.slice(5, 7) - 1]} ${+dt.slice(8)}",
+   "replace": "${+dt.slice(5, 7)}/${+dt.slice(8)}",
+   "all": true
+  },
+  {
+   "note": "trend chart first day: 11/14",
+   "find": "${MON[+x.slice(5, 7) - 1]} ${+x.slice(8)}",
+   "replace": "${+x.slice(5, 7)}/${+x.slice(8)}"
+  },
+  {
+   "note": "winning-record check",
+   "find": "has ${n > 0 ? \"+\" : n < 0 ? \"\\u2212\" : \"\"}${Math.abs(n)} \\u00b7 ${k} more win${k > 1 ? \"s\" : \"\"} in place of ${k > 1 ? \"losses\" : \"a loss\"}",
+   "replace": "현재 ${n > 0 ? \"+\" : n < 0 ? \"\\u2212\" : \"\"}${Math.abs(n)} \\u00b7 ${k}패가 승리였다면 달성"
+  },
+  {
+   "note": "trend sentence: mv",
+   "find": "`stayed near <b>${a[1].toFixed(1)}${u}</b>` : `went ${a[1] > a[0] ? \"up\" : \"down\"} from ${a[0].toFixed(1)}${u} to <b>${a[1].toFixed(1)}${u}</b>`",
+   "replace": "`<b>${a[1].toFixed(1)}${u}</b> 전후로 보합` : `${a[0].toFixed(1)}${u}에서 <b>${a[1].toFixed(1)}${u}</b>로 ${a[1] > a[0] ? \"상승\" : \"하락\"}`"
+  },
+  {
+   "note": "trend sentence",
+   "find": "`<p class=\"tsay\">Share ${mv(s, 0.3, \"%\")}. Win rate ${w ? mv(w, 1, \"%\") : \"has no data\"}.${r ? ` Rank ${r[0] === r[1] ? `stayed <b>#${r[1]}</b>` : `went from #${r[0]} to <b>#${r[1]}</b>`}.` : \"\"}</p>`",
+   "replace": "`<p class=\"tsay\">사용률은 ${mv(s, 0.3, \"%\")}. 승률은 ${w ? mv(w, 1, \"%\") : \"데이터 없음\"}.${r ? ` 순위는 ${r[0] === r[1] ? `<b>${r[1]}위</b> 유지` : `${r[0]}위에서 <b>${r[1]}위</b>로 변동`}.` : \"\"}</p>`"
+  },
+  {
+   "note": "pack: in all packs of the set",
+   "find": "`In ${all === 2 ? \"both\" : \"all \" + all} ${set.name} packs`",
+   "replace": "`${set.name} 전체 ${all}개 팩에 수록`"
+  },
+  {
+   "note": "swap version",
+   "find": "`a swap version of ${al.map((k) => (k === 1 ? \"the \" + L1n(d) : \"list \" + k)).join(\", \")}`",
+   "replace": "`${al.map((k) => (k === 1 ? L1n(d) : \"레시피 \" + k)).join(\", \")}의 교체 버전`"
+  },
+  {
+   "note": "list 1",
+   "find": "const L1n = () => \"list 1\", L1s = () => \"List 1\";",
+   "replace": "const L1n = () => \"레시피 1\", L1s = () => \"레시피 1\";"
+  },
+  {
+   "note": "about-button labels",
+   "find": "\"the decks\" : \"the records\"",
+   "replace": "\"덱\" : \"전적\""
+  },
+  {
+   "note": "short time left: 10日 / 5時間",
+   "find": ": `${d}d`) : long ?",
+   "replace": ": `${d}일`) : long ?"
+  },
+  {
+   "note": "short time left (hours)",
+   "find": "left` : `${hr}h`; };",
+   "replace": "left` : `${hr}시간`; };"
+  },
+  {
+   "note": "Limited Battle days left (long): 残り9日 / 残り5時間",
+   "find": "(long ? `${d} days left`",
+   "replace": "(long ? `${d}일 남음`"
+  },
+  {
+   "note": "Limited Battle hours left (long)",
+   "find": "long ? `${hr} hour${hr > 1 ? \"s\" : \"\"} left`",
+   "replace": "long ? `${hr}시간 남음`"
+  },
+  {
+   "note": "core/flex preview: 確定枠12 · 自由枠8",
+   "find": "`${cells.length} core \\u00b7 ${nf} flex`",
+   "replace": "`고정 ${cells.length} \\u00b7 자유 ${nf}`"
+  },
+  {
+   "note": "matchup preview: ピカチュウ戦 62%",
+   "find": "`${Math.round(mu[0].p)}% vs ${esc(nameOf(mu[0].o)).split(\" \")[0]}`",
+   "replace": "`vs ${esc(nameOf(mu[0].o)).split(\" \")[0]} ${Math.round(mu[0].p)}%`"
+  },
+  {
+   "note": "top players sheet: 今週の成績",
+   "find": "<p class=\"slg sl2\">Results ${winWk()} <span>",
+   "replace": "<p class=\"slg sl2\">${winWk()} 성적 <span>"
+  },
+  {
+   "note": "top players sheet: dates in the chart 11/14",
+   "find": "`${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}`",
+   "replace": "`${+dy.slice(5, 7)}/${+dy.slice(8)}`"
+  },
+  {
+   "note": "top players sheet: dates in the rows 11/14",
+   "find": "MON[+dt.slice(5, 7) - 1] + \" \" + +dt.slice(8)",
+   "replace": "+dt.slice(5, 7) + \"/\" + +dt.slice(8)"
+  },
+  {
+   "note": "no-top-player sheet: date 11/14",
+   "find": "`${MON[+v.dt.slice(5, 7) - 1]} ${+v.dt.slice(8)}`",
+   "replace": "`${+v.dt.slice(5, 7)}/${+v.dt.slice(8)}`"
+  },
+  {
+   "note": "no-top-player sheet: players tile",
+   "find": "[d.count, \"players\", winWk()]",
+   "replace": "[d.count, \"플레이어\", winWk()]"
+  },
+  {
+   "note": "top players tile: tip",
+   "find": "title=\"${T} top players: this list or 1\\u20133 cards swapped\"",
+   "replace": "title=\"상위 플레이어 ${T}명: 이 레시피 또는 1~3장 교체\""
+  },
+  {
+   "note": "top players tile: label",
+   "find": "aria-label=\"Top players: ${T} with this list or 1 to 3 cards swapped, of ${v.of}\"",
+   "replace": "aria-label=\"상위 플레이어: ${v.of}명 중 ${T}명이 이 레시피 또는 1~3장 교체 버전 사용\""
+  },
+  {
+   "note": "swap selector: label",
+   "find": "aria-label=\"Show this list or a version with cards swapped\"",
+   "replace": "aria-label=\"이 레시피 또는 교체 버전 표시\""
+  },
+  {
+   "note": "swap selector: exact tip and label",
+   "find": "title=\"${ex} top player${ex === 1 ? \"\" : \"s\"} with exactly this list\" aria-label=\"Exact list: ${ex} top player${ex === 1 ? \"\" : \"s\"}\"",
+   "replace": "title=\"완전 일치: 상위 플레이어 ${ex}명\" aria-label=\"완전 일치: 상위 플레이어 ${ex}명\""
+  },
+  {
+   "note": "swap selector: swap tip and label",
+   "find": "title=\"${n} top player${n > 1 ? \"s\" : \"\"} with ${k} card${k > 1 ? \"s\" : \"\"} swapped\" aria-label=\"${n} top player${n > 1 ? \"s\" : \"\"} with ${sw(k)}: show them\"",
+   "replace": "title=\"${k}장 교체: 상위 플레이어 ${n}명\" aria-label=\"${k}장 교체: 상위 플레이어 ${n}명 표시\""
+  },
+  {
+   "note": "event: only N% share",
+   "find": "<em>only ${ws.toFixed(ws < 1 ? 2 : 1)}% share ${winWk()}</em>",
+   "replace": "<em>${winWk()} 사용률 ${ws.toFixed(ws < 1 ? 2 : 1)}%뿐</em>"
+  },
+  {
+   "note": "event: did better line",
+   "find": "`${cnt[id]} lists \\u00b7 best <b>${ordF(best[id])}</b> \\u00b7 ${pc(sh(id))}% share ${winWk()}`",
+   "replace": "`레시피 ${cnt[id]}개 \\u00b7 최고 <b>${ordF(best[id])}</b> \\u00b7 ${winWk()} 사용률 ${pc(sh(id))}%`"
+  },
+  {
+   "note": "event cards: in N% of top players' lists",
+   "find": "`in ${Math.round(t.u * 100)}% of its top players\\u2019 lists ${winWk()}`",
+   "replace": "`${winWk()} 상위 플레이어 레시피의 ${Math.round(t.u * 100)}%에 채용`"
+  },
+  {
+   "note": "event cards: in no other list",
+   "find": "`in no other top player\\u2019s list ${winWk()}`",
+   "replace": "`${winWk()} 다른 상위 플레이어 레시피에는 없음`"
+  },
+  {
+   "note": "ghost row: no public list tip",
+   "find": "title=\"No public decklist ${winLast()} yet\"",
+   "replace": "title=\"${winLast()} 공개 레시피 없음\""
+  },
+  {
+   "note": "event decks: new (no meta share)",
+   "find": ": \"new\"}</span></button>",
+   "replace": ": \"신규\"}</span></button>"
+  },
+  {
+   "note": "top 10: new",
+   "find": "(f < 0.05 ? \"new\" : pct(f))",
+   "replace": "(f < 0.05 ? \"신규\" : pct(f))"
+  },
+  {
+   "note": "matchup tip",
+   "find": "title=\"${Math.round(m.p)}% in ${m.g} games${unsure ? \" (too few to be sure)\" : \"\"}\"",
+   "replace": "title=\"${m.g}전 ${Math.round(m.p)}%${unsure ? \" (데이터 부족)\" : \"\"}\""
+  },
+  {
+   "note": "likely range tip",
+   "find": "title=\"Likely range: ${lo.toFixed(1)}\\u2013${hi.toFixed(1)}%\"",
+   "replace": "title=\"추정 범위: ${lo.toFixed(1)}~${hi.toFixed(1)}%\""
+  },
+  {
+   "note": "new in top 10 tip",
+   "find": "title=\"New in the top 10 since your last visit\"",
+   "replace": "title=\"지난 방문 이후 TOP 10 진입\""
+  },
+  {
+   "note": "new since last visit tip",
+   "find": "title=\"New since your last visit\"",
+   "replace": "title=\"지난 방문 이후 추가\""
+  },
+  {
+   "note": "event energy tip",
+   "find": "title=\"Energy in the top ${n}\"",
+   "replace": "title=\"상위 ${n}명의 에너지\""
+  },
+  {
+   "note": "search card tip (top players)",
+   "find": "title=\"${esc(c.n)} \\u00b7 ${c.u} top players \\u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
+   "replace": "title=\"${esc(c.n)} \\u00b7 상위 플레이어 ${c.u}명 \\u00b7 덱 ${c.decks.size}개에서 사용\""
+  },
+  {
+   "note": "search card label (top players)",
+   "find": "aria-label=\"${c.u} top players\"",
+   "replace": "aria-label=\"상위 플레이어 ${c.u}명\""
+  },
+  {
+   "note": "filter card tip",
+   "find": "title=\"${esc(c.n)} \\u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
+   "replace": "title=\"${esc(c.n)} \\u00b7 덱 ${c.decks.size}개에서 사용\""
+  },
+  {
+   "note": "label: cards swapped vs list 1",
+   "find": "aria-label=\"${nd} card${nd > 1 ? \"s\" : \"\"} swapped versus list 1\"",
+   "replace": "aria-label=\"레시피 1 대비 ${nd}장 교체\""
+  },
+  {
+   "note": "label: pack",
+   "find": "aria-label=\"${esc(x.setName)}${pkSub(x) ? \" \" + esc(pkSub(x)) : \"\"}\"",
+   "replace": "aria-label=\"${esc(x.setName)}${pkSub(x) ? \" \" + esc(pkSub(x)) : \"\"} 팩\""
+  },
+  {
+   "note": "label: list dots",
+   "find": "aria-label=\"Show list ${i + 1} of ${n}${i === 0 ? \" (\" + L1n(d) + \")\" : \"\"}\"",
+   "replace": "aria-label=\"레시피 ${i + 1}/${n} 표시\""
+  },
+  {
+   "note": "label: deck stats",
+   "find": "aria-label=\"Deck stats: ${pct(d.share)} share, ${pct(d.win)} win\"",
+   "replace": "aria-label=\"덱 통계: 사용률 ${pct(d.share)}, 승률 ${pct(d.win)}\""
+  },
+  {
+   "note": "label: close",
+   "find": "aria-label=\"Close\"",
+   "replace": "aria-label=\"닫기\"",
+   "all": true
+  },
+  {
+   "note": "label: breakout deck",
+   "find": "aria-label=\"Breakout deck\"",
+   "replace": "aria-label=\"급부상 덱\""
+  },
+  {
+   "note": "label: lists",
+   "find": "aria-label=\"Lists\"",
+   "replace": "aria-label=\"레시피\"",
+   "all": true
+  },
+  {
+   "note": "label: event stats",
+   "find": "aria-label=\"Event stats\"",
+   "replace": "aria-label=\"대회 통계\""
+  },
+  {
+   "note": "label: share icon in the install steps",
+   "find": "aria-label=\"Share\" style=\"vertical-align:-2px\"",
+   "replace": "aria-label=\"공유\" style=\"vertical-align:-2px\""
+  },
+  {
+   "note": "alt: card out",
+   "find": "alt=\"${esc(x.out.n)} (out)\"",
+   "replace": "alt=\"${esc(x.out.n)} (뺀 카드)\""
+  },
+  {
+   "note": "label: cards swapped tabs",
+   "find": "role=\"tablist\" aria-label=\"Cards swapped\"",
+   "replace": "role=\"tablist\" aria-label=\"교체한 카드\""
+  },
+  {
+   "note": "label: card full screen",
+   "find": "aria-label=\"Show ${esc(n)} full screen\"",
+   "replace": "aria-label=\"${esc(n)} 전체 화면으로 보기\""
+  },
+  {
+   "note": "label: Limitless link",
+   "find": "aria-label=\"Score: the original list on Limitless\"",
+   "replace": "aria-label=\"전적: Limitless의 원본 레시피\""
+  },
+  {
+   "note": "label: open deck",
+   "find": "aria-label=\"Open this deck on the site\"",
+   "replace": "aria-label=\"이 덱을 사이트에서 열기\""
+  },
+  {
+   "note": "label: show QR",
+   "find": "aria-label=\"Show the QR code\"",
+   "replace": "aria-label=\"QR 코드 표시\""
+  },
+  {
+   "note": "alt: shared QR",
+   "find": "alt=\"QR code for ${esc(SH.name)}\"",
+   "replace": "alt=\"${esc(SH.name)} QR 코드\"",
+   "all": true
+  },
+  {
+   "note": "label: back to cards",
+   "find": "aria-label=\"Back to the cards\"",
+   "replace": "aria-label=\"카드로 돌아가기\""
+  },
+  {
+   "note": "label: forget shared list",
+   "find": "aria-label=\"Forget this shared list\"",
+   "replace": "aria-label=\"이 공유 레시피 지우기\""
+  },
+  {
+   "note": "alt: QR",
+   "find": "alt=\"QR code for ${esc(d.name)}\"",
+   "replace": "alt=\"${esc(d.name)} QR 코드\""
+  },
+  {
+   "note": "label: previous list",
+   "find": "aria-label=\"Previous list\"",
+   "replace": "aria-label=\"이전 레시피\"",
+   "all": true
+  },
+  {
+   "note": "label: next list",
+   "find": "aria-label=\"Next list\"",
+   "replace": "aria-label=\"다음 레시피\"",
+   "all": true
+  },
+  {
+   "note": "label: deck stats, all lists",
+   "find": "aria-label=\"Deck stats, all lists\"",
+   "replace": "aria-label=\"덱 통계 (전체 레시피)\""
+  },
+  {
+   "note": "label: version QR",
+   "find": "aria-label=\"QR code for this version\"",
+   "replace": "aria-label=\"이 버전의 QR 코드\""
+  },
+  {
+   "note": "label: cards swapped vs list 1 (sheet)",
+   "find": "aria-label=\"Cards swapped vs ${esc(L1n(d))}\"",
+   "replace": "aria-label=\"${esc(L1n(d))} 대비 교체한 카드\""
+  },
+  {
+   "note": "label: card details",
+   "find": "aria-label=\"${esc(c.n)}: card details\"",
+   "replace": "aria-label=\"${esc(c.n)}: 카드 상세\""
+  },
+  {
+   "note": "label: decks without",
+   "find": "aria-label=\"Decks without ${esc(c.n)}\"",
+   "replace": "aria-label=\"${esc(c.n)} 미사용 덱\"",
+   "all": true
+  },
+  {
+   "note": "deck stats header: 35デッキ中1位",
+   "find": "`#${d.rank} of ${nDk}`",
+   "replace": "`덱 ${nDk}개 중 ${d.rank}위`"
+  },
+  {
+   "note": "deck stats rank tile: 1位",
+   "find": "`#${d.rank} ${rkTxt}`",
+   "replace": "`${d.rank}위 ${rkTxt}`"
+  },
+  {
+   "note": "rank change sheet title: 1位",
+   "find": "<h3>Rank ${d.rank}</h3>",
+   "replace": "<h3>${d.rank}위</h3>"
+  },
+  {
+   "note": "search deck line: 1位 · 使用率 · 勝率",
+   "find": "\"#\" + d.rank} · ${pct(d.share)} share · ${pct(d.win)} win",
+   "replace": "d.rank + \"위\"} · 사용률 ${pct(d.share)} · 승률 ${pct(d.win)}"
+  },
+  {
+   "note": "top 10 rising/falling: 1位",
+   "find": "#${d.rank} &middot; ${f",
+   "replace": "${d.rank}위 &middot; ${f"
+  },
+  {
+   "note": "top 10 shelf name: 1位",
+   "find": "<i>#${d.rank}</i>",
+   "replace": "<i>${d.rank}위</i>"
+  },
+  {
+   "note": "packs shelf name: 1位",
+   "find": "<i>#${L.indexOf(x) + 1}</i>",
+   "replace": "<i>${L.indexOf(x) + 1}위</i>"
+  },
+  {
+   "note": "event players tile: 12大会中最大 / 3番目",
+   "find": "<small>${big === 1 ? \"biggest\" : `#${big}`} of ${evs.length} events</small>",
+   "replace": "<small>대회 ${evs.length}개 중 ${big === 1 ? \"최대\" : `${big}번째`}</small>"
+  },
+  {
+   "note": "event: biggest button 543名",
+   "find": "Biggest <b>${big.players}</b>${SPCH}",
+   "replace": "최대 <b>${big.players}</b>명${SPCH}"
+  },
+  {
+   "note": "event: decks in the top N (fold)",
+   "find": "`Decks in the top ${n}`",
+   "replace": "`상위 ${n}명의 덱`"
+  },
+  {
+   "note": "event: decks tile 上位8名",
+   "find": "<small>in the top ${n}</small>",
+   "replace": "<small>상위 ${n}명</small>"
+  },
+  {
+   "note": "event: top N heading 上位12名",
+   "find": "`Top ${s.querySelectorAll(\".ek8\").length}`",
+   "replace": "`상위 ${s.querySelectorAll(\".ek8\").length}명`"
+  },
+  {
+   "note": "event: new-set cards (3)",
+   "find": "${esc(nm)} ${c}`).join(\", \")",
+   "replace": "${esc(nm)} (${c})`).join(\", \")"
+  },
+  {
+   "note": "share image: 使用率 · 勝率",
+   "find": "`${pct(d.share)} share  ·  ${pct(d.win)} win`",
+   "replace": "`사용률 ${pct(d.share)}  ·  승률 ${pct(d.win)}`"
+  },
+  {
+   "note": "share image: 環境1位",
+   "find": "`#${d.rank} in the meta`",
+   "replace": "`메타 ${d.rank}위`"
+  },
+  {
+   "note": "share image: set",
+   "find": "`Set ${data.set}${data.setName ? \" \" + data.setName : \"\"}`",
+   "replace": "`확장팩 ${data.set}${data.setName ? \" \" + data.setName : \"\"}`"
+  },
+  {
+   "note": "deck pill: 使用率 · 勝率",
+   "find": "<b>${pct(d.share)}</b><span class=\"psk\" data-sk=\"${esc(d.id)}\">${pSpark(d.id)}</span> share &middot; <span${d.count < 30 ? ' class=\"lw\"' : \"\"}><b>${pct(d.win)}</b> win</span>",
+   "replace": "사용률 <b>${pct(d.share)}</b><span class=\"psk\" data-sk=\"${esc(d.id)}\">${pSpark(d.id)}</span> &middot; <span${d.count < 30 ? ' class=\"lw\"' : \"\"}>승률 <b>${pct(d.win)}</b></span>"
+  },
+  {
+   "note": "ghost row: 使用率 · 公開レシピなし",
+   "find": "<b>${pct(g.share)}</b> share &middot; <span class=\"gnl\">no public list yet</span>",
+   "replace": "사용률 <b>${pct(g.share)}</b> &middot; <span class=\"gnl\">공개 레시피 없음</span>"
+  },
+  {
+   "note": "deck row (podium): 使用率 · 勝率",
+   "find": "<b>${pct(d.share)}</b> share<span class=\"ow\"> &middot; <b>${pct(d.win)}</b> win</span>",
+   "replace": "사용률 <b>${pct(d.share)}</b><span class=\"ow\"> &middot; 승률 <b>${pct(d.win)}</b></span>"
+  },
+  {
+   "note": "deck row: 使用率 · 勝率",
+   "find": "<b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class=\"lown\" title=\"${d.count}명뿐: 이 승률은 확실성이 낮습니다\"` : \"\"}>${pct(d.win)}</b> win</span>",
+   "replace": "사용률 <b>${pct(d.share)}</b> &middot; 승률 <b${d.count < 30 ? ` class=\"lown\" title=\"${d.count}명뿐: 이 승률은 확실성이 낮습니다\"` : \"\"}>${pct(d.win)}</b></span>"
+  },
+  {
+   "note": "shared list today: 使用率 · 勝率",
+   "find": "<b>${num(x.share)}</b> \\u00b7 <b>${num(x.win)}</b> win</div>",
+   "replace": "사용률 <b>${num(x.share)}</b> \\u00b7 승률 <b>${num(x.win)}</b></div>"
+  },
+  {
+   "note": "top players line: 上位プレイヤー12人中8人",
+   "find": "`${v.nu} of ${v.of} top players`",
+   "replace": "`상위 플레이어 ${v.of}명 중 ${v.nu}명`"
+  },
+  {
+   "note": "top 10 rising/falling: すべて表示（8）",
+   "find": ">Show all ${L.length}</button>",
+   "replace": ">모두 보기 (${L.length})</button>"
+  },
+  {
+   "note": "deck stats cards: 12枚",
+   "find": "`${cu.length} cards`",
+   "replace": "`${cu.length}장`"
+  },
+  {
+   "note": "deck stats core: 12枚",
+   "find": "<small>${cells.length} cards</small>",
+   "replace": "<small>${cells.length}장</small>"
+  },
+  {
+   "note": "filter chip: C1のカード",
+   "find": "${esc(data.set || \"set\")} cards`",
+   "replace": "${esc(data.set || \"set\")} 카드`"
+  },
+  {
+   "note": "dates: 今日 / 昨日",
+   "find": "\"today\" : n === 1 ? \"yesterday\"",
+   "replace": "\"오늘\" : n === 1 ? \"어제\""
+  },
+  {
+   "note": "dates: 今日 / 昨日 (check)",
+   "find": "[\"today\", \"yesterday\"].includes",
+   "replace": "[\"오늘\", \"어제\"].includes"
+  },
+  {
+   "note": "trend: 横ばい",
+   "find": "|| \"steady\"",
+   "replace": "|| \"보합\"",
+   "all": true
+  },
+  {
+   "note": "new set notice: 今日に発売",
+   "find": "today ? \"today\" : D(rel)",
+   "replace": "today ? \"오늘\" : D(rel)"
+  },
+  {
+   "note": "trend chart rank labels: 3位",
+   "find": "${r ? \"#\" + r : \"\\u2013\"}",
+   "replace": "${r ? r + \"위\" : \"\\u2013\"}"
+  },
+  {
+   "note": "events filter line: ピカチュウexが優勝・参加50名以上：5大会",
+   "find": "<p class=\"evnote\">${L.length ? `${L.length} event${L.length > 1 ? \"s\" : \"\"}` : \"No events\"}${evWin ? ` won by ${esc((wins[evWin] || {}).w ? wins[evWin].w.name : \"\")}` : \"\"}${evDk ? ` with ${esc(dn(evDk))} in the top 8` : \"\"}${evMin ? ` with ${evMin}+ players` : \"\"}${q && !evDk ? ` for &ldquo;${esc(evQ.trim())}&rdquo;` : \"\"}",
+   "replace": "<p class=\"evnote\">${[evWin ? `우승 ${esc((wins[evWin] || {}).w ? wins[evWin].w.name : \"\")}` : \"\", evDk ? `TOP 8에 ${esc(dn(evDk))}` : \"\", evMin ? `${evMin}명 이상` : \"\", q && !evDk ? `“${esc(evQ.trim())}”` : \"\"].filter(Boolean).join(\" · \")}${evWin || evDk || evMin || (q && !evDk) ? \": \" : \"\"}${L.length ? `대회 ${L.length}개` : \"대회 없음\"}"
+  },
+  {
+   "note": "event rows: 3時間前に追加",
+   "find": " \\u00b7 <span class=\"evadd\">added ${addAgo(e.at)}</span>",
+   "replace": " \\u00b7 <span class=\"evadd\">${addAgo(e.at)} 추가</span>"
+  },
+  {
+   "note": "event sheet: 11/23 14:00開始",
+   "find": "`Started ${tLoc(e.ts)}`",
+   "replace": "`${tLoc(e.ts)} 시작`"
+  },
+  {
+   "note": "most wins: すべて表示（N） (tap)",
+   "find": "\"Show less\" : \"Show all \" + ma.dataset.n",
+   "replace": "\"접기\" : \"모두 보기 (\" + ma.dataset.n + \")\""
+  },
+  {
+   "note": "most wins: すべて表示（N）",
+   "find": "${mAll ? \"Show less\" : \"Show all \" + wl.length}",
+   "replace": "${mAll ? \"접기\" : \"모두 보기 (\" + wl.length + \")\"}"
+  },
+  {
+   "note": "top 10 rising/falling: すべて表示（N） (tap)",
+   "find": "\"Show less\" : \"Show all \" + c.querySelectorAll(\".t1s-r\").length",
+   "replace": "\"접기\" : \"모두 보기 (\" + c.querySelectorAll(\".t1s-r\").length + \")\""
+  },
+  {
+   "note": "pack row: 環境カード5枚",
+   "find": "`<b>${m}</b> meta card${m > 1 ? \"s\" : \"\"}` : x.cards.length ? \"\" : \"no meta cards\"",
+   "replace": "`메타 카드 <b>${m}</b>장` : x.cards.length ? \"\" : \"메타 카드 없음\""
+  },
+  {
+   "note": "packs header: 今週の環境向け",
+   "find": "for the meta ${winWk()}",
+   "replace": "${winWk()} 메타 기준",
+   "all": true
+  },
+  {
+   "note": "packs list count: 12件（ほか以前30件）",
+   "find": "${nA === PKV.length ? nA : nA + \" + \" + (PKV.length - nA) + \" older\"}",
+   "replace": "${nA === PKV.length ? nA + \"개\" : nA + \"개 (이전 \" + (PKV.length - nA) + \"개)\"}"
+  },
+  {
+   "note": "card popup: packs joined with ・",
+   "find": "ps.map((p) => p.name).join(\" or \")",
+   "replace": "ps.map((p) => p.name).join(\", \")"
+  },
+  {
+   "note": "card popup: 11月1日発売",
+   "find": "`Released ${fdate(set.release)}`",
+   "replace": "`${fdate(set.release)} 출시`"
+  },
+  {
+   "note": "time: Live panel newest event (수) 9:05",
+   "find": "new Date(e.ts).toLocaleString(\"ko-KR\", { hourCycle: \"h23\", weekday: \"short\", hour: \"2-digit\", minute: \"2-digit\" })",
+   "replace": "`(${new Date(e.ts).toLocaleDateString(\"ko-KR\", { weekday: \"short\" })}) ${new Date(e.ts).toLocaleTimeString(\"ko-KR\", { hourCycle: \"h23\", hour: \"numeric\", minute: \"2-digit\" })}`"
+  },
+  {
+   "note": "time: 9:05 (no leading zero)",
+   "find": "toLocaleTimeString(\"ko-KR\", { hourCycle: \"h23\", hour: \"2-digit\", minute: \"2-digit\" })",
+   "replace": "toLocaleTimeString(\"ko-KR\", { hourCycle: \"h23\", hour: \"numeric\", minute: \"2-digit\" })"
+  },
+  {
+   "note": "date: pack release, year only when not this year",
+   "find": "toLocaleDateString(\"ko-KR\", { month: \"short\", day: \"numeric\", year: \"numeric\" })",
+   "replace": "toLocaleDateString(\"ko-KR\", { month: \"short\", day: \"numeric\", year: new Date(s + \"T00:00:00\").getFullYear() !== new Date().getFullYear() ? \"numeric\" : undefined })"
+  },
+  {
+   "note": "Live chip: ● 最新 · 5分前 / ● 3時間前にチェック",
+   "find": "${fresh ? `<b>Live</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt).replace(/ ago$/, \"\")}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}`}",
+   "replace": "${fresh ? `<b>최신</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt)}` : `<span class=\"mu\">${agoTxt(data.updatedAt)} 확인`}"
+  },
+  {
+   "note": "Live panel: 5分前にチェック",
+   "find": "<b>Checked ${agoTxt(data.updatedAt)}</b>",
+   "replace": "<b>${agoTxt(data.updatedAt)} 확인</b>"
+  },
+  {
+   "note": "Live panel: next check 10:05頃",
+   "find": "\"~\" + clock(next)",
+   "replace": "\"약 \" + clock(next)"
+  },
+  {
+   "note": "Live panel: (土) 9:05開始",
+   "find": "\"Started \" + st",
+   "replace": "st + \" 시작\""
+  },
+  {
+   "note": "Live panel: 5分前にサイトに追加",
+   "find": "<span>Added to the site ${agoTxt(e.at)}</span>",
+   "replace": "<span>${agoTxt(e.at)} 사이트에 추가</span>"
+  },
+  {
+   "note": "Live panel legend: 2〜6時間前 / 6時間以上前",
+   "find": "<span><i class=\"ldot a\"></i>2&ndash;6 h</span><span><i class=\"ldot\"></i>older</span>",
+   "replace": "<span><i class=\"ldot a\"></i>2~6시간 전</span><span><i class=\"ldot\"></i>6시간 이상 전</span>"
+  },
+  {
+   "note": "head: description",
+   "find": "<meta name=\"description\" content=\"This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.\">",
+   "replace": "<meta name=\"description\" content=\"이번 주 포켓몬 카드 게임 Pocket에서 이기고 있는 덱과 최근 대회, 상위 플레이어의 레시피. 모든 레시피에 게임에서 읽을 수 있는 QR 코드가 있습니다.\">"
+  },
+  {
+   "note": "head: og:title",
+   "find": "<meta property=\"og:title\" content=\"Pocket Meta QR – this week's Pokémon TCG Pocket meta and tournaments, with QR codes\">",
+   "replace": "<meta property=\"og:title\" content=\"Pocket Meta QR – 이번 주 포켓몬 카드 게임 Pocket 메타 덱과 대회 결과, QR 코드 포함\">"
+  },
+  {
+   "note": "head: og:description",
+   "find": "<meta property=\"og:description\" content=\"The decks that win right now, the latest tournaments and their top 8, and a QR code for every list. Free, no sign-up.\">",
+   "replace": "<meta property=\"og:description\" content=\"지금 이기는 덱, 최근 대회의 TOP 8, 모든 레시피의 QR 코드. 무료, 가입 불필요.\">"
+  },
+  {
+   "note": "head: og:image:alt",
+   "find": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR: this week's winning Pokémon TCG Pocket decks, with a QR code for every list\">",
+   "replace": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR: 이번 주 포켓몬 카드 게임 Pocket 메타 덱, 모든 레시피에 QR 코드\">"
+  },
+  {
+   "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
+   "find": "<p class=\"lbnote\"><b class=\"lbup\">",
+   "replace": "<p class=\"lbn lben\">덱 메모는 영어로만 제공됩니다.</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
+  },
+  {
+   "note": "loading text next to the intro slot (the extractor does not find it)",
+   "find": "<div class=\"empty\">Loading decks&hellip;<p class=\"seoi\"",
+   "replace": "<div class=\"empty\">덱을 불러오는 중&hellip;<p class=\"seoi\""
+  },
+  {
+   "note": "tabs: the full Japanese label on phones too (5 characters, shorter than the English short form)",
+   "find": ">Meta<span class=\"tlx\"> Decks</span></a>",
+   "replace": ">메타 덱</a>"
+  },
+  {
+   "note": "tabs: the full Japanese label on phones too (5 characters, shorter than the English short form)",
+   "find": "><span class=\"tlx\">Latest </span>Events</a>",
+   "replace": ">최근 대회</a>"
+  },
+  {
+   "note": "tabs: 引くべきパック (the page title and footer use it; the tab ranks packs by meta cards)",
+   "find": "><span class=\"tlx\">Booster </span>Packs</a>",
+   "replace": ">뽑을 만한 팩</a>"
+  }
+ ]
+}

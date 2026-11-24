@@ -48,7 +48,7 @@ f.writeFileSync(process.argv[2], h);' "$T/p/$f" "$3/$f"
 }
 page en "$T/src.html" "$PUB/preview"
 SUM=""
-for L in de es ja pt fr it; do
+for L in de es ja pt fr it ko; do
   line=$(node i18n/build.mjs "$T/src.html" "$L" "$T/$L.html" --report "$PUB/i18n/report.$L.json")
   echo "$line"; SUM="$SUM- $line"$'\n'
   page "$L" "$T/$L.html" "$PUB/preview/$L"
@@ -67,7 +67,7 @@ if [ -d site/i18n ]; then cp -r site/i18n/. "$PUB/i18n/"; fi
 NAMES=$(PUB="$PUB" node -e '
 const f = require("fs"), c = JSON.parse(f.readFileSync(process.argv[1], "utf8")).c, all = [...new Set(c.map((x) => x[2]).filter(Boolean))];
 for (const l of process.argv.slice(2)) { const n = JSON.parse(f.readFileSync(`${process.env.PUB}/i18n/names.${l}.json`, "utf8")).n, m = all.filter((x) => !n[x]);
-  console.log(`- names ${l}: ${all.length - m.length} of ${all.length} card names${m.length ? `; no name (English shown): ${m.slice(0, 20).join(", ")}` : ""}`); }' "$PUB/cards.json" de es ja pt fr it 2>/dev/null || true)
+  console.log(`- names ${l}: ${all.length - m.length} of ${all.length} card names${m.length ? `; no name (English shown): ${m.slice(0, 20).join(", ")}` : ""}`); }' "$PUB/cards.json" de es ja pt fr it ko 2>/dev/null || true)
 echo "$NAMES"; SUM="$SUM$NAMES"$'\n'
 if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then printf '### Preview texts\n%s\nMissing texts: /i18n/report.<lang>.json on the site.\n' "$SUM" >> "$GITHUB_STEP_SUMMARY"; fi
 rm -rf "$T"
