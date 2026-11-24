@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795520066-6d06 -->
+<!-- ui: artifact version 1795523425-b346 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2460,6 +2460,10 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 .brkk { display: inline-flex; align-items: center; gap: 5px; color: #9a7417; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 .brkn { overflow: hidden; color: var(--muted); font-size: var(--fs-s); text-overflow: ellipsis; white-space: nowrap; } .brkn b { color: var(--ink); font-weight: 600; }
 .brkr .spch { width: 7px; height: 10px; color: var(--muted); }
+.brkn.run { text-overflow: clip; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10px, #000 calc(100% - 14px), transparent); mask-image: linear-gradient(90deg, transparent, #000 10px, #000 calc(100% - 14px), transparent); } /* Nov 24: running text when it does not fit (brkRun) */
+.brkn.run .brkm { display: inline-flex; } .brkn.run .brkm-t { flex: none; padding-right: 40px; } .brkn.run .brkm { animation: brkm var(--brkd, 14s) linear infinite; }
+@keyframes brkm { 0%, 15% { transform: translateX(0); } 100% { transform: translateX(-50%); } } /* a short stop at the start: the deck name is easy to read */
+@media (hover: hover) { .brkr:hover .brkn.run .brkm { animation-play-state: paused; } }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .brkk { color: #e3b25a; } :root:not([data-theme="light"]) .brkc { background: color-mix(in srgb, #e3b25a 20%, var(--surface)); } :root:not([data-theme="light"]) .brki, :root:not([data-theme="light"]) .brki .cb { stroke: #b08a2e; } }
 :root[data-theme="dark"] .brkk { color: #e3b25a; } :root[data-theme="dark"] .brkc { background: color-mix(in srgb, #e3b25a 20%, var(--surface)); } :root[data-theme="dark"] .brki, :root[data-theme="dark"] .brki .cb { stroke: #b08a2e; }
 /* Nov 22: Events tab: the Winners shelf (the Top 10 shelf; a 2-line label: event, then winner · players · day), "Most wins" (the Rising / Falling panel style), the count line */
@@ -4056,7 +4060,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       <div class="t1s-mp"><div class="t1s-seg" role="tablist"><button type="button" data-k="up" aria-pressed="true">\u25b2 Rising</button><button type="button" data-k="dn" aria-pressed="false">\u25bc Falling</button></div>
         <div class="t1s-cols">${col("up", up)}${col("dn", dn)}</div></div>${brkLine()}`;
     t10Car(el, top);
-    t10Show(); }
+    t10Show(); brkRun(); }
   // Nov 16: each mover box shows 2.5 rows (both boxes the same height: the taller of the two), the rest scrolls
   function t10Fit() { const bs = [...document.querySelectorAll("#t10 .t10ms")]; if (!bs.length || !bs[0].offsetParent) return;
     const hs = bs.map((b) => { const r = [...b.children]; if (r.length <= 3) return 0; /* Nov 18: 3.5 rows (was 2.5) */ const g = parseFloat(getComputedStyle(r[1]).marginTop) || 0;
@@ -4346,7 +4350,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   // Nov 23: Breakout decks (R33): a rare deck (under 0.2% share) with a top-8 finish at a 128+ player event; d.brk = [[tid, place, players, event name], ...] (best first)
   // the line under the Top 10 (data.json brk = [{ id, name, art, tid, place, players, ev }]: the deck is in more.json)
   const brkLine = () => { const L = (data && data.brk) || []; if (!L.length) return "";
-    return `<div class="t1s-brk">${L.slice(0, 2).map((b) => `${typeof RDECK !== "undefined" && RDECK ? `<a href="/decks/${esc(b.id)}/"` : '<button type="button"'} class="brkr" data-go="${esc(b.id)}">${t2c({ art: b.art || [] }, 26, 42, 34, 15, 5)}<span class="brkt"><span class="brkk">${BRK_I}Breakout</span><span class="brkn"><b>${esc(b.name)}</b> ${b.place === 1 ? "won" : `took ${ordF(b.place)} at`} ${esc(shortEv(b.ev || ""))} (${b.players} players)</span></span>${SPCH}${typeof RDECK !== "undefined" && RDECK ? "</a>" : "</button>"}`).join("")}</div>`; };
+    return `<div class="t1s-brk">${L.slice(0, 2).map((b) => `${typeof RDECK !== "undefined" && RDECK ? `<a href="/decks/${esc(b.id)}/"` : '<button type="button"'} class="brkr" data-go="${esc(b.id)}">${t2c({ art: b.art || [] }, 26, 42, 34, 15, 5)}<span class="brkt"><span class="brkk">${BRK_I}Breakout</span><span class="brkn"><span class="brkm"><span class="brkm-t"><b>${esc(b.name)}</b> ${b.place === 1 ? "won" : `took ${ordF(b.place)} at`} ${esc(shortEv(b.ev || ""))} (${b.players} players)</span></span></span></span>${SPCH}${typeof RDECK !== "undefined" && RDECK ? "</a>" : "</button>"}`).join("")}</div>`; };
+  // Nov 24: the Breakout line runs (a seamless loop of 2 copies) when its text does not fit; still (with "…") with reduced motion
+  // Nov 24: running text when the line is too long; a ResizeObserver also checks lines that were hidden when drawn (width 0)
+  const brkOne = (n) => { const m = n.querySelector(".brkm"), t = m && m.querySelector(".brkm-t"); if (!t || !n.clientWidth) return;
+    const tw = Math.ceil(t.getBoundingClientRect().width), on = n.classList.contains("run");
+    if (on ? tw - 40 <= n.clientWidth + 1 : tw <= n.clientWidth + 1) { if (on) { m.querySelectorAll(".brkm-c").forEach((x) => x.remove()); n.classList.remove("run"); } return; }
+    if (on) return;
+    const c = t.cloneNode(true); c.className = "brkm-t brkm-c"; c.setAttribute("aria-hidden", "true"); m.appendChild(c);
+    n.style.setProperty("--brkd", Math.max(9, Math.round((tw + 40) / 30)) + "s"); n.classList.add("run"); };
+  const brkRO = typeof ResizeObserver !== "undefined" ? new ResizeObserver((es) => es.forEach((e) => brkOne(e.target))) : null;
+  const brkRun = () => { if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.querySelectorAll("#t10 .brkn").forEach((n) => { brkOne(n); if (brkRO) brkRO.observe(n); }); };
   const BRK_I = '<svg class="brki" viewBox="0 0 18 14" aria-hidden="true"><path d="M2.5 12.5 1.5 3.5 6 7 9 1l3 6 4.5-3.5-1 9z"/><path class="cb" d="M3.2 10.2h11.6"/></svg>';
   const brkTxt = (b) => `${b[1] === 1 ? "Won" : ordF(b[1]) + " at"} ${shortEv(b[3] || "")}`;
   const brkChip = (d) => (d.brk && d.brk.length ? `<span class="brkc" title="${esc(`${b0(d)} (${d.brk[0][2]} players)`)}">${BRK_I}${esc(brkTxt(d.brk[0]))}</span>` : "");
