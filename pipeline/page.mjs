@@ -543,7 +543,10 @@ const LT = LR ? (() => {
   const titles = {}, heads = {};
   for (const m of block("RTITLES").matchAll(/(\w+): \(m?\) => ("(?:[^"\\]|\\.)*"|`[^`]*`)/g)) titles[m[1]] = m[2];
   for (const m of block("RHEAD").matchAll(/(\w+): ("(?:[^"\\]|\\.)*")/g)) heads[m[1]] = js(m[2]);
-  const lbName = (body.match(/const LB = \{[^]*?name: "([^"]+)"/) || [])[1];
+  let lbName = (body.match(/const LB = \{[^]*?name: "([^"]+)"/) || [])[1];
+  // the language's event name, as the page sets it: LB.name = { "<English>": "<name>", ... }[LB.name] || LB.name
+  const lbMap = body.match(/LB\.name = (\{[^}]*\})\[LB\.name\] \|\| LB\.name/);
+  if (lbMap && lbName) { try { lbName = JSON.parse(lbMap[1])[lbName] || lbName; } catch {} }
   // the month as the page's RMON shows it (its locale: "ja-JP" -> 2026年11月, "es-ES" -> nov 2026)
   const loc = (body.match(/const RMON = [^\n]{0,300}?toLocaleString\("([A-Za-z-]+)"/) || [, "en-US"])[1];
   const month = new Date().toLocaleString(loc, { month: "short", year: "numeric", timeZone: "UTC" });
