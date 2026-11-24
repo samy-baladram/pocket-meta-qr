@@ -59,8 +59,8 @@ CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
 one(btn, btn + f'\n    <button class="theme-btn lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langPop">{GLOBE}<span id="langCur">EN</span>{CHEV}</button>'
     '\n    <div class="lang-pop" id="langPop" hidden><h2 id="langTtl">Language</h2><ul id="langList" role="radiogroup" aria-labelledby="langTtl"></ul></div>')
 th = '  $("themeBtn").addEventListener("click", () => {'
-MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["ja", "日本語", "日本語"], ["de", "Deutsch", "DE"], ["es", "Español", "ES"], ["fr", "Français", "FR"],
-      ["it", "Italiano", "IT"], ["pt", "Português (Brasil)", "PT"], ["ko", "한국어", "KO"], ["zh", "繁體中文", "ZH"]];
+MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["es", "Español", "ES"], ["fr", "Français", "FR"], ["de", "Deutsch", "DE"],
+      ["it", "Italiano", "IT"], ["pt", "Português (Brasil)", "PT"], ["ja", "日本語", "日本語"], ["ko", "한국어", "KO"], ["zh", "繁體中文", "ZH"]]; // Nov 24 (owner): the game's order
     const JA = PG_L === "ja", btn = $("langBtn"), pop = $("langPop"), list = $("langList"), cur = LN.find((x) => x[0] === PG_L) || LN[0];
     const ES = PG_L === "es", PT = PG_L === "pt", DE = PG_L === "de", FR = PG_L === "fr", IT = PG_L === "it"; $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : ES || PT ? "Idioma" : DE ? "Sprache" : FR ? "Langue" : IT ? "Lingua" : "Language";
     btn.setAttribute("aria-label", (JA ? "言語：" : ES || PT ? "Idioma: " : DE ? "Sprache: " : FR ? "Langue\u00a0: " : IT ? "Lingua: " : "Language: ") + cur[1]);
