@@ -150,8 +150,9 @@ Made from the reviewed Spanish: the same 556 texts (`fr.json`) and 161 of its co
   Interdimensionnelle, A3b La Clairière d’Évoli, A4 Sagesse entre Ciel et Mer, A4b Booster de Luxe ex, B1 Méga-Ascension.
 - Layout: `html[lang="fr"] small.t1s-x` has letter-spacing −0.02em, and the Top 10 rising row has thin spaces around
   · and →, so "8e · nouveau → 3,6 %" fits 360 px (layout check: 0 problems).
-- To check by the owner in the game: the QR import path (Mes decks → + → Scanner le code → Scanner une image
-  enregistrée) and the event name on the Limited Battle banner.
+- Checked with the owner (Nov 24): the QR import path is Mes decks → + → Scanner un code → Scanner une image
+  sauvegardée (the sentences around it say "sauvegardez l’image", as the game); the event name "Combats restreints :
+  Fusion Double" is correct.
 
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in

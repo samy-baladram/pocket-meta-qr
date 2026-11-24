@@ -309,7 +309,7 @@
 ],
 "23cd04792c": [
 "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image.",
-"Enregistrez l’image, puis dans le jeu : Mes decks → + → Scanner le code → Scanner une image enregistrée."
+"Sauvegardez l’image, puis dans le jeu : Mes decks → + → Scanner un code → Scanner une image sauvegardée."
 ],
 "23d7de0ce5": [
 "Most often in a top 8",
@@ -853,7 +853,7 @@
 ],
 "60907e38f7": [
 "Scan Code",
-"Scanner le code"
+"Scanner un code"
 ],
 "60e0efbbb5": [
 "of all decks played",
@@ -1085,7 +1085,7 @@
 ],
 "7789ef8e5a": [
 "Scan Saved Image",
-"Scanner une image enregistrée"
+"Scanner une image sauvegardée"
 ],
 "778e3d21fc": [
 "Event · list {0} of",
@@ -1181,7 +1181,7 @@
 ],
 "81826fc524": [
 "Open a deck, tap its QR code and save the image. In the game: {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. On a computer, you can also point the game&rsquo;s camera at the screen.",
-"Ouvrez un deck, touchez son code QR et enregistrez l’image. Dans le jeu : {t0}Mes decks &rarr; + &rarr; Scanner le code &rarr; Scanner une image enregistrée{t1}. Sur un ordinateur, vous pouvez aussi viser l’écran avec la caméra du jeu."
+"Ouvrez un deck, touchez son code QR et sauvegardez l’image. Dans le jeu : {t0}Mes decks &rarr; + &rarr; Scanner un code &rarr; Scanner une image sauvegardée{t1}. Sur un ordinateur, vous pouvez aussi viser l’écran avec la caméra du jeu."
 ],
 "8235bdefc9": [
 "the newest set",
@@ -1469,7 +1469,7 @@
 ],
 "a40926803d": [
 "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image.",
-"Dans le jeu : Mes decks → + → Scanner le code, puis visez ce code avec la caméra. Ou téléchargez l’image."
+"Dans le jeu : Mes decks → + → Scanner un code, puis visez ce code avec la caméra. Ou téléchargez l’image."
 ],
 "a452ac820f": [
 "Tap {t0}Share{t1} {0} (Safari: at the bottom, or at the top on iPad).",
