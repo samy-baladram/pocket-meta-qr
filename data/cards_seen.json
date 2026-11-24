@@ -4642,8 +4642,8 @@
  },
  "Squirtle": {
   "id": "c1-029",
-  "seen": "2026-11-23",
-  "dates": "Nov 17 – 22",
+  "seen": "2026-11-24",
+  "dates": "Nov 18 – 23",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -4661,8 +4661,8 @@
  },
  "Blastoise": {
   "id": "c1-031",
-  "seen": "2026-11-23",
-  "dates": "Nov 17 – 22",
+  "seen": "2026-11-24",
+  "dates": "Nov 18 – 23",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -4699,10 +4699,10 @@
  },
  "Ho-Oh ex": {
   "id": "a4-034",
-  "seen": "2026-11-23",
-  "dates": "Nov 17 – 23",
+  "seen": "2026-11-24",
+  "dates": "Nov 18 – 23",
   "pct": 1,
-  "u": 2,
+  "u": 3,
   "pack": [
    "Wisdom of Sea and Sky Ho-Oh pack",
    "Wisdom of Sea and Sky pack"
@@ -4712,16 +4712,16 @@
    [
     "Ho-Oh ex Charizard",
     2,
-    2
+    3
    ]
   ]
  },
  "Lugia ex": {
   "id": "a4-149",
-  "seen": "2026-11-23",
-  "dates": "Nov 17 – 23",
+  "seen": "2026-11-24",
+  "dates": "Nov 18 – 23",
   "pct": 1,
-  "u": 2,
+  "u": 3,
   "pack": [
    "Wisdom of Sea and Sky Lugia pack",
    "Wisdom of Sea and Sky pack"
@@ -4731,7 +4731,7 @@
    [
     "Ho-Oh ex Charizard",
     1,
-    2
+    3
    ]
   ]
  },
@@ -4892,6 +4892,25 @@
   "L": [
    [
     "Mega Blaziken ex",
+    1,
+    1
+   ]
+  ]
+ },
+ "Combusken": {
+  "id": "b1-034",
+  "seen": "2026-11-24",
+  "dates": "Nov 18 – 23",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Mega Rising Mega Blaziken pack",
+   "Mega Rising pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Mega Blaziken ex Greninja",
     1,
     1
    ]

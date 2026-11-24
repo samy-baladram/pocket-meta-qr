@@ -3545,14 +3545,14 @@
  },
  "suicune-ex-a4a-blastoise-c1": {
   "name": "Suicune ex Blastoise",
-  "seen": "2026-11-23",
-  "rank": 58,
+  "seen": "2026-11-24",
+  "rank": 57,
   "share": 0.23,
-  "win": 55,
+  "win": 56.67,
   "count": 5,
-  "games": 10,
+  "games": 15,
   "more": 1,
-  "dates": "Nov 17 – 22",
+  "dates": "Nov 18 – 23",
   "best": [
    "40th of 325",
    "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
@@ -4354,18 +4354,18 @@
  },
  "ho-oh-ex-a4-charizard-c1": {
   "name": "Ho-Oh ex Charizard",
-  "seen": "2026-11-23",
-  "rank": 55,
-  "share": 0.22,
-  "win": 48.48,
-  "count": 5,
-  "games": 33,
+  "seen": "2026-11-24",
+  "rank": 44,
+  "share": 0.28,
+  "win": 54.76,
+  "count": 6,
+  "games": 42,
   "more": 1,
-  "dates": "Nov 17 – 23",
+  "dates": "Nov 18 – 23",
   "best": [
-   "53rd of 325",
-   "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
-   "2026-11-21"
+   "18th of 131",
+   "Knowtice x TBC Victory Monday-$10",
+   "2026-11-23"
   ],
   "cards": [
    [
@@ -4421,7 +4421,9 @@
     1
    ]
   ],
-  "xs": []
+  "xs": [
+   "Core cards (in 90%+ of the 3 top players' lists): 2 Ho-Oh ex, 2 Flame Patch, 2 Copycat, 2 Charmander, 2 Charmeleon, 2 Serena's Choice, 2 Poké Ball, 1 Lugia ex, 1 May, 1 Charizard, 1 Eviolite, 1 Blue's Provocation, 1 Professor's Research."
+  ]
  },
  "mega-gengar-ex-b2b-gengar-c1": {
   "name": "Mega Gengar ex Gengar",
@@ -4481,6 +4483,223 @@
    ],
    [
     "Deceptive Needle",
+    2
+   ]
+  ],
+  "xs": []
+ },
+ "mega-greninja-ex-c1-suicune-ex-a4a": {
+  "name": "Mega Greninja ex Suicune ex",
+  "seen": "2026-11-24",
+  "rank": 40,
+  "share": 0.32,
+  "win": 40.32,
+  "count": 7,
+  "games": 31,
+  "more": 1,
+  "dates": "Nov 18 – 23",
+  "best": [
+   "7th of 131",
+   "Knowtice x TBC Victory Monday-$10",
+   "2026-11-23"
+  ],
+  "cards": [
+   [
+    "Froakie",
+    2
+   ],
+   [
+    "Frogadier",
+    2
+   ],
+   [
+    "Greninja",
+    2
+   ],
+   [
+    "Mega Greninja ex",
+    1
+   ],
+   [
+    "Suicune ex",
+    2
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Serena's Choice",
+    2
+   ],
+   [
+    "Cyrus",
+    2
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Rare Candy",
+    1
+   ],
+   [
+    "Pokémon Communication",
+    1
+   ],
+   [
+    "Inflatable Boat",
+    1
+   ]
+  ],
+  "xs": []
+ },
+ "mega-blaziken-ex-b1-greninja-a1": {
+  "name": "Mega Blaziken ex Greninja",
+  "seen": "2026-11-24",
+  "rank": 45,
+  "share": 0.28,
+  "win": 59.52,
+  "count": 6,
+  "games": 21,
+  "more": 1,
+  "dates": "Nov 18 – 23",
+  "best": [
+   "9th of 131",
+   "Knowtice x TBC Victory Monday-$10",
+   "2026-11-23"
+  ],
+  "cards": [
+   [
+    "Torchic",
+    2
+   ],
+   [
+    "Combusken",
+    1
+   ],
+   [
+    "Mega Blaziken ex",
+    2
+   ],
+   [
+    "Froakie",
+    1
+   ],
+   [
+    "Greninja",
+    1
+   ],
+   [
+    "Furfrou",
+    1
+   ],
+   [
+    "Heatmor",
+    1
+   ],
+   [
+    "Copycat",
+    2
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Cyrus",
+    1
+   ],
+   [
+    "Serena's Choice",
+    1
+   ],
+   [
+    "Rare Candy",
+    2
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Flame Patch",
+    1
+   ]
+  ],
+  "xs": []
+ },
+ "mega-gardevoir-ex-b2-mega-mewtwo-y-ex-p-c": {
+  "name": "Mega Gardevoir ex Mega Mewtwo Y ex",
+  "seen": "2026-11-24",
+  "rank": 46,
+  "share": 0.28,
+  "win": 20,
+  "count": 6,
+  "games": 10,
+  "more": 1,
+  "dates": "Nov 18 – 23",
+  "best": [
+   "64th of 88",
+   "Block Dragon Standard (Any 2 card prize)",
+   "2026-11-23"
+  ],
+  "cards": [
+   [
+    "Ralts",
+    2
+   ],
+   [
+    "Gardevoir",
+    1
+   ],
+   [
+    "Mega Gardevoir ex",
+    1
+   ],
+   [
+    "Meloetta",
+    2
+   ],
+   [
+    "Comfey",
+    1
+   ],
+   [
+    "Mega Mewtwo Y ex",
+    1
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Cyrus",
+    1
+   ],
+   [
+    "Copycat",
+    1
+   ],
+   [
+    "Diantha",
+    1
+   ],
+   [
+    "Serena's Choice",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Rare Candy",
+    2
+   ],
+   [
+    "Peculiar Plaza",
     2
    ]
   ],
