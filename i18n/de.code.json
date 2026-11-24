@@ -2,6 +2,16 @@
  "_": "Code changes for the de page (i18n/build.mjs applies them before the texts). find: exact code of the page; all: change each place (else the first). A find that is not in the page is reported, not used.",
  "patches": [
   {
+   "note": "Limited Battle: the event name as in the German game (a new event keeps its English name until it is added here)",
+   "find": "const LB_DEMO = ",
+   "replace": "LB.name = { \"Dual Fusion Limited Battle\": \"Limitierte Kämpfe: Duale Fusion (C1)\" }[LB.name] || LB.name; const LB_DEMO = "
+  },
+  {
+   "note": "Limited Battle end time as in the game: 2. Dez. um 14:59 Uhr",
+   "find": "${end.toLocaleDateString(undefined, o)}, ${end.toLocaleTimeString(undefined, { hour: \"numeric\", minute: \"2-digit\" })}`",
+   "replace": "${end.toLocaleDateString(\"de-DE\", o)} um ${end.toLocaleTimeString(\"de-DE\", { hour: \"numeric\", minute: \"2-digit\" })} Uhr`"
+  },
+  {
    "note": "share button label: Copiar el enlace de este torneo",
    "find": "aria-label=\"${TOUCH ? \"Share\" : \"Copy the link to\"} this ${what}\"",
    "replace": "aria-label=\"${TOUCH ? (({ event: \"Dieses Turnier\", deck: \"Dieses Deck\", list: \"Diese Liste\", pack: \"Dieses Pack\", card: \"Diese Karte\" })[what] || what) + \" teilen\" : \"Link zu \" + (({ event: \"diesem Turnier\", deck: \"diesem Deck\", list: \"dieser Liste\", pack: \"diesem Pack\", card: \"dieser Karte\" })[what] || what) + \" kopieren\"}\""
@@ -546,7 +556,7 @@
   {
    "note": "label: Limited Battle tab",
    "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
-   "replace": "b.setAttribute(\"aria-label\", `Limitierter Kampf, ${lbLeft(true)}`)"
+   "replace": "b.setAttribute(\"aria-label\", `Limitierte Kämpfe, ${lbLeft(true)}`)"
   },
   {
    "note": "label: medal 3.º puesto",
