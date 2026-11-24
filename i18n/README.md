@@ -128,7 +128,7 @@ to `page.mjs`. A new language needs one sentence there.
 - To check by the owner in the game: the QR import path (Meine Decks → + → Code scannen → Gespeichertes Bild scannen)
   and the German name of the Limited Battle event (now "Limitierter Kampf").
 
-## French (fr, Nov 24, 2026): preview only at /preview/fr/ (not in the menu)
+## French (fr, Nov 24, 2026): live as beta at /fr/ (noindex, like /ja/, /es/, /pt/, /de/)
 Made from the reviewed Spanish: the same 556 texts (`fr.json`) and 161 of its code changes (`fr.code.json`), in French.
 - Numbers: 12,0 % (a non-breaking space before %, as es / de; `fx` / `pn` / `pct`); 1 921 (`fr-FR`).
 - Ranks: 1er, 2e, 3e (`oF(n)` in the numbers patch; `ord` / `ordN` give the same): "1er sur 35", "3e sur 110" (trPl),
