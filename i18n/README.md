@@ -224,7 +224,12 @@ copies.
 - head.html: links the page builds (`<a href="/decks/<id>/">`) get the folder on click; i18n_patch.py: the row share
   link uses the language folder (a deck only with deck pages), and the language menu keeps the open deck
   (`/ja/decks/<id>/` <-> `/decks/<id>/`; to a language without deck pages: `#<id>`).
-Next: pack pages, then card pages (the same way, one setting each).
+
+Pack pages (Step 4b, Nov 24): `I18N_PACKS` the same way: `/<l>/packs/<id>/` for the packs of the English Packs view
+(page.mjs `--lang-packs`, langPackPages): title = the page's `RPTITLE`, heading = its `pkName(x) + "…"`, pack name as
+the page (set name from names.<lang>.json `s`, the pack's Pokémon as `trPack`), description + intro = `packText()` in
+intro_i18n.mjs; hreflang (`--alt-packs "$I18N_PACKS"`) and sitemap; the menu keeps the open pack.
+Next: card pages.
 
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in

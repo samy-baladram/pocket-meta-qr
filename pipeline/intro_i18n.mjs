@@ -155,3 +155,64 @@ export function deckText(lang, e, on, dates, namesDir = "preview/i18n") {
   return { name: nm, desc, intro: on ? T.in : T.off };
 }
 export const spanText = (lang, a, b) => (DAY[lang] ? span(lang, a, b) : null);
+
+// Phase 2 Step 4b (Nov 24, 2026): the texts of a language pack page (/<lang>/packs/<id>/). x: page.mjs packBuild entry
+// ({ set, setName, pack, cards: [{ n, decks: [{ d: { name } }], st }] }); names as the page: the set name from
+// names.<lang>.json `s` (by set code), the pack's Pokémon as trPack (the card name, or the "ex" card name without "ex").
+// Returns { name, desc, intro } or null (no texts for that language).
+function setNames(lang, dir) {
+  const f = `${dir}/names.${lang}.json`;
+  if (!existsSync(f)) return {};
+  const s = { ...(JSON.parse(readFileSync(f, "utf8")).s || {}) };
+  const fx = existsSync(`${dir}/names.fix.json`) ? JSON.parse(readFileSync(`${dir}/names.fix.json`, "utf8"))[lang] : null;
+  Object.assign(s, (fx && fx.s) || {});
+  return Object.fromEntries(Object.entries(s).map(([k, v]) => [k.toLowerCase(), v]));
+}
+export function packText(lang, x, dates, namesDir = "preview/i18n") {
+  const N = names(lang, namesDir), S = setNames(lang, namesDir), cn = (n) => (N && N[n]) || n;
+  const trPack = (en) => { if (!N) return en; if (N[en]) return N[en]; const b = N[en + " ex"]; return b ? b.replace(/[-\s]?ex$/, "") : en; };
+  const nm = (S[String(x.set || "").toLowerCase()] || x.setName) + (x.pack === x.setName ? "" : " " + trPack(x.pack));
+  const meta = x.cards.filter((c) => c.st), small = x.cards.length - meta.length, k = meta.length, ja = lang === "ja";
+  const P = (n, one, many) => (n === 1 ? one : many);
+  const dk = (c) => c.decks.slice(0, 3).map((r) => deck(lang, N, r.d.name)).join(ja ? "、" : ", ") + (c.decks.length > 3 ? "…" : "");
+  const T = {
+    ja: { unit: (n) => `${n}デッキ`, d: `${nm}パック：今週のポケポケ環境デッキで使われるカード${k}枚：`,
+      d0: `${nm}パック：今週のポケポケ環境デッキで使われるカードはありません（${dates}）。`,
+      i: `今週（${dates}）のポケポケのデッキのうち、${nm}パックのカードを使うデッキ：`,
+      i0: `${nm}パックのカードは、今週（${dates}）のポケポケ環境デッキでは使われていません。`,
+      sm: (s) => (k ? `ほかに${s}枚のカードが少数派デッキだけで使われています。` : `${s}枚のカードは少数派デッキだけで使われています。`) },
+    es: { unit: (n) => `${n} ${P(n, "baraja", "barajas")}`, d: `Sobre ${nm}: ${k} ${P(k, "carta que se juega", "cartas que se juegan")} en las barajas del meta de JCC Pokémon Pocket esta semana: `,
+      d0: `Sobre ${nm}: ninguna de sus cartas se juega en las barajas del meta de JCC Pokémon Pocket esta semana (${dates}).`,
+      i: `Qué barajas de JCC Pokémon Pocket de esta semana (${dates}) usan las cartas del sobre ${nm}: `,
+      i0: `Ninguna carta del sobre ${nm} se juega en las barajas del meta de JCC Pokémon Pocket esta semana (${dates}).`,
+      sm: (s) => `${s} ${k ? P(s, "carta más", "cartas más") : P(s, "carta", "cartas")} solo en barajas menores.` },
+    pt: { unit: (n) => `${n} ${P(n, "baralho", "baralhos")}`, d: `Pacote ${nm}: ${k} ${P(k, "carta usada", "cartas usadas")} nos baralhos do meta de Pokémon TCG Pocket desta semana: `,
+      d0: `Pacote ${nm}: nenhuma das suas cartas é usada nos baralhos do meta de Pokémon TCG Pocket desta semana (${dates}).`,
+      i: `Quais baralhos de Pokémon TCG Pocket desta semana (${dates}) usam as cartas do pacote ${nm}: `,
+      i0: `Nenhuma carta do pacote ${nm} é usada nos baralhos do meta de Pokémon TCG Pocket desta semana (${dates}).`,
+      sm: (s) => `${k ? "Mais " : ""}${s} ${P(s, "carta", "cartas")} só em baralhos menores.` },
+    de: { unit: (n) => `${n} ${P(n, "Deck", "Decks")}`, d: `Pack ${nm}: ${k} ${P(k, "Karte", "Karten")} aus den Meta-Decks von Pokémon TCG Pocket dieser Woche: `,
+      d0: `Pack ${nm}: Keine seiner Karten wird diese Woche in den Meta-Decks von Pokémon TCG Pocket gespielt (${dates}).`,
+      i: `Welche Pokémon TCG Pocket-Decks dieser Woche (${dates}) die Karten aus dem Pack ${nm} nutzen: `,
+      i0: `Keine Karte aus dem Pack ${nm} wird in den Meta-Decks von Pokémon TCG Pocket dieser Woche gespielt (${dates}).`,
+      sm: (s) => `${s} ${k ? P(s, "weitere Karte", "weitere Karten") : P(s, "Karte", "Karten")} nur in kleineren Decks.` },
+    fr: { unit: (n) => `${n} ${P(n, "deck", "decks")}`, d: `Booster ${nm} : ${k} ${P(k, "carte jouée", "cartes jouées")} dans les decks du méta de Pokémon TCG Pocket cette semaine : `,
+      d0: `Booster ${nm} : aucune de ses cartes n'est jouée dans les decks du méta de Pokémon TCG Pocket cette semaine (${dates}).`,
+      i: `Quels decks de Pokémon TCG Pocket de cette semaine (${dates}) utilisent les cartes du booster ${nm} : `,
+      i0: `Aucune carte du booster ${nm} n'est jouée dans les decks du méta de Pokémon TCG Pocket cette semaine (${dates}).`,
+      sm: (s) => `${s} ${k ? P(s, "autre carte", "autres cartes") : P(s, "carte", "cartes")} seulement dans des decks secondaires.` },
+    it: { unit: (n) => `${n} ${P(n, "mazzo", "mazzi")}`, d: `Busta ${nm}: ${k} ${P(k, "carta giocata", "carte giocate")} nei mazzi del meta del GCC Pokémon Pocket di questa settimana: `,
+      d0: `Busta ${nm}: nessuna delle sue carte è giocata nei mazzi del meta del GCC Pokémon Pocket di questa settimana (${dates}).`,
+      i: `Quali mazzi del GCC Pokémon Pocket di questa settimana (${dates}) usano le carte della busta ${nm}: `,
+      i0: `Nessuna carta della busta ${nm} è giocata nei mazzi del meta del GCC Pokémon Pocket di questa settimana (${dates}).`,
+      sm: (s) => (k ? P(s, "Un'altra carta", `Altre ${s} carte`) : `${s} ${P(s, "carta", "carte")}`) + " solo in mazzi minori." },
+  }[lang];
+  if (!T) return null;
+  const sep = ja ? "、" : ", ", end = ja ? "。" : ".", op = ja ? "（" : " (", cp = ja ? "）" : ")", col = ja ? "：" : ": ";
+  const fitL = (h, items) => { const mk = (n) => h + items.slice(0, n).join(sep) + (n < items.length ? "…" : end);
+    let n = items.length; while (n > 1 && mk(n).length > 160) n--; return mk(n); };
+  const desc = k ? fitL(T.d, meta.map((c, i) => `${cn(c.n)}${op}${i ? c.decks.length : T.unit(c.decks.length)}${cp}`)) : T.d0;
+  const intro = (k ? T.i + meta.map((c) => `${cn(c.n)}${op}${T.unit(c.decks.length)}${col}${dk(c)}${cp}`).join(sep) + end : T.i0) +
+    (small ? (ja ? "" : " ") + T.sm(small) : "");
+  return { name: nm, desc, intro };
+}

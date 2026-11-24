@@ -13,6 +13,7 @@ import json, os, re, sys
 ROUTE_L = json.dumps([x for x in os.environ.get("I18N_ROUTES", "").split() if x != "en"])
 # Phase 2 Step 4 (Nov 24): the languages with deck pages (/ja/decks/<id>/): I18N_DECKS (site.yml)
 DECK_L = json.dumps([x for x in os.environ.get("I18N_DECKS", "").split() if x != "en"])
+PACK_L = json.dumps([x for x in os.environ.get("I18N_PACKS", "").split() if x != "en"])   # Step 4b: pack pages
 src, dst = sys.argv[1], sys.argv[2]
 MENU_ONLY = "--menu-only" in sys.argv[3:]   # Phase 1 (Nov 23): the English live page gets only the language menu
 s = open(src, encoding="utf8").read()
@@ -84,7 +85,7 @@ MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["es", "Español", "ES"],
 
 MINI_JS = r"""  // Phase 1 (Nov 23): language menu on the English site (preview/i18n_patch.py --menu-only). The English page stays
   // English; a saved choice of a live language (pmq-lang, set in the menu) opens that page from the home address.
-  var TXT_L = ["ja", "es", "pt", "de", "fr", "it", "ko"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr", "it", "ko"], ROUTE_L = __ROUTE_L__, DECK_L = __DECK_L__, PG_L = "en", langPath = (l) => "/" + (l === "en" ? "" : l + "/");
+  var TXT_L = ["ja", "es", "pt", "de", "fr", "it", "ko"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr", "it", "ko"], ROUTE_L = __ROUTE_L__, DECK_L = __DECK_L__, PACK_L = __PACK_L__, PG_L = "en", langPath = (l) => "/" + (l === "en" ? "" : l + "/");
   (() => { let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
     if (l && l !== "en" && LIVE_L.includes(l) && /^\/(index\.html)?$/.test(location.pathname)) location.replace(langPath(l) + location.hash); })();
   function setImgLang(l) { try { localStorage.setItem("pmq-lang", l); } catch (err) {} try { track("lang-" + l); } catch (err) {}
@@ -92,6 +93,7 @@ MINI_JS = r"""  // Phase 1 (Nov 23): language menu on the English site (preview/
     // Phase 2 (ROUTE_L, with section addresses): /events/ -> /ja/events/ (and /packs/, /limited/, /about/; a deck: #<id>)
     const m = location.pathname.match(/^\/(events|limited|packs|decks|about)\/(?:([a-z0-9-]+)\/)?/); let h = location.hash, p = "";
     if (m && m[1] === "decks" && m[2] && DECK_L.includes(l)) { p = "decks/" + m[2] + "/"; h = ""; } // Step 4: /decks/<id>/ -> /ja/decks/<id>/
+    else if (m && m[1] === "packs" && m[2] && PACK_L.includes(l)) { p = "packs/" + m[2] + "/"; h = ""; } // Step 4b: /packs/<id>/ -> /ja/packs/<id>/
     else if (m && ROUTE_L.includes(l) && m[1] !== "decks") { p = m[1] + "/"; if (m[2] || /^#(events|limited)$/.test(h)) h = ""; }
     else if (m && m[1] !== "about") { if (m[1] === "decks") h = m[2] ? "#" + m[2] : ""; else if (m[1] === "packs") { h = ""; try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} } else h = "#" + m[1]; }
     location.href = langPath(l) + p + h; }
@@ -100,7 +102,7 @@ top = '  const $ = (id) => document.getElementById(id);\n'
 if MENU_ONLY:
     one(top, top + MINI_JS)
     one(th, MENU_JS + th)
-    open(dst, "w", encoding="utf8").write(s.replace("__ROUTE_L__", ROUTE_L).replace("__DECK_L__", DECK_L))
+    open(dst, "w", encoding="utf8").write(s.replace("__ROUTE_L__", ROUTE_L).replace("__DECK_L__", DECK_L).replace("__PACK_L__", PACK_L))
     print("menu only:", dst)
     sys.exit(0)
 one(th, MENU_JS + th)
@@ -126,7 +128,7 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
   // Phase 1 (Nov 23): the page language = its text, names and card images. A text page (/preview/ja/ ...: the build
   // sets PMQ_LANG) has its language. The English page stays English (no redirect by browser language), but a saved
   // choice of a live language (pmq-lang, set in the menu) opens that page. LIVE_L: the languages the menu offers.
-  var TXT_L = ["de", "es", "ja", "pt", "fr", "it", "ko"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr", "it", "ko"], ROUTE_L = __ROUTE_L__, DECK_L = __DECK_L__, PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
+  var TXT_L = ["de", "es", "ja", "pt", "fr", "it", "ko"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr", "it", "ko"], ROUTE_L = __ROUTE_L__, DECK_L = __DECK_L__, PACK_L = __PACK_L__, PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
   var IMGL = (() => { if (PG_L !== "en") return PG_L; let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
     return l && l !== "en" && LIVE_L.includes(l) && TXT_L.includes(l) ? l : "en"; })();
   // PMQ_ROOT (set by the build): the English page's folder, "/preview/" (test) or "/" (the live /ja/ page)
@@ -193,6 +195,7 @@ one(rawc, r'''  // Nov 23 (i18n test): a card with no localized file (i18n/<lang
     const m = H && location.pathname.startsWith(H) && location.pathname.slice(H.length).match(/^(events|packs|limited|about|decks)\/(?:([a-z0-9-]+)\/)?/);
     let p = "", h = location.hash;
     if (m && m[1] === "decks") { if (m[2] && (l === "en" ? PMQ_R === "/" : DECK_L.includes(l))) p = "decks/" + m[2] + "/"; else if (m[2]) h = "#" + m[2]; } // Step 4
+    else if (m && m[1] === "packs" && m[2] && (l === "en" ? PMQ_R === "/" : PACK_L.includes(l))) p = "packs/" + m[2] + "/"; // Step 4b
     else if (m && rt(l)) p = m[1] + "/";
     else if (m) { if (m[1] === "packs") { try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} } else if (m[1] !== "about") h = "#" + m[1]; }
     else if (rt(l) && /^#(events|limited)$/.test(h)) { p = h.slice(1) + "/"; h = ""; }
@@ -228,4 +231,4 @@ one('win rate.</p>${mapSvg}`)', 'win rate.</p>${mapSvg}`, 0, "mm")')
 one('fold("Cards", cuPv, cuBody)', 'fold("Cards", cuPv, cuBody, 0, "cu")')
 one('const fk = (f) => { const t = f.querySelector("summary b")?.textContent || "";',
     'const fk = (f) => { if (f.dataset.k) return f.dataset.k; const t = f.querySelector("summary b")?.textContent || "";')
-open(dst, "w", encoding="utf8").write(s.replace("__ROUTE_L__", ROUTE_L).replace("__DECK_L__", DECK_L))
+open(dst, "w", encoding="utf8").write(s.replace("__ROUTE_L__", ROUTE_L).replace("__DECK_L__", DECK_L).replace("__PACK_L__", PACK_L))

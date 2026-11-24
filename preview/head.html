@@ -8,7 +8,7 @@
   for (const k of ["pushState", "replaceState"]) { const o = history[k].bind(history); history[k] = (s, t, u) => o(s, t, fix(u)); }
   /* Step 4: links the page builds itself (<a href="/decks/<id>/">) get the folder before the browser follows them */
   if (H) for (const t of ["click", "auxclick", "contextmenu"]) addEventListener(t, (e) => { const a = e.target.closest && e.target.closest('a[href^="/"]');
-    const v = a && a.getAttribute("href"); if (v && /^\/(?:(?:events|packs|limited|about)\/|decks\/[a-z0-9-]+\/)?$/.test(v)) a.setAttribute("href", H + v.slice(1)); }, true);
+    const v = a && a.getAttribute("href"); if (v && /^\/(?:(?:events|packs|limited|about)\/|(?:decks|packs)\/[a-z0-9-]+\/)?$/.test(v)) a.setAttribute("href", H + v.slice(1)); }, true);
   addEventListener("click", (e) => { const a = e.target.closest && e.target.closest('a[href^="#"]');
     if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault(); location.hash = a.getAttribute("href"); }); })();</script>

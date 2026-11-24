@@ -67,7 +67,7 @@ import { dirname, join } from "node:path";
 import { createHash } from "node:crypto";
 import { minify as minifyJS } from "terser";
 import { minify as minifyCSS } from "csso";
-import { introText, sectionDesc, deckText, spanText } from "./intro_i18n.mjs";
+import { introText, sectionDesc, deckText, packText, spanText } from "./intro_i18n.mjs";
 
 const args = process.argv.slice(2), MINIFY = !args.includes("--no-minify"), ROUTES = !args.includes("--no-routes");
 // Nov 24 (i18n): --lang <xx> = a language page (its intro text in that language, pipeline/intro_i18n.mjs);
@@ -93,14 +93,17 @@ const ALT_R = (argv("--alt-routes") || "").split(/\s+/).filter((x) => ALT.includ
 // decks/<id>/ pages (langDeckPages) and the routes tag word "decks".
 const ALT_D = (argv("--alt-decks") || "").split(/\s+/).filter((x) => ALT_R.includes(x));
 const LD = LR && args.includes("--lang-decks");
+// Step 4b: --alt-packs "<langs>" (I18N_PACKS) and --lang-packs: the same for packs/<id>/ (langPackPages).
+const ALT_P = (argv("--alt-packs") || "").split(/\s+/).filter((x) => ALT_R.includes(x));
+const LP = LR && args.includes("--lang-packs");
 const HL = (l) => (l === "pt" ? "pt-BR" : l);
 const ALT_DIRS = ["events", "packs", "limited", "about"];
 function withAlt(html, key) {   // key: "" (home) or a section folder
   const me = LANG && LANG !== "en" ? LANG : "en";
-  const dk = /^decks\/[a-z0-9-]+$/.test(key || "");
-  if (!ALT.length || (me !== "en" && !ALT.includes(me)) || (key && !ALT_DIRS.includes(key) && !dk) || (dk && me !== "en" && !ALT_D.includes(me))) return html;
+  const dk = /^decks\/[a-z0-9-]+$/.test(key || ""), pk = /^packs\/[a-z0-9-]+$/.test(key || ""), LL = dk ? ALT_D : pk ? ALT_P : ALT_R;
+  if (!ALT.length || (me !== "en" && !ALT.includes(me)) || (key && !ALT_DIRS.includes(key) && !dk && !pk) || ((dk || pk) && me !== "en" && !LL.includes(me))) return html;
   const v = [["en", `${SITE}/${key ? key + "/" : ""}`],
-    ...ALT.filter((l) => !key || (dk ? ALT_D : ALT_R).includes(l)).map((l) => [HL(l), `${SITE}/${l}/${key ? key + "/" : ""}`])];
+    ...ALT.filter((l) => !key || LL.includes(l)).map((l) => [HL(l), `${SITE}/${l}/${key ? key + "/" : ""}`])];
   if (v.length < 2) return html;
   const tags = [...v, ["x-default", v[0][1]]].map(([h, u]) => `<link rel="alternate" hreflang="${h}" href="${u}">`).join("");
   return html.replace("</head>", tags + "</head>");
@@ -405,7 +408,7 @@ function packBuild(dataDir) {
       const ds = [...c.decks].map(([id, cp]) => ({ d: dk.get(id), c: cp })).sort((a, z) => z.d.share - a.d.share);
       return { n: c.n, decks: ds, st: ds.some((x) => x.d.share >= 1), sh: ds.reduce((t, x) => t + x.d.share, 0) };
     }).sort((a, z) => z.st - a.st || z.decks.length - a.decks.length || z.sh - a.sh);
-    return { id: p, setName: st.name, pack: k.name, name: st.name + (k.name === st.name ? "" : " " + k.name), cards };
+    return { id: p, set: k.set, setName: st.name, pack: k.name, name: st.name + (k.name === st.name ? "" : " " + k.name), cards };
   });
 }
 // R31: the pack pages. Returns [{ dir, title, desc }] for the sitemap and the log.
@@ -433,8 +436,30 @@ function packPages(full, dataDir, outDir) {
       { "@type": "ListItem", position: 3, name: `${x.name} pack`, item: `${SITE}/packs/${x.id}/` }] };
     const dir = `packs/${x.id}`, f = join(outDir, dir, "index.html");
     mkdirSync(dirname(f), { recursive: true });
-    writeFileSync(f, fillIntro(sectionPage(full, { dir, title, desc, img: "og-packs.png", hsec: `${x.name} pack`, ld }), intro));
+    writeFileSync(f, withAlt(fillIntro(sectionPage(full, { dir, title, desc, img: "og-packs.png", hsec: `${x.name} pack`, ld }), intro), dir));
     out.push({ dir, title, desc, meta: meta.length, small });
+  }
+  return out;
+}
+// Phase 2 Step 4b (Nov 24, 2026): the pack pages of a language page (--lang-packs): the same packs as the English pages
+// (packBuild), the language's title (RPTITLE), heading, description and intro (intro_i18n.mjs packText).
+function langPackPages(full, dataDir, outDir) {
+  const L = packBuild(dataDir), D = readJSON(join(dataDir, "data.json"));
+  if (!L) return [];
+  const dates = spanText(LANG, D.span[0], D.span[1]), out = [];
+  for (const x of L) {
+    const tx = packText(LANG, x, dates);
+    if (!tx) continue;
+    const meta = x.cards.filter((c) => c.st).length, small = x.cards.length - meta;
+    const dir = `packs/${x.id}`, url = `${SITE}/${ROOT}${dir}/`, f = join(outDir, dir, "index.html"), head = LT.packHead(tx.name);
+    const title = LT.packTitle(tx.name) || `${head} ${GAME}`;
+    const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Pocket Meta QR", item: `${SITE}/${ROOT}` },
+      { "@type": "ListItem", position: 2, name: LT.packsCrumb, item: `${SITE}/${ROOT}packs/` },
+      { "@type": "ListItem", position: 3, name: head, item: url }] };
+    mkdirSync(dirname(f), { recursive: true });
+    writeFileSync(f, withAlt(fillIntro(sectionPage(full, { dir, title, desc: tx.desc, img: "og-packs.png", hsec: head, ld }), tx.intro), dir));
+    out.push({ dir, title, desc: tx.desc, meta, small });
   }
   return out;
 }
@@ -563,14 +588,14 @@ function sectionPage(html, { dir, title, desc, img, hsec, ld, extra }) {
   }
   return head + rest;
 }
-const [src = "site/index.html", out = "public/index.html"] = args.filter((a, i) => !a.startsWith("--") && !["--prev", "--seen", "--cards-seen", "--lang", "--data", "--root", "--alt", "--alt-routes", "--alt-decks"].includes(args[i - 1]));
+const [src = "site/index.html", out = "public/index.html"] = args.filter((a, i) => !a.startsWith("--") && !["--prev", "--seen", "--cards-seen", "--lang", "--data", "--root", "--alt", "--alt-routes", "--alt-decks", "--alt-packs"].includes(args[i - 1]));
 const body = readFileSync(src, "utf8");
 const ROUTES_ON = ROUTES && body.includes("pmq-routes");   // R26: the page supports the section addresses
 const NWV_RE = /<section class="abv nwv" id="nwv"[^>]*\shidden[\s>]/;   // Nov 23: What's new (whats-new/)
 const ABOUT_ON = ROUTES_ON && ABV_RE.test(body);              // R29: the page has the static FAQ section
 const NEW_ON = ROUTES_ON && !LR && NWV_RE.test(body);         // Nov 23: the page has the static What's new section
 const DECKS_ON = ROUTES_ON && (!LR || LD) && (body.includes("pmq-deck") || args.includes("--decks"));   // R30 §2: the page's deck code
-const PACKS_ON = ROUTES_ON && !LR && (body.includes("/\\bpacks\\b/") || args.includes("--packs")); // R31: the page's RPACK check
+const PACKS_ON = ROUTES_ON && (!LR || LP) && (body.includes("/\\bpacks\\b/") || args.includes("--packs")); // R31: the page's RPACK check
 const CARDS_ON = ROUTES_ON && !LR && (body.includes("/\\bcards\\b/") || args.includes("--cards")); // R32: the page's RCARD check
 const NEWT = body.includes(" Deck List (") || args.includes("--newt");   // R32: the page's new title formulas
 const RT = ROUTE_TAG.replace('content="1"',
@@ -601,7 +626,11 @@ const LT = LR ? (() => {
   const dSuf = js((body.match(/setHead\(d \? d\.name \+ ("(?:[^"\\]|\\.)*")/) || [, '" deck"'])[1]);
   const deckTitle = (nm) => { if (!rd) return null; const t = js(rd.replace(/\$\{d\.name\}/g, nm.replace(/[`$\\]/g, "")).replace(/\$\{RMON\(\)\}/g, month)); return t && !/\$\{/.test(t) ? t : null; };
   return { title, head: (k) => heads[k === "" ? "decks" : k] || null, crumb, desc: (k) => sectionDesc(LANG, k),
-    deckTitle, deckHead: (nm) => nm + (dSuf ?? " deck"), metaCrumb: tr("Meta Decks") };
+    deckTitle, deckHead: (nm) => nm + (dSuf ?? " deck"), metaCrumb: tr("Meta Decks"), packsCrumb: tr("Booster Packs"),
+    // Step 4b: RPTITLE and setHead(... x ? pkName(x) + "<suffix>" ...) of the page
+    packTitle: (nm) => { const q = (body.match(/const RPTITLE = \(x\) => (`[^`]*`);/) || [])[1]; if (!q) return null;
+      const t = js(q.replace(/\$\{pkName\(x\)\}/g, nm.replace(/[`$\\]/g, "")).replace(/\$\{RMON\(\)\}/g, month)); return t && !/\$\{/.test(t) ? t : null; },
+    packHead: (nm) => nm + (js((body.match(/x \? pkName\(x\) \+ ("(?:[^"\\]|\\.)*")/) || [, '" pack"'])[1]) ?? " pack") };
 })() : null;
 
 // One head item at the start of the text: whitespace, then a comment, <title>..</title>, <meta>, <link>,
@@ -700,7 +729,7 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
       ` ${kept.filter((x) => x.days > KEEP_DAYS).length} noindex)${seenFile ? `; record ${seenFile}` : ""}`);
     if (on[0]) console.log(`page: e.g. ${on[0].dir}/ title "${on[0].title}"; description ${on[0].desc.length} chars: ${on[0].desc}`);
   } else console.log(`page: no deck pages (${ROUTES_ON ? "the page has no deck code yet" : "routes off"})`);
-  const packs = PACKS_ON ? packPages(full, dirname(src), dirname(out)) : [];
+  const packs = PACKS_ON ? (LP ? langPackPages(full, DATA || dirname(src), dirname(out)) : packPages(full, dirname(src), dirname(out))) : [];
   const ci = args.indexOf("--cards-seen"), cardsSeen = ci > 0 ? args[ci + 1] : null;
   const cards = CARDS_ON ? cardPages(full, dirname(src), dirname(out), cardsSeen) : [];
   if (CARDS_ON) {
@@ -726,7 +755,8 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
       ...cards.filter((x) => x.on).map((x) => [x.dir + "/", "daily"]),   // R32: cards in this week's lists only
       ...ALT.flatMap((l) => [[`${l}/`, "hourly"], ...(ALT_R.includes(l) ? SECS.filter((x) => ALT_DIRS.includes(x.dir) && (x.dir !== "limited" || lbOn))
         .map((x) => [`${l}/${x.dir}/`, x.about ? "monthly" : "daily"]) : []),
-        ...(ALT_D.includes(l) ? decks.filter((x) => x.on || x.days <= KEEP_DAYS).map((x) => [`${l}/${x.dir}/`, "daily"]) : [])])];   // Phase 2 Step 3: the indexable language pages
+        ...(ALT_D.includes(l) ? decks.filter((x) => x.on || x.days <= KEEP_DAYS).map((x) => [`${l}/${x.dir}/`, "daily"]) : []),
+        ...(ALT_P.includes(l) ? packs.map((x) => [`${l}/${x.dir}/`, "daily"]) : [])])];   // Phase 2 Step 3: the indexable language pages
     writeFileSync(join(dirname(out), "sitemap.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n' +
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       urls.map(([u, f]) => `  <url><loc>${SITE}/${u}</loc><lastmod>${today}</lastmod><changefreq>${f}</changefreq></url>\n`).join("") +
