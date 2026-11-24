@@ -2,6 +2,11 @@
  "_": "Code changes for the pt page (Brazilian Portuguese) (i18n/build.mjs applies them before the texts). Same format as ja.code.json. What's new is English on this page (enOnly in config.json). Limited Battle: the fixed parts are translated, the deck notes stay English (note on the page).",
  "patches": [
   {
+   "note": "tab: Últimos torneios (wide) / Torneios (phone)",
+   "find": "<span class=\"tlx\">Latest </span>Events",
+   "replace": "<span class=\"tlx\">Últimos torneios</span><span class=\"tls\">Torneios</span>"
+  },
+  {
    "note": "share button label: Copiar el enlace de este torneo",
    "find": "aria-label=\"${TOUCH ? \"Share\" : \"Copy the link to\"} this ${what}\"",
    "replace": "aria-label=\"${TOUCH ? \"Compartilhar\" : \"Copiar o link\"} ${({ event: \"deste torneio\", deck: \"deste baralho\", list: \"desta lista\", pack: \"deste pacote\", card: \"desta carta\" })[what] || what}\""
@@ -534,9 +539,9 @@
    "replace": "${mAll ? \"Ver menos\" : \"Ver tudo (\" + wl.length + \")\"}"
   },
   {
-   "note": "tab: Barajas Meta (wide) / Meta (phone)",
+   "note": "tab: Baralhos meta (wide) / Meta (phone; .tls in preview/i18n_patch.py)",
    "find": "Meta<span class=\"tlx\"> Decks</span>",
-   "replace": "<span class=\"tlx\">Baralhos </span>Meta"
+   "replace": "<span class=\"tlx\">Baralhos meta</span><span class=\"tls\">Meta</span>"
   },
   {
    "note": "tab: Sobres (was Sobres Sobres on wide screens)",

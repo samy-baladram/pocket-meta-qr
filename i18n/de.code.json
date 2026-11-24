@@ -2,6 +2,16 @@
  "_": "Code changes for the de page (i18n/build.mjs applies them before the texts). find: exact code of the page; all: change each place (else the first). A find that is not in the page is reported, not used.",
  "patches": [
   {
+   "note": "Limited Battle: the cards line",
+   "find": "Dual Fusion, Promo-C Vol. 1 and 7 shop promos ${ii(",
+   "replace": "Duale Fusion, Promopack Serie C Vol. 1 und 7 Shop-Promos ${ii("
+  },
+  {
+   "note": "Limited Battle: cards tip, with German card names",
+   "find": "<p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(\", \")}.</p>",
+   "replace": "<p>Nur Karten aus <b>Duale Fusion</b> (C1), dem <b>Promopack Serie C Vol. 1</b> dieses Events und diesen 7 Shop-Promos:</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\", \")}.</p>"
+  },
+  {
    "note": "Limited Battle: the event name as in the German game (a new event keeps its English name until it is added here)",
    "find": "const LB_DEMO = ",
    "replace": "LB.name = { \"Dual Fusion Limited Battle\": \"Limitierte Kämpfe: Duale Fusion (C1)\" }[LB.name] || LB.name; const LB_DEMO = "
