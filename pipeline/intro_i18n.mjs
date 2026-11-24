@@ -3,7 +3,7 @@
 // window (dates), the number of tournaments and the 3 most played decks with their share. Deck names come from
 // preview/i18n/names.<lang>.json (+ names.fix.json), as on the page; a name with no match stays English.
 // Formats as agreed with the owner (i18n/README.md): ja 11月17日〜23日, 1位 …（使用率10.7%）; es 17–23 nov, 1.º 10,7 %;
-// pt 17–23 de nov., 1º 10,7%; de 17.–23. Nov., 1. 10,7 %; fr 17–23 nov., 1er / 2e 10,7 %; it 17–23 nov, 1º 10,7%.
+// pt 17–23 de nov., 1º 10,7%; de 17.–23. Nov., 1. 10,7 %; fr 17–23 nov., 1er / 2e 10,7 %; it 17–23 nov, 1º 10,7%; ko 11월 17일~23일, 1위 … (10.7%).
 import { readFileSync, existsSync } from "node:fs";
 
 const MON = {
@@ -17,18 +17,19 @@ const md = (iso) => [+iso.slice(5, 7), +iso.slice(8, 10)];
 const DAY = {
   ja: (m, d) => `${m}月${d}日`, es: (m, d) => `${d} ${MON.es[m - 1]}`, pt: (m, d) => `${d} de ${MON.pt[m - 1]}`,
   de: (m, d) => `${d}. ${MON.de[m - 1]}`, fr: (m, d) => `${d === 1 ? "1er" : d} ${MON.fr[m - 1]}`, it: (m, d) => `${d} ${MON.it[m - 1]}`,
+  ko: (m, d) => `${m}월 ${d}일`,
 };
 // a window of days: one day, days in one month (17–23 nov), or two months (30 oct – 5 nov)
 function span(lang, a, b) {
   const [ma, da] = md(a), [mb, db] = md(b), f = DAY[lang];
   if (a.slice(0, 10) === b.slice(0, 10)) return f(ma, da);
-  if (ma === mb) return lang === "ja" ? `${ma}月${da}日〜${db}日` : lang === "es" ? `${da}–${db} ${MON.es[ma - 1]}`
+  if (ma === mb) return lang === "ja" ? `${ma}月${da}日〜${db}日` : lang === "ko" ? `${ma}월 ${da}일~${db}일` : lang === "es" ? `${da}–${db} ${MON.es[ma - 1]}`
     : lang === "pt" ? `${da}–${db} de ${MON.pt[ma - 1]}` : lang === "fr" ? `${da === 1 ? "1er" : da}–${db} ${MON.fr[ma - 1]}` : lang === "it" ? `${da}–${db} ${MON.it[ma - 1]}` : `${da}.–${db}. ${MON.de[ma - 1]}`;
-  return lang === "ja" ? `${f(ma, da)}〜${f(mb, db)}` : `${f(ma, da)} – ${f(mb, db)}`;
+  return lang === "ja" ? `${f(ma, da)}〜${f(mb, db)}` : lang === "ko" ? `${f(ma, da)}~${f(mb, db)}` : `${f(ma, da)} – ${f(mb, db)}`;
 }
-const pct = (lang, v) => { const s = (+v).toFixed(1); return lang === "ja" ? s + "%" : (lang === "pt" || lang === "it") ? s.replace(".", ",") + "%"
+const pct = (lang, v) => { const s = (+v).toFixed(1); return lang === "ja" || lang === "ko" ? s + "%" : (lang === "pt" || lang === "it") ? s.replace(".", ",") + "%"
   : s.replace(".", ",") + " %"; };
-const rank = (lang, i) => (lang === "ja" ? `${i}位` : lang === "es" ? `${i}.º` : lang === "pt" ? `${i}º` : lang === "fr" ? (i === 1 ? "1er" : `${i}e`) : lang === "it" ? `${i}º` : `${i}.`);
+const rank = (lang, i) => (lang === "ja" ? `${i}位` : lang === "ko" ? `${i}위` : lang === "es" ? `${i}.º` : lang === "pt" ? `${i}º` : lang === "fr" ? (i === 1 ? "1er" : `${i}e`) : lang === "it" ? `${i}º` : `${i}.`);
 
 function names(lang, dir) {
   const f = `${dir}/names.${lang}.json`;
@@ -52,8 +53,11 @@ export function introText(lang, D, namesDir = "preview/i18n") {
   if (!DAY[lang] || !D?.decks?.length || !D.span || !D.summary) return "";
   const N = names(lang, namesDir), n = D.summary.tournaments, w = span(lang, D.span[0], D.span[1]);
   const top = D.decks.slice(0, 3).map((d, i) => lang === "ja" ? `${rank(lang, i + 1)} ${deck(lang, N, d.name)}（使用率${pct(lang, d.share)}）`
+    : lang === "ko" ? `${rank(lang, i + 1)} ${deck(lang, N, d.name)} (${pct(lang, d.share)})`
     : `${rank(lang, i + 1)} ${deck(lang, N, d.name)} ${pct(lang, d.share)}`);
   if (lang === "ja") return `今週のポケポケ最強デッキ（${n}大会・${w}）：${top.join("、")}。すべてのレシピにQRコードがあり、ゲームに読み込めます。`;
+  if (lang === "ko") return `이번 주 포켓몬 카드 게임 Pocket 메타 덱(대회 ${n}개, ${w}): ${top.join(", ")}. ` +
+    "모든 레시피에 게임에서 읽을 수 있는 QR 코드가 있습니다.";
   if (lang === "es") return `Las mejores barajas de JCC Pokémon Pocket de esta semana, de ${n} torneos (${w}): ${top.join(", ")}. ` +
     "Cada lista tiene un código QR para copiarla en el juego.";
   if (lang === "pt") return `Os melhores baralhos de Pokémon TCG Pocket desta semana, de ${n} torneios (${w}): ${top.join(", ")}. ` +
@@ -83,15 +87,19 @@ const SEC_DESC = {
     about: "Como importar um baralho de Pokémon TCG Pocket por código QR, de onde vêm os dados (torneios da Limitless, últimos 7 dias) e como os baralhos e as listas são classificados." },
   de: { events: "Ergebnisse der neuesten Pokémon TCG Pocket-Turniere: Top-8-Listen mit QR-Codes.",
     packs: "Welche Pokémon TCG Pocket-Packs die Karten der Meta-Decks dieser Woche enthalten.",
-    limited: "Ausgewählte Decks mit QR-Codes für den aktuellen Limitierten Kampf.",
+    limited: "Ausgewählte Decks mit QR-Codes für die aktuellen Limitierten Kämpfe.",
     about: "So importierst du ein Pokémon TCG Pocket-Deck per QR-Code, woher die Daten kommen (Limitless-Turniere, letzte 7 Tage) und wie Decks und Listen sortiert werden." },
   fr: { events: "Résultats des derniers tournois de Pokémon TCG Pocket : listes du top 8 avec codes QR.",
     packs: "Quels boosters de Pokémon TCG Pocket donnent les cartes des decks du méta de la semaine.",
-    limited: "Decks sélectionnés avec codes QR pour le Combat restreint en cours.",
+    limited: "Decks sélectionnés avec codes QR pour les Combats restreints en cours.",
     about: "Comment importer un deck de Pokémon TCG Pocket avec un code QR, d'où viennent les données (tournois Limitless, 7 derniers jours) et comment les decks et les listes sont classés." },
-  it: { events: "Risultati degli ultimi tornei di Pokémon TCG Pocket: liste della top 8 con codici QR.",
-    packs: "Quali buste di Pokémon TCG Pocket danno le carte dei mazzi del meta di questa settimana.",
-    limited: "Mazzi scelti con codici QR per la Lotta limitata in corso.",
-    about: "Come importare un mazzo di Pokémon TCG Pocket da un codice QR, da dove vengono i dati (tornei Limitless, ultimi 7 giorni) e come sono ordinati mazzi e liste." },
+  it: { events: "Risultati degli ultimi tornei del GCC Pokémon Pocket: liste della top 8 con codici QR.",
+    packs: "Quali buste del GCC Pokémon Pocket danno le carte dei mazzi del meta di questa settimana.",
+    limited: "Mazzi scelti con codici QR per le Lotte esclusive in corso.",
+    about: "Come importare un mazzo del GCC Pokémon Pocket da un codice QR, da dove vengono i dati (tornei Limitless, ultimi 7 giorni) e come sono ordinati mazzi e liste." },
+  ko: { events: "포켓몬 카드 게임 Pocket 최근 대회 결과: TOP 8 레시피를 QR 코드와 함께.",
+    packs: "이번 주 메타 덱의 카드가 나오는 포켓몬 카드 게임 Pocket 팩.",
+    limited: "진행 중인 한정 배틀을 위해 고른 덱을 QR 코드와 함께.",
+    about: "포켓몬 카드 게임 Pocket 덱을 QR 코드로 읽어 오는 방법, 데이터 출처(Limitless 대회, 최근 7일간), 덱과 레시피의 순위를 정하는 방법." },
 };
 export const sectionDesc = (lang, dir) => SEC_DESC[lang]?.[dir] || "";

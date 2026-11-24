@@ -1,0 +1,2226 @@
+{
+"00079a3837": [
+"Showing {0} of {1} packs.",
+"팩 {1}개 중 {0}개 표시."
+],
+"003ebf20c8": [
+"One moment, then try again.",
+"잠시 후 다시 시도해 주세요."
+],
+"0105344694": [
+"· {0} player{1}",
+"· {0}명{1!}"
+],
+"01182452b1": [
+"In {t0}{0}{t1} meta deck{1}",
+"메타 덱 {t0}{0}{t1}개에서 사용{1!}"
+],
+"012deaa0d8": [
+"Last 3 days",
+"최근 3일"
+],
+"01429c8de9": [
+"swap{0} from List 1",
+"장 교체{0!} (레시피 1 대비)"
+],
+"01466ff456": [
+"of {0} top players",
+"(상위 플레이어 {0}명 중)"
+],
+"028fddc250": [
+"Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.",
+"지금 인기{t0}: 가장 많은 상위 플레이어가 완전히 똑같이 사용한 레시피입니다(3명 이상, 그리고 다른 어떤 레시피보다 2명 이상 많음). 가장 많이 쓰인 레시피가 가장 강한 것은 아닙니다. 전적과 다른 레시피도 확인하세요."
+],
+"02b620b03a": [
+"{0}Top players",
+"{0}상위 플레이어"
+],
+"0345f0f3d0": [
+"2+ more wins than losses",
+"승리가 패배보다 2 이상 많음"
+],
+"03733db7eb": [
+"+ {0} more card{1} under 10%.",
+"그 외 10% 미만 카드 {0}장{1!}."
+],
+"0440b7a85c": [
+"took {0} at",
+"{0}:"
+],
+"045b64f6a3": [
+"Top 4",
+"TOP 4"
+],
+"0575b7b5d6": [
+"days left",
+"일 남음"
+],
+"06ac8d6ac7": [
+"a deck",
+"덱"
+],
+"08d089f97b": [
+"share · {0} win",
+"사용률 · 승률 {0}"
+],
+"098020c805": [
+"Obtained from",
+"입수 방법"
+],
+"09ca55ca52": [
+"Share",
+"사용률"
+],
+"0a8dd6adce": [
+"7 days",
+"7일간"
+],
+"0acb187723": [
+"Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.",
+"미러전(같은 덱끼리의 대전)과 한 사람이 덱을 2개 이상 쓰는 대회는 세지 않습니다. 무승부는 0.5승으로 셉니다."
+],
+"0b638f7e80": [
+"It shows only the current meta, the decks, lists and events of the last 7 to 14 days, so it does not keep a history, list every card or build decks.",
+"지금의 메타만 보여 줍니다. 최근 7~14일의 덱, 레시피, 대회만 있으므로 과거 기록, 전체 카드 목록, 덱 만들기는 없습니다."
+],
+"0bec14f205": [
+"Rising",
+"상승"
+],
+"0cae74747c": [
+"Exact",
+"완전 일치"
+],
+"0e4dc9ba50": [
+"pack{0}",
+"팩{0!}"
+],
+"0e60c63c9d": [
+"See in Packs",
+"팩에서 보기"
+],
+"0e70e686b6": [
+"in {0} days",
+"({0}일간)"
+],
+"0f830bc25e": [
+"Cards",
+"카드"
+],
+"0f8c6e4e76": [
+"· {0} share · {1} win",
+"· 사용률 {0} · 승률 {1}"
+],
+"0fcd28ef91": [
+"checked &lt; 2 h ago",
+"2시간 이내에 확인"
+],
+"0fe53f9dbc": [
+"&middot; open again",
+"&middot; 다시 열기"
+],
+"109086774e": [
+"Show all events",
+"모든 대회 표시"
+],
+"10ab7e88e4": [
+"(all {0} together {1}, {2}%)",
+"({0}명 합계 {1}, 승률 {2}%)"
+],
+"10c23975d7": [
+"win{0}",
+"회 우승{0!}"
+],
+"1117ffe1c9": [
+"1st–3rd {t0}{t1}top 25%",
+"1~3위 {t0}{t1}상위 25%"
+],
+"117bc3bfd7": [
+"No big moves",
+"큰 변동 없음"
+],
+"11d2a517c8": [
+"won by",
+"우승:"
+],
+"133724e26e": [
+"lists · best {t0}{0}{t1} · {1}% share",
+"레시피 · 최고 {t0}{0}{t1} · 사용률 {1}%"
+],
+"1385294543": [
+"×N: share here vs {0} · top 8s at other events",
+"×N: 이 대회 사용률과 {0} 사용률의 비교 · 다른 대회의 TOP 8 진입"
+],
+"13d4b964c6": [
+"One event is {t0}{0}%{t1} of these results, so it moves the numbers more than usual.",
+"대회 하나가 이 결과의 {t0}{0}%{t1}를 차지해서, 평소보다 수치에 주는 영향이 큽니다."
+],
+"1455ab70a1": [
+"is in {0} pack{1}.",
+"카드는 팩 {0}개에 수록되어 있습니다{1!}."
+],
+"145a83266e": [
+"Loading&hellip;",
+"불러오는 중&hellip;"
+],
+"1464926697": [
+"Most used is not always the best: compare the win rates.",
+"가장 많이 쓰인 레시피가 가장 강한 것은 아닙니다. 승률을 비교하세요."
+],
+"14b0dbb85b": [
+"Pocket Meta QR is a free fan site. It is not affiliated with, endorsed or sponsored by Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK or DeNA. Pok&eacute;mon and all card images are trademarks and &copy; of their owners.",
+"Pocket Meta QR은 무료 팬 사이트입니다. Nintendo, The Pok&eacute;mon Company, Creatures, GAME FREAK, DeNA와 관계가 없으며 승인이나 후원을 받지 않았습니다. Pok&eacute;mon과 모든 카드 이미지는 각 권리자의 상표이며 &copy;입니다."
+],
+"158436f0e7": [
+"This link is broken or was changed",
+"이 링크는 잘못되었거나 바뀌었습니다"
+],
+"166c895601": [
+"top {0} vs",
+"상위 {0}명 vs"
+],
+"168e4932a6": [
+"Deck",
+"덱"
+],
+"16effccb01": [
+"No list was used by more than 1 top player, so the {0} is the list with the best place{1}.",
+"2명 이상의 상위 플레이어가 사용한 레시피가 없으므로, {0}은 순위가 가장 높은 레시피입니다{1}."
+],
+"172415f02e": [
+"added",
+"추가"
+],
+"1761c5f76c": [
+"Hand-picked decks, not tournament data. This view goes away when the event ends.",
+"직접 고른 덱이며 대회 데이터가 아닙니다. 이 화면은 이벤트가 끝나면 사라집니다."
+],
+"17709dbc6f": [
+"Best finish",
+"최고 성적"
+],
+"178d1d75f0": [
+"What is Limitless TCG?",
+"Limitless TCG란?"
+],
+"18e4a0dbe7": [
+"Tap {t0}Add to Home screen{t1} or {t2}Install app{t3}.",
+"{t0}홈 화면에 추가{t1} 또는 {t2}앱 설치{t3}를 탭하세요."
+],
+"1affc37b23": [
+"Below the cut",
+"컷 미달"
+],
+"1b45bdc8b5": [
+"best {0}%",
+"최고 {0}%"
+],
+"1b6d32d996": [
+"{0}: Which Meta Decks Use It ({1}) – Pokémon TCG Pocket | Pocket Meta QR",
+"{0}: 사용하는 메타 덱({1}) – 포켓몬 카드 게임 Pocket | Pocket Meta QR"
+],
+"1bdcee8370": [
+"{0}–{1} wins",
+"{0}~{1}승"
+],
+"1be44ea15f": [
+"The window length changed today, so the 24 h rank arrows are hidden today.",
+"오늘은 기간의 길이가 바뀌어서 24시간 순위 화살표를 표시하지 않습니다."
+],
+"1c1a3f0a7e": [
+"Score{0}",
+"전적{0}"
+],
+"1cc15542b5": [
+"No top result",
+"상위 입상 없음"
+],
+"1cdae7eaea": [
+"Copy the link to",
+"링크 복사:"
+],
+"1d0730cf62": [
+"Just added",
+"방금 추가됨"
+],
+"1d50bf1d8b": [
+"Winners",
+"우승 덱"
+],
+"1e6fd9a5e6": [
+"Latest events",
+"최근 대회"
+],
+"1eb2b5b879": [
+"top 8{0}",
+"회 TOP 8{0!}"
+],
+"1f2a787631": [
+"QR code not available for this list.",
+"이 레시피에는 QR 코드가 없습니다."
+],
+"1faeee71ba": [
+"week{0} ago",
+"주 전{0!}"
+],
+"1fc6434234": [
+"No deck history:{t0} the 7-day trend in a deck&rsquo;s stats is the longest view.",
+"덱 기록 없음:{t0} 덱 통계의 7일간 추이가 가장 긴 기간입니다."
+],
+"1fd12296da": [
+"deck{0}",
+"덱{0!}"
+],
+"1fd840594a": [
+"This{t0}List",
+"이{t0}레시피"
+],
+"21c1b89658": [
+"in {0}% of its top players’ lists",
+"상위 플레이어 레시피의 {0}%에 채용"
+],
+"21e164cb9e": [
+"· {0} of",
+"· {0}/"
+],
+"21ee87bfbf": [
+"In {0} of the {1} {2} packs",
+"{2}의 팩 {1}개 중 {0}개에 수록"
+],
+"22071c6d00": [
+"tap a deck to see its wins",
+"덱을 탭하면 우승한 대회를 표시"
+],
+"22118a1f44": [
+"event{0}",
+"대회{0!}"
+],
+"2274cb3617": [
+"is new: these are the results of its first {0}, so the numbers can change fast.",
+": 새 확장팩입니다. {0}의 결과라서 수치가 빠르게 바뀔 수 있습니다."
+],
+"232a936a05": [
+"Deck data did not load.",
+"덱 데이터를 불러오지 못했습니다."
+],
+"23bf8384bf": [
+"Top 25%",
+"상위 25%"
+],
+"23cd04792c": [
+"Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image.",
+"이미지를 저장한 뒤 게임에서: 덱 → + → 코드 읽기 → 저장한 이미지를 읽기."
+],
+"23d7de0ce5": [
+"Most often in a top 8",
+"TOP 8에 많은 덱"
+],
+"241585c95a": [
+"Can I use it like an app?",
+"앱처럼 쓸 수 있나요?"
+],
+"242feab371": [
+"Best-placed finish",
+"최고 순위"
+],
+"24345a1437": [
+"Today",
+"오늘"
+],
+"24ea1f77f4": [
+"Last change",
+"이전 업데이트"
+],
+"24ecb68c93": [
+"Show all {0} lists",
+"레시피 모두 보기 ({0})"
+],
+"250cd1927b": [
+"in almost every deck",
+"거의 모든 덱에 채용"
+],
+"262e0e8a01": [
+"(last seen {0})",
+"(마지막 등장: {0})"
+],
+"26b1ca6b96": [
+"Card details",
+"카드 상세"
+],
+"26e86c0eb6": [
+"{0}+ players",
+"{0}명 이상"
+],
+"26ed6f1e9b": [
+"in small decks",
+"소규모 덱에서 사용"
+],
+"275a700078": [
+"record",
+"전적"
+],
+"2781bff12a": [
+"deck{0} use{1} {2}{3}.",
+"덱{0!} {1!}에서 {2}{3} 사용."
+],
+"27e90dfa57": [
+"at",
+":"
+],
+"2861d0ece7": [
+"Decks in the top",
+"상위 덱"
+],
+"28e599d2bd": [
+"Feedback or a bug? {t0}Send me a message",
+"의견이나 버그는 {t0}메시지 보내기"
+],
+"2912fa5e02": [
+"players",
+"명"
+],
+"293325df75": [
+"Show all {0} smaller decks",
+"소규모 덱 모두 보기 ({0})"
+],
+"2a08f40ca1": [
+"Ranks are compared with the data of 24 h earlier.",
+"순위는 24시간 전 데이터와 비교합니다."
+],
+"2a231249ff": [
+"Cards in these decks",
+"이 덱들의 카드"
+],
+"2aca25531e": [
+"This is the list of its best-placed player{0}{1}. A starting point, not a proven list.",
+"순위가 가장 높은 플레이어의 레시피입니다{0}{1}. 출발점이며, 검증된 레시피는 아닙니다."
+],
+"2b286f6b1e": [
+"Vs the meta",
+"메타와 비교"
+],
+"2c1469f758": [
+"Save image",
+"이미지 저장"
+],
+"2c552bbeec": [
+"d ago",
+"일 전"
+],
+"2cb2bd4021": [
+"Too few players for a fair rank, so it has no rank number.",
+"공정한 순위를 매기기에는 인원이 적어서 순위 번호가 없습니다."
+],
+"2e5855d5c2": [
+"0.2–0.5% share",
+"사용률 0.2~0.5%"
+],
+"2eb15e8dda": [
+"Did better",
+"호성적"
+],
+"2f8d136cf7": [
+"What’s New: Site Updates | Pocket Meta QR",
+"업데이트 소식: 사이트 업데이트 | Pocket Meta QR"
+],
+"301e37b6c7": [
+"with {0} in the top 8",
+"(TOP 8에 {0})"
+],
+"302a69d3b1": [
+"steady in {0} days",
+"{0}일간 거의 보합"
+],
+"3056cb84f8": [
+"or better made the top {0} · {t0}Limitless ↗",
+"이상으로 상위 {0}명 · {t0}Limitless ↗"
+],
+"30d4653f8e": [
+"▲ = at least 2&times; its meta share in this event's top {0}.",
+"▲ = 이 대회 상위 {0}명에서 메타 사용률의 2배 이상."
+],
+"311bee6a56": [
+"Copy the address",
+"주소 복사"
+],
+"317720e9e4": [
+"Tap the menu {t0}&#9776;{t1}, then {t2}Share{t3} {0}.",
+"메뉴 {t0}&#9776;{t1}를 탭하고 {t2}공유{t3} {0}를 탭하세요."
+],
+"318169ffe2": [
+"{0}: best place",
+"{0}: 최고 순위"
+],
+"31c63feec3": [
+"Not in the meta now",
+"현재 메타 밖"
+],
+"3262485e3a": [
+"· {0} top player{1}",
+"· 상위 플레이어 {0}명{1!}"
+],
+"326a3f7b0a": [
+"Booster Packs",
+"뽑을 만한 팩"
+],
+"327955ac28": [
+"Share {0}. Win rate {1}.{2}",
+"사용률 {0}. 승률 {1}.{2}"
+],
+"33a6685cd7": [
+"in the last {0} days",
+"최근 {0}일간"
+],
+"33bd43999f": [
+"players{0}",
+"명{0!}"
+],
+"33ce417454": [
+"Loading…",
+"불러오는 중…"
+],
+"33ddf66a55": [
+"▲ Rising",
+"▲ 상승"
+],
+"347bbc504b": [
+"A player with at least 2 more wins than losses at a single-deck event.",
+"1인 1덱 대회에서 승리가 패배보다 2 이상 많은 플레이어입니다."
+],
+"35d9bc5159": [
+"Released",
+"출시"
+],
+"35e3987c5b": [
+"Limited Battle decks",
+"한정 배틀 덱"
+],
+"3697024201": [
+"What’s new",
+"업데이트 소식"
+],
+"372c9acbf6": [
+"How do I import a deck?",
+"덱은 어떻게 읽어 오나요?"
+],
+"380b549c34": [
+"Copy the address from the address bar",
+"주소창에서 주소를 복사하세요"
+],
+"3854e1a3ed": [
+"Chrome / Edge:{t0} click the install icon at the right end of the address bar, or menu &rarr; {t1}Install Pocket Meta QR{t2}.",
+"Chrome / Edge:{t0} 주소창 오른쪽 끝의 설치 아이콘을 클릭하거나, 메뉴 &rarr; {t1}Pocket Meta QR 설치{t2}."
+],
+"392feef07c": [
+"Players",
+"참가자"
+],
+"393f6cb329": [
+"in {0} pack{1}",
+"팩 {0}개{1!}"
+],
+"39a4023d00": [
+"Because every number comes from real tournament games, recorded while the event runs. Each event shows its standings and the result of every match in every round, and players hand in their deck list before the event starts, so each list is the deck that was really played. On top of that, this site counts only public Standard events with 8 or more players and 1 deck per player, and only real matches: no byes, no mirror matches.",
+"모든 수치가 대회 중에 기록된 실제 대전에서 나오기 때문입니다. 각 대회는 순위와 모든 라운드의 모든 대전 결과를 공개하고, 플레이어는 대회 시작 전에 덱 레시피를 제출하므로 각 레시피는 실제로 사용된 덱입니다. 또한 이 사이트는 참가자 8명 이상, 1인 1덱의 공개 스탠다드 대회에서 실제 대전만 셉니다(부전승과 미러전은 제외)."
+],
+"3a46f4e05d": [
+"Event stats",
+"대회 통계"
+],
+"3afa94025a": [
+"since the {0} release",
+"{0} 출시 이후"
+],
+"3b4a56a122": [
+"No deck or event found",
+"덱도 대회도 찾을 수 없습니다"
+],
+"3b8d64bb18": [
+"About Pocket Meta QR",
+"Pocket Meta QR 소개"
+],
+"3b9f38b850": [
+"▲ Up {0} place{1}{t0}: {t1}{2}{t2} 24 h ago, now {t3}{3}{t4}.",
+"▲ {0}계단 상승{1!}{t0}: 24시간 전 {t1}{2}{t2}, 현재 {t3}{3}{t4}."
+],
+"3bf7457bfd": [
+"results · {t0}{0}{t1} player{1} · {t2}{2}{t3} event{3}",
+"개 성적 · {t0}{0}{t1}명{1!} · 대회 {t2}{2}{t3}개{3!}"
+],
+"3cc8e39b82": [
+"Tap {t0}Add{t1}.",
+"{t0}추가{t1}를 탭하세요."
+],
+"3d02399826": [
+"Latest Pokémon TCG Pocket tournaments",
+"포켓몬 카드 게임 Pocket 최근 대회"
+],
+"3d3791aae5": [
+"Light mode",
+"라이트 모드"
+],
+"3d42976c7a": [
+"2 cards",
+"2장"
+],
+"3d506b84fd": [
+"New in the list (the first time since the set came out, for 3 days) and Breakout decks (a rare deck with a top-8 finish at a big event)",
+"랭킹에 새로 오른 덱(확장팩 출시 이후 처음, 3일간)과 급부상 덱(큰 대회에서 TOP 8에 든 드문 덱)"
+],
+"3d81bd05a3": [
+"All packs",
+"모든 팩"
+],
+"3e6d1fbfd5": [
+"with this exact list",
+"완전히 같은 레시피"
+],
+"3ea7d0f033": [
+"Packs for the meta",
+"메타 기준 팩"
+],
+"41ce3c6eaf": [
+"1 card",
+"1장"
+],
+"41e4e149fd": [
+"(too few to be sure)",
+"(데이터 부족)"
+],
+"41e97088bb": [
+"Promo card, not from a booster pack",
+"프로모 카드(팩에서 나오지 않음)"
+],
+"426ec07bcd": [
+"Breakout deck",
+"급부상 덱"
+],
+"42b36a9675": [
+"The other lists compare their cards with it. Lists with the same count are sorted by their best place.",
+"다른 레시피는 이 레시피와 카드를 비교합니다. 인원이 같은 레시피는 최고 순위 순으로 정렬합니다."
+],
+"42df7965d2": [
+"all match wins, losses and ties of this deck",
+"이 덱의 모든 대전 승·패·무"
+],
+"437bcb1511": [
+"Energy",
+"에너지"
+],
+"448ab73ba1": [
+"Set",
+"확장팩"
+],
+"45360d530e": [
+"Cards swapped vs the",
+"교체한 카드, 비교 대상:"
+],
+"46c45a8cc8": [
+"· {0} win{1}",
+"· {0}회 우승{1!}"
+],
+"479fe3b7a9": [
+"Loading events&hellip;",
+"대회를 불러오는 중&hellip;"
+],
+"47bd6e0200": [
+"Up in rank in the last 24 hours, or new in the list",
+"최근 24시간 동안 순위가 오른 덱, 또는 랭킹에 새로 오른 덱"
+],
+"4824b2db0a": [
+"– Same rank{t0} as 24 h ago: {t1}{0}{t2}.",
+"– 24시간 전과 같은 순위{t0}: {t1}{0}{t2}."
+],
+"489f487724": [
+"Score",
+"전적"
+],
+"48d61bdd8b": [
+"Is it free?",
+"무료인가요?"
+],
+"48d6857f6b": [
+"Breakout",
+"급부상"
+],
+"49a26dcc49": [
+"of {0} ·",
+"/{0} ·"
+],
+"49ac8d4bf8": [
+", record",
+", 전적"
+],
+"4acadb5e3c": [
+"{0}Breakout",
+"{0}급부상"
+],
+"4c852b26d1": [
+"Show less",
+"접기"
+],
+"4cf0a9e934": [
+"winning record{0}",
+"승리가 패배보다 많음{0!}"
+],
+"4d13ad2e9a": [
+"1{t0}{t1}{t2}{t3}2{t4}{t5}{t6}{t7}3{t8}cards swapped",
+"1{t0}{t1}{t2}{t3}2{t4}{t5}{t6}{t7}3{t8}장 교체"
+],
+"4d4ce73b15": [
+"Card",
+"카드"
+],
+"4d8078c8ad": [
+"Shared list: {t0}{0}{t1} &rsaquo;",
+"공유된 레시피: {t0}{0}{t1} &rsaquo;"
+],
+"4de41ef9aa": [
+"Tap {t0}Share{t1} {0} in the address bar (top right).",
+"주소창의 {t0}공유{t1} {0}를 탭하세요(오른쪽 위)."
+],
+"4e1f459a5a": [
+"top players",
+"상위 플레이어"
+],
+"4eb0d455b4": [
+"only here",
+"여기만"
+],
+"4f32916ced": [
+"My Decks",
+"덱"
+],
+"50009483b8": [
+"List 1",
+"레시피 1"
+],
+"500c824120": [
+"Win rate against the 10 most played decks {0} (games), best first. Bars from 20% to 80%; light = too few games to be sure it is not 50%. Tap a deck to open it.",
+"{0} 가장 많이 쓰인 10개 덱 상대 승률(대전 수)을 좋은 순으로 정렬했습니다. 막대는 20%~80%. 옅은 표시는 대전 수가 적어 50%와 다르다고 단정할 수 없는 것입니다. 덱을 탭하면 열립니다."
+],
+"50832fb363": [
+"deck{0} without {1}.",
+"덱{0!} ({1} 없음)."
+],
+"50a279de82": [
+"Show all",
+"모두 보기"
+],
+"5128e386a1": [
+"The ▲ / ▼ number is how much the share went up or down over the last {0} days, in percentage points (8.3% → 12.0% = ▲3.7).",
+"▲ / ▼ 숫자는 최근 {0}일간 사용률이 얼마나 오르내렸는지를 %p로 나타냅니다(8.3% → 12.0% = ▲3.7)."
+],
+"516dd47a55": [
+"Public Standard events with 8 or more players on {t0}Limitless TCG{t1}, from the last 7 days, because the meta changes fast (up to 14 days when there are few events, late in a set; never before the set&rsquo;s release). The numbers are computed here, so they can differ a little from other sites.",
+"{t0}Limitless TCG{t1}의 참가자 8명 이상 공개 스탠다드 대회 중 최근 7일간의 대회입니다. 메타가 빠르게 바뀌기 때문입니다(대회가 적을 때, 확장팩 후반에는 최대 14일. 확장팩 출시 전의 대회는 포함하지 않습니다). 수치는 이 사이트에서 계산하므로 다른 사이트와 조금 다를 수 있습니다."
+],
+"518e73b3a3": [
+"No deck or card found",
+"덱도 카드도 찾을 수 없습니다"
+],
+"521456ffbf": [
+"Cards of the {0} top player{1} (too few for core and flex).",
+"상위 플레이어 {0}명{1!}의 카드(인원이 적어 고정·자유 카드는 나누지 않습니다)."
+],
+"532297d7bc": [
+"Top 16",
+"TOP 16"
+],
+"5351e118ae": [
+"Updated {0}.{t0} Ranked best first, from our testing so far (it can change). Deck notes made with help from {t1}GameWith{t2}.",
+"업데이트: {0}.{t0} 지금까지의 테스트로 강한 순서대로 정렬했습니다(바뀔 수 있습니다). 덱 메모는 {t1}GameWith{t2}를 참고했습니다."
+],
+"53668c4b2c": [
+". Card images: PocketDecks. Details in About &amp; FAQ.",
+". 카드 이미지: PocketDecks. 자세한 내용은 소개 및 FAQ에서."
+],
+"536e31ed82": [
+"No card found",
+"카드를 찾을 수 없습니다"
+],
+"53a6ed6f32": [
+"Promo card (not in a booster pack)",
+"프로모 카드(팩에 들어 있지 않음)"
+],
+"544face5f8": [
+"&middot; in {0} {1}deck{2}",
+"&middot; {1}덱 {0}개{2!}"
+],
+"548bcc2f35": [
+"Win rate against the 10 most played decks {0}, best first. Green bar: above 50%, red: below. {t0}Light bar{t1}: too few games to be sure it is not 50%. Right: the number of games.",
+"{0} 가장 많이 쓰인 10개 덱 상대 승률을 좋은 순으로 정렬했습니다. 초록 막대는 50% 초과, 빨강은 50% 미만. {t0}옅은 막대{t1}는 대전 수가 적어 50%와 다르다고 단정할 수 없는 것입니다. 오른쪽 숫자는 대전 수입니다."
+],
+"54907cba83": [
+"&#9888; Below the cut",
+"&#9888; 컷 미달"
+],
+"54df5b93d8": [
+"No pack has that card.",
+"이 카드가 들어 있는 팩이 없습니다."
+],
+"5548ae4f34": [
+"days",
+"일간"
+],
+"55b1c3fa21": [
+"No public lists for this event.",
+"이 대회의 공개 레시피가 없습니다."
+],
+"55d0b1f10a": [
+"Top 8",
+"TOP 8"
+],
+"55eee3040e": [
+"Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes",
+"Pocket Meta QR – 포켓몬 카드 게임 Pocket 메타 덱과 대회 결과, QR 코드 포함"
+],
+"566bcc7a1f": [
+"Each day = the window that ends on that day (7–14 days, wider when there are few events), so the numbers move slowly. Faded: under 30 players.{0}",
+"각 날짜는 그날 끝나는 기간(7~14일. 대회가 적을 때는 더 김)의 수치라서 천천히 움직입니다. 옅은 표시: 30명 미만.{0}"
+],
+"56820cd9a6": [
+"Filter by energy",
+"에너지로 필터"
+],
+"569d5ce370": [
+"Open in Latest Events &rsaquo;",
+"최근 대회에서 열기 &rsaquo;"
+],
+"56bcd8fe54": [
+"New{t0}: the first time this deck is in the list since {0} came out. The tag shows for 3 days.",
+"신규{t0}: {0} 출시 이후 이 덱이 처음으로 랭킹에 올랐습니다. 이 표시는 3일간 나옵니다."
+],
+"56ded40877": [
+"Safari on Mac:{t0} File &rarr; {t1}Add to Dock{t2}.",
+"Mac의 Safari:{t0} 파일 &rarr; {t1}Dock에 추가{t2}."
+],
+"5712ba0728": [
+"below the cut",
+"컷 미달"
+],
+"57c9502a7d": [
+"Lists",
+"레시피"
+],
+"57e1881e37": [
+"share &middot; win",
+"사용률 &middot; 승률"
+],
+"57eea71ce1": [
+"This deck · all lists",
+"이 덱 · 전체 레시피"
+],
+"58197254f8": [
+"with {0}+ players",
+"({0}명 이상)"
+],
+"5a7b059de5": [
+"▼ Falling",
+"▼ 하락"
+],
+"5a99c00759": [
+"Top 10",
+"TOP 10"
+],
+"5d37aefd1f": [
+"deck{0} use{1} {2}.",
+"덱{0!} {1!}에서 {2} 사용."
+],
+"5dbde22d9a": [
+"Filter by deck",
+"덱으로 필터"
+],
+"5def453be8": [
+"This deck",
+"이 덱"
+],
+"5ec6670c6d": [
+"No flex cards.",
+"자유 카드가 없습니다."
+],
+"5ec8f71f27": [
+"Rank {0}.",
+"{0}위."
+],
+"5f0a456c00": [
+"Meta Decks",
+"메타 덱"
+],
+"60907e38f7": [
+"Scan Code",
+"코드 읽기"
+],
+"60e0efbbb5": [
+"of all decks played",
+"(전체 덱 중 비율)"
+],
+"612e12d292": [
+"Results",
+"성적"
+],
+"6196bbb07c": [
+"for &ldquo;{0}&rdquo;",
+"(“{0}”)"
+],
+"626a3de075": [
+"Close to 50%",
+"50% 전후"
+],
+"627c7add13": [
+"top 8 in {0} event{1}",
+"대회 {0}개{1!}에서 TOP 8"
+],
+"62eb8f8f88": [
+"The {0} is the list that the most top players used: {t0}{1} of {2}{t1}.",
+"{0}은 가장 많은 상위 플레이어가 사용한 레시피입니다: {t0}{2}명 중 {1}명{t1}."
+],
+"62eea86f4f": [
+"Filter events by size",
+"참가 인원으로 대회 필터"
+],
+"635acf28be": [
+"New data &middot; {t0}Refresh",
+"새 데이터 &middot; {t0}새로 고침"
+],
+"6403f2b7eb": [
+"New",
+"신규"
+],
+"65c821a596": [
+"Live",
+"최신"
+],
+"66aabd91fc": [
+"NEW",
+"NEW"
+],
+"67524d7001": [
+"The deck has no top player in these days. {t0}Unproven{t1}: some players won more than they lost, but none reached a top result; the page shows the best of them. {t2}No top result{t3}: no player won more than they lost; the page shows the best-placed list. Both are a starting point, not a proven list.",
+"이 기간에 이 덱에는 상위 플레이어가 없습니다. {t0}검증 전{t1}: 승리가 패배보다 많은 플레이어는 있지만 상위 성적에는 닿지 못했습니다. 그중 가장 좋은 레시피를 보여 줍니다. {t2}상위 입상 없음{t3}: 승리가 패배보다 많은 플레이어가 없습니다. 순위가 가장 높은 레시피를 보여 줍니다. 둘 다 출발점이며, 검증된 레시피는 아닙니다."
+],
+"67b6a61bdd": [
+"Search a card",
+"카드 검색"
+],
+"67c1cc65e8": [
+"Decks that use a card from",
+"다음 카드를 쓰는 덱:"
+],
+"6833f2bb77": [
+"top player{0}",
+"명의 상위 플레이어{0!}"
+],
+"68495946bf": [
+"About & FAQ: How to Import Pokémon TCG Pocket Decks by QR | Pocket Meta QR",
+"소개 및 FAQ: 포켓몬 카드 게임 Pocket 덱을 QR로 읽어 오는 방법 | Pocket Meta QR"
+],
+"685757d9ff": [
+"Not in the list 24 h ago. Now {t0}{0}{t1}.",
+"24시간 전에는 랭킹에 없었습니다. 현재 {t0}{0}{t1}."
+],
+"68836c550e": [
+"Core",
+"고정"
+],
+"69b8c08eae": [
+"Did worse",
+"부진"
+],
+"69bb0fdaac": [
+"{0}Tap to save",
+"{0}탭해서 저장"
+],
+"69bd4ef9fb": [
+"View",
+"보기"
+],
+"6a589c299f": [
+"Whole set",
+"확장팩 전체"
+],
+"6acd621280": [
+"pack",
+"팩"
+],
+"6b1f893805": [
+"Flex",
+"자유"
+],
+"6b6bb5df03": [
+"change in 24 hours",
+"24시간 변동"
+],
+"6c3a3bb7b9": [
+"The big number is the deck’s {t0}share{t1}: of {t2}all players{t3} in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the “top players” (that count, under each list, only takes players who won at least 2 more matches than they lost).",
+"큰 숫자는 덱의 {t0}사용률{t1}입니다. 이 대회들의 {t2}전체 플레이어{t3}(결과와 관계없이 모든 참가자) 중 이 덱을 쓴 비율입니다. 12.0% = 약 8명 중 1명. “상위 플레이어” 수가 아닙니다(각 레시피 아래의 인원은 이긴 대전이 진 대전보다 2 이상 많은 플레이어만 셉니다)."
+],
+"6cb6084c7f": [
+"Deck List ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
+"덱 레시피({0}) – 포켓몬 카드 게임 Pocket | Pocket Meta QR"
+],
+"6cd0edac3e": [
+"with {0} card{1} swapped",
+"{0}장 교체{1!}"
+],
+"6cff9e3a16": [
+"· best",
+"· 최고"
+],
+"6d1b9da07c": [
+"worst {0}%",
+"최저 {0}%"
+],
+"6d3ae60352": [
+"Popular + winning",
+"인기 · 호성적"
+],
+"6ddd63c542": [
+"▲▼ share change",
+"▲▼ 사용률 변화"
+],
+"6f02931a8a": [
+"which days count",
+"대상 기간"
+],
+"6fa55b2f97": [
+"This week&rsquo;s Pok&eacute;mon TCG Pocket decks",
+"이번 주 포켓몬 카드 게임 Pocket 메타 덱"
+],
+"6fa5fbbc16": [
+"older",
+"이전"
+],
+"6fe97729d0": [
+"Shared list{0}",
+"공유된 레시피{0}"
+],
+"7002659f49": [
+"About &amp; FAQ",
+"소개 및 FAQ"
+],
+"7027cc19ac": [
+"Search an event or deck",
+"대회 이름·덱 이름으로 검색"
+],
+"7046e8f2dd": [
+"The lists did not load. Close and open the event again.",
+"레시피를 불러오지 못했습니다. 대회를 닫았다가 다시 열어 주세요."
+],
+"70b8058643": [
+"stayed {t0}#{0}",
+"{t0}{0}위 유지"
+],
+"7164a73633": [
+"This is on purpose, so every number on the page is about the game as it is played today. For past results and every Pok&eacute;mon TCG Pocket card, {t0}Limitless TCG{t1} keeps the full archive.",
+"페이지의 모든 수치가 지금의 게임 상황을 나타내도록 일부러 이렇게 했습니다. 과거 결과와 포켓몬 카드 게임 Pocket의 모든 카드는 {t0}Limitless TCG{t1}에 모두 남아 있습니다."
+],
+"719ea396ad": [
+"Clear",
+"지우기"
+],
+"7252f9e8d5": [
+"last 7 days",
+"최근 7일간"
+],
+"72a90a7332": [
+"share {0} · win",
+"사용률 {0} · 승률"
+],
+"72f2b0dfa1": [
+"Shared with you",
+"공유된 레시피"
+],
+"73eace3aa6": [
+"All packs{t0} &middot;",
+"모든 팩{t0} &middot;"
+],
+"7415782d70": [
+"of ~{0}",
+"/예상 약 {0}"
+],
+"741e5bd528": [
+"What do &ldquo;Unproven&rdquo; and &ldquo;No top result&rdquo; mean?",
+"“검증 전”과 “상위 입상 없음”은 무슨 뜻인가요?"
+],
+"749107fc55": [
+"The image is not ready. Try again.",
+"이미지가 아직 준비되지 않았습니다. 다시 시도해 주세요."
+],
+"74c5266f10": [
+"Meta cards in packs",
+"팩의 메타 카드"
+],
+"74dfc10a49": [
+"Not a top list now",
+"현재 상위 레시피 아님"
+],
+"75367d1a97": [
+"No player of this deck won more matches than they lost {0}, so it has no top-player list.",
+"{0} 이 덱으로 승리가 패배보다 많은 플레이어가 없어서 상위 플레이어 레시피가 없습니다."
+],
+"75ab30ea65": [
+"Added to the site",
+"사이트에 추가"
+],
+"75d4a70295": [
+"Next check",
+"다음 확인"
+],
+"761de442e3": [
+"h ago",
+"시간 전"
+],
+"769e229569": [
+"years ago",
+"년 전"
+],
+"76a893e205": [
+"for the meta",
+"(메타 기준)"
+],
+"775ee8b04a": [
+"The tournaments of the same days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.",
+"같은 기간의 대회를 최신순으로 정렬했습니다. 대회를 열면 TOP 8의 레시피를 각각 QR 코드와 함께 볼 수 있습니다. 한 사람이 덱을 2개 이상 쓰는 대회는 1인 1레시피가 되지 않아 싣지 않습니다."
+],
+"7789ef8e5a": [
+"Scan Saved Image",
+"저장한 이미지를 읽기"
+],
+"778e3d21fc": [
+"Event · list {0} of",
+"대회 · 레시피 {0}/"
+],
+"78c6a1f315": [
+"of {0} decks",
+"전체 덱 {0}개 중"
+],
+"79bcb3dd18": [
+"Win rate",
+"승률"
+],
+"79f4d6da67": [
+"No events {0} yet.",
+"{0} 대회가 아직 없습니다."
+],
+"7a2b42f199": [
+"Tweaks: 1 or 2 cards changed",
+"조정: 1~2장 변경"
+],
+"7b72883e07": [
+"This week",
+"이번 주"
+],
+"7bd938bc58": [
+"Add to Home Screen",
+"홈 화면에 추가"
+],
+"7c1c47bb8c": [
+"Most meta",
+"메타 카드 많은 순"
+],
+"7c5b79c855": [
+"No decks match.",
+"일치하는 덱이 없습니다."
+],
+"7c89708fa9": [
+"hour{0} left",
+"시간 남음{0!}"
+],
+"7ca2635390": [
+"Unproven",
+"검증 전"
+],
+"7ca4d4b9e1": [
+"The picked card",
+"고른 카드"
+],
+"7d340494ae": [
+"deck",
+"덱"
+],
+"7d88e1c5ea": [
+"+{0} event{1}",
+"+대회 {0}개{1!}"
+],
+"7d8bdc5e6b": [
+"Now: {t0}{0} days{t1}, because fewer events were played in the last 7 days.",
+"현재: {t0}{0}일간{t1}. 최근 7일간 열린 대회가 적었기 때문입니다."
+],
+"7e29279cfb": [
+"Tap the menu {t0}&middot;&middot;&middot;{t1}, then {t2}Share{t3} {0}.",
+"메뉴 {t0}&middot;&middot;&middot;{t1}를 탭하고 {t2}공유{t3} {0}를 탭하세요."
+],
+"7e450a53b3": [
+"&middot; {t0}{0}{t1} meta card{1}",
+"&middot; 메타 카드 {t0}{0}{t1}장{1!}"
+],
+"7ec0137917": [
+"{0}Scan in game",
+"{0}게임에서 읽기"
+],
+"7f03c5d36f": [
+"Since the {0} release",
+"{0} 출시 이후"
+],
+"7f8b039a83": [
+"pack – Pocket Meta QR",
+"팩 – Pocket Meta QR"
+],
+"7ff5a6dafd": [
+"Sections",
+"섹션"
+],
+"801011800f": [
+"day{0} ago",
+"일 전{0!}"
+],
+"816aed3a57": [
+"&times;{0} in this list",
+"이 레시피에 &times;{0}"
+],
+"81826fc524": [
+"Open a deck, tap its QR code and save the image. In the game: {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. On a computer, you can also point the game&rsquo;s camera at the screen.",
+"덱을 열고 QR 코드를 탭해 이미지를 저장하세요. 게임에서 {t0}덱 &rarr; + &rarr; 코드 읽기 &rarr; 저장한 이미지를 읽기{t1}. 컴퓨터 화면에 게임 카메라를 비춰서 읽을 수도 있습니다."
+],
+"8235bdefc9": [
+"the newest set",
+"최신 확장팩"
+],
+"82d50d9042": [
+"events",
+"대회"
+],
+"83a0cd42f1": [
+"Open Pocket Meta QR with one tap, full screen like an app. It refreshes itself when you come back.",
+"한 번의 탭으로 앱처럼 전체 화면으로 Pocket Meta QR을 열 수 있습니다. 다시 돌아오면 자동으로 새로 고칩니다."
+],
+"84022162f8": [
+"Faded: fewer than 30 players, so this rate is less certain.",
+"옅은 표시: 30명 미만이라 이 수치는 확실성이 낮습니다."
+],
+"8434bf2392": [
+"Share, win rate, rank and matchups count all players; Cards counts the top players. A tie is half a win; mirror matches are not counted.",
+"사용률·승률·순위·상성은 전체 플레이어로, 카드는 상위 플레이어로 셉니다. 무승부는 0.5승이며, 미러전은 세지 않습니다."
+],
+"84e3ee8374": [
+"· {t0}{0}{t1} win",
+"· 승률 {t0}{0}{t1}"
+],
+"851ff4d12f": [
+"Show {0} older packs",
+"이전 팩 보기 ({0})"
+],
+"857fa3b382": [
+"List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. {t0}&#9733; Popular now{t1} marks a list 1 that clearly more top players used exactly than any other list.",
+"덱의 레시피 1은 가장 많은 상위 플레이어가 사용한 레시피입니다. 1~3장만 교체한 레시피는 여기에 포함합니다. 레시피 아래의 타일에 완전히 같은 레시피 또는 1~3장 교체로 사용한 상위 플레이어 수를 표시합니다(타일을 탭하면 각 버전을 QR 코드와 함께 볼 수 있습니다). 4장 이상 교체한 레시피는 상위 플레이어 2명 이상이 사용했거나, 32명 이상 대회에서 1명이 TOP 8에 들었을 때 별도 레시피로 표시합니다. {t0}&#9733; 지금 인기{t1}는 완전히 같은 레시피를 사용한 상위 플레이어가 다른 어떤 레시피보다 확실히 많은 레시피 1의 표시입니다."
+],
+"861edba005": [
+"Suggestions",
+"추천"
+],
+"876870e87a": [
+"last {0} events{1}",
+"최근 대회 {0}개{1!}"
+],
+"876d097a1a": [
+"Decks whose main list has no Pokémon ex",
+"메인 레시피에 포켓몬 ex가 없는 덱"
+],
+"8799002486": [
+"Which Pokémon TCG Pocket Pack to Open ({0}) | Pocket Meta QR",
+"포켓몬 카드 게임 Pocket 뽑을 만한 팩({0}) | Pocket Meta QR"
+],
+"87d370a29e": [
+"match win rate; a tie counts as half a win. Mirror matches are not counted.{0}",
+"대전 승률. 무승부는 0.5승으로 셉니다. 미러전은 세지 않습니다.{0}"
+],
+"87e68ae82c": [
+"place at",
+"위:"
+],
+"8896272648": [
+"No one with this deck won more than they lost {0}. This is its best-placed list.",
+"{0} 이 덱으로 승리가 패배보다 많은 사람이 없습니다. 순위가 가장 높은 레시피입니다."
+],
+"88c70db626": [
+", and {t0}{0}{t1} more with 1 to 3 cards swapped{1}",
+", 그리고 {t0}{0}{t1}명이 1~3장 교체해서 사용{1}"
+],
+"8924cc152b": [
+"Which days count?",
+"어느 날의 대회가 대상인가요?"
+],
+"892ce04a73": [
+"A top result: at least 2 more wins than losses at an event {0}.",
+"상위 성적: {0} 대회에서 승리가 패배보다 2 이상 많은 것."
+],
+"8948bad5c9": [
+"No deck builder:{t0} import a list with its QR code, then change it in the game.",
+"덱 만들기 기능 없음:{t0} QR 코드로 레시피를 읽어 온 뒤 게임에서 바꾸세요."
+],
+"899e85d0d1": [
+"A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.",
+"순위는 대회 인원과 함께 비교합니다. 547명 중 5위가 153명 중 2위보다 위입니다. 다른 레시피는 이 레시피와 카드를 비교합니다."
+],
+"89b86ab0e6": [
+"Language",
+"언어"
+],
+"89be098394": [
+"Popular, weak",
+"인기 · 부진"
+],
+"8bedfe5089": [
+"About and FAQ",
+"소개 및 FAQ"
+],
+"8c1c189664": [
+"Tap {t0}Install{t1} or {t2}Add{t3}.",
+"{t0}설치{t1} 또는 {t2}추가{t3}를 탭하세요."
+],
+"8cd38b3544": [
+"Event · list",
+"대회 · 레시피"
+],
+"8d546a6dea": [
+"Meta",
+"메타"
+],
+"8d7bf5bf13": [
+"Others",
+"기타"
+],
+"8e3f944b07": [
+"Below 50%",
+"50% 미만"
+],
+"8e4caec080": [
+"Booster",
+"확장"
+],
+"8e7fc3f8ed": [
+"New set: {0}{t0} came out {1}. Until {2}, the numbers also include events from before it.",
+"새 확장팩: {0}{t0} 출시일 {1}. {2}까지는 출시 전 대회도 수치에 포함됩니다."
+],
+"8eaf38d66f": [
+"Top 32",
+"TOP 32"
+],
+"8f6b90919f": [
+": decks that use it",
+": 사용하는 덱"
+],
+"90499d9de4": [
+"new deck{0}{t0} in the top 10",
+"덱{0!}{t0}이 새로 TOP 10 진입"
+],
+"9117c24769": [
+"&middot; {t0}{0}{t1} win",
+"&middot; 승률 {t0}{0}{t1}"
+],
+"91ea864ee0": [
+"Tap a dot to see the deck.",
+"점을 탭하면 덱을 표시합니다."
+],
+"91fe8a113e": [
+"Could not load the packs. Try again later.",
+"팩을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요."
+],
+"9212d0a9e8": [
+"Share this list",
+"이 레시피 공유"
+],
+"9259f0b1c8": [
+"Live tournament data",
+"실시간 대회 데이터"
+],
+"9342efff03": [
+"· {0} players",
+"· {0}명"
+],
+"93daa2f17e": [
+"The decks that win in Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, the {t2}latest events{t3} with their top 8, and a {t4}QR code{t5} for every list, so you can import a deck in a few taps.",
+"{t0}지금{t1} 포켓몬 카드 게임 Pocket 대회에서 이기고 있는 덱, {t2}최근 대회{t3}의 TOP 8, 그리고 모든 레시피에 {t4}QR 코드{t5}. 몇 번의 탭으로 덱을 읽어 올 수 있습니다."
+],
+"953d4f3666": [
+"A {t0}top player{t1} won at least 2 more matches than they lost (ties do not count) at a single-deck event {0}.",
+"{t0}상위 플레이어{t1}란 {0} 1인 1덱 대회에서 이긴 대전이 진 대전보다 2 이상 많은 플레이어입니다(무승부는 세지 않음)."
+],
+"961d9b56f9": [
+"All decks",
+"모든 덱"
+],
+"96980908d1": [
+"cards{t0} in the top {0} (lists):",
+"장의 카드{t0}(상위 {0}명의 레시피):"
+],
+"96c12df622": [
+"swap{0}",
+"장 교체{0!}"
+],
+"96f550255d": [
+"Meta map",
+"메타 맵"
+],
+"96fb9c9f0d": [
+"How are the lists chosen?",
+"레시피는 어떻게 고르나요?"
+],
+"972758b2df": [
+"A rare deck (under 0.2% share {0}) with a top-8 finish at a big event (128+ players): {t0}{1}{t1}.",
+"큰 대회(128명 이상)에서 TOP 8에 든, {0} 사용률 0.2% 미만의 드문 덱: {t0}{1}{t1}."
+],
+"97fe84b71c": [
+"has instead:",
+"에는 대신:"
+],
+"9843ef2356": [
+"All events{t0} &middot; {0} &middot; {1} players",
+"전체 대회{t0} &middot; {0} &middot; {1}명"
+],
+"984bbca8a1": [
+"Pokémon TCG Pocket deck",
+"포켓몬 카드 게임 Pocket 덱"
+],
+"98d3809299": [
+"About this label",
+"이 라벨에 대해"
+],
+"9b448c2524": [
+"+ {0} more",
+"그 외 {0}개"
+],
+"9b55ce7f97": [
+"Not in the",
+"없음:"
+],
+"9b9a24074d": [
+"{0}: most played",
+"{0}: 가장 많이 사용"
+],
+"9bb5b01475": [
+"&#9888; Below the cut{0}",
+"&#9888; 컷 미달{0}"
+],
+"9c3c295f07": [
+"smaller",
+"소규모"
+],
+"9cf83d1f40": [
+"Dark mode",
+"다크 모드"
+],
+"9d6e7e027b": [
+"Not enough games against the top decks yet (a matchup needs 10+ games).",
+"상위 덱과의 대전이 아직 부족합니다(상성에는 10전 이상이 필요합니다)."
+],
+"9da8f1fa7d": [
+"place",
+"위"
+],
+"9eaea27829": [
+"An event shows here {t0}after it ends{t1}, usually a few hours after it starts. It is listed under the day it was played (your time), so a new event can show under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.",
+"대회는 {t0}끝난 뒤에{t1} 표시되며, 보통 시작 후 몇 시간 뒤입니다. 개최일(기기 시간) 아래에 놓이므로 새 대회가 “어제” 아래에 나올 수 있습니다. “N시간 전 추가” 표시를 확인하세요."
+],
+"9ec76bfa7e": [
+"Yes: no ads and no sign-up. No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter). This browser keeps only your theme and the last tab you used.",
+"네. 광고도 가입도 없습니다. 쿠키와 개인 정보도 쓰지 않습니다. 사이트는 방문 수와 버튼 탭 수만 익명으로 셉니다(GoatCounter). 이 브라우저에는 테마와 마지막으로 쓴 탭만 저장합니다."
+],
+"9fcb4b1bfc": [
+"No lists stored for this event.",
+"이 대회의 레시피가 저장되어 있지 않습니다."
+],
+"a095f62c35": [
+"; {t0}+1{t1} = one more copy of a core card",
+"; {t0}+1{t1} = 고정 카드 1장 추가"
+],
+"a138db548c": [
+"of {0} events",
+"/대회 {0}개"
+],
+"a1c9ba95b2": [
+"next check any minute",
+"곧 다음 확인"
+],
+"a1fffaaafb": [
+"List",
+"레시피"
+],
+"a260c629df": [
+"Clear the search",
+"검색 지우기"
+],
+"a2b4d0d476": [
+"entries with this deck",
+"이 덱으로 참가한 수"
+],
+"a30fa0929b": [
+"top 8 finish{0}",
+"회 TOP 8{0!}"
+],
+"a32b8cd11b": [
+"won",
+"우승"
+],
+"a3b2737ace": [
+"Search and filter",
+"검색 · 필터"
+],
+"a40926803d": [
+"In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image.",
+"게임에서: 덱 → + → 코드 읽기를 열고 카메라로 이 코드를 비추세요. 이미지를 내려받을 수도 있습니다."
+],
+"a452ac820f": [
+"Tap {t0}Share{t1} {0} (Safari: at the bottom, or at the top on iPad).",
+"{t0}공유{t1} {0}를 탭하세요(Safari: 화면 아래, iPad에서는 위)."
+],
+"a46c612784": [
+"Cards you can use",
+"사용 가능 카드"
+],
+"a479c9c34e": [
+"Download",
+"다운로드"
+],
+"a54f387207": [
+"Rising{t0} / {t1}Falling{t2}: the decks whose share moved most.",
+"상승{t0} / {t1}하락{t2}: 사용률이 가장 크게 움직인 덱입니다."
+],
+"a5916d4b4b": [
+"&middot; added {0}, after it ended",
+"&middot; 종료 후 추가({0})"
+],
+"a624ce137f": [
+"Results with exactly this list",
+"완전히 같은 레시피의 성적"
+],
+"a6c37a0db5": [
+"Saving is not available here: long-press the QR code instead.",
+"여기서는 저장할 수 없습니다. QR 코드를 길게 누르세요."
+],
+"a79387a4ad": [
+"What is in Latest Events?",
+"최근 대회에는 무엇이 있나요?"
+],
+"a7f8e7cc0d": [
+"just now",
+"방금"
+],
+"a845d3d476": [
+"{0}Popular now",
+"{0}지금 인기"
+],
+"a9a48e26e0": [
+"A deck plays a card when half or more of its lists play it. A {t0}meta card{t1} is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded, with “small” under them, and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.",
+"덱 레시피의 절반 이상에 들어간 카드를 그 덱이 쓰는 카드로 봅니다. {t0}메타 카드{t1}는 사용률 1.0% 이상인 덱이 1개 이상 쓰는 카드입니다. 소규모 덱만 쓰는 카드는 옅게 표시하고 아래에 “소규모”를 붙여 따로 셉니다. 포켓몬과 트레이너스가 대상이며, 레어도와 보유 카드는 고려하지 않습니다."
+],
+"aa13831f68": [
+"· {t0}{0}%{t1} of top players",
+"· 상위 플레이어의 {t0}{0}%{t1}"
+],
+"aa8507b62a": [
+"Above 50%",
+"50% 초과"
+],
+"aa9ecbb82a": [
+"Made by {t0}u/Myxas_{t1}.",
+"제작: {t0}u/Myxas_{t1}"
+],
+"aab90dfe8c": [
+"share",
+"사용률"
+],
+"ab09f30675": [
+"deck win rate",
+"덱 승률"
+],
+"ac58ab84ed": [
+"too rare to rank",
+"너무 적어서 순위 없음"
+],
+"acfa231857": [
+"Decks with 30+ players {0}: share against win rate. Lines: the median share and 50% win rate.",
+"{0} 사용자 30명 이상인 덱: 사용률과 승률의 관계. 선은 사용률 중앙값과 승률 50%입니다."
+],
+"ad0938bfaf": [
+"The 10 decks played most {0}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.",
+"Limitless TCG의 참가자 8명 이상 공개 스탠다드 대회에서 {0} 가장 많이 쓰인 10개 덱입니다. 처음에는 1위가 가운데에 있고, 선반은 자동으로 돌며 만지면 멈춥니다. 드래그하거나 넘겨서 움직이고, 덱을 탭하면 열립니다."
+],
+"ad0f717c5c": [
+"in the top",
+"상위"
+],
+"ad8919ace0": [
+"Event",
+"대회"
+],
+"add3a889ec": [
+"deck – Pocket Meta QR",
+"덱 – Pocket Meta QR"
+],
+"ae58ffb155": [
+"(not in the {0})",
+"({0}에 없음)"
+],
+"af20be5975": [
+"is not in this week’s meta{0}.",
+": 이번 주 메타에 없습니다{0}."
+],
+"af862f9e86": [
+"Booster pack",
+"팩"
+],
+"b0638c43ba": [
+"No download, no sign-up.",
+"다운로드도 가입도 필요 없습니다."
+],
+"b1142f7843": [
+"Not on the map yet: fewer than 30 players {0} (too few to place it).",
+"아직 맵에 없음: {0} 사용자가 30명 미만이라 위치를 정할 수 없습니다."
+],
+"b1582a29b3": [
+"What’s new on Pocket Meta QR",
+"Pocket Meta QR 업데이트 소식"
+],
+"b1a5c8ef4d": [
+"Decks",
+"덱"
+],
+"b20b4f433a": [
+"days ago",
+"일 전"
+],
+"b247ad081c": [
+"This week’s Pokémon TCG Pocket decks",
+"이번 주 포켓몬 카드 게임 Pocket 메타 덱"
+],
+"b273fb2877": [
+"Won",
+"우승"
+],
+"b2bc0c005f": [
+"Checked",
+"확인"
+],
+"b309da0a4d": [
+"Where does the data come from?",
+"데이터 출처는 어디인가요?"
+],
+"b3c94b397b": [
+"Shared list",
+"공유된 레시피"
+],
+"b44a861262": [
+"in the {0}-place",
+"{0} 레시피에서"
+],
+"b56d5ef151": [
+"Limited Battle pick",
+"한정 배틀 추천"
+],
+"b5b2a49247": [
+"Matchups",
+"상성"
+],
+"b5cd5cad73": [
+"No {0} decks in the meta right now ({1}).",
+"현재 메타에 {0} 덱이 없습니다({1})."
+],
+"b68d372d0c": [
+"Get it from",
+"입수:"
+],
+"b6aae25ceb": [
+"Updated to the newest data",
+"최신 데이터로 업데이트했습니다"
+],
+"b6afb7ea54": [
+"next check in about {0} min",
+"다음 확인은 약 {0}분 후"
+],
+"b7c44ae8ae": [
+"The shelf shows the 10 packs with the most meta cards (#1 in the middle); the list has every pack, the older series under it. Tap a pack to see its cards; tap a card to see the decks that play it.",
+"선반에는 메타 카드가 많은 팩 10개를 표시합니다(1위가 가운데). 목록에는 모든 팩이 있고, 이전 시리즈는 그 아래에 있습니다. 팩을 탭하면 카드를, 카드를 탭하면 그 카드를 쓰는 덱을 보여 줍니다."
+],
+"b812e498b4": [
+"Pack: Meta Cards & Decks ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
+"팩: 메타 카드와 덱({0}) – 포켓몬 카드 게임 Pocket | Pocket Meta QR"
+],
+"b82fb89618": [
+"this set",
+"이 확장팩"
+],
+"b86f70d930": [
+"The match record ({t0}wins-losses-ties{t1}) of the player who used this list{0}{1}.",
+"이 레시피를 사용한 플레이어의 전적({t0}승-패-무{t1}){0}{1}."
+],
+"b8be7266fc": [
+"{0}Limited-time event",
+"{0}기간 한정 이벤트"
+],
+"ba6d08e61d": [
+"Full standings on Limitless {t0}↗",
+"Limitless에서 전체 순위 보기 {t0}↗"
+],
+"ba79e67b9b": [
+"{0}Popular now{1}",
+"{0}지금 인기{1}"
+],
+"bbb2de672e": [
+"· {0} share · {1} win · {2} players",
+"· 사용률 {0} · 승률 {1} · {2}명"
+],
+"bbfa773e5a": [
+"Close",
+"닫기"
+],
+"bc9f609de6": [
+"Open your browser&rsquo;s {t0}Share{t1} {0} menu.",
+"브라우저의 {t0}공유{t1} {0} 메뉴를 여세요."
+],
+"bd81811d71": [
+"Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks from public tournaments on Limitless, like a tier list built from real results: share, win rate and the lists the top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster pack gives the cards of the meta.",
+"Pocket Meta QR은 Limitless의 공개 대회 결과로 이번 주 포켓몬 카드 게임 Pocket 덱의 순위를 매깁니다. 실제 결과로 만든 티어표 같은 것으로, 사용률, 승률, 상위 플레이어의 레시피를 보여 줍니다. 모든 레시피에 QR 코드가 있어 게임에서 읽으면 덱을 불러올 수 있고, 뽑을 만한 팩 페이지에서는 메타 카드가 나오는 팩을 알 수 있습니다."
+],
+"bf3d48422f": [
+"Pokémon TCG Pocket Meta Decks ({0}) with QR Codes | Pocket Meta QR",
+"포켓몬 카드 게임 Pocket 메타 덱 순위({0}) 티어표 · QR 코드 | Pocket Meta QR"
+],
+"bff84ca9c5": [
+"Why is the win rate different from other sites?",
+"승률이 다른 사이트와 다른 이유는?"
+],
+"c0648ef361": [
+"Search decks by deck or card name",
+"덱 이름이나 카드 이름으로 덱 검색"
+],
+"c06cdf65c7": [
+"Deck data did not load. Reload the page to try again.",
+"덱 데이터를 불러오지 못했습니다. 페이지를 새로 고쳐 주세요."
+],
+"c0ee3cda6e": [
+"What is a &ldquo;top player&rdquo;?",
+"“상위 플레이어”란?"
+],
+"c29220f958": [
+"Switch to dark mode",
+"다크 모드로 전환"
+],
+"c2e98476ef": [
+"Link copied",
+"링크를 복사했습니다"
+],
+"c31ba3ef37": [
+"Days = how many days that window had.",
+"일수 = 그 기간의 날 수."
+],
+"c3476ebd0f": [
+"the decks",
+"덱"
+],
+"c38f356b28": [
+"This list has not shown that yet.",
+"이 레시피는 아직 그 성적을 내지 않았습니다."
+],
+"c5406d81f3": [
+"&middot; most used first",
+"&middot; 많이 쓰인 순"
+],
+"c5497bca58": [
+"Events",
+"대회"
+],
+"c597de40c1": [
+"an event",
+"대회"
+],
+"c5eb8e09c6": [
+"with the exact list",
+"완전히 같은 레시피"
+],
+"c63ee4d0fc": [
+"Still a top list",
+"여전히 상위 레시피"
+],
+"c743e0f584": [
+"Tap the Chrome menu {t0}&#8942;{t1} (top right).",
+"Chrome 메뉴 {t0}&#8942;{t1}를 탭하세요(오른쪽 위)."
+],
+"c76ac2e9cd": [
+"win",
+"승률"
+],
+"c7c4c1e950": [
+"&middot; {t0}{0}{t1} players &middot;",
+"&middot; {t0}{0}{t1}명 &middot;"
+],
+"c7c6c9a9c7": [
+"months ago",
+"개월 전"
+],
+"c8d3756e45": [
+"cards",
+"카드"
+],
+"c93fd9c78b": [
+"7-day trend",
+"7일간 추이"
+],
+"c95db6211f": [
+"Meta decks{t0}{t1}Latest tournaments{t2}{t3}Which pack to open{t4}{t5}Limited Battle",
+"메타 덱{t0}{t1}최근 대회{t2}{t3}뽑을 만한 팩{t4}{t5}한정 배틀"
+],
+"c9929a6b53": [
+"players won more than they lost with this deck {0}, but none reached a top result. This is the best of them.",
+"명이 {0} 이 덱으로 승리가 패배보다 많았지만, 상위 성적에는 닿지 못했습니다. 그중 가장 좋은 레시피입니다."
+],
+"c9b4332dc1": [
+"has no data",
+"데이터 없음"
+],
+"c9f63eb795": [
+"Win rate by version",
+"버전별 승률"
+],
+"cae0435c41": [
+"Top",
+"상위"
+],
+"cb7353567e": [
+"Without",
+"제외"
+],
+"cbd7f79d44": [
+"Cards to look at",
+"주목할 카드"
+],
+"cc8998d99b": [
+"in {0} deck{1}",
+"덱 {0}개{1!}에 채용"
+],
+"cd708dcb83": [
+"Top player: at least 2 more wins than losses at an event {0}.",
+"상위 플레이어: {0} 대회에서 승리가 패배보다 2 이상 많은 플레이어."
+],
+"cdc3ce9c70": [
+"Top 10 packs",
+"TOP 10 팩"
+],
+"ce12647f54": [
+"Hidden gem",
+"숨은 강자"
+],
+"ce5c3baf3a": [
+"Search and filter decks",
+"덱 검색 · 필터"
+],
+"cead6614c0": [
+"min ago",
+"분 전"
+],
+"ceeaa744c4": [
+"Limited",
+"한정"
+],
+"d044282472": [
+"Newest",
+"최신순"
+],
+"d0bca8f3af": [
+"went from #{0} to {t0}#{1}",
+"{0}위 → {t0}{1}위"
+],
+"d120d8a5a7": [
+"player{0}",
+"명{0!}"
+],
+"d1c174cc6c": [
+"({0} players)",
+"({0}명)"
+],
+"d1c47b17d6": [
+"Early results{t0} &middot; day",
+"초기 결과{t0} &middot; 경과일"
+],
+"d1e9c146ea": [
+"Core: in 90%+ of the {0} top players' lists. Flex: share of top players who play it{1}.{2}",
+"고정: 상위 플레이어 {0}명의 레시피 90% 이상에 들어간 카드. 자유: 그 카드를 쓰는 상위 플레이어의 비율{1}.{2}"
+],
+"d27dc1b686": [
+"Faded win rate: fewer than 30 players, so it moves a lot.",
+"옅은 승률: 30명 미만이라 크게 움직입니다."
+],
+"d3235b7b18": [
+"Copy list link",
+"레시피 링크 복사"
+],
+"d3254bb3fb": [
+"share &middot; {t0}{0}{t1} win",
+"사용률 &middot; 승률 {t0}{0}{t1}"
+],
+"d3781a19b2": [
+"Could not copy:",
+"복사하지 못했습니다:"
+],
+"d50280bff1": [
+"What does this site not do?",
+"이 사이트에서 할 수 없는 것은?"
+],
+"d579d7b438": [
+"{0}× {1}{2} · {3} top player{4}",
+"{0}× {1}{2} · 상위 플레이어 {3}명{4!}"
+],
+"d5f3362f81": [
+"Since your last visit",
+"지난 방문 이후"
+],
+"d646073d7c": [
+"no meta cards",
+"메타 카드 없음"
+],
+"d6a99999ca": [
+"series &middot; the older sets",
+"시리즈 &middot; 이전 확장팩"
+],
+"d6aa410291": [
+"Niche",
+"틈새"
+],
+"d6bb22ac07": [
+"Pokémon TCG Pocket Tournament Results ({0}) | Pocket Meta QR",
+"포켓몬 카드 게임 Pocket 대회 결과({0}) | Pocket Meta QR"
+],
+"d6f34a97a5": [
+"Download image",
+"이미지 다운로드"
+],
+"d82857eb60": [
+"Exact list",
+"완전 일치"
+],
+"d97686b37a": [
+"Saving is not available here: right-click the QR code instead.",
+"여기서는 저장할 수 없습니다. QR 코드를 마우스 오른쪽 버튼으로 클릭하세요."
+],
+"da24830f1f": [
+"Yesterday",
+"어제"
+],
+"da2ea5bee8": [
+"lists",
+"레시피"
+],
+"da7ea14ea7": [
+"{0}× · {1} player{2}",
+"{0}× · {1}명{2!}"
+],
+"da8f262b50": [
+"{0}: top lists – Pocket Meta QR",
+"{0}: 상위 레시피 – Pocket Meta QR"
+],
+"dae1e5f83a": [
+"this week",
+"이번 주"
+],
+"db866831c3": [
+"Packs",
+"팩"
+],
+"dbc8cb4e68": [
+"(together {t0}{0}{t1}, {1}% win)",
+"(합계 {t0}{0}{t1}, 승률 {1}%)"
+],
+"dbd6a35e83": [
+"new in the list",
+"랭킹 신규 진입"
+],
+"dc0d22645d": [
+"2&times; meta share",
+"메타 사용률의 2배"
+],
+"dc6066a3a3": [
+"Search a deck or card",
+"덱 이름·카드 이름으로 검색"
+],
+"dd48a11495": [
+"Rank",
+"순위"
+],
+"ddde1bcb75": [
+"Most wins",
+"우승 많은 덱"
+],
+"dde3707865": [
+"Above meta",
+"메타 대비 2배 이상"
+],
+"de04fa0e29": [
+"of",
+"/"
+],
+"de18b941e8": [
+"Show all {0} decks",
+"덱 모두 보기 ({0})"
+],
+"deb2079c55": [
+"▼ Down {0} place{1}{t0}: {t1}{2}{t2} 24 h ago, now {t3}{3}{t4}.",
+"▼ {0}계단 하락{1!}{t0}: 24시간 전 {t1}{2}{t2}, 현재 {t3}{3}{t4}."
+],
+"decd7ca800": [
+"Latest",
+"최근"
+],
+"df3749649f": [
+"{0}% vs",
+"{0}% vs"
+],
+"df39f61cf8": [
+"Newest event",
+"최신 대회"
+],
+"df833fe88d": [
+"Last 7 days",
+"최근 7일간"
+],
+"dfe3c5d44a": [
+"Yes: tap {t0}Add to Home Screen{t1} at the bottom of the page for the steps.",
+"네. 페이지 아래의 {t0}홈 화면에 추가{t1}를 탭하면 방법이 나옵니다."
+],
+"e000ac6209": [
+"no public list yet",
+"공개 레시피 없음"
+],
+"e001fb2f40": [
+"meta card{0}",
+"장의 메타 카드{0!}"
+],
+"e16297c400": [
+"Checked every hour. The numbers change only when a new event is added. Times are in your time zone.",
+"1시간마다 새 대회를 확인합니다. 수치는 새 대회가 추가될 때만 바뀝니다. 시간은 기기의 시간대로 표시합니다."
+],
+"e314914df8": [
+"The list most top players build from.",
+"가장 많은 상위 플레이어가 기반으로 삼는 레시피입니다."
+],
+"e339ba737a": [
+"No events",
+"대회 없음"
+],
+"e40b725417": [
+"&middot; most played first",
+"&middot; 많이 쓰인 순"
+],
+"e491f9748c": [
+"is not in this week’s meta decks{0}.",
+": 이번 주 메타 덱에 없습니다{0}."
+],
+"e51c55255b": [
+"Records",
+"전적"
+],
+"e615ae42b5": [
+"Why Limitless TCG, and can I trust the results?",
+"왜 Limitless TCG인가요? 결과는 믿을 수 있나요?"
+],
+"e6866f28e4": [
+"Events with this deck in the top 8",
+"이 덱이 TOP 8에 든 대회"
+],
+"e6ad2f3e33": [
+"Last {0} days",
+"최근 {0}일간"
+],
+"e710900662": [
+"Hand-picked",
+"엄선"
+],
+"e7a5c67393": [
+"The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the current set&rsquo;s release, so in a new set&rsquo;s first days the results are early ones. The line under the title shows the dates.",
+"최근 7일간입니다. 대회가 적을 때(확장팩 후반에 많음)는 모든 수치에 충분한 인원이 있도록 최근 10일 또는 14일을 씁니다. 현재 확장팩 출시 전의 대회는 세지 않으므로, 새 확장팩의 처음 며칠은 초기 결과입니다. 기간은 제목 아래 줄에 표시합니다."
+],
+"e903ded5bb": [
+"Showing {0} of {1} decks.",
+"덱 {1}개 중 {0}개 표시."
+],
+"e985a02c4a": [
+"Made by {t0}u/Myxas_",
+"제작: {t0}u/Myxas_"
+],
+"ea0bcd944e": [
+"not enough games",
+"대전 수 부족"
+],
+"ea2408d695": [
+"core · {0} flex",
+"고정 · 자유 {0}"
+],
+"ea7be4e7a5": [
+"Top players",
+"상위 플레이어"
+],
+"eabe30a8f2": [
+"No ex",
+"ex 없음"
+],
+"eb7de7b83e": [
+"cards you can use",
+"사용 가능 카드"
+],
+"ebbb7e9b8b": [
+"Works in Safari, Chrome, Edge, Firefox and most other browsers (iOS 16.4 or later).",
+"Safari, Chrome, Edge, Firefox 등 대부분의 브라우저에서 쓸 수 있습니다(iOS 16.4 이상)."
+],
+"ebdf15db38": [
+"smaller decks only",
+"소규모 덱만"
+],
+"efc007a393": [
+"Save",
+"저장"
+],
+"effb665832": [
+"in every deck",
+"모든 덱에 채용"
+],
+"f004f8b2da": [
+"One row per number of wins, one dot per player. Blue: the top 8.",
+"승리 수마다 1줄, 플레이어마다 점 1개. 파랑은 TOP 8입니다."
+],
+"f0c4717b8a": [
+"That event is not in the list anymore: it shows the events {0}.",
+"이 대회는 더 이상 목록에 없습니다. 목록에는 {0} 대회를 표시합니다."
+],
+"f0e3ef5401": [
+"New in",
+"신규:"
+],
+"f105cc61c3": [
+"Latest Events",
+"최근 대회"
+],
+"f191cd2c1d": [
+"Limited-time event",
+"기간 한정 이벤트"
+],
+"f19c988b3f": [
+"Decks with QR Codes | Pocket Meta QR",
+"– QR 코드 포함 덱 | Pocket Meta QR"
+],
+"f1fccaaccd": [
+"Biggest",
+"최대"
+],
+"f22a80a34b": [
+"Which booster packs give the cards of the meta decks {0}.",
+"{0} 메타 덱의 카드가 나오는 팩입니다."
+],
+"f2335414bf": [
+"multi-deck event{0} (players bring more than one deck) {1} not listed: their results do not show which deck won each match.",
+"개의 다중 덱 대회{0!}(한 사람이 덱을 2개 이상 사용)는 싣지 않습니다{1!}. 결과로는 어느 덱이 각 대전에서 이겼는지 알 수 없기 때문입니다."
+],
+"f314effecd": [
+"Full standings on Limitless",
+"Limitless에서 전체 순위 보기"
+],
+"f33788fa9c": [
+"top players used this deck; {t0}{0}{t1} used exactly this list{1}{2}.",
+"명의 상위 플레이어가 이 덱을 사용했고, {t0}{0}{t1}명이 완전히 같은 레시피를 사용{1}{2}."
+],
+"f383cb9878": [
+", and their place:",
+", 순위:"
+],
+"f39d173d91": [
+"Falling",
+"하락"
+],
+"f3dc433d0b": [
+"Won by{t0} {0} ·",
+"우승{t0} {0} ·"
+],
+"f3f9391cee": [
+"Not every tournament:{t0} only public Standard events with 8 or more players and 1 deck per player.",
+"모든 대회가 아닙니다:{t0} 참가자 8명 이상, 1인 1덱의 공개 스탠다드 대회만입니다."
+],
+"f4b15c9c91": [
+"Top 10 decks",
+"TOP 10 덱"
+],
+"f4b50527b0": [
+"Last check",
+"이전 확인"
+],
+"f5060abc58": [
+"Used by",
+"사용:"
+],
+"f5967e775f": [
+"Not every card:{t0} the Packs tab and the card pages show only the cards that this week&rsquo;s meta decks play.",
+"모든 카드가 아닙니다:{t0} 뽑을 만한 팩 탭과 카드 페이지에는 이번 주 메타 덱이 쓰는 카드만 나옵니다."
+],
+"f6bb0f468a": [
+"Days",
+"일수"
+],
+"f744f6ce38": [
+"Did not load. Swipe away and back.",
+"불러오지 못했습니다. 한 번 넘겼다가 다시 돌아와 주세요."
+],
+"f7e42baf96": [
+"The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the set&rsquo;s release.",
+"최근 7일간입니다. 대회가 적을 때(확장팩 후반에 많음)는 모든 수치에 충분한 인원이 있도록 최근 10일 또는 14일을 씁니다. 확장팩 출시 전의 대회는 세지 않습니다."
+],
+"f80619bbf4": [
+"No older weeks or past sets:{t0} no results or tier lists from before the days shown under the title.",
+"지난 주·이전 확장팩 없음:{t0} 제목 아래 기간보다 이전의 결과나 티어표는 싣지 않습니다."
+],
+"f83481bd50": [
+"– {0} (your time)",
+"~ {0} (기기 시간)"
+],
+"f8515d5350": [
+"&middot; Data: {t0}Limitless TCG{t1},",
+"&middot; 데이터: {t0}Limitless TCG{t1},"
+],
+"f98462c968": [
+"Scroll down and tap {t0}Add to Home Screen{t1}.",
+"아래로 스크롤해서 {t0}홈 화면에 추가{t1}를 탭하세요."
+],
+"f9a4b961c0": [
+"share &middot;",
+"사용률 &middot;"
+],
+"faa9e7e7ef": [
+"Started",
+"시작"
+],
+"fac60a2133": [
+"· {t0}only {0}% share",
+"· {t0}사용률 {0}%뿐"
+],
+"faf7c78e36": [
+"Booster packs for this week’s meta",
+"이번 주 메타 기준 팩"
+],
+"fc45091249": [
+"Switch to light mode",
+"라이트 모드로 전환"
+],
+"ff3e8e536e": [
+"1 player won more than they lost with this deck {0}, but did not reach a top result. This is their list.",
+"1명이 {0} 이 덱으로 승리가 패배보다 많았지만, 상위 성적에는 닿지 못했습니다. 그 레시피입니다."
+],
+"ffa4a6d465": [
+"Limitless TCG{t0} is the main place where Pok&eacute;mon TCG Pocket tournaments are played online. New events start there every day, from small cups to open events with more than 300 players, and thousands of players take part every week. Each result is public as soon as an event ends, and this site checks for new ones every hour, so the meta here is days fresher than a tier list made by hand. Pocket Meta QR is not part of Limitless TCG: it reads its public results.",
+"Limitless TCG{t0}는 포켓몬 카드 게임 Pocket 대회가 온라인으로 열리는 주요 장소입니다. 매일 새 대회가 시작되며, 작은 컵 대회부터 300명이 넘는 오픈 대회까지 있고, 매주 수천 명이 참가합니다. 결과는 대회가 끝나는 즉시 공개되고, 이 사이트는 1시간마다 새 결과를 확인하므로 손으로 만든 티어표보다 며칠 더 새로운 메타를 볼 수 있습니다. Pocket Meta QR은 Limitless TCG의 일부가 아니며, 공개된 결과를 읽어 올 뿐입니다."
+],
+"ffa4f00cd6": [
+"slot{0}",
+"슬롯{0!}"
+],
+"ffd5f6df10": [
+"in no other top player’s list",
+"다른 상위 플레이어 레시피에는 없음"
+]
+}

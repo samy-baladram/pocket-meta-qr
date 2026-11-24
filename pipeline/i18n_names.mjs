@@ -21,7 +21,7 @@ for (const e of readdirSync(root)) {
     if (id && n) sets.push([id, n]); }
 }
 mkdirSync("preview/i18n", { recursive: true });
-const SRC = { pt: "pt-br" }; // the site's code -> the database key (Brazilian Portuguese)
+const SRC = { pt: "pt-br", zh: "zh-tw" }; // the site's code -> the database key (Brazilian Portuguese)
 for (const l of langs) {
   const k0 = SRC[l] || l, votes = {};   // English name -> {localized: count}; the most common one wins (alt arts share a name)
   for (const c of cards) if (c[k0]) { const v = (votes[c.en] ||= {}); v[c[k0]] = (v[c[k0]] || 0) + 1; }

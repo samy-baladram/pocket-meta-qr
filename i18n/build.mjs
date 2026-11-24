@@ -23,7 +23,7 @@ if (existsSync(cf)) for (const p of JSON.parse(readFileSync(cf)).patches) {
 const tr = (en, ctx = "") => { const x = T[runId(en)]; if (!x) return null;
   if (x[2]) for (const [k, v] of Object.entries(x[2])) if (ctx.includes(k)) return v;
   return x[1] || null; };
-tr.cjk = ["ja", "zh", "ko"].includes(lang);
+tr.cjk = ["ja", "zh"].includes(lang); // Nov 24: not ko (Korean puts spaces between words)
 tr.bad = (en, t) => bad.push({ id: runId(en), en, t });
 const { html, changed } = translatePage(page, cfg, tr);
 writeFileSync(out, html);
