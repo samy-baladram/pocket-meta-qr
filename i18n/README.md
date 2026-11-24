@@ -112,7 +112,7 @@ to `page.mjs`. A new language needs one sentence there.
 - The hourly look for new data = チェック (5分前にチェック, 次回のチェック); 更新 = the numbers changed (前回の更新);
   the Live chip = 最新 (not ライブ, which reads as a stream). 確認 only for "see / verify" (1枚ずつ確認できます).
 
-## German (de, Nov 24, 2026): /preview/de/ only (not in the menu yet)
+## German (de, Nov 24, 2026): live as beta at /de/ (noindex, like /ja/, /es/, /pt/)
 - Numbers: 12,0 % (DIN 5008: comma, a non-breaking space before %; `fx` / `pn` / `pct` in `de.code.json`; a text that
   follows a number has "{0} %"). Thousands: 1.789 (`de-DE`).
 - Ranks: 1. (`n + "."`): "1. von 162", "Platz 3 im Meta", "wurde 7. bei …", "blieb auf Platz 3".
