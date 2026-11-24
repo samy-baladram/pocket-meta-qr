@@ -15,7 +15,7 @@
   {
    "note": "Limited Battle: cards tip, with Korean card names",
    "find": "<p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(\", \")}.</p>",
-   "replace": "<p><b>듀얼 퓨전</b>(C1), 이번 이벤트의 <b>PROMO-C</b>, 그리고 아래 상점 프로모 7장의 카드만 쓸 수 있습니다.</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\", \")}.</p>"
+   "replace": "<p><b>듀얼 퓨전</b>(C1), 이번 이벤트의 <b>PROMO-C</b>, 그리고 아래 상점 프로모 7장의 카드만 쓸 수 있어요.</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\", \")}.</p>"
   },
   {
    "note": "window tip: 처음 3일간 / 첫날 (the text says {0}의 결과)",
@@ -25,7 +25,7 @@
   {
    "note": "filter line: 덱 3개가 피카츄 카드를 사용합니다 (Korean order: count after the noun)",
    "find": "`${n} deck${n > 1 ? \"s\" : \"\"} use${n > 1 ? \"\" : \"s\"} ${pc.n}${pc.dup ? \" \" + pc.id.split(\"-\")[0].toUpperCase() : \"\"}.`",
-   "replace": "`덱 ${n}개가 ${pc.n}${pc.dup ? \" \" + pc.id.split(\"-\")[0].toUpperCase() : \"\"} 카드를 사용합니다.`"
+   "replace": "`덱 ${n}개가 ${pc.n}${pc.dup ? \" \" + pc.id.split(\"-\")[0].toUpperCase() : \"\"} 카드를 써요.`"
   },
   {
    "note": "filter line: 피카츄 카드 없는 덱 3개",
@@ -35,7 +35,7 @@
   {
    "note": "Limited Battle filter line: 덱 3개가 … 카드를 사용합니다",
    "find": "`${n} deck${n > 1 ? \"s\" : \"\"} use${n > 1 ? \"\" : \"s\"} ${nm(lbF.card)}.`",
-   "replace": "`덱 ${n}개가 ${nm(lbF.card)} 카드를 사용합니다.`"
+   "replace": "`덱 ${n}개가 ${nm(lbF.card)} 카드를 써요.`"
   },
   {
    "note": "Limited Battle filter line: … 카드가 없는 덱 3개",
@@ -232,7 +232,7 @@
   {
    "note": "tip: few players",
    "find": "title=\"Only ${d.count} players: this win rate is less certain\"",
-   "replace": "title=\"${d.count}명뿐: 이 승률은 확실성이 낮습니다\""
+   "replace": "title=\"${d.count}명뿐이라 아직 참고용 승률이에요\""
   },
   {
    "note": "tip: no top player with k swapped",
@@ -785,8 +785,8 @@
   },
   {
    "note": "deck row: 使用率 · 勝率",
-   "find": "<b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class=\"lown\" title=\"${d.count}명뿐: 이 승률은 확실성이 낮습니다\"` : \"\"}>${pct(d.win)}</b> win</span>",
-   "replace": "사용률 <b>${pct(d.share)}</b> &middot; 승률 <b${d.count < 30 ? ` class=\"lown\" title=\"${d.count}명뿐: 이 승률은 확실성이 낮습니다\"` : \"\"}>${pct(d.win)}</b></span>"
+   "find": "<b>${pct(d.share)}</b> share &middot; <b${d.count < 30 ? ` class=\"lown\" title=\"${d.count}명뿐이라 아직 참고용 승률이에요\"` : \"\"}>${pct(d.win)}</b> win</span>",
+   "replace": "사용률 <b>${pct(d.share)}</b> &middot; 승률 <b${d.count < 30 ? ` class=\"lown\" title=\"${d.count}명뿐이라 아직 참고용 승률이에요\"` : \"\"}>${pct(d.win)}</b></span>"
   },
   {
    "note": "shared list today: 使用率 · 勝率",
@@ -968,7 +968,7 @@
   {
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
    "find": "<p class=\"lbnote\"><b class=\"lbup\">",
-   "replace": "<p class=\"lbn lben\">덱 메모는 영어로만 제공됩니다.</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
+   "replace": "<p class=\"lbn lben\">덱 메모는 영어로만 볼 수 있어요.</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
   },
   {
    "note": "loading text next to the intro slot (the extractor does not find it)",
