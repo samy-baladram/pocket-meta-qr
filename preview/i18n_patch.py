@@ -104,6 +104,11 @@ if MENU_ONLY:
     print("menu only:", dst)
     sys.exit(0)
 one(th, MENU_JS + th)
+# Phase 2 Step 4 (Nov 24): deck links the page builds (Top 10 shelf, risers, Breakout: only when the page has deck pages,
+# RDECK) point to the page folder from the start (/ja/decks/<id>/), so a crawler that runs the page sees the language address
+s, n = re.subn(r'href="/decks/\$\{esc\(', 'href="${typeof PMQ_HOME === "string" && PMQ_HOME || "/"}decks/${esc(', s)
+if not MENU_ONLY and n == 0: print("note: no deck link to prefix")
+print("deck links prefixed:", n)
 # Phase 2 Step 4 (Nov 24): the row share link of a language page with its own addresses: the language folder (a deck only
 # when the page has deck pages, RDECK; a pack only with pack pages, RPACK)
 one('async function shareRow(b) { const k = b.dataset.sh, id = b.dataset.sid, S = "https://pocketmetaqr.com";',
