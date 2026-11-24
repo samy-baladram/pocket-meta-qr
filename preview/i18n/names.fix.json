@@ -38,5 +38,19 @@
    "B4a": "Ambições da Equipe Rocket",
    "A4b": "Pacote Deluxe: ex"
   }
+ },
+ "fr": {
+  "n": {
+   "Mega Garchomp ex": "Méga-Carchacrok-ex",
+   "Teal Mask Ogerpon": "Ogerpon Masque Turquoise",
+   "Teal MaskOgerpon": "Ogerpon Masque Turquoise"
+  },
+  "s": {
+   "A3a": "Crise Interdimensionnelle",
+   "A3b": "La Clairière d’Évoli",
+   "A4": "Sagesse entre Ciel et Mer",
+   "A4b": "Booster de Luxe ex",
+   "B1": "Méga-Ascension"
+  }
  }
 }

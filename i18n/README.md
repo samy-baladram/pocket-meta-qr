@@ -11,7 +11,7 @@ build time. Nothing changes in the live page, and a built page has no translatio
 - `en.json`: the catalog (made by `extract.mjs`; the build also puts it on the site: `/i18n/en.json`).
 - `de.json`, `ja.json`: `{id: [English, translation]}`; optional 3rd part `{"<code just before the text>": translation}`
   for one English text with two meanings ("Share": the button vs the meta share).
-- `<lang>.code.json` (now `ja.code.json`, `es.code.json`, `pt.code.json`): **code changes** for one language, where a text change is not enough:
+- `<lang>.code.json` (now `ja.code.json`, `es.code.json`, `pt.code.json`, `de.code.json`, `fr.code.json`): **code changes** for one language, where a text change is not enough:
   ordinals (`3rd` -> `3位`), word order (`<event>で優勝`), dates (`ja-JP`, `11/14`, `11月9日〜14日`), the Limited
   Battle name. `{"patches": [{"note", "find", "replace", "all"?}]}`; `find` = exact code of the page, applied before the
   texts. A `find` that is not in the page is not used: the build prints it and the report lists it (`codeMiss`). The
@@ -27,6 +27,7 @@ A language can skip a section for now. `EN_ONLY` in `preview/i18n_patch.py` list
 - `es`: What's new is in English. Limited Battle: the fixed parts are translated, the deck notes stay English (like ja; Nov 24).
 - `de`: What's new is in English.
 - `pt`: What's new is in English. Limited Battle: the fixed parts are translated, the deck notes stay English (like ja).
+- `fr`: What's new is in English. Limited Battle: the fixed parts are translated, the deck notes stay English (like es).
 
 `enOnly` in `config.json` (Nov 24): the ids of static HTML sections that `build.mjs` leaves in English per language
 (`nwl` = the What's new list). Without it, What's new headlines that are also texts elsewhere ("Breakout decks", the
@@ -126,6 +127,31 @@ to `page.mjs`. A new language needs one sentence there.
   Card and Pokémon names are German (names.de.json: Glurak, Psiana).
 - To check by the owner in the game: the QR import path (Meine Decks → + → Code scannen → Gespeichertes Bild scannen)
   and the German name of the Limited Battle event (now "Limitierter Kampf").
+
+## French (fr, Nov 24, 2026): preview only at /preview/fr/ (not in the menu)
+Made from the reviewed Spanish: the same 556 texts (`fr.json`) and 161 of its code changes (`fr.code.json`), in French.
+- Numbers: 12,0 % (a non-breaking space before %, as es / de; `fx` / `pn` / `pct`); 1 921 (`fr-FR`).
+- Ranks: 1er, 2e, 3e (`oF(n)` in the numbers patch; `ord` / `ordN` give the same): "1er sur 35", "3e sur 110" (trPl),
+  "le 3e plus grand sur 12 tournois". Where the code gives a bare number: "n° 3" ("est resté n° 3", "est passé du n° 5
+  au n° 3"), so 1 never reads "1e".
+- Dates: 14 nov. in text, 14/11 in small cells; 9–14 nov.; times 9:05; "2 déc. à 14:59" (Limited Battle end).
+  Relative: il y a 5 min, il y a 3 h, aujourd’hui, hier, à l’instant.
+- Plurals: the English code adds "s", which is French too (joueur/s, tournoi/s, carte/s), so no plural patches.
+  The banner "1 heure restante / 3 heures restantes" has its own code patch.
+- Typography: a non-breaking space before : ; ? ! and inside « » (the texts have it; code patches use \u00a0).
+- Terms: vous; deck, liste, top joueur (the defined term, as "jugador top"), présence (share; "de présence"),
+  % de victoires, bilan (Score and a record 8-3-0), tournoi, booster, extension, Fixes / Flex, changement (swap),
+  variante (a version with swaps), sous le cut, Révélation (Breakout), En hausse / En baisse, Populaire, Pépite,
+  À confirmer (Unproven), Aucun résultat top, matchups, carte du méta, miroir. Tabs: Méta (Decks Méta on wide
+  screens), Tournois, Boosters. Titles use "Pokémon TCG Pocket" (the name French players and sites search for).
+- Game words: energy types Plante, Feu, Eau, Électrique, Psy, Combat, Obscurité, Métal, Incolore, Dragon; Limited
+  Battle = "Combats restreints" (Pokébip), event name "Combats restreints : Fusion Double"; card and Pokémon names from
+  names.fr.json (Dracaufeu, Wimessir). Set names fixed in names.fix.json (fr) from Poképédia: A3a Crise
+  Interdimensionnelle, A3b La Clairière d’Évoli, A4 Sagesse entre Ciel et Mer, A4b Booster de Luxe ex, B1 Méga-Ascension.
+- Layout: `html[lang="fr"] small.t1s-x` has letter-spacing −0.02em, and the Top 10 rising row has thin spaces around
+  · and →, so "8e · nouveau → 3,6 %" fits 360 px (layout check: 0 problems).
+- To check by the owner in the game: the QR import path (Mes decks → + → Scanner le code → Scanner une image
+  enregistrée) and the event name on the Limited Battle banner.
 
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in
