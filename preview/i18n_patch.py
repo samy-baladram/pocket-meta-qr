@@ -181,4 +181,16 @@ one(".then((j) => (EV = j))", ".then((j) => L10NP.then(() => (EV = l10nDeep(j)))
 one("for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n });", "for (const [nr, id, n] of j.c) { byId.set(id, nr); if (n) byNr.set(nr, { id, n: trCard(n) });")
 one(".then((r) => (r.ok ? r.json() : null)).then((j) => (PK = j))",
     ".then((r) => (r.ok ? r.json() : null)).then((j) => L10NP.then(() => { if (j && L10N) { const sn = {}; for (const [k, x] of Object.entries(j.sets || {})) { sn[k] = x.name; x.name = trSet(k, x.name); } for (const x of Object.values(j.packs || {})) x.name = x.name === sn[x.set] ? j.sets[x.set].name : trPack(x.name); } return (PK = j); }))")
+# Nov 24: deck stats (sheet and wide-screen sidebar): dkV2 found its sections (Matchups, 7-day trend, Meta map, Cards)
+# by the English heading text, so on a language page they were dropped (de lost only Cards: "Karten").
+# Each fold now has a fixed key (data-k), and fk() reads it first.
+one('const fold = (t, pv, body, open) => `<details class="sfold dkf"${open ? " open" : ""}>',
+    'const fold = (t, pv, body, open, k = "") => `<details class="sfold dkf"${open ? " open" : ""}${k ? ` data-k="${k}"` : ""}>')
+one('fold("Matchups", muPv, muBody, 1)', 'fold("Matchups", muPv, muBody, 1, "mu")')
+one('|| "steady"}`, trBody, 1)', '|| "steady"}`, trBody, 1, "tr")')
+one('too few to place it).</p>`)', 'too few to place it).</p>`, 0, "mm")')
+one('win rate.</p>${mapSvg}`)', 'win rate.</p>${mapSvg}`, 0, "mm")')
+one('fold("Cards", cuPv, cuBody)', 'fold("Cards", cuPv, cuBody, 0, "cu")')
+one('const fk = (f) => { const t = f.querySelector("summary b")?.textContent || "";',
+    'const fk = (f) => { if (f.dataset.k) return f.dataset.k; const t = f.querySelector("summary b")?.textContent || "";')
 open(dst, "w", encoding="utf8").write(s)
