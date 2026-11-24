@@ -60,10 +60,10 @@ th = '  $("themeBtn").addEventListener("click", () => {'
 MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["ja", "日本語", "日本語"], ["de", "Deutsch", "DE"], ["es", "Español", "ES"], ["fr", "Français", "FR"],
       ["it", "Italiano", "IT"], ["pt", "Português (Brasil)", "PT"], ["ko", "한국어", "KO"], ["zh", "繁體中文", "ZH"]];
     const JA = PG_L === "ja", btn = $("langBtn"), pop = $("langPop"), list = $("langList"), cur = LN.find((x) => x[0] === PG_L) || LN[0];
-    const ES = PG_L === "es", PT = PG_L === "pt"; $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : ES || PT ? "Idioma" : "Language";
-    btn.setAttribute("aria-label", (JA ? "言語：" : ES || PT ? "Idioma: " : "Language: ") + cur[1]);
+    const ES = PG_L === "es", PT = PG_L === "pt", DE = PG_L === "de"; $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : ES || PT ? "Idioma" : DE ? "Sprache" : "Language";
+    btn.setAttribute("aria-label", (JA ? "言語：" : ES || PT ? "Idioma: " : DE ? "Sprache: " : "Language: ") + cur[1]);
     list.innerHTML = LN.map(([c, n]) => { const live = LIVE_L.includes(c), on = c === PG_L;
-      const tag = c === "ja" || c === "es" || c === "pt" ? `<span class="lang-tag beta">${JA ? "ベータ" : "Beta"}</span>` : live ? "" : `<span class="lang-tag soon">${JA ? "準備中" : ES ? "Próximamente" : PT ? "Em breve" : "Coming soon"}</span>`;
+      const tag = c === "ja" || c === "es" || c === "pt" ? `<span class="lang-tag beta">${JA ? "ベータ" : "Beta"}</span>` : live ? "" : `<span class="lang-tag soon">${JA ? "準備中" : ES ? "Próximamente" : PT ? "Em breve" : DE ? "Demnächst" : "Coming soon"}</span>`;
       return `<li><button type="button" role="radio" lang="${c}" data-l="${c}" aria-checked="${on}"${live || on ? "" : ' aria-disabled="true"'}>${n}${tag}</button></li>`; }).join("");
     const close = (f) => { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); if (f) btn.focus(); };
     btn.addEventListener("click", (e) => { e.stopPropagation(); const o = pop.hidden; pop.hidden = !o; btn.setAttribute("aria-expanded", String(o));
