@@ -266,7 +266,7 @@ owner's in-game screenshots (all 27 set names, Limited Battle name, deck code st
   Promo pack: PROMO-C (game name). Tabs: 메타 덱, 최근 대회, 뽑을 만한 팩.
 - Names: card and set names from the game data (names.ko.json); A3, A4a, B1a and B2 confirmed by screenshots.
 
-## Traditional Chinese (zh, Nov 25, 2026): preview only at /preview/zh/ (not in the menu)
+## Traditional Chinese (zh, Nov 25, 2026): live as beta at /zh/ (noindex; not yet in I18N_ROUTES, I18N_INDEX, I18N_DECKS)
 Made from the Japanese (`zh.json`: 556 texts; `zh.code.json` from `ja.code.json`, in Chinese, Taiwan usage), with the
 owner's zh-TW screenshots (Limited Battle name 雙元融合（C1）限定對戰, 讀取條碼, 讀取已儲存的圖片, 牌組).
 - CJK: zh stays in `tr.cjk` (no spaces next to Chinese text), like ja.
