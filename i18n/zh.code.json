@@ -959,6 +959,16 @@
    "note": "card filter: where the card is (join)",
    "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
    "replace": "return parts.length ? parts.join(\"、\") + \"有採用\" : \"\";"
+  },
+  {
+   "note": "zh: hero pack line '環境卡13張' (flex gap: number and 張 in one span)",
+   "find": "class=\"t1s-ls\">&middot; <b>${m}</b> meta card${m > 1 ? \"s\" : \"\"}</span>",
+   "replace": "class=\"t1s-ls\">&middot; <span>環境卡<b>${m}</b>張</span></span>"
+  },
+  {
+   "note": "zh: hero event line '131人' (flex gap)",
+   "find": "&middot; <b>${e.players}</b> players &middot; ${evDay(locDay(e))}</span>",
+   "replace": "&middot; <span><b>${e.players}</b>人</span> &middot; ${evDay(locDay(e))}</span>"
   }
  ]
 }
