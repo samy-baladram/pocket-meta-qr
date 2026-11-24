@@ -5,7 +5,7 @@ python3 preview/i18n_patch.py <in.html> <out.html>      (site.yml runs it on eve
 2. Names (de, es, fr, it, ja, pt): deck, card, set and pack names from i18n/names.<lang>.json (pipeline/i18n_names.mjs), switched in
    the data as it loads (normQ, events.json, packs.json, cards.json). English names stay in nameEn / nEn.
 3. Language menu (Nov 23, Phase 1 design B): a globe pill left of the dark-mode button (#langBtn) opens a raised panel
-   (#langPop) with every game language in its own script. LIVE_L (English; 日本語, Español, Português (Brasil), Deutsch, Français and Italiano with a Beta tag) can be chosen; the others
+   (#langPop) with every game language in its own script. LIVE_L (English; 日本語, Español, Português (Brasil), Deutsch, Français, Italiano and 한국어 with a Beta tag) can be chosen; the others
    show "Coming soon" / 準備中 and do nothing. A choice is saved (localStorage pmq-lang) and opens that language's page
    (/preview/ja/: i18n/build.mjs, PMQ_LANG set by the build). No redirect by browser language."""
 import json, os, re, sys
@@ -69,7 +69,7 @@ MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["es", "Español", "ES"],
     const ES = PG_L === "es", PT = PG_L === "pt", DE = PG_L === "de", FR = PG_L === "fr", IT = PG_L === "it", KO = PG_L === "ko"; $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : ES || PT ? "Idioma" : DE ? "Sprache" : FR ? "Langue" : IT ? "Lingua" : KO ? "언어" : "Language";
     btn.setAttribute("aria-label", (JA ? "言語：" : ES || PT ? "Idioma: " : DE ? "Sprache: " : FR ? "Langue\u00a0: " : IT ? "Lingua: " : KO ? "언어: " : "Language: ") + cur[1]);
     list.innerHTML = LN.map(([c, n]) => { const live = LIVE_L.includes(c), on = c === PG_L;
-      const tag = c === "ja" || c === "es" || c === "pt" || c === "de" || c === "fr" || c === "it" ? `<span class="lang-tag beta">${JA ? "ベータ" : "Beta"}</span>` : live ? "" : `<span class="lang-tag soon">${JA ? "準備中" : ES ? "Próximamente" : PT ? "Em breve" : DE ? "Demnächst" : FR ? "Bientôt" : IT ? "In arrivo" : KO ? "준비 중" : "Coming soon"}</span>`;
+      const tag = c === "ja" || c === "es" || c === "pt" || c === "de" || c === "fr" || c === "it" || c === "ko" ? `<span class="lang-tag beta">${JA ? "ベータ" : KO ? "베타" : "Beta"}</span>` : live ? "" : `<span class="lang-tag soon">${JA ? "準備中" : ES ? "Próximamente" : PT ? "Em breve" : DE ? "Demnächst" : FR ? "Bientôt" : IT ? "In arrivo" : KO ? "준비 중" : "Coming soon"}</span>`;
       return `<li><button type="button" role="radio" lang="${c}" data-l="${c}" aria-checked="${on}"${live || on ? "" : ' aria-disabled="true"'}>${n}${tag}</button></li>`; }).join("");
     const close = (f) => { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); if (f) btn.focus(); };
     btn.addEventListener("click", (e) => { e.stopPropagation(); const o = pop.hidden; pop.hidden = !o; btn.setAttribute("aria-expanded", String(o));
@@ -84,7 +84,7 @@ MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["es", "Español", "ES"],
 
 MINI_JS = r"""  // Phase 1 (Nov 23): language menu on the English site (preview/i18n_patch.py --menu-only). The English page stays
   // English; a saved choice of a live language (pmq-lang, set in the menu) opens that page from the home address.
-  var TXT_L = ["ja", "es", "pt", "de", "fr", "it"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr", "it"], ROUTE_L = __ROUTE_L__, DECK_L = __DECK_L__, PG_L = "en", langPath = (l) => "/" + (l === "en" ? "" : l + "/");
+  var TXT_L = ["ja", "es", "pt", "de", "fr", "it", "ko"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr", "it", "ko"], ROUTE_L = __ROUTE_L__, DECK_L = __DECK_L__, PG_L = "en", langPath = (l) => "/" + (l === "en" ? "" : l + "/");
   (() => { let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
     if (l && l !== "en" && LIVE_L.includes(l) && /^\/(index\.html)?$/.test(location.pathname)) location.replace(langPath(l) + location.hash); })();
   function setImgLang(l) { try { localStorage.setItem("pmq-lang", l); } catch (err) {} try { track("lang-" + l); } catch (err) {}
@@ -126,7 +126,7 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
   // Phase 1 (Nov 23): the page language = its text, names and card images. A text page (/preview/ja/ ...: the build
   // sets PMQ_LANG) has its language. The English page stays English (no redirect by browser language), but a saved
   // choice of a live language (pmq-lang, set in the menu) opens that page. LIVE_L: the languages the menu offers.
-  var TXT_L = ["de", "es", "ja", "pt", "fr", "it", "ko"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr", "it"], ROUTE_L = __ROUTE_L__, DECK_L = __DECK_L__, PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
+  var TXT_L = ["de", "es", "ja", "pt", "fr", "it", "ko"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr", "it", "ko"], ROUTE_L = __ROUTE_L__, DECK_L = __DECK_L__, PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
   var IMGL = (() => { if (PG_L !== "en") return PG_L; let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
     return l && l !== "en" && LIVE_L.includes(l) && TXT_L.includes(l) ? l : "en"; })();
   // PMQ_ROOT (set by the build): the English page's folder, "/preview/" (test) or "/" (the live /ja/ page)

@@ -107,7 +107,7 @@ jobs:
 
       - name: Assemble the site
         env:
-          I18N_LIVE: "ja es pt de fr it"   # Phase 1 (Nov 23; es beta since Nov 23, pt and de since Nov 24, fr and it since Nov 24): live language pages (space-separated); "" = off
+          I18N_LIVE: "ja es pt de fr it ko"   # Phase 1 (Nov 23; es beta since Nov 23, pt and de since Nov 24, fr, it and ko since Nov 24): live language pages (space-separated); "" = off
           I18N_INDEX: "ja es pt de fr it"   # Phase 2 Steps 3 + 5 (Nov 24; all six indexable since Nov 24): indexable languages: no noindex, hreflang on both sides, in sitemap.xml; "" = none
           I18N_DECKS: "ja es pt de fr it"   # Phase 2 Step 4 (Nov 24): languages (in I18N_ROUTES) with deck pages /<l>/decks/<id>/; "" = none
           I18N_ROUTES: "ja es pt de fr it"   # Phase 2 Step 1 (Nov 24; all six since Nov 24): languages with section addresses (/ja/events/, /ja/packs/, /ja/limited/, /ja/about/; noindex); "" = off
@@ -120,7 +120,7 @@ jobs:
           # Phase 1 (Nov 23): it also makes the live language pages listed in I18N_LIVE (/ja/: one page, noindex for now).
           # A problem here must never stop the live deploy: it is only a warning.
           if [ -f preview/build.sh ]; then
-            bash preview/build.sh public || { rm -rf public/preview public/ja public/es public/pt public/de public/fr public/it; echo "::warning title=Languages::the /preview/ and /ja/ pages were not made (see log)"; }
+            bash preview/build.sh public || { rm -rf public/preview public/ja public/es public/pt public/de public/fr public/it public/ko; echo "::warning title=Languages::the /preview/ and /ja/ pages were not made (see log)"; }
           fi
           # Phase 1: the English pages get the language menu (preview/i18n_patch.py --menu-only), only when /ja/ was made;
           # else (or if the patch fails) the page as before. To turn the languages off: I18N_LIVE: "" below.
