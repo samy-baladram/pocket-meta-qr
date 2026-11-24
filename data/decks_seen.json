@@ -2317,18 +2317,18 @@
  },
  "giratina-ex-a2b-darkrai-ex-a2": {
   "name": "Giratina ex Darkrai ex",
-  "seen": "2026-11-23",
-  "rank": 43,
-  "share": 0.27,
-  "win": 50,
+  "seen": "2026-11-24",
+  "rank": 48,
+  "share": 0.25,
+  "win": 56,
   "count": 6,
-  "games": 28,
+  "games": 25,
   "more": 1,
-  "dates": "Nov 17 – 22",
+  "dates": "Nov 18 – 23",
   "best": [
-   "25th of 145",
-   "PGX TOURNAMENT #6 $5 USD + FA",
-   "2026-11-17"
+   "24th of 196",
+   "The TCGP Arena Returns #10 | £50 Prize Pool",
+   "2026-11-18"
   ],
   "cards": [
    [
@@ -2368,12 +2368,12 @@
     1
    ],
    [
-    "Poké Ball",
-    2
+    "Pokémon Center Lady",
+    1
    ],
    [
-    "Lucky Ice Pop",
-    1
+    "Poké Ball",
+    2
    ],
    [
     "Field Blower",
@@ -2396,10 +2396,7 @@
     1
    ]
   ],
-  "xs": [
-   "Core cards (in 90%+ of the 3 top players' lists): 2 Darkrai ex, 2 Giratina ex, 2 Eviolite, 2 Poké Ball, 1 Sabrina, 1 Rocky Helmet, 1 Cyrus, 1 Red, 1 Indeedee ex, 1 Copycat, 1 Starting Plains, 1 Peculiar Plaza, 1 Field Blower, 1 Serena's Choice, 1 Professor's Research.",
-   "Flex picks: Lucky Ice Pop (67%), Pokémon Center Lady (33%)."
-  ]
+  "xs": []
  },
  "mega-tyranitar-ex-c1": {
   "name": "Mega Tyranitar ex",
@@ -3192,14 +3189,14 @@
  },
  "giratina-ex-a2b-mega-mewtwo-x-ex-c1": {
   "name": "Giratina ex Mega Mewtwo X ex",
-  "seen": "2026-11-23",
-  "rank": 48,
-  "share": 0.23,
-  "win": 41.67,
+  "seen": "2026-11-24",
+  "rank": 56,
+  "share": 0.21,
+  "win": 50,
   "count": 5,
-  "games": 12,
+  "games": 10,
   "more": 1,
-  "dates": "Nov 17 – 22",
+  "dates": "Nov 18 – 23",
   "best": [
    "32nd of 122",
    "DUAL FUSION CLASH!! $20 BEC'S WEEKLY",
@@ -4427,14 +4424,14 @@
  },
  "mega-gengar-ex-b2b-gengar-c1": {
   "name": "Mega Gengar ex Gengar",
-  "seen": "2026-11-23",
-  "rank": 59,
-  "share": 0.22,
-  "win": 31.25,
+  "seen": "2026-11-24",
+  "rank": 58,
+  "share": 0.21,
+  "win": 33.33,
   "count": 5,
-  "games": 16,
+  "games": 12,
   "more": 1,
-  "dates": "Nov 17 – 23",
+  "dates": "Nov 18 – 23",
   "best": [
    "42nd of 88",
    "Block Dragon Standard (Any 2 card prize)",
@@ -4696,6 +4693,85 @@
    ],
    [
     "Rare Candy",
+    2
+   ],
+   [
+    "Peculiar Plaza",
+    2
+   ]
+  ],
+  "xs": []
+ },
+ "giratina-ex-a2b-mega-mewtwo-y-ex-p-c": {
+  "name": "Giratina ex Mega Mewtwo Y ex",
+  "seen": "2026-11-24",
+  "rank": 57,
+  "share": 0.21,
+  "win": 47.22,
+  "count": 5,
+  "games": 18,
+  "more": 1,
+  "dates": "Nov 18 – 23",
+  "best": [
+   "14th of 122",
+   "DUAL FUSION CLASH!! $20 BEC'S WEEKLY",
+   "2026-11-20"
+  ],
+  "cards": [
+   [
+    "Giratina ex",
+    2
+   ],
+   [
+    "Ralts",
+    1
+   ],
+   [
+    "Gardevoir",
+    1
+   ],
+   [
+    "Mega Mewtwo Y ex",
+    1
+   ],
+   [
+    "Indeedee ex",
+    1
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Pokémon Center Lady",
+    1
+   ],
+   [
+    "Will",
+    1
+   ],
+   [
+    "Copycat",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Rare Candy",
+    1
+   ],
+   [
+    "Lucky Ice Pop",
+    1
+   ],
+   [
+    "Genome Converter Y",
+    1
+   ],
+   [
+    "Eviolite",
     2
    ],
    [
