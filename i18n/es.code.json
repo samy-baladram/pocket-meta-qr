@@ -907,6 +907,11 @@
    "note": "card filter: where the card is (join)",
    "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
    "replace": "return parts.length ? parts.map((p) => /^en /.test(p) ? p : \"en \" + p).join(\" y \") : \"\";"
+  },
+  {
+   "note": "latest events: multi-deck events left out (singular/plural verb)",
+   "find": "${skip} multi-deck event${skip > 1 ? \"s\" : \"\"} (players bring more than one deck) ${skip > 1 ? \"are\" : \"is\"} not listed: their results do not show which deck won each match.",
+   "replace": "${skip} ${skip > 1 ? \"torneos multibaraja (en los que cada jugador lleva más de una baraja) se han quedado fuera\" : \"torneo multibaraja (en el que cada jugador lleva más de una baraja) se ha quedado fuera\"}, porque no hay forma de saber con qué baraja se ganó cada partida."
   }
  ]
 }

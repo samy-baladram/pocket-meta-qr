@@ -892,6 +892,11 @@
    "note": "card filter: where the card is (join)",
    "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
    "replace": "return parts.length ? parts.map((p) => /^nas? /.test(p) ? p : \"em \" + p).join(\" e \") : \"\";"
+  },
+  {
+   "note": "latest events: multi-deck events left out (singular/plural verb)",
+   "find": "${skip} multi-deck event${skip > 1 ? \"s\" : \"\"} (players bring more than one deck) ${skip > 1 ? \"are\" : \"is\"} not listed: their results do not show which deck won each match.",
+   "replace": "${skip} ${skip > 1 ? \"torneios multibaralho (em que cada jogador leva mais de um baralho) ficaram de fora\" : \"torneio multibaralho (em que cada jogador leva mais de um baralho) ficou de fora\"}, porque não dá para saber com qual baralho cada partida foi vencida."
   }
  ]
 }
