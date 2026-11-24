@@ -131,7 +131,7 @@
   {
    "note": "label: data status",
    "find": "aria-label=\"Data status: checked ${agoTxt(data.updatedAt)}. Details\"",
-   "replace": "aria-label=\"Datenstatus: geprüft ${agoTxt(data.updatedAt)}. Details\""
+   "replace": "aria-label=\"Datenstatus: geprüft ${agoTxt(data.updatedAt)} · Details\""
   },
   {
    "note": "tip: players, matches",
@@ -823,6 +823,22 @@
    "note": "loading text next to the intro slot (the extractor does not find it)",
    "find": "<div class=\"empty\">Loading decks&hellip;<p class=\"seoi\"",
    "replace": "<div class=\"empty\">Decks werden geladen&hellip;<p class=\"seoi\""
+  },
+  {
+   "note": "footer: Daten: Limitless TCG, die letzten 7 Tage",
+   "find": "$(\"fwin\").textContent = winLast().replace(/^in /, \"\");",
+   "replace": "$(\"fwin\").textContent = winLast().replace(/^in den /, \"die \").replace(/Tagen$/, \"Tage\");"
+  },
+  {
+   "note": "no decks of an energy: Feuer oder Wasser (in den letzten 7 Tagen)",
+   "find": "${none.map(cap).join(\" or \")} decks in the meta right now (${winLast().replace(/^in /, \"\")})",
+   "replace": "${none.map(cap).join(\" oder \")} decks in the meta right now (${winLast()})"
+  },
+  {
+   "note": "charts: 50 %",
+   "find": "class=\"ltx\">50%</text>",
+   "replace": "class=\"ltx\">50\\u00a0%</text>",
+   "all": true
   },
   {
    "note": "plural: card${k > 1 ? \"s\" : \"\"} -> \"n\" (Karte/n, Änderung/en, Turnier/e, Stunde/n, Turniersieg/e)",

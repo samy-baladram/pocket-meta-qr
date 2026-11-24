@@ -148,11 +148,11 @@
 ],
 "133724e26e": [
 "lists · best {t0}{0}{t1} · {1}% share",
-"Listen · beste {t0}{0}{t1} · {1} % Anteil"
+"Listen · beste Platzierung: {t0}{0}{t1} · {1} % Anteil"
 ],
 "1385294543": [
 "×N: share here vs {0} · top 8s at other events",
-"×N: Anteil hier gegenüber {0} · Top-8-Platzierungen bei anderen Turnieren"
+"×N: Anteil hier vs. Anteil {0} · Top-8-Platzierungen bei anderen Turnieren"
 ],
 "13d4b964c6": [
 "One event is {t0}{0}%{t1} of these results, so it moves the numbers more than usual.",
@@ -180,7 +180,7 @@
 ],
 "166c895601": [
 "top {0} vs",
-"Top {0} gegenüber"
+"Top {0} vs. das Meta"
 ],
 "168e4932a6": [
 "Deck",
@@ -292,7 +292,7 @@
 ],
 "22071c6d00": [
 "tap a deck to see its wins",
-"tippe auf ein Deck, um seine Siege zu sehen"
+"tippe auf ein Deck, um seine Turniersiege zu sehen"
 ],
 "22118a1f44": [
 "event{0}",
@@ -420,7 +420,7 @@
 ],
 "2eb15e8dda": [
 "Did better",
-"Besser abgeschnitten"
+"Über den Erwartungen"
 ],
 "2f8d136cf7": [
 "What’s New: Site Updates | Pocket Meta QR",
@@ -936,7 +936,7 @@
 ],
 "69b8c08eae": [
 "Did worse",
-"Schlechter abgeschnitten"
+"Unter den Erwartungen"
 ],
 "69bb0fdaac": [
 "{0}Tap to save",
@@ -1992,7 +1992,7 @@
 ],
 "ddde1bcb75": [
 "Most wins",
-"Meiste Siege"
+"Meiste Turniersiege"
 ],
 "dde3707865": [
 "Above meta",
