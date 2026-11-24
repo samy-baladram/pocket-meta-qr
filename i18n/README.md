@@ -243,3 +243,15 @@ Languages with long words (German, Spanish, French ...) can break buttons, chips
 CSS in `preview/i18n_patch.py` (scoped to `html:not([lang="en"])`): hyphenation, titles on 2 lines, labels that wrap.
 To test a new language or a UI change: `node i18n/pseudo.mjs <patched page> <out> --long` makes every word 60% longer;
 `tools/layout_check.mjs` lists what sticks out or is cut, compared with the English page.
+
+## Korean (ko, Nov 24, 2026): live as beta at /ko/ (noindex; not yet in I18N_ROUTES, I18N_INDEX, I18N_DECKS)
+Made from the Japanese (`ko.json`: 556 texts; `ko.code.json` from `ja.code.json`, in Korean), checked against the
+owner's in-game screenshots (all 27 set names, Limited Battle name, deck code steps).
+- Spacing: Korean puts spaces between words, so ko is not in `tr.cjk` (build.mjs). A number and its counter go
+  together (7분 전, 325명, 대회 16개): a translation that starts with `{^}` drops the space before it (lib.mjs).
+- Particles: no particle right after a variable name; use a colon form or a fixed noun (카드는).
+- Times: 24 h (`hourCycle: "h23"`, ko-KR), as the game. Dates: 11월 18일, ranges 11월 18일~23일. Ranks: 1위.
+- Terms: 덱, 레시피 (list), 상위 플레이어, 사용률, 승률, 대회, 팩, 확장팩, 메타 카드, 전적, TOP 8, 급부상, 검증 전,
+  고정/자유, 상성, 한정 배틀 (듀얼 퓨전(C1) 한정 배틀), 교체 (swap). Series: A시리즈 (no space, as the game).
+  Promo pack: PROMO-C (game name). Tabs: 메타 덱, 최근 대회, 뽑을 만한 팩.
+- Names: card and set names from the game data (names.ko.json); A3, A4a, B1a and B2 confirmed by screenshots.
