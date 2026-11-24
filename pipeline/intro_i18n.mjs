@@ -118,8 +118,9 @@ export function deckText(lang, e, on, dates, namesDir = "preview/i18n") {
   if (!DAY[lang] && lang !== "ja") return null;
   const N = names(lang, namesDir), nm = deck(lang, N, e.name), cn = (n) => (N && N[n]) || n;
   const p = pct(lang, e.share < 0.1 ? +(+e.share).toFixed(2) : e.share), w = e.win != null ? pct(lang, e.win) : null;
-  const cards = (e.cards || []).map(([n, c]) => (lang === "ja" ? `${cn(n)}×${c}` : `${c} ${cn(n)}`));
-  const sd = e.seen ? DAY[lang](...md(e.seen)) : "", r = e.rank, g = e.games, J = cards.join(lang === "ja" ? "、" : ", ");
+  const cjk = lang === "ja" || lang === "zh";   // full-width punctuation (、。（）)
+  const cards = (e.cards || []).map(([n, c]) => (cjk ? `${cn(n)}×${c}` : lang === "ko" ? `${cn(n)} ${c}장` : `${c} ${cn(n)}`));
+  const sd = e.seen ? DAY[lang](...md(e.seen)) : "", r = e.rank, g = e.games, J = cards.join(cjk ? "、" : ", ");
   const T = {
     ja: { main: `${nm}：今週のポケポケ環境で${r}位、使用率${p}${w ? `、勝率${w}` : ""}。`, more: `${nm}：今週のポケポケの少数派デッキ、使用率${p}${w ? `、勝率${w}` : ""}。`,
       qr: "QRコード付きのレシピ。", offD: `${nm}：今週の環境には入っていません（最終確認：${sd}）。使用率${p}。レシピ：`,
@@ -145,6 +146,16 @@ export function deckText(lang, e, on, dates, namesDir = "preview/i18n") {
       qr: " Liste avec code QR.", offD: `Absent de la méta de Pokémon TCG Pocket cette semaine (vu pour la dernière fois le ${sd}) : ${p} d'utilisation. Sa liste : `,
       in: `${nm} : n° ${r} des decks de Pokémon TCG Pocket cette semaine${dates ? ` (${dates})` : ""}, ${p} des joueurs${w ? `, ${w} de victoires sur ${g} parties` : ""}. La liste de ${nm} la plus jouée : ${J}. Ouvrez la liste et touchez son code QR pour l'importer dans le jeu.`,
       off: `Absent de la méta cette semaine. Vu pour la dernière fois le ${sd} : n° ${r} des decks de Pokémon TCG Pocket, ${p} des joueurs${w ? `, ${w} de victoires` : ""}. Sa liste : ${J}.` },
+    ko: { main: `${nm}: 이번 주 포켓몬 카드 게임 Pocket 메타 ${r}위, 사용률 ${p}${w ? `, 승률 ${w}` : ""}.`,
+      more: `${nm}: 이번 주 포켓몬 카드 게임 Pocket 소규모 덱, 사용률 ${p}${w ? `, 승률 ${w}` : ""}.`,
+      qr: " QR 코드가 있는 레시피.", offD: `${nm}: 이번 주 메타에 없습니다(마지막 등장: ${sd}). 사용률 ${p}. 레시피: `,
+      in: `${nm}: 이번 주 포켓몬 카드 게임 Pocket 덱 중 ${r}위${dates ? `(${dates})` : ""}, 사용률 ${p}${w ? `, ${g}전 승률 ${w}` : ""}. 가장 많이 쓰인 ${nm} 레시피: ${J}. 레시피를 열고 QR 코드를 탭하면 게임으로 읽어 올 수 있습니다.`,
+      off: `이번 주 메타에 없습니다. 마지막 등장: ${sd}. 당시 포켓몬 카드 게임 Pocket 덱 중 ${r}위, 사용률 ${p}${w ? `, 승률 ${w}` : ""}. 레시피: ${J}.` },
+    zh: { main: `${nm}：本週Pokémon TCG Pocket環境第${r}名，使用率${p}${w ? `，勝率${w}` : ""}。`,
+      more: `${nm}：本週Pokémon TCG Pocket的小眾牌組，使用率${p}${w ? `，勝率${w}` : ""}。`,
+      qr: "附QR碼的卡表。", offD: `${nm}：本週不在環境中（最後出現：${sd}）。使用率${p}。卡表：`,
+      in: `${nm}：本週Pokémon TCG Pocket牌組第${r}名${dates ? `（${dates}）` : ""}，使用率${p}${w ? `，${g}場勝率${w}` : ""}。最常用的${nm}卡表：${J}。打開卡表並點選QR碼，即可匯入遊戲。`,
+      off: `本週不在環境中。最後出現：${sd}。當時為Pokémon TCG Pocket牌組第${r}名，使用率${p}${w ? `，勝率${w}` : ""}。卡表：${J}。` },
     it: { main: `${nm} è al ${r}º posto nel meta del GCC Pokémon Pocket: ${p} dei giocatori${w ? `, ${w} di vittorie` : ""}.`,
       more: `${nm} è un mazzo minore del GCC Pokémon Pocket questa settimana: ${p} dei giocatori${w ? `, ${w} di vittorie` : ""}.`,
       qr: " Lista con codice QR.", offD: `Non è nel meta del GCC Pokémon Pocket di questa settimana (visto l'ultima volta il ${sd}): ${p} di utilizzo. La sua lista: `,
@@ -154,7 +165,7 @@ export function deckText(lang, e, on, dates, namesDir = "preview/i18n") {
   if (!T) return null;
   const head = e.more ? T.more : T.main;
   const fitL = (h, items) => {   // as page.mjs fit(), with the language's list separator and full stop
-    const sep = lang === "ja" ? "、" : ", ", end = lang === "ja" ? "。" : ".";
+    const sep = cjk ? "、" : ", ", end = cjk ? "。" : ".";
     const mk = (k) => h + items.slice(0, k).join(sep) + (k < items.length ? "…" : end);
     let n = items.length; while (n > 1 && mk(n).length > 160) n--; return mk(n); };
   const desc = on ? ((head + T.qr).length <= 160 ? head + T.qr : head) : fitL(T.offD, cards);
@@ -178,7 +189,7 @@ export function packText(lang, x, dates, namesDir = "preview/i18n") {
   const N = names(lang, namesDir), S = setNames(lang, namesDir), cn = (n) => (N && N[n]) || n;
   const trPack = (en) => { if (!N) return en; if (N[en]) return N[en]; const b = N[en + " ex"]; return b ? b.replace(/[-\s]?ex$/, "") : en; };
   const nm = (S[String(x.set || "").toLowerCase()] || x.setName) + (x.pack === x.setName ? "" : " " + trPack(x.pack));
-  const meta = x.cards.filter((c) => c.st), small = x.cards.length - meta.length, k = meta.length, ja = lang === "ja";
+  const meta = x.cards.filter((c) => c.st), small = x.cards.length - meta.length, k = meta.length, ja = lang === "ja" || lang === "zh";   // ja: full-width punctuation
   const P = (n, one, many) => (n === 1 ? one : many);
   const dk = (c) => c.decks.slice(0, 3).map((r) => deck(lang, N, r.d.name)).join(ja ? "、" : ", ") + (c.decks.length > 3 ? "…" : "");
   const T = {
@@ -207,6 +218,16 @@ export function packText(lang, x, dates, namesDir = "preview/i18n") {
       i: `Quels decks de Pokémon TCG Pocket de cette semaine (${dates}) utilisent les cartes du booster ${nm} : `,
       i0: `Aucune carte du booster ${nm} n'est jouée dans les decks de la méta de Pokémon TCG Pocket cette semaine (${dates}).`,
       sm: (s) => `${s} ${k ? P(s, "autre carte", "autres cartes") : P(s, "carte", "cartes")} seulement dans des decks secondaires.` },
+    ko: { unit: (n) => `덱 ${n}개`, d: `${nm} 팩: 이번 주 포켓몬 카드 게임 Pocket 메타 덱에서 쓰이는 카드 ${k}장: `,
+      d0: `${nm} 팩: 이번 주 포켓몬 카드 게임 Pocket 메타 덱에서 쓰이는 카드가 없습니다(${dates}).`,
+      i: `이번 주(${dates}) 포켓몬 카드 게임 Pocket 덱 중 ${nm} 팩의 카드를 쓰는 덱: `,
+      i0: `${nm} 팩의 카드는 이번 주(${dates}) 포켓몬 카드 게임 Pocket 메타 덱에서 쓰이지 않습니다.`,
+      sm: (s) => (k ? `그 밖에 카드 ${s}장은 소규모 덱에서만 쓰입니다.` : `카드 ${s}장은 소규모 덱에서만 쓰입니다.`) },
+    zh: { unit: (n) => `${n}個牌組`, d: `${nm}擴充包：本週Pokémon TCG Pocket環境牌組使用的卡牌${k}張：`,
+      d0: `${nm}擴充包：本週Pokémon TCG Pocket環境牌組沒有使用其中的卡牌（${dates}）。`,
+      i: `本週（${dates}）的Pokémon TCG Pocket牌組中，使用${nm}擴充包卡牌的牌組：`,
+      i0: `${nm}擴充包的卡牌，本週（${dates}）的Pokémon TCG Pocket環境牌組都沒有使用。`,
+      sm: (s) => (k ? `另有${s}張卡只用在小眾牌組。` : `${s}張卡只用在小眾牌組。`) },
     it: { unit: (n) => `${n} ${P(n, "mazzo", "mazzi")}`, d: `Busta ${nm}: ${k} ${P(k, "carta giocata", "carte giocate")} nei mazzi del meta del GCC Pokémon Pocket di questa settimana: `,
       d0: `Busta ${nm}: nessuna delle sue carte è giocata nei mazzi del meta del GCC Pokémon Pocket di questa settimana (${dates}).`,
       i: `Quali mazzi del GCC Pokémon Pocket di questa settimana (${dates}) usano le carte della busta ${nm}: `,
@@ -214,7 +235,7 @@ export function packText(lang, x, dates, namesDir = "preview/i18n") {
       sm: (s) => (k ? P(s, "Un'altra carta", `Altre ${s} carte`) : `${s} ${P(s, "carta", "carte")}`) + " solo in mazzi minori." },
   }[lang];
   if (!T) return null;
-  const sep = ja ? "、" : ", ", end = ja ? "。" : ".", op = ja ? "（" : " (", cp = ja ? "）" : ")", col = ja ? "：" : ": ";
+  const sep = ja ? "、" : ", ", end = ja ? "。" : ".", op = ja ? "（" : lang === "ko" ? "(" : " (", cp = ja ? "）" : ")", col = ja ? "：" : ": ";
   const fitL = (h, items) => { const mk = (n) => h + items.slice(0, n).join(sep) + (n < items.length ? "…" : end);
     let n = items.length; while (n > 1 && mk(n).length > 160) n--; return mk(n); };
   const desc = k ? fitL(T.d, meta.map((c, i) => `${cn(c.n)}${op}${i ? c.decks.length : T.unit(c.decks.length)}${cp}`)) : T.d0;
@@ -227,18 +248,18 @@ export function packText(lang, x, dates, namesDir = "preview/i18n") {
 // e = the English page's entry ({ pct, nd, L: [{ name, c, tp }], seen }), on = in this week's lists, packs = the main
 // print's booster packs ([{ set, setName, pack, solo }], promo packs left out; [] = a promo card).
 export function cardText(lang, en, e, on, dates, packs, namesDir = "preview/i18n") {
-  const N = names(lang, namesDir), S = setNames(lang, namesDir), ja = lang === "ja";
+  const N = names(lang, namesDir), S = setNames(lang, namesDir), ja = lang === "ja" || lang === "zh";   // ja: full-width punctuation
   if (!DAY[lang]) return null;
   const nm = (N && N[en]) || en, P = (n, one, many) => (n === 1 ? one : many);
   const trPack = (x) => { if (!N) return x; if (N[x]) return N[x]; const b = N[x + " ex"]; return b ? b.replace(/[-\s]?ex$/, "") : x; };
-  const OR = { ja: "または", es: " o ", pt: " ou ", de: " oder ", fr: " ou ", it: " o " }[lang];
+  const OR = { ja: "または", ko: " 또는 ", zh: "或", es: " o ", pt: " ou ", de: " oder ", fr: " ou ", it: " o " }[lang];
   const orJoin = (L) => (L.length > 1 ? L.slice(0, -1).join(ja ? "、" : ", ") + OR + L.at(-1) : L[0]);
   const bySet = new Map();
   for (const p of packs || []) { const sn = S[String(p.set).toLowerCase()] || p.setName;
     (bySet.get(sn) || bySet.set(sn, []).get(sn)).push(p.solo ? null : trPack(p.pack)); }
   const pkLong = bySet.size ? orJoin([...bySet].map(([sn, L]) => (L.some((x) => x) ? `${sn}${ja ? " " : " "}${orJoin(L.filter((x) => x))}` : sn))) : null;
   const pkShort = bySet.size ? orJoin([...bySet.keys()]) : null;
-  const pc = (v) => (v == null ? "?" : ja || lang === "pt" || lang === "it" ? `${v}%` : `${v} %`);
+  const pc = (v) => (v == null ? "?" : ja || lang === "ko" || lang === "pt" || lang === "it" ? `${v}%` : `${v} %`);
   const p = pc(e.pct), nd = e.nd ?? (e.L || []).length, sd = e.seen ? DAY[lang](...md(e.seen)) : "";
   const L = (e.L || []).map((x) => ({ ...x, name: deck(lang, N, x.name) })), more = nd > L.length ? "…" : "";
   const T = {
@@ -248,6 +269,18 @@ export function cardText(lang, en, e, on, dates, packs, namesDir = "preview/i18n
       i: `${nm}は今週（${dates}）のポケポケのデッキ${nd}個で使われ、上位プレイヤーの${p}が採用しています。使っているデッキ：`,
       od: `${nm}：今週の環境デッキでは使われていません（最終確認：${sd}）。使われていたデッキ${nd}個：`,
       oi: `今週の環境デッキでは使われていません。最終確認：${sd}。当時${nd}個のデッキで、上位プレイヤーの${p}が採用。使っていたデッキ：` },
+    ko: { pk: (s) => `입수: ${s} 팩.`, promo: "프로모 카드(팩에 들어 있지 않음).",
+      use: (x) => `${x.name}(${x.c}장, 상위 플레이어 ${x.tp}명)`,
+      d: `${nm}: 이번 주 포켓몬 카드 게임 Pocket 메타 덱 ${nd}개에서 사용, 상위 플레이어의 ${p}가 채용. 주요 덱: `,
+      i: `${nm}: 이번 주(${dates}) 포켓몬 카드 게임 Pocket 덱 ${nd}개에서 쓰이며, 상위 플레이어의 ${p}가 채용했습니다. 사용하는 덱: `,
+      od: `${nm}: 이번 주 메타 덱에서 쓰이지 않습니다(마지막 등장: ${sd}). 사용하던 덱 ${nd}개: `,
+      oi: `이번 주 메타 덱에서 쓰이지 않습니다. 마지막 등장: ${sd}. 당시 덱 ${nd}개에서 상위 플레이어의 ${p}가 채용. 사용하던 덱: ` },
+    zh: { pk: (s) => `取得：${s}擴充包。`, promo: "宣傳卡（不在擴充包中）。",
+      use: (x) => `${x.name}（${x.c}張，頂尖玩家${x.tp}人）`,
+      d: `${nm}：本週有${nd}個Pokémon TCG Pocket環境牌組使用，頂尖玩家採用率${p}。主要牌組：`,
+      i: `${nm}：本週（${dates}）有${nd}個Pokémon TCG Pocket牌組使用，頂尖玩家採用率${p}。使用的牌組：`,
+      od: `${nm}：本週環境牌組未使用（最後出現：${sd}）。曾使用的牌組${nd}個：`,
+      oi: `本週環境牌組未使用。最後出現：${sd}。當時有${nd}個牌組使用，頂尖玩家採用率${p}。曾使用的牌組：` },
     es: { pk: (s) => `Consíguela en el sobre ${s}.`, promo: "Carta promocional (no sale en sobres).",
       use: (x) => `${x.name} (${x.c} ${P(x.c, "copia", "copias")}, ${x.tp} ${P(x.tp, "jugador top", "jugadores top")})`,
       d: `${nm} está en ${nd} ${P(nd, "baraja", "barajas")} del meta de JCC Pokémon Pocket esta semana, usada por el ${p} de los jugadores top. Barajas principales: `,
@@ -285,5 +318,5 @@ export function cardText(lang, en, e, on, dates, packs, namesDir = "preview/i18n
   const fitL = (h, items, t) => { const mk = (n) => h + items.slice(0, n).join(sep) + (n < items.length ? "…" : end) + sp + t;
     let n = items.length; while (n > 1 && mk(n).length > 160) n--; return mk(n); };
   const used = L.map(T.use).join(sep) + more;
-  return { name: nm, desc: fitL(on ? T.d : T.od, L.map((x) => x.name), tail), intro: (on ? T.i : T.oi) + used + end + sp + tailL };
+  return { name: nm, desc: fitL(on ? T.d : T.od, L.map((x) => x.name), tail), intro: (on ? T.i : T.oi) + used + (more ? "" : end) + sp + tailL };
 }

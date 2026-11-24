@@ -46,7 +46,7 @@ page() { # <lang> <source html> <out dir> [root]
     mkdir -p "$(dirname "$3/$f")"
     HEAD="$(head_for "$1" "${4:-}" "$home" "$idx")" L="$1" U="https://pocketmetaqr.com/$rel/" HOME_="$home" MODE="$mode" node -e '
 const f = require("fs"), e = process.env; let h = f.readFileSync(process.argv[1], "utf8").replace("<head>", "<head>" + e.HEAD);
-if (e.L !== "en") h = h.replace(/<html lang="en"/, `<html lang="${e.L === "pt" ? "pt-BR" : e.L}"`)
+if (e.L !== "en") h = h.replace(/<html lang="en"/, `<html lang="${e.L === "pt" ? "pt-BR" : e.L === "zh" ? "zh-Hant" : e.L}"`)
   .replace(/(<link rel="canonical" href=")https:\/\/pocketmetaqr\.com\/(")/, `$1${e.U}$2`)
   .replace(/(<meta property="og:url" content=")https:\/\/pocketmetaqr\.com\/(")/, `$1${e.U}$2`);
 if (e.HOME_) h = h.replace(/(<a\b[^>]*?\shref=")\/((?:events|packs|limited|about)\/)?(")/g, `$1${e.HOME_}$2$3`)

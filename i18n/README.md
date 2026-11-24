@@ -179,7 +179,7 @@ Made from the reviewed French: the same 556 texts (`it.json`) and its 170 code c
 - To check by the owner in the game: the QR import path (I miei mazzi → + → Scansiona codice → Scansiona immagine
   salvata), the Limited Battle name (Lotte limitate: Fusione Duale) and the promo pack name (Promo-C vol. 1).
 
-## Section addresses per language (Phase 2 Step 1, Nov 24, 2026): ja, es, pt, de, fr, it
+## Section addresses per language (Phase 2 Step 1, Nov 24, 2026): ja, es, pt, de, fr, it, ko, zh
 
 `I18N_ROUTES: "ja"` in site.yml: the language pages listed there get their section pages next to their index.html:
 `/ja/events/`, `/ja/packs/`, `/ja/limited/`, `/ja/about/` (and the same under `/preview/ja/`). Still noindex, not in
@@ -235,6 +235,10 @@ Card pages (Step 4c, Nov 25): `I18N_CARDS` the same way: `/<l>/cards/<id>/` for 
 `RCTITLE`, heading = its `c.n + "…"`, description + intro = `cardText()` in intro_i18n.mjs (the decks that use it with
 copies and top players, the main print's pack names as the page shows them, or the promo line); hreflang
 (`--alt-cards "$I18N_CARDS"`) and sitemap (cards in this week's lists); the menu keeps the open card.
+
+Korean and Traditional Chinese (Nov 25): ko and zh in all five settings (I18N_INDEX, I18N_ROUTES, I18N_DECKS,
+I18N_PACKS, I18N_CARDS), with their templates in intro_i18n.mjs (ko: Western punctuation, "덱 3개", "2장"; zh: the
+full-width punctuation of ja, "3個牌組", "×2"). zh is Traditional Chinese: `zh-Hant` in hreflang and `<html lang>`.
 
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in

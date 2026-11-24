@@ -99,7 +99,7 @@ const LP = LR && args.includes("--lang-packs");
 // Step 4c: --alt-cards "<langs>" (I18N_CARDS) and --lang-cards (--cards-seen read only): the same for cards/<id>/.
 const ALT_C = (argv("--alt-cards") || "").split(/\s+/).filter((x) => ALT_R.includes(x));
 const LC = LR && args.includes("--lang-cards");
-const HL = (l) => (l === "pt" ? "pt-BR" : l);
+const HL = (l) => (l === "pt" ? "pt-BR" : l === "zh" ? "zh-Hant" : l);   // zh = Traditional Chinese
 const ALT_DIRS = ["events", "packs", "limited", "about"];
 function withAlt(html, key) {   // key: "" (home) or a section folder
   const me = LANG && LANG !== "en" ? LANG : "en";

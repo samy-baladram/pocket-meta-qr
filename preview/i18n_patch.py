@@ -141,7 +141,7 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
   // card images only, English names.
   var LANG_N = TXT_L.includes(IMGL) ? IMGL : "en", L10N = null;
   var L10NP = LANG_N === "en" ? Promise.resolve(null) : fetch(`i18n/names.${LANG_N}.json`).then((r) => (r.ok ? r.json() : null)).then((j) => (L10N = j)).catch(() => null);
-  try { document.documentElement.lang = IMGL === "pt" ? "pt-BR" : IMGL; } catch (err) {}
+  try { document.documentElement.lang = IMGL === "pt" ? "pt-BR" : IMGL === "zh" ? "zh-Hant" /* Traditional Chinese */ : IMGL; } catch (err) {}
   // Nov 23: sections in English only on a language page (not translated yet): a note at the top of each.
   // new = What's new (#nwl), limited = Limited Battle (#lbl).
   var EN_ONLY = { de: ["new"], es: ["new"], pt: ["new"], fr: ["new"], it: ["new"], ko: ["new"], zh: ["new"] }, EN_ONLY_T = { de: "Dieser Bereich ist vorerst nur auf Englisch verfügbar.",
