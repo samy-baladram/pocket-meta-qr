@@ -651,10 +651,6 @@
 ", record",
 ", campanha"
 ],
-"49d00effb2": [
-"▲▼ share change · {0} days",
-"▲▼ mudança de uso · {0} dias"
-],
 "4acadb5e3c": [
 "{0}Breakout",
 "{0}Revelação"
@@ -2222,5 +2218,9 @@
 "ffd5f6df10": [
 "in no other top player’s list",
 "em nenhuma outra lista de jogador top"
+],
+"6ddd63c542": [
+"▲▼ share change",
+"▲▼ mudança de uso"
 ]
 }

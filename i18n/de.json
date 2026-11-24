@@ -654,10 +654,6 @@
 ", record",
 ", Bilanz"
 ],
-"49d00effb2": [
-"▲▼ share change · {0} days",
-"▲▼ Änderung des Anteils · {0} Tage"
-],
 "4acadb5e3c": [
 "{0}Breakout",
 "{0}Breakout"
@@ -2273,5 +2269,9 @@
 "ffd5f6df10": [
 "in no other top player’s list",
 "in keiner anderen Liste eines Top-Spielers"
+],
+"6ddd63c542": [
+"▲▼ share change",
+"▲▼ Änderung des Anteils"
 ]
 }
