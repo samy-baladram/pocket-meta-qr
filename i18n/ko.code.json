@@ -10,12 +10,12 @@
   {
    "note": "Limited Battle: the cards line (promo pack name not confirmed in the Korean game)",
    "find": "Dual Fusion, Promo-C Vol. 1 and 7 shop promos ${ii(",
-   "replace": "듀얼 퓨전, 프로모 팩 C시리즈 Vol.1, 상점 프로모 7장 ${ii("
+   "replace": "듀얼 퓨전, PROMO-C, 상점 프로모 7장 ${ii("
   },
   {
    "note": "Limited Battle: cards tip, with Korean card names",
    "find": "<p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(\", \")}.</p>",
-   "replace": "<p><b>듀얼 퓨전</b>(C1), 이번 이벤트의 <b>프로모 팩 C시리즈 Vol.1</b>, 그리고 아래 상점 프로모 7장의 카드만 쓸 수 있습니다.</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\", \")}.</p>"
+   "replace": "<p><b>듀얼 퓨전</b>(C1), 이번 이벤트의 <b>PROMO-C</b>, 그리고 아래 상점 프로모 7장의 카드만 쓸 수 있습니다.</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\", \")}.</p>"
   },
   {
    "note": "window tip: 처음 3일간 / 첫날 (the text says {0}의 결과)",
@@ -1004,6 +1004,21 @@
    "note": "ko: hero event line: '131명' (flex gap)",
    "find": "&middot; <b>${e.players}</b> players &middot; ${evDay(locDay(e))}</span>",
    "replace": "&middot; <span><b>${e.players}</b>명</span> &middot; ${evDay(locDay(e))}</span>"
+  },
+  {
+   "note": "ko: 'since last visit' notice: counters after the number",
+   "find": "const parts = [ne ? `<b>+${ne} event${ne > 1 ? \"s\" : \"\"}</b>` : \"\", nd ? `<b>${nd} new deck${nd > 1 ? \"s\" : \"\"}</b> in the top 10` : \"\"]",
+   "replace": "const parts = [ne ? `새 대회 <b>+${ne}개</b>` : \"\", nd ? `TOP 10에 새 덱 <b>${nd}개</b>` : \"\"]"
+  },
+  {
+   "note": "card filter: where the card is (lists)",
+   "find": "parts.push(`${ls.length > 1 ? \"lists\" : \"list\"} ${ls.join(\", \")}`);",
+   "replace": "parts.push(`레시피 ${ls.join(\", \")}`);"
+  },
+  {
+   "note": "card filter: where the card is (join)",
+   "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
+   "replace": "return parts.length ? parts.join(\", \") + \"에 채용\" : \"\";"
   }
  ]
 }

@@ -897,6 +897,16 @@
    "find": "player${use[1] > 1 ? \"s\" : \"\"}",
    "replace": "player${use[1] > 1 ? \"es\" : \"\"}",
    "all": true
+  },
+  {
+   "note": "card filter: where the card is (lists)",
+   "find": "parts.push(`${ls.length > 1 ? \"lists\" : \"list\"} ${ls.join(\", \")}`);",
+   "replace": "parts.push(`${ls.length > 1 ? \"en las listas\" : \"en la lista\"} ${ls.join(\", \")}`);"
+  },
+  {
+   "note": "card filter: where the card is (join)",
+   "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
+   "replace": "return parts.length ? parts.map((p) => /^en /.test(p) ? p : \"en \" + p).join(\" y \") : \"\";"
   }
  ]
 }

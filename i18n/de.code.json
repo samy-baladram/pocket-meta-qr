@@ -953,6 +953,16 @@
    "find": "hour${hr > 1 ? \"s\" : \"\"}",
    "replace": "hour${hr > 1 ? \"n\" : \"\"}",
    "all": true
+  },
+  {
+   "note": "card filter: where the card is (lists)",
+   "find": "parts.push(`${ls.length > 1 ? \"lists\" : \"list\"} ${ls.join(\", \")}`);",
+   "replace": "parts.push(`${ls.length > 1 ? \"in Listen\" : \"in Liste\"} ${ls.join(\", \")}`);"
+  },
+  {
+   "note": "card filter: where the card is (join)",
+   "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
+   "replace": "return parts.length ? parts.map((p) => p.replace(/^eine /, \"in einer \")).join(\" und \") : \"\";"
   }
  ]
 }
