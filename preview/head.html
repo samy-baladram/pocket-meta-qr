@@ -1,8 +1,11 @@
 <base href="/"><meta name="robots" content="noindex, nofollow">
 <script>/* A page in a folder (/preview/..., /ja/): <base href="/"> loads data and images from the site root; keep the page's
-   own "#..." addresses (and "#..." link clicks) on its folder, not on the English page at "/". */
-(() => { for (const k of ["pushState", "replaceState"]) { const o = history[k].bind(history);
-    history[k] = (s, t, u) => o(s, t, typeof u === "string" && u.startsWith("#") ? location.pathname + location.search + u : u); }
+   own "#..." addresses (and "#..." link clicks) on its folder, not on the English page at "/". Phase 2 (Nov 24): PMQ_HOME
+   (set by the build on a page with section addresses, "/ja/") = its folder: the page's "/events/" goes to "/ja/events/". */
+(() => { const H = typeof PMQ_HOME === "string" && PMQ_HOME;
+  const fix = (u) => typeof u !== "string" ? u : u.startsWith("#") ? location.pathname + location.search + u
+    : H && u.startsWith("/") && !u.startsWith(H) ? H + u.slice(1) : u;
+  for (const k of ["pushState", "replaceState"]) { const o = history[k].bind(history); history[k] = (s, t, u) => o(s, t, fix(u)); }
   addEventListener("click", (e) => { const a = e.target.closest && e.target.closest('a[href^="#"]');
     if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault(); location.hash = a.getAttribute("href"); }); })();</script>

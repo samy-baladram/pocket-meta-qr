@@ -12,23 +12,34 @@ T=$(mktemp -d)
 mkdir -p "$PUB/preview" "$PUB/i18n"
 python preview/i18n_patch.py site/index.html "$T/src.html"
 node i18n/extract.mjs "$T/src.html" "$PUB/i18n/en.json"
-head_for() { # <lang> [root] -> the head insert for that page (root: the English page's folder, default /preview/)
+head_for() { # <lang> [root] [home] -> the head insert for that page (root: the English page's folder, default /preview/;
+  # home: the page's own folder when it has section addresses, Phase 2)
   local h; h=$(tr '\n' ' ' < preview/head.html)
-  if [ "$1" != en ]; then h="<script>var PMQ_LANG = \"$1\", PMQ_ROOT = \"${2:-/preview/}\";</script>$h"; fi
+  if [ "$1" != en ]; then h="<script>var PMQ_LANG = \"$1\", PMQ_ROOT = \"${2:-/preview/}\"${3:+, PMQ_HOME = \"$3\"};</script>$h"; fi
   printf '%s' "$h"
 }
 page() { # <lang> <source html> <out dir> [root]
   rm -rf "$T/p" && mkdir -p "$T/p" "$3"
+  local rel="${3#"$PUB"/}" home="" mode=--no-routes
+  # Phase 2 Step 1 (Nov 24): a language in I18N_ROUTES (site.yml) gets its section pages too (events/, packs/,
+  # limited/, about/ next to its index.html: page.mjs --lang-routes)
+  if [ "$1" != en ] && [[ " ${I18N_ROUTES:-} " == *" $1 "* ]]; then home="/$rel/"; mode="--lang-routes --root $rel/"; fi
   # --prev: keep the previous build's app.<hash> files of this page (a page cached for 10 min still finds its code)
-  node pipeline/page.mjs "$2" "$T/p/index.html" --no-routes --lang "$1" --data site --prev "cache/app-$(printf '%s' "${3#"$PUB"/}" | tr / -)" > /dev/null
+  # shellcheck disable=SC2086
+  node pipeline/page.mjs "$2" "$T/p/index.html" $mode --lang "$1" --data site --prev "cache/app-$(printf '%s' "$rel" | tr / -)" > /dev/null
   cp "$T/p"/app.* "$PUB/"   # <base href="/">: the page loads them from the site root
-  # + the head insert; <html lang>, canonical and og:url of the page's own address (out dir under $PUB)
-  HEAD="$(head_for "$1" "${4:-}")" L="$1" U="https://pocketmetaqr.com/${3#"$PUB"/}/" node -e '
+  # + the head insert; <html lang>, canonical and og:url of the page's own address (out dir under $PUB; the section
+  # pages have theirs from page.mjs); with section addresses, the section links (<a href="/events/">) in the folder
+  (cd "$T/p" && find . -name index.html) | while read -r f; do
+    mkdir -p "$(dirname "$3/$f")"
+    HEAD="$(head_for "$1" "${4:-}" "$home")" L="$1" U="https://pocketmetaqr.com/$rel/" HOME_="$home" node -e '
 const f = require("fs"), e = process.env; let h = f.readFileSync(process.argv[1], "utf8").replace("<head>", "<head>" + e.HEAD);
 if (e.L !== "en") h = h.replace(/<html lang="en"/, `<html lang="${e.L === "pt" ? "pt-BR" : e.L}"`)
   .replace(/(<link rel="canonical" href=")https:\/\/pocketmetaqr\.com\/(")/, `$1${e.U}$2`)
   .replace(/(<meta property="og:url" content=")https:\/\/pocketmetaqr\.com\/(")/, `$1${e.U}$2`);
-f.writeFileSync(process.argv[2], h);' "$T/p/index.html" "$3/index.html"
+if (e.HOME_) h = h.replace(/(<a\b[^>]*?\shref=")\/((?:events|packs|limited|about)\/)?(")/g, `$1${e.HOME_}$2$3`);
+f.writeFileSync(process.argv[2], h);' "$T/p/$f" "$3/$f"
+  done
 }
 page en "$T/src.html" "$PUB/preview"
 SUM=""

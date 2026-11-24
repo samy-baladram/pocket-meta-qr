@@ -8,7 +8,9 @@ python3 preview/i18n_patch.py <in.html> <out.html>      (site.yml runs it on eve
    (#langPop) with every game language in its own script. LIVE_L (English; 日本語, Español, Português (Brasil), Deutsch and Français with a Beta tag) can be chosen; the others
    show "Coming soon" / 準備中 and do nothing. A choice is saved (localStorage pmq-lang) and opens that language's page
    (/preview/ja/: i18n/build.mjs, PMQ_LANG set by the build). No redirect by browser language."""
-import re, sys
+import json, os, re, sys
+# Phase 2 Step 1 (Nov 24): the languages whose pages have section addresses (/ja/events/ ...): I18N_ROUTES (site.yml)
+ROUTE_L = json.dumps([x for x in os.environ.get("I18N_ROUTES", "").split() if x != "en"])
 src, dst = sys.argv[1], sys.argv[2]
 MENU_ONLY = "--menu-only" in sys.argv[3:]   # Phase 1 (Nov 23): the English live page gets only the language menu
 s = open(src, encoding="utf8").read()
@@ -80,23 +82,29 @@ MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["es", "Español", "ES"],
 
 MINI_JS = r"""  // Phase 1 (Nov 23): language menu on the English site (preview/i18n_patch.py --menu-only). The English page stays
   // English; a saved choice of a live language (pmq-lang, set in the menu) opens that page from the home address.
-  var TXT_L = ["ja", "es", "pt", "de", "fr"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr"], PG_L = "en", langPath = (l) => "/" + (l === "en" ? "" : l + "/");
+  var TXT_L = ["ja", "es", "pt", "de", "fr"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr"], ROUTE_L = __ROUTE_L__, PG_L = "en", langPath = (l) => "/" + (l === "en" ? "" : l + "/");
   (() => { let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
     if (l && l !== "en" && LIVE_L.includes(l) && /^\/(index\.html)?$/.test(location.pathname)) location.replace(langPath(l) + location.hash); })();
   function setImgLang(l) { try { localStorage.setItem("pmq-lang", l); } catch (err) {} try { track("lang-" + l); } catch (err) {}
-    // the same view on the one-page /ja/: /events/ -> #events, /limited/ -> #limited, /decks/<id>/ -> #<id>, /packs/ -> Packs tab
-    const m = location.pathname.match(/^\/(events|limited|packs|decks)\/(?:([a-z0-9-]+)\/)?/); let h = location.hash;
-    if (m) { if (m[1] === "decks") h = m[2] ? "#" + m[2] : ""; else if (m[1] === "packs") { h = ""; try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} } else h = "#" + m[1]; }
-    location.href = langPath(l) + h; }
+    // the same view on the one-page /es/: /events/ -> #events, /limited/ -> #limited, /decks/<id>/ -> #<id>, /packs/ -> Packs tab
+    // Phase 2 (ROUTE_L, with section addresses): /events/ -> /ja/events/ (and /packs/, /limited/, /about/; a deck: #<id>)
+    const m = location.pathname.match(/^\/(events|limited|packs|decks|about)\/(?:([a-z0-9-]+)\/)?/); let h = location.hash, p = "";
+    if (m && ROUTE_L.includes(l) && m[1] !== "decks") { p = m[1] + "/"; if (m[2] || /^#(events|limited)$/.test(h)) h = ""; }
+    else if (m && m[1] !== "about") { if (m[1] === "decks") h = m[2] ? "#" + m[2] : ""; else if (m[1] === "packs") { h = ""; try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} } else h = "#" + m[1]; }
+    location.href = langPath(l) + p + h; }
 """
 top = '  const $ = (id) => document.getElementById(id);\n'
 if MENU_ONLY:
     one(top, top + MINI_JS)
     one(th, MENU_JS + th)
-    open(dst, "w", encoding="utf8").write(s)
+    open(dst, "w", encoding="utf8").write(s.replace("__ROUTE_L__", ROUTE_L))
     print("menu only:", dst)
     sys.exit(0)
 one(th, MENU_JS + th)
+# Phase 2 Step 1 (Nov 24): on a language page with section addresses (PMQ_HOME "/ja/", head.html) the page's own
+# "same address" check compares the path without the folder (/ja/events/ -> /events/), so it adds no extra history step.
+one("    if (location.pathname + location.search + location.hash === u) return;",
+    "    if ((typeof PMQ_HOME === \"string\" && PMQ_HOME && location.pathname.startsWith(PMQ_HOME) ? \"/\" + location.pathname.slice(PMQ_HOME.length) : location.pathname) + location.search + location.hash === u) return;")
 if not MENU_ONLY:
     s, n = re.subn(r'(["\'`])(c|z)/\$\{', r'\1${IMGP}\2/${', s)
     print("paths prefixed:", n)
@@ -106,7 +114,7 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
   // Phase 1 (Nov 23): the page language = its text, names and card images. A text page (/preview/ja/ ...: the build
   // sets PMQ_LANG) has its language. The English page stays English (no redirect by browser language), but a saved
   // choice of a live language (pmq-lang, set in the menu) opens that page. LIVE_L: the languages the menu offers.
-  var TXT_L = ["de", "es", "ja", "pt", "fr", "it"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr"], PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
+  var TXT_L = ["de", "es", "ja", "pt", "fr", "it"], LIVE_L = ["en", "ja", "es", "pt", "de", "fr"], ROUTE_L = __ROUTE_L__, PG_L = (typeof PMQ_LANG === "string" && PMQ_LANG) || "en";
   var IMGL = (() => { if (PG_L !== "en") return PG_L; let l = null; try { l = localStorage.getItem("pmq-lang"); } catch (err) {}
     return l && l !== "en" && LIVE_L.includes(l) && TXT_L.includes(l) ? l : "en"; })();
   // PMQ_ROOT (set by the build): the English page's folder, "/preview/" (test) or "/" (the live /ja/ page)
@@ -165,7 +173,16 @@ one(rawc, r'''  // Nov 23 (i18n test): a card with no localized file (i18n/<lang
     document.querySelectorAll("img").forEach((im) => { for (const a of ["src", "data-src"]) { const v = im.getAttribute(a);
       if (v && !v.startsWith("http") && /(^|\/)(i18n\/[a-z]{2}\/)?[cz]\/[a-z0-9]+-\d+\.webp/.test(v)) im.setAttribute(a, fix(v)); } });
     try { track("card-lang-" + l); } catch (err) {}
-    setTimeout(() => { const to = langPath(l); if (location.pathname !== to) location.href = to + location.hash; else location.reload(); }, 150); }
+    // Phase 2 (Nov 24): keep the section. A page with section addresses (PMQ_HOME) -> /<l>/events/ when that language (or
+    // English, on the live site) has them, else #events / #limited / the Packs tab; a one-page language with #events
+    // or #limited -> /<l>/events/ when <l> has section addresses.
+    const H = typeof PMQ_HOME === "string" && PMQ_HOME, rt = (x) => (x === "en" ? PMQ_R === "/" : ROUTE_L.includes(x));
+    const m = H && location.pathname.startsWith(H) && location.pathname.slice(H.length).match(/^(events|packs|limited|about)\//);
+    let p = "", h = location.hash;
+    if (m && rt(l)) p = m[1] + "/";
+    else if (m) { if (m[1] === "packs") { try { localStorage.setItem("pmq-tab", "packs"); } catch (err) {} } else if (m[1] !== "about") h = "#" + m[1]; }
+    else if (rt(l) && /^#(events|limited)$/.test(h)) { p = h.slice(1) + "/"; h = ""; }
+    setTimeout(() => { const to = langPath(l) + p; if (location.pathname !== to) location.href = to + h; else location.reload(); }, 150); }
 ''' + rawc)
 
 
@@ -197,4 +214,4 @@ one('win rate.</p>${mapSvg}`)', 'win rate.</p>${mapSvg}`, 0, "mm")')
 one('fold("Cards", cuPv, cuBody)', 'fold("Cards", cuPv, cuBody, 0, "cu")')
 one('const fk = (f) => { const t = f.querySelector("summary b")?.textContent || "";',
     'const fk = (f) => { if (f.dataset.k) return f.dataset.k; const t = f.querySelector("summary b")?.textContent || "";')
-open(dst, "w", encoding="utf8").write(s)
+open(dst, "w", encoding="utf8").write(s.replace("__ROUTE_L__", ROUTE_L))

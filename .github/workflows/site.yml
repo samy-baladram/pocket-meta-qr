@@ -108,6 +108,7 @@ jobs:
       - name: Assemble the site
         env:
           I18N_LIVE: "ja es pt de fr"   # Phase 1 (Nov 23; es beta since Nov 23, pt and de since Nov 24, fr since Nov 24): live language pages (space-separated); "" = off
+          I18N_ROUTES: "ja"   # Phase 2 Step 1 (Nov 24): languages with section addresses (/ja/events/, /ja/packs/, /ja/limited/, /ja/about/; noindex); "" = off
         run: |
           rm -rf public && mkdir public
           mkdir -p site/v site/t && cp -r site/data.json site/packs.json site/search.json site/events.json site/more.json site/cards.json site/stats.json site/v site/t site/c site/z site/p site/e public/

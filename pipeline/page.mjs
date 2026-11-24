@@ -67,13 +67,19 @@ import { dirname, join } from "node:path";
 import { createHash } from "node:crypto";
 import { minify as minifyJS } from "terser";
 import { minify as minifyCSS } from "csso";
-import { introText } from "./intro_i18n.mjs";
+import { introText, sectionDesc } from "./intro_i18n.mjs";
 
 const args = process.argv.slice(2), MINIFY = !args.includes("--no-minify"), ROUTES = !args.includes("--no-routes");
 // Nov 24 (i18n): --lang <xx> = a language page (its intro text in that language, pipeline/intro_i18n.mjs);
 // --data <dir> = where data.json / events.json / packs.json are (default: next to the page source)
 const argv = (k) => { const i = args.indexOf(k); return i > 0 ? args[i + 1] : null; };
 const LANG = argv("--lang"), DATA = argv("--data");
+// Phase 2 Step 1 (Nov 24, 2026): --lang-routes (with --lang <xx>, not en) = the section pages of a language page:
+// <out dir>/events/, packs/, limited/, about/ with the routes tag "1 about" (no deck, pack, card or What's new
+// addresses yet), canonical / og:url under /<xx>/, the title and subtitle formulas of the translated page (its RTITLES
+// and RHEAD), breadcrumb names from i18n/<xx>.json, the fixed descriptions of intro_i18n.mjs. No sitemap.xml.
+const LR = args.includes("--lang-routes") && !!LANG && LANG !== "en";
+const ROOT = LR ? (argv("--root") || `${LANG}/`) : "";   // the page folder under the site root (--root ja/ or preview/ja/)
 const SITE = "https://pocketmetaqr.com";
 const ROUTE_TAG = '<meta name="pmq-routes" content="1"><base href="/">';
 const SECTIONS = [
@@ -470,7 +476,7 @@ const esc = (t) => t.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g
 function sectionPage(html, { dir, title, desc, img, hsec, ld, extra }) {
   const i = html.indexOf("</head>");
   let head = html.slice(0, i);
-  const url = `${SITE}/${dir ? dir + "/" : ""}`, set = (re, val, what) => {
+  const url = `${SITE}/${ROOT}${dir ? dir + "/" : ""}`, set = (re, val, what) => {
     if (!re.test(head)) { if (what) throw new Error(`R26: no ${what} in the page head`); return; }
     head = head.replace(re, val);
   };
@@ -502,14 +508,33 @@ const body = readFileSync(src, "utf8");
 const ROUTES_ON = ROUTES && body.includes("pmq-routes");   // R26: the page supports the section addresses
 const NWV_RE = /<section class="abv nwv" id="nwv"[^>]*\shidden[\s>]/;   // Nov 23: What's new (whats-new/)
 const ABOUT_ON = ROUTES_ON && ABV_RE.test(body);              // R29: the page has the static FAQ section
-const NEW_ON = ROUTES_ON && NWV_RE.test(body);                // Nov 23: the page has the static What's new section
-const DECKS_ON = ROUTES_ON && (body.includes("pmq-deck") || args.includes("--decks"));   // R30 §2: the page's deck code
-const PACKS_ON = ROUTES_ON && (body.includes("/\\bpacks\\b/") || args.includes("--packs")); // R31: the page's RPACK check
-const CARDS_ON = ROUTES_ON && (body.includes("/\\bcards\\b/") || args.includes("--cards")); // R32: the page's RCARD check
+const NEW_ON = ROUTES_ON && !LR && NWV_RE.test(body);         // Nov 23: the page has the static What's new section
+const DECKS_ON = ROUTES_ON && !LR && (body.includes("pmq-deck") || args.includes("--decks"));   // R30 §2: the page's deck code
+const PACKS_ON = ROUTES_ON && !LR && (body.includes("/\\bpacks\\b/") || args.includes("--packs")); // R31: the page's RPACK check
+const CARDS_ON = ROUTES_ON && !LR && (body.includes("/\\bcards\\b/") || args.includes("--cards")); // R32: the page's RCARD check
 const NEWT = body.includes(" Deck List (") || args.includes("--newt");   // R32: the page's new title formulas
 const RT = ROUTE_TAG.replace('content="1"',
   `content="${["1", ABOUT_ON && "about", NEW_ON && "new", DECKS_ON && "decks", PACKS_ON && "packs", CARDS_ON && "cards"].filter(Boolean).join(" ")}"`);
 const SECS = SECTIONS.filter((x) => (!x.about || ABOUT_ON) && (!x.page || NEW_ON));
+// Phase 2 Step 1: the language texts of a section page. RTITLES / RHEAD of the translated page (the same text the page
+// sets after it loads); breadcrumb names from the catalog (id = sha1 of the English text, as i18n/extract.mjs).
+const LT = LR ? (() => {
+  const js = (q) => { try { return JSON.parse(q[0] === "`" ? JSON.stringify(q.slice(1, -1)).replace(/\\\\u/g, "\\u") : q); } catch { return null; } };
+  const block = (name) => (body.match(new RegExp(`const ${name} = \\{([\\s\\S]*?)\\};`)) || [, ""])[1];
+  const titles = {}, heads = {};
+  for (const m of block("RTITLES").matchAll(/(\w+): \(m?\) => ("(?:[^"\\]|\\.)*"|`[^`]*`)/g)) titles[m[1]] = m[2];
+  for (const m of block("RHEAD").matchAll(/(\w+): ("(?:[^"\\]|\\.)*")/g)) heads[m[1]] = js(m[2]);
+  const lbName = (body.match(/const LB = \{[^]*?name: "([^"]+)"/) || [])[1];
+  // the month as the page's RMON shows it (its locale: "ja-JP" -> 2026年11月, "es-ES" -> nov 2026)
+  const loc = (body.match(/const RMON = [^\n]{0,300}?toLocaleString\("([A-Za-z-]+)"/) || [, "en-US"])[1];
+  const month = new Date().toLocaleString(loc, { month: "short", year: "numeric", timeZone: "UTC" });
+  const title = (k) => { const q = titles[k === "" ? "decks" : k]; if (!q) return null;
+    const t = js(q.replace(/\$\{m\}/g, month).replace(/\$\{LB\.name\}/g, lbName || "")); return t && !/\$\{/.test(t) ? t : null; };
+  let cat = {}; try { cat = JSON.parse(readFileSync(`i18n/${LANG}.json`, "utf8")); } catch {}
+  const tr = (en) => cat[createHash("sha1").update(en).digest("hex").slice(0, 10)]?.[1] || en;
+  const crumb = { events: tr("Latest Events"), packs: tr("Booster Packs"), limited: tr("Limited Battle decks"), about: tr("About and FAQ") };
+  return { title, head: (k) => heads[k === "" ? "decks" : k] || null, crumb, desc: (k) => sectionDesc(LANG, k) };
+})() : null;
 
 // One head item at the start of the text: whitespace, then a comment, <title>..</title>, <meta>, <link>,
 // or <script type="application/ld+json">..</script>.
@@ -563,7 +588,7 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
   if (LANG && LANG !== "en") intro[""] = introText(LANG, readJSON(join(DATA || dirname(src), "data.json")));
   const lbOnNow = lb && Date.parse(lb.to) > Date.now();
   const rootDesc = (full.match(/<meta name="description" content="([^"]*)">/i) || [])[1];
-  const rootPage = ROUTES_ON ? sectionPage(full, { dir: "", title: TITLES[""], desc: descs[""] || rootDesc,
+  const rootPage = ROUTES_ON && !LR ? sectionPage(full, { dir: "", title: TITLES[""], desc: descs[""] || rootDesc,
     ld: { "@context": "https://schema.org", "@type": "WebSite", name: "Pocket Meta QR", alternateName: "PocketMetaQR",
       url: `${SITE}/` } }) : full;
   writeFileSync(out, fillIntro(rootPage, intro[""]));
@@ -571,14 +596,20 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
   if (ROUTES_ON) for (const sec of SECS) {   // R26: events/, packs/, limited/ next to index.html
     const f = join(dirname(out), sec.dir, "index.html");
     mkdirSync(dirname(f), { recursive: true });
-    const title = sec.dir === "limited" ? (lbOnNow ? TITLES.limited(lb) : sec.title) : TITLES[sec.dir] || sec.title;
+    let title = sec.dir === "limited" ? (lbOnNow ? TITLES.limited(lb) : sec.title) : TITLES[sec.dir] || sec.title;
+    let desc = descs[sec.dir] || sec.desc, hsec = HSEC[sec.dir], crumb = CRUMB[sec.dir], it = intro[sec.dir];
+    if (LR) {   // Phase 2 Step 1: the language texts (else the English text, reported)
+      const t = sec.dir === "limited" && !lbOnNow ? null : LT.title(sec.dir), d = LT.desc(sec.dir), h = LT.head(sec.dir);
+      if (!t || !d || !h) console.log(`page: ${LANG}/${sec.dir}/ English ${[!t && "title", !d && "description", !h && "subtitle"].filter(Boolean).join(", ")}`);
+      title = t || title; desc = d || sec.desc; hsec = h || hsec; crumb = LT.crumb[sec.dir]; it = d;
+    }
     const crumbs = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Pocket Meta QR", item: `${SITE}/` },
-      { "@type": "ListItem", position: 2, name: CRUMB[sec.dir], item: `${SITE}/${sec.dir}/` }] };
+      { "@type": "ListItem", position: 1, name: "Pocket Meta QR", item: `${SITE}/${ROOT}` },
+      { "@type": "ListItem", position: 2, name: crumb, item: `${SITE}/${ROOT}${sec.dir}/` }] };
     const fq = sec.about ? faq(full) : null;
-    const s2 = { ...sec, title, desc: descs[sec.dir] || sec.desc, hsec: HSEC[sec.dir], ld: fq ? [crumbs, fq] : crumbs };
+    const s2 = { ...sec, title, desc, hsec, ld: fq ? [crumbs, fq] : crumbs };
     heads[sec.dir] = s2;
-    let html = fillIntro(sectionPage(full, s2), intro[sec.dir]);
+    let html = fillIntro(sectionPage(full, s2), it);
     if (sec.about) {   // R29: the FAQ section is visible in this copy
       const before = html;
       html = html.replace(/(<section class="abv" id="abv"[^>]*?)\s+hidden(?=[\s>])/, "$1");
@@ -615,9 +646,9 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     const ex = packs.find((x) => x.dir === "packs/c1-pikachu") || packs[0];
     if (ex) console.log(`page: e.g. ${ex.dir}/ title "${ex.title}"; description ${ex.desc.length} chars: ${ex.desc}`);
   } else console.log(`page: no pack pages (${ROUTES_ON ? "the page has no pack-route code yet" : "routes off"})`);
-  if (ROUTES_ON) for (const [k, v] of Object.entries({ "/": { title: TITLES[""], desc: descs[""] || rootDesc }, ...heads }))
+  if (ROUTES_ON) for (const [k, v] of Object.entries({ "/": LR ? { title: "(the page's own)", desc: rootDesc || "" } : { title: TITLES[""], desc: descs[""] || rootDesc }, ...heads }))
     console.log(`page: ${k.padEnd(8)} title "${v.title}"; description ${v.desc.length} chars${descs[k === "/" ? "" : k] ? "" : " (fixed text)"}`);
-  if (ROUTES_ON) {   // R26 + R27: sitemap.xml with the section addresses and <lastmod>
+  if (ROUTES_ON && !LR) {   // R26 + R27: sitemap.xml with the section addresses and <lastmod>
     const today = new Date().toISOString().slice(0, 10);
     const lbOn = !lb || Date.parse(lb.to) > Date.now();
     const urls = [["", "hourly"], ...SECS.filter((x) => x.dir !== "limited" || lbOn)

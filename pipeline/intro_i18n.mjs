@@ -65,3 +65,33 @@ export function introText(lang, D, namesDir = "preview/i18n") {
   return `Die besten Pokémon TCG Pocket-Decks dieser Woche aus ${n} Turnieren (${w}): ${top.join(", ")}. ` +
     "Jede Liste hat einen QR-Code, um sie ins Spiel zu übernehmen.";
 }
+
+// Phase 2 Step 1 (Nov 24, 2026): the fixed description of a language section page (/<lang>/events/ ...), for
+// <meta name="description">, og:description and the intro slot. "" = no text (page.mjs then uses the English one).
+const SEC_DESC = {
+  ja: { events: "ポケポケの最新の大会結果：上位8人のデッキレシピをQRコード付きで掲載。",
+    packs: "今週の環境デッキのカードが出るポケポケのパックがわかります。",
+    limited: "開催中の限定バトル向けに選んだデッキをQRコード付きで掲載。",
+    about: "ポケポケのデッキをQRコードで読み込む方法、データの出典（Limitlessの大会、直近7日間）、デッキとレシピの順位の決め方。" },
+  es: { events: "Resultados de los últimos torneos de JCC Pokémon Pocket: listas del top 8 con códigos QR.",
+    packs: "Qué sobres de JCC Pokémon Pocket dan las cartas de las barajas del meta de esta semana.",
+    limited: "Barajas seleccionadas con códigos QR para las Partidas Limitadas actuales.",
+    about: "Cómo importar una baraja de JCC Pokémon Pocket con un código QR, de dónde vienen los datos (torneos de Limitless, últimos 7 días) y cómo se ordenan las barajas y las listas." },
+  pt: { events: "Resultados dos últimos torneios de Pokémon TCG Pocket: listas do top 8 com códigos QR.",
+    packs: "Quais pacotes de Pokémon TCG Pocket dão as cartas dos baralhos do meta desta semana.",
+    limited: "Baralhos selecionados com códigos QR para a Batalha Limitada atual.",
+    about: "Como importar um baralho de Pokémon TCG Pocket por código QR, de onde vêm os dados (torneios da Limitless, últimos 7 dias) e como os baralhos e as listas são classificados." },
+  de: { events: "Ergebnisse der neuesten Pokémon TCG Pocket-Turniere: Top-8-Listen mit QR-Codes.",
+    packs: "Welche Pokémon TCG Pocket-Packs die Karten der Meta-Decks dieser Woche enthalten.",
+    limited: "Ausgewählte Decks mit QR-Codes für den aktuellen Limitierten Kampf.",
+    about: "So importierst du ein Pokémon TCG Pocket-Deck per QR-Code, woher die Daten kommen (Limitless-Turniere, letzte 7 Tage) und wie Decks und Listen sortiert werden." },
+  fr: { events: "Résultats des derniers tournois de Pokémon TCG Pocket : listes du top 8 avec codes QR.",
+    packs: "Quels boosters de Pokémon TCG Pocket donnent les cartes des decks du méta de la semaine.",
+    limited: "Decks sélectionnés avec codes QR pour le Combat restreint en cours.",
+    about: "Comment importer un deck de Pokémon TCG Pocket avec un code QR, d'où viennent les données (tournois Limitless, 7 derniers jours) et comment les decks et les listes sont classés." },
+  it: { events: "Risultati degli ultimi tornei di Pokémon TCG Pocket: liste della top 8 con codici QR.",
+    packs: "Quali buste di Pokémon TCG Pocket danno le carte dei mazzi del meta di questa settimana.",
+    limited: "Mazzi scelti con codici QR per la Lotta limitata in corso.",
+    about: "Come importare un mazzo di Pokémon TCG Pocket da un codice QR, da dove vengono i dati (tornei Limitless, ultimi 7 giorni) e come sono ordinati mazzi e liste." },
+};
+export const sectionDesc = (lang, dir) => SEC_DESC[lang]?.[dir] || "";

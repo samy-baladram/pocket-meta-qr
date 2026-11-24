@@ -179,6 +179,24 @@ Made from the reviewed French: the same 556 texts (`it.json`) and its 170 code c
 - To check by the owner in the game: the QR import path (I miei mazzi → + → Scansiona codice → Scansiona immagine
   salvata), the Limited Battle name (Lotte limitate: Fusione Duale) and the promo pack name (Promo-C vol. 1).
 
+## Section addresses per language (Phase 2 Step 1, Nov 24, 2026): ja
+
+`I18N_ROUTES: "ja"` in site.yml: the language pages listed there get their section pages next to their index.html:
+`/ja/events/`, `/ja/packs/`, `/ja/limited/`, `/ja/about/` (and the same under `/preview/ja/`). Still noindex, not in
+the sitemap. No deck, pack or card pages per language yet (an open deck stays `/ja/#<id>`), and no `/ja/whats-new/`
+(What's new is English only).
+
+- `pipeline/page.mjs --lang ja --lang-routes --root ja/`: routes tag `1 about`; canonical / og:url under `/ja/`; title and
+  subtitle = the translated page's `RTITLES` / `RHEAD` (month in the locale of its `RMON`, as the page shows it);
+  breadcrumb names from `i18n/ja.json` (Latest Events, Booster Packs, Limited Battle decks, About and FAQ); description
+  and intro slot = `sectionDesc()` in `pipeline/intro_i18n.mjs` (one fixed sentence per section and language).
+- `preview/build.sh`: `PMQ_HOME` (the page folder) in the head insert; `<a href="/events/">` etc. get the folder.
+- `preview/head.html`: the page's History API steps get the folder (`/events/` -> `/ja/events/`).
+- `preview/i18n_patch.py`: the page's "same address" check ignores the folder; the language menu keeps the section
+  (`/ja/events/` <-> `/events/`; to a language with no section addresses: `#events`, `#limited` or the Packs tab).
+
+To add a language: add it to `I18N_ROUTES` (its descriptions are already in `intro_i18n.mjs`).
+
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in
 `/i18n/report.<lang>.json` (and in the run summary); the page shows them in English until they are translated. To
