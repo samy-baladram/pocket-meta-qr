@@ -651,10 +651,6 @@
 ", record",
 ", bilancio"
 ],
-"49d00effb2": [
-"▲▼ share change · {0} days",
-"▲▼ variazione di utilizzo · {0} giorni"
-],
 "4acadb5e3c": [
 "{0}Breakout",
 "{0}Rivelazione"
@@ -2222,5 +2218,9 @@
 "ffd5f6df10": [
 "in no other top player’s list",
 "in nessun’altra lista di un giocatore top"
+],
+"6ddd63c542": [
+"▲▼ share change",
+"▲▼ variazione di utilizzo"
 ]
 }

@@ -493,7 +493,7 @@
 ],
 "35e3987c5b": [
 "Limited Battle decks",
-"Barajas de la Batalla limitada"
+"Barajas para las Partidas Limitadas"
 ],
 "3697024201": [
 "What’s new",
@@ -650,10 +650,6 @@
 "49ac8d4bf8": [
 ", record",
 ", balance"
-],
-"49d00effb2": [
-"▲▼ share change · {0} days",
-"▲▼ cambio de uso · {0} días"
 ],
 "4acadb5e3c": [
 "{0}Breakout",
@@ -1617,7 +1613,7 @@
 ],
 "b56d5ef151": [
 "Limited Battle pick",
-"Elegida para la Batalla limitada"
+"Elegida para las Partidas Limitadas"
 ],
 "b5b2a49247": [
 "Matchups",
@@ -1769,7 +1765,7 @@
 ],
 "c95db6211f": [
 "Meta decks{t0}{t1}Latest tournaments{t2}{t3}Which pack to open{t4}{t5}Limited Battle",
-"Barajas meta{t0}{t1}Últimos torneos{t2}{t3}Qué sobre abrir{t4}{t5}Batalla limitada"
+"Barajas meta{t0}{t1}Últimos torneos{t2}{t3}Qué sobre abrir{t4}{t5}Partidas Limitadas"
 ],
 "c9929a6b53": [
 "players won more than they lost with this deck {0}, but none reached a top result. This is the best of them.",
@@ -1821,7 +1817,7 @@
 ],
 "ceeaa744c4": [
 "Limited",
-"Limitada"
+"Limitadas"
 ],
 "d044282472": [
 "Newest",
@@ -2222,5 +2218,9 @@
 "ffd5f6df10": [
 "in no other top player’s list",
 "en ninguna otra lista de jugador top"
+],
+"6ddd63c542": [
+"▲▼ share change",
+"▲▼ cambio de uso"
 ]
 }

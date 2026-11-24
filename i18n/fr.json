@@ -651,10 +651,6 @@
 ", record",
 ", bilan"
 ],
-"49d00effb2": [
-"▲▼ share change · {0} days",
-"▲▼ évolution de la présence · {0} jours"
-],
 "4acadb5e3c": [
 "{0}Breakout",
 "{0}Révélation"
@@ -2222,5 +2218,9 @@
 "ffd5f6df10": [
 "in no other top player’s list",
 "dans aucune autre liste de top joueur"
+],
+"6ddd63c542": [
+"▲▼ share change",
+"▲▼ évolution de la présence"
 ]
 }

@@ -770,10 +770,6 @@
 ", record",
 "、戦績"
 ],
-"49d00effb2": [
-"▲▼ share change · {0} days",
-"▲▼ 使用率の変化 · {0}日間"
-],
 "4acadb5e3c": [
 "{0}Breakout",
 "{0}躍進"
@@ -2640,5 +2636,9 @@
 "ffd5f6df10": [
 "in no other top player’s list",
 "他の上位プレイヤーのレシピにはなし"
+],
+"6ddd63c542": [
+"▲▼ share change",
+"▲▼ 使用率の変化"
 ]
 }
