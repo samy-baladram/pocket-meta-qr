@@ -868,6 +868,16 @@
    "note": "charts: 50 %",
    "find": "class=\"ltx\">50%</text>",
    "replace": "class=\"ltx\">50\\u00a0%</text>"
+  },
+  {
+   "note": "card filter: where the card is (lists)",
+   "find": "parts.push(`${ls.length > 1 ? \"lists\" : \"list\"} ${ls.join(\", \")}`);",
+   "replace": "parts.push(`${ls.length > 1 ? \"dans les listes\" : \"dans la liste\"} ${ls.join(\", \")}`);"
+  },
+  {
+   "note": "card filter: where the card is (join)",
+   "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
+   "replace": "return parts.length ? parts.map((p) => /^dans /.test(p) ? p : \"dans \" + p).join(\" et \") : \"\";"
   }
  ]
 }
