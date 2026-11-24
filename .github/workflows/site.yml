@@ -108,7 +108,7 @@ jobs:
       - name: Assemble the site
         env:
           I18N_LIVE: "ja es pt de fr it"   # Phase 1 (Nov 23; es beta since Nov 23, pt and de since Nov 24, fr and it since Nov 24): live language pages (space-separated); "" = off
-          I18N_INDEX: ""   # Phase 2 Steps 3 + 5 (Nov 24): indexable languages: no noindex, hreflang on both sides, in sitemap.xml; "" = none yet
+          I18N_INDEX: "ja"   # Phase 2 Steps 3 + 5 (Nov 24; ja indexable since Nov 24): indexable languages: no noindex, hreflang on both sides, in sitemap.xml; "" = none
           I18N_ROUTES: "ja"   # Phase 2 Step 1 (Nov 24): languages with section addresses (/ja/events/, /ja/packs/, /ja/limited/, /ja/about/; noindex); "" = off
         run: |
           rm -rf public && mkdir public
