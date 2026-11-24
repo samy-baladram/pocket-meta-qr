@@ -878,6 +878,36 @@
    "note": "card filter: where the card is (join)",
    "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
    "replace": "return parts.length ? parts.map((p) => /^dans /.test(p) ? p : \"dans \" + p).join(\" et \") : \"\";"
+  },
+  {
+   "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
+   "find": "aria-label=\"${ordF(p)} place\"",
+   "replace": "aria-label=\"${(p === 1 ? \"1re\" : p + \"e\")} place\""
+  },
+  {
+   "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
+   "find": "${ordN(pl)} place</span>",
+   "replace": "${(pl === 1 ? \"1re\" : pl + \"e\")} place</span>"
+  },
+  {
+   "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
+   "find": "(${ordF(t.l.pl)} place)",
+   "replace": "(${(t.l.pl === 1 ? \"1re\" : t.l.pl + \"e\")} place)"
+  },
+  {
+   "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
+   "find": "best ${ordF(st[id].best)}",
+   "replace": "best ${(st[id].best === 1 ? \"1re\" : st[id].best + \"e\")}"
+  },
+  {
+   "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
+   "find": "best <b>${ordF(best[id])}</b>",
+   "replace": "best <b>${(best[id] === 1 ? \"1re\" : best[id] + \"e\")}</b>"
+  },
+  {
+   "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
+   "find": "${esc(ordN(v.pl))} place",
+   "replace": "${(v.pl === 1 ? \"1re\" : v.pl + \"e\")} place"
   }
  ]
 }
