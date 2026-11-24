@@ -80,6 +80,25 @@ const LANG = argv("--lang"), DATA = argv("--data");
 // and RHEAD), breadcrumb names from i18n/<xx>.json, the fixed descriptions of intro_i18n.mjs. No sitemap.xml.
 const LR = args.includes("--lang-routes") && !!LANG && LANG !== "en";
 const ROOT = LR ? (argv("--root") || `${LANG}/`) : "";   // the page folder under the site root (--root ja/ or preview/ja/)
+// Phase 2 Step 3 (Nov 24, 2026): hreflang. --alt "<langs>" = the indexable language pages (site.yml I18N_INDEX),
+// --alt-routes "<langs>" = those with section addresses (I18N_ROUTES). Each page in a language set gets
+// <link rel="alternate" hreflang> to every version (en, the --alt languages, x-default = en): the home page to /<l>/,
+// a section page (events/, packs/, limited/, about/) to /<l>/<section>/ for the --alt-routes languages only. Deck, pack,
+// card and What's new pages: none (English only). A page gets the tags only when its own language is en or in --alt.
+// The English build (--alt) also lists the language addresses in sitemap.xml.
+const ALT = (argv("--alt") || "").split(/\s+/).filter((x) => x && x !== "en");
+const ALT_R = (argv("--alt-routes") || "").split(/\s+/).filter((x) => ALT.includes(x));
+const HL = (l) => (l === "pt" ? "pt-BR" : l);
+const ALT_DIRS = ["events", "packs", "limited", "about"];
+function withAlt(html, key) {   // key: "" (home) or a section folder
+  const me = LANG && LANG !== "en" ? LANG : "en";
+  if (!ALT.length || (me !== "en" && !ALT.includes(me)) || (key && !ALT_DIRS.includes(key))) return html;
+  const v = [["en", `${SITE}/${key ? key + "/" : ""}`],
+    ...ALT.filter((l) => !key || ALT_R.includes(l)).map((l) => [HL(l), `${SITE}/${l}/${key ? key + "/" : ""}`])];
+  if (v.length < 2) return html;
+  const tags = [...v, ["x-default", v[0][1]]].map(([h, u]) => `<link rel="alternate" hreflang="${h}" href="${u}">`).join("");
+  return html.replace("</head>", tags + "</head>");
+}
 const SITE = "https://pocketmetaqr.com";
 const ROUTE_TAG = '<meta name="pmq-routes" content="1"><base href="/">';
 const SECTIONS = [
@@ -503,7 +522,7 @@ function sectionPage(html, { dir, title, desc, img, hsec, ld, extra }) {
   }
   return head + rest;
 }
-const [src = "site/index.html", out = "public/index.html"] = args.filter((a, i) => !a.startsWith("--") && !["--prev", "--seen", "--cards-seen"].includes(args[i - 1]));
+const [src = "site/index.html", out = "public/index.html"] = args.filter((a, i) => !a.startsWith("--") && !["--prev", "--seen", "--cards-seen", "--lang", "--data", "--root", "--alt", "--alt-routes"].includes(args[i - 1]));
 const body = readFileSync(src, "utf8");
 const ROUTES_ON = ROUTES && body.includes("pmq-routes");   // R26: the page supports the section addresses
 const NWV_RE = /<section class="abv nwv" id="nwv"[^>]*\shidden[\s>]/;   // Nov 23: What's new (whats-new/)
@@ -591,7 +610,7 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
   const rootPage = ROUTES_ON && !LR ? sectionPage(full, { dir: "", title: TITLES[""], desc: descs[""] || rootDesc,
     ld: { "@context": "https://schema.org", "@type": "WebSite", name: "Pocket Meta QR", alternateName: "PocketMetaQR",
       url: `${SITE}/` } }) : full;
-  writeFileSync(out, fillIntro(rootPage, intro[""]));
+  writeFileSync(out, withAlt(fillIntro(rootPage, intro[""]), ""));
   const heads = {};
   if (ROUTES_ON) for (const sec of SECS) {   // R26: events/, packs/, limited/ next to index.html
     const f = join(dirname(out), sec.dir, "index.html");
@@ -622,7 +641,7 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
       if (html === before) throw new Error("no `hidden` on #nwv to remove");
       console.log("page: whats-new/ visible");
     }
-    writeFileSync(f, html);
+    writeFileSync(f, withAlt(html, sec.dir));
   }
   const si = args.indexOf("--seen"), seenFile = si > 0 ? args[si + 1] : null;
   const decks = DECKS_ON ? deckPages(full, dirname(src), dirname(out), seenFile) : [];
@@ -655,7 +674,9 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
       .map((x) => [x.dir + "/", x.about ? "monthly" : x.page ? "weekly" : "daily"]),
       ...decks.filter((x) => x.on || x.days <= KEEP_DAYS).map((x) => [x.dir + "/", "daily"]),   // R30 §2.9 / §3
       ...packs.map((x) => [x.dir + "/", "daily"]),   // R31
-      ...cards.filter((x) => x.on).map((x) => [x.dir + "/", "daily"])];   // R32: cards in this week's lists only
+      ...cards.filter((x) => x.on).map((x) => [x.dir + "/", "daily"]),   // R32: cards in this week's lists only
+      ...ALT.flatMap((l) => [[`${l}/`, "hourly"], ...(ALT_R.includes(l) ? SECS.filter((x) => ALT_DIRS.includes(x.dir) && (x.dir !== "limited" || lbOn))
+        .map((x) => [`${l}/${x.dir}/`, x.about ? "monthly" : "daily"]) : [])])];   // Phase 2 Step 3: the indexable language pages
     writeFileSync(join(dirname(out), "sitemap.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n' +
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       urls.map(([u, f]) => `  <url><loc>${SITE}/${u}</loc><lastmod>${today}</lastmod><changefreq>${f}</changefreq></url>\n`).join("") +

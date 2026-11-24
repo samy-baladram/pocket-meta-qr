@@ -197,6 +197,18 @@ the sitemap. No deck, pack or card pages per language yet (an open deck stays `/
 
 To add a language: add it to `I18N_ROUTES` (its descriptions are already in `intro_i18n.mjs`).
 
+## Indexing a language (Phase 2 Steps 3 + 5, Nov 24, 2026): `I18N_INDEX`
+
+`I18N_INDEX` in site.yml (empty for now) lists the languages search engines may index. For each one:
+- its live pages (not `/preview/`) lose `<meta name="robots" content="noindex, nofollow">` (build.sh `head_for`);
+- hreflang on both sides (page.mjs `--alt "$I18N_INDEX" --alt-routes "$I18N_ROUTES"`): every English and indexable
+  language home page lists `en`, each indexable language (`/<l>/`, `pt-BR` for pt) and `x-default` (English); the section
+  pages (events, packs, limited, about) list only the languages that also have section addresses (`I18N_ROUTES`).
+  Deck, pack, card and What's new pages: no hreflang (English only);
+- sitemap.xml lists `/<l>/` and, with section addresses, `/<l>/events/`, `/<l>/packs/`, `/<l>/limited/` (while a
+  Limited Battle is on) and `/<l>/about/`.
+A language not in `I18N_INDEX` keeps noindex and is in no hreflang list. Plan: ja first, then one language at a time.
+
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in
 `/i18n/report.<lang>.json` (and in the run summary); the page shows them in English until they are translated. To
