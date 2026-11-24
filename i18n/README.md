@@ -143,7 +143,7 @@ Made from the reviewed Spanish: the same 556 texts (`fr.json`) and 161 of its co
 - Terms: vous; deck, liste, top joueur (the defined term, as "jugador top"), présence (share; "de présence"),
   % de victoires, bilan (Score and a record 8-3-0), tournoi, booster, extension, Fixes / Flex, changement (swap),
   variante (a version with swaps), sous le cut, Révélation (Breakout), En hausse / En baisse, Populaire, Pépite,
-  À confirmer (Unproven), Aucun résultat top, matchups, carte du méta, miroir. Tabs: Méta (Decks Méta on wide
+  À confirmer (Unproven), Aucun résultat top, matchups, carte de la méta, miroir; "la méta" (feminine, as most French TCG sites; was "le méta" until Nov 25). Tabs: Méta (Decks Méta on wide
   screens), Tournois, Boosters. Titles use "Pokémon TCG Pocket" (the name French players and sites search for).
 - Game words: energy types Plante, Feu, Eau, Électrique, Psy, Combat, Obscurité, Métal, Incolore, Dragon; Limited
   Battle = "Combats restreints" (Pokébip), event name "Combats restreints : Fusion Double"; card and Pokémon names from
