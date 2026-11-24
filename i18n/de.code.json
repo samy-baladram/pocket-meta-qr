@@ -125,7 +125,7 @@
   {
    "note": "label: About <x>",
    "find": "aria-label=\"About ${esc(label)}\"",
-   "replace": "aria-label=\"Info zu ${esc(label)}\"",
+   "replace": "aria-label=\"Info: ${esc(label)}\"",
    "all": true
   },
   {
@@ -576,7 +576,7 @@
   {
    "note": "swap selector: exact tip and label",
    "find": "title=\"${ex} top player${ex === 1 ? \"\" : \"s\"} with exactly this list\" aria-label=\"Exact list: ${ex} top player${ex === 1 ? \"\" : \"s\"}\"",
-   "replace": "title=\"${ex} Top-Spieler mit genau dieser Liste\" aria-label=\"Genaue Liste: ${ex} Top-Spieler\""
+   "replace": "title=\"${ex} Top-Spieler mit genau dieser Liste\" aria-label=\"Exakte Liste: ${ex} Top-Spieler\""
   },
   {
    "note": "swap selector: swap tip and label",
@@ -839,6 +839,16 @@
    "find": "class=\"ltx\">50%</text>",
    "replace": "class=\"ltx\">50\\u00a0%</text>",
    "all": true
+  },
+  {
+   "note": "top players tile: Genutzt von 28 Top-Spielern (dative)",
+   "find": "<span>top player${T === 1 ? \"\" : \"s\"}</span>",
+   "replace": "<span>Top-Spieler${T === 1 ? \"\" : \"n\"}</span>"
+  },
+  {
+   "note": "filter chip: C1-Karten",
+   "find": "`${esc(data.set || \"set\")} cards`",
+   "replace": "`${esc(data.set || \"Set\")}-Karten`"
   },
   {
    "note": "plural: card${k > 1 ? \"s\" : \"\"} -> \"n\" (Karte/n, Änderung/en, Turnier/e, Stunde/n, Turniersieg/e)",

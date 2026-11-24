@@ -740,7 +740,7 @@
 ],
 "5351e118ae": [
 "Updated {0}.{t0} Ranked best first, from our testing so far (it can change). Deck notes made with help from {t1}GameWith{t2}.",
-"Aktualisiert {0}.{t0} Die besten zuerst, nach unseren bisherigen Tests (kann sich ändern). Decknotizen mit Hilfe von {t1}GameWith{t2}."
+"Aktualisiert am {0}.{t0} Die besten zuerst, nach unseren bisherigen Tests (kann sich ändern). Deck-Notizen mit Hilfe von {t1}GameWith{t2} erstellt."
 ],
 "53668c4b2c": [
 ". Card images: PocketDecks. Details in About &amp; FAQ.",
@@ -1936,7 +1936,7 @@
 ],
 "d82857eb60": [
 "Exact list",
-"Genaue Liste"
+"Exakte Liste"
 ],
 "d97686b37a": [
 "Saving is not available here: right-click the QR code instead.",
@@ -1960,7 +1960,7 @@
 ],
 "dae1e5f83a": [
 "this week",
-"diese Woche"
+"in dieser Woche"
 ],
 "db866831c3": [
 "Packs",
@@ -2224,7 +2224,7 @@
 ],
 "f83481bd50": [
 "– {0} (your time)",
-"– {0} (deine Zeit)"
+"– {0} (Ortszeit)"
 ],
 "f8515d5350": [
 "&middot; Data: {t0}Limitless TCG{t1},",
@@ -2240,7 +2240,7 @@
 ],
 "faa9e7e7ef": [
 "Started",
-"Start"
+"Start:"
 ],
 "fac60a2133": [
 "· {t0}only {0}% share",
