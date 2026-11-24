@@ -84,7 +84,7 @@
   {
    "note": "packs: shelf label",
    "find": "aria-label=\"Top 10 packs by meta cards\"",
-   "replace": "aria-label=\"Os 10 pacotes com mais cartas meta\""
+   "replace": "aria-label=\"Os 10 pacotes com mais cartas do meta\""
   },
   {
    "note": "packs: sort label",
@@ -94,7 +94,7 @@
   {
    "note": "packs: card count under a card",
    "find": "<small>${c.st ? `${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} small`}</small>",
-   "replace": "<small>${c.st ? `${c.decks.length} baralho${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} peq.`}</small>"
+   "replace": "<small>${c.st ? `${c.decks.length} baralho${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} pequeno${c.decks.length > 1 ? \"s\" : \"\"}`}</small>"
   },
   {
    "note": "packs: card label",
