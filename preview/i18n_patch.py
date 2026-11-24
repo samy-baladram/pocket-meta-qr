@@ -148,7 +148,7 @@ one(top, top + r'''  // Nov 23 (i18n test): card image language. IMGP = the path
     es: "Esta sección solo está disponible en inglés por ahora.", pt: "Por enquanto, esta seção só está disponível em inglês.",
     fr: "Pour l’instant, cette section n’est disponible qu’en anglais.",
     it: "Per ora questa sezione è disponibile solo in inglese.",
-    ko: "이 섹션은 아직 영어로만 제공됩니다.", zh: "這個區塊目前只有英文版。" };
+    ko: "이 섹션은 아직 영어로만 볼 수 있어요.", zh: "這個區塊目前只有英文版。" };
   if (EN_ONLY[PG_L]) addEventListener("DOMContentLoaded", () => { for (const [k, id] of [["new", "nwl"], ["limited", "lbl"]]) {
     const el = document.getElementById(id); if (el && EN_ONLY[PG_L].includes(k)) { el.setAttribute("data-en-only", EN_ONLY_T[PG_L]); el.lang = "en"; } } });
   var trCard = (en) => (L10N && en && L10N.n[en]) || en;
