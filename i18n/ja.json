@@ -1571,7 +1571,7 @@
 ],
 "9364147f96": [
 "Booster Packs tab",
-"「パック」タブ"
+"「引くべきパック」タブ"
 ],
 "93897fabdc": [
 "Small fixes",
@@ -1991,7 +1991,7 @@
 ],
 "bd81811d71": [
 "Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks from public tournaments on Limitless, like a tier list built from real results: share, win rate and the lists the top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster pack gives the cards of the meta.",
-"Pocket Meta QRは、Limitlessの公開大会の結果から今週のポケポケのデッキを順位付けします。実際の結果から作るティア表のようなもので、使用率、勝率、上位プレイヤーのレシピを載せています。すべてのレシピにQRコードがあり、ゲームで読み取るとデッキを読み込めます。「パック」ページでは、環境のカードが出るパックがわかります。"
+"Pocket Meta QRは、Limitlessの公開大会の結果から今週のポケポケのデッキを順位付けします。実際の結果から作るティア表のようなもので、使用率、勝率、上位プレイヤーのレシピを載せています。すべてのレシピにQRコードがあり、ゲームで読み取るとデッキを読み込めます。「引くべきパック」ページでは、環境のカードが出るパックがわかります。"
 ],
 "bde2eabf31": [
 "Smaller decks",
@@ -2091,7 +2091,7 @@
 ],
 "c810d05ccb": [
 "Open Booster Packs",
-"「パック」ページを開く"
+"「引くべきパック」を開く"
 ],
 "c8d3756e45": [
 "cards",
@@ -2563,7 +2563,7 @@
 ],
 "f5967e775f": [
 "Not every card:{t0} the Packs tab and the card pages show only the cards that this week&rsquo;s meta decks play.",
-"全カードは載せていません：{t0}パックタブとカードのページに出るのは、今週の環境デッキが使うカードだけです。"
+"全カードは載せていません：{t0}「引くべきパック」タブとカードのページに出るのは、今週の環境デッキが使うカードだけです。"
 ],
 "f6bb0f468a": [
 "Days",

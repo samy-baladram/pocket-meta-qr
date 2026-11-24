@@ -514,7 +514,7 @@
   {
    "note": "What's new image: The Booster Packs tab with the Dual Fusi",
    "find": "alt=\"The Booster Packs tab with the Dual Fusion Pikachu pack open\"",
-   "replace": "alt=\"デュアルフュージョンのピカチュウのパックを開いた「パック」タブ\""
+   "replace": "alt=\"デュアルフュージョンのピカチュウのパックを開いた「引くべきパック」タブ\""
   },
   {
    "note": "What's new image: The Winners shelf and the Most wins pane",
