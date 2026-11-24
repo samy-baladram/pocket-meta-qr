@@ -77,7 +77,8 @@ const CJK = /[\u3000-\u30ff\u3400-\u9fff\uff00-\uffef]/;
 function applyRuns(toks, runs, tr, ctx = "") {
   let changed = false; const out = []; let i = 0;
   for (const r of runs) {
-    const rt = runText(toks, r), t = tr(rt.text, ctx);
+    const rt = runText(toks, r); let t = tr(rt.text, ctx);
+    if (t && t.startsWith("{^}")) { t = t.slice(3); rt.lead = ""; } // Nov 24: "{^}" = no space before (ko: "6분 전", not "6 분 전")
     for (; i < r.s; i++) out.push(toks[i]);
     if (t == null || t === rt.text) { for (; i < r.e; i++) out.push(toks[i]); continue; }
     if (tr.cjk) { if (CJK.test(t[0] || "")) rt.lead = ""; if (CJK.test(t[t.length - 1] || "")) rt.trail = ""; } // ja: no spaces next to the text
