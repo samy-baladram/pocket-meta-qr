@@ -797,12 +797,12 @@
   {
    "note": "head: description",
    "find": "<meta name=\"description\" content=\"This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.\">",
-   "replace": "<meta name=\"description\" content=\"I mazzi vincenti di Pokémon TCG Pocket di questa settimana e gli ultimi tornei, le liste dei giocatori top e un codice QR per ogni lista, da importare nel gioco.\">"
+   "replace": "<meta name=\"description\" content=\"I mazzi vincenti del GCC Pokémon Pocket di questa settimana e gli ultimi tornei, le liste dei giocatori top e un codice QR per ogni lista, da importare nel gioco.\">"
   },
   {
    "note": "head: og:title",
    "find": "<meta property=\"og:title\" content=\"Pocket Meta QR – this week's Pokémon TCG Pocket meta and tournaments, with QR codes\">",
-   "replace": "<meta property=\"og:title\" content=\"Pocket Meta QR – il meta e i tornei di Pokémon TCG Pocket di questa settimana, con codici QR\">"
+   "replace": "<meta property=\"og:title\" content=\"Pocket Meta QR – il meta e i tornei del GCC Pokémon Pocket di questa settimana, con codici QR\">"
   },
   {
    "note": "head: og:description",
@@ -812,7 +812,7 @@
   {
    "note": "head: og:image:alt",
    "find": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR: this week's winning Pokémon TCG Pocket decks, with a QR code for every list\">",
-   "replace": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR: i mazzi vincenti di Pokémon TCG Pocket di questa settimana, con un codice QR per ogni lista\">"
+   "replace": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR: i mazzi vincenti del GCC Pokémon Pocket di questa settimana, con un codice QR per ogni lista\">"
   },
   {
    "note": "NEW badge (decks): NUOVO + tip",

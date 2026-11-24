@@ -58,7 +58,7 @@ export function introText(lang, D, namesDir = "preview/i18n") {
     "Cada lista tiene un código QR para copiarla en el juego.";
   if (lang === "pt") return `Os melhores baralhos de Pokémon TCG Pocket desta semana, de ${n} torneios (${w}): ${top.join(", ")}. ` +
     "Cada lista tem um código QR para copiar no jogo.";
-  if (lang === "it") return `I migliori mazzi di Pokémon TCG Pocket di questa settimana, da ${n} tornei (${w}): ${top.join(", ")}. ` +
+  if (lang === "it") return `I migliori mazzi del GCC Pokémon Pocket di questa settimana, da ${n} tornei (${w}): ${top.join(", ")}. ` +
     "Ogni lista ha un codice QR per copiarla nel gioco.";
   if (lang === "fr") return `Les meilleurs decks de Pokémon TCG Pocket cette semaine, sur ${n} tournois (${w}) : ${top.join(", ")}. ` +
     "Chaque liste a un code QR pour la copier dans le jeu.";

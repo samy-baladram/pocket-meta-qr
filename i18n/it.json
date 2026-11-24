@@ -217,7 +217,7 @@
 ],
 "1b6d32d996": [
 "{0}: Which Meta Decks Use It ({1}) – Pokémon TCG Pocket | Pocket Meta QR",
-"{0}: quali mazzi meta la usano ({1}) – Pokémon TCG Pocket | Pocket Meta QR"
+"{0}: quali mazzi meta la usano ({1}) – GCC Pokémon Pocket | Pocket Meta QR"
 ],
 "1bdcee8370": [
 "{0}–{1} wins",
@@ -553,7 +553,7 @@
 ],
 "3d02399826": [
 "Latest Pokémon TCG Pocket tournaments",
-"Ultimi tornei di Pokémon TCG Pocket"
+"Ultimi tornei del GCC Pokémon Pocket"
 ],
 "3d3791aae5": [
 "Light mode",
@@ -773,7 +773,7 @@
 ],
 "55eee3040e": [
 "Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes",
-"Pocket Meta QR – Mazzi meta e tornei di Pokémon TCG Pocket con codici QR"
+"Pocket Meta QR – Mazzi meta e tornei del GCC Pokémon Pocket con codici QR"
 ],
 "566bcc7a1f": [
 "Each day = the window that ends on that day (7–14 days, wider when there are few events), so the numbers move slowly. Faded: under 30 players.{0}",
@@ -913,7 +913,7 @@
 ],
 "68495946bf": [
 "About & FAQ: How to Import Pokémon TCG Pocket Decks by QR | Pocket Meta QR",
-"Info e FAQ: come importare i mazzi di Pokémon TCG Pocket con il QR | Pocket Meta QR"
+"Info e FAQ: come importare i mazzi del GCC Pokémon Pocket con il QR | Pocket Meta QR"
 ],
 "685757d9ff": [
 "Not in the list 24 h ago. Now {t0}{0}{t1}.",
@@ -957,7 +957,7 @@
 ],
 "6cb6084c7f": [
 "Deck List ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
-"Lista del mazzo ({0}) – Pokémon TCG Pocket | Pocket Meta QR"
+"Lista del mazzo ({0}) – GCC Pokémon Pocket | Pocket Meta QR"
 ],
 "6cd0edac3e": [
 "with {0} card{1} swapped",
@@ -985,7 +985,7 @@
 ],
 "6fa55b2f97": [
 "This week&rsquo;s Pok&eacute;mon TCG Pocket decks",
-"I mazzi di Pok&eacute;mon TCG Pocket di questa settimana"
+"I mazzi del GCC Pok&eacute;mon Pocket di questa settimana"
 ],
 "6fa5fbbc16": [
 "older",
@@ -1013,7 +1013,7 @@
 ],
 "7164a73633": [
 "This is on purpose, so every number on the page is about the game as it is played today. For past results and every Pok&eacute;mon TCG Pocket card, {t0}Limitless TCG{t1} keeps the full archive.",
-"È voluto: ogni numero della pagina riguarda il gioco come si gioca oggi. Per i risultati passati e tutte le carte di Pok&eacute;mon TCG Pocket, {t0}Limitless TCG{t1} tiene l’archivio completo."
+"È voluto: ogni numero della pagina riguarda il gioco come si gioca oggi. Per i risultati passati e tutte le carte del GCC Pok&eacute;mon Pocket, {t0}Limitless TCG{t1} tiene l’archivio completo."
 ],
 "719ea396ad": [
 "Clear",
@@ -1229,7 +1229,7 @@
 ],
 "8799002486": [
 "Which Pokémon TCG Pocket Pack to Open ({0}) | Pocket Meta QR",
-"Quale busta aprire in Pokémon TCG Pocket ({0}) | Pocket Meta QR"
+"Quale busta aprire nel GCC Pokémon Pocket ({0}) | Pocket Meta QR"
 ],
 "87d370a29e": [
 "match win rate; a tie counts as half a win. Mirror matches are not counted.{0}",
@@ -1341,7 +1341,7 @@
 ],
 "93daa2f17e": [
 "The decks that win in Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, the {t2}latest events{t3} with their top 8, and a {t4}QR code{t5} for every list, so you can import a deck in a few taps.",
-"I mazzi che vincono i tornei di Pok&eacute;mon TCG Pocket {t0}in questo momento{t1}, gli {t2}ultimi tornei{t3} con il loro top 8 e un {t4}codice QR{t5} per ogni lista, così importi un mazzo in pochi tocchi."
+"I mazzi che vincono i tornei del GCC Pok&eacute;mon Pocket {t0}in questo momento{t1}, gli {t2}ultimi tornei{t3} con il loro top 8 e un {t4}codice QR{t5} per ogni lista, così importi un mazzo in pochi tocchi."
 ],
 "953d4f3666": [
 "A {t0}top player{t1} won at least 2 more matches than they lost (ties do not count) at a single-deck event {0}.",
@@ -1381,7 +1381,7 @@
 ],
 "984bbca8a1": [
 "Pokémon TCG Pocket deck",
-"Mazzo di Pokémon TCG Pocket"
+"Mazzo del GCC Pokémon Pocket"
 ],
 "98d3809299": [
 "About this label",
@@ -1593,7 +1593,7 @@
 ],
 "b247ad081c": [
 "This week’s Pokémon TCG Pocket decks",
-"I mazzi di Pokémon TCG Pocket di questa settimana"
+"I mazzi del GCC Pokémon Pocket di questa settimana"
 ],
 "b273fb2877": [
 "Won",
@@ -1645,7 +1645,7 @@
 ],
 "b812e498b4": [
 "Pack: Meta Cards & Decks ({0}) – Pokémon TCG Pocket | Pocket Meta QR",
-"Busta: carte e mazzi meta ({0}) – Pokémon TCG Pocket | Pocket Meta QR"
+"Busta: carte e mazzi meta ({0}) – GCC Pokémon Pocket | Pocket Meta QR"
 ],
 "b82fb89618": [
 "this set",
@@ -1681,11 +1681,11 @@
 ],
 "bd81811d71": [
 "Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks from public tournaments on Limitless, like a tier list built from real results: share, win rate and the lists the top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster pack gives the cards of the meta.",
-"Pocket Meta QR classifica i mazzi di Pok&eacute;mon TCG Pocket di questa settimana a partire dai tornei pubblici su Limitless, come una tier list fatta con risultati veri: utilizzo, % di vittorie e le liste usate dai giocatori top. Ogni lista ha un codice QR da scansionare nel gioco per importare il mazzo, e la pagina Buste mostra quale busta dà le carte del meta."
+"Pocket Meta QR classifica i mazzi del GCC Pok&eacute;mon Pocket di questa settimana a partire dai tornei pubblici su Limitless, come una tier list fatta con risultati veri: utilizzo, % di vittorie e le liste usate dai giocatori top. Ogni lista ha un codice QR da scansionare nel gioco per importare il mazzo, e la pagina Buste mostra quale busta dà le carte del meta."
 ],
 "bf3d48422f": [
 "Pokémon TCG Pocket Meta Decks ({0}) with QR Codes | Pocket Meta QR",
-"Migliori mazzi di Pokémon TCG Pocket ({0}) con codici QR | Pocket Meta QR"
+"Migliori mazzi del GCC Pokémon Pocket ({0}) con codici QR | Pocket Meta QR"
 ],
 "bff84ca9c5": [
 "Why is the win rate different from other sites?",
@@ -1889,7 +1889,7 @@
 ],
 "d6bb22ac07": [
 "Pokémon TCG Pocket Tournament Results ({0}) | Pocket Meta QR",
-"Risultati dei tornei di Pokémon TCG Pocket ({0}) | Pocket Meta QR"
+"Risultati dei tornei del GCC Pokémon Pocket ({0}) | Pocket Meta QR"
 ],
 "d6f34a97a5": [
 "Download image",
@@ -2213,7 +2213,7 @@
 ],
 "ffa4a6d465": [
 "Limitless TCG{t0} is the main place where Pok&eacute;mon TCG Pocket tournaments are played online. New events start there every day, from small cups to open events with more than 300 players, and thousands of players take part every week. Each result is public as soon as an event ends, and this site checks for new ones every hour, so the meta here is days fresher than a tier list made by hand. Pocket Meta QR is not part of Limitless TCG: it reads its public results.",
-"Limitless TCG{t0} è il sito principale dove si giocano online i tornei di Pok&eacute;mon TCG Pocket. Ogni giorno vi iniziano nuovi tornei, dalle piccole coppe ai tornei aperti con più di 300 giocatori, e migliaia di giocatori partecipano ogni settimana. Ogni risultato è pubblico appena il torneo finisce, e questo sito cerca quelli nuovi ogni ora: il meta qui è aggiornato di giorni rispetto a una tier list fatta a mano. Pocket Meta QR non fa parte di Limitless TCG: ne legge solo i risultati pubblici."
+"Limitless TCG{t0} è il sito principale dove si giocano online i tornei del GCC Pok&eacute;mon Pocket. Ogni giorno vi iniziano nuovi tornei, dalle piccole coppe ai tornei aperti con più di 300 giocatori, e migliaia di giocatori partecipano ogni settimana. Ogni risultato è pubblico appena il torneo finisce, e questo sito cerca quelli nuovi ogni ora: il meta qui è aggiornato di giorni rispetto a una tier list fatta a mano. Pocket Meta QR non fa parte di Limitless TCG: ne legge solo i risultati pubblici."
 ],
 "ffa4f00cd6": [
 "slot{0}",
