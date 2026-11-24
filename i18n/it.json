@@ -185,7 +185,7 @@
 ],
 "16effccb01": [
 "No list was used by more than 1 top player, so the {0} is the list with the best place{1}.",
-"Nessuna lista è stata usata da più di 1 giocatore top, quindi la {0} è la lista con il miglior piazzamento{1}."
+"Nessuna lista è stata usata da più di un giocatore top, quindi la {0} è la lista con il miglior piazzamento{1}."
 ],
 "172415f02e": [
 "added",
@@ -341,7 +341,7 @@
 ],
 "262e0e8a01": [
 "(last seen {0})",
-"(visto l’ultima volta il {0})"
+"(ultima apparizione il {0})"
 ],
 "26b1ca6b96": [
 "Card details",
@@ -2222,9 +2222,5 @@
 "ffd5f6df10": [
 "in no other top player’s list",
 "in nessun’altra lista di un giocatore top"
-],
-"6ddd63c542": [
-"▲▼ share change",
-"▲▼ variazione di utilizzo"
 ]
 }
