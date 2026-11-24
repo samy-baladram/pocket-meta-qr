@@ -179,7 +179,7 @@ Made from the reviewed French: the same 556 texts (`it.json`) and its 170 code c
 - To check by the owner in the game: the QR import path (I miei mazzi → + → Scansiona codice → Scansiona immagine
   salvata), the Limited Battle name (Lotte limitate: Fusione Duale) and the promo pack name (Promo-C vol. 1).
 
-## Section addresses per language (Phase 2 Step 1, Nov 24, 2026): ja, es
+## Section addresses per language (Phase 2 Step 1, Nov 24, 2026): ja, es, pt, de, fr, it
 
 `I18N_ROUTES: "ja"` in site.yml: the language pages listed there get their section pages next to their index.html:
 `/ja/events/`, `/ja/packs/`, `/ja/limited/`, `/ja/about/` (and the same under `/preview/ja/`). Still noindex, not in
