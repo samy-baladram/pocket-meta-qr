@@ -77,11 +77,11 @@
 ],
 "0acb187723": [
 "Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.",
-"Les miroirs (le même deck des deux côtés) et les tournois où les joueurs apportent plus d’un deck ne sont pas comptés. Une égalité compte comme une demi-victoire."
+"Ici, les miroirs (le même deck des deux côtés) et les tournois où les joueurs apportent plusieurs decks ne sont pas comptés, et une égalité vaut une demi-victoire."
 ],
 "0b638f7e80": [
 "It shows only the current meta, the decks, lists and events of the last 7 to 14 days, so it does not keep a history, list every card or build decks.",
-"Il ne montre que le méta actuel : les decks, listes et tournois des 7 à 14 derniers jours. Il ne garde donc pas d’historique, ne liste pas toutes les cartes et ne construit pas de decks."
+"Il ne montre que le méta actuel : les decks, listes et tournois des 7 à 14 derniers jours. Il n’y a donc ni historique, ni liste complète des cartes, ni constructeur de deck."
 ],
 "0bec14f205": [
 "Rising",
@@ -265,7 +265,7 @@
 ],
 "1fc6434234": [
 "No deck history:{t0} the 7-day trend in a deck&rsquo;s stats is the longest view.",
-"Pas d’historique des decks :{t0} la tendance sur 7 jours dans les stats d’un deck est la vue la plus longue."
+"Pas d’historique des decks :{t0} la période la plus longue est la tendance sur 7 jours, dans les stats d’un deck."
 ],
 "1fd12296da": [
 "deck{0}",
@@ -485,7 +485,7 @@
 ],
 "347bbc504b": [
 "A player with at least 2 more wins than losses at a single-deck event.",
-"Un joueur avec au moins 2 victoires de plus que de défaites dans un tournoi à un seul deck."
+"Un joueur qui a obtenu au moins 2 victoires de plus que de défaites dans un tournoi à un seul deck."
 ],
 "35d9bc5159": [
 "Released",
@@ -521,7 +521,7 @@
 ],
 "39a4023d00": [
 "Because every number comes from real tournament games, recorded while the event runs. Each event shows its standings and the result of every match in every round, and players hand in their deck list before the event starts, so each list is the deck that was really played. On top of that, this site counts only public Standard events with 8 or more players and 1 deck per player, and only real matches: no byes, no mirror matches.",
-"Parce que chaque chiffre vient de vrais matchs de tournoi, enregistrés pendant le tournoi. Chaque tournoi montre son classement et le résultat de chaque match à chaque ronde, et les joueurs donnent leur liste avant le début, donc chaque liste est le deck vraiment joué. En plus, ce site ne compte que les tournois publics au format Standard avec 8 joueurs ou plus et 1 deck par joueur, et seulement les vrais matchs : pas de byes, pas de miroirs."
+"Parce que chaque chiffre vient de vrais matchs, enregistrés pendant les tournois. Chaque tournoi publie son classement et le résultat de chaque match à chaque ronde, et les joueurs envoient leur liste avant le début : chaque liste correspond donc au deck réellement joué. De plus, ce site ne retient que les tournois publics au format Standard de 8 joueurs ou plus, avec 1 deck par joueur, et seulement les vrais matchs : pas de byes, pas de miroirs."
 ],
 "3a46f4e05d": [
 "Event stats",
@@ -713,7 +713,7 @@
 ],
 "516dd47a55": [
 "Public Standard events with 8 or more players on {t0}Limitless TCG{t1}, from the last 7 days, because the meta changes fast (up to 14 days when there are few events, late in a set; never before the set&rsquo;s release). The numbers are computed here, so they can differ a little from other sites.",
-"Les tournois publics au format Standard avec 8 joueurs ou plus sur {t0}Limitless TCG{t1}, des 7 derniers jours, car le méta change vite (jusqu’à 14 jours quand il y a peu de tournois, en fin d’extension ; jamais avant la sortie de l’extension). Les chiffres sont calculés ici, donc ils peuvent différer un peu de ceux d’autres sites."
+"Pocket Meta QR utilise les tournois publics au format Standard de 8 joueurs ou plus sur {t0}Limitless TCG{t1}, sur les 7 derniers jours, car le méta évolue vite (jusqu’à 14 jours quand il y a peu de tournois, en fin d’extension ; jamais avant la sortie de l’extension). Les chiffres sont calculés par le site lui-même : ils peuvent donc différer légèrement de ceux d’autres sites."
 ],
 "518e73b3a3": [
 "No deck or card found",
@@ -897,7 +897,7 @@
 ],
 "67524d7001": [
 "The deck has no top player in these days. {t0}Unproven{t1}: some players won more than they lost, but none reached a top result; the page shows the best of them. {t2}No top result{t3}: no player won more than they lost; the page shows the best-placed list. Both are a starting point, not a proven list.",
-"Le deck n’a pas de top joueur sur ces jours. {t0}À confirmer{t1} : des joueurs ont gagné plus qu’ils n’ont perdu, mais aucun n’a atteint un résultat top ; la page montre le meilleur d’entre eux. {t2}Aucun résultat top{t3} : aucun joueur n’a gagné plus qu’il n’a perdu ; la page montre la liste la mieux classée. Les deux sont un point de départ, pas une liste éprouvée."
+"Ces deux étiquettes signifient que le deck n’a aucun top joueur sur la période. {t0}À confirmer{t1} : des joueurs ont gagné plus de matchs qu’ils n’en ont perdu, sans atteindre un résultat top ; la page montre le meilleur d’entre eux. {t2}Aucun résultat top{t3} : aucun joueur n’a gagné plus de matchs qu’il n’en a perdu ; la page montre la liste la mieux classée. Dans les deux cas, c’est un point de départ, pas une liste éprouvée."
 ],
 "67b6a61bdd": [
 "Search a card",
@@ -1009,7 +1009,7 @@
 ],
 "7164a73633": [
 "This is on purpose, so every number on the page is about the game as it is played today. For past results and every Pok&eacute;mon TCG Pocket card, {t0}Limitless TCG{t1} keeps the full archive.",
-"C’est voulu : chaque chiffre de la page parle du jeu tel qu’il se joue aujourd’hui. Pour les anciens résultats et toutes les cartes de Pok&eacute;mon TCG Pocket, {t0}Limitless TCG{t1} garde toutes les archives."
+"C’est voulu : chaque chiffre de la page reflète le jeu tel qu’il se joue aujourd’hui. Pour les anciens résultats et la liste complète des cartes de Pok&eacute;mon TCG Pocket, {t0}Limitless TCG{t1} conserve toutes les archives."
 ],
 "719ea396ad": [
 "Clear",
@@ -1077,7 +1077,7 @@
 ],
 "775ee8b04a": [
 "The tournaments of the same days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.",
-"Les tournois des mêmes jours, du plus récent au plus ancien. Ouvrez-en un pour voir les listes de son top 8, avec un code QR pour chacune. Les tournois où les joueurs apportent plus d’un deck ne sont pas listés, car ils n’ont pas une seule liste par joueur."
+"Tous les tournois de la même période, du plus récent au plus ancien. Ouvrez-en un pour voir les listes de son top 8, chacune avec son code QR. Les tournois où chaque joueur apporte plusieurs decks n’y figurent pas, car ils n’ont pas une seule liste par joueur."
 ],
 "7789ef8e5a": [
 "Scan Saved Image",
@@ -1177,7 +1177,7 @@
 ],
 "81826fc524": [
 "Open a deck, tap its QR code and save the image. In the game: {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. On a computer, you can also point the game&rsquo;s camera at the screen.",
-"Ouvrez un deck, touchez son code QR et sauvegardez l’image. Dans le jeu : {t0}Mes decks &rarr; + &rarr; Scanner un code &rarr; Scanner une image sauvegardée{t1}. Sur un ordinateur, vous pouvez aussi viser l’écran avec la caméra du jeu."
+"Ouvrez un deck, touchez son code QR et sauvegardez l’image. Ensuite, dans le jeu : {t0}Mes decks &rarr; + &rarr; Scanner un code &rarr; Scanner une image sauvegardée{t1}. Sur un ordinateur, vous pouvez aussi scanner directement l’écran avec la caméra du jeu."
 ],
 "8235bdefc9": [
 "the newest set",
@@ -1209,7 +1209,7 @@
 ],
 "857fa3b382": [
 "List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. {t0}&#9733; Popular now{t1} marks a list 1 that clearly more top players used exactly than any other list.",
-"La liste 1 d’un deck est la liste utilisée par le plus de top joueurs. Une liste avec seulement 1, 2 ou 3 cartes changées compte avec elle : les cases sous la liste montrent combien de top joueurs l’ont jouée exacte ou avec 1, 2 ou 3 changements (touchez une case pour voir ces variantes, chacune avec son code QR). Une liste avec 4 cartes changées ou plus apparaît comme une liste à part quand 2 top joueurs ou plus l’ont jouée, ou qu’1 joueur a fini dans le top 8 d’un tournoi de 32 joueurs ou plus. {t0}&#9733; Populaire{t1} marque une liste 1 que nettement plus de top joueurs ont jouée exacte que toute autre liste."
+"La liste 1 d’un deck est celle qu’utilisent le plus de top joueurs. Les listes qui n’en diffèrent que par 1, 2 ou 3 cartes sont comptées avec elle : les cases sous la liste indiquent combien de top joueurs l’ont jouée à l’identique ou avec 1, 2 ou 3 changements (touchez une case pour voir ces variantes, chacune avec son code QR). Une liste qui diffère de 4 cartes ou plus apparaît à part si au moins 2 top joueurs l’ont jouée, ou si un joueur a fini dans le top 8 d’un tournoi de 32 joueurs ou plus. {t0}&#9733; Populaire{t1} signale une liste 1 jouée à l’identique par nettement plus de top joueurs que toute autre liste."
 ],
 "861edba005": [
 "Suggestions",
@@ -1245,7 +1245,7 @@
 ],
 "8924cc152b": [
 "Which days count?",
-"Quels jours comptent ?"
+"Quelle période est prise en compte ?"
 ],
 "892ce04a73": [
 "A top result: at least 2 more wins than losses at an event {0}.",
@@ -1421,7 +1421,7 @@
 ],
 "9ec76bfa7e": [
 "Yes: no ads and no sign-up. No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter). This browser keeps only your theme and the last tab you used.",
-"Oui : pas de pub et pas d’inscription. Pas de cookies ni de données personnelles : le site compte seulement les visites et les touches sur les boutons, de façon anonyme (GoatCounter). Ce navigateur garde seulement votre thème et le dernier onglet utilisé."
+"Oui : pas de pub, pas d’inscription. Pas de cookies ni de données personnelles : le site compte seulement, de façon anonyme, les visites et les touches sur les boutons (GoatCounter). Votre navigateur ne garde que votre thème et le dernier onglet ouvert."
 ],
 "9fcb4b1bfc": [
 "No lists stored for this event.",
@@ -1497,7 +1497,7 @@
 ],
 "a79387a4ad": [
 "What is in Latest Events?",
-"Que contient Derniers tournois ?"
+"Que contient l’onglet Derniers tournois ?"
 ],
 "a7f8e7cc0d": [
 "just now",
@@ -1685,7 +1685,7 @@
 ],
 "bff84ca9c5": [
 "Why is the win rate different from other sites?",
-"Pourquoi le % de victoires diffère-t-il d’autres sites ?"
+"Pourquoi le % de victoires diffère-t-il de celui d’autres sites ?"
 ],
 "c0648ef361": [
 "Search decks by deck or card name",
@@ -1861,7 +1861,7 @@
 ],
 "d50280bff1": [
 "What does this site not do?",
-"Que ne fait pas ce site ?"
+"Qu’est-ce que ce site ne fait pas ?"
 ],
 "d579d7b438": [
 "{0}× {1}{2} · {3} top player{4}",
@@ -1981,7 +1981,7 @@
 ],
 "dfe3c5d44a": [
 "Yes: tap {t0}Add to Home Screen{t1} at the bottom of the page for the steps.",
-"Oui : touchez {t0}Ajouter à l’écran d’accueil{t1} en bas de la page pour voir les étapes."
+"Oui : touchez {t0}Ajouter à l’écran d’accueil{t1} en bas de la page pour voir comment faire."
 ],
 "e000ac6209": [
 "no public list yet",
@@ -2033,7 +2033,7 @@
 ],
 "e7a5c67393": [
 "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the current set&rsquo;s release, so in a new set&rsquo;s first days the results are early ones. The line under the title shows the dates.",
-"Les 7 derniers jours. Quand il y a peu de tournois (souvent en fin d’extension), la page prend les 10 ou 14 derniers jours, pour que chaque chiffre repose sur assez de joueurs. Elle ne compte jamais de tournois d’avant la sortie de l’extension actuelle : les premiers jours d’une nouvelle extension, les résultats sont donc des premiers résultats. La ligne sous le titre montre les dates."
+"Les 7 derniers jours. Quand il y a peu de tournois (souvent en fin d’extension), la page remonte aux 10 ou 14 derniers jours, pour que chaque chiffre repose sur assez de joueurs. Elle ne compte jamais les tournois antérieurs à la sortie de l’extension actuelle : pendant les premiers jours d’une nouvelle extension, il s’agit donc de premiers résultats. Les dates sont indiquées sous le titre."
 ],
 "e903ded5bb": [
 "Showing {0} of {1} decks.",
@@ -2165,11 +2165,11 @@
 ],
 "f7e42baf96": [
 "The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the set&rsquo;s release.",
-"Les 7 derniers jours. Quand il y a peu de tournois (souvent en fin d’extension), la page prend les 10 ou 14 derniers jours, pour que chaque chiffre repose sur assez de joueurs. Elle ne compte jamais de tournois d’avant la sortie de l’extension."
+"Les 7 derniers jours. Quand il y a peu de tournois (souvent en fin d’extension), la page remonte aux 10 ou 14 derniers jours, pour que chaque chiffre repose sur assez de joueurs. Elle ne compte jamais les tournois antérieurs à la sortie de l’extension."
 ],
 "f80619bbf4": [
 "No older weeks or past sets:{t0} no results or tier lists from before the days shown under the title.",
-"Pas d’anciennes semaines ni d’extensions passées :{t0} aucun résultat ni tier list d’avant les jours affichés sous le titre."
+"Pas d’anciennes semaines ni d’extensions passées :{t0} aucun résultat ni tier list antérieurs aux dates affichées sous le titre."
 ],
 "f83481bd50": [
 "– {0} (your time)",
@@ -2209,7 +2209,7 @@
 ],
 "ffa4a6d465": [
 "Limitless TCG{t0} is the main place where Pok&eacute;mon TCG Pocket tournaments are played online. New events start there every day, from small cups to open events with more than 300 players, and thousands of players take part every week. Each result is public as soon as an event ends, and this site checks for new ones every hour, so the meta here is days fresher than a tier list made by hand. Pocket Meta QR is not part of Limitless TCG: it reads its public results.",
-"Limitless TCG{t0} est le principal site où se jouent les tournois en ligne de Pok&eacute;mon TCG Pocket. De nouveaux tournois y commencent chaque jour, des petites coupes aux tournois ouverts de plus de 300 joueurs, et des milliers de joueurs y participent chaque semaine. Chaque résultat est public dès la fin du tournoi, et ce site cherche les nouveaux toutes les heures : le méta ici a donc plusieurs jours d’avance sur une tier list faite à la main. Pocket Meta QR ne fait pas partie de Limitless TCG : il lit seulement ses résultats publics."
+"Limitless TCG{t0} est le principal site de tournois en ligne de Pok&eacute;mon TCG Pocket. De nouveaux tournois y démarrent chaque jour, des petites coupes aux tournois ouverts de plus de 300 joueurs, et des milliers de joueurs y participent chaque semaine. Les résultats sont publics dès la fin de chaque tournoi, et ce site vérifie toutes les heures s’il y en a de nouveaux : le méta affiché ici a donc plusieurs jours d’avance sur une tier list faite à la main. Pocket Meta QR n’est pas lié à Limitless TCG : il se contente de lire ses résultats publics."
 ],
 "ffa4f00cd6": [
 "slot{0}",
