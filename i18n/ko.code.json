@@ -994,6 +994,16 @@
    "note": "ko: '대회 16개' (counter after the number)",
    "find": "<b>${sm.tournaments}</b> events</span>",
    "replace": "대회 <b>${sm.tournaments}</b>개</span>"
+  },
+  {
+   "note": "ko: hero pack line: '메타 카드 7장' (flex gap: keep the number and 장 in one span)",
+   "find": "class=\"t1s-ls\">&middot; <b>${m}</b> meta card${m > 1 ? \"s\" : \"\"}</span>",
+   "replace": "class=\"t1s-ls\">&middot; <span>메타 카드 <b>${m}</b>장</span></span>"
+  },
+  {
+   "note": "ko: hero event line: '131명' (flex gap)",
+   "find": "&middot; <b>${e.players}</b> players &middot; ${evDay(locDay(e))}</span>",
+   "replace": "&middot; <span><b>${e.players}</b>명</span> &middot; ${evDay(locDay(e))}</span>"
   }
  ]
 }
