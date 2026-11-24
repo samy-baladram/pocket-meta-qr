@@ -275,4 +275,4 @@ owner's zh-TW screenshots (Limited Battle name 雙元融合（C1）限定對戰,
   黑馬牌組 (Breakout), 待驗證 (Unproven), 固定 / 彈性, 對戰相性, 替換 (swap), 小眾牌組 (smaller decks).
   Tabs: 環境牌組, 最新比賽, 該抽哪個包. Promo pack: Promo-C (game data). Titles use "Pokémon TCG Pocket" (the game keeps
   its English name in Chinese).
-- Names: card and set names from the game data (names.zh.json); B2 夢幻遊行 is not confirmed (names.fix.json).
+- Names: card and set names from the game data (names.zh.json); B2 幻夢遊行 (names.fix.json, confirmed by screenshot); the deck screen is 我的牌組 (自己的卡牌 → 牌組).

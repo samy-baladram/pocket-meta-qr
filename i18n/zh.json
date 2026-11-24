@@ -309,7 +309,7 @@
 ],
 "23cd04792c": [
 "Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image.",
-"儲存圖片後，在遊戲中：牌組 → ＋ → 讀取條碼 → 讀取已儲存的圖片。"
+"儲存圖片後，在遊戲中：我的牌組 → ＋ → 讀取條碼 → 讀取已儲存的圖片。"
 ],
 "23d7de0ce5": [
 "Most often in a top 8",
@@ -689,7 +689,7 @@
 ],
 "4f32916ced": [
 "My Decks",
-"牌組"
+"我的牌組"
 ],
 "50009483b8": [
 "List 1",
@@ -1181,7 +1181,7 @@
 ],
 "81826fc524": [
 "Open a deck, tap its QR code and save the image. In the game: {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. On a computer, you can also point the game&rsquo;s camera at the screen.",
-"開啟牌組，點選QR碼並儲存圖片。在遊戲中：{t0}牌組 &rarr; ＋ &rarr; 讀取條碼 &rarr; 讀取已儲存的圖片{t1}。在電腦上，也可以用遊戲的相機直接掃描螢幕。"
+"開啟牌組，點選QR碼並儲存圖片。在遊戲中：{t0}我的牌組 &rarr; ＋ &rarr; 讀取條碼 &rarr; 讀取已儲存的圖片{t1}。在電腦上，也可以用遊戲的相機直接掃描螢幕。"
 ],
 "8235bdefc9": [
 "the newest set",
@@ -1469,7 +1469,7 @@
 ],
 "a40926803d": [
 "In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image.",
-"在遊戲中：牌組 → ＋ → 讀取條碼，再將相機對準這個條碼。也可以下載圖片。"
+"在遊戲中：我的牌組 → ＋ → 讀取條碼，再將相機對準這個條碼。也可以下載圖片。"
 ],
 "a452ac820f": [
 "Tap {t0}Share{t1} {0} (Safari: at the bottom, or at the top on iPad).",
