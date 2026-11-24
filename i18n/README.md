@@ -209,6 +209,23 @@ To add a language: add it to `I18N_ROUTES` (its descriptions are already in `int
   Limited Battle is on) and `/<l>/about/`.
 A language not in `I18N_INDEX` keeps noindex and is in no hreflang list. Plan: ja first, then one language at a time.
 
+## Deck pages per language (Phase 2 Step 4, Nov 24, 2026): `I18N_DECKS`
+
+A live language page in `I18N_DECKS` (and `I18N_ROUTES`) gets `/<l>/decks/<id>/` for the same decks as the English
+pages: this week's data.json + more.json decks and the decks of `data/decks_seen.json` (read only; the English build
+writes it), with the same rules (noindex after KEEP_DAYS out of the data, gone after NOINDEX_DAYS). Not the `/preview/`
+copies.
+- page.mjs `--lang-decks --seen data/decks_seen.json` (langDeckPages): routes tag `1 about decks`; title = the
+  translated page's `RDTITLE`; heading = its `setHead(d.name + "…")`; description and intro = `deckText()` in
+  `pipeline/intro_i18n.mjs` (one template set per language: rank, share, win rate, games, the most played list with card
+  names from names.<lang>.json); `pmq-deck` tag with the translated deck name (the "not in this week's meta" notice).
+- hreflang on every deck page (English and languages; `--alt-decks "$I18N_DECKS"`), and the language deck addresses in
+  sitemap.xml (decks in the data or seen in the last KEEP_DAYS).
+- head.html: links the page builds (`<a href="/decks/<id>/">`) get the folder on click; i18n_patch.py: the row share
+  link uses the language folder (a deck only with deck pages), and the language menu keeps the open deck
+  (`/ja/decks/<id>/` <-> `/decks/<id>/`; to a language without deck pages: `#<id>`).
+Next: pack pages, then card pages (the same way, one setting each).
+
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in
 `/i18n/report.<lang>.json` (and in the run summary); the page shows them in English until they are translated. To

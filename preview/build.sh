@@ -24,11 +24,14 @@ page() { # <lang> <source html> <out dir> [root]
   local rel="${3#"$PUB"/}" home="" mode=--no-routes idx="" alt=()
   # Phase 2 Steps 3 + 5 (Nov 24): a live page (root "/") gets hreflang (page.mjs --alt); a live language in I18N_INDEX
   # (site.yml) also loses the noindex tag. /preview/ pages: neither.
-  if [ "${4:-}" = / ]; then alt=(--alt "${I18N_INDEX:-}" --alt-routes "${I18N_ROUTES:-}")
+  if [ "${4:-}" = / ]; then alt=(--alt "${I18N_INDEX:-}" --alt-routes "${I18N_ROUTES:-}" --alt-decks "${I18N_DECKS:-}")
     if [[ " ${I18N_INDEX:-} " == *" $1 "* ]]; then idx=1; fi; fi
   # Phase 2 Step 1 (Nov 24): a language in I18N_ROUTES (site.yml) gets its section pages too (events/, packs/,
   # limited/, about/ next to its index.html: page.mjs --lang-routes)
-  if [ "$1" != en ] && [[ " ${I18N_ROUTES:-} " == *" $1 "* ]]; then home="/$rel/"; mode="--lang-routes --root $rel/"; fi
+  if [ "$1" != en ] && [[ " ${I18N_ROUTES:-} " == *" $1 "* ]]; then home="/$rel/"; mode="--lang-routes --root $rel/"
+    # Phase 2 Step 4 (Nov 24): a live language page in I18N_DECKS also gets decks/<id>/ (the English deck record, read
+    # only; not the /preview/ copies)
+    if [ "${4:-}" = / ] && [[ " ${I18N_DECKS:-} " == *" $1 "* ]]; then mode="$mode --lang-decks --seen data/decks_seen.json"; fi; fi
   # --prev: keep the previous build's app.<hash> files of this page (a page cached for 10 min still finds its code)
   # shellcheck disable=SC2086
   node pipeline/page.mjs "$2" "$T/p/index.html" $mode "${alt[@]}" --lang "$1" --data site --prev "cache/app-$(printf '%s' "$rel" | tr / -)" > /dev/null
@@ -37,12 +40,13 @@ page() { # <lang> <source html> <out dir> [root]
   # pages have theirs from page.mjs); with section addresses, the section links (<a href="/events/">) in the folder
   (cd "$T/p" && find . -name index.html) | while read -r f; do
     mkdir -p "$(dirname "$3/$f")"
-    HEAD="$(head_for "$1" "${4:-}" "$home" "$idx")" L="$1" U="https://pocketmetaqr.com/$rel/" HOME_="$home" node -e '
+    HEAD="$(head_for "$1" "${4:-}" "$home" "$idx")" L="$1" U="https://pocketmetaqr.com/$rel/" HOME_="$home" MODE="$mode" node -e '
 const f = require("fs"), e = process.env; let h = f.readFileSync(process.argv[1], "utf8").replace("<head>", "<head>" + e.HEAD);
 if (e.L !== "en") h = h.replace(/<html lang="en"/, `<html lang="${e.L === "pt" ? "pt-BR" : e.L}"`)
   .replace(/(<link rel="canonical" href=")https:\/\/pocketmetaqr\.com\/(")/, `$1${e.U}$2`)
   .replace(/(<meta property="og:url" content=")https:\/\/pocketmetaqr\.com\/(")/, `$1${e.U}$2`);
-if (e.HOME_) h = h.replace(/(<a\b[^>]*?\shref=")\/((?:events|packs|limited|about)\/)?(")/g, `$1${e.HOME_}$2$3`);
+if (e.HOME_) h = h.replace(/(<a\b[^>]*?\shref=")\/((?:events|packs|limited|about)\/)?(")/g, `$1${e.HOME_}$2$3`)
+  .replace(/(<a\b[^>]*?\shref=")\/(decks\/[a-z0-9-]+\/")/g, (m, a, b) => (/decks/.test(e.MODE) ? a + e.HOME_ + b : m));
 f.writeFileSync(process.argv[2], h);' "$T/p/$f" "$3/$f"
   done
 }

@@ -103,3 +103,55 @@ const SEC_DESC = {
     about: "포켓몬 카드 게임 Pocket 덱을 QR 코드로 읽어 오는 방법, 데이터 출처(Limitless 대회, 최근 7일간), 덱과 레시피의 순위를 정하는 방법." },
 };
 export const sectionDesc = (lang, dir) => SEC_DESC[lang]?.[dir] || "";
+
+// Phase 2 Step 4 (Nov 24, 2026): the texts of a language deck page (/<lang>/decks/<id>/), from the same record as the
+// English page (page.mjs deckPages). e: { name, rank, share, win, games, more, seen, cards: [[name, copies]] }, on: 1 =
+// in this week's data. Names: names.<lang>.json (deck name as the page's trDeck; card names; else English).
+// dates: the data window in the language (spanText) or null. Returns { name, desc, intro }.
+export function deckText(lang, e, on, dates, namesDir = "preview/i18n") {
+  if (!DAY[lang] && lang !== "ja") return null;
+  const N = names(lang, namesDir), nm = deck(lang, N, e.name), cn = (n) => (N && N[n]) || n;
+  const p = pct(lang, e.share < 0.1 ? +(+e.share).toFixed(2) : e.share), w = e.win != null ? pct(lang, e.win) : null;
+  const cards = (e.cards || []).map(([n, c]) => (lang === "ja" ? `${cn(n)}×${c}` : `${c} ${cn(n)}`));
+  const sd = e.seen ? DAY[lang](...md(e.seen)) : "", r = e.rank, g = e.games, J = cards.join(lang === "ja" ? "、" : ", ");
+  const T = {
+    ja: { main: `${nm}：今週のポケポケ環境で${r}位、使用率${p}${w ? `、勝率${w}` : ""}。`, more: `${nm}：今週のポケポケの少数派デッキ、使用率${p}${w ? `、勝率${w}` : ""}。`,
+      qr: "QRコード付きのレシピ。", offD: `${nm}：今週の環境には入っていません（最終確認：${sd}）。使用率${p}。レシピ：`,
+      in: `${nm}：今週のポケポケのデッキで${r}位${dates ? `（${dates}）` : ""}、使用率${p}${w ? `、${g}試合で勝率${w}` : ""}。最も使われている${nm}のレシピ：${J}。レシピを開いてQRコードをタップすると、ゲームに読み込めます。`,
+      off: `今週の環境には入っていません。最終確認：${sd}。当時ポケポケのデッキで${r}位、使用率${p}${w ? `、勝率${w}` : ""}。レシピ：${J}。` },
+    es: { main: `${nm} está en el puesto ${r} del meta de JCC Pokémon Pocket: ${p} de los jugadores${w ? `, ${w} de victorias` : ""}.`,
+      more: `${nm} es una baraja menor de JCC Pokémon Pocket esta semana: ${p} de los jugadores${w ? `, ${w} de victorias` : ""}.`,
+      qr: " Lista con código QR.", offD: `No está en el meta de JCC Pokémon Pocket de esta semana (visto por última vez el ${sd}): ${p} de uso. Su lista: `,
+      in: `${nm}: puesto ${r} de las barajas de JCC Pokémon Pocket de esta semana${dates ? ` (${dates})` : ""}, ${p} de los jugadores${w ? `, ${w} de victorias en ${g} partidas` : ""}. La lista más jugada de ${nm}: ${J}. Abre la lista y toca su código QR para importarla en el juego.`,
+      off: `No está en el meta de esta semana. Visto por última vez el ${sd}: puesto ${r} de las barajas de JCC Pokémon Pocket, ${p} de los jugadores${w ? `, ${w} de victorias` : ""}. Su lista: ${J}.` },
+    pt: { main: `${nm} está na posição ${r} do meta de Pokémon TCG Pocket: ${p} dos jogadores${w ? `, ${w} de vitórias` : ""}.`,
+      more: `${nm} é um baralho menor de Pokémon TCG Pocket nesta semana: ${p} dos jogadores${w ? `, ${w} de vitórias` : ""}.`,
+      qr: " Lista com código QR.", offD: `Não está no meta de Pokémon TCG Pocket desta semana (visto pela última vez em ${sd}): ${p} de uso. Sua lista: `,
+      in: `${nm}: posição ${r} entre os baralhos de Pokémon TCG Pocket desta semana${dates ? ` (${dates})` : ""}, ${p} dos jogadores${w ? `, ${w} de vitórias em ${g} partidas` : ""}. A lista mais jogada de ${nm}: ${J}. Abra a lista e toque no código QR para importá-la no jogo.`,
+      off: `Não está no meta desta semana. Visto pela última vez em ${sd}: posição ${r} entre os baralhos de Pokémon TCG Pocket, ${p} dos jogadores${w ? `, ${w} de vitórias` : ""}. Sua lista: ${J}.` },
+    de: { main: `${nm} ist auf Platz ${r} im Meta von Pokémon TCG Pocket: ${p} der Spieler${w ? `, ${w} Siegquote` : ""}.`,
+      more: `${nm} ist diese Woche ein kleineres Deck in Pokémon TCG Pocket: ${p} der Spieler${w ? `, ${w} Siegquote` : ""}.`,
+      qr: " Liste mit QR-Code.", offD: `Diese Woche nicht im Meta von Pokémon TCG Pocket (zuletzt gesehen: ${sd}): ${p} Anteil. Die Liste: `,
+      in: `${nm}: Platz ${r} der Pokémon TCG Pocket-Decks dieser Woche${dates ? ` (${dates})` : ""}, ${p} der Spieler${w ? `, ${w} Siegquote in ${g} Spielen` : ""}. Die meistgespielte Liste von ${nm}: ${J}. Öffne die Liste und tippe auf den QR-Code, um sie ins Spiel zu übernehmen.`,
+      off: `Diese Woche nicht im Meta. Zuletzt gesehen: ${sd}, Platz ${r} der Pokémon TCG Pocket-Decks, ${p} der Spieler${w ? `, ${w} Siegquote` : ""}. Die Liste: ${J}.` },
+    fr: { main: `${nm} est n° ${r} du méta de Pokémon TCG Pocket : ${p} des joueurs${w ? `, ${w} de victoires` : ""}.`,
+      more: `${nm} est un deck secondaire de Pokémon TCG Pocket cette semaine : ${p} des joueurs${w ? `, ${w} de victoires` : ""}.`,
+      qr: " Liste avec code QR.", offD: `Absent du méta de Pokémon TCG Pocket cette semaine (vu pour la dernière fois le ${sd}) : ${p} d'utilisation. Sa liste : `,
+      in: `${nm} : n° ${r} des decks de Pokémon TCG Pocket cette semaine${dates ? ` (${dates})` : ""}, ${p} des joueurs${w ? `, ${w} de victoires sur ${g} parties` : ""}. La liste de ${nm} la plus jouée : ${J}. Ouvrez la liste et touchez son code QR pour l'importer dans le jeu.`,
+      off: `Absent du méta cette semaine. Vu pour la dernière fois le ${sd} : n° ${r} des decks de Pokémon TCG Pocket, ${p} des joueurs${w ? `, ${w} de victoires` : ""}. Sa liste : ${J}.` },
+    it: { main: `${nm} è al ${r}º posto nel meta del GCC Pokémon Pocket: ${p} dei giocatori${w ? `, ${w} di vittorie` : ""}.`,
+      more: `${nm} è un mazzo minore del GCC Pokémon Pocket questa settimana: ${p} dei giocatori${w ? `, ${w} di vittorie` : ""}.`,
+      qr: " Lista con codice QR.", offD: `Non è nel meta del GCC Pokémon Pocket di questa settimana (visto l'ultima volta il ${sd}): ${p} di utilizzo. La sua lista: `,
+      in: `${nm}: ${r}º tra i mazzi del GCC Pokémon Pocket di questa settimana${dates ? ` (${dates})` : ""}, ${p} dei giocatori${w ? `, ${w} di vittorie in ${g} partite` : ""}. La lista di ${nm} più giocata: ${J}. Apri la lista e tocca il suo codice QR per importarla nel gioco.`,
+      off: `Non è nel meta di questa settimana. Visto l'ultima volta il ${sd}: ${r}º tra i mazzi del GCC Pokémon Pocket, ${p} dei giocatori${w ? `, ${w} di vittorie` : ""}. La sua lista: ${J}.` },
+  }[lang];
+  if (!T) return null;
+  const head = e.more ? T.more : T.main;
+  const fitL = (h, items) => {   // as page.mjs fit(), with the language's list separator and full stop
+    const sep = lang === "ja" ? "、" : ", ", end = lang === "ja" ? "。" : ".";
+    const mk = (k) => h + items.slice(0, k).join(sep) + (k < items.length ? "…" : end);
+    let n = items.length; while (n > 1 && mk(n).length > 160) n--; return mk(n); };
+  const desc = on ? ((head + T.qr).length <= 160 ? head + T.qr : head) : fitL(T.offD, cards);
+  return { name: nm, desc, intro: on ? T.in : T.off };
+}
+export const spanText = (lang, a, b) => (DAY[lang] ? span(lang, a, b) : null);

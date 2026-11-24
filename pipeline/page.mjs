@@ -67,7 +67,7 @@ import { dirname, join } from "node:path";
 import { createHash } from "node:crypto";
 import { minify as minifyJS } from "terser";
 import { minify as minifyCSS } from "csso";
-import { introText, sectionDesc } from "./intro_i18n.mjs";
+import { introText, sectionDesc, deckText, spanText } from "./intro_i18n.mjs";
 
 const args = process.argv.slice(2), MINIFY = !args.includes("--no-minify"), ROUTES = !args.includes("--no-routes");
 // Nov 24 (i18n): --lang <xx> = a language page (its intro text in that language, pipeline/intro_i18n.mjs);
@@ -88,13 +88,19 @@ const ROOT = LR ? (argv("--root") || `${LANG}/`) : "";   // the page folder unde
 // The English build (--alt) also lists the language addresses in sitemap.xml.
 const ALT = (argv("--alt") || "").split(/\s+/).filter((x) => x && x !== "en");
 const ALT_R = (argv("--alt-routes") || "").split(/\s+/).filter((x) => ALT.includes(x));
+// Phase 2 Step 4 (Nov 24, 2026): --alt-decks "<langs>" = the indexable languages with deck pages (I18N_DECKS): hreflang
+// on decks/<id>/ and their addresses in sitemap.xml. --lang-decks (with --lang-routes): this language page gets
+// decks/<id>/ pages (langDeckPages) and the routes tag word "decks".
+const ALT_D = (argv("--alt-decks") || "").split(/\s+/).filter((x) => ALT_R.includes(x));
+const LD = LR && args.includes("--lang-decks");
 const HL = (l) => (l === "pt" ? "pt-BR" : l);
 const ALT_DIRS = ["events", "packs", "limited", "about"];
 function withAlt(html, key) {   // key: "" (home) or a section folder
   const me = LANG && LANG !== "en" ? LANG : "en";
-  if (!ALT.length || (me !== "en" && !ALT.includes(me)) || (key && !ALT_DIRS.includes(key))) return html;
+  const dk = /^decks\/[a-z0-9-]+$/.test(key || "");
+  if (!ALT.length || (me !== "en" && !ALT.includes(me)) || (key && !ALT_DIRS.includes(key) && !dk) || (dk && me !== "en" && !ALT_D.includes(me))) return html;
   const v = [["en", `${SITE}/${key ? key + "/" : ""}`],
-    ...ALT.filter((l) => !key || ALT_R.includes(l)).map((l) => [HL(l), `${SITE}/${l}/${key ? key + "/" : ""}`])];
+    ...ALT.filter((l) => !key || (dk ? ALT_D : ALT_R).includes(l)).map((l) => [HL(l), `${SITE}/${l}/${key ? key + "/" : ""}`])];
   if (v.length < 2) return html;
   const tags = [...v, ["x-default", v[0][1]]].map(([h, u]) => `<link rel="alternate" hreflang="${h}" href="${u}">`).join("");
   return html.replace("</head>", tags + "</head>");
@@ -250,9 +256,44 @@ function deckPages(full, dataDir, outDir, seenFile) {
       (!on && days > KEEP_DAYS ? '<meta name="robots" content="noindex">' : "");
     const dir = `decks/${id}`, fl = join(outDir, dir, "index.html");
     mkdirSync(dirname(fl), { recursive: true });
-    writeFileSync(fl, fillIntro(sectionPage(full, { dir, title, desc, img: "og.png", hsec: `${e.name} deck`,
-      ld: crumbs(e.name, `${SITE}/decks/${id}/`), extra }), intro));
+    writeFileSync(fl, withAlt(fillIntro(sectionPage(full, { dir, title, desc, img: "og.png", hsec: `${e.name} deck`,
+      ld: crumbs(e.name, `${SITE}/decks/${id}/`), extra }), intro), dir));
     out.push({ dir, on, days, title, desc, intro });
+  }
+  return out;
+}
+
+// Phase 2 Step 4 (Nov 24, 2026): the deck pages of a language page (--lang-decks): the same decks as the English pages
+// (this build's data.json + more.json decks, and the record --seen, read only: the English build writes it), with
+// the language's title (RDTITLE), heading, description and intro (intro_i18n.mjs deckText), canonical under /<lang>/,
+// the same noindex rule (not in the data for more than KEEP_DAYS).
+function langDeckPages(full, dataDir, outDir, seenFile) {
+  const D = readJSON(join(dataDir, "data.json")), M = readJSON(join(dataDir, "more.json"));
+  if (!D) return [];
+  const today = new Date().toISOString().slice(0, 10), dates = spanText(LANG, D.span[0], D.span[1]);
+  const rec = { ...((seenFile && readJSON(seenFile)) || {}) }, onIds = new Set();
+  for (const [d, more] of [...(D.decks || []).map((d) => [d, 0]), ...((M && M.decks) || []).map((d) => [d, 1])]) {
+    onIds.add(d.id);
+    rec[d.id] = { name: d.name, seen: today, rank: d.rank, share: d.share, win: d.win, more,
+      games: (d.w || 0) + (d.l || 0) + (d.t || 0), cards: d.cards.map((c) => [c.n, c.c]) };
+  }
+  const out = [];
+  for (const [id, e] of Object.entries(rec)) {
+    const on = onIds.has(id) ? 1 : 0, days = daysAgo(today, e.seen);
+    if (days > NOINDEX_DAYS) continue;
+    const tx = deckText(LANG, e, on, dates);
+    if (!tx) continue;
+    const title = LT.deckTitle(tx.name) || `${tx.name} ${GAME}`;
+    const dir = `decks/${id}`, url = `${SITE}/${ROOT}${dir}/`, fl = join(outDir, dir, "index.html");
+    const extra = `<meta name="pmq-deck" content='${tagJSON({ id, name: tx.name, seen: e.seen, on })}'>` +   // the name of the page's "not in this week's meta" notice
+      (!on && days > KEEP_DAYS ? '<meta name="robots" content="noindex">' : "");
+    const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Pocket Meta QR", item: `${SITE}/${ROOT}` },
+      { "@type": "ListItem", position: 2, name: LT.metaCrumb, item: `${SITE}/${ROOT}` },
+      { "@type": "ListItem", position: 3, name: tx.name, item: url }] };
+    mkdirSync(dirname(fl), { recursive: true });
+    writeFileSync(fl, withAlt(fillIntro(sectionPage(full, { dir, title, desc: tx.desc, img: "og.png", hsec: LT.deckHead(tx.name), ld, extra }), tx.intro), dir));
+    out.push({ dir, on, days, title, desc: tx.desc, intro: tx.intro });
   }
   return out;
 }
@@ -522,13 +563,13 @@ function sectionPage(html, { dir, title, desc, img, hsec, ld, extra }) {
   }
   return head + rest;
 }
-const [src = "site/index.html", out = "public/index.html"] = args.filter((a, i) => !a.startsWith("--") && !["--prev", "--seen", "--cards-seen", "--lang", "--data", "--root", "--alt", "--alt-routes"].includes(args[i - 1]));
+const [src = "site/index.html", out = "public/index.html"] = args.filter((a, i) => !a.startsWith("--") && !["--prev", "--seen", "--cards-seen", "--lang", "--data", "--root", "--alt", "--alt-routes", "--alt-decks"].includes(args[i - 1]));
 const body = readFileSync(src, "utf8");
 const ROUTES_ON = ROUTES && body.includes("pmq-routes");   // R26: the page supports the section addresses
 const NWV_RE = /<section class="abv nwv" id="nwv"[^>]*\shidden[\s>]/;   // Nov 23: What's new (whats-new/)
 const ABOUT_ON = ROUTES_ON && ABV_RE.test(body);              // R29: the page has the static FAQ section
 const NEW_ON = ROUTES_ON && !LR && NWV_RE.test(body);         // Nov 23: the page has the static What's new section
-const DECKS_ON = ROUTES_ON && !LR && (body.includes("pmq-deck") || args.includes("--decks"));   // R30 §2: the page's deck code
+const DECKS_ON = ROUTES_ON && (!LR || LD) && (body.includes("pmq-deck") || args.includes("--decks"));   // R30 §2: the page's deck code
 const PACKS_ON = ROUTES_ON && !LR && (body.includes("/\\bpacks\\b/") || args.includes("--packs")); // R31: the page's RPACK check
 const CARDS_ON = ROUTES_ON && !LR && (body.includes("/\\bcards\\b/") || args.includes("--cards")); // R32: the page's RCARD check
 const NEWT = body.includes(" Deck List (") || args.includes("--newt");   // R32: the page's new title formulas
@@ -555,7 +596,12 @@ const LT = LR ? (() => {
   let cat = {}; try { cat = JSON.parse(readFileSync(`i18n/${LANG}.json`, "utf8")); } catch {}
   const tr = (en) => cat[createHash("sha1").update(en).digest("hex").slice(0, 10)]?.[1] || en;
   const crumb = { events: tr("Latest Events"), packs: tr("Booster Packs"), limited: tr("Limited Battle decks"), about: tr("About and FAQ") };
-  return { title, head: (k) => heads[k === "" ? "decks" : k] || null, crumb, desc: (k) => sectionDesc(LANG, k) };
+  // Step 4: the deck page title and heading as the page sets them (RDTITLE; setHead(d ? d.name + "<suffix>" ...))
+  const rd = (body.match(/const RDTITLE = \(d\) => (`[^`]*`);/) || [])[1];
+  const dSuf = js((body.match(/setHead\(d \? d\.name \+ ("(?:[^"\\]|\\.)*")/) || [, '" deck"'])[1]);
+  const deckTitle = (nm) => { if (!rd) return null; const t = js(rd.replace(/\$\{d\.name\}/g, nm.replace(/[`$\\]/g, "")).replace(/\$\{RMON\(\)\}/g, month)); return t && !/\$\{/.test(t) ? t : null; };
+  return { title, head: (k) => heads[k === "" ? "decks" : k] || null, crumb, desc: (k) => sectionDesc(LANG, k),
+    deckTitle, deckHead: (nm) => nm + (dSuf ?? " deck"), metaCrumb: tr("Meta Decks") };
 })() : null;
 
 // One head item at the start of the text: whitespace, then a comment, <title>..</title>, <meta>, <link>,
@@ -647,7 +693,7 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
     writeFileSync(f, withAlt(html, sec.dir));
   }
   const si = args.indexOf("--seen"), seenFile = si > 0 ? args[si + 1] : null;
-  const decks = DECKS_ON ? deckPages(full, dirname(src), dirname(out), seenFile) : [];
+  const decks = DECKS_ON ? (LD ? langDeckPages(full, DATA || dirname(src), dirname(out), seenFile) : deckPages(full, dirname(src), dirname(out), seenFile)) : [];
   if (DECKS_ON) {
     const on = decks.filter((x) => x.on), kept = decks.filter((x) => !x.on);
     console.log(`page: deck pages ${decks.length} (${on.length} in the data, ${kept.filter((x) => x.days <= KEEP_DAYS).length} kept,` +
@@ -679,7 +725,8 @@ if (/^\s*(<!--[^>]*-->\s*)?<!doctype html>/i.test(body)) {
       ...packs.map((x) => [x.dir + "/", "daily"]),   // R31
       ...cards.filter((x) => x.on).map((x) => [x.dir + "/", "daily"]),   // R32: cards in this week's lists only
       ...ALT.flatMap((l) => [[`${l}/`, "hourly"], ...(ALT_R.includes(l) ? SECS.filter((x) => ALT_DIRS.includes(x.dir) && (x.dir !== "limited" || lbOn))
-        .map((x) => [`${l}/${x.dir}/`, x.about ? "monthly" : "daily"]) : [])])];   // Phase 2 Step 3: the indexable language pages
+        .map((x) => [`${l}/${x.dir}/`, x.about ? "monthly" : "daily"]) : []),
+        ...(ALT_D.includes(l) ? decks.filter((x) => x.on || x.days <= KEEP_DAYS).map((x) => [`${l}/${x.dir}/`, "daily"]) : [])])];   // Phase 2 Step 3: the indexable language pages
     writeFileSync(join(dirname(out), "sitemap.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n' +
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       urls.map(([u, f]) => `  <url><loc>${SITE}/${u}</loc><lastmod>${today}</lastmod><changefreq>${f}</changefreq></url>\n`).join("") +
