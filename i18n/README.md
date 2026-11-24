@@ -112,6 +112,21 @@ to `page.mjs`. A new language needs one sentence there.
 - The hourly look for new data = チェック (5分前にチェック, 次回のチェック); 更新 = the numbers changed (前回の更新);
   the Live chip = 最新 (not ライブ, which reads as a stream). 確認 only for "see / verify" (1枚ずつ確認できます).
 
+## German (de, Nov 24, 2026): /preview/de/ only (not in the menu yet)
+- Numbers: 12,0 % (DIN 5008: comma, a non-breaking space before %; `fx` / `pn` / `pct` in `de.code.json`; a text that
+  follows a number has "{0} %"). Thousands: 1.789 (`de-DE`).
+- Ranks: 1. (`n + "."`): "1. von 162", "Platz 3 im Meta", "wurde 7. bei …", "blieb auf Platz 3".
+- Dates: 18.–23. Nov.; 14.11. in small cells; the year only when not this year; times 9:05.
+- Relative times: "vor 5 Min.", "vor 3 Std.", "vor 2 Tagen", "heute", "gestern", "gerade eben".
+- Plurals: the English code adds "s"; the "plural: …" patches (kept last) make it n / e / en for Karte(n), Änderung(en),
+  Turnier(e) (Turnieren after "in"), Stunde(n). Spieler, Deck(s), Pack(s), Slot(s) need nothing.
+- Terms: du (not Sie), Anteil (share), Siegquote (win rate; "Siege" = wins), Bilanz (Score and a record 10-2-0),
+  Top-Spieler, Liste, Turnier, Erweiterung (set), Boosterpack, Kern / Flex, Änderung (swap), unter dem Cut, Breakout,
+  energy types as in the German TCG (Pflanze, Feuer, Wasser, Elektro, Psycho, Kampf, Finsternis, Metall, Drache, Farblos).
+  Card and Pokémon names are German (names.de.json: Glurak, Psiana).
+- To check by the owner in the game: the QR import path (Meine Decks → + → Code scannen → Gespeichertes Bild scannen)
+  and the German name of the Limited Battle event (now "Limitierter Kampf").
+
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in
 `/i18n/report.<lang>.json` (and in the run summary); the page shows them in English until they are translated. To
