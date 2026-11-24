@@ -2,6 +2,26 @@
  "_": "Code changes for the fr page (i18n/build.mjs applies them before the texts). Made from the reviewed es.code.json (Nov 24). What's new is English on this page (enOnly in config.json). Limited Battle: the fixed parts are translated, the deck notes stay English (note on the page). French plurals take \"s\" like the English code, so there are no plural patches.",
  "patches": [
   {
+   "note": "tab: Derniers tournois (wide) / Tournois (phone)",
+   "find": "<span class=\"tlx\">Latest </span>Events",
+   "replace": "<span class=\"tlx\">Derniers tournois</span><span class=\"tls\">Tournois</span>"
+  },
+  {
+   "note": "pack card sheet: dans 3 decks méta",
+   "find": "${c.st ? \"meta \" : \"\"}deck",
+   "replace": "${c.st ? \"\\u00a0méta\" : \"\"}deck"
+  },
+  {
+   "note": "Limited Battle: the cards line",
+   "find": "Dual Fusion, Promo-C Vol. 1 and 7 shop promos ${ii(",
+   "replace": "Fusion Double, Booster promo série C, vol. 1 et 7 promos de la boutique ${ii("
+  },
+  {
+   "note": "Limited Battle: cards tip, with French card names",
+   "find": "<p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(\", \")}.</p>",
+   "replace": "<p>Seulement les cartes de <b>Fusion Double</b> (C1), du <b>Booster promo série C, vol. 1</b> de cet événement et de ces 7 promos de la boutique\\u00a0:</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\", \")}.</p>"
+  },
+  {
    "note": "Limited Battle: the event name as in the French game (Combats restreints, Pokébip; a new event keeps its English name until it is added here)",
    "find": "const LB_DEMO = ",
    "replace": "LB.name = { \"Dual Fusion Limited Battle\": \"Combats restreints : Fusion Double\" }[LB.name] || LB.name; const LB_DEMO = "
@@ -544,9 +564,9 @@
    "replace": "${mAll ? \"Voir moins\" : \"Tout voir (\" + wl.length + \")\"}"
   },
   {
-   "note": "tab: Decks Méta (wide) / Méta (phone)",
+   "note": "tab: Decks méta (wide) / Méta (phone; .tls in preview/i18n_patch.py)",
    "find": "Meta<span class=\"tlx\"> Decks</span>",
-   "replace": "<span class=\"tlx\">Decks </span>Méta"
+   "replace": "<span class=\"tlx\">Decks méta</span><span class=\"tls\">Méta</span>"
   },
   {
    "note": "tab: Boosters",
@@ -760,9 +780,9 @@
    "replace": "`${c > 0 ? \"\\u25b2\" : \"\\u25bc\"}${fx(Math.abs(c), 1)}`"
   },
   {
-   "note": "window tip: primer día",
+   "note": "window tip: ses 2 premiers jours / son premier jour",
    "find": "${day > 1 ? `${day} days` : \"day\"}",
-   "replace": "${day > 1 ? `${day} jours` : \"jour\"}"
+   "replace": "${day > 1 ? `ses ${day} premiers jours` : \"son premier jour\"}"
   },
   {
    "note": "Live legend: hace 2–6 h / hace más de 6 h",

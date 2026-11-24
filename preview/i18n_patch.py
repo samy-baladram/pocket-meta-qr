@@ -31,6 +31,7 @@ html:not([lang="en"]) :root .swt .swpl, html:not([lang="en"]) .swpl { white-spac
 html:not([lang="en"]) .t1s-h > :first-child { flex: none; white-space: nowrap; }
 html:not([lang="en"]) .t1s-lab > div { inset: 0 10px; gap: 0 4px; font-size: 12px; flex-wrap: wrap; align-content: center; line-height: 1.2; } /* the name keeps its line; the rest moves under it */
 html[lang="fr"] small.t1s-x { letter-spacing: -0.02em; } /* Nov 24: "8e · nouveau → 3,6 %" in the Top 10 rising row fits 360 px */
+.tabs .tls { display: none; } @media (max-width: 599px) { .tabs .tls { display: inline; } } /* Nov 24: a tab's own short label on phones (.tlx = the long one), for languages that keep sentence case: fr "Decks méta" / "Méta" */
 /* Nov 23: sections a language does not translate yet (EN_ONLY in the page script) get a short note at the top */
 [data-en-only]::before { content: attr(data-en-only); display: block; margin: 0 0 12px; padding: 9px 12px; border-radius: 12px;
   font-size: 13px; line-height: 1.35; color: var(--muted); background: var(--surface, #fff); box-shadow: inset 0 0 0 1px var(--line-strong, #c9d6e2); }
