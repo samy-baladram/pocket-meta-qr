@@ -1,14 +1,14 @@
 {
  "mega-charizard-y-ex-b1a-entei-ex-a4a": {
   "name": "Mega Charizard Y ex Entei ex",
-  "seen": "2026-11-24",
+  "seen": "2026-11-25",
   "rank": 1,
-  "share": 10.94,
-  "win": 51.51,
-  "count": 222,
-  "games": 596,
+  "share": 11.44,
+  "win": 52.28,
+  "count": 345,
+  "games": 985,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "2nd of 325",
    "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
@@ -65,26 +65,26 @@
    ]
   ],
   "xs": [
-   "Best matchups: Vespiquen ex Shuckle ex (65% in 20 games), Mega Lucario ex Lucario (60% in 25 games).",
-   "Decks that beat it: Suicune ex Baxcalibur (Mega Charizard Y ex Entei ex wins 25% in 28 games), Hoopa ex Mega Sableye ex (25% in 24 games).",
-   "Core cards (in 90%+ of the 29 top players' lists): 2 Entei ex, 2 Flame Patch, 2 Charmeleon, 2 Poké Ball, 2 Professor's Research, 2 Charizard, 2 Blue's Provocation, 1 Mega Charizard Y ex.",
-   "Flex picks: Serena's Choice (90%), Charmander (86%), May (62%)."
+   "Best matchups: Vespiquen ex Shuckle ex (70% in 23 games), Mega Lucario ex Lucario (62% in 29 games).",
+   "Decks that beat it: Suicune ex Baxcalibur (Mega Charizard Y ex Entei ex wins 25% in 38 games), Hoopa ex Mega Absol ex (38% in 99 games).",
+   "Core cards (in 90%+ of the 50 top players' lists): 2 Entei ex, 2 Flame Patch, 2 Poké Ball, 2 Professor's Research, 2 Charizard, 1 Mega Charizard Y ex, 2 Charmeleon, 1 Blue's Provocation, 1 Serena's Choice.",
+   "Flex picks: Charmander (86%), May (62%), Copycat (50%)."
   ]
  },
  "hoopa-ex-b4-mega-absol-ex-b1": {
   "name": "Hoopa ex Mega Absol ex",
-  "seen": "2026-11-24",
+  "seen": "2026-11-25",
   "rank": 2,
-  "share": 7.63,
-  "win": 52.81,
-  "count": 155,
-  "games": 534,
+  "share": 7.76,
+  "win": 54.85,
+  "count": 234,
+  "games": 896,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "1st of 122",
-   "DUAL FUSION CLASH!! $20 BEC'S WEEKLY",
-   "2026-11-20"
+   "1st of 179",
+   "xPabsy Cup #14 - $20",
+   "2026-11-16"
   ],
   "cards": [
    [
@@ -100,19 +100,19 @@
     1
    ],
    [
-    "Cyrus",
-    2
-   ],
-   [
     "Professor's Research",
     2
    ],
    [
-    "Mars",
-    1
+    "Cyrus",
+    2
    ],
    [
     "Copycat",
+    1
+   ],
+   [
+    "Mars",
     1
    ],
    [
@@ -120,15 +120,15 @@
     1
    ],
    [
-    "Poké Ball",
-    2
-   ],
-   [
     "Lucky Ice Pop",
     2
    ],
    [
-    "X Speed",
+    "Poké Ball",
+    2
+   ],
+   [
+    "Field Blower",
     1
    ],
    [
@@ -136,7 +136,7 @@
     1
    ],
    [
-    "Field Blower",
+    "X Speed",
     1
    ],
    [
@@ -145,22 +145,22 @@
    ]
   ],
   "xs": [
-   "Best matchups: Mega Altaria ex Espeon (62% in 49 games), Mega Altaria ex Greninja (61% in 41 games).",
-   "Decks that beat it: Suicune ex Baxcalibur (Hoopa ex Mega Absol ex wins 23% in 15 games), Vespiquen ex Shuckle ex (27% in 24 games).",
-   "Core cards (in 90%+ of the 25 top players' lists): 2 Cyrus, 2 Lucky Ice Pop, 2 Hoopa ex, 2 Deceptive Needle, 2 Poké Ball, 2 Professor's Research, 1 Darkrai ex, 1 Pokémon Center Lady, 1 Repel, 1 Mega Absol ex, 1 Field Blower, 1 X Speed, 1 Mars.",
-   "Flex picks: Copycat (72%), Serena's Choice (32%)."
+   "Best matchups: Mega Altaria ex Espeon (66% in 73 games), Mega Charizard Y ex Entei ex (62% in 99 games).",
+   "Decks that beat it: Vespiquen ex Shuckle ex (Hoopa ex Mega Absol ex wins 27% in 28 games), Magnezone Miraidon ex (41% in 56 games).",
+   "Core cards (in 90%+ of the 47 top players' lists): 2 Cyrus, 2 Lucky Ice Pop, 2 Hoopa ex, 2 Deceptive Needle, 2 Poké Ball, 2 Professor's Research, 1 Darkrai ex, 1 Repel, 1 Mega Absol ex, 1 Field Blower, 1 Pokémon Center Lady, 1 X Speed, 1 Mars.",
+   "Flex picks: Copycat (79%), Serena's Choice (26%)."
   ]
  },
  "mega-altaria-ex-b1-greninja-a1": {
   "name": "Mega Altaria ex Greninja",
-  "seen": "2026-11-24",
-  "rank": 5,
-  "share": 5.22,
-  "win": 52.48,
-  "count": 106,
-  "games": 343,
+  "seen": "2026-11-25",
+  "rank": 4,
+  "share": 5.77,
+  "win": 51.44,
+  "count": 174,
+  "games": 627,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "3rd of 325",
    "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
@@ -213,22 +213,22 @@
    ]
   ],
   "xs": [
-   "Best matchups: Mega Charizard Y ex Entei ex (53% in 32 games).",
-   "Decks that beat it: Mega Altaria ex Espeon (Mega Altaria ex Greninja wins 32% in 34 games), Hoopa ex Mega Absol ex (39% in 41 games).",
-   "Core cards (in 90%+ of the 17 top players' lists): 2 Swablu, 2 Poké Ball, 2 Greninja, 2 Rare Candy, 2 Professor's Research, 2 Copycat, 1 Cyrus, 1 Mega Altaria ex, 2 Chingling, 2 Lucky Egg, 2 Froakie.",
-   "Flex picks: Serena's Choice (24%)."
+   "Best matchups: Chien-Pao ex Baxcalibur (84% in 16 games), Mega Lucario ex Lucario (80% in 15 games).",
+   "Decks that beat it: Mega Altaria ex Espeon (Mega Altaria ex Greninja wins 39% in 53 games), Hoopa ex Mega Absol ex (39% in 80 games).",
+   "Core cards (in 90%+ of the 32 top players' lists): 2 Greninja, 2 Rare Candy, 2 Swablu, 2 Poké Ball, 2 Copycat, 1 Cyrus, 1 Mega Altaria ex, 2 Professor's Research, 2 Lucky Egg, 2 Froakie, 2 Chingling.",
+   "Flex picks: Serena's Choice (22%)."
   ]
  },
  "mega-altaria-ex-b1-espeon-b3a": {
   "name": "Mega Altaria ex Espeon",
-  "seen": "2026-11-24",
+  "seen": "2026-11-25",
   "rank": 3,
-  "share": 6.3,
-  "win": 56.85,
-  "count": 128,
-  "games": 460,
+  "share": 6.07,
+  "win": 55.23,
+  "count": 183,
+  "games": 669,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "1st of 162",
    "R0zey X Vegegras 50 USD Pocket Clash",
@@ -289,22 +289,22 @@
    ]
   ],
   "xs": [
-   "Best matchups: Mega Altaria ex Greninja (68% in 34 games), Chien-Pao ex Baxcalibur (67% in 18 games).",
-   "Decks that beat it: Vespiquen ex Shuckle ex (Mega Altaria ex Espeon wins 27% in 22 games), Hoopa ex Mega Absol ex (38% in 49 games).",
-   "Core cards (in 90%+ of the 26 top players' lists): 2 Eevee, 2 Swablu, 2 Darkrai, 2 Espeon, 2 Poké Ball, 2 Professor's Research, 2 Copycat, 1 Sabrina, 1 Igglybuff, 1 Mega Altaria ex, 1 Small Balloon, 1 Training Area.",
-   "Flex picks: Field Blower (85%), Cyrus (15%), Serena's Choice (12%)."
+   "Best matchups: Mega Lucario ex Lucario (65% in 17 games), Magnezone Miraidon ex (64% in 43 games).",
+   "Decks that beat it: Hoopa ex Mega Absol ex (Mega Altaria ex Espeon wins 34% in 73 games), Vespiquen ex Shuckle ex (36% in 28 games).",
+   "Core cards (in 90%+ of the 40 top players' lists): 2 Eevee, 2 Swablu, 2 Darkrai, 2 Espeon, 2 Poké Ball, 2 Professor's Research, 2 Copycat, 1 Igglybuff, 1 Sabrina, 1 Mega Altaria ex, 1 Small Balloon, 1 Training Area.",
+   "Flex picks: Field Blower (85%), Cyrus (13%), Serena's Choice (10%)."
   ]
  },
  "magnezone-b1a-miraidon-ex-b3a": {
   "name": "Magnezone Miraidon ex",
-  "seen": "2026-11-24",
-  "rank": 4,
-  "share": 6.26,
-  "win": 55.57,
-  "count": 127,
-  "games": 431,
+  "seen": "2026-11-25",
+  "rank": 5,
+  "share": 5.67,
+  "win": 54.19,
+  "count": 171,
+  "games": 573,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "2nd of 78",
    "Project OTS x The Dark League Tournament | FAs",
@@ -369,22 +369,22 @@
    ]
   ],
   "xs": [
-   "Best matchups: Vespiquen ex Shuckle ex (91% in 23 games), Hoopa ex Mega Sableye ex (61% in 18 games).",
-   "Decks that beat it: Mega Altaria ex Espeon (Magnezone Miraidon ex wins 39% in 33 games), Suicune ex Baxcalibur (42% in 24 games).",
-   "Core cards (in 90%+ of the 27 top players' lists): 2 Magneton, 2 Oricorio, 2 Magnemite, 2 Magnezone, 2 Poké Ball, 2 Professor's Research, 1 Lisia, 1 Cyrus, 1 Miraidon ex, 1 Clemont, 1 Professor Turo.",
-   "Flex picks: Serena's Choice (59%), Copycat (59%), Giant Cape (52%)."
+   "Best matchups: Vespiquen ex Shuckle ex (91% in 23 games), Hoopa ex Mega Absol ex (59% in 56 games).",
+   "Decks that beat it: Hydreigon Mega Absol ex (Magnezone Miraidon ex wins 34% in 19 games), Mega Altaria ex Espeon (36% in 43 games).",
+   "Core cards (in 90%+ of the 33 top players' lists): 2 Magneton, 2 Oricorio, 2 Magnemite, 2 Magnezone, 2 Poké Ball, 2 Professor's Research, 1 Lisia, 1 Cyrus, 1 Miraidon ex, 1 Clemont, 1 Professor Turo.",
+   "Flex picks: Serena's Choice (61%), Copycat (58%), Giant Cape (52%)."
   ]
  },
  "suicune-ex-a4a-baxcalibur-b2a": {
   "name": "Suicune ex Baxcalibur",
-  "seen": "2026-11-24",
+  "seen": "2026-11-25",
   "rank": 6,
-  "share": 4.33,
-  "win": 55.75,
-  "count": 88,
-  "games": 226,
+  "share": 4.08,
+  "win": 53.83,
+  "count": 123,
+  "games": 366,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "9th of 122",
    "DUAL FUSION CLASH!! $20 BEC'S WEEKLY",
@@ -441,22 +441,22 @@
    ]
   ],
   "xs": [
-   "Best matchups: Hoopa ex Mega Absol ex (77% in 15 games), Mega Charizard Y ex Entei ex (75% in 28 games).",
-   "Decks that beat it: Vespiquen ex Shuckle ex (Suicune ex Baxcalibur wins 40% in 10 games), Mega Altaria ex Espeon (47% in 17 games).",
-   "Core cards (in 90%+ of the 13 top players' lists): 2 Rare Candy, 2 Suicune ex, 2 Baxcalibur, 2 Poké Ball, 2 Professor's Research, 2 Eviolite, 1 Inflatable Boat, 1 Chien-Pao ex.",
-   "Flex picks: Frigibax (85%), Serena's Choice (77%), Pokémon Center Lady (69%)."
+   "Best matchups: Mega Charizard Y ex Entei ex (75% in 38 games), Mega Altaria ex Espeon (56% in 27 games).",
+   "Decks that beat it: Vespiquen ex Shuckle ex (Suicune ex Baxcalibur wins 40% in 10 games), Chien-Pao ex Baxcalibur (43% in 14 games).",
+   "Core cards (in 90%+ of the 17 top players' lists): 2 Rare Candy, 2 Suicune ex, 2 Baxcalibur, 2 Poké Ball, 2 Professor's Research, 1 Inflatable Boat, 1 Chien-Pao ex, 2 Eviolite.",
+   "Flex picks: Frigibax (76%), Serena's Choice (76%), Pokémon Center Lady (71%)."
   ]
  },
  "vespiquen-ex-b4-shuckle-ex-a4": {
   "name": "Vespiquen ex Shuckle ex",
-  "seen": "2026-11-24",
+  "seen": "2026-11-25",
   "rank": 7,
-  "share": 4.24,
-  "win": 53.29,
-  "count": 86,
-  "games": 243,
+  "share": 3.71,
+  "win": 52.01,
+  "count": 112,
+  "games": 298,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "3rd of 180",
    "FlutterMane Festival: $20 USD + Top 3 FA",
@@ -517,22 +517,22 @@
    ]
   ],
   "xs": [
-   "Best matchups: Hoopa ex Mega Absol ex (73% in 24 games), Mega Altaria ex Espeon (73% in 22 games).",
-   "Decks that beat it: Magnezone Miraidon ex (Vespiquen ex Shuckle ex wins 9% in 23 games), Mega Charizard Y ex Entei ex (35% in 20 games).",
-   "Core cards (in 90%+ of the 11 top players' lists): 2 Leaf Cape, 2 Shuckle ex, 2 Fragrant Forest, 2 Vespiquen ex, 2 X Speed, 2 Professor's Research, 1 Copycat, 1 Sabrina, 1 Teal Mask Ogerpon ex, 1 Field Blower, 1 Serena's Choice, 2 Combee.",
-   "Flex picks: Cyrus (82%), Mars (18%)."
+   "Best matchups: Hoopa ex Mega Absol ex (73% in 28 games), Mega Altaria ex Espeon (64% in 28 games).",
+   "Decks that beat it: Magnezone Miraidon ex (Vespiquen ex Shuckle ex wins 9% in 23 games), Mega Charizard Y ex Entei ex (30% in 23 games).",
+   "Core cards (in 90%+ of the 12 top players' lists): 2 Leaf Cape, 2 Shuckle ex, 2 Fragrant Forest, 2 Vespiquen ex, 2 X Speed, 2 Professor's Research, 1 Copycat, 1 Sabrina, 1 Teal Mask Ogerpon ex, 1 Field Blower, 1 Serena's Choice, 2 Combee.",
+   "Flex picks: Cyrus (83%), Mars (17%)."
   ]
  },
  "mega-lucario-ex-b3-lucario-a2": {
   "name": "Mega Lucario ex Lucario",
-  "seen": "2026-11-24",
+  "seen": "2026-11-25",
   "rank": 8,
-  "share": 4.09,
-  "win": 42.06,
-  "count": 83,
-  "games": 170,
+  "share": 3.45,
+  "win": 43.2,
+  "count": 104,
+  "games": 228,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "9th of 78",
    "Project OTS x The Dark League Tournament | FAs",
@@ -605,25 +605,26 @@
    ]
   ],
   "xs": [
-   "Decks that beat it: Mega Altaria ex Espeon (Mega Lucario ex Lucario wins 33% in 12 games), Mega Charizard Y ex Entei ex (40% in 25 games).",
-   "Core cards (in 90%+ of the 6 top players' lists): 2 Mega Lucario ex, 2 Poké Ball, 2 Professor's Research, 1 Copycat, 1 Lucario, 1 Cyrus, 1 Bonsly, 1 Korrina, 1 Arena of Antiquity.",
-   "Flex picks: Hitmonlee (83%), Sabrina (83%), Field Blower (83%)."
+   "Best matchups: Hoopa ex Mega Absol ex (53% in 17 games).",
+   "Decks that beat it: Mega Altaria ex Greninja (Mega Lucario ex Lucario wins 20% in 15 games), Mega Altaria ex Espeon (35% in 17 games).",
+   "Core cards (in 90%+ of the 8 top players' lists): 2 Mega Lucario ex, 2 Poké Ball, 2 Professor's Research, 1 Copycat, 1 Lucario, 1 Cyrus, 1 Bonsly, 1 Korrina, 1 Arena of Antiquity.",
+   "Flex picks: Hitmonlee (88%), Sabrina (88%), Field Blower (88%)."
   ]
  },
  "chien-pao-ex-baxcalibur-b2a": {
   "name": "Chien-Pao ex Baxcalibur",
-  "seen": "2026-11-24",
-  "rank": 10,
-  "share": 2.56,
-  "win": 46.41,
-  "count": 52,
-  "games": 195,
+  "seen": "2026-11-25",
+  "rank": 9,
+  "share": 2.65,
+  "win": 46.21,
+  "count": 80,
+  "games": 290,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "10th of 78",
-   "Project OTS x The Dark League Tournament | FAs",
-   "2026-11-20"
+   "3rd of 118",
+   "Umbreon x Storm Returns-$5+FA SC AND MORE",
+   "2026-11-17"
   ],
   "cards": [
    [
@@ -672,22 +673,22 @@
    ]
   ],
   "xs": [
-   "Best matchups: Hoopa ex Mega Absol ex (62% in 13 games), Mega Charizard Y ex Entei ex (55% in 11 games).",
-   "Decks that beat it: Mega Altaria ex Espeon (Chien-Pao ex Baxcalibur wins 33% in 18 games).",
-   "Core cards (in 90%+ of the 8 top players' lists): 2 Rare Candy, 2 Copycat, 2 Baxcalibur, 2 Chien-Pao ex, 2 Poké Ball, 2 Eviolite, 2 Hiking Trail, 1 Field Blower.",
-   "Flex picks: Serena's Choice (88%), Frigibax (75%), Lucky Ice Pop (38%)."
+   "Best matchups: Mega Lucario ex Lucario (60% in 10 games), Hoopa ex Mega Absol ex (57% in 21 games).",
+   "Decks that beat it: Mega Altaria ex Greninja (Chien-Pao ex Baxcalibur wins 16% in 16 games), Mega Altaria ex Espeon (36% in 22 games).",
+   "Core cards (in 90%+ of the 11 top players' lists): 2 Rare Candy, 2 Copycat, 2 Baxcalibur, 2 Chien-Pao ex, 2 Poké Ball, 2 Hiking Trail, 2 Eviolite, 1 Field Blower, 2 Serena's Choice.",
+   "Flex picks: Frigibax (82%), Lucky Ice Pop (45%), Frigibax (18%)."
   ]
  },
  "umbreon-c1-hydreigon-b1": {
   "name": "Umbreon Hydreigon",
-  "seen": "2026-11-24",
-  "rank": 17,
-  "share": 1.48,
-  "win": 50.52,
-  "count": 30,
-  "games": 97,
+  "seen": "2026-11-25",
+  "rank": 16,
+  "share": 1.56,
+  "win": 50,
+  "count": 47,
+  "games": 186,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "4th of 162",
    "R0zey X Vegegras 50 USD Pocket Clash",
@@ -744,25 +745,26 @@
    ]
   ],
   "xs": [
-   "Decks that beat it: Mega Altaria ex Greninja (Umbreon Hydreigon wins 36% in 11 games).",
-   "Core cards (in 90%+ of the 3 top players' lists): 2 Rare Candy, 2 Deino, 2 Hydreigon, 2 Eevee, 2 Copycat, 2 Umbreon, 2 Professor's Research, 2 Deceptive Needle, 1 Cyrus, 1 Mega Sableye ex, 1 Serena's Choice, 1 X Speed.",
-   "Flex picks: Poké Ball (33%)."
+   "Best matchups: Magnezone Miraidon ex (63% in 12 games), Hydreigon Mega Absol ex (54% in 13 games).",
+   "Decks that beat it: Mega Altaria ex Espeon (Umbreon Hydreigon wins 25% in 16 games), Suicune ex Baxcalibur (30% in 10 games).",
+   "Core cards (in 90%+ of the 6 top players' lists): 2 Rare Candy, 2 Deino, 2 Hydreigon, 2 Eevee, 2 Copycat, 2 Umbreon, 2 Professor's Research, 2 Deceptive Needle, 1 Cyrus, 1 Serena's Choice, 1 X Speed.",
+   "Flex picks: Mega Sableye ex (83%), Poké Ball (33%), Mega Absol ex (17%)."
   ]
  },
  "hydreigon-mega-absol-ex-b1": {
   "name": "Hydreigon Mega Absol ex",
-  "seen": "2026-11-24",
-  "rank": 11,
-  "share": 2.41,
-  "win": 53.72,
-  "count": 49,
-  "games": 188,
+  "seen": "2026-11-25",
+  "rank": 10,
+  "share": 2.39,
+  "win": 55.04,
+  "count": 72,
+  "games": 278,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "17th of 162",
-   "R0zey X Vegegras 50 USD Pocket Clash",
-   "2026-11-18"
+   "2nd of 179",
+   "xPabsy Cup #14 - $20",
+   "2026-11-16"
   ],
   "cards": [
    [
@@ -819,22 +821,22 @@
    ]
   ],
   "xs": [
-   "Best matchups: Magnezone Miraidon ex (74% in 17 games), Mega Charizard Y ex Entei ex (69% in 21 games).",
-   "Decks that beat it: Mega Altaria ex Espeon (Hydreigon Mega Absol ex wins 29% in 14 games), Vespiquen ex Shuckle ex (40% in 10 games).",
-   "Core cards (in 90%+ of the 10 top players' lists): 2 Rare Candy, 2 Deino, 2 Hydreigon, 2 Deceptive Needle, 2 Poké Ball, 2 Serena's Choice, 1 Cyrus, 1 Mega Absol ex, 2 Copycat, 1 Bombirdier.",
-   "Flex picks: Professor's Research (80%), Hiking Trail (70%), Field Blower (60%)."
+   "Best matchups: Magnezone Miraidon ex (66% in 19 games), Mega Charizard Y ex Entei ex (60% in 34 games).",
+   "Decks that beat it: Mega Altaria ex Espeon (Hydreigon Mega Absol ex wins 38% in 20 games), Vespiquen ex Shuckle ex (40% in 10 games).",
+   "Core cards (in 90%+ of the 15 top players' lists): 2 Rare Candy, 2 Deino, 2 Hydreigon, 2 Deceptive Needle, 2 Poké Ball, 2 Serena's Choice, 1 Cyrus, 1 Mega Absol ex, 2 Copycat, 1 Bombirdier.",
+   "Flex picks: Hiking Trail (80%), Professor's Research (73%), Field Blower (73%)."
   ]
  },
  "milotic-ex-b3b-eevee-ex-a3b": {
   "name": "Milotic ex Eevee ex",
-  "seen": "2026-11-24",
-  "rank": 14,
-  "share": 1.72,
-  "win": 48.85,
-  "count": 35,
-  "games": 130,
+  "seen": "2026-11-25",
+  "rank": 15,
+  "share": 1.59,
+  "win": 50.96,
+  "count": 48,
+  "games": 209,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "4th of 88",
    "Block Dragon Standard (Any 2 card prize)",
@@ -899,21 +901,22 @@
    ]
   ],
   "xs": [
-   "Best matchups: Mega Charizard Y ex Entei ex (77% in 13 games), Hoopa ex Mega Absol ex (60% in 10 games).",
-   "Decks that beat it: Magnezone Miraidon ex (Milotic ex Eevee ex wins 20% in 10 games), Mega Altaria ex Greninja (36% in 14 games).",
-   "Core cards (in 90%+ of the 5 top players' lists): 2 Eevee ex, 2 Feebas, 2 Milotic ex, 2 Wallace, 2 Poké Ball, 2 Professor's Research, 1 Vaporeon, 1 Giant Cape, 1 Copycat, 1 Chien-Pao ex, 1 Vaporeon ex, 1 Field Blower, 1 Soothing Shore, 1 Serena's Choice."
+   "Best matchups: Mega Charizard Y ex Entei ex (68% in 28 games).",
+   "Decks that beat it: Magnezone Miraidon ex (Milotic ex Eevee ex wins 15% in 13 games), Mega Altaria ex Greninja (37% in 19 games).",
+   "Core cards (in 90%+ of the 9 top players' lists): 2 Eevee ex, 2 Milotic ex, 2 Poké Ball, 2 Professor's Research, 2 Wallace, 1 Vaporeon, 1 Giant Cape, 1 Copycat, 1 Chien-Pao ex, 1 Field Blower.",
+   "Flex picks: Feebas (89%), Vaporeon ex (89%), Soothing Shore (89%)."
   ]
  },
  "giratina-ex-c1-dragonair-b4": {
   "name": "Giratina ex Dragonair",
-  "seen": "2026-11-24",
-  "rank": 13,
-  "share": 1.72,
-  "win": 55.22,
-  "count": 35,
-  "games": 134,
+  "seen": "2026-11-25",
+  "rank": 17,
+  "share": 1.53,
+  "win": 50.3,
+  "count": 46,
+  "games": 169,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "6th of 196",
    "The TCGP Arena Returns #10 | £50 Prize Pool",
@@ -974,21 +977,22 @@
    ]
   ],
   "xs": [
-   "Decks that beat it: Hoopa ex Mega Absol ex (Giratina ex Dragonair wins 35% in 17 games), Mega Charizard Y ex Entei ex (47% in 15 games).",
+   "Best matchups: Magnezone Miraidon ex (70% in 10 games).",
+   "Decks that beat it: Hoopa ex Mega Absol ex (Giratina ex Dragonair wins 30% in 20 games), Mega Charizard Y ex Entei ex (47% in 17 games).",
    "Core cards (in 90%+ of the 6 top players' lists): 2 Dragonair, 2 Rainbow Cave, 2 Giratina ex, 2 Poké Ball, 2 Professor's Research, 2 Copycat, 1 Eviolite, 1 Drampa, 1 Serena's Choice.",
    "Flex picks: Sabrina (83%), Pokémon Center Lady (83%), Field Blower (83%)."
   ]
  },
  "mega-greninja-ex-c1-greninja-ex-b1": {
   "name": "Mega Greninja ex Greninja ex",
-  "seen": "2026-11-24",
-  "rank": 16,
-  "share": 1.53,
-  "win": 48.03,
-  "count": 31,
-  "games": 76,
+  "seen": "2026-11-25",
+  "rank": 14,
+  "share": 1.66,
+  "win": 48.12,
+  "count": 50,
+  "games": 160,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "9th of 196",
    "The TCGP Arena Returns #10 | £50 Prize Pool",
@@ -1049,24 +1053,26 @@
    ]
   ],
   "xs": [
-   "Core cards (in 90%+ of the 5 top players' lists): 2 Suicune ex, 2 Frogadier, 2 Poké Ball, 2 Greninja, 2 Froakie, 2 Cyrus, 1 Serena's Choice, 1 Rare Candy, 1 Greninja ex, 1 May, 1 Mega Greninja ex.",
-   "Flex picks: Professor's Research (80%), Mars (80%), Soothing Shore (40%)."
+   "Best matchups: Mega Altaria ex Espeon (64% in 11 games), Hoopa ex Mega Absol ex (61% in 14 games).",
+   "Decks that beat it: Mega Charizard Y ex Entei ex (Mega Greninja ex Greninja ex wins 36% in 11 games), Magnezone Miraidon ex (36% in 11 games).",
+   "Core cards (in 90%+ of the 7 top players' lists): 2 Suicune ex, 2 Frogadier, 2 Poké Ball, 2 Greninja, 1 Cyrus, 1 Serena's Choice, 1 Rare Candy, 1 Greninja ex, 1 Mega Greninja ex.",
+   "Flex picks: Professor's Research (86%), Froakie (86%), May (86%)."
   ]
  },
  "lopunny-raboot-c1": {
   "name": "Lopunny Raboot",
-  "seen": "2026-11-24",
-  "rank": 20,
-  "share": 1.23,
-  "win": 36.51,
-  "count": 25,
-  "games": 63,
+  "seen": "2026-11-25",
+  "rank": 18,
+  "share": 1.36,
+  "win": 41.49,
+  "count": 41,
+  "games": 141,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "46th of 325",
-   "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
-   "2026-11-21"
+   "4th of 179",
+   "xPabsy Cup #14 - $20",
+   "2026-11-16"
   ],
   "cards": [
    [
@@ -1123,19 +1129,20 @@
    ]
   ],
   "xs": [
-   "Decks that beat it: Mega Charizard Y ex Entei ex (Lopunny Raboot wins 20% in 10 games)."
+   "Decks that beat it: Mega Charizard Y ex Entei ex (Lopunny Raboot wins 31% in 16 games), Hoopa ex Mega Absol ex (36% in 11 games).",
+   "Core cards (in 90%+ of the 3 top players' lists): 2 Sightseer, 2 Scorbunny, 2 Raboot, 2 Buneary, 2 Lopunny, 2 Poké Ball, 2 Professor's Research, 1 Copycat, 1 Lisia, 1 Elegant Cape, 1 Marill, 1 Azumarill, 1 X Speed."
   ]
  },
  "mega-mewtwo-x-ex-c1-mega-diancie-ex-b3b": {
   "name": "Mega Mewtwo X ex Mega Diancie ex",
-  "seen": "2026-11-24",
+  "seen": "2026-11-25",
   "rank": 12,
-  "share": 2.07,
-  "win": 55.86,
-  "count": 42,
-  "games": 128,
+  "share": 1.89,
+  "win": 54.3,
+  "count": 57,
+  "games": 186,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "1st of 78",
    "Project OTS x The Dark League Tournament | FAs",
@@ -1200,21 +1207,22 @@
    ]
   ],
   "xs": [
-   "Best matchups: Hoopa ex Mega Sableye ex (79% in 14 games), Hoopa ex Mega Absol ex (67% in 15 games).",
-   "Decks that beat it: Mega Altaria ex Espeon (Mega Mewtwo X ex Mega Diancie ex wins 27% in 13 games), Mega Charizard Y ex Entei ex (33% in 12 games).",
-   "Core cards (in 90%+ of the 6 top players' lists): 2 Peculiar Plaza, 2 Carbink, 2 Eviolite, 2 Serena's Choice, 2 Poké Ball, 2 Professor's Research, 1 Sabrina, 1 Pokémon Center Lady, 1 Copycat, 1 Lucky Ice Pop, 1 Field Blower, 1 Mega Diancie ex, 1 Flutter Mane, 1 Mega Mewtwo X ex."
+   "Best matchups: Hoopa ex Mega Absol ex (62% in 25 games).",
+   "Decks that beat it: Mega Altaria ex Espeon (Mega Mewtwo X ex Mega Diancie ex wins 27% in 15 games), Mega Charizard Y ex Entei ex (31% in 21 games).",
+   "Core cards (in 90%+ of the 8 top players' lists): 2 Peculiar Plaza, 2 Carbink, 2 Eviolite, 2 Serena's Choice, 2 Poké Ball, 2 Professor's Research, 1 Lucky Ice Pop, 1 Sabrina, 1 Pokémon Center Lady, 1 Copycat, 1 Mega Diancie ex, 1 Flutter Mane, 1 Mega Mewtwo X ex.",
+   "Flex picks: Field Blower (75%), Cyrus (13%)."
   ]
  },
  "hoopa-ex-b4-mega-sableye-ex-b3b": {
   "name": "Hoopa ex Mega Sableye ex",
-  "seen": "2026-11-24",
-  "rank": 9,
-  "share": 2.66,
-  "win": 58.74,
-  "count": 54,
-  "games": 206,
+  "seen": "2026-11-25",
+  "rank": 11,
+  "share": 2.19,
+  "win": 57.6,
+  "count": 66,
+  "games": 217,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "1st of 196",
    "The TCGP Arena Returns #10 | £50 Prize Pool",
@@ -1279,7 +1287,7 @@
    ]
   ],
   "xs": [
-   "Best matchups: Mega Charizard Y ex Entei ex (75% in 24 games).",
+   "Best matchups: Mega Altaria ex Espeon (80% in 10 games), Mega Charizard Y ex Entei ex (77% in 26 games).",
    "Decks that beat it: Magnezone Miraidon ex (Hoopa ex Mega Sableye ex wins 39% in 18 games).",
    "Core cards (in 90%+ of the 11 top players' lists): 2 Cyrus, 2 Lucky Ice Pop, 2 Hoopa ex, 2 Deceptive Needle, 2 Poké Ball, 2 Professor's Research, 1 Darkrai ex, 1 Mars, 1 Pokémon Center Lady, 1 Repel, 1 Field Blower, 1 Mega Sableye ex, 1 X Speed.",
    "Flex picks: Serena's Choice (82%), Copycat (18%)."
@@ -1287,18 +1295,18 @@
  },
  "greninja-ex-b1-mega-greninja-ex-c1": {
   "name": "Greninja ex Mega Greninja ex",
-  "seen": "2026-11-24",
-  "rank": 18,
-  "share": 1.43,
-  "win": 45,
-  "count": 29,
-  "games": 110,
+  "seen": "2026-11-25",
+  "rank": 19,
+  "share": 1.29,
+  "win": 47.45,
+  "count": 39,
+  "games": 157,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "28th of 325",
-   "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
-   "2026-11-21"
+   "8th of 118",
+   "Umbreon x Storm Returns-$5+FA SC AND MORE",
+   "2026-11-17"
   ],
   "cards": [
    [
@@ -1359,25 +1367,26 @@
    ]
   ],
   "xs": [
-   "Best matchups: Mega Charizard Y ex Entei ex (65% in 10 games), Mega Altaria ex Espeon (54% in 14 games).",
-   "Core cards (in 90%+ of the 5 top players' lists): 2 Suicune ex, 2 Frogadier, 2 Poké Ball, 2 Greninja, 1 Serena's Choice, 1 Cyrus, 1 Rare Candy, 1 Greninja ex, 1 Mega Greninja ex.",
-   "Flex picks: Froakie (80%), Professor's Research (80%), Mars (80%)."
+   "Best matchups: Mega Charizard Y ex Entei ex (55% in 19 games).",
+   "Decks that beat it: Hoopa ex Mega Absol ex (Greninja ex Mega Greninja ex wins 23% in 13 games), Mega Altaria ex Greninja (41% in 11 games).",
+   "Core cards (in 90%+ of the 8 top players' lists): 2 Suicune ex, 2 Frogadier, 2 Poké Ball, 2 Greninja, 1 Cyrus, 1 Rare Candy, 1 Greninja ex, 1 Mega Greninja ex.",
+   "Flex picks: Professor's Research (88%), Serena's Choice (88%), Froakie (75%)."
   ]
  },
  "mega-manectric-ex-b2b-heliolisk-b4": {
   "name": "Mega Manectric ex Heliolisk",
-  "seen": "2026-11-24",
-  "rank": 22,
-  "share": 1.18,
-  "win": 43.84,
-  "count": 24,
-  "games": 73,
+  "seen": "2026-11-25",
+  "rank": 23,
+  "share": 1.03,
+  "win": 48.28,
+  "count": 31,
+  "games": 116,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "47th of 325",
-   "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
-   "2026-11-21"
+   "11th of 145",
+   "PGX TOURNAMENT #6 $5 USD + FA",
+   "2026-11-17"
   ],
   "cards": [
    [
@@ -1405,7 +1414,7 @@
     2
    ],
    [
-    "Sabrina",
+    "Copycat",
     1
    ],
    [
@@ -1413,7 +1422,7 @@
     1
    ],
    [
-    "Copycat",
+    "Sabrina",
     1
    ],
    [
@@ -1433,18 +1442,21 @@
     1
    ]
   ],
-  "xs": []
+  "xs": [
+   "Best matchups: Magnezone Miraidon ex (55% in 11 games).",
+   "Core cards (in 90%+ of the 4 top players' lists): 2 Helioptile, 2 Clemont's Backpack, 2 Clemont, 2 Mega Manectric ex, 2 Heliolisk, 2 Poké Ball, 2 Professor's Research, 1 Sabrina, 1 Cyrus, 1 Copycat, 1 Training Area, 1 Elegant Cape, 1 Electrike."
+  ]
  },
  "umbreon-c1-mega-sableye-ex-b3b": {
   "name": "Umbreon Mega Sableye ex",
-  "seen": "2026-11-24",
+  "seen": "2026-11-25",
   "rank": 25,
-  "share": 0.89,
-  "win": 56.63,
-  "count": 18,
-  "games": 83,
+  "share": 0.9,
+  "win": 53.2,
+  "count": 27,
+  "games": 125,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "4th of 122",
    "DUAL FUSION CLASH!! $20 BEC'S WEEKLY",
@@ -1509,24 +1521,26 @@
    ]
   ],
   "xs": [
-   "Core cards (in 90%+ of the 3 top players' lists): 2 Eevee, 2 Umbreon, 2 Poké Ball, 2 Professor's Research, 2 Copycat, 2 Deceptive Needle, 1 Cyrus, 1 Repel, 1 Lucky Ice Pop, 1 Bombirdier, 1 Mega Sableye ex.",
-   "Flex picks: Darkrai ex (67%), Mars (67%), X Speed (67%)."
+   "Best matchups: Mega Charizard Y ex Entei ex (92% in 12 games).",
+   "Decks that beat it: Mega Altaria ex Espeon (Umbreon Mega Sableye ex wins 38% in 13 games), Hoopa ex Mega Absol ex (46% in 13 games).",
+   "Core cards (in 90%+ of the 4 top players' lists): 2 Eevee, 2 Umbreon, 2 Poké Ball, 2 Professor's Research, 2 Copycat, 2 Deceptive Needle, 1 Cyrus, 1 Repel, 1 Mega Sableye ex.",
+   "Flex picks: Lucky Ice Pop (75%), Bombirdier (75%), X Speed (75%)."
   ]
  },
  "dedenne-ex-b3b-indeedee-ex-b1": {
   "name": "Dedenne ex Indeedee ex",
-  "seen": "2026-11-24",
-  "rank": 15,
-  "share": 1.53,
-  "win": 60.1,
-  "count": 31,
-  "games": 104,
+  "seen": "2026-11-25",
+  "rank": 13,
+  "share": 1.82,
+  "win": 60.06,
+  "count": 55,
+  "games": 164,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "1st of 88",
-   "Block Dragon Standard (Any 2 card prize)",
-   "2026-11-23"
+   "11th of 118",
+   "Umbreon x Storm Returns-$5+FA SC AND MORE",
+   "2026-11-17"
   ],
   "cards": [
    [
@@ -1534,19 +1548,11 @@
     2
    ],
    [
-    "Oricorio",
+    "Indeedee ex",
     2
    ],
    [
-    "Indeedee ex",
-    1
-   ],
-   [
-    "Teal Mask Ogerpon ex",
-    1
-   ],
-   [
-    "Professor's Research",
+    "Oricorio",
     2
    ],
    [
@@ -1554,19 +1560,15 @@
     2
    ],
    [
+    "Professor's Research",
+    2
+   ],
+   [
     "Cyrus",
     1
    ],
    [
-    "Sabrina",
-    1
-   ],
-   [
     "Poké Ball",
-    2
-   ],
-   [
-    "Protective Poncho",
     2
    ],
    [
@@ -1576,23 +1578,37 @@
    [
     "Small Balloon",
     2
+   ],
+   [
+    "Clear Veil",
+    1
+   ],
+   [
+    "Giant Cape",
+    1
+   ],
+   [
+    "Starting Plains",
+    1
    ]
   ],
   "xs": [
-   "Core cards (in 90%+ of the 8 top players' lists): 2 Oricorio, 2 Copycat, 2 Dedenne ex, 2 Small Balloon, 2 Eviolite, 2 Poké Ball, 2 Indeedee ex.",
-   "Flex picks: Professor's Research (88%), Cyrus (75%), Protective Poncho (63%)."
+   "Best matchups: Hoopa ex Mega Absol ex (79% in 12 games), Suicune ex Baxcalibur (58% in 13 games).",
+   "Decks that beat it: Magnezone Miraidon ex (Dedenne ex Indeedee ex wins 29% in 12 games).",
+   "Core cards (in 90%+ of the 13 top players' lists): 2 Dedenne ex, 2 Small Balloon, 2 Poké Ball, 2 Oricorio, 2 Indeedee ex, 2 Copycat, 2 Eviolite, 2 Professor's Research.",
+   "Flex picks: Cyrus (85%), Giant Cape (62%), Starting Plains (62%)."
   ]
  },
  "mega-sceptile-ex-b3-greninja-a1": {
   "name": "Mega Sceptile ex Greninja",
-  "seen": "2026-11-24",
-  "rank": 19,
-  "share": 1.28,
-  "win": 48.91,
-  "count": 26,
-  "games": 92,
+  "seen": "2026-11-25",
+  "rank": 20,
+  "share": 1.23,
+  "win": 47.2,
+  "count": 37,
+  "games": 143,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "19th of 325",
    "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
@@ -1657,21 +1673,21 @@
    ]
   ],
   "xs": [
-   "Decks that beat it: Mega Charizard Y ex Entei ex (Mega Sceptile ex Greninja wins 46% in 12 games).",
-   "Core cards (in 90%+ of the 3 top players' lists): 2 Rare Candy, 2 Treecko, 2 Serena's Choice, 2 Poké Ball, 2 Mega Sceptile ex, 1 Froakie, 1 Greninja, 1 Copycat, 1 Cyrus, 1 Grovyle.",
-   "Flex picks: Professor's Research (67%), Pheromosa (67%), Furfrou (67%)."
+   "Decks that beat it: Hoopa ex Mega Absol ex (Mega Sceptile ex Greninja wins 18% in 11 games), Mega Altaria ex Espeon (21% in 12 games).",
+   "Core cards (in 90%+ of the 6 top players' lists): 2 Rare Candy, 2 Treecko, 2 Poké Ball, 2 Serena's Choice, 2 Mega Sceptile ex, 1 Copycat, 1 Froakie, 1 Greninja, 1 Cyrus, 1 Grovyle.",
+   "Flex picks: Professor's Research (83%), Pheromosa (83%), Furfrou (83%)."
   ]
  },
  "butterfree-b3b-mega-sceptile-ex-b3": {
   "name": "Butterfree Mega Sceptile ex",
-  "seen": "2026-11-24",
-  "rank": 23,
+  "seen": "2026-11-25",
+  "rank": 22,
   "share": 1.03,
-  "win": 51.92,
-  "count": 21,
-  "games": 52,
+  "win": 51.02,
+  "count": 31,
+  "games": 98,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "6th of 68",
    "The Breakfast Club Daily #10-FA +",
@@ -1736,24 +1752,25 @@
    ]
   ],
   "xs": [
-   "Core cards (in 90%+ of the 4 top players' lists): 2 Quick-Grow Extract, 2 Fragrant Forest, 2 Caterpie, 2 Metapod, 2 Butterfree, 2 Professor's Research, 1 Sabrina, 1 Cyrus, 1 Copycat, 1 Treecko, 1 Grovyle, 1 Mega Sceptile ex.",
-   "Flex picks: Leaf Cape (75%), Erika (50%), Rocky Helmet (25%)."
+   "Best matchups: Hoopa ex Mega Absol ex (57% in 14 games).",
+   "Core cards (in 90%+ of the 6 top players' lists): 2 Quick-Grow Extract, 2 Fragrant Forest, 2 Caterpie, 2 Metapod, 2 Butterfree, 2 Professor's Research, 1 Sabrina, 1 Cyrus, 1 Copycat, 1 Treecko, 1 Grovyle, 1 Mega Sceptile ex.",
+   "Flex picks: Leaf Cape (83%), Erika (67%), Serena's Choice (33%)."
   ]
  },
  "greninja-a1-mega-absol-ex-b1": {
   "name": "Greninja Mega Absol ex",
-  "seen": "2026-11-24",
-  "rank": 28,
-  "share": 0.54,
-  "win": 29.17,
-  "count": 11,
-  "games": 24,
+  "seen": "2026-11-25",
+  "rank": 27,
+  "share": 0.7,
+  "win": 49.31,
+  "count": 21,
+  "games": 72,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "47th of 162",
-   "R0zey X Vegegras 50 USD Pocket Clash",
-   "2026-11-18"
+   "33rd of 179",
+   "xPabsy Cup #14 - $20",
+   "2026-11-16"
   ],
   "cards": [
    [
@@ -1777,50 +1794,53 @@
     1
    ],
    [
-    "Copycat",
-    2
-   ],
-   [
     "Professor's Research",
     2
    ],
    [
-    "Serena's Choice",
-    1
+    "Copycat",
+    2
    ],
    [
     "Cyrus",
     1
    ],
    [
-    "Rare Candy",
-    2
+    "Serena's Choice",
+    1
    ],
    [
     "Poké Ball",
     2
    ],
    [
-    "X Speed",
+    "Rare Candy",
+    2
+   ],
+   [
+    "Small Balloon",
     1
    ],
    [
-    "Giant Cape",
+    "Lucky Egg",
     1
    ]
   ],
-  "xs": []
+  "xs": [
+   "Core cards (in 90%+ of the 3 top players' lists): 2 Greninja, 2 Rare Candy, 2 Chingling, 2 Copycat, 2 Poké Ball, 2 Professor's Research, 1 Cyrus, 1 Darkrai ex, 1 Mega Absol ex.",
+   "Flex picks: Froakie (67%), Lucky Egg (67%), Small Balloon (67%)."
+  ]
  },
  "entei-ex-a4a-charizard-c1": {
   "name": "Entei ex Charizard",
-  "seen": "2026-11-24",
+  "seen": "2026-11-25",
   "rank": 21,
-  "share": 1.18,
-  "win": 59.04,
-  "count": 24,
-  "games": 83,
+  "share": 1.19,
+  "win": 59.17,
+  "count": 36,
+  "games": 109,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "1st of 68",
    "The Breakfast Club Daily #10-FA +",
@@ -1877,25 +1897,25 @@
    ]
   ],
   "xs": [
-   "Best matchups: Mega Charizard Y ex Entei ex (64% in 11 games).",
-   "Core cards (in 90%+ of the 6 top players' lists): 2 Entei ex, 2 Flame Patch, 2 Charmander, 2 Charmeleon, 2 Charizard, 2 Blue's Provocation, 2 Poké Ball, 2 Professor's Research, 1 Copycat.",
-   "Flex picks: Rainbow Cave (83%), Serena's Choice (83%), May (50%)."
+   "Best matchups: Mega Charizard Y ex Entei ex (59% in 17 games).",
+   "Core cards (in 90%+ of the 7 top players' lists): 2 Entei ex, 2 Flame Patch, 2 Charmander, 2 Charmeleon, 2 Charizard, 2 Blue's Provocation, 2 Poké Ball, 2 Professor's Research, 1 Copycat.",
+   "Flex picks: Rainbow Cave (86%), Serena's Choice (86%), Rare Candy (43%)."
   ]
  },
  "mega-skarmory-ex-c1-mantyke-a4a": {
   "name": "Mega Skarmory ex Mantyke",
-  "seen": "2026-11-24",
+  "seen": "2026-11-25",
   "rank": 26,
-  "share": 0.59,
-  "win": 35.14,
-  "count": 12,
-  "games": 37,
+  "share": 0.8,
+  "win": 39.66,
+  "count": 24,
+  "games": 87,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "58th of 196",
-   "The TCGP Arena Returns #10 | £50 Prize Pool",
-   "2026-11-18"
+   "20th of 64",
+   "TBC x TDL x OTS Pop Up | FAs",
+   "2026-11-16"
   ],
   "cards": [
    [
@@ -1911,15 +1931,15 @@
     1
    ],
    [
+    "Professor's Research",
+    2
+   ],
+   [
     "Will",
     2
    ],
    [
     "Copycat",
-    2
-   ],
-   [
-    "Professor's Research",
     2
    ],
    [
@@ -1951,18 +1971,20 @@
     1
    ]
   ],
-  "xs": []
+  "xs": [
+   "Decks that beat it: Mega Altaria ex Greninja (Mega Skarmory ex Mantyke wins 20% in 10 games), Mega Charizard Y ex Entei ex (30% in 10 games)."
+  ]
  },
  "pikachu-ex-pawmot-c1": {
   "name": "Pikachu ex Pawmot",
-  "seen": "2026-11-24",
+  "seen": "2026-11-25",
   "rank": 24,
-  "share": 0.89,
-  "win": 55.97,
-  "count": 18,
-  "games": 67,
+  "share": 1.03,
+  "win": 53.6,
+  "count": 31,
+  "games": 111,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "16th of 325",
    "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
@@ -2023,24 +2045,25 @@
    ]
   ],
   "xs": [
-   "Core cards (in 90%+ of the 4 top players' lists): 2 Rare Candy, 2 Pawmi, 2 Pawmot, 2 Light Ball, 2 Poké Ball, 2 Pikachu ex, 2 Professor's Research, 1 Copycat, 1 Serena's Choice, 1 Hiking Trail.",
-   "Flex picks: Red Card (75%), Repel (50%), Electric Generator (50%)."
+   "Decks that beat it: Magnezone Miraidon ex (Pikachu ex Pawmot wins 46% in 13 games).",
+   "Core cards (in 90%+ of the 6 top players' lists): 2 Rare Candy, 2 Pawmi, 2 Pawmot, 2 Light Ball, 2 Poké Ball, 2 Pikachu ex, 2 Professor's Research, 2 Copycat.",
+   "Flex picks: Serena's Choice (83%), Electric Generator (67%), Hiking Trail (67%)."
   ]
  },
  "gengar-c1-igglybuff-a4a": {
   "name": "Gengar Igglybuff",
-  "seen": "2026-11-24",
-  "rank": 34,
-  "share": 0.34,
-  "win": 35.48,
-  "count": 7,
-  "games": 31,
+  "seen": "2026-11-25",
+  "rank": 32,
+  "share": 0.46,
+  "win": 43.18,
+  "count": 14,
+  "games": 66,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "44th of 180",
-   "FlutterMane Festival: $20 USD + Top 3 FA",
-   "2026-11-20"
+   "21st of 88",
+   "TBC DAILY #10-PRIZE FA",
+   "2026-11-16"
   ],
   "cards": [
    [
@@ -2056,11 +2079,11 @@
     2
    ],
    [
-    "Igglybuff",
+    "Darkrai",
     2
    ],
    [
-    "Darkrai",
+    "Igglybuff",
     2
    ],
    [
@@ -2068,11 +2091,11 @@
     2
    ],
    [
-    "Copycat",
+    "Cyrus",
     1
    ],
    [
-    "Cyrus",
+    "Copycat",
     1
    ],
    [
@@ -2104,14 +2127,14 @@
  },
  "pikachu-ex-c1-dedenne-ex-b3b": {
   "name": "Pikachu ex Dedenne ex",
-  "seen": "2026-11-24",
-  "rank": 27,
-  "share": 0.59,
-  "win": 46.25,
-  "count": 12,
-  "games": 40,
+  "seen": "2026-11-25",
+  "rank": 29,
+  "share": 0.56,
+  "win": 45.76,
+  "count": 17,
+  "games": 59,
   "more": 0,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "21st of 78",
    "Project OTS x The Dark League Tournament | FAs",
@@ -2167,14 +2190,14 @@
  },
  "mega-mewtwo-x-ex-mew-ex-c1": {
   "name": "Mega Mewtwo X ex Mew ex",
-  "seen": "2026-11-24",
-  "rank": 30,
-  "share": 0.49,
-  "win": 48.89,
-  "count": 10,
-  "games": 45,
-  "more": 1,
-  "dates": "Nov 18 – 23",
+  "seen": "2026-11-25",
+  "rank": 28,
+  "share": 0.66,
+  "win": 45.11,
+  "count": 20,
+  "games": 92,
+  "more": 0,
+  "dates": "Nov 16 – 23",
   "best": [
    "42nd of 180",
    "FlutterMane Festival: $20 USD + Top 3 FA",
@@ -2238,18 +2261,20 @@
     1
    ]
   ],
-  "xs": []
+  "xs": [
+   "Decks that beat it: Mega Charizard Y ex Entei ex (Mega Mewtwo X ex Mew ex wins 45% in 11 games)."
+  ]
  },
  "miraidon-ex-b3a-magnezone-b1a": {
   "name": "Miraidon ex Magnezone",
-  "seen": "2026-11-24",
-  "rank": 29,
-  "share": 0.54,
-  "win": 53.06,
-  "count": 11,
-  "games": 49,
-  "more": 0,
-  "dates": "Nov 18 – 23",
+  "seen": "2026-11-25",
+  "rank": 31,
+  "share": 0.5,
+  "win": 51.54,
+  "count": 15,
+  "games": 65,
+  "more": 1,
+  "dates": "Nov 16 – 23",
   "best": [
    "19th of 196",
    "The TCGP Arena Returns #10 | £50 Prize Pool",
@@ -2313,22 +2338,26 @@
     1
    ]
   ],
-  "xs": []
+  "xs": [
+   "Best matchups: Mega Charizard Y ex Entei ex (60% in 10 games).",
+   "Core cards (in 90%+ of the 3 top players' lists): 2 Magneton, 2 Magnemite, 2 Miraidon ex, 2 Poké Ball, 2 Zeraora, 2 Professor's Research, 1 Magnezone, 1 Professor Turo, 1 Cyrus, 1 Clemont, 1 Serena's Choice.",
+   "Flex picks: Giant Cape (67%), Lisia (67%), Eviolite (33%)."
+  ]
  },
  "giratina-ex-a2b-darkrai-ex-a2": {
   "name": "Giratina ex Darkrai ex",
-  "seen": "2026-11-24",
-  "rank": 48,
-  "share": 0.25,
-  "win": 56,
-  "count": 6,
-  "games": 25,
+  "seen": "2026-11-25",
+  "rank": 33,
+  "share": 0.46,
+  "win": 55.97,
+  "count": 14,
+  "games": 67,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "24th of 196",
-   "The TCGP Arena Returns #10 | £50 Prize Pool",
-   "2026-11-18"
+   "5th of 179",
+   "xPabsy Cup #14 - $20",
+   "2026-11-16"
   ],
   "cards": [
    [
@@ -2368,12 +2397,12 @@
     1
    ],
    [
-    "Pokémon Center Lady",
-    1
-   ],
-   [
     "Poké Ball",
     2
+   ],
+   [
+    "Lucky Ice Pop",
+    1
    ],
    [
     "Field Blower",
@@ -2396,18 +2425,21 @@
     1
    ]
   ],
-  "xs": []
+  "xs": [
+   "Core cards (in 90%+ of the 6 top players' lists): 2 Darkrai ex, 2 Giratina ex, 2 Eviolite, 2 Poké Ball, 1 Rocky Helmet, 1 Sabrina, 1 Cyrus, 1 Red, 1 Indeedee ex, 1 Copycat, 1 Peculiar Plaza, 1 Field Blower, 1 Professor's Research.",
+   "Flex picks: Starting Plains (83%), Serena's Choice (83%), Lucky Ice Pop (67%)."
+  ]
  },
  "mega-tyranitar-ex-c1": {
   "name": "Mega Tyranitar ex",
-  "seen": "2026-11-24",
-  "rank": 38,
-  "share": 0.34,
-  "win": 43.75,
-  "count": 7,
-  "games": 16,
+  "seen": "2026-11-25",
+  "rank": 41,
+  "share": 0.36,
+  "win": 52.56,
+  "count": 11,
+  "games": 39,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "26th of 196",
    "The TCGP Arena Returns #10 | £50 Prize Pool",
@@ -2471,14 +2503,14 @@
  },
  "azumarill-lopunny-c1": {
   "name": "Azumarill Lopunny",
-  "seen": "2026-11-24",
-  "rank": 31,
-  "share": 0.44,
-  "win": 42.86,
-  "count": 9,
-  "games": 28,
+  "seen": "2026-11-25",
+  "rank": 35,
+  "share": 0.4,
+  "win": 41.03,
+  "count": 12,
+  "games": 39,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "19th of 68",
    "The Breakfast Club Daily #10-FA +",
@@ -2530,18 +2562,18 @@
  },
  "dragonair-mega-rayquaza-ex-b4": {
   "name": "Dragonair Mega Rayquaza ex",
-  "seen": "2026-11-24",
-  "rank": 39,
-  "share": 0.3,
-  "win": 41.18,
-  "count": 6,
-  "games": 17,
+  "seen": "2026-11-25",
+  "rank": 30,
+  "share": 0.5,
+  "win": 42.71,
+  "count": 15,
+  "games": 48,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "50th of 180",
-   "FlutterMane Festival: $20 USD + Top 3 FA",
-   "2026-11-20"
+   "5th of 64",
+   "TBC x TDL x OTS Pop Up | FAs",
+   "2026-11-16"
   ],
   "cards": [
    [
@@ -2601,22 +2633,30 @@
  },
  "hoopa-ex-b4-greninja-a1": {
   "name": "Hoopa ex Greninja",
-  "seen": "2026-11-24",
-  "rank": 48,
-  "share": 0.25,
-  "win": 52.63,
-  "count": 5,
-  "games": 19,
+  "seen": "2026-11-25",
+  "rank": 39,
+  "share": 0.36,
+  "win": 55.56,
+  "count": 11,
+  "games": 54,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "6th of 35",
-   "OTS Pokemon TCG Pocket Arena Pop Up | Standard",
-   "2026-11-22"
+   "5th of 88",
+   "TBC DAILY #10-PRIZE FA",
+   "2026-11-16"
   ],
   "cards": [
    [
+    "Hoopa ex",
+    2
+   ],
+   [
     "Froakie",
+    1
+   ],
+   [
+    "Frogadier",
     2
    ],
    [
@@ -2624,11 +2664,7 @@
     2
    ],
    [
-    "Hoopa ex",
-    2
-   ],
-   [
-    "Mega Sableye ex",
+    "Mega Absol ex",
     1
    ],
    [
@@ -2652,11 +2688,11 @@
     2
    ],
    [
-    "Rare Candy",
-    2
+    "Field Blower",
+    1
    ],
    [
-    "Field Blower",
+    "Pokémon Communication",
     1
    ],
    [
@@ -2664,26 +2700,30 @@
     1
    ],
    [
-    "Hiking Trail",
+    "Eviolite",
     1
    ]
   ],
-  "xs": []
+  "xs": [
+   "Best matchups: Hoopa ex Mega Absol ex (58% in 12 games).",
+   "Core cards (in 90%+ of the 3 top players' lists): 2 Greninja, 2 Cyrus, 2 Hoopa ex, 2 Poké Ball, 2 Copycat, 1 Froakie, 1 Professor's Research, 1 Field Blower, 1 Serena's Choice, 1 X Speed.",
+   "Flex picks: Frogadier (67%), Mega Absol ex (67%), Eviolite (67%)."
+  ]
  },
  "milotic-ex-b3b-chien-pao-ex-b2a": {
   "name": "Milotic ex Chien-Pao ex",
-  "seen": "2026-11-24",
-  "rank": 46,
-  "share": 0.3,
-  "win": 42.86,
-  "count": 6,
-  "games": 14,
+  "seen": "2026-11-25",
+  "rank": 42,
+  "share": 0.36,
+  "win": 52.7,
+  "count": 11,
+  "games": 37,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "111th of 325",
-   "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
-   "2026-11-21"
+   "17th of 145",
+   "PGX TOURNAMENT #6 $5 USD + FA",
+   "2026-11-17"
   ],
   "cards": [
    [
@@ -2739,18 +2779,18 @@
  },
  "mega-diancie-ex-carbink-b3b": {
   "name": "Mega Diancie ex Carbink",
-  "seen": "2026-11-24",
-  "rank": 33,
-  "share": 0.39,
-  "win": 57.14,
-  "count": 8,
-  "games": 21,
+  "seen": "2026-11-25",
+  "rank": 36,
+  "share": 0.4,
+  "win": 54.35,
+  "count": 12,
+  "games": 46,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "57th of 325",
-   "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
-   "2026-11-21"
+   "13th of 145",
+   "PGX TOURNAMENT #6 $5 USD + FA",
+   "2026-11-17"
   ],
   "cards": [
    [
@@ -2758,12 +2798,16 @@
     2
    ],
    [
-    "Flutter Mane",
+    "Mega Diancie ex",
     2
    ],
    [
-    "Mega Diancie ex",
-    2
+    "Flutter Mane",
+    1
+   ],
+   [
+    "Comfey",
+    1
    ],
    [
     "Professor's Research",
@@ -2786,6 +2830,10 @@
     1
    ],
    [
+    "Sabrina",
+    1
+   ],
+   [
     "Poké Ball",
     2
    ],
@@ -2800,24 +2848,20 @@
    [
     "Peculiar Plaza",
     2
-   ],
-   [
-    "Starting Plains",
-    1
    ]
   ],
   "xs": []
  },
  "mega-mewtwo-x-ex-c1-greninja-a1": {
   "name": "Mega Mewtwo X ex Greninja",
-  "seen": "2026-11-23",
-  "rank": 45,
-  "share": 0.27,
-  "win": 54.17,
-  "count": 6,
-  "games": 36,
+  "seen": "2026-11-25",
+  "rank": 51,
+  "share": 0.23,
+  "win": 52.56,
+  "count": 7,
+  "games": 39,
   "more": 1,
-  "dates": "Nov 17 – 22",
+  "dates": "Nov 16 – 23",
   "best": [
    "4th of 145",
    "PGX TOURNAMENT #6 $5 USD + FA",
@@ -2881,14 +2925,14 @@
  },
  "mega-sableye-ex-b3b-darkrai-ex-a2": {
   "name": "Mega Sableye ex Darkrai ex",
-  "seen": "2026-11-24",
-  "rank": 37,
-  "share": 0.34,
+  "seen": "2026-11-25",
+  "rank": 52,
+  "share": 0.23,
   "win": 37.5,
   "count": 7,
   "games": 24,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "61st of 196",
    "The TCGP Arena Returns #10 | £50 Prize Pool",
@@ -2964,14 +3008,14 @@
  },
  "mew-ex-c1-mega-diancie-ex-b3b": {
   "name": "Mew ex Mega Diancie ex",
-  "seen": "2026-11-22",
-  "rank": 39,
-  "share": 0.37,
+  "seen": "2026-11-25",
+  "rank": 48,
+  "share": 0.27,
   "win": 45.24,
   "count": 8,
   "games": 21,
   "more": 1,
-  "dates": "Nov 16 – 22",
+  "dates": "Nov 16 – 23",
   "best": [
    "8th of 179",
    "xPabsy Cup #14 - $20",
@@ -3118,14 +3162,14 @@
  },
  "mega-sharpedo-ex-b4-gyarados-a4": {
   "name": "Mega Sharpedo ex Gyarados",
-  "seen": "2026-11-22",
-  "rank": 47,
-  "share": 0.27,
-  "win": 59.09,
-  "count": 6,
-  "games": 33,
+  "seen": "2026-11-25",
+  "rank": 53,
+  "share": 0.23,
+  "win": 56.58,
+  "count": 7,
+  "games": 38,
   "more": 1,
-  "dates": "Nov 16 – 22",
+  "dates": "Nov 16 – 23",
   "best": [
    "17th of 179",
    "xPabsy Cup #14 - $20",
@@ -3401,14 +3445,14 @@
  },
  "hydreigon-b1-mega-sableye-ex-b3b": {
   "name": "Hydreigon Mega Sableye ex",
-  "seen": "2026-11-24",
-  "rank": 49,
-  "share": 0.25,
+  "seen": "2026-11-25",
+  "rank": 46,
+  "share": 0.27,
   "win": 60.71,
-  "count": 5,
+  "count": 8,
   "games": 14,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "37th of 180",
    "FlutterMane Festival: $20 USD + Top 3 FA",
@@ -3542,14 +3586,14 @@
  },
  "suicune-ex-a4a-blastoise-c1": {
   "name": "Suicune ex Blastoise",
-  "seen": "2026-11-24",
-  "rank": 57,
-  "share": 0.23,
-  "win": 56.67,
-  "count": 5,
-  "games": 15,
+  "seen": "2026-11-25",
+  "rank": 43,
+  "share": 0.33,
+  "win": 48.21,
+  "count": 10,
+  "games": 28,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "40th of 325",
    "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
@@ -3684,18 +3728,18 @@
  },
  "mega-dragonite-ex-c1-dragonite-a1": {
   "name": "Mega Dragonite ex Dragonite",
-  "seen": "2026-11-24",
-  "rank": 41,
+  "seen": "2026-11-25",
+  "rank": 44,
   "share": 0.3,
-  "win": 26.67,
-  "count": 6,
-  "games": 15,
+  "win": 33.33,
+  "count": 9,
+  "games": 27,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
-   "189th of 325",
-   "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
-   "2026-11-21"
+   "37th of 145",
+   "PGX TOURNAMENT #6 $5 USD + FA",
+   "2026-11-17"
   ],
   "cards": [
    [
@@ -3767,14 +3811,14 @@
  },
  "mega-greninja-ex-c1-greninja-a1": {
   "name": "Mega Greninja ex Greninja",
-  "seen": "2026-11-24",
-  "rank": 32,
-  "share": 0.44,
-  "win": 42.11,
-  "count": 9,
-  "games": 38,
+  "seen": "2026-11-25",
+  "rank": 37,
+  "share": 0.4,
+  "win": 40.43,
+  "count": 12,
+  "games": 47,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "56th of 325",
    "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
@@ -3917,14 +3961,14 @@
  },
  "mega-lucario-ex-b3-greninja-a1": {
   "name": "Mega Lucario ex Greninja",
-  "seen": "2026-11-24",
-  "rank": 56,
-  "share": 0.15,
-  "win": 69.44,
-  "count": 3,
-  "games": 18,
+  "seen": "2026-11-25",
+  "rank": 54,
+  "share": 0.13,
+  "win": 64.29,
+  "count": 4,
+  "games": 21,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "7th of 325",
    "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
@@ -3994,14 +4038,14 @@
  },
  "entei-ex-a4a": {
   "name": "Entei ex",
-  "seen": "2026-11-24",
-  "rank": 47,
-  "share": 0.25,
-  "win": 70,
-  "count": 5,
-  "games": 40,
+  "seen": "2026-11-25",
+  "rank": 38,
+  "share": 0.36,
+  "win": 60.42,
+  "count": 11,
+  "games": 48,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "1st of 325",
    "PMPT #52 - FEROCIOUS FUSION!!! | $100 USD",
@@ -4067,14 +4111,14 @@
  },
  "mega-blaziken-ex-b1": {
   "name": "Mega Blaziken ex",
-  "seen": "2026-11-24",
-  "rank": 35,
-  "share": 0.34,
-  "win": 55.56,
-  "count": 7,
-  "games": 9,
+  "seen": "2026-11-25",
+  "rank": 40,
+  "share": 0.36,
+  "win": 47.62,
+  "count": 11,
+  "games": 21,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "30th of 88",
    "Block Dragon Standard (Any 2 card prize)",
@@ -4138,14 +4182,14 @@
  },
  "mega-rayquaza-ex-dragonair-b4": {
   "name": "Mega Rayquaza ex Dragonair",
-  "seen": "2026-11-24",
-  "rank": 36,
-  "share": 0.34,
-  "win": 50,
-  "count": 7,
-  "games": 20,
+  "seen": "2026-11-25",
+  "rank": 45,
+  "share": 0.3,
+  "win": 43.48,
+  "count": 9,
+  "games": 23,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "2nd of 88",
    "Block Dragon Standard (Any 2 card prize)",
@@ -4351,14 +4395,14 @@
  },
  "ho-oh-ex-a4-charizard-c1": {
   "name": "Ho-Oh ex Charizard",
-  "seen": "2026-11-24",
-  "rank": 44,
-  "share": 0.28,
-  "win": 54.76,
-  "count": 6,
-  "games": 42,
+  "seen": "2026-11-25",
+  "rank": 49,
+  "share": 0.23,
+  "win": 55.1,
+  "count": 7,
+  "games": 49,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "18th of 131",
    "Knowtice x TBC Victory Monday-$10",
@@ -4419,7 +4463,8 @@
    ]
   ],
   "xs": [
-   "Core cards (in 90%+ of the 3 top players' lists): 2 Ho-Oh ex, 2 Flame Patch, 2 Copycat, 2 Charmander, 2 Charmeleon, 2 Serena's Choice, 2 Poké Ball, 1 Lugia ex, 1 May, 1 Charizard, 1 Eviolite, 1 Blue's Provocation, 1 Professor's Research."
+   "Core cards (in 90%+ of the 4 top players' lists): 2 Ho-Oh ex, 2 Flame Patch, 2 Charmander, 2 Charmeleon, 2 Serena's Choice, 2 Poké Ball, 2 Copycat, 1 Lugia ex, 1 May, 1 Charizard, 1 Eviolite, 1 Blue's Provocation, 1 Professor's Research.",
+   "Flex picks: Ilima (25%)."
   ]
  },
  "mega-gengar-ex-b2b-gengar-c1": {
@@ -4487,14 +4532,14 @@
  },
  "mega-greninja-ex-c1-suicune-ex-a4a": {
   "name": "Mega Greninja ex Suicune ex",
-  "seen": "2026-11-24",
-  "rank": 40,
-  "share": 0.32,
-  "win": 40.32,
-  "count": 7,
-  "games": 31,
+  "seen": "2026-11-25",
+  "rank": 47,
+  "share": 0.27,
+  "win": 41.43,
+  "count": 8,
+  "games": 35,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "7th of 131",
    "Knowtice x TBC Victory Monday-$10",
@@ -4629,14 +4674,14 @@
  },
  "mega-gardevoir-ex-b2-mega-mewtwo-y-ex-p-c": {
   "name": "Mega Gardevoir ex Mega Mewtwo Y ex",
-  "seen": "2026-11-24",
-  "rank": 46,
-  "share": 0.28,
+  "seen": "2026-11-25",
+  "rank": 50,
+  "share": 0.23,
   "win": 20,
-  "count": 6,
+  "count": 7,
   "games": 10,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 16 – 23",
   "best": [
    "64th of 88",
    "Block Dragon Standard (Any 2 card prize)",
