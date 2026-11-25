@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795615940-890c -->
+<!-- ui: artifact version 1795617895-035a -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -2536,6 +2536,8 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 #pkv[hidden] { display: none; }
 .pks-c { flex: none; position: relative; width: var(--pw); padding: 0; border: 0; background: none; cursor: inherit; transform: rotate(5deg); transform-origin: 50% 0; -webkit-tap-highlight-color: transparent; }
 .pks-c img { display: block; width: 100%; height: auto; aspect-ratio: 200 / 386; filter: drop-shadow(2px 3px 4px rgba(40, 60, 90, 0.35)); pointer-events: none; -webkit-user-drag: none; }
+/* Nov 25: booster packs get rounded corners like the cards: shelf 4px, pack rows 2px, card details 3px (owner: 1px less) (the drop shadow follows the corners) */
+.pks-c img { border-radius: 4px; } .pkr-t img { border-radius: 2px; }
 .pks-c:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 .t1s-set > .pks-c:first-child::before { content: ""; position: absolute; left: -8.5px; top: -4px; width: 1px; height: calc(var(--pw) * 1.6); background: linear-gradient(rgba(var(--sh), 0), rgba(var(--sh), 1) 15%, rgba(var(--sh), 1) 70%, rgba(var(--sh), 0)); box-shadow: 1px 0 0 rgba(255, 255, 255, 0.8); } /* the loop seam: between the oldest and the newest pack */
 .pkcode { display: inline-block; flex: none; margin-right: 6px; padding: 1px 5px; border-radius: 5px; background: var(--bg); box-shadow: var(--pin-sh); color: var(--muted); font-size: 10.5px; font-weight: 700; letter-spacing: 0.02em; line-height: 1.4; }
