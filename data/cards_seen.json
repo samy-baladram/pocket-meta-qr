@@ -5117,19 +5117,24 @@
  },
  "Mega Mewtwo Y ex": {
   "id": "pc-002",
-  "seen": "2026-11-24",
-  "dates": "Nov 18 – 23",
+  "seen": "2026-11-25",
+  "dates": "Nov 19 – 24",
   "pct": 1,
-  "u": 2,
+  "u": 3,
   "pack": [
    "Promo-C pack",
    "Promo-C pack"
   ],
-  "nd": 2,
+  "nd": 3,
   "L": [
    [
     "Mega Mewtwo Y ex Giratina ex",
     2,
+    1
+   ],
+   [
+    "Giratina ex Mega Mewtwo Y ex",
+    1,
     1
    ],
    [
@@ -5141,19 +5146,24 @@
  },
  "Genome Converter Y": {
   "id": "pc-009",
-  "seen": "2026-11-24",
-  "dates": "Nov 18 – 23",
+  "seen": "2026-11-25",
+  "dates": "Nov 19 – 24",
   "pct": 1,
-  "u": 2,
+  "u": 3,
   "pack": [
    "Promo-C pack",
    "Promo-C pack"
   ],
-  "nd": 2,
+  "nd": 3,
   "L": [
    [
     "Mega Mewtwo Y ex Giratina ex",
     2,
+    1
+   ],
+   [
+    "Giratina ex Mega Mewtwo Y ex",
+    1,
     1
    ],
    [
@@ -5241,8 +5251,8 @@
  },
  "Mimikyu ex": {
   "id": "b2-073",
-  "seen": "2026-11-24",
-  "dates": "Nov 18 – 23",
+  "seen": "2026-11-25",
+  "dates": "Nov 19 – 24",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5279,8 +5289,8 @@
  },
  "Combusken": {
   "id": "b1-034",
-  "seen": "2026-11-24",
-  "dates": "Nov 18 – 23",
+  "seen": "2026-11-25",
+  "dates": "Nov 19 – 24",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5298,8 +5308,8 @@
  },
  "Gardevoir": {
   "id": "a1-132",
-  "seen": "2026-11-24",
-  "dates": "Nov 18 – 23",
+  "seen": "2026-11-25",
+  "dates": "Nov 19 – 24",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5317,8 +5327,8 @@
  },
  "Ralts": {
   "id": "b4-071",
-  "seen": "2026-11-24",
-  "dates": "Nov 18 – 23",
+  "seen": "2026-11-25",
+  "dates": "Nov 19 – 24",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5331,6 +5341,44 @@
     "Giratina ex Mega Mewtwo Y ex",
     1,
     1
+   ]
+  ]
+ },
+ "Misty": {
+  "id": "a1-220",
+  "seen": "2026-11-25",
+  "dates": "Nov 19 – 24",
+  "pct": 1,
+  "u": 2,
+  "pack": [
+   "Genetic Apex Pikachu pack",
+   "Genetic Apex pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Chien-Pao ex Baxcalibur",
+    2,
+    2
+   ]
+  ]
+ },
+ "Umbreon ex": {
+  "id": "a4-112",
+  "seen": "2026-11-25",
+  "dates": "Nov 19 – 24",
+  "pct": 1,
+  "u": 2,
+  "pack": [
+   "Wisdom of Sea and Sky Ho-Oh pack",
+   "Wisdom of Sea and Sky pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Umbreon ex Umbreon",
+    1,
+    2
    ]
   ]
  }

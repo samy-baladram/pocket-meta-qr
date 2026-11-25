@@ -3233,14 +3233,14 @@
  },
  "giratina-ex-a2b-mega-mewtwo-x-ex-c1": {
   "name": "Giratina ex Mega Mewtwo X ex",
-  "seen": "2026-11-24",
-  "rank": 56,
-  "share": 0.21,
+  "seen": "2026-11-25",
+  "rank": 51,
+  "share": 0.24,
   "win": 50,
   "count": 5,
   "games": 10,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 19 – 24",
   "best": [
    "32nd of 122",
    "DUAL FUSION CLASH!! $20 BEC'S WEEKLY",
@@ -3882,14 +3882,14 @@
  },
  "mega-sharpedo-ex-b4-dewgong-c1": {
   "name": "Mega Sharpedo ex Dewgong",
-  "seen": "2026-11-24",
-  "rank": 44,
-  "share": 0.3,
+  "seen": "2026-11-25",
+  "rank": 47,
+  "share": 0.28,
   "win": 29.41,
   "count": 6,
   "games": 17,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 19 – 24",
   "best": [
    "106th of 180",
    "FlutterMane Festival: $20 USD + Top 3 FA",
@@ -4257,14 +4257,14 @@
  },
  "mega-mewtwo-y-ex-p-c-giratina-ex-a2b": {
   "name": "Mega Mewtwo Y ex Giratina ex",
-  "seen": "2026-11-24",
-  "rank": 42,
-  "share": 0.3,
-  "win": 47.83,
+  "seen": "2026-11-25",
+  "rank": 46,
+  "share": 0.28,
+  "win": 50,
   "count": 6,
-  "games": 23,
+  "games": 30,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 19 – 24",
   "best": [
    "4th of 78",
    "Project OTS x The Dark League Tournament | FAs",
@@ -4320,14 +4320,14 @@
  },
  "mega-mewtwo-y-ex-p-c-mega-diancie-ex-b3b": {
   "name": "Mega Mewtwo Y ex Mega Diancie ex",
-  "seen": "2026-11-24",
-  "rank": 43,
-  "share": 0.3,
-  "win": 46.15,
-  "count": 6,
-  "games": 26,
+  "seen": "2026-11-25",
+  "rank": 56,
+  "share": 0.24,
+  "win": 47.62,
+  "count": 5,
+  "games": 21,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 19 – 24",
   "best": [
    "9th of 88",
    "Block Dragon Standard (Any 2 card prize)",
@@ -4599,14 +4599,14 @@
  },
  "mega-blaziken-ex-b1-greninja-a1": {
   "name": "Mega Blaziken ex Greninja",
-  "seen": "2026-11-24",
-  "rank": 45,
-  "share": 0.28,
-  "win": 59.52,
-  "count": 6,
-  "games": 21,
+  "seen": "2026-11-25",
+  "rank": 55,
+  "share": 0.24,
+  "win": 63.33,
+  "count": 5,
+  "games": 15,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 19 – 24",
   "best": [
    "9th of 131",
    "Knowtice x TBC Victory Monday-$10",
@@ -4749,14 +4749,14 @@
  },
  "giratina-ex-a2b-mega-mewtwo-y-ex-p-c": {
   "name": "Giratina ex Mega Mewtwo Y ex",
-  "seen": "2026-11-24",
-  "rank": 57,
-  "share": 0.21,
+  "seen": "2026-11-25",
+  "rank": 52,
+  "share": 0.24,
   "win": 47.22,
   "count": 5,
   "games": 18,
   "more": 1,
-  "dates": "Nov 18 – 23",
+  "dates": "Nov 19 – 24",
   "best": [
    "14th of 122",
    "DUAL FUSION CLASH!! $20 BEC'S WEEKLY",
@@ -4822,6 +4822,152 @@
    [
     "Peculiar Plaza",
     2
+   ]
+  ],
+  "xs": []
+ },
+ "magnezone-ex-b3-magnezone-b1a": {
+  "name": "Magnezone ex Magnezone",
+  "seen": "2026-11-25",
+  "rank": 54,
+  "share": 0.24,
+  "win": 45.65,
+  "count": 5,
+  "games": 23,
+  "more": 1,
+  "dates": "Nov 19 – 24",
+  "best": [
+   "17th of 78",
+   "Project OTS x The Dark League Tournament | FAs",
+   "2026-11-20"
+  ],
+  "cards": [
+   [
+    "Magnemite",
+    2
+   ],
+   [
+    "Magneton",
+    2
+   ],
+   [
+    "Magnezone",
+    1
+   ],
+   [
+    "Magnezone ex",
+    1
+   ],
+   [
+    "Oricorio",
+    2
+   ],
+   [
+    "Miraidon ex",
+    1
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Pokémon Center Lady",
+    1
+   ],
+   [
+    "Cyrus",
+    1
+   ],
+   [
+    "Lisia",
+    1
+   ],
+   [
+    "Clemont",
+    1
+   ],
+   [
+    "Professor Turo",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Lucky Ice Pop",
+    1
+   ],
+   [
+    "Giant Cape",
+    1
+   ]
+  ],
+  "xs": []
+ },
+ "umbreon-ex-a4-umbreon-c1": {
+  "name": "Umbreon ex Umbreon",
+  "seen": "2026-11-25",
+  "rank": 59,
+  "share": 0.24,
+  "win": 60.71,
+  "count": 5,
+  "games": 28,
+  "more": 1,
+  "dates": "Nov 19 – 24",
+  "best": [
+   "2nd of 138",
+   "Underground Pocket Pop Up | $20 USD",
+   "2026-11-24"
+  ],
+  "cards": [
+   [
+    "Eevee",
+    2
+   ],
+   [
+    "Umbreon",
+    2
+   ],
+   [
+    "Umbreon ex",
+    1
+   ],
+   [
+    "Froakie",
+    2
+   ],
+   [
+    "Greninja",
+    2
+   ],
+   [
+    "Copycat",
+    2
+   ],
+   [
+    "Serena's Choice",
+    2
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Rare Candy",
+    2
+   ],
+   [
+    "Field Blower",
+    1
+   ],
+   [
+    "Small Balloon",
+    1
+   ],
+   [
+    "Hiking Trail",
+    1
    ]
   ],
   "xs": []
