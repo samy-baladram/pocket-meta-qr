@@ -118,7 +118,7 @@ const SECTIONS = [
   { dir: "events", title: "Latest events – Pocket Meta QR",
     desc: "Latest Pokémon TCG Pocket tournament results: top 8 lists with QR codes.", img: "og-events.png" },
   { dir: "packs", title: "Booster packs for the meta – Pocket Meta QR",
-    desc: "Which Pokémon TCG Pocket booster packs give the cards of this week's meta decks.", img: "og-packs.png" },
+    desc: "Which Pokémon TCG Pocket booster packs the cards of this week's meta decks come from.", img: "og-packs.png" },
   { dir: "limited", title: "Limited Battle decks – Pocket Meta QR",
     desc: "Hand-picked decks with QR codes for the current Limited Battle event.", img: "og-limited.png" },
   { dir: "about", about: true,   // R29: only when the page has the static FAQ section (#abv)
@@ -378,7 +378,7 @@ function cardPages(full, dataDir, outDir, seenFile) {
       out.push({ dir, on, days, title, desc: tx.desc, intro: tx.intro });
       continue;
     }
-    const title = on ? `${n}: Which Meta Decks Use It (${MONTH}) ${GAME}` : `${n}: Which Meta Decks Use It (last seen ${day(e.seen)}) ${GAME}`;
+    const title = on ? `${n}: Which Meta Decks Play It (${MONTH}) ${GAME}` : `${n}: Which Meta Decks Play It (last seen ${day(e.seen)}) ${GAME}`;
     const desc = on
       ? fit(`${n} is in ${plural(nd, "Pokémon TCG Pocket meta deck")} this week, run by ${e.pct}% of top players. Top decks: `,
         e.L.map((x) => x.name), pkt)
@@ -513,8 +513,9 @@ const text = (h) => h.replace(/<[^>]+>/g, "").replace(/&(#x?[0-9a-f]+|[a-z]+);/g
 const ABV_RE = /<section class="abv" id="abv"[^>]*>[\s\S]*?<\/section>/;
 function faq(html) {
   const sec = (html.match(ABV_RE) || [""])[0], qa = [];
-  for (const m of sec.matchAll(/<h4>([\s\S]*?)<\/h4>\s*<p>([\s\S]*?)<\/p>/g))
-    qa.push({ "@type": "Question", name: text(m[1]), acceptedAnswer: { "@type": "Answer", text: text(m[2]) } });
+  // R34: the answer is everything up to the next question (a p, then maybe a list and another p), not only the first p
+  for (const m of sec.matchAll(/<h4>([\s\S]*?)<\/h4>([\s\S]*?)(?=<h4>|<p class="afine"|<\/div>|$)/g)) {
+    const a = text(m[2].replace(/<\/(li|p)>/g, "$& ")); if (a) qa.push({ "@type": "Question", name: text(m[1]), acceptedAnswer: { "@type": "Answer", text: a } }); }
   return qa.length ? { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: qa } : null;
 }
 const DESC_MAX = 160;
@@ -566,7 +567,7 @@ function intros(dataDir, page) {
       return one ? pk.name : `${P.sets?.[pk.set]?.name || pk.set.toUpperCase()}: ${pk.name}`;
     };
     const best = [...n].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 3);
-    if (best.length) t.packs = "Which Pokémon TCG Pocket booster packs give the cards of this week's meta decks: " +
+    if (best.length) t.packs = "Which Pokémon TCG Pocket booster packs the cards of this week's meta decks come from: " +
       best.map(([k, c], i) => `${nm(k)} (${c}${i ? "" : " meta cards"})`).join(", ") + ".";
     const best5 = [...n].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 5);
     if (best5.length) d.packs = fit("Which booster pack to open now: ",
