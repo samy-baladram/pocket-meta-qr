@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795576312-a129 -->
+<!-- ui: artifact version 1795602520-6c2c -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -1938,7 +1938,7 @@ a.dkev { text-decoration: none; }
 /* Game style (Nov 12): the bar is a flat light panel with a shadow under it; the selected tab is pressed in
    (inner shadow from the top left, a light rim on the bottom right). Pressed in = "you are here". */
 /* Nov 13: the band holds the tabs and the filter button at its right end (sticky, so search is always in reach) */
-.tabs { flex: 1; min-width: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.tabs { flex: 1; min-width: 0; display: flex; gap: 4px; } /* Nov 25 (R35): content-sized tabs that fill the bar (was a grid of equal columns) */
 .tbar { display: flex; align-items: center; gap: 8px; background: var(--surface);
   /* a straight band across the screen (full width), the tabs stay in the page column */
   margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 4px calc(50vw - 50% + 4px); border-radius: 0;
@@ -1947,7 +1947,7 @@ a.dkev { text-decoration: none; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tbar { box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.3), 0 -5px 11px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04); } }
 :root[data-theme="dark"] .tbar { box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.3), 0 -5px 11px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04); }
 .seoi { max-width: 34em; margin: 10px auto 0; font-size: var(--fs-s); line-height: 1.45; color: var(--muted); } .seoi:empty { display: none; } /* Nov 22 (R27): the section intro page.mjs writes in; shown while the page loads, replaced by the list */
-.tabs :is(button, a) { display: block; line-height: 32px; text-align: center; white-space: nowrap; text-decoration: none; -webkit-tap-highlight-color: transparent; height: 32px; border: 0; border-radius: 999px; background: none; color: var(--muted); font-weight: 500; font-size: 0.875rem; cursor: pointer; } /* 14px */
+.tabs :is(button, a) { display: block; line-height: 32px; text-align: center; white-space: nowrap; text-decoration: none; -webkit-tap-highlight-color: transparent; flex: 1 0 auto; padding: 0 10px; height: 32px; border: 0; border-radius: 999px; background: none; color: var(--muted); font-weight: 500; font-size: 0.875rem; cursor: pointer; } /* 14px */
 .tabs :is(button, a)[aria-selected="true"] { background: var(--tile); color: var(--ink); font-weight: 600;
   box-shadow: inset 2px 3px 4px rgba(var(--sh), calc(0.14 * var(--shk))), inset -2px -2px 3px rgba(255, 255, 255, 0.85); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tabs :is(button, a)[aria-selected="true"] { box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05); } }
@@ -1956,7 +1956,8 @@ a.dkev { text-decoration: none; }
 /* ===== Limited Battle tab (Nov 18): a limited-time in-game event. It must look temporary: dashed edges, an hourglass,
    the days left on the tab. ===== */
 :root { --lb: var(--acc-ink); --lb-bg: var(--sel-bg); --lb-line: var(--acc-line); } /* Nov 18: the site's own blue */
-.tabs:has(#tabL:not([hidden])) { grid-template-columns: 0.9fr 1fr 1.3fr; gap: 3px; } /* during the event: Limited wider; after it: 50/50 again (base rule) */
+@media (max-width: 379px) { .tabs :is(button, a) { padding: 0 6px; } } /* Nov 25 (R35): small phones (360px): less padding, so 3 long labels (ja 引くべきパック) fit */
+.tabs:has(#tabL:not([hidden])) { gap: 3px; } /* 4 tabs (Limited Battle tab shown): a smaller gap */
 .tabs button#tabL { display: inline-flex; align-items: center; justify-content: center; gap: 3px; padding: 0 6px; outline: 1px dashed color-mix(in srgb, var(--muted) 35%, transparent); outline-offset: -3px; /* Nov 21: the same color as the other tabs; a dimmer outline */ white-space: nowrap; }
 .tabs button#tabL[hidden] { display: none; }
 #tabL .hg { width: 13px; height: 13px; flex: none; }
@@ -2550,7 +2551,6 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 .pkd-s b { color: var(--ink); font-size: 13px; }
 @media (hover: hover) { .pkd-r:hover { background: var(--bg); } }
 /* Nov 22: Limited Battle: a banner at the top of the Meta tab (no tab), with the event's key card */
-.tabs, .tabs:has(#tabL:not([hidden])) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; } /* 3 tabs, the same width */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t1s-set > .pks-c:first-child::before { box-shadow: 1px 0 0 rgba(255, 255, 255, 0.06); } }
 :root[data-theme="dark"] .t1s-set > .pks-c:first-child::before { box-shadow: 1px 0 0 rgba(255, 255, 255, 0.06); }
 /* Nov 22: Limited Battle banner = a deck-style row under the header's meta line (all tabs but the Limited view): the event's key card as a 1-card icon */
@@ -2734,7 +2734,7 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
   <div class="cpop ipop" id="iPop" role="dialog" aria-label="About this label" tabindex="-1" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div class="ibody" id="iPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="iPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <div class="cpop" id="cPop" role="dialog" aria-label="Card details" tabindex="-1" hidden><span class="grab" aria-hidden="true"></span><span class="parr" aria-hidden="true"></span><div id="cPopIn"></div><button class="sx" type="button" aria-label="Close" data-close="cPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <div class="tbar" id="tbar">
-  <div class="tabs" id="tabs" role="tablist" aria-label="View"><a role="tab" id="tabM" href="/" aria-selected="true" aria-controls="list" aria-label="Meta Decks">Meta<span class="tlx"> Decks</span></a><a role="tab" id="tabE" href="/events/" aria-selected="false" aria-controls="evl" aria-label="Latest Events"><span class="tlx">Latest </span>Events</a><a role="tab" id="tabP" href="/packs/" aria-selected="false" aria-controls="pkv" aria-label="Booster Packs"><span class="tlx">Booster </span>Packs</a><button type="button" role="tab" id="tabL" aria-selected="false" aria-controls="lbl" hidden></button></div>
+  <div class="tabs" id="tabs" role="tablist" aria-label="View"><a role="tab" id="tabM" href="/" aria-selected="true" aria-controls="list" aria-label="Meta Decks">Meta<span class="tlx"> Decks</span></a><a role="tab" id="tabE" href="/events/" aria-selected="false" aria-controls="evl" aria-label="Latest Events"><span class="tlx">Latest </span>Events</a><a role="tab" id="tabP" href="/packs/" aria-selected="false" aria-controls="pkv" aria-label="Packs to Open">Packs to Open</a><button type="button" role="tab" id="tabL" aria-selected="false" aria-controls="lbl" hidden></button></div>
   <div class="fwrap">
     <button class="theme-btn filt-btn" id="filtBtn" type="button" aria-label="Search and filter decks" title="Search and filter" aria-expanded="false" aria-controls="filt" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V18l-3.6 2v-7.6z"/></svg><span class="fdot" id="fdot" hidden></span></button>
     <div class="filt" id="filt" hidden>
