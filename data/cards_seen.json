@@ -5400,5 +5400,62 @@
     1
    ]
   ]
+ },
+ "Tyranitar": {
+  "id": "a4-119",
+  "seen": "2026-11-25",
+  "dates": "Nov 19 – 25",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Wisdom of Sea and Sky Ho-Oh pack",
+   "Wisdom of Sea and Sky pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Mega Tyranitar ex Tyranitar",
+    1,
+    1
+   ]
+  ]
+ },
+ "Magnezone ex": {
+  "id": "b3-054",
+  "seen": "2026-11-25",
+  "dates": "Nov 19 – 25",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Pulsing Aura pack",
+   "Pulsing Aura pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Magnezone ex Magnezone",
+    1,
+    1
+   ]
+  ]
+ },
+ "Wynaut": {
+  "id": "b4-074",
+  "seen": "2026-11-25",
+  "dates": "Nov 19 – 25",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Ruler of the Skies pack",
+   "Ruler of the Skies pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Mega Tyranitar ex Tyranitar",
+    1,
+    1
+   ]
+  ]
  }
 }
