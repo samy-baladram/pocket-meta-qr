@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795610492-9e8d -->
+<!-- ui: artifact version 1795615797-b643 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -61,7 +61,7 @@
     6px 5px 5px rgba(var(--sh), 0.5); /* Nov 21: layer 3 at 0.5 (tried 1.0, 0.8); was 7px 5px 8px. Nov 21: layers 1-2 at 0.5, the close shadow at full strength */ /* Nov 21 try: no wide layer (6px 8px 15px); the close layer wider (was 3px 5px 5px) */
   --raised-sm: 0 0 10px rgba(var(--sh), calc(0.075 * var(--shk))), 3px 5px 5px rgba(var(--sh), calc(0.075 * var(--shk)));
   --raised-smp: 0 0 5px rgba(var(--sh), calc(0.0375 * var(--shk))), 2px 3px 3px rgba(var(--sh), calc(0.0375 * var(--shk)));
-  --card-sh-s: 0 1px 3px rgba(40, 60, 90, 0.3); --card-sh-m: 0 2px 4px rgba(40, 60, 90, 0.32); --card-sh-l: 2px 2px 5px rgba(40, 60, 90, 0.33); --card-dim: none; /* Nov 25: card images (.tcard): small (<= 44px), medium, large; dark mode dims them */
+  --card-sh-s: 0 1px 3px rgba(40, 60, 90, 0.3); --card-sh-m: 0 2px 4px rgba(40, 60, 90, 0.32); --card-sh-l: 2px 2px 5px rgba(40, 60, 90, 0.33); --plate: clamp(5px, 1.3vw, 10px); /* Nov 25: the grey plate of a picked card */ --card-dim: none; /* Nov 25: card images (.tcard): small (<= 44px), medium, large; dark mode dims them */
   --raised-p: -1px -1px 3px rgba(var(--sh), 0.25), 0 0 4px rgba(var(--sh), 0.125), 3px 3px 3px rgba(var(--sh), 0.25); /* Nov 25: pressed = --raised at half strength (half the opacity, offsets and blur) */
   --sxbev: inset 1px 1px 1px rgba(255, 255, 255, 0.12); /* Nov 15: the sheet close button's light edge, very soft */
   --bevel: inset 1px 1px 1px rgba(255, 255, 255, 0.8), inset -1px -1px 1px rgba(var(--sh), 0.8); /* Nov 21: + the bottom-right edge, same width, the shadow tint at 0.8. Nov 12: top and left light edge only (game), no dark bottom-right edge */
@@ -334,7 +334,7 @@ footer a { color: var(--muted); }
 /* Shared list (option A) */
 .shslide { margin-top: 10px; text-align: left; }
 .shslide .cards { margin-bottom: 8px; }
-.shslide .cards img, .shslide .cards .shn { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 4px; }
+.shslide .cards img, .shslide .cards .shn { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 5px; }
 .shslide .cards .shn { display: grid; place-items: center; background: var(--tile); font-size: 9px; color: var(--muted); }
 .shfoot { position: relative; display: flex; justify-content: center; align-items: center; margin-top: 2px; }
 .shfoot .qclose { margin: 10px 0 24px; }
@@ -442,7 +442,7 @@ footer a { color: var(--muted); }
   background: none; color: var(--ink); text-align: left; cursor: pointer; }
 .sg:hover, .sg:focus-visible { background: var(--tile); outline: none; }
 .sgi { position: relative; height: 34px; }
-.sgi img { position: absolute; top: 1px; width: 23px; height: auto; aspect-ratio: 367 / 512; border-radius: 2px; }
+.sgi img { position: absolute; top: 1px; width: 23px; height: auto; aspect-ratio: 367 / 512; border-radius: 3px; }
 .sgi img:first-child { left: 2px; transform: rotate(-8deg); z-index: 1; }
 .sgi img + img { left: 17px; transform: rotate(8deg); }
 .sgi.one img { left: 10px; transform: none; }
@@ -458,7 +458,7 @@ footer a { color: var(--muted); }
 .sgc { padding: 0; border: 0; background: none; cursor: pointer; border-radius: 3px; }
 .sgc { display: flex; flex-direction: column; gap: 3px; min-width: 0; color: var(--muted); }
 .sgc span { font-size: 0.5625rem; font-weight: 600; line-height: 1.15; text-align: center; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.sgc img { width: 100%; height: auto; aspect-ratio: 367 / 512; display: block; border-radius: 3px; }
+.sgc img { width: 100%; height: auto; aspect-ratio: 367 / 512; display: block; border-radius: 4px; }
 .sgc:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; } /* the count shows once, in the bar above the list */
 .fnone { margin: 0; text-align: center; color: var(--muted); font-size: var(--fs-m); } /* "Showing N of M decks · Clear" while a filter is on */
 .fnone[hidden] { display: none; }
@@ -503,7 +503,7 @@ footer a { color: var(--muted); }
   clip-path: inset(-40px -24px 0 -40px); } /* cut only at the row's bottom edge (24px of room on the right for the open, tilted cards) */
 .arow[aria-expanded="false"] .icons {
   -webkit-mask-image: linear-gradient(180deg, #000 52px, transparent 66px); mask-image: linear-gradient(180deg, #000 52px, transparent 66px); }
-.icons img { position: absolute; top: 10px; width: 52px; height: auto; aspect-ratio: 367 / 512; display: block; border-radius: 2px;
+.icons img { position: absolute; top: 10px; width: 52px; height: auto; aspect-ratio: 367 / 512; display: block; border-radius: 3px;
   /* Nov 25: shadow = .tcard.m (a box-shadow: Safari clips filter shadows on rotated images) */
   transition: transform var(--t-slow) ease; }
 /* Open row: the icons (same size as before, 1.1538) move right; the icon box widens by --ox, so the name moves with them
@@ -614,7 +614,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .dnote .dcar { width: 8px; height: 8px; margin-left: 1px; opacity: 0.8; transition: transform var(--t-fast); }
 .dnote[aria-expanded="true"] .dcar { transform: rotate(180deg); }
 .chip { display: inline-flex; align-items: center; gap: 5px; min-width: 0; color: var(--ink); font-weight: 600; line-height: 1.2; }
-.chip img { width: 18px; height: auto; aspect-ratio: 150 / 209; flex: none; border-radius: 2px; background: var(--line); }
+.chip img { width: 18px; height: auto; aspect-ratio: 150 / 209; flex: none; border-radius: 3px; background: var(--line); }
 .chip .x { color: var(--muted); font-weight: 500; }
 .setc { margin-left: 3px; color: var(--muted); font-size: 0.82em; font-weight: 500; letter-spacing: 0.02em; }
 .cname .setc { color: var(--dlg-muted); }
@@ -629,12 +629,12 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .anew { position: absolute; z-index: 3; pointer-events: none; animation: anewIn 0.22s ease-out;
   --tanh: linear-gradient(180deg, rgba(0,0,0,1) 25%, rgba(0,0,0,0.97) 34%, rgba(0,0,0,0.9) 44%, rgba(0,0,0,0.74) 53%, rgba(0,0,0,0.5) 62%, rgba(0,0,0,0.26) 72%, rgba(0,0,0,0.1) 81%, rgba(0,0,0,0.03) 91%, transparent 100%);
   -webkit-mask-image: var(--tanh); mask-image: var(--tanh); } /* its bottom 75% fades out on a tanh curve: a soft start, a quick middle, a long soft tail */
-.anew img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; pointer-events: auto; } /* no shadow: it would not fade */
+.anew img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 3px; pointer-events: auto; } /* no shadow: it would not fade */
 .cards img.arep0 { opacity: 0; }
 .aback { position: absolute; z-index: 2; pointer-events: none; filter: brightness(0.7); clip-path: inset(0 0 80% 0); } /* the old card: 30% darker, only its top 20% (the name) shows */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .aback { filter: brightness(0.6); } } /* dark: 40% darker */
 :root[data-theme="dark"] .aback { filter: brightness(0.6); }
-.aback img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; }
+.aback img { width: 100%; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 3px; }
 @keyframes anewIn { from { transform: translateY(-20%); opacity: 0; } }
 .apop2 { position: absolute; z-index: 6; left: 8px; right: 8px; bottom: var(--ab, 30px); border-radius: 12px; background: var(--surface); box-shadow: var(--pop-sh);
   display: flex; flex-direction: column; animation: apopIn 0.16s ease-out; }
@@ -649,7 +649,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
   padding: 8px 9px; border: 1.5px solid transparent; border-radius: 10px; background: var(--tile); opacity: 0.5; transform: scale(0.94); cursor: pointer;
   transition: opacity 0.2s, transform 0.2s, background 0.2s, border-color 0.2s; }
 .ait.on { opacity: 1; transform: none; background: var(--surface); border-color: var(--sel); box-shadow: var(--raised-sm); }
-.ait > img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; }
+.ait > img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 3px; }
 .ait.on > img { cursor: zoom-in; }
 .ait > img.ao { opacity: 0.55; filter: grayscale(0.4); }
 .ait .achev { display: grid; place-items: center; color: var(--muted); }
@@ -683,7 +683,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .tw { background: var(--surface); border-radius: 10px; padding: 6px 0 5px; box-shadow: 0 1px 5px rgba(var(--sh), calc(0.3 * var(--shk))); } /* each tweak is a card you can swipe */
 .tw .tsw { display: flex; align-items: center; gap: 5px; }
 .tw .tstk { display: flex; }
-.tw .tstk img { width: var(--cw); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; }
+.tw .tstk img { width: var(--cw); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 3px; }
 .tw .tstk img + img { margin-left: calc(var(--cw) * -0.4); margin-top: 4px; } /* the 2nd card covers 40% of the 1st, 4px lower (Nov 15: was 7px; 2-card tweaks were tight) */
 .tw .tstk { align-items: flex-start; }
 .tw.on .tstk img { cursor: zoom-in; }
@@ -697,7 +697,7 @@ button.dnote { border: 1.5px solid var(--pill-line); cursor: pointer; font-famil
 .swin { display: flex; flex-direction: column; align-items: center; gap: 7px; width: max-content; min-width: 100%; }
 .apop3.swp { z-index: 6; }
 .swr { display: flex; gap: 3px; }
-.swr img { width: var(--cw, 30px); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; cursor: zoom-in; }
+.swr img { width: var(--cw, 30px); height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 3px; cursor: zoom-in; }
 .swr.out img { filter: grayscale(0.35) brightness(0.92); } /* list 1's cards: a bit quieter */
 .swch { display: block; color: var(--muted); line-height: 0; }
 .swch svg { width: 12px; height: 7px; display: block; }
@@ -760,7 +760,7 @@ details.fmore .fins li:first-child { border-top: 1px solid var(--line); }
 .acar.asw { display: block; padding: 10px 10px 8px; scroll-snap-type: none; }
 .aswl { display: flex; align-items: flex-start; gap: 6px; width: max-content; margin: 0 auto; }
 .aswl .asc { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 50px; }
-.aswl .asc img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 2px; cursor: zoom-in; }
+.aswl .asc img { width: 44px; height: auto; aspect-ratio: 150 / 209; display: block; border-radius: 3px; cursor: zoom-in; }
 .aswl .asc img.ao { opacity: 0.55; filter: grayscale(0.4); }
 .aswl .achev { align-self: center; margin-top: -14px; color: var(--muted); }
 .aswl .achev svg { width: 10px; height: 14px; display: block; }
@@ -789,7 +789,7 @@ details.fmore .fins li:first-child { border-top: 1px solid var(--line); }
   .ait .ast { margin-top: 3px; }
   .adots2 { padding-bottom: 6px; }
 } /* no shadow under the cards (light and dark) */
-.cards img, .ph { width: 100%; aspect-ratio: 150 / 209; display: block; border-radius: 2px; background: var(--line); }
+.cards img, .ph { width: 100%; aspect-ratio: 150 / 209; display: block; border-radius: 3px; background: var(--line); } /* Nov 25: every card corner +1px (owner) */
 .cards img { height: auto; cursor: pointer; }
 .cards > img:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 /* Card fade: a card image that is not loaded yet fades in when it is ready (see dealGrid) */
@@ -799,7 +799,7 @@ details.fmore .fins li:first-child { border-top: 1px solid var(--line); }
 :root { --card-sel: #4c5c74; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --card-sel: #c5d1de; } }
 :root[data-theme="dark"] { --card-sel: #c5d1de; }
-.cards img.hl, .tstk img.hl, .swr img.hl, .astk img.hl { outline: 2px solid var(--card-sel); outline-offset: 1px; position: relative; z-index: 2; }
+.cards img.hl, .tstk img.hl, .swr img.hl, .astk img.hl { position: relative; z-index: 2; } /* Nov 25: the picked card: see "the game's pick" below */
 #cPop { z-index: 62; } /* the card sheet is always the top sheet (above Top players and the shared list) */ /* all copies of the card in the popup */
 html { -webkit-tap-highlight-color: transparent; }
 .cards img, .ait img, .aswl img, .cbox img { -webkit-user-select: none; user-select: none; }
@@ -983,7 +983,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .cug figure { margin: 0; } .cug img { display: block; width: 100%; height: auto; border-radius: 3px; cursor: pointer; }
 .cug figcaption { position: relative; margin-top: 3px; height: 14px; overflow: hidden; border-radius: 3px; background: var(--tile); font-size: 9.5px; text-align: center; color: var(--ink); }
 .cug figcaption i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--acc-mark); opacity: 0.35; } .cug figcaption b { position: relative; font-weight: 700; }
-.cug img.hl { outline: 2px solid var(--card-sel); outline-offset: 1px; }
+/* Nov 25: .cug img.hl: the game's pick (below) */
 .cug.cud { grid-template-columns: repeat(5, 1fr); gap: 4px; width: 70%; margin-inline: auto; } /* Nov 15: the core deck, 5 x 4 */
 .cug .cfx { aspect-ratio: 150 / 209; display: grid; place-items: center; border-radius: 4px; border: 1.5px dashed var(--line-strong); background: var(--tile); }
 .cug .cfx span { font-size: 10.5px; font-weight: 700; color: var(--muted); }
@@ -1136,7 +1136,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .t10i b { position: relative; margin-top: -4px; font-size: 12.5px; font-weight: 800; color: var(--ink); } .t10i .pdl { font-size: 10.5px; } .t10e { color: var(--muted); }
 .t10r { position: absolute; z-index: 2; top: -5px; left: -3px; min-width: 15px; text-align: center; font-size: 9.5px; font-weight: 800; line-height: 15px; border-radius: 8px; background: var(--ink); color: var(--surface); }
 .t2c { position: relative; display: block; flex: none; -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent 96%); mask-image: linear-gradient(180deg, #000 50%, transparent 96%); }
-.t2c img { position: absolute; top: 0; height: auto; border-radius: 3px; transform-origin: 50% 100%; }
+.t2c img { position: absolute; top: 0; height: auto; border-radius: 4px; transform-origin: 50% 100%; }
 .t10mv { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; padding-top: 8px; border-top: 1px solid var(--line); }
 .t10k { margin: 0 0 2px; font-size: 11px; font-weight: 700; } .t10k.up { color: #1f9d55; } .t10k.dn { color: #d6345a; }
 .t10m { width: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "ic nm nm" "ic mt ch"; column-gap: 7px; row-gap: 1px; align-items: center; padding: 3px 2px; border-radius: 8px; }
@@ -1344,14 +1344,14 @@ html { -webkit-tap-highlight-color: transparent; }
 .evwins { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px 8px; padding: 2px 16px; align-items: center; } .evwins::-webkit-scrollbar { display: none; }
 .evwl { margin: 2px 0 -6px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .evwc { flex: none; display: inline-flex; align-items: center; gap: 5px; min-height: 40px; padding: 3px 10px 3px 5px; border: 1.5px solid var(--pill-line); border-radius: 12px; background: var(--surface); font-family: inherit; font-size: 12px; color: var(--ink); cursor: pointer; }
-.evwc img { width: 16px; height: 22px; border-radius: 2px; object-fit: cover; margin-right: -2px; } .evwc span { max-width: 104px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.2; text-align: left; font-size: 11.5px; } /* the deck name on up to 2 lines, then cut */ .evwc b { color: var(--muted); }
+.evwc img { width: 16px; height: 22px; border-radius: 3px; object-fit: cover; margin-right: -2px; } .evwc span { max-width: 104px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.2; text-align: left; font-size: 11.5px; } /* the deck name on up to 2 lines, then cut */ .evwc b { color: var(--muted); }
 .evwc.on { border-color: var(--sel); background: var(--tile); }
 /* Nov 16: wide screens: "Most wins" chips get more room: taller, larger card icons and text, wider names, more space between and around */
 @media (min-width: 761px) {
   .evwl { margin: 8px 0 -2px; font-size: 11px; }
   .evwins { gap: 10px; margin: 0 -16px 14px; padding: 4px 16px; } /* Nov 17: one row that scrolls (was: wrap) */
   .evwc { min-height: 56px; gap: 8px; padding: 5px 14px 5px 8px; border-radius: 14px; font-size: 13px; }
-  .evwc img { width: 24px; height: 33px; border-radius: 3px; margin-right: -4px; }
+  .evwc img { width: 24px; height: 33px; border-radius: 4px; margin-right: -4px; }
   .evwc span { max-width: 170px; font-size: 13px; } .evwc b { font-size: 13px; margin-left: 4px; }
 }
 .evclr { border: 0; padding: 0; background: none; font: inherit; color: var(--acc-ink, #04768b); text-decoration: underline; cursor: pointer; }
@@ -1685,20 +1685,20 @@ a.dkev { text-decoration: none; }
 .cpop .ps { margin: -4px 0 0; font-size: var(--fs-s); color: var(--muted); }
 .cpop .pack { display: flex; gap: 10px; align-items: center; background: var(--tile); border-radius: var(--r-box); padding: 8px; }
 .cpop .pks { display: flex; flex: none; }
-.cpop .pack.pkgo { width: 100%; border: 0; color: inherit; font-family: inherit; font-size: inherit; text-align: left; cursor: pointer; } /* Nov 22: a link to the Packs tab */
+.cpop .pks.pkgo { padding: 0; border: 0; border-radius: 4px; background: none; color: inherit; cursor: pointer; transition: scale 0.05s ease-out; } .cpop .pks.pkgo.prs { scale: 0.95; } /* Nov 25: the pack picture is the link to the Packs tab (was the whole box) and presses like the panels */ /* Nov 22: a link to the Packs tab */
 .cpop .pgo { display: inline-flex; align-items: center; gap: 3px; margin-top: 3px; color: var(--acc-ink); font-size: var(--fs-s); font-weight: 600; }
 .cpop .pgo svg { width: 10px; height: 10px; }
-@media (hover: hover) { .cpop .pack.pkgo:hover { outline: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: -1.5px; } }
+@media (hover: hover) { .cpop .pks.pkgo:hover { scale: 1.04; } }
 .pka, #fnone { scroll-margin-top: 12px; } /* Nov 25: 64px with the sticky tab band */
-.cpop .pk { height: 72px; width: auto; display: block; border-radius: 3px; filter: drop-shadow(0 2px 3px rgba(var(--sh), calc(0.3 * var(--shk)))); }
+.cpop .pk { height: 100px; /* Nov 25: bigger (was 72px): the date and "See in Packs" lines are gone */ width: auto; display: block; border-radius: 3px; filter: drop-shadow(0 2px 3px rgba(var(--sh), calc(0.3 * var(--shk)))); }
 .cpop .pks.n2 .pk:first-child, .cpop .pks.n3 .pk:first-child { transform: rotate(-4deg); }
 .cpop .pks.n2 .pk + .pk, .cpop .pks.n3 .pk + .pk { margin-left: -18px; transform: rotate(6deg); }
-.cpop .pks.n3 .pk { height: 64px; }
+.cpop .pks.n3 .pk { height: 88px; }
 .cpop .pk.promo { height: auto; width: 62px; filter: none; }
 .cpop .pt { display: flex; flex-direction: column; min-width: 0; font-size: var(--fs-m); line-height: 1.3; }
 .cpop .pl { font-size: var(--fs-xs); color: var(--muted); font-weight: 500; }
 .cpop .pt b { font-weight: 700; }
-.cpop .psub { font-size: 0.6875rem; color: var(--muted); }
+.cpop .psub { display: flex; align-items: center; min-height: 19px; margin-top: 3px; font-size: 12px; color: var(--muted); } .cpop .psub:empty { display: none; } /* Nov 25: as the pack rows: the code chip + the pack name */
 .cpop .pdif { margin: 0; display: flex; gap: 6px; align-items: flex-start; font-size: var(--fs-s); color: var(--muted); line-height: 1.5; }
 .cpop .pdif > svg { width: 8px; height: 11px; flex: none; margin-top: 4px; }
 .cpop .pdif b { color: var(--ink); }
@@ -1808,7 +1808,7 @@ a.dkev { text-decoration: none; }
 .cname span { color: var(--dlg-muted); font-size: var(--fs-m); }
 .cname .cout { flex-basis: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 10px; color: var(--dlg-muted); font-size: var(--fs-m); }
 .cname .cout .chip { color: var(--dlg-ink); }
-.cname .chip img { width: 18px; box-shadow: none; border-radius: 2px; } /* not the big zoom image style */
+.cname .chip img { width: 18px; box-shadow: none; border-radius: 3px; } /* not the big zoom image style */
 .cname .cout .chip .x { color: var(--dlg-muted); }
 .cname .cdif { display: inline-flex; align-items: center; gap: 5px; padding: 1px 8px 1px 7px; border-radius: 999px; background: var(--pill-bg); color: var(--pill-ink); font-size: var(--fs-s); font-weight: 700; }
 
@@ -1840,7 +1840,7 @@ a.dkev { text-decoration: none; }
   -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--fe) - var(--it) - 24px), transparent calc(var(--fe) - var(--it)));
   mask-image: linear-gradient(180deg, #000 calc(var(--fe) - var(--it) - 24px), transparent calc(var(--fe) - var(--it))); }
 .picons img:nth-child(2) { --it: calc(9 * var(--u)); }
-.picons img { position: absolute; top: calc(4 * var(--u)); width: calc(52 * var(--u)); height: auto; aspect-ratio: 367 / 512; border-radius: 2px;
+.picons img { position: absolute; top: calc(4 * var(--u)); width: calc(52 * var(--u)); height: auto; aspect-ratio: 367 / 512; border-radius: 3px;
   transition: transform var(--t-slow) ease; }
 .picons img:first-child { left: calc(2 * var(--u)); transform: rotate(-9deg); z-index: 2; }
 .picons img:nth-child(2) { left: calc(38 * var(--u)); top: calc(9 * var(--u)); transform: rotate(9deg); z-index: 1; }
@@ -1961,30 +1961,36 @@ a.dkev { text-decoration: none; }
 :root { --lb: var(--acc-ink); --lb-bg: var(--sel-bg); --lb-line: var(--acc-line); } /* Nov 18: the site's own blue */
 @media (max-width: 379px) { .tabs :is(button, a) { padding: 0 6px; } }
 /* Nov 25: pressed state, as in the game: a tapped panel gets a bit smaller (the whole panel, all its parts) and its shadow half as strong.
-   .prs is set by the script (pressFx): on touch after 60 ms, so a scroll or a shelf drag does not flash it. "scale" (not transform) keeps the panels' own rotate / translate. */
-.acc, .arow, .pka, .pkr, .brkr, .t1s-c, .pks-c { transition: scale 0.12s ease-out, box-shadow 0.12s ease-out; }
-.t1s-mp .t1s-r { transition: background 0.3s, scale 0.12s ease-out; }
+   .prs is set by the script (pressFx): on touch after 30 ms, so a scroll or a shelf drag does not flash it. "scale" (not transform) keeps the panels' own rotate / translate. */
+.acc, .arow, .pka, .pkr, .brkr, .t1s-c, .pks-c { transition: scale 0.05s ease-out, box-shadow 0.05s ease-out; } /* Nov 25: all presses 0.05s (was 0.12s, then 0.08s) */
+.t1s-mp .t1s-r { transition: background 0.3s, scale 0.05s ease-out; }
 .acc:has(> .arow.prs[aria-expanded="false"]), .pka:not(.open):has(> .pkr.prs) { scale: 0.97; --raised: var(--raised-p); } /* a closed row: the whole row */
 .arow.prs[aria-expanded="true"] { scale: 0.98; --raised: var(--raised-p); } .pka.open > .pkr.prs { scale: 0.98; } /* an open row: only its head line */
 .brkr.prs { scale: 0.97; --raised: var(--raised-p); } .t1s-mp .t1s-r.prs { scale: 0.97; } .t1s-c.prs, .pks-c.prs { scale: 0.95; } /* Breakout, Rising / Falling and Most wins rows; shelf items */
 /* Nov 25: the same press on the buttons: small round buttons and chips 0.94, pills 0.96, wide buttons 0.97; the cards of a list 0.96, the QR code 0.98 (it is also scanned). */
 .prs { --raised: var(--raised-p); --raised-sm: var(--raised-smp); }
-:is(.fabout, .t1s-all, .morelink, .theme-btn, .filt-btn, .ech, .fdc, .sgc, .dpill.dpb, .dpill.epb, .shb, .swx, .altb, .dot, .evbg, .tile.tlink, .qsave, .sp, .aqr, .shfoot .shsave, .qcol .qr) { transition: scale 0.12s ease-out, box-shadow 0.12s ease-out; }
-.cards img, img.tcard[role="button"] { transition: opacity 0.2s, scale 0.12s ease-out; } img.tcard[role="button"] { cursor: pointer; }
-.chev-btn { transition: opacity var(--t-slow) ease, scale 0.12s ease-out; } /* keeps its fade */
+:is(.fabout, .t1s-all, .morelink, .theme-btn, .filt-btn, .ech, .fdc, .sgc, .dpill.dpb, .dpill.epb, .shb, .swx, .altb, .dot, .evbg, .tile.tlink, .qsave, .sp, .aqr, .shfoot .shsave, .qcol .qr) { transition: scale 0.05s ease-out, box-shadow 0.05s ease-out; }
+.cards img, img.tcard[role="button"] { transition: opacity 0.2s, scale 0.05s ease-out; } /* Nov 25: cards press faster (was 0.12s) */ img.tcard[role="button"] { cursor: pointer; }
+.chev-btn { transition: opacity var(--t-slow) ease, scale 0.05s ease-out; } /* keeps its fade */
 :is(.theme-btn, .filt-btn, .ech, .fdc, .shb, .dot, .chev-btn).prs { scale: 0.94; }
 :is(.sgc).prs { scale: 0.95; }
 :is(.dpill.dpb, .dpill.epb, .swx, .altb, .evbg, .sp, .aqr, img.tcard[role="button"]).prs { scale: 0.96; }
 :is(.fabout, .t1s-all, .morelink, .tile.tlink, .qsave, .shfoot .shsave).prs { scale: 0.97; }
 .qcol .qr.prs { scale: 0.98; }
-.rb.rbt { transition: transform var(--t-slow) ease, scale 0.12s ease-out; } .rb.rbt.prs { scale: 0.9; } /* Nov 25: the rank badge presses on its own (it opens its tip), not the whole row */
+.rb.rbt { transition: transform var(--t-slow) ease, scale 0.05s ease-out; } .rb.rbt.prs { scale: 0.9; } /* Nov 25: the rank badge presses on its own (it opens its tip), not the whole row */
 /* Nov 25: Packs to Open (the cards of a pack, the decks of the picked card), Event stats (top 8, Show all, the rows, cards to look at), the Live chip */
-:is(.pkc, .pkd-r, .lchk, .ek8, .ekall, .eksr, .ektc, .ekdr) { transition: scale 0.12s ease-out, box-shadow 0.12s ease-out; }
+:is(.pkc, .pkd-r, .lchk, .ek8, .ekall, .eksr, .ektc, .ekdr) { transition: scale 0.05s ease-out, box-shadow 0.05s ease-out; } .pkc { transition: scale 0.05s ease-out, box-shadow 0.05s ease-out; } /* cards: a faster press */
 :is(.pkc, .lchk, .ek8).prs { scale: 0.95; } .ektc.prs { scale: 0.96; } :is(.pkd-r, .ekall, .eksr, .ekdr).prs { scale: 0.97; }
 /* Nov 25: one card style for every card image (.tcard): the dark-mode dimming and 3 shadow sizes (theme tokens --card-sh-s / -m / -l).
    s = small cards (<= 44px: search, swaps, Top players, deck pairs, event stats), m = medium (list cards, deck row icons, flex cards), l = large (shelf, card sheet head).
    No size class = no shadow (the card sits in a box with its own shadow: pack grid, card popup, chips). Place rules keep size, position and rotation. */
 .tcard { filter: var(--card-dim); } .tcard.s { box-shadow: var(--card-sh-s); } .tcard.m { box-shadow: var(--card-sh-m); } .tcard.l { box-shadow: var(--card-sh-l); }
+/* Nov 25: the game's pick: the picked card (its card sheet is open, or the picked pack card) is 12% bigger on a wide grey plate (about 7.5% of the card width on each side: --plate). No spring (owner: the recoil felt too much): the same 0.05s ease-out as the panel press*/
+.cards img.hl.pk, .tstk img.hl.pk, .swr img.hl.pk, .astk img.hl.pk, .cug img.hl.pk, .pkc.on .pkc-i { position: relative; z-index: 5; scale: 1.12; box-shadow: 0 0 0 var(--plate) var(--card-sel), var(--card-sh-m);
+  transition: opacity 0.2s, box-shadow 0.05s ease-out, scale 0.05s ease-out; }
+.tstk img.hl.pk, .swr img.hl.pk, .astk img.hl.pk { --plate: 3px; } .pkc.on .pkc-i { box-shadow: 0 0 0 var(--plate) var(--card-sel), var(--card-sh-m); } .pkc > :not(.pkc-i) { transition: translate 0.16s ease-out; } .pkc.on > :not(.pkc-i) { translate: 0 calc(var(--plate) + 4px); } /* the count line clears the bigger card */
+.tstk img, .swr img, .astk img, .cug img, .pkc-i { transition: scale 0.08s ease-out, box-shadow 0.08s; } /* back to normal: a short ease-out */
+@media (prefers-reduced-motion: reduce) { .cards img.hl.pk, .tstk img.hl.pk, .swr img.hl.pk, .astk img.hl.pk, .cug img.hl.pk, .pkc.on .pkc-i { transition: none; } }
 .lbban.acc:has(> .arow.prs) { scale: 0.97; --raised: var(--raised-p); } .lbban > .arow.prs { scale: none; } /* the Limited Battle banner: the whole banner (also when its view is open) */ /* Nov 25: no press on the 3 main tabs or on the Rising / Falling segments (owner) */ /* Nov 25 (R35): small phones (360px): less padding, so 3 long labels (ja 引くべきパック) fit */
 .tabs:has(#tabL:not([hidden])) { gap: 3px; } /* 4 tabs (Limited Battle tab shown): a smaller gap */
 .tabs button#tabL { display: inline-flex; align-items: center; justify-content: center; gap: 3px; padding: 0 6px; outline: 1px dashed color-mix(in srgb, var(--muted) 35%, transparent); outline-offset: -3px; /* Nov 21: the same color as the other tabs; a dimmer outline */ white-space: nowrap; }
@@ -2019,7 +2025,7 @@ a.dkev { text-decoration: none; }
 .grow .rk { background: var(--tile); color: var(--muted); box-shadow: none; }
 .gicons { position: relative; align-self: stretch; width: 90px; margin-block: -6px; margin-inline: -16px; padding-inline: 16px; box-sizing: content-box;
   clip-path: inset(-40px -24px 0 -40px); -webkit-mask-image: linear-gradient(180deg, #000 44px, transparent 58px); mask-image: linear-gradient(180deg, #000 44px, transparent 58px); }
-.gicons img, .gicons i { position: absolute; top: 10px; width: 52px; height: auto; aspect-ratio: 367 / 512; border-radius: 2px; filter: grayscale(1); }
+.gicons img, .gicons i { position: absolute; top: 10px; width: 52px; height: auto; aspect-ratio: 367 / 512; border-radius: 3px; filter: grayscale(1); }
 .gicons i { display: block; border: 1.5px dashed var(--line-strong); box-sizing: border-box; filter: none; }
 .gicons > :first-child { left: 10px; top: 12px; z-index: 1; transform: translateY(3px) rotate(-9deg); }
 .gicons > :nth-child(2) { left: 50px; top: 7px; transform: translateY(3px) rotate(9deg); }
@@ -2310,7 +2316,7 @@ a.dkev { text-decoration: none; }
 .ekeb .e-psychic, .ekel .e-psychic { background: #a46bd6; } .ekeb .e-fighting, .ekel .e-fighting { background: #c9783b; } .ekeb .e-darkness, .ekel .e-darkness { background: #4a5463; } .ekeb .e-metal, .ekel .e-metal { background: #8f9aa5; } .ekeb .e-dragon, .ekel .e-dragon { background: #b39130; } .ekeb .e-colorless, .ekel .e-colorless { background: #bdbdbd; }
 .ekwon { margin: 10px 0 0; padding: 8px 11px; border-radius: 10px; font-size: 13px; background: var(--surface); box-shadow: var(--pin-sh); } .ekwon b { color: #a8740e; font-weight: 600; } .ekwon em { font-style: normal; color: #1f9d55; font-weight: 500; }
 .ekic { position: relative; display: inline-block; flex: none; width: 38px; height: 30px; overflow: hidden; -webkit-mask-image: linear-gradient(#000 62%, transparent); mask-image: linear-gradient(#000 62%, transparent); }
-.ekic img { position: absolute; top: 0; width: 22px; height: auto; border-radius: 2px; }
+.ekic img { position: absolute; top: 0; width: 22px; height: auto; border-radius: 3px; }
 .ekic img:first-child { left: 3px; transform: rotate(-6deg); } .ekic img:nth-child(2) { left: 15px; top: 2px; transform: rotate(5deg); }
 .ek2 button { font-family: inherit; color: inherit; background: none; border: 0; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .ek8 { display: grid; grid-template-columns: 34px 38px minmax(0, 1fr) auto auto 46px; gap: 8px; align-items: center; width: 100%; padding: 4px 6px; border-radius: 9px; }
@@ -2328,7 +2334,7 @@ a.dkev { text-decoration: none; }
 .eksr b { display: block; font-size: 13px; font-weight: 600; } .eksr small { font-size: 11.5px; color: var(--muted); } .eksr small b { display: inline; font-size: inherit; color: var(--ink); }
 .ektag { padding: 3px 8px; border-radius: 6px; background: #1f9d55; color: #fff; font-size: 11.5px; font-weight: 600; white-space: nowrap; } .ektag.dn { background: #d6345a; }
 .ektc { display: grid; grid-template-columns: 36px 1fr; gap: 8px; align-items: center; width: 100%; padding: 5px 6px; border-radius: 9px; }
-.ektc img { width: 36px; height: auto; border-radius: 3px; } .ektc b { display: block; font-size: 12.5px; } .ektc small { display: block; font-size: 11px; color: var(--muted); } .ektc i { font-style: normal; font-size: 10.5px; color: var(--acc-ink); }
+.ektc img { width: 36px; height: auto; border-radius: 4px; } .ektc b { display: block; font-size: 12.5px; } .ektc small { display: block; font-size: 11px; color: var(--muted); } .ektc i { font-style: normal; font-size: 10.5px; color: var(--acc-ink); }
 .eknsl { margin: 6px 6px 0; font-size: 12px; color: var(--muted); } .eknsl b { color: var(--ink); }
 .ekdr { display: grid; grid-template-columns: 38px minmax(0, 1fr) 20px 80px; gap: 8px; align-items: center; width: 100%; padding: 3px 6px; border-radius: 9px; font-size: 12.5px; } .ekdr > b { text-align: right; }
 .ekdk:not(.all) .ekdr:nth-of-type(n + 7) { display: none; }
@@ -2391,7 +2397,7 @@ a.dkev { text-decoration: none; }
 .t1s-set { display: contents; }
 a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30: Top 10 items are links on the site */
 .t1s-c { flex: none; position: relative; width: var(--cw); height: calc(var(--ch) * 1.5); padding: 0; border: 0; background: none; cursor: inherit; transform: rotate(5deg); transform-origin: 50% 0; -webkit-tap-highlight-color: transparent; }
-.t1s-c img { position: absolute; left: 0; top: 0; width: 100%; height: auto; aspect-ratio: 240 / 335; border-radius: 5px; background: var(--tile); /* Nov 25: shadow = .tcard.l (2px 2px 5px). Nov 21: wider to the right, a bit darker (was 0 2px 4px 0.25). Dark slate (the panel tint was too light on the cards) */ pointer-events: none; -webkit-user-drag: none; }
+.t1s-c img { position: absolute; left: 0; top: 0; width: 100%; height: auto; aspect-ratio: 240 / 335; border-radius: 6px; background: var(--tile); /* Nov 25: shadow = .tcard.l (2px 2px 5px). Nov 21: wider to the right, a bit darker (was 0 2px 4px 0.25). Dark slate (the panel tint was too light on the cards) */ pointer-events: none; -webkit-user-drag: none; }
 .t1s-c img.b { left: 8px; top: calc(var(--ch) * 0.5); /* Nov 21: 50% lower (was 45%); the shelf height stays */ box-shadow: 0 -3px 6px rgba(40, 60, 90, 0.35), var(--card-sh-l); } /* the upward layer (was 0.28): the front card sits on the back one */
 .t1s-set > .t1s-c:first-child::before { content: ""; position: absolute; left: -8.5px; top: -4px; width: 1px; height: calc(var(--ch) * 1.1); background: linear-gradient(rgba(var(--sh), 0), rgba(var(--sh), 1) 15%, rgba(var(--sh), 1) 70%, rgba(var(--sh), 0)); box-shadow: 1px 0 0 rgba(255, 255, 255, 0.8); } /* the loop seam: between #10 and #1 */
 .t1s-c:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
@@ -2472,7 +2478,7 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 .cdh { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 14px; align-items: center; margin: 2px 0 10px; padding: 12px 16px; border-radius: var(--r-card, 14px); background: var(--surface); box-shadow: var(--raised), var(--bevel); }
 .cdh[hidden] { display: none; }
 .cdh-i { padding: 0; border: 0; background: none; cursor: zoom-in; line-height: 0; transform: rotate(-4deg); }
-.cdh-i img { width: 64px; height: auto; border-radius: 4px; }
+.cdh-i img { width: 64px; height: auto; border-radius: 5px; }
 .cdh-t p { margin: 0; }
 .cdh-n { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--ink); }
 .cdh-n .setc { margin-left: 6px; vertical-align: 2px; }
@@ -2485,7 +2491,7 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 .pkd-l { max-height: calc(var(--pkrh, 44px) * 3.25); overflow-y: auto; overscroll-behavior: contain; }
 .pkd-chip { display: inline-block; margin-left: 4px; padding: 1px 7px; border-radius: 999px; background: var(--chip); color: var(--chip-ink); font-size: 10.5px; font-weight: 600; vertical-align: 1px; }
 @media (min-width: 900px) { .pkp .pkd { display: flex; flex-direction: column; contain: size; } /* its content no longer sets the row height: the card grid does */
-  .pkp .pkd-l { flex: 1 1 0; min-height: 0; max-height: none; } }
+  .pkp .pkd-l { flex: 1 1 0; min-height: 0; max-height: none; align-content: start; grid-auto-rows: max-content; } } /* Nov 25: rows keep their own height (they stretched to fill the column when the card has few decks) */
 /* Nov 23: Breakout decks: the gold chip on a deck row, and the line under the Top 10 */
 .brki { position: relative; top: -1px; flex: none; width: 13px; height: 10px; overflow: visible; /* 1px up: centred on the capital letters */ fill: #fff; stroke: #c99a2e; stroke-width: 2; stroke-linejoin: round; paint-order: stroke; }
 .brki .cb { fill: none; stroke: #c99a2e; stroke-width: 0.9; }
@@ -2556,7 +2562,7 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 .pkr-n small { margin-top: 3px; }
 .pkr-n small { display: flex; align-items: center; min-height: 19px; overflow: hidden; color: var(--muted); font-size: 12px; white-space: nowrap; }
 .pkr-m { display: flex; gap: 4px; margin-top: 4px; }
-.pkr-m img { width: 24px; height: auto; aspect-ratio: 240 / 335; border-radius: 2px; background: var(--tile); box-shadow: 1px 1px 3px rgba(40, 60, 90, 0.3); }
+.pkr-m img { width: 24px; height: auto; aspect-ratio: 240 / 335; border-radius: 3px; background: var(--tile); box-shadow: 1px 1px 3px rgba(40, 60, 90, 0.3); }
 .pkr-m img.lo { opacity: 0.4; }
 .pkr-v { color: var(--muted); font-size: 12.5px; text-align: right; white-space: nowrap; }
 .pkr-v b { color: var(--ink); font-size: 14px; }
@@ -2565,14 +2571,14 @@ a.t1s-c, a.t1s-r { text-decoration: none; -webkit-touch-callout: none; } /* R30:
 .pka.open .pkp { display: block; }
 /* the card grid (like a decklist): 5 columns, 3 rows show (phones); 10 columns, 2 rows (wide); then it scrolls */
 .pkg-w { container-type: inline-size; margin: 8px 0 10px; }
-.pkg { --n: 5; --g: 8px; --rows: 3; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 10px var(--g); max-height: calc(var(--rows) * ((100cqw - 8px - (var(--n) - 1) * var(--g)) / var(--n) * 1.396 + 21px) + (var(--rows) - 1) * 10px + 10px); padding: 4px 4px 6px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.pkg { --n: 5; --g: 8px; --rows: 3; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 10px var(--g); max-height: calc(var(--rows) * ((100cqw - 8px - (var(--n) - 1) * var(--g)) / var(--n) * 1.396 + 21px) + (var(--rows) - 1) * 10px + 10px); padding: 16px; margin: -12px -12px -10px; /* Nov 25: room for the picked card (12% + its plate) inside the scroll box; the margins keep the grid where it was (was padding 4px 4px 6px) */ overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 @media (min-width: 700px) { .pkg { --n: 10; --g: 10px; --rows: 2; } }
 .pkc { display: grid; justify-items: center; gap: 4px; min-width: 0; padding: 0; border: 0; background: none; color: var(--muted); font-family: inherit; text-align: center; cursor: pointer; }
-.pkc-i { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 240 / 335; overflow: hidden; border-radius: 5px; background: var(--tile); box-shadow: 2px 2px 5px rgba(40, 60, 90, 0.33); }
+.pkc-i { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 240 / 335; overflow: hidden; border-radius: 3px; background: var(--tile); box-shadow: var(--card-sh-m); } /* Nov 25: corners and shadow as the deck list cards (was 5px, 2px 2px 5px) */
 .pkc-i > span { padding: 4px; font-size: 10px; line-height: 1.2; } /* the name, under the image (shows when there is no image) */
 .pkc-i img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .pkc small { font-size: 11px; }
-.pkc.on .pkc-i { outline: 2px solid var(--card-sel); outline-offset: 2px; }
+/* Nov 25: .pkc.on .pkc-i: the game's pick (below) */
 .pkc.lo:not(.on) .pkc-i { opacity: 0.4; }
 .pkc.lo:not(.on) small { opacity: 0.6; }
 .pkd { padding-top: 8px; box-shadow: inset 0 1px 0 rgba(var(--sh), 0.8); }
@@ -4754,11 +4760,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (promo) { label = "Obtained from"; sub = "Promo card, not from a booster pack"; }
     else if (ps.length > 1) {
       const all = Object.values(PK.packs).filter((p) => p.set === code).length;
-      sub = ps.length === all ? `In ${all === 2 ? "both" : "all " + all} ${set.name} packs` : `In ${ps.length} of the ${all} ${set.name} packs`;
-    } else sub = ps[0].name === set.name ? `Released ${fdate(set.release)}` : `${set.name} \u00b7 ${fdate(set.release)}`;
-    const body = `<span class="pks n${Math.min(ps.length, 3)}">${imgs}</span><span class="pt"><span class="pl">${label}</span><b>${esc(ps.map((p) => p.name).join(" or "))}</b><span class="psub">${esc(sub)}</span>`;
+      sub = ps.length === all ? `In ${all === 2 ? "both" : "all " + all} packs` : `In ${ps.length} of the ${all} packs`; // Nov 25: the set name is the line above
+    } else sub = ps[0].name === set.name ? "" : ps[0].name; // Nov 25: as the pack rows: the set name, then its code + the pack name (no date)
+    const go = !promo && n, pc = `pks n${Math.min(ps.length, 3)}`; // Nov 25: only the pack picture opens the pack on the Packs tab (was the whole box + "See in Packs")
+    const pic = go ? `<button type="button" class="${pc} pkgo" data-pk="${esc(ids.join(" "))}" data-cn="${esc(n)}" aria-label="${esc(ps.map((p) => p.name).join(" or "))}: open in Packs to Open">${imgs}</button>` : `<span class="${pc}">${imgs}</span>`;
+    const body = `${pic}<span class="pt"><span class="pl">${label}</span><b>${esc(promo ? ps.map((p) => p.name).join(" or ") : set.name || ps[0].name)}</b><span class="psub">${promo ? "" : `<span class="pkcode">${esc(code.toUpperCase())}</span>`}${esc(sub)}</span>`;
     // Nov 22: a booster pack tile is a link to that pack on the Packs tab (not for promos)
-    return promo || !n ? `<div class="pack">${body}</span></div>` : `<button type="button" class="pack pkgo" data-pk="${esc(ids.join(" "))}" data-cn="${esc(n)}">${body}<span class="pgo">See in Packs<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3.5 2 6.5 5l-3 3" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></button>`;
+    return `<div class="pack">${body}</div>`;
   }
   function popHTML(img) {
     const n = img.dataset.n || img.alt, grid = cGrp(img), id = cardId(img);
@@ -4784,10 +4792,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   }
   function showPop(img) {
     clearTimeout(hideT); clearTimeout(showT);
-    if (popImg) cGrp(popImg)?.querySelectorAll("img.hl").forEach((x) => x.classList.remove("hl"));
+    if (popImg) cGrp(popImg)?.querySelectorAll("img.hl").forEach((x) => x.classList.remove("hl", "pk"));
     popImg = img;
     const cid = cardId(img), fill = () => { if (popImg === img) { $("cPopIn").innerHTML = popHTML(img); placePop(); } };
-    cGrp(img).querySelectorAll(":scope > img").forEach((x) => cardId(x) === cid && x.classList.add("hl"));
+    cGrp(img).querySelectorAll(":scope > img").forEach((x) => cardId(x) === cid && x.classList.add("hl")); img.classList.add("pk"); // Nov 25: .pk = the tapped copy only (the game's pick); .hl = every copy (they stay bright)
     fill();
     if (!PK) loadPacks().then(fill);
     if (cpop.hidden) {
@@ -4806,7 +4814,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     clearTimeout(showT); clearTimeout(hideT);
     if (cpop.hidden) return;
     if (!FLOAT && !fromHistory && history.state && history.state.cpop) { history.back(); return; } // the popstate handler closes it
-    if (popImg) cGrp(popImg)?.querySelectorAll("img.hl").forEach((x) => x.classList.remove("hl"));
+    if (popImg) cGrp(popImg)?.querySelectorAll("img.hl").forEach((x) => x.classList.remove("hl", "pk"));
     if (popImg && cpop.contains(document.activeElement)) popImg.focus({ preventScroll: true });
     popImg = null; pinned = false;
     cpop.classList.remove("on"); cscrim.classList.remove("on");
@@ -6160,17 +6168,17 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (curTab === "limited" && !st.lb) lbLeave(); else if (st.lb && curTab !== "limited" && lbOn()) { lbFrom = lbFrom || { ev: curTab === "events", pk: curTab !== "events" && MV === "packs" }; setTab("limited"); } });
   $("tabE").addEventListener("click", () => setTab("events"));
   $("tabL").addEventListener("click", () => setTab("limited"));
-  // Nov 25: pressed state (pressFx): the panel under the finger gets .prs (CSS: smaller, half the shadow). Touch: after 60 ms; a move of 6px+, a page scroll or a cancel stops it.
-  // Not when the press is on a control inside the panel (share button, stats pill, rank badge: [data-tip]); not with reduced motion. A quick tap still shows it for 90 ms.
-  (() => { const SEL = ".arow, .pkr, .brkr, .t1s-c, .pks-c, .t1s-r, .fabout, .t1s-all, .morelink, .theme-btn, .filt-btn, .ech, .fdc, .sgc, .dpill.dpb, .dpill.epb, .shb, .swx, .altb, .dot, .chev-btn, .evbg, .tile.tlink, .qsave, .sp, .aqr, .shfoot .shsave, .qcol .qr, img.tcard[role='button'], .rb.rbt, .pkc, .pkd-r, .lchk, .ek8, .ekall, .eksr, .ektc, .ekdr", CTL = "button, a, [role='button'], [data-tip], input, select, label, summary", o = { capture: true, passive: true };
+  // Nov 25: pressed state (pressFx): the panel under the finger gets .prs (CSS: smaller, half the shadow). Touch: after 30 ms (was 60); a move of 6px+, a page scroll or a cancel stops it.
+  // Not when the press is on a control inside the panel (share button, stats pill, rank badge: [data-tip]); not with reduced motion. A quick tap still shows it for 60 ms (was 90).
+  (() => { const SEL = ".arow, .pkr, .brkr, .t1s-c, .pks-c, .t1s-r, .fabout, .t1s-all, .morelink, .theme-btn, .filt-btn, .ech, .fdc, .sgc, .dpill.dpb, .dpill.epb, .shb, .swx, .altb, .dot, .chev-btn, .evbg, .tile.tlink, .qsave, .sp, .aqr, .shfoot .shsave, .qcol .qr, img.tcard[role='button'], .rb.rbt, .pkc, .pkd-r, .lchk, .ek8, .ekall, .eksr, .ektc, .ekdr, .cpop .pks.pkgo", CTL = "button, a, [role='button'], [data-tip], input, select, label, summary", o = { capture: true, passive: true };
     let el = null, t0 = 0, tm = 0, x0 = 0, y0 = 0;
     const off = () => { clearTimeout(tm); if (el) el.classList.remove("prs"); el = null; };
     const on = () => { if (el) { el.classList.add("prs"); t0 = performance.now(); } };
     addEventListener("pointerdown", (e) => { off(); if (e.button > 0 || matchMedia("(prefers-reduced-motion: reduce)").matches || !e.target.closest) return;
       const t = e.target.closest(SEL); if (!t || e.target.closest(CTL) !== t) return;
-      el = t; t0 = 0; x0 = e.clientX; y0 = e.clientY; if (e.pointerType === "mouse") on(); else tm = setTimeout(on, 60); }, o);
+      el = t; t0 = 0; x0 = e.clientX; y0 = e.clientY; if (e.pointerType === "mouse") on(); else tm = setTimeout(on, 30); }, o);
     addEventListener("pointermove", (e) => { if (el && Math.hypot(e.clientX - x0, e.clientY - y0) > 6) off(); }, o);
-    addEventListener("pointerup", () => { if (!el) return; clearTimeout(tm); if (!t0) on(); const n = el, d = Math.max(0, 90 - (performance.now() - t0)); el = null; setTimeout(() => n.classList.remove("prs"), d); }, o);
+    addEventListener("pointerup", () => { if (!el) return; clearTimeout(tm); if (!t0) on(); const n = el, d = Math.max(0, 60 - (performance.now() - t0)); el = null; setTimeout(() => n.classList.remove("prs"), d); }, o);
     addEventListener("pointercancel", off, o); addEventListener("blur", off); addEventListener("scroll", off, { passive: true }); })(); /* scroll: the page only (not in capture: the shelves move by themselves) */
   lbTab(); setInterval(lbTab, 6e4); // the days left; the tab goes away at the end
   loadStats().catch(() => {}); // Nov 16: stats.json loads together with data.json (the Top 10 card is ready sooner)
