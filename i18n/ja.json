@@ -126,10 +126,6 @@
 "pack{0}",
 "パック{0!}"
 ],
-"0e60c63c9d": [
-"See in Packs",
-"パックで見る"
-],
 "0e70e686b6": [
 "in {0} days",
 "（{0}日間）"
@@ -337,10 +333,6 @@
 "21e164cb9e": [
 "· {0} of",
 "· {0}／"
-],
-"21ee87bfbf": [
-"In {0} of the {1} {2} packs",
-"{2}の{1}パック中{0}パックに収録"
 ],
 "22071c6d00": [
 "tap a deck to see its wins",
@@ -565,10 +557,6 @@
 "01f22e8cc7": [
 "Someone who finishes a single-deck event with at least 2 more wins than losses. So a 5-3 or a 4-2 is enough.",
 "1人1デッキの大会で、2勝以上勝ち越したプレイヤーのことです。"
-],
-"35d9bc5159": [
-"Released",
-"発売"
 ],
 "35e3987c5b": [
 "Limited Battle decks",

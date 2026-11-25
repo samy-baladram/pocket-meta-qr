@@ -95,10 +95,6 @@
 "pack{0}",
 "팩{0!}"
 ],
-"0e60c63c9d": [
-"See in Packs",
-"팩에서 보기"
-],
 "0e70e686b6": [
 "in {0} days",
 "({0}일간)"
@@ -282,10 +278,6 @@
 "21e164cb9e": [
 "· {0} of",
 "· {0}/"
-],
-"21ee87bfbf": [
-"In {0} of the {1} {2} packs",
-"{2}의 팩 {1}개 중 {0}개에 수록"
 ],
 "22071c6d00": [
 "tap a deck to see its wins",
@@ -482,10 +474,6 @@
 "01f22e8cc7": [
 "Someone who finishes a single-deck event with at least 2 more wins than losses. So a 5-3 or a 4-2 is enough.",
 "1인 1덱 대회에서 승이 패보다 2번 이상 많은 플레이어예요. 예를 들어 5승 3패, 4승 2패면 상위 플레이어예요."
-],
-"35d9bc5159": [
-"Released",
-"출시"
 ],
 "35e3987c5b": [
 "Limited Battle decks",

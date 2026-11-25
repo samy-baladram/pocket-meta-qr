@@ -95,10 +95,6 @@
 "pack{0}",
 "booster{0}"
 ],
-"0e60c63c9d": [
-"See in Packs",
-"Voir dans Boosters"
-],
 "0e70e686b6": [
 "in {0} days",
 "en {0} jours"
@@ -282,10 +278,6 @@
 "21e164cb9e": [
 "· {0} of",
 "· {0} sur"
-],
-"21ee87bfbf": [
-"In {0} of the {1} {2} packs",
-"Dans {0} des {1} boosters {2}"
 ],
 "22071c6d00": [
 "tap a deck to see its wins",
@@ -482,10 +474,6 @@
 "01f22e8cc7": [
 "Someone who finishes a single-deck event with at least 2 more wins than losses. So a 5-3 or a 4-2 is enough.",
 "Un joueur qui termine un tournoi à un seul deck avec au moins 2 victoires de plus que de défaites. Par exemple, un 5-3 ou un 4-2 suffit."
-],
-"35d9bc5159": [
-"Released",
-"Sortie"
 ],
 "35e3987c5b": [
 "Limited Battle decks",

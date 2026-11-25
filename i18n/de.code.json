@@ -247,11 +247,6 @@
    "replace": "`blieb nahe <b>${fx(a[1], 1)}${u}</b>` : `${a[1] > a[0] ? \"stieg\" : \"fiel\"} von ${fx(a[0], 1)}${u} auf <b>${fx(a[1], 1)}${u}</b>`"
   },
   {
-   "note": "pack: in all packs of the set",
-   "find": "`In ${all === 2 ? \"both\" : \"all \" + all} ${set.name} packs`",
-   "replace": "`In ${all === 2 ? \"beiden\" : \"allen \" + all} ${set.name}-Packs`"
-  },
-  {
    "note": "R37 (Nov 25): pack box: in all packs (no set name)",
    "find": "`In ${all === 2 ? \"both\" : \"all \" + all} packs`",
    "replace": "`In ${all === 2 ? \"beiden\" : \"allen \" + all} Packs`"
@@ -502,11 +497,6 @@
    "note": "new set notice: salió hoy / el 14 nov",
    "find": "today ? \"today\" : D(rel)",
    "replace": "today ? \"heute\" : \"am \" + D(rel)"
-  },
-  {
-   "note": "card popup: salió el 28 oct",
-   "find": "`Released ${fdate(set.release)}`",
-   "replace": "`Erschienen am ${fdate(set.release)}`"
   },
   {
    "note": "card popup: packs joined with o (R37: all: the aria-label and the bold promo line)",

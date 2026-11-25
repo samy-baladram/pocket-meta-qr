@@ -317,11 +317,6 @@
    "replace": "`<p class=\"tsay\">使用率は${mv(s, 0.3, \"%\")}。勝率は${w ? mv(w, 1, \"%\") : \"データなし\"}。${r ? `順位は${r[0] === r[1] ? `<b>${r[1]}位</b>のまま` : `${r[0]}位から<b>${r[1]}位</b>に`}。` : \"\"}</p>`"
   },
   {
-   "note": "pack: in all packs of the set",
-   "find": "`In ${all === 2 ? \"both\" : \"all \" + all} ${set.name} packs`",
-   "replace": "`${set.name}の全${all}パックに収録`"
-  },
-  {
    "note": "R37 (Nov 25): pack box: in all packs (no set name)",
    "find": "`In ${all === 2 ? \"both\" : \"all \" + all} packs`",
    "replace": "`全${all}パックに収録`"
@@ -1025,11 +1020,6 @@
    "find": "ps.map((p) => p.name).join(\" or \")",
    "replace": "ps.map((p) => p.name).join(\"・\")",
    "all": true
-  },
-  {
-   "note": "card popup: 11月1日発売",
-   "find": "`Released ${fdate(set.release)}`",
-   "replace": "`${fdate(set.release)}発売`"
   },
   {
    "note": "time: Live panel newest event (土) 9:05",

@@ -338,11 +338,6 @@
    "replace": "`<p class=\"tsay\">使用率${mv(s, 0.3, \"%\")}。勝率${w ? mv(w, 1, \"%\") : \"沒有資料\"}。${r ? `排名${r[0] === r[1] ? `維持<b>第${r[1]}名</b>` : `從第${r[0]}名變為<b>第${r[1]}名</b>`}。` : \"\"}</p>`"
   },
   {
-   "note": "pack: in all packs of the set",
-   "find": "`In ${all === 2 ? \"both\" : \"all \" + all} ${set.name} packs`",
-   "replace": "`收錄於${set.name}全部${all}種擴充包`"
-  },
-  {
    "note": "R37 (Nov 25): pack box: in all packs (no set name)",
    "find": "`In ${all === 2 ? \"both\" : \"all \" + all} packs`",
    "replace": "`收錄於全部${all}種擴充包`"
@@ -865,11 +860,6 @@
    "find": "ps.map((p) => p.name).join(\" or \")",
    "replace": "ps.map((p) => p.name).join(\"、\")",
    "all": true
-  },
-  {
-   "note": "card popup: 11月1日発売",
-   "find": "`Released ${fdate(set.release)}`",
-   "replace": "`${fdate(set.release)}推出`"
   },
   {
    "note": "time: Live panel newest event (土) 9:05",

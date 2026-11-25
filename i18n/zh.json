@@ -95,10 +95,6 @@
 "pack{0}",
 "擴充包{0!}"
 ],
-"0e60c63c9d": [
-"See in Packs",
-"在擴充包頁面查看"
-],
 "0e70e686b6": [
 "in {0} days",
 "（{0}天內）"
@@ -282,10 +278,6 @@
 "21e164cb9e": [
 "· {0} of",
 "· {0}／"
-],
-"21ee87bfbf": [
-"In {0} of the {1} {2} packs",
-"收錄於{2}的{1}種擴充包中的{0}種"
 ],
 "22071c6d00": [
 "tap a deck to see its wins",
@@ -482,10 +474,6 @@
 "01f22e8cc7": [
 "Someone who finishes a single-deck event with at least 2 more wins than losses. So a 5-3 or a 4-2 is enough.",
 "只要在每人1副牌組的比賽中，以勝場比敗場多2場以上的成績結束，就是頂尖玩家。所以5勝3敗或4勝2敗就算數了。"
-],
-"35d9bc5159": [
-"Released",
-"推出"
 ],
 "35e3987c5b": [
 "Limited Battle decks",

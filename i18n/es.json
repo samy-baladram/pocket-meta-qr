@@ -95,10 +95,6 @@
 "pack{0}",
 "sobre{0}"
 ],
-"0e60c63c9d": [
-"See in Packs",
-"Ver en Sobres"
-],
 "0e70e686b6": [
 "in {0} days",
 "en {0} días"
@@ -282,10 +278,6 @@
 "21e164cb9e": [
 "· {0} of",
 "· {0} de"
-],
-"21ee87bfbf": [
-"In {0} of the {1} {2} packs",
-"En {0} de los {1} sobres de {2}"
 ],
 "22071c6d00": [
 "tap a deck to see its wins",
@@ -482,10 +474,6 @@
 "01f22e8cc7": [
 "Someone who finishes a single-deck event with at least 2 more wins than losses. So a 5-3 or a 4-2 is enough.",
 "Es quien acaba un torneo de una sola baraja con al menos 2 victorias más que derrotas. Por ejemplo, un 5-3 o un 4-2 ya cuentan."
-],
-"35d9bc5159": [
-"Released",
-"Salida"
 ],
 "35e3987c5b": [
 "Limited Battle decks",

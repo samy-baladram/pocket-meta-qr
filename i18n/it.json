@@ -95,10 +95,6 @@
 "pack{0}",
 "bust{0}"
 ],
-"0e60c63c9d": [
-"See in Packs",
-"Vedi in Buste"
-],
 "0e70e686b6": [
 "in {0} days",
 "in {0} giorni"
@@ -282,10 +278,6 @@
 "21e164cb9e": [
 "· {0} of",
 "· {0} su"
-],
-"21ee87bfbf": [
-"In {0} of the {1} {2} packs",
-"In {0} delle {1} buste {2}"
 ],
 "22071c6d00": [
 "tap a deck to see its wins",
@@ -482,10 +474,6 @@
 "01f22e8cc7": [
 "Someone who finishes a single-deck event with at least 2 more wins than losses. So a 5-3 or a 4-2 is enough.",
 "Chi chiude un torneo a mazzo singolo con almeno 2 vittorie in più delle sconfitte. Quindi basta già un 5-3 o un 4-2."
-],
-"35d9bc5159": [
-"Released",
-"Uscita"
 ],
 "35e3987c5b": [
 "Limited Battle decks",
