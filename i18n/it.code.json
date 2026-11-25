@@ -262,6 +262,16 @@
    "replace": "`In ${all === 2 ? \"entrambe le\" : \"tutte le \" + all} buste ${set.name}`"
   },
   {
+   "note": "R37 (Nov 25): pack box: in all packs (no set name)",
+   "find": "`In ${all === 2 ? \"both\" : \"all \" + all} packs`",
+   "replace": "`In ${all === 2 ? \"entrambe le\" : \"tutte le \" + all} buste`"
+  },
+  {
+   "note": "R37 (Nov 25): pack box: pack picture aria-label",
+   "find": ": open in Packs to Open\">",
+   "replace": ": apri in «Quale busta?»\">"
+  },
+  {
    "note": "swap version",
    "find": "`a swap version of ${al.map((k) => (k === 1 ? \"the \" + L1n(d) : \"list \" + k)).join(\", \")}`",
    "replace": "`una variante della ${al.map((k) => (k === 1 ? \"\" + L1n(d) : \"lista \" + k)).join(\", \")}`"
@@ -509,9 +519,10 @@
    "replace": "`Uscita il ${fdate(set.release)}`"
   },
   {
-   "note": "card popup: packs joined with o",
+   "note": "card popup: packs joined with o (R37: all: the aria-label and the bold promo line)",
    "find": "ps.map((p) => p.name).join(\" or \")",
-   "replace": "ps.map((p) => p.name).join(\" o \")"
+   "replace": "ps.map((p) => p.name).join(\" o \")",
+   "all": true
   },
   {
    "note": "most wins: tornei vinti",

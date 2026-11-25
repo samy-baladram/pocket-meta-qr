@@ -252,6 +252,16 @@
    "replace": "`En ${all === 2 ? \"los dos\" : \"los \" + all} sobres de ${set.name}`"
   },
   {
+   "note": "R37 (Nov 25): pack box: in all packs (no set name)",
+   "find": "`In ${all === 2 ? \"both\" : \"all \" + all} packs`",
+   "replace": "`En ${all === 2 ? \"los dos\" : \"los \" + all} sobres`"
+  },
+  {
+   "note": "R37 (Nov 25): pack box: pack picture aria-label",
+   "find": ": open in Packs to Open\">",
+   "replace": ": abrir en «Qué sobre abrir»\">"
+  },
+  {
    "note": "swap version",
    "find": "`a swap version of ${al.map((k) => (k === 1 ? \"the \" + L1n(d) : \"list \" + k)).join(\", \")}`",
    "replace": "`una versión con cambios de ${al.map((k) => (k === 1 ? \"la \" + L1n(d) : \"la lista \" + k)).join(\", \")}`"
@@ -499,9 +509,10 @@
    "replace": "`Salió el ${fdate(set.release)}`"
   },
   {
-   "note": "card popup: packs joined with o",
+   "note": "card popup: packs joined with o (R37: all: the aria-label and the bold promo line)",
    "find": "ps.map((p) => p.name).join(\" or \")",
-   "replace": "ps.map((p) => p.name).join(\" o \")"
+   "replace": "ps.map((p) => p.name).join(\" o \")",
+   "all": true
   },
   {
    "note": "most wins: torneos ganados",

@@ -322,6 +322,16 @@
    "replace": "`${set.name}の全${all}パックに収録`"
   },
   {
+   "note": "R37 (Nov 25): pack box: in all packs (no set name)",
+   "find": "`In ${all === 2 ? \"both\" : \"all \" + all} packs`",
+   "replace": "`全${all}パックに収録`"
+  },
+  {
+   "note": "R37 (Nov 25): pack box: pack picture aria-label",
+   "find": ": open in Packs to Open\">",
+   "replace": "：「引くべきパック」で開く\">"
+  },
+  {
    "note": "swap version",
    "find": "`a swap version of ${al.map((k) => (k === 1 ? \"the \" + L1n(d) : \"list \" + k)).join(\", \")}`",
    "replace": "`${al.map((k) => (k === 1 ? L1n(d) : \"レシピ\" + k)).join(\"・\")}の入れ替え版`"
@@ -1011,9 +1021,10 @@
    "replace": "${nA === PKV.length ? nA + \"件\" : nA + \"件（ほか以前\" + (PKV.length - nA) + \"件）\"}"
   },
   {
-   "note": "card popup: packs joined with ・",
+   "note": "card popup: packs joined with ・ (R37: all: the aria-label and the bold promo line)",
    "find": "ps.map((p) => p.name).join(\" or \")",
-   "replace": "ps.map((p) => p.name).join(\"・\")"
+   "replace": "ps.map((p) => p.name).join(\"・\")",
+   "all": true
   },
   {
    "note": "card popup: 11月1日発売",

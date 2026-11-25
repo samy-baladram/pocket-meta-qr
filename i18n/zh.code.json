@@ -343,6 +343,16 @@
    "replace": "`收錄於${set.name}全部${all}種擴充包`"
   },
   {
+   "note": "R37 (Nov 25): pack box: in all packs (no set name)",
+   "find": "`In ${all === 2 ? \"both\" : \"all \" + all} packs`",
+   "replace": "`收錄於全部${all}種擴充包`"
+  },
+  {
+   "note": "R37 (Nov 25): pack box: pack picture aria-label",
+   "find": ": open in Packs to Open\">",
+   "replace": "：在「該抽哪個包」中開啟\">"
+  },
+  {
    "note": "swap version",
    "find": "`a swap version of ${al.map((k) => (k === 1 ? \"the \" + L1n(d) : \"list \" + k)).join(\", \")}`",
    "replace": "`${al.map((k) => (k === 1 ? L1n(d) : \"卡表\" + k)).join(\"、\")}的替換版`"
@@ -851,9 +861,10 @@
    "replace": "${nA === PKV.length ? nA + \"種\" : nA + \"種（另有舊系列\" + (PKV.length - nA) + \"種）\"}"
   },
   {
-   "note": "card popup: packs joined with ・",
+   "note": "card popup: packs joined with ・ (R37: all: the aria-label and the bold promo line)",
    "find": "ps.map((p) => p.name).join(\" or \")",
-   "replace": "ps.map((p) => p.name).join(\"、\")"
+   "replace": "ps.map((p) => p.name).join(\"、\")",
+   "all": true
   },
   {
    "note": "card popup: 11月1日発売",

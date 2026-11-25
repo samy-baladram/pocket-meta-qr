@@ -2218,5 +2218,9 @@
 "3a04893be4": [
 "Packs to Open",
 "Qual pacote?"
+],
+"d31a88af96": [
+"In {0} of the {1} packs",
+"Em {0} dos {1} pacotes"
 ]
 }
