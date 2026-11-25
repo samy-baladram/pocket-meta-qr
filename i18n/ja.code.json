@@ -1122,11 +1122,6 @@
    "replace": ">最新の大会</a>"
   },
   {
-   "note": "tabs: 引くべきパック (the page title and footer use it; the tab ranks packs by meta cards)",
-   "find": "><span class=\"tlx\">Booster </span>Packs</a>",
-   "replace": ">引くべきパック</a>"
-  },
-  {
    "note": "card filter: where the card is (lists)",
    "find": "parts.push(`${ls.length > 1 ? \"lists\" : \"list\"} ${ls.join(\", \")}`);",
    "replace": "parts.push(`レシピ${ls.join(\"・\")}`);"

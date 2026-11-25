@@ -459,10 +459,6 @@
 "· {0} top player{1}",
 "· {0} jugador{1} top"
 ],
-"326a3f7b0a": [
-"Booster Packs",
-"Sobres"
-],
 "327955ac28": [
 "Share {0}. Win rate {1}.{2}",
 "El uso {0}. El % de victorias {1}.{2}"
@@ -1290,10 +1286,6 @@
 "8e3f944b07": [
 "Below 50%",
 "Por debajo del 50 %"
-],
-"8e4caec080": [
-"Booster",
-"Sobres"
 ],
 "61c0d00307": [
 "New set: {0}{t0} came out {1}. Until {2}, the numbers also include events from before its release.",

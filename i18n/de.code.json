@@ -559,11 +559,6 @@
    "replace": "Meta<span class=\"tlx\">-Decks</span>"
   },
   {
-   "note": "tab: Sobres (was Sobres Sobres on wide screens)",
-   "find": "<span class=\"tlx\">Booster </span>Packs",
-   "replace": "Packs"
-  },
-  {
    "note": "label: Limited Battle tab",
    "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
    "replace": "b.setAttribute(\"aria-label\", `Limitierte Kämpfe, ${lbLeft(true)}`)"

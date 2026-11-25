@@ -530,10 +530,6 @@
 "· {0} top player{1}",
 "· 上位プレイヤー{0}人{1!}"
 ],
-"326a3f7b0a": [
-"Booster Packs",
-"引くべきパック"
-],
 "327955ac28": [
 "Share {0}. Win rate {1}.{2}",
 "使用率{0}。勝率{1}。{2}"
@@ -1520,10 +1516,6 @@
 "8e3f944b07": [
 "Below 50%",
 "50%未満"
-],
-"8e4caec080": [
-"Booster",
-"拡張"
 ],
 "61c0d00307": [
 "New set: {0}{t0} came out {1}. Until {2}, the numbers also include events from before its release.",

@@ -569,11 +569,6 @@
    "replace": "<span class=\"tlx\">Mazzi meta</span><span class=\"tls\">Meta</span>"
   },
   {
-   "note": "tab: Buste",
-   "find": "<span class=\"tlx\">Booster </span>Packs",
-   "replace": "Buste"
-  },
-  {
    "note": "label: Limited Battle tab (Lotte esclusive)",
    "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
    "replace": "b.setAttribute(\"aria-label\", `Lotte esclusive, ${lbLeft(true)}`)"
