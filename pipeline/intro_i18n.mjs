@@ -85,7 +85,7 @@ const SEC_DESC = {
     about: "Cómo importar una baraja de JCC Pokémon Pocket con un código QR, de dónde vienen los datos (torneos de Limitless, últimos 7 días) y cómo se ordenan las barajas y las listas." },
   pt: { events: "Resultados dos últimos torneios de Pokémon TCG Pocket: listas do top 8 com códigos QR.",
     packs: "Quais pacotes de Pokémon TCG Pocket dão as cartas dos baralhos do meta desta semana.",
-    limited: "Baralhos selecionados com códigos QR para a Batalha Limitada atual.",
+    limited: "Baralhos selecionados com códigos QR para o evento atual de Batalhas Limitadas.",
     about: "Como importar um baralho de Pokémon TCG Pocket por código QR, de onde vêm os dados (torneios da Limitless, últimos 7 dias) e como os baralhos e as listas são classificados." },
   de: { events: "Ergebnisse der neuesten Pokémon TCG Pocket-Turniere: Top-8-Listen mit QR-Codes.",
     packs: "Welche Pokémon TCG Pocket-Packs die Karten der Meta-Decks dieser Woche enthalten.",
