@@ -16,6 +16,7 @@ build time. Nothing changes in the live page, and a built page has no translatio
   Battle name. `{"patches": [{"note", "find", "replace", "all"?}]}`; `find` = exact code of the page, applied before the
   texts. A `find` that is not in the page is not used: the build prints it and the report lists it (`codeMiss`). The
   Limited Battle name patch must change when `LB` changes.
+- `groups.json`, `groups.py`: the group of each text and code change (see Groups below).
 - `build.mjs`: page + language -> translated page and a report (`/i18n/report.<lang>.json` on the site: missing, bad,
   old). `pseudo.mjs`: the safety check (every text as ⟦text⟧).
 
@@ -239,6 +240,38 @@ copies and top players, the main print's pack names as the page shows them, or t
 Korean and Traditional Chinese (Nov 25): ko and zh in all five settings (I18N_INDEX, I18N_ROUTES, I18N_DECKS,
 I18N_PACKS, I18N_CARDS), with their templates in intro_i18n.mjs (ko: Western punctuation, "덱 3개", "2장"; zh: the
 full-width punctuation of ja, "3個牌組", "×2"). zh is Traditional Chinese: `zh-Hant` in hreflang and `<html lang>`.
+
+## Groups (Nov 26, 2026): which part of the site a text belongs to
+`i18n/groups.json` gives each text id a group. All languages share the ids, so one file covers all 8 catalogs. Each
+code change in `<lang>.code.json` also has a `"group"`. Use the groups to review one area at a time, and to see where a
+UI change hit.
+
+| Group | What | Where it is |
+|---|---|---|
+| `faq` | About & FAQ page | catalog |
+| `tooltips` | ⓘ popovers and info sheets (long explaining texts) | catalog |
+| `shell` | header, tabs, footer, language / theme menu, live status, Add to Home Screen steps, share, QR save | catalog |
+| `search` | search box, filter sheet, suggestions | catalog |
+| `decks` | Meta decks: Top 10, deck rows, deck sheet, lists and swaps, badges | catalog |
+| `events` | Latest events: list, event sheet, winners, results | catalog |
+| `packs` | Packs to Open, the card sheet and card pages | catalog |
+| `limited` | Limited Battle banner, page, rules. **Seasonal:** check at each new event | catalog + code changes |
+| `messages` | loading, empty and error messages | catalog |
+| `shared` | words that several areas use: periods (this week, last N days), months, "N ago" | catalog |
+| `seo` | page titles and descriptions | catalog; the localized intros and descriptions are in `pipeline/intro_i18n.mjs` |
+| `whatsnew` | What's new entries | catalog (ja); English only elsewhere (`enOnly`) |
+| `grammar` | code changes only: numbers, dates, plurals, ordinals, counters, word order | `<lang>.code.json` |
+| `other` | not sorted yet: set the group by hand | — |
+
+Not in the groups: **game names** (sets, packs, cards, Pokémon, energies, event names) come from the game data and
+`preview/i18n/names.fix.json`. Copy them from the game (with a screenshot), never translate them.
+
+- **New texts:** after a UI change, run `python3 i18n/groups.py <preview page>`. It gives a group to new texts and new
+  code changes, and keeps every group that is already set (hand fixes stay). It sorts by the page function or section
+  the text is in (the `ANCHOR` list), then by length (long sentences = `tooltips`) and a few word rules.
+- **The build** (`build.mjs`) prints "old (English changed) by group: …" and "not used (placeholders) by group: …", and
+  says when texts have no group yet. The report gives each missing, bad and old text its `group` ("new" = not in
+  `groups.json` yet).
 
 ## When the live page changes
 Every build extracts the texts again. New or changed English texts have new ids, so they show as missing in

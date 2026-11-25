@@ -194,7 +194,7 @@ export function catalog(page, cfg) {
   const C = scan(page, cfg), map = new Map();
   for (const c of C) for (const r of c.runs) {
     const { text } = runText(c.toks, r), id = runId(text);
-    const x = map.get(id) || (map.set(id, { id, en: text, where: [] }), map.get(id));
+    const x = map.get(id) || (map.set(id, { id, en: text, at: c.s, where: [] }), map.get(id));
     if (x.where.length < 3) x.where.push(`${c.kind} ${c.ctx.slice(-40)}`);
   }
   return [...map.values()];

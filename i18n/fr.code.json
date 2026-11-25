@@ -4,916 +4,1095 @@
   {
    "note": "tab: Derniers tournois (wide) / Tournois (phone)",
    "find": "<span class=\"tlx\">Latest </span>Events",
-   "replace": "<span class=\"tlx\">Derniers tournois</span><span class=\"tls\">Tournois</span>"
+   "replace": "<span class=\"tlx\">Derniers tournois</span><span class=\"tls\">Tournois</span>",
+   "group": "shell"
   },
   {
    "note": "pack card sheet: dans 3 decks méta",
    "find": "${c.st ? \"meta \" : \"\"}deck",
-   "replace": "${c.st ? \"\\u00a0méta\" : \"\"}deck"
+   "replace": "${c.st ? \"\\u00a0méta\" : \"\"}deck",
+   "group": "packs"
   },
   {
    "note": "Limited Battle: the cards line",
    "find": "Dual Fusion, Promo-C Vol. 1 and 7 shop promos ${ii(",
-   "replace": "Fusion Double, Booster promo série C, vol. 1 et 7 promos de la boutique ${ii("
+   "replace": "Fusion Double, Booster promo série C, vol. 1 et 7 promos de la boutique ${ii(",
+   "group": "limited"
   },
   {
    "note": "Limited Battle: cards tip, with French card names",
    "find": "<p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(\", \")}.</p>",
-   "replace": "<p>Seulement les cartes de <b>Fusion Double</b> (C1), du <b>Booster promo série C, vol. 1</b> de cet événement et de ces 7 promos de la boutique\\u00a0:</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\", \")}.</p>"
+   "replace": "<p>Seulement les cartes de <b>Fusion Double</b> (C1), du <b>Booster promo série C, vol. 1</b> de cet événement et de ces 7 promos de la boutique\\u00a0:</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\", \")}.</p>",
+   "group": "tooltips"
   },
   {
    "note": "Limited Battle: the event name as in the French game (Combats restreints, Pokébip; a new event keeps its English name until it is added here)",
    "find": "const LB_DEMO = ",
-   "replace": "LB.name = { \"Dual Fusion Limited Battle\": \"Combats restreints : Fusion Double\" }[LB.name] || LB.name; const LB_DEMO = "
+   "replace": "LB.name = { \"Dual Fusion Limited Battle\": \"Combats restreints : Fusion Double\" }[LB.name] || LB.name; const LB_DEMO = ",
+   "group": "limited"
   },
   {
    "note": "Limited Battle end time: 2 déc. à 14:59 (before the fr-FR date patches)",
    "find": "${end.toLocaleDateString(undefined, o)}, ${end.toLocaleTimeString(undefined, { hour: \"numeric\", minute: \"2-digit\" })}`",
-   "replace": "${end.toLocaleDateString(\"fr-FR\", o)} à ${end.toLocaleTimeString(\"fr-FR\", { hour: \"numeric\", minute: \"2-digit\" })}`"
+   "replace": "${end.toLocaleDateString(\"fr-FR\", o)} à ${end.toLocaleTimeString(\"fr-FR\", { hour: \"numeric\", minute: \"2-digit\" })}`",
+   "group": "tooltips"
   },
   {
    "note": "share button label: Copiar el enlace de este torneo",
    "find": "aria-label=\"${TOUCH ? \"Share\" : \"Copy the link to\"} this ${what}\"",
-   "replace": "aria-label=\"${TOUCH ? \"Partager\" : \"Copier le lien de\"} ${({ event: \"ce tournoi\", deck: \"ce deck\", list: \"cette liste\", pack: \"ce booster\", card: \"cette carte\" })[what] || what}\""
+   "replace": "aria-label=\"${TOUCH ? \"Partager\" : \"Copier le lien de\"} ${({ event: \"ce tournoi\", deck: \"ce deck\", list: \"cette liste\", pack: \"ce booster\", card: \"cette carte\" })[what] || what}\"",
+   "group": "tooltips"
   },
   {
    "note": "energy names as in the French TCG (Plante, Feu, Eau, Électrique, Psy …)",
    "find": "const cap = (s) => s[0].toUpperCase() + s.slice(1);",
-   "replace": "const EN_FR = { grass: \"Plante\", fire: \"Feu\", water: \"Eau\", lightning: \"Électrique\", psychic: \"Psy\", fighting: \"Combat\", darkness: \"Obscurité\", metal: \"Métal\", colorless: \"Incolore\", dragon: \"Dragon\" }, cap = (s) => EN_FR[s] || s[0].toUpperCase() + s.slice(1);"
+   "replace": "const EN_FR = { grass: \"Plante\", fire: \"Feu\", water: \"Eau\", lightning: \"Électrique\", psychic: \"Psy\", fighting: \"Combat\", darkness: \"Obscurité\", metal: \"Métal\", colorless: \"Incolore\", dragon: \"Dragon\" }, cap = (s) => EN_FR[s] || s[0].toUpperCase() + s.slice(1);",
+   "group": "grammar"
   },
   {
    "note": "event: card in the N-place list",
    "find": "<small>in the ${ordF(t.l.pl)}-place ${esc(dn(t.l.deck))}</small>",
-   "replace": "<small>dans le deck ${esc(dn(t.l.deck))} (${ordF(t.l.pl)} place)</small>"
+   "replace": "<small>dans le deck ${esc(dn(t.l.deck))} (${ordF(t.l.pl)} place)</small>",
+   "group": "events"
   },
   {
    "note": "event: did worse line",
    "find": "`#${o.d.rank} \\u00b7 ${pc(o.d.share)}% share ${winWk()} \\u00b7 about ${Math.round(o.x)} lists expected, got <b>${o.g}</b>`, `${o.g} of ~${Math.round(o.x)}`",
-   "replace": "`${oF(o.d.rank)} \\u00b7 ${pn(pc(o.d.share))}% de présence ${winWk()} \\u00b7 environ ${Math.round(o.x)} listes attendues, <b>${o.g}</b> obtenues`, `${o.g} sur ~${Math.round(o.x)}`"
+   "replace": "`${oF(o.d.rank)} \\u00b7 ${pn(pc(o.d.share))}% de présence ${winWk()} \\u00b7 environ ${Math.round(o.x)} listes attendues, <b>${o.g}</b> obtenues`, `${o.g} sur ~${Math.round(o.x)}`",
+   "group": "events"
   },
   {
    "note": "event: new-set cards",
    "find": "<b>${esc(data.set)} cards</b> in the top ${n} (lists): ",
-   "replace": "<b>Cartes ${esc(data.set)}</b> dans le top ${n} (listes)\\u00a0: "
+   "replace": "<b>Cartes ${esc(data.set)}</b> dans le top ${n} (listes)\\u00a0: ",
+   "group": "events"
   },
   {
    "note": "event: decks in the top N",
    "find": "<b>Decks in the top ${n}</b><span>lists</span>",
-   "replace": "<b>Decks dans le top ${n}</b><span>listes</span>"
+   "replace": "<b>Decks dans le top ${n}</b><span>listes</span>",
+   "group": "events"
   },
   {
    "note": "event: only here tip (fixes the literal ${winWk()})",
    "find": "'<span class=\"ekfm z\" title=\"No top 8 at other events ${winWk()}\">only here</span>'",
-   "replace": "`<span class=\"ekfm z\" title=\"Pas de top 8 dans d’autres tournois ${winWk()}\">seulement ici</span>`"
+   "replace": "`<span class=\"ekfm z\" title=\"Pas de top 8 dans d’autres tournois ${winWk()}\">seulement ici</span>`",
+   "group": "events"
   },
   {
    "note": "event: top 8s tip",
    "find": "title=\"Top 8s at other events ${winWk()}\"",
-   "replace": "title=\"Top 8 dans d’autres tournois ${winWk()}\""
+   "replace": "title=\"Top 8 dans d’autres tournois ${winWk()}\"",
+   "group": "events"
   },
   {
    "note": "event: new tip",
    "find": "title=\"Under 0.3% share ${winWk()}\"",
-   "replace": "title=\"Moins de 0,3\\u00a0% de présence ${winWk()}\""
+   "replace": "title=\"Moins de 0,3\\u00a0% de présence ${winWk()}\"",
+   "group": "events"
   },
   {
    "note": "event: share ratio tip",
    "find": "title=\"Its share of the top ${n}: ${Math.round(r)}\\u00d7 its share ${winWk()}\"",
-   "replace": "title=\"Sa présence dans le top ${n}\\u00a0: ${Math.round(r)}\\u00d7 sa présence ${winWk()}\""
+   "replace": "title=\"Sa présence dans le top ${n}\\u00a0: ${Math.round(r)}\\u00d7 sa présence ${winWk()}\"",
+   "group": "tooltips"
   },
   {
    "note": "winners: label",
    "find": "aria-label=\"${esc(shortEv(e.name))}: won by ${esc(e.win.name)}, ${e.players} players\"",
-   "replace": "aria-label=\"${esc(shortEv(e.name))}\\u00a0: remporté par ${esc(e.win.name)}, ${e.players} joueurs\""
+   "replace": "aria-label=\"${esc(shortEv(e.name))}\\u00a0: remporté par ${esc(e.win.name)}, ${e.players} joueurs\"",
+   "group": "tooltips"
   },
   {
    "note": "winners: shelf label",
    "find": "aria-label=\"Event winners, newest first\"",
-   "replace": "aria-label=\"Vainqueurs des tournois, du plus récent au plus ancien\""
+   "replace": "aria-label=\"Vainqueurs des tournois, du plus récent au plus ancien\"",
+   "group": "events"
   },
   {
    "note": "events: biggest button",
    "find": "aria-label=\"Open the biggest event\"",
-   "replace": "aria-label=\"Ouvrir le plus grand tournoi\""
+   "replace": "aria-label=\"Ouvrir le plus grand tournoi\"",
+   "group": "events"
   },
   {
    "note": "QR: enlarge label",
    "find": "aria-label=\"Enlarge the QR code for ${esc(d.name)}\"",
-   "replace": "aria-label=\"Agrandir le code QR de ${esc(d.name)}\""
+   "replace": "aria-label=\"Agrandir le code QR de ${esc(d.name)}\"",
+   "group": "decks"
   },
   {
    "note": "QR: image alt",
    "find": "alt=\"Deck share code for ${esc(d.name)}\"",
-   "replace": "alt=\"Code de partage du deck ${esc(d.name)}\""
+   "replace": "alt=\"Code de partage du deck ${esc(d.name)}\"",
+   "group": "decks"
   },
   {
    "note": "packs: + cards in small decks",
    "find": "<small>${m ? \"+\" : \"\"}${w} in small decks</small>",
-   "replace": "<small>${m ? \"+\" : \"\"}${w} dans de petits decks</small>"
+   "replace": "<small>${m ? \"+\" : \"\"}${w} dans de petits decks</small>",
+   "group": "packs"
   },
   {
    "note": "packs: shelf label",
    "find": "aria-label=\"Top 10 packs by meta cards\"",
-   "replace": "aria-label=\"Les 10 boosters avec le plus de cartes méta\""
+   "replace": "aria-label=\"Les 10 boosters avec le plus de cartes méta\"",
+   "group": "packs"
   },
   {
    "note": "packs: sort label",
    "find": "aria-label=\"Sort packs\"",
-   "replace": "aria-label=\"Trier les boosters\""
+   "replace": "aria-label=\"Trier les boosters\"",
+   "group": "packs"
   },
   {
    "note": "packs: card count under a card",
    "find": "<small>${c.st ? `${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} small`}</small>",
-   "replace": "<small>${c.st ? `${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} petit${c.decks.length > 1 ? \"s\" : \"\"}`}</small>"
+   "replace": "<small>${c.st ? `${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}` : `${c.decks.length} petit${c.decks.length > 1 ? \"s\" : \"\"}`}</small>",
+   "group": "tooltips"
   },
   {
    "note": "packs: card label",
    "find": "aria-label=\"${esc(c.n)}, in ${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}\"",
-   "replace": "aria-label=\"${esc(c.n)}, dans ${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}\""
+   "replace": "aria-label=\"${esc(c.n)}, dans ${c.decks.length} deck${c.decks.length > 1 ? \"s\" : \"\"}\"",
+   "group": "tooltips"
   },
   {
    "note": "label: rank, same as 24 h ago",
    "find": "aria-label=\"Rank ${d.rank}, same rank as 24 hours ago\"",
-   "replace": "aria-label=\"Rang ${d.rank}, le même qu’il y a 24 heures\""
+   "replace": "aria-label=\"Rang ${d.rank}, le même qu’il y a 24 heures\"",
+   "group": "decks"
   },
   {
    "note": "label: rank, 24 h change",
    "find": "aria-label=\"Rank ${d.rank}, ${d.nw ? \"new in the list\" : \"change in 24 hours\"}\"",
-   "replace": "aria-label=\"Rang ${d.rank}, ${d.nw ? \"nouveau dans le classement\" : \"évolution sur 24 heures\"}\""
+   "replace": "aria-label=\"Rang ${d.rank}, ${d.nw ? \"nouveau dans le classement\" : \"évolution sur 24 heures\"}\"",
+   "group": "tooltips"
   },
   {
    "note": "label: rank: deck",
    "find": "aria-label=\"Rank ${d.rank}: ${esc(d.name)}\"",
-   "replace": "aria-label=\"Rang ${d.rank}\\u00a0: ${esc(d.name)}\""
+   "replace": "aria-label=\"Rang ${d.rank}\\u00a0: ${esc(d.name)}\"",
+   "group": "decks"
   },
   {
    "note": "label: deck: rank, share",
    "find": "aria-label=\"${esc(d.name)}: rank ${d.rank}, ${pct(d.share)}\"",
    "replace": "aria-label=\"${esc(d.name)}\\u00a0: rang ${d.rank}, ${pct(d.share)}\"",
-   "all": true
+   "all": true,
+   "group": "tooltips"
   },
   {
    "note": "label: About <x>",
    "find": "aria-label=\"About ${esc(label)}\"",
    "replace": "aria-label=\"À propos de ${esc(label)}\"",
-   "all": true
+   "all": true,
+   "group": "decks"
   },
   {
    "note": "label: data status",
    "find": "aria-label=\"Data status: checked ${agoTxt(data.updatedAt)}. Details\"",
-   "replace": "aria-label=\"État des données\\u00a0: vérifié ${agoTxt(data.updatedAt)}. Détails\""
+   "replace": "aria-label=\"État des données\\u00a0: vérifié ${agoTxt(data.updatedAt)}. Détails\"",
+   "group": "tooltips"
   },
   {
    "note": "tip: players, matches (fr-FR numbers: 1921, 12.345)",
    "find": "title=\"${sm.players.toLocaleString()} players, ${sm.matches.toLocaleString()} matches\"",
-   "replace": "title=\"${sm.players.toLocaleString(\"fr-FR\")} joueurs, ${sm.matches.toLocaleString(\"fr-FR\")} matchs\""
+   "replace": "title=\"${sm.players.toLocaleString(\"fr-FR\")} joueurs, ${sm.matches.toLocaleString(\"fr-FR\")} matchs\"",
+   "group": "shell"
   },
   {
    "note": "tip: no top player",
    "find": "title=\"No top player ${winWk()}\"",
-   "replace": "title=\"Aucun top joueur ${winWk()}\""
+   "replace": "title=\"Aucun top joueur ${winWk()}\"",
+   "group": "decks"
   },
   {
    "note": "tip: few players",
    "find": "title=\"Only ${d.count} players: this win rate is less certain\"",
-   "replace": "title=\"Seulement ${d.count} joueurs\\u00a0: ce % de victoires est moins fiable\""
+   "replace": "title=\"Seulement ${d.count} joueurs\\u00a0: ce % de victoires est moins fiable\"",
+   "group": "tooltips"
   },
   {
    "note": "tip: no top player with k swapped",
    "find": "title=\"No top player with ${k} card${k > 1 ? \"s\" : \"\"} swapped\"",
-   "replace": "title=\"Aucun top joueur avec ${k} carte${k > 1 ? \"s\" : \"\"} changée${k > 1 ? \"s\" : \"\"}\""
+   "replace": "title=\"Aucun top joueur avec ${k} carte${k > 1 ? \"s\" : \"\"} changée${k > 1 ? \"s\" : \"\"}\"",
+   "group": "tooltips"
   },
   {
    "note": "date range in a month: 9–14 nov",
    "find": "`${A.toLocaleDateString(undefined, o)} \\u2013 ${B.getUTCDate()}`",
-   "replace": "`${A.getUTCDate()}\\u2013${B.toLocaleDateString(undefined, o)}`"
+   "replace": "`${A.getUTCDate()}\\u2013${B.toLocaleDateString(undefined, o)}`",
+   "group": "grammar"
   },
   {
    "note": "ordinals: 3rd -> 3e, 1st -> 1er",
    "find": "n + (n % 100 >= 11 && n % 100 <= 13 ? \"th\" : [\"th\",\"st\",\"nd\",\"rd\"][n % 10] || \"th\")",
-   "replace": "(n === 1 ? \"1er\" : n + \"e\")"
+   "replace": "(n === 1 ? \"1er\" : n + \"e\")",
+   "group": "grammar"
   },
   {
    "note": "ordinals (ord, ordN): 1er, 3e",
    "all": true,
    "find": "n + (n % 100 >= 11 && n % 100 <= 13 ? \"th\" : [\"th\", \"st\", \"nd\", \"rd\"][n % 10] || \"th\")",
-   "replace": "(n === 1 ? \"1er\" : n + \"e\")"
+   "replace": "(n === 1 ? \"1er\" : n + \"e\")",
+   "group": "grammar"
   },
   {
    "note": "dates and times in French: toLocaleDateString",
    "find": "toLocaleDateString(undefined,",
    "replace": "toLocaleDateString(\"fr-FR\",",
-   "all": true
+   "all": true,
+   "group": "grammar"
   },
   {
    "note": "dates and times in French: toLocaleTimeString",
    "find": "toLocaleTimeString(undefined,",
    "replace": "toLocaleTimeString(\"fr-FR\",",
-   "all": true
+   "all": true,
+   "group": "grammar"
   },
   {
    "note": "dates and times in French: toLocaleString",
    "find": "toLocaleString(undefined,",
    "replace": "toLocaleString(\"fr-FR\",",
-   "all": true
+   "all": true,
+   "group": "grammar"
   },
   {
    "note": "dates and times in French: toLocaleDateString",
    "find": "toLocaleDateString(\"en-US\",",
    "replace": "toLocaleDateString(\"fr-FR\",",
-   "all": true
+   "all": true,
+   "group": "grammar"
   },
   {
    "note": "dates and times in French: toLocaleString",
    "find": "toLocaleString(\"en-US\", { month",
    "replace": "toLocaleString(\"fr-FR\", { month",
-   "all": true
+   "all": true,
+   "group": "grammar"
   },
   {
    "note": "numbers: 1.833 (fr-FR)",
    "find": "toLocaleString(\"en-US\")",
    "replace": "toLocaleString(\"fr-FR\")",
-   "all": true
+   "all": true,
+   "group": "grammar"
   },
   {
    "note": "results list date: 14/11",
    "find": "${MON[+dt.slice(5, 7) - 1]} ${+dt.slice(8)}",
    "replace": "${+dt.slice(8)}/${+dt.slice(5, 7)}",
-   "all": true
+   "all": true,
+   "group": "decks"
   },
   {
    "note": "trend chart first day: 14/11",
    "find": "${MON[+x.slice(5, 7) - 1]} ${+x.slice(8)}",
-   "replace": "${+x.slice(8)}/${+x.slice(5, 7)}"
+   "replace": "${+x.slice(8)}/${+x.slice(5, 7)}",
+   "group": "decks"
   },
   {
    "note": "winning-record check",
    "find": "has ${n > 0 ? \"+\" : n < 0 ? \"\\u2212\" : \"\"}${Math.abs(n)} \\u00b7 ${k} more win${k > 1 ? \"s\" : \"\"} in place of ${k > 1 ? \"losses\" : \"a loss\"}",
-   "replace": "a ${n > 0 ? \"+\" : n < 0 ? \"\\u2212\" : \"\"}${Math.abs(n)} \\u00b7 ${k} victoire${k > 1 ? \"s\" : \"\"} de plus au lieu de ${k > 1 ? \"défaites\" : \"une défaite\"}"
+   "replace": "a ${n > 0 ? \"+\" : n < 0 ? \"\\u2212\" : \"\"}${Math.abs(n)} \\u00b7 ${k} victoire${k > 1 ? \"s\" : \"\"} de plus au lieu de ${k > 1 ? \"défaites\" : \"une défaite\"}",
+   "group": "tooltips"
   },
   {
    "note": "trend sentence: mv",
    "find": "`stayed near <b>${a[1].toFixed(1)}${u}</b>` : `went ${a[1] > a[0] ? \"up\" : \"down\"} from ${a[0].toFixed(1)}${u} to <b>${a[1].toFixed(1)}${u}</b>`",
-   "replace": "`stable, autour de <b>${fx(a[1], 1)}${u}</b>` : `${a[1] > a[0] ? \"en hausse\" : \"en baisse\"}\\u00a0: de ${fx(a[0], 1)}${u} à <b>${fx(a[1], 1)}${u}</b>`"
+   "replace": "`stable, autour de <b>${fx(a[1], 1)}${u}</b>` : `${a[1] > a[0] ? \"en hausse\" : \"en baisse\"}\\u00a0: de ${fx(a[0], 1)}${u} à <b>${fx(a[1], 1)}${u}</b>`",
+   "group": "tooltips"
   },
   {
    "note": "R37 (Nov 25): pack box: in all packs (no set name)",
    "find": "`In ${all === 2 ? \"both\" : \"all \" + all} packs`",
-   "replace": "`Dans ${all === 2 ? \"les deux\" : \"les \" + all} boosters`"
+   "replace": "`Dans ${all === 2 ? \"les deux\" : \"les \" + all} boosters`",
+   "group": "packs"
   },
   {
    "note": "R37 (Nov 25): pack box: pack picture aria-label",
    "find": ": open in Packs to Open\">",
-   "replace": " : ouvrir dans « Quel booster ? »\">"
+   "replace": " : ouvrir dans « Quel booster ? »\">",
+   "group": "packs"
   },
   {
    "note": "swap version",
    "find": "`a swap version of ${al.map((k) => (k === 1 ? \"the \" + L1n(d) : \"list \" + k)).join(\", \")}`",
-   "replace": "`une variante de ${al.map((k) => (k === 1 ? \"la \" + L1n(d) : \"la liste \" + k)).join(\", \")}`"
+   "replace": "`une variante de ${al.map((k) => (k === 1 ? \"la \" + L1n(d) : \"la liste \" + k)).join(\", \")}`",
+   "group": "tooltips"
   },
   {
    "note": "list 1",
    "find": "const L1n = () => \"list 1\", L1s = () => \"List 1\";",
-   "replace": "const L1n = () => \"liste 1\", L1s = () => \"Liste 1\";"
+   "replace": "const L1n = () => \"liste 1\", L1s = () => \"Liste 1\";",
+   "group": "decks"
   },
   {
    "note": "about-button labels",
    "find": "\"the decks\" : \"the records\"",
-   "replace": "\"les decks\" : \"les résultats\""
+   "replace": "\"les decks\" : \"les résultats\"",
+   "group": "events"
   },
   {
    "note": "month names (fr-FR short)",
    "find": "const MON = [\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\",\"Oct\",\"Nov\",\"Dec\"];",
-   "replace": "const MON = [\"janv.\",\"févr.\",\"mars\",\"avr.\",\"mai\",\"juin\",\"juil.\",\"août\",\"sept.\",\"oct.\",\"nov.\",\"déc.\"];"
+   "replace": "const MON = [\"janv.\",\"févr.\",\"mars\",\"avr.\",\"mai\",\"juin\",\"juil.\",\"août\",\"sept.\",\"oct.\",\"nov.\",\"déc.\"];",
+   "group": "grammar"
   },
   {
    "note": "numbers: 12,0 % (helpers fx, pn; pct) and oF (1er, 3e) for ranks",
    "find": "const pct = (n) => (n == null ? \"\\u2013\" : n > 0 && n < 0.1 ? (+n).toFixed(2) + \"%\" : (Math.round(n * 10) / 10).toFixed(1) + \"%\");",
-   "replace": "const NBSP = \"\\u00a0\", oF = (n) => (+n === 1 ? \"1er\" : n + \"e\"), fx = (v, d) => (+v).toFixed(d).replace(\".\", \",\"), pn = (v) => String(v).replace(\".\", \",\") + NBSP, pct = (n) => (n == null ? \"\\u2013\" : n > 0 && n < 0.1 ? fx(n, 2) + NBSP + \"%\" : fx(Math.round(n * 10) / 10, 1) + NBSP + \"%\");"
+   "replace": "const NBSP = \"\\u00a0\", oF = (n) => (+n === 1 ? \"1er\" : n + \"e\"), fx = (v, d) => (+v).toFixed(d).replace(\".\", \",\"), pn = (v) => String(v).replace(\".\", \",\") + NBSP, pct = (n) => (n == null ? \"\\u2013\" : n > 0 && n < 0.1 ? fx(n, 2) + NBSP + \"%\" : fx(Math.round(n * 10) / 10, 1) + NBSP + \"%\");",
+   "group": "grammar"
   },
   {
    "note": "numbers: did better line",
    "find": "${pc(sh(id))}% share ${winWk()}`",
-   "replace": "${pn(pc(sh(id)))}% share ${winWk()}`"
+   "replace": "${pn(pc(sh(id)))}% share ${winWk()}`",
+   "group": "grammar"
   },
   {
    "note": "numbers: winner only N %",
    "find": "<em>only ${ws.toFixed(ws < 1 ? 2 : 1)}% share",
-   "replace": "<em>only ${pn(ws.toFixed(ws < 1 ? 2 : 1))}% share"
+   "replace": "<em>only ${pn(ws.toFixed(ws < 1 ? 2 : 1))}% share",
+   "group": "grammar"
   },
   {
    "note": "numbers: cards to look at",
    "find": "`in ${Math.round(t.u * 100)}% of",
-   "replace": "`in ${pn(Math.round(t.u * 100))}% of"
+   "replace": "`in ${pn(Math.round(t.u * 100))}% of",
+   "group": "grammar"
   },
   {
    "note": "numbers: one event is N %",
    "find": "<b>${Math.round(data.bige[1])}%</b>",
-   "replace": "<b>${pn(Math.round(data.bige[1]))}%</b>"
+   "replace": "<b>${pn(Math.round(data.bige[1]))}%</b>",
+   "group": "grammar"
   },
   {
    "note": "numbers: card sheet top players %",
    "find": "<b>${pct}%</b> of top players",
-   "replace": "<b>${pn(pct)}%</b> of top players"
+   "replace": "<b>${pn(pct)}%</b> of top players",
+   "group": "grammar"
   },
   {
    "note": "numbers: core/flex share",
    "find": "<b>${pc(c)}%</b></figcaption>",
-   "replace": "<b>${pn(pc(c))}%</b></figcaption>"
+   "replace": "<b>${pn(pc(c))}%</b></figcaption>",
+   "group": "grammar"
   },
   {
    "note": "numbers: meta map axes",
    "find": "class=\"ltx\">${v}%</text>",
    "replace": "class=\"ltx\">${pn(v)}%</text>",
-   "all": true
+   "all": true,
+   "group": "grammar"
   },
   {
    "note": "numbers: matchup %",
    "find": "\">${Math.round(m.p)}%</span><span class=\"mug\">",
-   "replace": "\">${pn(Math.round(m.p))}%</span><span class=\"mug\">"
+   "replace": "\">${pn(Math.round(m.p))}%</span><span class=\"mug\">",
+   "group": "grammar"
   },
   {
    "note": "matchup tip: 62 % en 14 partidas",
    "find": "title=\"${Math.round(m.p)}% in ${m.g} games${unsure ? \" (too few to be sure)\" : \"\"}\"",
-   "replace": "title=\"${pn(Math.round(m.p))}% sur ${m.g} matchs${unsure ? \" (trop peu pour être sûr)\" : \"\"}\""
+   "replace": "title=\"${pn(Math.round(m.p))}% sur ${m.g} matchs${unsure ? \" (trop peu pour être sûr)\" : \"\"}\"",
+   "group": "tooltips"
   },
   {
    "note": "matchup preview: 62 % vs. Pikachu",
    "find": "`${Math.round(mu[0].p)}% vs ${esc(nameOf(mu[0].o)).split(\" \")[0]}`",
-   "replace": "`${pn(Math.round(mu[0].p))}% vs ${esc(nameOf(mu[0].o)).split(\" \")[0]}`"
+   "replace": "`${pn(Math.round(mu[0].p))}% vs ${esc(nameOf(mu[0].o)).split(\" \")[0]}`",
+   "group": "decks"
   },
   {
    "note": "matchup preview: mejor / peor",
    "find": "`<span class=\"g\">best ${Math.round(mu[0].p)}%</span> \\u00b7 <span class=\"r\">worst ${Math.round(mu[mu.length - 1].p)}%</span>`",
-   "replace": "`<span class=\"g\">meilleur ${pn(Math.round(mu[0].p))}%</span> \\u00b7 <span class=\"r\">pire ${pn(Math.round(mu[mu.length - 1].p))}%</span>`"
+   "replace": "`<span class=\"g\">meilleur ${pn(Math.round(mu[0].p))}%</span> \\u00b7 <span class=\"r\">pire ${pn(Math.round(mu[mu.length - 1].p))}%</span>`",
+   "group": "decks"
   },
   {
    "note": "numbers: top players tip (rec)",
    "find": "${wrPct(v.rec)}% win)",
-   "replace": "${pn(wrPct(v.rec))}% win)"
+   "replace": "${pn(wrPct(v.rec))}% win)",
+   "group": "grammar"
   },
   {
    "note": "numbers: top players tip (grec)",
    "find": "${recTxt(v.grec)}, ${wrPct(v.grec)}%)",
-   "replace": "${recTxt(v.grec)}, ${pn(wrPct(v.grec))}%)"
+   "replace": "${recTxt(v.grec)}, ${pn(wrPct(v.grec))}%)",
+   "group": "grammar"
   },
   {
    "note": "numbers: win rate by version",
    "find": "<b>${wrPct(r)}%</b><small>",
-   "replace": "<b>${pn(wrPct(r))}%</b><small>"
+   "replace": "<b>${pn(wrPct(r))}%</b><small>",
+   "group": "grammar"
   },
   {
    "note": "numbers: shared list today",
    "find": "num = (v) => `${(+v).toFixed(1)}%`",
-   "replace": "num = (v) => `${fx(v, 1) + NBSP}%`"
+   "replace": "num = (v) => `${fx(v, 1) + NBSP}%`",
+   "group": "grammar"
   },
   {
    "note": "numbers: share change chips ▲3,7",
    "find": "${Math.abs(x).toFixed(1)}${u || \"\"}",
-   "replace": "${fx(Math.abs(x), 1)}${u || \"\"}"
+   "replace": "${fx(Math.abs(x), 1)}${u || \"\"}",
+   "group": "grammar"
   },
   {
    "note": "numbers: trend chart values",
    "find": "class=\"lvt\">${v.toFixed(1)}</text>",
-   "replace": "class=\"lvt\">${fx(v, 1)}</text>"
+   "replace": "class=\"lvt\">${fx(v, 1)}</text>",
+   "group": "grammar"
   },
   {
    "note": "numbers: trend sentence units",
    "find": "mv(s, 0.3, \"%\")",
-   "replace": "mv(s, 0.3, \"\\u00a0%\")"
+   "replace": "mv(s, 0.3, \"\\u00a0%\")",
+   "group": "grammar"
   },
   {
    "note": "numbers: trend sentence units (win)",
    "find": "mv(w, 1, \"%\")",
-   "replace": "mv(w, 1, \"\\u00a0%\")"
+   "replace": "mv(w, 1, \"\\u00a0%\")",
+   "group": "grammar"
   },
   {
    "note": "likely range tip",
    "find": "title=\"Likely range: ${lo.toFixed(1)}\\u2013${hi.toFixed(1)}%\"",
-   "replace": "title=\"Fourchette probable\\u00a0: ${fx(lo, 1)}\\u2013${fx(hi, 1)}\\u00a0%\""
+   "replace": "title=\"Fourchette probable\\u00a0: ${fx(lo, 1)}\\u2013${fx(hi, 1)}\\u00a0%\"",
+   "group": "tooltips"
   },
   {
    "note": "event sheet: energy tip",
    "find": "title=\"${cap(x)}: ${Math.round(c / n * 100)}%\"",
-   "replace": "title=\"${cap(x)}: ${pn(Math.round(c / n * 100))}%\""
+   "replace": "title=\"${cap(x)}: ${pn(Math.round(c / n * 100))}%\"",
+   "group": "events"
   },
   {
    "note": "event decks: meta share and new",
    "find": "${m < 10 ? m.toFixed(1) : Math.round(m)}%` : \"new\"}",
-   "replace": "${pn(m < 10 ? m.toFixed(1) : Math.round(m))}%` : \"nouveau\"}"
+   "replace": "${pn(m < 10 ? m.toFixed(1) : Math.round(m))}%` : \"nouveau\"}",
+   "group": "events"
   },
   {
    "note": "top 10: nueva",
    "find": "(f < 0.05 ? \"new\" : pct(f))",
-   "replace": "(f < 0.05 ? \"nouveau\" : pct(f))"
+   "replace": "(f < 0.05 ? \"nouveau\" : pct(f))",
+   "group": "decks"
   },
   {
    "note": "deck stats header: 1.º de 35",
    "find": "`#${d.rank} of ${nDk}`",
-   "replace": "`${oF(d.rank)} sur ${nDk}`"
+   "replace": "`${oF(d.rank)} sur ${nDk}`",
+   "group": "decks"
   },
   {
    "note": "deck stats rank tile: 1.º",
    "find": "`#${d.rank} ${rkTxt}`",
-   "replace": "`${oF(d.rank)} ${rkTxt}`"
+   "replace": "`${oF(d.rank)} ${rkTxt}`",
+   "group": "decks"
   },
   {
    "note": "search deck line: 1.º",
    "find": "\"#\" + d.rank}",
-   "replace": "oF(d.rank)}"
+   "replace": "oF(d.rank)}",
+   "group": "search"
   },
   {
    "note": "top 10 rising/falling: 1.º",
    "find": "#${d.rank} &middot; ${f",
-   "replace": "${oF(d.rank)}\\u2009&middot;\\u2009${f"
+   "replace": "${oF(d.rank)}\\u2009&middot;\\u2009${f",
+   "group": "decks"
   },
   {
    "note": "top 10 shelf name: 1.º",
    "find": "<i>#${d.rank}</i>",
-   "replace": "<i>${oF(d.rank)}</i>"
+   "replace": "<i>${oF(d.rank)}</i>",
+   "group": "decks"
   },
   {
    "note": "packs shelf name: 1.º",
    "find": "<i>#${L.indexOf(x) + 1}</i>",
-   "replace": "<i>${oF(L.indexOf(x) + 1)}</i>"
+   "replace": "<i>${oF(L.indexOf(x) + 1)}</i>",
+   "group": "packs"
   },
   {
    "note": "share image: 1.º en el meta",
    "find": "`#${d.rank} in the meta`",
-   "replace": "`${oF(d.rank)} de la méta`"
+   "replace": "`${oF(d.rank)} de la méta`",
+   "group": "decks"
   },
   {
    "note": "trend chart rank labels: 3.º",
    "find": "${r ? \"#\" + r : \"\\u2013\"}",
-   "replace": "${r ? oF(r) : \"\\u2013\"}"
+   "replace": "${r ? oF(r) : \"\\u2013\"}",
+   "group": "decks"
   },
   {
    "note": "event players tile: el más grande / 3.º de 12 torneos",
    "find": "<small>${big === 1 ? \"biggest\" : `#${big}`} of ${evs.length} events</small>",
-   "replace": "<small>${big === 1 ? \"le plus grand\" : `le ${oF(big)} plus grand`} sur ${evs.length} tournois</small>"
+   "replace": "<small>${big === 1 ? \"le plus grand\" : `le ${oF(big)} plus grand`} sur ${evs.length} tournois</small>",
+   "group": "tooltips"
   },
   {
    "note": "events: biggest button",
    "find": "Biggest <b>${big.players}</b>${SPCH}",
-   "replace": "Le plus grand\\u00a0: <b>${big.players}</b> joueurs${SPCH}"
+   "replace": "Le plus grand\\u00a0: <b>${big.players}</b> joueurs${SPCH}",
+   "group": "events"
   },
   {
    "note": "time ago: il y a 5 min",
    "find": "const agoTxt = (t) => { const m = Math.max(0, Math.round((Date.now() - new Date(t)) / 6e4));\n    return m < 1 ? \"just now\" : m < 60 ? `${m} min ago` : m < 48 * 60 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} days ago`; };",
-   "replace": "const agoTxt = (t) => { const m = Math.max(0, Math.round((Date.now() - new Date(t)) / 6e4));\n    return m < 1 ? \"à l’instant\" : m < 60 ? `il y a ${m} min` : m < 48 * 60 ? `il y a ${Math.round(m / 60)} h` : `il y a ${Math.round(m / 1440)} jours`; };"
+   "replace": "const agoTxt = (t) => { const m = Math.max(0, Math.round((Date.now() - new Date(t)) / 6e4));\n    return m < 1 ? \"à l’instant\" : m < 60 ? `il y a ${m} min` : m < 48 * 60 ? `il y a ${Math.round(m / 60)} h` : `il y a ${Math.round(m / 1440)} jours`; };",
+   "group": "grammar"
   },
   {
    "note": "time ago: ajouté il y a 3 h",
    "find": "const addAgo = (iso) => { const hh = agoH(iso); return hh < 1 ? `${Math.max(1, Math.round(hh * 60))} min ago` : hh < 24 ? `${Math.round(hh)} h ago` : `${Math.round(hh / 24)} d ago`; };",
-   "replace": "const addAgo = (iso) => { const hh = agoH(iso); return hh < 1 ? `il y a ${Math.max(1, Math.round(hh * 60))} min` : hh < 24 ? `il y a ${Math.round(hh)} h` : `il y a ${Math.round(hh / 24)} j`; };"
+   "replace": "const addAgo = (iso) => { const hh = agoH(iso); return hh < 1 ? `il y a ${Math.max(1, Math.round(hh * 60))} min` : hh < 24 ? `il y a ${Math.round(hh)} h` : `il y a ${Math.round(hh / 24)} j`; };",
+   "group": "grammar"
   },
   {
    "note": "time ago: aujourd’hui / hier / il y a N jours",
    "find": "const ago = (ms) => { const n = Math.floor((Date.UTC(...(() => { const N = new Date(); return [N.getUTCFullYear(), N.getUTCMonth(), N.getUTCDate()]; })()) - ms) / 864e5);\n      return n <= 0 ? \"today\" : n === 1 ? \"yesterday\" : n < 7 ? `${n} days ago` : n < 60 ? `${Math.floor(n / 7)} week${n < 14 ? \"\" : \"s\"} ago` : n < 730 ? `${Math.floor(n / 30)} months ago` : `${Math.floor(n / 365)} years ago`; };",
-   "replace": "const ago = (ms) => { const n = Math.floor((Date.UTC(...(() => { const N = new Date(); return [N.getUTCFullYear(), N.getUTCMonth(), N.getUTCDate()]; })()) - ms) / 864e5);\n      return n <= 0 ? \"aujourd’hui\" : n === 1 ? \"hier\" : n < 7 ? `il y a ${n} jours` : n < 60 ? `il y a ${Math.floor(n / 7)} semaine${n < 14 ? \"\" : \"s\"}` : n < 730 ? `il y a ${Math.floor(n / 30)} mois` : `il y a ${Math.floor(n / 365)} ans`; };"
+   "replace": "const ago = (ms) => { const n = Math.floor((Date.UTC(...(() => { const N = new Date(); return [N.getUTCFullYear(), N.getUTCMonth(), N.getUTCDate()]; })()) - ms) / 864e5);\n      return n <= 0 ? \"aujourd’hui\" : n === 1 ? \"hier\" : n < 7 ? `il y a ${n} jours` : n < 60 ? `il y a ${Math.floor(n / 7)} semaine${n < 14 ? \"\" : \"s\"}` : n < 730 ? `il y a ${Math.floor(n / 30)} mois` : `il y a ${Math.floor(n / 365)} ans`; };",
+   "group": "grammar"
   },
   {
    "note": "time ago: aujourd’hui / hier (check)",
    "find": "[\"today\", \"yesterday\"].includes",
-   "replace": "[\"aujourd’hui\", \"hier\"].includes"
+   "replace": "[\"aujourd’hui\", \"hier\"].includes",
+   "group": "grammar"
   },
   {
    "note": "time: 9:05 (no zero)",
    "find": "hour: \"2-digit\", minute: \"2-digit\"",
    "replace": "hour: \"numeric\", minute: \"2-digit\"",
-   "all": true
+   "all": true,
+   "group": "grammar"
   },
   {
    "note": "date: pack release, year only when not this year",
    "find": "toLocaleDateString(\"fr-FR\", { month: \"short\", day: \"numeric\", year: \"numeric\" })",
-   "replace": "toLocaleDateString(\"fr-FR\", { month: \"short\", day: \"numeric\", year: new Date(s + \"T00:00:00\").getFullYear() !== new Date().getFullYear() ? \"numeric\" : undefined })"
+   "replace": "toLocaleDateString(\"fr-FR\", { month: \"short\", day: \"numeric\", year: new Date(s + \"T00:00:00\").getFullYear() !== new Date().getFullYear() ? \"numeric\" : undefined })",
+   "group": "grammar"
   },
   {
    "note": "dates: Top players chart 14/11",
    "find": "`${MON[+dy.slice(5, 7) - 1]} ${+dy.slice(8)}`",
-   "replace": "`${+dy.slice(8)}/${+dy.slice(5, 7)}`"
+   "replace": "`${+dy.slice(8)}/${+dy.slice(5, 7)}`",
+   "group": "grammar"
   },
   {
    "note": "dates: Top players rows 14/11",
    "find": "MON[+dt.slice(5, 7) - 1] + \" \" + +dt.slice(8)",
-   "replace": "+dt.slice(8) + \"/\" + +dt.slice(5, 7)"
+   "replace": "+dt.slice(8) + \"/\" + +dt.slice(5, 7)",
+   "group": "grammar"
   },
   {
    "note": "dates: no-top-player sheet 14/11",
    "find": "`${MON[+v.dt.slice(5, 7) - 1]} ${+v.dt.slice(8)}`",
-   "replace": "`${+v.dt.slice(8)}/${+v.dt.slice(5, 7)}`"
+   "replace": "`${+v.dt.slice(8)}/${+v.dt.slice(5, 7)}`",
+   "group": "grammar"
   },
   {
    "note": "new set notice: salió hoy / el 14 nov",
    "find": "today ? \"today\" : D(rel)",
-   "replace": "today ? \"aujourd’hui\" : \"le \" + D(rel)"
+   "replace": "today ? \"aujourd’hui\" : \"le \" + D(rel)",
+   "group": "decks"
   },
   {
    "note": "card popup: packs joined with o (R37: all: the aria-label and the bold promo line)",
    "find": "ps.map((p) => p.name).join(\" or \")",
    "replace": "ps.map((p) => p.name).join(\" ou \")",
-   "all": true
+   "all": true,
+   "group": "packs"
   },
   {
    "note": "most wins: tournois gagnés",
    "find": "<b>${t.n}</b> win${t.n > 1 ? \"s\" : \"\"}",
-   "replace": "<b>${t.n}</b> ${t.n > 1 ? \"tournois gagnés\" : \"tournoi gagné\"}"
+   "replace": "<b>${t.n}</b> ${t.n > 1 ? \"tournois gagnés\" : \"tournoi gagné\"}",
+   "group": "events"
   },
   {
    "note": "most wins: N fois dans le top 8",
    "find": "${t.t8} top 8 finish${t.t8 > 1 ? \"es\" : \"\"}",
-   "replace": "${t.t8} fois dans le top 8"
+   "replace": "${t.t8} fois dans le top 8",
+   "group": "events"
   },
   {
    "note": "search events: tournois gagnés",
    "find": "${st[id].w} win${st[id].w > 1 ? \"s\" : \"\"}",
-   "replace": "${st[id].w} ${st[id].w > 1 ? \"tournois gagnés\" : \"tournoi gagné\"}"
+   "replace": "${st[id].w} ${st[id].w > 1 ? \"tournois gagnés\" : \"tournoi gagné\"}",
+   "group": "search"
   },
   {
    "note": "since last visit: nouveaux decks",
    "find": "<b>${nd} new deck${nd > 1 ? \"s\" : \"\"}</b> in the top 10",
-   "replace": "<b>${nd} ${nd > 1 ? \"nouveaux decks\" : \"nouveau deck\"}</b> dans le top 10"
+   "replace": "<b>${nd} ${nd > 1 ? \"nouveaux decks\" : \"nouveau deck\"}</b> dans le top 10",
+   "group": "shell"
   },
   {
    "note": "event: new-set cards (3)",
    "find": "${esc(nm)} ${c}`).join(\", \")",
-   "replace": "${esc(nm)} (${c})`).join(\", \")"
+   "replace": "${esc(nm)} (${c})`).join(\", \")",
+   "group": "events"
   },
   {
    "note": "no-top-player sheet: players tile",
    "find": "[d.count, \"players\", winWk()]",
-   "replace": "[d.count, \"joueurs\", winWk()]"
+   "replace": "[d.count, \"joueurs\", winWk()]",
+   "group": "decks"
   },
   {
    "note": "Tout voir (N)",
    "find": ">Show all ${L.length}</button>",
-   "replace": ">Tout voir (${L.length})</button>"
+   "replace": ">Tout voir (${L.length})</button>",
+   "group": "decks"
   },
   {
    "note": "Tout voir (N) (tap)",
    "find": "\"Show less\" : \"Show all \" + c.querySelectorAll(\".t1s-r\").length",
-   "replace": "\"Voir moins\" : \"Tout voir (\" + c.querySelectorAll(\".t1s-r\").length + \")\""
+   "replace": "\"Voir moins\" : \"Tout voir (\" + c.querySelectorAll(\".t1s-r\").length + \")\"",
+   "group": "tooltips"
   },
   {
    "note": "Tout voir (N) (tap)",
    "find": "\"Show less\" : \"Show all \" + ma.dataset.n",
-   "replace": "\"Voir moins\" : \"Tout voir (\" + ma.dataset.n + \")\""
+   "replace": "\"Voir moins\" : \"Tout voir (\" + ma.dataset.n + \")\"",
+   "group": "events"
   },
   {
    "note": "Tout voir (N)",
    "find": "${mAll ? \"Show less\" : \"Show all \" + wl.length}",
-   "replace": "${mAll ? \"Voir moins\" : \"Tout voir (\" + wl.length + \")\"}"
+   "replace": "${mAll ? \"Voir moins\" : \"Tout voir (\" + wl.length + \")\"}",
+   "group": "events"
   },
   {
    "note": "tab: Decks méta (wide) / Méta (phone; .tls in preview/i18n_patch.py)",
    "find": "Meta<span class=\"tlx\"> Decks</span>",
-   "replace": "<span class=\"tlx\">Decks méta</span><span class=\"tls\">Méta</span>"
+   "replace": "<span class=\"tlx\">Decks méta</span><span class=\"tls\">Méta</span>",
+   "group": "shell"
   },
   {
    "note": "label: Limited Battle tab (Combats restreints, as in the French game)",
    "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
-   "replace": "b.setAttribute(\"aria-label\", `Combats restreints, ${lbLeft(true)}`)"
+   "replace": "b.setAttribute(\"aria-label\", `Combats restreints, ${lbLeft(true)}`)",
+   "group": "limited"
   },
   {
    "note": "label: medal 3e place",
    "find": "aria-label=\"${ordF(p)} place\"",
-   "replace": "aria-label=\"${ordF(p)} place\""
+   "replace": "aria-label=\"${ordF(p)} place\"",
+   "group": "decks"
   },
   {
    "note": "label: event list dots",
    "find": "aria-label=\"${esc(ordN(v.pl))} place\"",
-   "replace": "aria-label=\"${esc(ordN(v.pl))} place\""
+   "replace": "aria-label=\"${esc(ordN(v.pl))} place\"",
+   "group": "events"
   },
   {
    "note": "top players tile: tip",
    "find": "title=\"${T} top players: this list or 1\\u20133 cards swapped\"",
-   "replace": "title=\"${T} top joueur${T === 1 ? \"\" : \"s\"}\\u00a0: cette liste ou 1\\u20133 cartes changées\""
+   "replace": "title=\"${T} top joueur${T === 1 ? \"\" : \"s\"}\\u00a0: cette liste ou 1\\u20133 cartes changées\"",
+   "group": "tooltips"
   },
   {
    "note": "top players tile: label",
    "find": "aria-label=\"Top players: ${T} with this list or 1 to 3 cards swapped, of ${v.of}\"",
-   "replace": "aria-label=\"Top joueurs\\u00a0: ${T} sur ${v.of} avec cette liste ou 1 à 3 cartes changées\""
+   "replace": "aria-label=\"Top joueurs\\u00a0: ${T} sur ${v.of} avec cette liste ou 1 à 3 cartes changées\"",
+   "group": "tooltips"
   },
   {
    "note": "swap selector: label",
    "find": "aria-label=\"Show this list or a version with cards swapped\"",
-   "replace": "aria-label=\"Afficher cette liste ou une variante avec des cartes changées\""
+   "replace": "aria-label=\"Afficher cette liste ou une variante avec des cartes changées\"",
+   "group": "decks"
   },
   {
    "note": "swap selector: exact tip and label",
    "find": "title=\"${ex} top player${ex === 1 ? \"\" : \"s\"} with exactly this list\" aria-label=\"Exact list: ${ex} top player${ex === 1 ? \"\" : \"s\"}\"",
-   "replace": "title=\"${ex} top joueur${ex === 1 ? \"\" : \"s\"} avec exactement cette liste\" aria-label=\"Liste exacte\\u00a0: ${ex} top joueur${ex === 1 ? \"\" : \"s\"}\""
+   "replace": "title=\"${ex} top joueur${ex === 1 ? \"\" : \"s\"} avec exactement cette liste\" aria-label=\"Liste exacte\\u00a0: ${ex} top joueur${ex === 1 ? \"\" : \"s\"}\"",
+   "group": "tooltips"
   },
   {
    "note": "swap selector: swap tip and label",
    "find": "title=\"${n} top player${n > 1 ? \"s\" : \"\"} with ${k} card${k > 1 ? \"s\" : \"\"} swapped\" aria-label=\"${n} top player${n > 1 ? \"s\" : \"\"} with ${sw(k)}: show them\"",
-   "replace": "title=\"${n} top joueur${n > 1 ? \"s\" : \"\"} avec ${k} carte${k > 1 ? \"s\" : \"\"} changée${k > 1 ? \"s\" : \"\"}\" aria-label=\"${n} top joueur${n > 1 ? \"s\" : \"\"} avec ${k} changement${k > 1 ? \"s\" : \"\"}\\u00a0: les afficher\""
+   "replace": "title=\"${n} top joueur${n > 1 ? \"s\" : \"\"} avec ${k} carte${k > 1 ? \"s\" : \"\"} changée${k > 1 ? \"s\" : \"\"}\" aria-label=\"${n} top joueur${n > 1 ? \"s\" : \"\"} avec ${k} changement${k > 1 ? \"s\" : \"\"}\\u00a0: les afficher\"",
+   "group": "tooltips"
   },
   {
    "note": "ghost row: no public list tip",
    "find": "title=\"No public decklist ${winLast()} yet\"",
-   "replace": "title=\"Pas encore de liste publique ${winLast()}\""
+   "replace": "title=\"Pas encore de liste publique ${winLast()}\"",
+   "group": "decks"
   },
   {
    "note": "event energy tip",
    "find": "title=\"Energy in the top ${n}\"",
-   "replace": "title=\"Énergie dans le top ${n}\""
+   "replace": "title=\"Énergie dans le top ${n}\"",
+   "group": "events"
   },
   {
    "note": "search card tip",
    "find": "title=\"${esc(c.n)} \\u00b7 ${c.u} top players \\u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
-   "replace": "title=\"${esc(c.n)} \\u00b7 ${c.u} top joueur${c.u > 1 ? \"s\" : \"\"} \\u00b7 dans ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\""
+   "replace": "title=\"${esc(c.n)} \\u00b7 ${c.u} top joueur${c.u > 1 ? \"s\" : \"\"} \\u00b7 dans ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
+   "group": "tooltips"
   },
   {
    "note": "search card label",
    "find": "aria-label=\"${c.u} top players\"",
-   "replace": "aria-label=\"${c.u} top joueurs\""
+   "replace": "aria-label=\"${c.u} top joueurs\"",
+   "group": "search"
   },
   {
    "note": "filter card tip",
    "find": "title=\"${esc(c.n)} \\u00b7 in ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
-   "replace": "title=\"${esc(c.n)} \\u00b7 dans ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\""
+   "replace": "title=\"${esc(c.n)} \\u00b7 dans ${c.decks.size} deck${c.decks.size > 1 ? \"s\" : \"\"}\"",
+   "group": "tooltips"
   },
   {
    "note": "label: cards swapped vs list 1",
    "find": "aria-label=\"${nd} card${nd > 1 ? \"s\" : \"\"} swapped versus list 1\"",
-   "replace": "aria-label=\"${nd} carte${nd > 1 ? \"s\" : \"\"} changée${nd > 1 ? \"s\" : \"\"} par rapport à la liste 1\""
+   "replace": "aria-label=\"${nd} carte${nd > 1 ? \"s\" : \"\"} changée${nd > 1 ? \"s\" : \"\"} par rapport à la liste 1\"",
+   "group": "tooltips"
   },
   {
    "note": "label: pack",
    "find": "aria-label=\"${esc(x.setName)}${pkSub(x) ? \" \" + esc(pkSub(x)) : \"\"}\"",
-   "replace": "aria-label=\"Booster ${esc(x.setName)}${pkSub(x) ? \" \" + esc(pkSub(x)) : \"\"}\""
+   "replace": "aria-label=\"Booster ${esc(x.setName)}${pkSub(x) ? \" \" + esc(pkSub(x)) : \"\"}\"",
+   "group": "tooltips"
   },
   {
    "note": "label: list dots",
    "find": "aria-label=\"Show list ${i + 1} of ${n}${i === 0 ? \" (\" + L1n(d) + \")\" : \"\"}\"",
-   "replace": "aria-label=\"Afficher la liste ${i + 1} sur ${n}\""
+   "replace": "aria-label=\"Afficher la liste ${i + 1} sur ${n}\"",
+   "group": "tooltips"
   },
   {
    "note": "label: deck stats",
    "find": "aria-label=\"Deck stats: ${pct(d.share)} share, ${pct(d.win)} win\"",
-   "replace": "aria-label=\"Stats du deck\\u00a0: ${pct(d.share)} de présence, ${pct(d.win)} de victoires\""
+   "replace": "aria-label=\"Stats du deck\\u00a0: ${pct(d.share)} de présence, ${pct(d.win)} de victoires\"",
+   "group": "tooltips"
   },
   {
    "note": "label: close",
    "find": "aria-label=\"Close\"",
    "replace": "aria-label=\"Fermer\"",
-   "all": true
+   "all": true,
+   "group": "packs"
   },
   {
    "note": "label: breakout deck",
    "find": "aria-label=\"Breakout deck\"",
-   "replace": "aria-label=\"Deck révélation\""
+   "replace": "aria-label=\"Deck révélation\"",
+   "group": "decks"
   },
   {
    "note": "label: lists",
    "find": "aria-label=\"Lists\"",
    "replace": "aria-label=\"Listes\"",
-   "all": true
+   "all": true,
+   "group": "decks"
   },
   {
    "note": "label: event stats",
    "find": "aria-label=\"Event stats\"",
-   "replace": "aria-label=\"Stats du tournoi\""
+   "replace": "aria-label=\"Stats du tournoi\"",
+   "group": "events"
   },
   {
    "note": "label: share icon in the install steps",
    "find": "aria-label=\"Share\" style=\"vertical-align:-2px\"",
-   "replace": "aria-label=\"Partager\" style=\"vertical-align:-2px\""
+   "replace": "aria-label=\"Partager\" style=\"vertical-align:-2px\"",
+   "group": "shell"
   },
   {
    "note": "alt: card out",
    "find": "alt=\"${esc(x.out.n)} (out)\"",
-   "replace": "alt=\"${esc(x.out.n)} (retirée)\""
+   "replace": "alt=\"${esc(x.out.n)} (retirée)\"",
+   "group": "decks"
   },
   {
    "note": "label: cards swapped tabs",
    "find": "role=\"tablist\" aria-label=\"Cards swapped\"",
-   "replace": "role=\"tablist\" aria-label=\"Cartes changées\""
+   "replace": "role=\"tablist\" aria-label=\"Cartes changées\"",
+   "group": "decks"
   },
   {
    "note": "label: card full screen",
    "find": "aria-label=\"Show ${esc(n)} full screen\"",
-   "replace": "aria-label=\"Afficher ${esc(n)} en plein écran\""
+   "replace": "aria-label=\"Afficher ${esc(n)} en plein écran\"",
+   "group": "decks"
   },
   {
    "note": "label: Limitless link",
    "find": "aria-label=\"Score: the original list on Limitless\"",
-   "replace": "aria-label=\"Bilan\\u00a0: la liste d’origine sur Limitless\""
+   "replace": "aria-label=\"Bilan\\u00a0: la liste d’origine sur Limitless\"",
+   "group": "decks"
   },
   {
    "note": "label: open deck",
    "find": "aria-label=\"Open this deck on the site\"",
-   "replace": "aria-label=\"Ouvrir ce deck sur le site\""
+   "replace": "aria-label=\"Ouvrir ce deck sur le site\"",
+   "group": "decks"
   },
   {
    "note": "label: show QR",
    "find": "aria-label=\"Show the QR code\"",
-   "replace": "aria-label=\"Afficher le code QR\""
+   "replace": "aria-label=\"Afficher le code QR\"",
+   "group": "decks"
   },
   {
    "note": "alt: shared QR",
    "find": "alt=\"QR code for ${esc(SH.name)}\"",
    "replace": "alt=\"Code QR de ${esc(SH.name)}\"",
-   "all": true
+   "all": true,
+   "group": "decks"
   },
   {
    "note": "label: back to cards",
    "find": "aria-label=\"Back to the cards\"",
-   "replace": "aria-label=\"Retour aux cartes\""
+   "replace": "aria-label=\"Retour aux cartes\"",
+   "group": "shell"
   },
   {
    "note": "label: forget shared list",
    "find": "aria-label=\"Forget this shared list\"",
-   "replace": "aria-label=\"Oublier cette liste partagée\""
+   "replace": "aria-label=\"Oublier cette liste partagée\"",
+   "group": "shell"
   },
   {
    "note": "alt: QR",
    "find": "alt=\"QR code for ${esc(d.name)}\"",
-   "replace": "alt=\"Code QR de ${esc(d.name)}\""
+   "replace": "alt=\"Code QR de ${esc(d.name)}\"",
+   "group": "shell"
   },
   {
    "note": "label: previous list",
    "find": "aria-label=\"Previous list\"",
    "replace": "aria-label=\"Liste précédente\"",
-   "all": true
+   "all": true,
+   "group": "decks"
   },
   {
    "note": "label: next list",
    "find": "aria-label=\"Next list\"",
    "replace": "aria-label=\"Liste suivante\"",
-   "all": true
+   "all": true,
+   "group": "decks"
   },
   {
    "note": "label: deck stats, all lists",
    "find": "aria-label=\"Deck stats, all lists\"",
-   "replace": "aria-label=\"Stats du deck, toutes les listes\""
+   "replace": "aria-label=\"Stats du deck, toutes les listes\"",
+   "group": "decks"
   },
   {
    "note": "label: version QR",
    "find": "aria-label=\"QR code for this version\"",
-   "replace": "aria-label=\"Code QR de cette variante\""
+   "replace": "aria-label=\"Code QR de cette variante\"",
+   "group": "decks"
   },
   {
    "note": "label: cards swapped vs list 1 (sheet)",
    "find": "aria-label=\"Cards swapped vs ${esc(L1n(d))}\"",
-   "replace": "aria-label=\"Cartes changées par rapport à la ${esc(L1n(d))}\""
+   "replace": "aria-label=\"Cartes changées par rapport à la ${esc(L1n(d))}\"",
+   "group": "decks"
   },
   {
    "note": "label: card details",
    "find": "aria-label=\"${esc(c.n)}: card details\"",
-   "replace": "aria-label=\"${esc(c.n)}\\u00a0: détails de la carte\""
+   "replace": "aria-label=\"${esc(c.n)}\\u00a0: détails de la carte\"",
+   "group": "packs"
   },
   {
    "note": "label: decks without",
    "find": "aria-label=\"Decks without ${esc(c.n)}\"",
    "replace": "aria-label=\"Decks sans ${esc(c.n)}\"",
-   "all": true
+   "all": true,
+   "group": "search"
   },
   {
    "note": "numbers: rising/falling pills ▲3,7",
    "find": "`${c > 0 ? \"\\u25b2\" : \"\\u25bc\"}${Math.abs(c).toFixed(1)}`",
-   "replace": "`${c > 0 ? \"\\u25b2\" : \"\\u25bc\"}${fx(Math.abs(c), 1)}`"
+   "replace": "`${c > 0 ? \"\\u25b2\" : \"\\u25bc\"}${fx(Math.abs(c), 1)}`",
+   "group": "grammar"
   },
   {
    "note": "window tip: ses 2 premiers jours / son premier jour",
    "find": "${day > 1 ? `${day} days` : \"day\"}",
-   "replace": "${day > 1 ? `ses ${day} premiers jours` : \"son premier jour\"}"
+   "replace": "${day > 1 ? `ses ${day} premiers jours` : \"son premier jour\"}",
+   "group": "shell"
   },
   {
    "note": "Live legend: hace 2–6 h / hace más de 6 h",
    "find": "<span><i class=\"ldot a\"></i>2&ndash;6 h</span><span><i class=\"ldot\"></i>older</span>",
-   "replace": "<span><i class=\"ldot a\"></i>il y a 2&ndash;6 h</span><span><i class=\"ldot\"></i>il y a plus de 6 h</span>"
+   "replace": "<span><i class=\"ldot a\"></i>il y a 2&ndash;6 h</span><span><i class=\"ldot\"></i>il y a plus de 6 h</span>",
+   "group": "shell"
   },
   {
    "note": "Live chip: comprobado hace 3 h (old data)",
    "find": ": `<span class=\"mu\">${agoTxt(data.updatedAt)}`}",
-   "replace": ": `<span class=\"mu\">vérifié ${agoTxt(data.updatedAt)}`}"
+   "replace": ": `<span class=\"mu\">vérifié ${agoTxt(data.updatedAt)}`}",
+   "group": "shell"
   },
   {
    "note": "head: description",
    "find": "<meta name=\"description\" content=\"This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.\">",
-   "replace": "<meta name=\"description\" content=\"Les decks gagnants de Pokémon TCG Pocket cette semaine et les derniers tournois, les listes des meilleurs joueurs et un code QR pour chaque liste, à importer dans le jeu.\">"
+   "replace": "<meta name=\"description\" content=\"Les decks gagnants de Pokémon TCG Pocket cette semaine et les derniers tournois, les listes des meilleurs joueurs et un code QR pour chaque liste, à importer dans le jeu.\">",
+   "group": "seo"
   },
   {
    "note": "head: og:title",
    "find": "<meta property=\"og:title\" content=\"Pocket Meta QR – this week's Pokémon TCG Pocket meta and tournaments, with QR codes\">",
-   "replace": "<meta property=\"og:title\" content=\"Pocket Meta QR – la méta et les tournois de Pokémon TCG Pocket cette semaine, avec des codes QR\">"
+   "replace": "<meta property=\"og:title\" content=\"Pocket Meta QR – la méta et les tournois de Pokémon TCG Pocket cette semaine, avec des codes QR\">",
+   "group": "seo"
   },
   {
    "note": "head: og:description",
    "find": "<meta property=\"og:description\" content=\"The decks that win right now, the latest tournaments and their top 8, and a QR code for every list. Free, no sign-up.\">",
-   "replace": "<meta property=\"og:description\" content=\"Les decks qui gagnent en ce moment, les derniers tournois et leur top 8, et un code QR pour chaque liste. Gratuit, sans inscription.\">"
+   "replace": "<meta property=\"og:description\" content=\"Les decks qui gagnent en ce moment, les derniers tournois et leur top 8, et un code QR pour chaque liste. Gratuit, sans inscription.\">",
+   "group": "seo"
   },
   {
    "note": "head: og:image:alt",
    "find": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR: this week's winning Pokémon TCG Pocket decks, with a QR code for every list\">",
-   "replace": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR : les decks gagnants de Pokémon TCG Pocket cette semaine, avec un code QR pour chaque liste\">"
+   "replace": "<meta property=\"og:image:alt\" content=\"Pocket Meta QR : les decks gagnants de Pokémon TCG Pocket cette semaine, avec un code QR pour chaque liste\">",
+   "group": "seo"
   },
   {
    "note": "NEW badge (decks): NOUVEAU + tip",
    "find": "'<span class=\"newb\" title=\"New in the top 10 since your last visit\">NEW</span>'",
-   "replace": "'<span class=\"newb\" title=\"Nouveau dans le top 10 depuis votre dernière visite\">NOUVEAU</span>'"
+   "replace": "'<span class=\"newb\" title=\"Nouveau dans le top 10 depuis votre dernière visite\">NOUVEAU</span>'",
+   "group": "decks"
   },
   {
    "note": "NEW badge (events): NOUVEAU + tip",
    "find": "'<span class=\"newb\" title=\"New since your last visit\">NEW</span>'",
-   "replace": "'<span class=\"newb\" title=\"Nouveau depuis votre dernière visite\">NOUVEAU</span>'"
+   "replace": "'<span class=\"newb\" title=\"Nouveau depuis votre dernière visite\">NOUVEAU</span>'",
+   "group": "events"
   },
   {
    "note": "numbers: share tile, 7-day change ▲1,9",
    "find": "${sD > 0 ? \"\\u25b2\" : \"\\u25bc\"}${Math.abs(sD).toFixed(1)}</span>",
-   "replace": "${sD > 0 ? \"\\u25b2\" : \"\\u25bc\"}${fx(Math.abs(sD), 1)}</span>"
+   "replace": "${sD > 0 ? \"\\u25b2\" : \"\\u25bc\"}${fx(Math.abs(sD), 1)}</span>",
+   "group": "grammar"
   },
   {
    "note": "numbers: win rate ±2,8",
    "find": "\\u00b1${hw.toFixed(1)}",
-   "replace": "\\u00b1${fx(hw, 1)}"
+   "replace": "\\u00b1${fx(hw, 1)}",
+   "group": "grammar"
   },
   {
    "note": "boosters: Série A · les extensions précédentes",
    "find": "<span>${esc(ser)} series &middot; the older sets</span>",
-   "replace": "<span>Série ${esc(ser)} &middot; les extensions précédentes</span>"
+   "replace": "<span>Série ${esc(ser)} &middot; les extensions précédentes</span>",
+   "group": "packs"
   },
   {
    "note": "Limited Battle: updated … (il y a 5 jours)",
    "find": "`${m} min ago` : h < 24 ? `${h} h ago` : `${d} day${d > 1 ? \"s\" : \"\"} ago`",
-   "replace": "`il y a ${m} min` : h < 24 ? `il y a ${h} h` : `il y a ${d} jour${d > 1 ? \"s\" : \"\"}`"
+   "replace": "`il y a ${m} min` : h < 24 ? `il y a ${h} h` : `il y a ${d} jour${d > 1 ? \"s\" : \"\"}`",
+   "group": "tooltips"
   },
   {
    "note": "Limited Battle: the deck notes stay English (rule in README); say so on the page",
    "find": "<p class=\"lbnote\"><b class=\"lbup\">",
-   "replace": "<p class=\"lbn lben\">Les notes des decks ne sont disponibles qu’en anglais.</p>\n      <p class=\"lbnote\"><b class=\"lbup\">"
+   "replace": "<p class=\"lbn lben\">Les notes des decks ne sont disponibles qu’en anglais.</p>\n      <p class=\"lbnote\"><b class=\"lbup\">",
+   "group": "limited"
   },
   {
    "note": "loading text next to the intro slot (the extractor does not find it)",
    "find": "<div class=\"empty\">Loading decks&hellip;<p class=\"seoi\"",
-   "replace": "<div class=\"empty\">Chargement des decks&hellip;<p class=\"seoi\""
+   "replace": "<div class=\"empty\">Chargement des decks&hellip;<p class=\"seoi\"",
+   "group": "messages"
   },
   {
    "note": "Limited Battle banner: 1 heure restante / 3 heures restantes, 9 j",
    "find": "(long ? `${d} days left` : `${d}d`) : long ? `${hr} hour${hr > 1 ? \"s\" : \"\"} left` : `${hr}h`",
-   "replace": "(long ? `${d} jours restants` : `${d} j`) : long ? `${hr} heure${hr > 1 ? \"s\" : \"\"} restante${hr > 1 ? \"s\" : \"\"}` : `${hr} h`"
+   "replace": "(long ? `${d} jours restants` : `${d} j`) : long ? `${hr} heure${hr > 1 ? \"s\" : \"\"} restante${hr > 1 ? \"s\" : \"\"}` : `${hr} h`",
+   "group": "tooltips"
   },
   {
    "note": "top 10 rising/falling row: thin spaces around → (fits 360 px with \"nouveau\")",
    "find": "(f < 0.05 ? \"nouveau\" : pct(f)) + \" &rarr; \" : \"\"}${pct(d.share)}</small>",
-   "replace": "(f < 0.05 ? \"nouveau\" : pct(f)) + \"\\u2009&rarr;\\u2009\" : \"\"}${pct(d.share)}</small>"
+   "replace": "(f < 0.05 ? \"nouveau\" : pct(f)) + \"\\u2009&rarr;\\u2009\" : \"\"}${pct(d.share)}</small>",
+   "group": "decks"
   },
   {
    "note": "charts: 50 %",
    "find": "class=\"ltx\">50%</text>",
-   "replace": "class=\"ltx\">50\\u00a0%</text>"
+   "replace": "class=\"ltx\">50\\u00a0%</text>",
+   "group": "decks"
   },
   {
    "note": "card filter: where the card is (lists)",
    "find": "parts.push(`${ls.length > 1 ? \"lists\" : \"list\"} ${ls.join(\", \")}`);",
-   "replace": "parts.push(`${ls.length > 1 ? \"dans les listes\" : \"dans la liste\"} ${ls.join(\", \")}`);"
+   "replace": "parts.push(`${ls.length > 1 ? \"dans les listes\" : \"dans la liste\"} ${ls.join(\", \")}`);",
+   "group": "tooltips"
   },
   {
    "note": "card filter: where the card is (join)",
    "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
-   "replace": "return parts.length ? parts.map((p) => /^dans /.test(p) ? p : \"dans \" + p).join(\" et \") : \"\";"
+   "replace": "return parts.length ? parts.map((p) => /^dans /.test(p) ? p : \"dans \" + p).join(\" et \") : \"\";",
+   "group": "search"
   },
   {
    "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
    "find": "aria-label=\"${ordF(p)} place\"",
-   "replace": "aria-label=\"${(p === 1 ? \"1re\" : p + \"e\")} place\""
+   "replace": "aria-label=\"${(p === 1 ? \"1re\" : p + \"e\")} place\"",
+   "group": "decks"
   },
   {
    "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
    "find": "${ordN(pl)} place</span>",
-   "replace": "${(pl === 1 ? \"1re\" : pl + \"e\")} place</span>"
+   "replace": "${(pl === 1 ? \"1re\" : pl + \"e\")} place</span>",
+   "group": "events"
   },
   {
    "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
    "find": "(${ordF(t.l.pl)} place)",
-   "replace": "(${(t.l.pl === 1 ? \"1re\" : t.l.pl + \"e\")} place)"
+   "replace": "(${(t.l.pl === 1 ? \"1re\" : t.l.pl + \"e\")} place)",
+   "group": "grammar"
   },
   {
    "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
    "find": "best ${ordF(st[id].best)}",
-   "replace": "best ${(st[id].best === 1 ? \"1re\" : st[id].best + \"e\")}"
+   "replace": "best ${(st[id].best === 1 ? \"1re\" : st[id].best + \"e\")}",
+   "group": "search"
   },
   {
    "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
    "find": "best <b>${ordF(best[id])}</b>",
-   "replace": "best <b>${(best[id] === 1 ? \"1re\" : best[id] + \"e\")}</b>"
+   "replace": "best <b>${(best[id] === 1 ? \"1re\" : best[id] + \"e\")}</b>",
+   "group": "events"
   },
   {
    "note": "feminine ordinal before place / meilleure: 1re, not 1er (place is feminine)",
    "find": "${esc(ordN(v.pl))} place",
-   "replace": "${(v.pl === 1 ? \"1re\" : v.pl + \"e\")} place"
+   "replace": "${(v.pl === 1 ? \"1re\" : v.pl + \"e\")} place",
+   "group": "events"
   },
   {
    "note": "latest events: multi-deck events left out (singular/plural verb)",
    "find": "${skip} multi-deck event${skip > 1 ? \"s\" : \"\"} (each player brings more than one deck) ${skip > 1 ? \"are\" : \"is\"} not listed: there&rsquo;s no way to tell which deck won each match.",
-   "replace": "${skip} ${skip > 1 ? \"tournois multi-decks (où chaque joueur apporte plusieurs decks) ne sont pas listés\" : \"tournoi multi-decks (où chaque joueur apporte plusieurs decks) n’est pas listé\"} : impossible de savoir avec quel deck chaque match a été gagné."
+   "replace": "${skip} ${skip > 1 ? \"tournois multi-decks (où chaque joueur apporte plusieurs decks) ne sont pas listés\" : \"tournoi multi-decks (où chaque joueur apporte plusieurs decks) n’est pas listé\"} : impossible de savoir avec quel deck chaque match a été gagné.",
+   "group": "tooltips"
   },
   {
    "note": "info button of the event list: its screen-reader label (was English \"events\")",
    "find": "ii(\"events\",",
-   "replace": "ii(\"tournois\","
+   "replace": "ii(\"tournois\",",
+   "group": "events"
   }
  ]
 }

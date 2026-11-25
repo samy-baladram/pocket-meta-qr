@@ -33,4 +33,15 @@ console.log(`i18n ${lang}: ${cat.length - missing.length} of ${cat.length} texts
   `${missing.length} missing, ${bad.length} not used (placeholders), ${unused.length} old (English changed)` +
   (nCode || codeMiss.length ? `, ${nCode} code changes${codeMiss.length ? `, ${codeMiss.length} code changes not found` : ""}` : ""));
 if (codeMiss.length) console.error(`i18n ${lang}: code changes not found: ${codeMiss.join(" | ")}`);
-if (ri > 0) writeFileSync(args[ri + 1], JSON.stringify({ lang, missing, bad, unused, codeMiss }, null, 1));
+// groups (i18n/groups.json, made by i18n/groups.py): which part of the site each text belongs to
+const gf = new URL("./groups.json", import.meta.url), G = existsSync(gf) ? JSON.parse(readFileSync(gf)).ids : {};
+const grp = (id) => G[id] || "new";
+const byGroup = (ids) => Object.entries(ids.reduce((a, id) => ((a[grp(id)] = (a[grp(id)] || 0) + 1), a), {}))
+  .map(([g, n]) => `${g} ${n}`).join(", ");
+if (bad.length) console.error(`i18n ${lang}: not used (placeholders) by group: ${byGroup(bad.map((b) => b.id))}`);
+if (unused.length) console.error(`i18n ${lang}: old (English changed) by group: ${byGroup(unused)}`);
+const ungrouped = Object.keys(T).filter((id) => !G[id] && cat.some((u) => u.id === id));
+if (ungrouped.length) console.error(`i18n ${lang}: ${ungrouped.length} texts have no group yet: run python3 i18n/groups.py <page>`);
+for (const u of missing) u.group = grp(u.id);
+for (const b of bad) b.group = grp(b.id);
+if (ri > 0) writeFileSync(args[ri + 1], JSON.stringify({ lang, missing, bad, unused: unused.map((id) => ({ id, group: grp(id) })), codeMiss }, null, 1));
