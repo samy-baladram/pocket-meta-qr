@@ -1063,6 +1063,11 @@
    "note": "card filter: where the card is (join)",
    "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
    "replace": "return parts.length ? parts.map((p) => /^nel/.test(p) ? p : \"in \" + p).join(\" e \") : \"\";"
+  },
+  {
+   "note": "info button of the event list: its screen-reader label (was English \"events\")",
+   "find": "ii(\"events\",",
+   "replace": "ii(\"tornei\","
   }
  ]
 }

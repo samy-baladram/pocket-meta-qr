@@ -143,9 +143,9 @@
    "all": true
   },
   {
-   "note": "label: About <x>",
+   "note": "label: About <x> (Acerca de, not Sobre: «Sobre Sobres» read badly)",
    "find": "aria-label=\"About ${esc(label)}\"",
-   "replace": "aria-label=\"Sobre ${esc(label)}\"",
+   "replace": "aria-label=\"Acerca de ${esc(label)}\"",
    "all": true
   },
   {
@@ -908,6 +908,16 @@
    "note": "latest events: multi-deck events left out (singular/plural verb)",
    "find": "${skip} multi-deck event${skip > 1 ? \"s\" : \"\"} (each player brings more than one deck) ${skip > 1 ? \"are\" : \"is\"} not listed: there&rsquo;s no way to tell which deck won each match.",
    "replace": "${skip} ${skip > 1 ? \"torneos multibaraja (en los que cada jugador lleva más de una baraja) se han quedado fuera\" : \"torneo multibaraja (en el que cada jugador lleva más de una baraja) se ha quedado fuera\"}, porque no hay forma de saber con qué baraja se ganó cada partida."
+  },
+  {
+   "note": "info button of the Packs view: «Acerca de los sobres»",
+   "find": "ii(\"Packs\"",
+   "replace": "ii(\"los sobres\""
+  },
+  {
+   "note": "info button of the event list: its screen-reader label (was English \"events\")",
+   "find": "ii(\"events\",",
+   "replace": "ii(\"los torneos\","
   }
  ]
 }

@@ -908,6 +908,11 @@
    "note": "Limited Battle: cards tip, with Portuguese card names",
    "find": "<p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(\", \")}.</p>",
    "replace": "<p>Só valem cartas de <b>Fusão Dupla</b> (C1), do pacote <b>Promo-C</b> deste evento e destas 7 promos da loja:</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\", \")}.</p>"
+  },
+  {
+   "note": "info button of the event list: its screen-reader label (was English \"events\")",
+   "find": "ii(\"events\",",
+   "replace": "ii(\"torneios\","
   }
  ]
 }

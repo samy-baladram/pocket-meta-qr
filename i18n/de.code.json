@@ -959,6 +959,11 @@
    "note": "card filter: where the card is (join)",
    "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
    "replace": "return parts.length ? parts.map((p) => p.replace(/^eine /, \"in einer \")).join(\" und \") : \"\";"
+  },
+  {
+   "note": "info button of the event list: its screen-reader label (was English \"events\")",
+   "find": "ii(\"events\",",
+   "replace": "ii(\"Turniere\","
   }
  ]
 }

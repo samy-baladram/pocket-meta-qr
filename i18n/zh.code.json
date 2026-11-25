@@ -965,6 +965,11 @@
    "note": "zh: hero event line '131人' (flex gap)",
    "find": "&middot; <b>${e.players}</b> players &middot; ${evDay(locDay(e))}</span>",
    "replace": "&middot; <span><b>${e.players}</b>人</span> &middot; ${evDay(locDay(e))}</span>"
+  },
+  {
+   "note": "info button of the event list: its screen-reader label (was English \"events\")",
+   "find": "ii(\"events\",",
+   "replace": "ii(\"比賽\","
   }
  ]
 }

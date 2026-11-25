@@ -1015,6 +1015,11 @@
    "note": "card filter: where the card is (join)",
    "find": "return parts.length ? \"in \" + parts.join(\" and \") : \"\";",
    "replace": "return parts.length ? parts.join(\", \") + \"에 채용\" : \"\";"
+  },
+  {
+   "note": "info button of the event list: its screen-reader label (was English \"events\")",
+   "find": "ii(\"events\",",
+   "replace": "ii(\"대회\","
   }
  ]
 }

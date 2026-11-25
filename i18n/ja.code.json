@@ -1146,6 +1146,11 @@
    "note": "Limited Battle: cards tip, with Japanese card names",
    "find": "<p>Only cards from <b>Dual Fusion</b> (C1), the <b>Promo-C Vol. 1</b> pack of this event, and these 7 shop promos:</p><p>${LB.promos.map(esc).join(\", \")}.</p>",
    "replace": "<p>使えるのは、<b>デュアルフュージョン</b>（C1）と、このイベントの<b>Promo-C</b>、それに次のショップのプロモカード7枚だけです：</p><p>${LB.promos.map((x) => esc(trCard(x))).join(\"、\")}。</p>"
+  },
+  {
+   "note": "info button of the event list: its screen-reader label (was English \"events\")",
+   "find": "ii(\"events\",",
+   "replace": "ii(\"大会\","
   }
  ],
  "_lb": "Limited Battle: deck notes, note labels, the event name and the card pool stay English. Do not add patches for them."
