@@ -946,11 +946,6 @@
    "replace": ">最新比賽</a>"
   },
   {
-   "note": "tabs: 引くべきパック (the page title and footer use it; the tab ranks packs by meta cards)",
-   "find": "><span class=\"tlx\">Booster </span>Packs</a>",
-   "replace": ">該抽哪個包</a>"
-  },
-  {
    "note": "card filter: where the card is (lists)",
    "find": "parts.push(`${ls.length > 1 ? \"lists\" : \"list\"} ${ls.join(\", \")}`);",
    "replace": "parts.push(`卡表${ls.join(\"、\")}`);"

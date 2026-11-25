@@ -569,11 +569,6 @@
    "replace": "<span class=\"tlx\">Decks méta</span><span class=\"tls\">Méta</span>"
   },
   {
-   "note": "tab: Boosters",
-   "find": "<span class=\"tlx\">Booster </span>Packs",
-   "replace": "Boosters"
-  },
-  {
    "note": "label: Limited Battle tab (Combats restreints, as in the French game)",
    "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
    "replace": "b.setAttribute(\"aria-label\", `Combats restreints, ${lbLeft(true)}`)"

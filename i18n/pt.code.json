@@ -544,11 +544,6 @@
    "replace": "<span class=\"tlx\">Baralhos meta</span><span class=\"tls\">Meta</span>"
   },
   {
-   "note": "tab: Sobres (was Sobres Sobres on wide screens)",
-   "find": "<span class=\"tlx\">Booster </span>Packs",
-   "replace": "Pacotes"
-  },
-  {
    "note": "label: Limited Battle tab",
    "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
    "replace": "b.setAttribute(\"aria-label\", `Batalhas Limitadas, ${lbLeft(true)}`)"
