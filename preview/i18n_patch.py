@@ -5,7 +5,7 @@ python3 preview/i18n_patch.py <in.html> <out.html>      (site.yml runs it on eve
 2. Names (de, es, fr, it, ja, pt): deck, card, set and pack names from i18n/names.<lang>.json (pipeline/i18n_names.mjs), switched in
    the data as it loads (normQ, events.json, packs.json, cards.json). English names stay in nameEn / nEn.
 3. Language menu (Nov 23, Phase 1 design B): a globe pill left of the dark-mode button (#langBtn) opens a raised panel
-   (#langPop) with every game language in its own script. LIVE_L (English; 日本語, Español, Português (Brasil), Deutsch, Français, Italiano, 한국어 and 繁體中文 with a Beta tag) can be chosen; the others
+   (#langPop) with every game language in its own script. LIVE_L (English, 日本語, Español, Português (Brasil), Deutsch, Français, Italiano, 한국어 and 繁體中文; the Beta tag was removed on Nov 26) can be chosen; the others
    show "Coming soon" / 準備中 and do nothing. A choice is saved (localStorage pmq-lang) and opens that language's page
    (/preview/ja/: i18n/build.mjs, PMQ_LANG set by the build). No redirect by browser language."""
 import json, os, re, sys
@@ -52,9 +52,9 @@ html[lang="fr"] small.t1s-x { letter-spacing: -0.02em; } /* Nov 24: "8e · nouve
 .lang-pop[hidden] { display: none; }
 .lang-pop h2 { margin: 2px 0 8px; font-size: 12px; font-weight: 700; color: var(--muted); text-align: center; }
 .lang-pop ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.lang-pop button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 38px;
-  padding: 0 14px; border: 0; border-radius: 19px; font: 600 14px/1.2 inherit; color: var(--ink); background: var(--surface);
-  box-shadow: var(--raised), var(--bevel); cursor: pointer; text-align: left; }
+.lang-pop button { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 38px; /* Nov 26: names centered, as in the game */
+  padding: 0 14px; border: 0; border-radius: 19px; font-family: inherit; font-size: 14px; font-weight: 600; line-height: 1.2; /* Nov 26: was "font: 600 14px/1.2 inherit" (not valid CSS) */ color: var(--ink); background: var(--surface);
+  box-shadow: var(--raised), var(--bevel); cursor: pointer; text-align: center; }
 .lang-pop button[aria-checked="true"] { background: var(--ink); color: var(--surface); box-shadow: none; }
 .lang-pop button[aria-disabled="true"] { cursor: default; color: var(--muted); box-shadow: none; background: transparent; opacity: 0.75; }
 .lang-tag { flex: none; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 9px; letter-spacing: 0.03em; }
@@ -74,7 +74,7 @@ MENU_JS = r"""  { const LN = [["en", "English", "ENG"], ["es", "Español", "SPA"
     const ES = PG_L === "es", PT = PG_L === "pt", DE = PG_L === "de", FR = PG_L === "fr", IT = PG_L === "it", KO = PG_L === "ko", ZH = PG_L === "zh"; $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : ES || PT ? "Idioma" : DE ? "Sprache" : FR ? "Langue" : IT ? "Lingua" : KO ? "언어" : ZH ? "語言" : "Language";
     btn.setAttribute("aria-label", (JA ? "言語：" : ES || PT ? "Idioma: " : DE ? "Sprache: " : FR ? "Langue\u00a0: " : IT ? "Lingua: " : KO ? "언어: " : ZH ? "語言：" : "Language: ") + cur[1]);
     list.innerHTML = LN.map(([c, n]) => { const live = LIVE_L.includes(c), on = c === PG_L;
-      const tag = c === "ja" || c === "es" || c === "pt" || c === "de" || c === "fr" || c === "it" || c === "ko" || c === "zh" ? `<span class="lang-tag beta">${JA ? "ベータ" : KO ? "베타" : ZH ? "測試版" : "Beta"}</span>` : live ? "" : `<span class="lang-tag soon">${JA ? "準備中" : ES ? "Próximamente" : PT ? "Em breve" : DE ? "Demnächst" : FR ? "Bientôt" : IT ? "In arrivo" : KO ? "준비 중" : ZH ? "即將推出" : "Coming soon"}</span>`;
+      const tag = live ? "" : /* Nov 26 (owner): no Beta tag (the checks found no issues) */ `<span class="lang-tag soon">${JA ? "準備中" : ES ? "Próximamente" : PT ? "Em breve" : DE ? "Demnächst" : FR ? "Bientôt" : IT ? "In arrivo" : KO ? "준비 중" : ZH ? "即將推出" : "Coming soon"}</span>`;
       return `<li><button type="button" role="radio" lang="${c}" data-l="${c}" aria-checked="${on}"${live || on ? "" : ' aria-disabled="true"'}>${n}${tag}</button></li>`; }).join("");
     const close = (f) => { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); if (f) btn.focus(); };
     btn.addEventListener("click", (e) => { e.stopPropagation(); const o = pop.hidden; pop.hidden = !o; btn.setAttribute("aria-expanded", String(o));
