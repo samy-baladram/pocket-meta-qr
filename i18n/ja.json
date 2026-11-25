@@ -31,8 +31,8 @@
 "of {0} top players",
 "（上位プレイヤー{0}人中）"
 ],
-"028fddc250": [
-"Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.",
+"244cdd379c": [
+"Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). But the most used isn’t always the best: check the Score and the other lists too.",
 "いま人気{t0}：まったく同じ形で使った上位プレイヤーがいちばん多いレシピです（3人以上、しかも他のレシピより2人以上多いもの）。ただ、よく使われている＝いちばん強い、とは限りません。戦績や他のレシピもあわせて見てみてください。"
 ],
 "029205c659": [
@@ -98,16 +98,16 @@
 "7 days",
 "7日間"
 ],
-"0acb187723": [
-"Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.",
+"2f5b5dc8fa": [
+"Because mirror matches (the same deck on both sides) and events where players bring more than one deck aren&rsquo;t counted here. Also, a tie counts as half a win.",
 "このサイトでは、ミラー対戦（同じデッキ同士の対戦）と、1人が複数のデッキを使う大会を数えていないからです。また、引き分けは0.5勝として計算しています。"
 ],
 "0b57ba73fb": [
 "Live status",
 "更新状況"
 ],
-"0b638f7e80": [
-"It shows only the current meta, the decks, lists and events of the last 7 to 14 days, so it does not keep a history, list every card or build decks.",
+"11bb655466": [
+"This site focuses on the current meta: decks, lists and events from the last 7 to 14 days. So here&rsquo;s what you won&rsquo;t find:",
 "このサイトが扱うのは「いまの環境」だけです。載せているのは直近7〜14日のデッキ・レシピ・大会なので、次のような機能はありません。"
 ],
 "0bec14f205": [
@@ -190,12 +190,12 @@
 "lists · best {t0}{0}{t1} · {1}% share",
 "レシピ · 最高{t0}{0}{t1} · 使用率{1}%"
 ],
-"1385294543": [
-"×N: share here vs {0} · top 8s at other events",
+"16df671790": [
+"×N: share here compared with {0} · top 8s at other events",
 "×N：この大会での使用率が{0}の何倍か · 他の大会でのベスト8入り"
 ],
-"13d4b964c6": [
-"One event is {t0}{0}%{t1} of these results, so it moves the numbers more than usual.",
+"c176586897": [
+"A single event makes up {t0}{0}%{t1} of these results, so it affects the numbers more than usual.",
 "この結果の{t0}{0}%{t1}を1つの大会が占めているので、いつもより数値が偏りやすくなっています。"
 ],
 "1455ab70a1": [
@@ -206,8 +206,8 @@
 "Loading&hellip;",
 "読み込み中…"
 ],
-"1464926697": [
-"Most used is not always the best: compare the win rates.",
+"ceb1f6352b": [
+"The most used isn’t always the best: compare the win rates too.",
 "よく使われているレシピがいちばん強いとは限りません。勝率も比べてみてください。"
 ],
 "14b0dbb85b": [
@@ -226,8 +226,8 @@
 "Deck",
 "デッキ"
 ],
-"16effccb01": [
-"No list was used by more than 1 top player, so the {0} is the list with the best place{1}.",
+"45e4192c3d": [
+"No list was used by more than 1 top player, so the {0} is the one with the best finish{1}.",
 "2人以上の上位プレイヤーが使ったレシピがないので、{0}にはいちばん順位の高いレシピを表示しています{1}。"
 ],
 "172415f02e": [
@@ -262,16 +262,16 @@
 "best {0}%",
 "最高{0}%"
 ],
-"1b6d32d996": [
-"{0}: Which Meta Decks Use It ({1}) – Pokémon TCG Pocket | Pocket Meta QR",
+"aeb8c2d4f5": [
+"{0}: Which Meta Decks Play It ({1}) – Pokémon TCG Pocket | Pocket Meta QR",
 "{0}：使っている環境デッキ（{1}）– ポケポケ | Pocket Meta QR"
 ],
 "1bdcee8370": [
 "{0}–{1} wins",
 "{0}〜{1}勝"
 ],
-"1be44ea15f": [
-"The window length changed today, so the 24 h rank arrows are hidden today.",
+"8bcbb6bf16": [
+"The period changed today, so the 24 h rank arrows are hidden for today.",
 "今日は集計期間の長さが変わったため、24時間の順位変動の矢印は表示していません。"
 ],
 "1c1a3f0a7e": [
@@ -310,8 +310,8 @@
 "week{0} ago",
 "週間前{0!}"
 ],
-"1fc6434234": [
-"No deck history:{t0} the 7-day trend in a deck&rsquo;s stats is the longest view.",
+"5274a6d99e": [
+"Long deck history:{t0} the 7-day trend in a deck&rsquo;s stats is as far back as it goes.",
 "デッキの長期的な推移：{t0}見られるのは、デッキの統計にある7日間の推移までです。"
 ],
 "1fd12296da": [
@@ -350,20 +350,20 @@
 "event{0}",
 "大会{0!}"
 ],
-"2274cb3617": [
-"is new: these are the results of its first {0}, so the numbers can change fast.",
+"278a6d15ac": [
+"just came out: these are the results from its first {0}, so the numbers can still change a lot.",
 "は発売されたばかりです。最初の{0}の結果なので、数値が大きく変わることもあります。"
 ],
-"232a936a05": [
-"Deck data did not load.",
+"e013ad6352": [
+"Couldn’t load the deck data.",
 "デッキのデータを読み込めませんでした。"
 ],
 "23bf8384bf": [
 "Top 25%",
 "上位25%"
 ],
-"23cd04792c": [
-"Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image.",
+"b8363503b9": [
+"Save the image, then in the game go to My Decks → + → Scan Code → Scan Saved Image.",
 "画像を保存したら、ゲームで「マイデッキ → 新規作成 → コードを読み取る → 保存した画像から読み取る」を選んでください。"
 ],
 "23d7de0ce5": [
@@ -454,8 +454,8 @@
 "Cards in these decks",
 "これらのデッキのカード"
 ],
-"2aca25531e": [
-"This is the list of its best-placed player{0}{1}. A starting point, not a proven list.",
+"ab1c1ca459": [
+"This is the list of its best-placed player{0}{1}. Treat it as something to try, not a proven recipe.",
 "いちばん順位の高いプレイヤーのレシピです{0}{1}。まだ実績のないレシピなので、参考程度にどうぞ。"
 ],
 "2b286f6b1e": [
@@ -470,8 +470,8 @@
 "d ago",
 "日前"
 ],
-"2cb2bd4021": [
-"Too few players for a fair rank, so it has no rank number.",
+"8c3a993c3e": [
+"Too few players used this deck to rank it fairly, so it has no rank number.",
 "使用者が少なすぎて公平に順位を付けられないため、順位は付けていません。"
 ],
 "2e5855d5c2": [
@@ -506,8 +506,8 @@
 "or better made the top {0} · {t0}Limitless ↗",
 "以上で上位{0}名 · {t0}Limitless ↗"
 ],
-"30d4653f8e": [
-"▲ = at least 2&times; its meta share in this event's top {0}.",
+"7f23ce9918": [
+"▲ = at least twice as common in this event’s top {0} as its meta share suggests.",
 "▲＝この大会の上位{0}名での使用率が、環境全体の2倍以上。"
 ],
 "311bee6a56": [
@@ -566,8 +566,8 @@
 "Search decks and cards",
 "デッキとカードの検索"
 ],
-"347bbc504b": [
-"A player with at least 2 more wins than losses at a single-deck event.",
+"01f22e8cc7": [
+"Someone who finishes a single-deck event with at least 2 more wins than losses. So a 5-3 or a 4-2 is enough.",
 "1人1デッキの大会で、2勝以上勝ち越したプレイヤーのことです。"
 ],
 "35d9bc5159": [
@@ -610,8 +610,8 @@
 "in {0} pack{1}",
 "{0}パック{1!}"
 ],
-"39a4023d00": [
-"Because every number comes from real tournament games, recorded while the event runs. Each event shows its standings and the result of every match in every round, and players hand in their deck list before the event starts, so each list is the deck that was really played. On top of that, this site counts only public Standard events with 8 or more players and 1 deck per player, and only real matches: no byes, no mirror matches.",
+"ac1c45e2a0": [
+"Yes. Every number comes from real tournament matches, recorded as they&rsquo;re played. Each event publishes its standings and the result of every match, round by round. And since players submit their deck list before the event starts, each list is exactly the deck that was played. On top of that, this site only counts public Standard events with 8 or more players and 1 deck per player, and only matches that were actually played (no byes, no mirror matches).",
 "数値がすべて、大会中に記録された本物の対戦結果だからです。どの大会も順位と全ラウンドの対戦結果が公開されていますし、レシピは大会が始まる前に提出されるので、載っているのは実際に使われたデッキそのものです。さらにこのサイトでは、参加者8人以上・1人1デッキの公開スタンダード大会のうち、実際に行われた対戦だけを数えています（不戦勝とミラー対戦は除外）。"
 ],
 "3a46f4e05d": [
@@ -666,8 +666,8 @@
 "2 cards",
 "2枚"
 ],
-"3d506b84fd": [
-"New in the list (the first time since the set came out, for 3 days) and Breakout decks (a rare deck with a top-8 finish at a big event)",
+"e37f070061": [
+"New in the list (for the first time since the set came out; shown for 3 days) and Breakout decks (rare decks with a top-8 finish at a big event)",
 "ランキングに新登場したデッキ（拡張パックの発売以降で初めて、3日間）と躍進デッキ（大きな大会でベスト8に入った珍しいデッキ）"
 ],
 "3d81bd05a3": [
@@ -706,8 +706,8 @@
 "Breakout deck",
 "躍進デッキ"
 ],
-"42b36a9675": [
-"The other lists compare their cards with it. Lists with the same count are sorted by their best place.",
+"1e9152da33": [
+"The other lists show which cards they change compared with it. Lists with the same count are sorted by their best finish.",
 "他のレシピは、このレシピとの違いを表示しています。使用者数が同じレシピは、最高順位の高い順に並べています。"
 ],
 "42df7965d2": [
@@ -818,8 +818,8 @@
 "List 1",
 "レシピ1"
 ],
-"500c824120": [
-"Win rate against the 10 most played decks {0} (games), best first. Bars from 20% to 80%; light = too few games to be sure it is not 50%. Tap a deck to open it.",
+"d43fdba378": [
+"Win rate against the 10 most-played decks {0} (games), best first. Bars run from 20% to 80%. A light bar means there are too few games to say that the result really differs from 50%. Tap a deck to open it.",
 "{0}よく使われている10デッキとの相性（勝率と対戦数）を、勝率の高い順に並べています。バーの範囲は20%〜80%。色が薄いバーは対戦数が少なく、50%と差があるとは言い切れないものです。デッキをタップすると開きます。"
 ],
 "50832fb363": [
@@ -830,12 +830,12 @@
 "Show all",
 "すべて表示"
 ],
-"5128e386a1": [
-"The ▲ / ▼ number is how much the share went up or down over the last {0} days, in percentage points (8.3% → 12.0% = ▲3.7).",
+"4fe854410e": [
+"The ▲ / ▼ number shows how many percentage points the share went up or down over the last {0} days (for example, 8.3% to 12.0% = ▲3.7).",
 "▲ / ▼ の数字は、直近{0}日間で使用率が何ポイント上下したかを表します（例：8.3% → 12.0% なら ▲3.7）。"
 ],
-"516dd47a55": [
-"Public Standard events with 8 or more players on {t0}Limitless TCG{t1}, from the last 7 days, because the meta changes fast (up to 14 days when there are few events, late in a set; never before the set&rsquo;s release). The numbers are computed here, so they can differ a little from other sites.",
+"0c1495b2ee": [
+"From public Standard events with 8 or more players on {t0}Limitless TCG{t1}. The meta moves fast, so only the last 7 days count (up to 14 days late in a set, when there are fewer events, but never from before the set came out). All the numbers are worked out by this site, so they may differ a little from other sites.",
 "{t0}Limitless TCG{t1}で開かれた、参加者8人以上の公開スタンダード大会の結果を使っています。環境はすぐに変わるので、対象は直近7日間だけです（大会が少ない拡張パックの終盤は最大14日まで広げます。発売前の大会は含みません）。数値はすべてこのサイトで計算しているため、他のサイトと少しずれることがあります。"
 ],
 "518e73b3a3": [
@@ -858,8 +858,8 @@
 "Top 16",
 "ベスト16"
 ],
-"5351e118ae": [
-"Updated {0}.{t0} Ranked best first, from our testing so far (it can change). Deck notes made with help from {t1}GameWith{t2}.",
+"97dc4ba04e": [
+"Updated {0}.{t0} Ranked from best to worst based on our testing so far (this may change). Deck notes were written with help from {t1}GameWith{t2}.",
 "更新：{0}。{t0}これまでのテストをもとに、強い順に並べています（今後変わることもあります）。デッキのメモは{t1}GameWith{t2}を参考にしています。"
 ],
 "53668c4b2c": [
@@ -878,16 +878,16 @@
 "&middot; in {0} {1}deck{2}",
 "&middot; {1}デッキ{0}個{2!}"
 ],
-"548bcc2f35": [
-"Win rate against the 10 most played decks {0}, best first. Green bar: above 50%, red: below. {t0}Light bar{t1}: too few games to be sure it is not 50%. Right: the number of games.",
+"aaca3c9b23": [
+"Win rate against the 10 most-played decks {0}, best first. Green bar: above 50%; red: below. {t0}Light bar{t1}: too few games to say that the result really differs from 50%. On the right: the number of games.",
 "{0}よく使われている10デッキとの相性を、勝率の高い順に並べています。緑のバーは50%超、赤は50%未満。{t0}色が薄いバー{t1}は対戦数が少なく、50%と差があるとは言い切れないものです。右の数字は対戦数です。"
 ],
 "54907cba83": [
 "&#9888; Below the cut",
 "&#9888; ボーダー未満"
 ],
-"54df5b93d8": [
-"No pack has that card.",
+"2cc52b38c6": [
+"That card isn’t in any pack.",
 "このカードが入っているパックはありません。"
 ],
 "5548ae4f34": [
@@ -906,8 +906,8 @@
 "Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes",
 "Pocket Meta QR – ポケポケの最強デッキランキングと大会結果をQRコード付きで"
 ],
-"566bcc7a1f": [
-"Each day = the window that ends on that day (7–14 days, wider when there are few events), so the numbers move slowly. Faded: under 30 players.{0}",
+"528da2475a": [
+"Each day shows the period that ends on that day (7–14 days, longer when there are few events), so the numbers change slowly. Faded: under 30 players.{0}",
 "各日の値は、その日までの集計期間（7〜14日。大会が少ないときは長め）の数値です。そのため、変化はゆるやかです。薄い表示は30人未満。{0}"
 ],
 "56820cd9a6": [
@@ -918,8 +918,8 @@
 "Open in Latest Events &rsaquo;",
 "「最新の大会」で開く &rsaquo;"
 ],
-"56bcd8fe54": [
-"New{t0}: the first time this deck is in the list since {0} came out. The tag shows for 3 days.",
+"91e73a2486": [
+"New{t0}: this deck is in the list for the first time since {0} came out. The tag stays for 3 days.",
 "新登場{t0}：{0}の発売後、このデッキが初めてランキング入りしました。このマークは3日間表示されます。"
 ],
 "56ded40877": [
@@ -1054,8 +1054,8 @@
 "NEW",
 "NEW"
 ],
-"67524d7001": [
-"The deck has no top player in these days. {t0}Unproven{t1}: some players won more than they lost, but none reached a top result; the page shows the best of them. {t2}No top result{t3}: no player won more than they lost; the page shows the best-placed list. Both are a starting point, not a proven list.",
+"e80819462a": [
+"Both labels mean that no top player used this deck in this period. {t0}Unproven{t1}: some players won more matches than they lost, but nobody got to 2 wins ahead. The page shows the best of their lists. {t2}No top result{t3}: nobody won more than they lost with this deck. The page shows the best-placed list. Either way, treat the list as something to try, not a proven recipe.",
 "どちらも、この期間にそのデッキを使った上位プレイヤーがいない、という意味です。{t0}実績なし{t1}：勝ち越した人はいるけれど、2勝以上の勝ち越しには届かなかったデッキです。その中でいちばん成績の良いレシピを表示しています。{t2}上位入賞なし{t3}：勝ち越した人が1人もいないデッキです。いちばん順位の高いレシピを表示しています。どちらも「まだ結果が出ていない」デッキなので、レシピは参考程度に考えてください。"
 ],
 "67b6a61bdd": [
@@ -1122,8 +1122,8 @@
 "change in 24 hours",
 "24時間の変動"
 ],
-"6c3a3bb7b9": [
-"The big number is the deck’s {t0}share{t1}: of {t2}all players{t3} in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the “top players” (that count, under each list, only takes players who won at least 2 more matches than they lost).",
+"dc537b6a53": [
+"The big number is the deck’s {t0}share{t1}: how many of {t2}all players{t3} in those events (every entry counts, whatever the result) played this deck. 12.0% is about 1 player in 8. This has nothing to do with “top players”: the count under each list only includes players with at least 2 more wins than losses.",
 "大きな数字はデッキの{t0}使用率{t1}です。これらの大会の{t2}全参加者{t3}（成績に関係なく全員）のうち、このデッキを使った人の割合を表します。12.0%なら、およそ8人に1人です。「上位プレイヤー」の人数とは別物です（各レシピの下の人数は、2勝以上勝ち越したプレイヤーだけを数えています）。"
 ],
 "6cb6084c7f": [
@@ -1190,16 +1190,16 @@
 "The list most top players copy gets a “Popular now” chip on its card.",
 "上位プレイヤーが最も多く使っているレシピには「いま人気」のラベルが付きます。"
 ],
-"7046e8f2dd": [
-"The lists did not load. Close and open the event again.",
+"a0b96f5cd0": [
+"The lists couldn’t load. Close the event and open it again.",
 "レシピを読み込めませんでした。大会を閉じて、もう一度開いてください。"
 ],
 "70b8058643": [
 "stayed {t0}#{0}",
 "{t0}{0}位のまま"
 ],
-"7164a73633": [
-"This is on purpose, so every number on the page is about the game as it is played today. For past results and every Pok&eacute;mon TCG Pocket card, {t0}Limitless TCG{t1} keeps the full archive.",
+"327b2d0c93": [
+"That&rsquo;s on purpose: every number on the page should reflect the game as it&rsquo;s played today. For past results and every Pok&eacute;mon TCG Pocket card, {t0}Limitless TCG{t1} has the full archive.",
 "これはわざとそうしています。ページの数値をすべて「いまのゲーム」に合わせたいからです。過去の結果やポケポケの全カードを見たいときは、{t0}Limitless TCG{t1}にすべて残っているので、そちらをどうぞ。"
 ],
 "719ea396ad": [
@@ -1246,8 +1246,8 @@
 "Not a top list now",
 "現在は上位レシピ外"
 ],
-"75367d1a97": [
-"No player of this deck won more matches than they lost {0}, so it has no top-player list.",
+"80a3aa11c6": [
+"Nobody won more matches than they lost with this deck {0}, so it has no top-player list.",
 "{0}このデッキで勝ち越したプレイヤーがいないので、上位プレイヤーのレシピはありません。"
 ],
 "75ab30ea65": [
@@ -1274,8 +1274,8 @@
 "for the meta",
 "（環境向け）"
 ],
-"775ee8b04a": [
-"The tournaments of the same days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.",
+"acb7849724": [
+"Every event from the same period, newest first. Open one to see its top 8 lists, each with a QR code. Events where each player brings more than one deck aren&rsquo;t listed, because there&rsquo;s no way to tell which deck won each match.",
 "同じ期間に開かれた大会を、新しい順に並べています。大会をタップすると、ベスト8のレシピがQRコード付きで見られます。なお、1人が複数のデッキを持ち込む形式の大会は、どのデッキで勝ったのかがわからないため載せていません。"
 ],
 "7789ef8e5a": [
@@ -1350,8 +1350,8 @@
 "+{0} event{1}",
 "+{0}大会{1!}"
 ],
-"7d8bdc5e6b": [
-"Now: {t0}{0} days{t1}, because fewer events were played in the last 7 days.",
+"d70f8f098a": [
+"Now: {t0}{0} days{t1}. There were only a few events in the last 7 days, so the period was extended.",
 "現在：{t0}{0}日間{t1}。直近7日間の大会が少なかったので、期間を広げています。"
 ],
 "7e29279cfb": [
@@ -1386,8 +1386,8 @@
 "&times;{0} in this list",
 "このレシピに&times;{0}"
 ],
-"81826fc524": [
-"Open a deck, tap its QR code and save the image. In the game: {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. On a computer, you can also point the game&rsquo;s camera at the screen.",
+"64a53708b2": [
+"Open the deck you want, tap its QR code and save the image. Then, in the game, go to {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. That&rsquo;s it! On a computer, you can even point the game&rsquo;s camera straight at your screen.",
 "気になるデッキを開いてQRコードをタップし、画像を保存してください。あとはゲームで{t0}「マイデッキ → 新規作成 → コードを読み取る → 保存した画像から読み取る」{t1}を選ぶだけです。パソコンで見ているなら、画面のQRコードをゲームのカメラで直接読み取ることもできます。"
 ],
 "8235bdefc9": [
@@ -1410,8 +1410,8 @@
 "Faded: fewer than 30 players, so this rate is less certain.",
 "薄い表示：使用者が30人未満のため、この数値はまだ参考程度です。"
 ],
-"8434bf2392": [
-"Share, win rate, rank and matchups count all players; Cards counts the top players. A tie is half a win; mirror matches are not counted.",
+"15033d2f82": [
+"Share, win rate, rank and matchups count all players; the Cards section counts only top players. A tie counts as half a win, and mirror matches aren’t counted.",
 "使用率・勝率・順位・相性は全プレイヤー、カードは上位プレイヤーをもとに数えています。引き分けは0.5勝として計算し、ミラー対戦は数えません。"
 ],
 "84e3ee8374": [
@@ -1422,8 +1422,8 @@
 "Show {0} older packs",
 "以前のパックを表示（{0}）"
 ],
-"857fa3b382": [
-"List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. {t0}&#9733; Popular now{t1} marks a list 1 that clearly more top players used exactly than any other list.",
+"75823dd342": [
+"List 1 is the list that the most top players used. Lists that differ from it by only 1, 2 or 3 cards count with it: the tiles under the list show how many top players used it exactly, and how many made 1, 2 or 3 swaps (tap a tile to see those versions, each with its own QR code). A list with 4 or more different cards gets its own spot if 2 or more top players used it, or if 1 player took it to the top 8 of an event with 32+ players. The {t0}&#9733; Popular now{t1} badge appears on List 1 when clearly more top players used it exactly than any other list.",
 "レシピ1は、いちばん多くの上位プレイヤーが使ったレシピです。1〜3枚だけ違うレシピも、同じレシピの仲間として数えています。レシピの下のタイルを見ると、まったく同じ形で使った人と、1〜3枚入れ替えて使った人がそれぞれ何人いるかがわかります（タップすると、そのバージョンをQRコード付きで見られます）。4枚以上違うレシピは、上位プレイヤー2人以上が使ったとき、または32人以上の大会でベスト8に入ったときに、別のレシピとして表示します。{t0}&#9733; いま人気{t1}のマークは、まったく同じレシピを使った人が他よりはっきり多いレシピ1に付きます。"
 ],
 "861edba005": [
@@ -1454,8 +1454,8 @@
 "New logo",
 "新しいロゴ"
 ],
-"8896272648": [
-"No one with this deck won more than they lost {0}. This is its best-placed list.",
+"b01c37efc3": [
+"Nobody won more than they lost with this deck {0}. This is its best-placed list.",
 "{0}このデッキで勝ち越した人はいません。いちばん順位の高いレシピを表示しています。"
 ],
 "88c70db626": [
@@ -1470,12 +1470,12 @@
 "A top result: at least 2 more wins than losses at an event {0}.",
 "上位の成績：{0}の大会で2勝以上勝ち越すこと。"
 ],
-"8948bad5c9": [
-"No deck builder:{t0} import a list with its QR code, then change it in the game.",
+"afba1eccfb": [
+"A deck builder:{t0} import a list with its QR code, then tweak it in the game.",
 "デッキ作成：{t0}QRコードでレシピを読み込んで、ゲームの中でアレンジしてください。"
 ],
-"899e85d0d1": [
-"A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.",
+"1288c8b51b": [
+"Each finish is weighed against the event size: 5th of 547 ranks above 2nd of 153. The other lists show which cards they change compared with it.",
 "順位は大会の参加人数も考えて比べています。たとえば547人中5位は、153人中2位より上になります。他のレシピは、このレシピとの違いを表示しています。"
 ],
 "89b86ab0e6": [
@@ -1525,8 +1525,8 @@
 "Booster",
 "拡張"
 ],
-"8e7fc3f8ed": [
-"New set: {0}{t0} came out {1}. Until {2}, the numbers also include events from before it.",
+"61c0d00307": [
+"New set: {0}{t0} came out {1}. Until {2}, the numbers also include events from before its release.",
 "新しい拡張パック：{0}{t0}は{1}に発売されました。{2}までは、発売前の大会も数値に含まれます。"
 ],
 "8eaf38d66f": [
@@ -1573,12 +1573,12 @@
 "Small fixes",
 "細かい修正"
 ],
-"93daa2f17e": [
-"The decks that win in Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, the {t2}latest events{t3} with their top 8, and a {t4}QR code{t5} for every list, so you can import a deck in a few taps.",
+"fba6a556f3": [
+"Pocket Meta QR shows you the decks winning Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, plus the top 8 from the {t2}latest events{t3}. Every list comes with a {t4}QR code{t5}, so you can get the deck into the game in a few taps.",
 "Pocket Meta QRは、{t0}いま{t1}ポケポケの大会で勝っているデッキと、{t2}最新の大会{t3}のベスト8をまとめたサイトです。すべてのレシピに{t4}QRコード{t5}が付いているので、数タップでそのままゲームに読み込めます。"
 ],
-"953d4f3666": [
-"A {t0}top player{t1} won at least 2 more matches than they lost (ties do not count) at a single-deck event {0}.",
+"a197a95929": [
+"A {t0}top player{t1} finished a single-deck event {0} with at least 2 more wins than losses (ties don’t count).",
 "{t0}上位プレイヤー{t1}とは、{0}の1人1デッキの大会で2勝以上勝ち越したプレイヤーのことです（引き分けは数えません）。"
 ],
 "95d5a43fa7": [
@@ -1673,12 +1673,12 @@
 "How to import a deck by QR code, where the data comes from and how decks are ranked, in one place.",
 "QRコードでのデッキの読み込み方、データの出どころ、デッキの順位の付け方を1か所にまとめました。"
 ],
-"9eaea27829": [
-"An event shows here {t0}after it ends{t1}, usually a few hours after it starts. It is listed under the day it was played (your time), so a new event can show under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.",
+"d78584f458": [
+"An event shows up here {t0}after it ends{t1}, usually a few hours after it starts. It&rsquo;s listed under the day it was played (in your time zone), so a new event can appear under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.",
 "大会はここに{t0}終了後に{t1}表示されます。たいてい開始から数時間後です。開催日（端末の時刻）の下に並ぶので、新しい大会が「昨日」の下に出ることもあります。「N時間前に追加」の表示が目印です。"
 ],
-"9ec76bfa7e": [
-"Yes: no ads and no sign-up. No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter). This browser keeps only your theme and the last tab you used.",
+"3b4177f41b": [
+"Yes, completely: no ads, no sign-up. No cookies or personal data either: the site only counts visits and button taps, anonymously (GoatCounter). Your browser keeps just two things: your theme (light or dark) and the last tab you opened.",
 "もちろん無料です。広告も会員登録もありません。Cookieや個人情報も使っていません。アクセス数とボタンのタップ数を匿名で数えているだけです（GoatCounter）。ブラウザに保存するのも、テーマ（ライト／ダーク）と最後に開いたタブの2つだけです。"
 ],
 "9fcb4b1bfc": [
@@ -1737,8 +1737,8 @@
 "Search and filter",
 "検索・絞り込み"
 ],
-"a40926803d": [
-"In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image.",
+"6d383bea3a": [
+"In the game, go to My Decks → + → Scan Code and point the camera at this code. Or download the image.",
 "ゲームで「マイデッキ → 新規作成 → コードを読み取る」を開いて、このコードにカメラを向けてください。画像をダウンロードして読み込むこともできます。"
 ],
 "a452ac820f": [
@@ -1777,8 +1777,8 @@
 "Saving is not available here: long-press the QR code instead.",
 "ここでは保存できません。QRコードを長押ししてください。"
 ],
-"a79387a4ad": [
-"What is in Latest Events?",
+"590dba4ca7": [
+"What&rsquo;s in Latest Events?",
 "「最新の大会」タブでは何が見られるの？"
 ],
 "a7f8e7cc0d": [
@@ -1789,8 +1789,8 @@
 "{0}Popular now",
 "{0}いま人気"
 ],
-"a9a48e26e0": [
-"A deck plays a card when half or more of its lists play it. A {t0}meta card{t1} is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded, with “small” under them, and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.",
+"0f9ed58020": [
+"A card counts as part of a deck when half or more of the deck’s lists play it. A {t0}meta card{t1} is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded, marked “small”, and counted separately. Pokémon and Trainers both count; rarity and your own collection don’t matter.",
 "デッキのレシピの半分以上に入っているカードを、そのデッキの採用カードとしています。{t0}環境カード{t1}とは、使用率1.0%以上のデッキが1つ以上採用しているカードです。小規模デッキだけが使うカードは薄く表示し、「小規模」と付けて別に数えています。対象はポケモンとトレーナーズで、レアリティや手持ちのカードは関係ありません。"
 ],
 "aa13831f68": [
@@ -1825,12 +1825,12 @@
 "too rare to rank",
 "少なすぎて順位なし"
 ],
-"acfa231857": [
-"Decks with 30+ players {0}: share against win rate. Lines: the median share and 50% win rate.",
+"4c4eb05449": [
+"Decks with 30+ players {0}: share vs. win rate. The lines mark the median share and a 50% win rate.",
 "{0}の使用者が30人以上のデッキを、使用率と勝率で並べた図です。線は使用率の中央値と勝率50%を表します。"
 ],
-"ad0938bfaf": [
-"The 10 decks played most {0}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.",
+"9dadb1f9bd": [
+"The 10 most-played decks {0} in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle, and the shelf turns by itself (it stops as soon as you touch it). You can drag or flick it, and tapping a deck opens it.",
 "Limitless TCGの参加者8人以上の公開スタンダード大会で、{0}よく使われた10デッキです。1位が中央からスタートし、棚は自動で回ります（触ると止まります）。ドラッグやスワイプで動かせて、デッキをタップすると開きます。"
 ],
 "ad0f717c5c": [
@@ -1937,8 +1937,8 @@
 "Latest Events opens with a shelf of the winning decks and a Most wins panel. Tap a deck to see only its wins.",
 "「最新の大会」の上部に、優勝デッキの棚と「優勝が多いデッキ」を表示します。デッキをタップすると、その優勝だけを表示します。"
 ],
-"b7c44ae8ae": [
-"The shelf shows the 10 packs with the most meta cards (#1 in the middle); the list has every pack, the older series under it. Tap a pack to see its cards; tap a card to see the decks that play it.",
+"64966e1469": [
+"The shelf shows the 10 packs with the most meta cards (#1 in the middle). Below it are all the packs, with the older series at the bottom. Tap a pack to see its cards, or a card to see the decks that play it.",
 "棚には、環境カードが多いパックのトップ10を表示しています（1位が中央）。下のリストには全パックがあり、以前のシリーズはさらに下にあります。パックをタップするとカードが、カードをタップするとそのカードを使うデッキが見られます。"
 ],
 "b812e498b4": [
@@ -1985,8 +1985,8 @@
 "An open deck, event or pack has a share button in its corner that copies a link to it.",
 "開いているデッキ・大会・パックの角に共有ボタンがあり、そのリンクをコピーできます。"
 ],
-"bd81811d71": [
-"Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks from public tournaments on Limitless, like a tier list built from real results: share, win rate and the lists the top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster pack gives the cards of the meta.",
+"a5d998e59f": [
+"Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks using public tournaments on Limitless. Think of it as a tier list built from real results: share, win rate and the lists top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster packs the meta&rsquo;s cards come from.",
 "Pocket Meta QRは、Limitlessの公開大会の結果をもとに、今週のポケポケのデッキをランキングにしたサイトです。実際の結果から作ったティア表のようなもので、使用率や勝率、上位プレイヤーのレシピがわかります。すべてのレシピにQRコードがあるので、ゲームで読み取ればそのままデッキを作れます。「引くべきパック」では、環境で使われるカードがどのパックから出るかもチェックできます。"
 ],
 "bde2eabf31": [
@@ -2009,8 +2009,8 @@
 "Search decks by deck or card name",
 "デッキ名またはカード名でデッキを検索"
 ],
-"c06cdf65c7": [
-"Deck data did not load. Reload the page to try again.",
+"470c958ae5": [
+"Couldn’t load the deck data. Reload the page to try again.",
 "デッキのデータを読み込めませんでした。ページを再読み込みしてください。"
 ],
 "c0ee3cda6e": [
@@ -2025,8 +2025,8 @@
 "Link copied",
 "リンクをコピーしました"
 ],
-"c31ba3ef37": [
-"Days = how many days that window had.",
+"532cb1965f": [
+"Days = how many days that period covered.",
 "日数＝その期間の日数。"
 ],
 "c3476ebd0f": [
@@ -2101,8 +2101,8 @@
 "Meta decks{t0}{t1}Latest tournaments{t2}{t3}Which pack to open{t4}{t5}Limited Battle",
 "最強デッキ{t0}{t1}最新の大会{t2}{t3}引くべきパック{t4}{t5}限定バトル"
 ],
-"c9929a6b53": [
-"players won more than they lost with this deck {0}, but none reached a top result. This is the best of them.",
+"6448ac5f3f": [
+"players won more than they lost with this deck {0}, but none got to 2 wins ahead. This is the best of their lists.",
 "人がこのデッキで{0}勝ち越しましたが、2勝以上の勝ち越しには届いていません。その中でいちばん成績の良いレシピです。"
 ],
 "c9b4332dc1": [
@@ -2177,8 +2177,8 @@
 "Early results{t0} &middot; day",
 "速報{t0} &middot; 経過日数"
 ],
-"d1e9c146ea": [
-"Core: in 90%+ of the {0} top players' lists. Flex: share of top players who play it{1}.{2}",
+"587024b143": [
+"Core: in 90% or more of the {0} top players’ lists. Flex: the share of top players who play the card{1}.{2}",
 "確定枠：上位プレイヤー{0}人のレシピの90%以上に入っているカード。自由枠：そのカードを入れている上位プレイヤーの割合{1}。{2}"
 ],
 "d27dc1b686": [
@@ -2197,8 +2197,8 @@
 "Could not copy:",
 "コピーできませんでした："
 ],
-"d50280bff1": [
-"What does this site not do?",
+"e9b02baac2": [
+"What doesn&rsquo;t this site do?",
 "このサイトでできないことは？"
 ],
 "d532eb8b7f": [
@@ -2349,8 +2349,8 @@
 "Last 7 days",
 "直近7日間"
 ],
-"dfe3c5d44a": [
-"Yes: tap {t0}Add to Home Screen{t1} at the bottom of the page for the steps.",
+"0c2c936032": [
+"Sure! Tap {t0}Add to Home Screen{t1} at the bottom of the page to see how. Then you can open the site with one tap, just like any other app.",
 "使えます！ページのいちばん下にある{t0}ホーム画面に追加{t1}をタップすると、やり方が表示されます。ホーム画面からワンタップで開けて便利ですよ。"
 ],
 "e000ac6209": [
@@ -2397,8 +2397,8 @@
 "Records",
 "戦績"
 ],
-"e615ae42b5": [
-"Why Limitless TCG, and can I trust the results?",
+"e2b27d0bea": [
+"Why Limitless TCG? Can I trust the results?",
 "なぜLimitless TCGなの？結果は信頼できる？"
 ],
 "e6866f28e4": [
@@ -2417,8 +2417,8 @@
 "Hand-picked",
 "厳選"
 ],
-"e7a5c67393": [
-"The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the current set&rsquo;s release, so in a new set&rsquo;s first days the results are early ones. The line under the title shows the dates.",
+"a1e7ff63bc": [
+"Usually the last 7 days. When there are only a few events (often late in a set), the page goes back 10 or 14 days, so every number has enough players behind it. Events from before the current set came out never count, so in a new set&rsquo;s first few days, the numbers are still settling. The exact dates are right under the title.",
 "基本は直近7日間です。大会が少ない時期（拡張パックの終盤によくあります）は、数値に十分な人数が集まるように10日または14日まで広げます。また、いまの拡張パックの発売前の大会は数えません。そのため、新しい拡張パックが出た直後の数日は「速報」扱いになります。対象の期間は、タイトルの下に表示しています。"
 ],
 "e903ded5bb": [
@@ -2485,8 +2485,8 @@
 "One row per number of wins, one dot per player. Blue: the top 8.",
 "勝ち数ごとに1行、プレイヤーごとに1点。青はベスト8です。"
 ],
-"f0c4717b8a": [
-"That event is not in the list anymore: it shows the events {0}.",
+"baea395436": [
+"That event isn’t in the list anymore: it only shows events {0}.",
 "この大会はもうリストにありません。リストには{0}の大会を表示しています。"
 ],
 "f0e3ef5401": [
@@ -2509,12 +2509,12 @@
 "Biggest",
 "最大"
 ],
-"f22a80a34b": [
-"Which booster packs give the cards of the meta decks {0}.",
+"db5612c506": [
+"Which booster packs the cards of the meta decks {0} come from.",
 "{0}の環境デッキのカードが出るパックです。"
 ],
-"f2335414bf": [
-"multi-deck event{0} (players bring more than one deck) {1} not listed: their results do not show which deck won each match.",
+"5173853811": [
+"multi-deck event{0} (each player brings more than one deck) {1} not listed: there&rsquo;s no way to tell which deck won each match.",
 "件の複数デッキ制の大会{0!}（1人が複数のデッキを持ち込む形式）は{1!}載せていません。どの対戦をどのデッキで勝ったのか、結果からわからないためです。"
 ],
 "f314effecd": [
@@ -2537,8 +2537,8 @@
 "Won by{t0} {0} ·",
 "優勝{t0} {0} ·"
 ],
-"f3f9391cee": [
-"Not every tournament:{t0} only public Standard events with 8 or more players and 1 deck per player.",
+"e4444f6b7a": [
+"Every tournament:{t0} only public Standard events with 8 or more players and 1 deck per player count.",
 "すべての大会の結果：{t0}対象は、参加者8人以上・1人1デッキの公開スタンダード大会だけです。"
 ],
 "f434bf32bf": [
@@ -2557,24 +2557,24 @@
 "Used by",
 "使用："
 ],
-"f5967e775f": [
-"Not every card:{t0} the Packs tab and the card pages show only the cards that this week&rsquo;s meta decks play.",
+"798970a489": [
+"Every card:{t0} the Packs tab and the card pages only show cards that this week&rsquo;s meta decks play.",
 "全カードの一覧：{t0}「引くべきパック」タブやカードのページに出るのは、今週の環境デッキで使われているカードだけです。"
 ],
 "f6bb0f468a": [
 "Days",
 "日数"
 ],
-"f744f6ce38": [
-"Did not load. Swipe away and back.",
+"5e00670fb6": [
+"Couldn’t load. Swipe away and back.",
 "読み込めませんでした。一度スワイプで閉じて、もう一度開いてください。"
 ],
-"f7e42baf96": [
-"The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the set&rsquo;s release.",
+"d6017b0b51": [
+"Usually the last 7 days. When there are only a few events (often late in a set), the page goes back 10 or 14 days, so every number has enough players behind it. Events from before the set came out never count.",
 "基本は直近7日間です。大会が少ない時期（拡張パックの終盤によくあります）は、数値に十分な人数が集まるように10日または14日まで広げます。拡張パックの発売前の大会は数えません。"
 ],
-"f80619bbf4": [
-"No older weeks or past sets:{t0} no results or tier lists from before the days shown under the title.",
+"df4ee6db0c": [
+"Old data:{t0} no results or tier lists from before the dates under the title.",
 "過去のデータ：{t0}タイトルの下にある期間より前の結果やティア表は見られません。"
 ],
 "f83481bd50": [
@@ -2621,12 +2621,12 @@
 "Switch to light mode",
 "ライトモードに切り替え"
 ],
-"ff3e8e536e": [
-"1 player won more than they lost with this deck {0}, but did not reach a top result. This is their list.",
+"5d2e9d9b35": [
+"1 player won more than they lost with this deck {0}, but didn’t get to 2 wins ahead. This is their list.",
 "1人がこのデッキで{0}勝ち越しましたが、2勝以上の勝ち越しには届いていません。その人のレシピです。"
 ],
-"ffa4a6d465": [
-"Limitless TCG{t0} is the main place where Pok&eacute;mon TCG Pocket tournaments are played online. New events start there every day, from small cups to open events with more than 300 players, and thousands of players take part every week. Each result is public as soon as an event ends, and this site checks for new ones every hour, so the meta here is days fresher than a tier list made by hand. Pocket Meta QR is not part of Limitless TCG: it reads its public results.",
+"b9ad35c118": [
+"Limitless TCG{t0} is where most online Pok&eacute;mon TCG Pocket tournaments happen. New events start every day, from small cups to open events with 300+ players, and thousands of people play each week. Results go public as soon as an event ends, and this site checks for new ones every hour. That&rsquo;s why the meta here is days ahead of any hand-made tier list. Just so you know: Pocket Meta QR isn&rsquo;t affiliated with Limitless TCG. It only reads the results that Limitless makes public.",
 "Limitless TCG{t0}は、ポケポケのオンライン大会がいちばん多く開かれているサイトです。小さな大会から300人を超えるオープン大会まで毎日のように開催されていて、毎週数千人が参加しています。結果は大会が終わるとすぐ公開され、このサイトも1時間ごとにチェックしています。だから手作業のティア表より、何日も早く環境の変化がわかるんです。なお、Pocket Meta QRはLimitless TCGの公式サイトではありません。公開されている結果を読み込んで使わせてもらっています。"
 ],
 "ffa4f00cd6": [

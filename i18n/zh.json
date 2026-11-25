@@ -27,8 +27,8 @@
 "of {0} top players",
 "（頂尖玩家{0}人中）"
 ],
-"028fddc250": [
-"Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). Most used is not always the best: see the Score and the other lists.",
+"244cdd379c": [
+"Popular now{t0}: the list that the most top players used exactly (at least 3, and at least 2 more than any other list). But the most used isn’t always the best: check the Score and the other lists too.",
 "目前熱門{t0}：最多頂尖玩家完全照用的卡表（至少3人，且比其他任何卡表多2人以上）。用的人最多不代表最強，也請看看戰績和其他卡表。"
 ],
 "02b620b03a": [
@@ -75,12 +75,12 @@
 "7 days",
 "7天"
 ],
-"0acb187723": [
-"Mirror matches (the same deck on both sides) and events where players bring more than 1 deck are not counted. A tie counts as half a win.",
+"2f5b5dc8fa": [
+"Because mirror matches (the same deck on both sides) and events where players bring more than one deck aren&rsquo;t counted here. Also, a tie counts as half a win.",
 "因為這裡不計鏡像對戰（雙方使用相同牌組），也不計每人帶多副牌組的比賽。另外，平手算半場勝利。"
 ],
-"0b638f7e80": [
-"It shows only the current meta, the decks, lists and events of the last 7 to 14 days, so it does not keep a history, list every card or build decks.",
+"11bb655466": [
+"This site focuses on the current meta: decks, lists and events from the last 7 to 14 days. So here&rsquo;s what you won&rsquo;t find:",
 "本網站專注在當下的環境：最近7～14天的牌組、卡表和比賽。所以以下內容在這裡找不到："
 ],
 "0bec14f205": [
@@ -147,12 +147,12 @@
 "lists · best {t0}{0}{t1} · {1}% share",
 "份卡表 · 最佳{t0}{0}{t1} · 使用率{1}%"
 ],
-"1385294543": [
-"×N: share here vs {0} · top 8s at other events",
+"16df671790": [
+"×N: share here compared with {0} · top 8s at other events",
 "×N：本場比賽使用率與{0}使用率之比 · 在其他比賽進入八強"
 ],
-"13d4b964c6": [
-"One event is {t0}{0}%{t1} of these results, so it moves the numbers more than usual.",
+"c176586897": [
+"A single event makes up {t0}{0}%{t1} of these results, so it affects the numbers more than usual.",
 "單一比賽佔這些結果的{t0}{0}%{t1}，因此對數值的影響比平常大。"
 ],
 "1455ab70a1": [
@@ -163,8 +163,8 @@
 "Loading&hellip;",
 "載入中&hellip;"
 ],
-"1464926697": [
-"Most used is not always the best: compare the win rates.",
+"ceb1f6352b": [
+"The most used isn’t always the best: compare the win rates too.",
 "用的人最多不代表最強，請比較勝率。"
 ],
 "14b0dbb85b": [
@@ -183,8 +183,8 @@
 "Deck",
 "牌組"
 ],
-"16effccb01": [
-"No list was used by more than 1 top player, so the {0} is the list with the best place{1}.",
+"45e4192c3d": [
+"No list was used by more than 1 top player, so the {0} is the one with the best finish{1}.",
 "沒有任何卡表被2位以上頂尖玩家使用，因此{0}是名次最好的卡表{1}。"
 ],
 "172415f02e": [
@@ -215,16 +215,16 @@
 "best {0}%",
 "最高{0}%"
 ],
-"1b6d32d996": [
-"{0}: Which Meta Decks Use It ({1}) – Pokémon TCG Pocket | Pocket Meta QR",
+"aeb8c2d4f5": [
+"{0}: Which Meta Decks Play It ({1}) – Pokémon TCG Pocket | Pocket Meta QR",
 "{0}：哪些環境牌組有放這張卡（{1}）– Pokémon TCG Pocket | Pocket Meta QR"
 ],
 "1bdcee8370": [
 "{0}–{1} wins",
 "{0}～{1}勝"
 ],
-"1be44ea15f": [
-"The window length changed today, so the 24 h rank arrows are hidden today.",
+"8bcbb6bf16": [
+"The period changed today, so the 24 h rank arrows are hidden for today.",
 "今天統計期間的長度有變，因此今天不顯示24小時的排名箭頭。"
 ],
 "1c1a3f0a7e": [
@@ -263,8 +263,8 @@
 "week{0} ago",
 "週前{0!}"
 ],
-"1fc6434234": [
-"No deck history:{t0} the 7-day trend in a deck&rsquo;s stats is the longest view.",
+"5274a6d99e": [
+"Long deck history:{t0} the 7-day trend in a deck&rsquo;s stats is as far back as it goes.",
 "長期的牌組紀錄：{t0}最多只能回顧牌組統計中的7天趨勢。"
 ],
 "1fd12296da": [
@@ -295,20 +295,20 @@
 "event{0}",
 "場比賽{0!}"
 ],
-"2274cb3617": [
-"is new: these are the results of its first {0}, so the numbers can change fast.",
+"278a6d15ac": [
+"just came out: these are the results from its first {0}, so the numbers can still change a lot.",
 "剛推出：這是{0}的結果，數值還可能有很大變動。"
 ],
-"232a936a05": [
-"Deck data did not load.",
+"e013ad6352": [
+"Couldn’t load the deck data.",
 "無法載入牌組資料。"
 ],
 "23bf8384bf": [
 "Top 25%",
 "前25%"
 ],
-"23cd04792c": [
-"Save the image, then in the game: My Decks → + → Scan Code → Scan Saved Image.",
+"b8363503b9": [
+"Save the image, then in the game go to My Decks → + → Scan Code → Scan Saved Image.",
 "儲存圖片後，在遊戲中依序點選：我的牌組 → ＋ → 讀取條碼 → 讀取已儲存的圖片。"
 ],
 "23d7de0ce5": [
@@ -391,8 +391,8 @@
 "Cards in these decks",
 "這些牌組的卡牌"
 ],
-"2aca25531e": [
-"This is the list of its best-placed player{0}{1}. A starting point, not a proven list.",
+"ab1c1ca459": [
+"This is the list of its best-placed player{0}{1}. Treat it as something to try, not a proven recipe.",
 "這是名次最好的玩家的卡表{0}{1}。建議當成可以試試看的參考，而不是保證有效的配方。"
 ],
 "2b286f6b1e": [
@@ -407,8 +407,8 @@
 "d ago",
 "天前"
 ],
-"2cb2bd4021": [
-"Too few players for a fair rank, so it has no rank number.",
+"8c3a993c3e": [
+"Too few players used this deck to rank it fairly, so it has no rank number.",
 "使用這副牌組的玩家太少，無法公平排名，所以沒有名次。"
 ],
 "2e5855d5c2": [
@@ -435,8 +435,8 @@
 "or better made the top {0} · {t0}Limitless ↗",
 "以上進入前{0}名 · {t0}Limitless ↗"
 ],
-"30d4653f8e": [
-"▲ = at least 2&times; its meta share in this event's top {0}.",
+"7f23ce9918": [
+"▲ = at least twice as common in this event’s top {0} as its meta share suggests.",
 "▲ ＝ 在本場比賽前{0}名中的使用率達環境使用率的2倍以上。"
 ],
 "311bee6a56": [
@@ -483,8 +483,8 @@
 "▲ Rising",
 "▲ 上升"
 ],
-"347bbc504b": [
-"A player with at least 2 more wins than losses at a single-deck event.",
+"01f22e8cc7": [
+"Someone who finishes a single-deck event with at least 2 more wins than losses. So a 5-3 or a 4-2 is enough.",
 "只要在每人1副牌組的比賽中，以勝場比敗場多2場以上的成績結束，就是頂尖玩家。所以5勝3敗或4勝2敗就算數了。"
 ],
 "35d9bc5159": [
@@ -519,8 +519,8 @@
 "in {0} pack{1}",
 "{0}種擴充包{1!}"
 ],
-"39a4023d00": [
-"Because every number comes from real tournament games, recorded while the event runs. Each event shows its standings and the result of every match in every round, and players hand in their deck list before the event starts, so each list is the deck that was really played. On top of that, this site counts only public Standard events with 8 or more players and 1 deck per player, and only real matches: no byes, no mirror matches.",
+"ac1c45e2a0": [
+"Yes. Every number comes from real tournament matches, recorded as they&rsquo;re played. Each event publishes its standings and the result of every match, round by round. And since players submit their deck list before the event starts, each list is exactly the deck that was played. On top of that, this site only counts public Standard events with 8 or more players and 1 deck per player, and only matches that were actually played (no byes, no mirror matches).",
 "可信。所有數值都來自比賽中即時記錄的真實對戰。每場比賽都會公開排名，以及每一輪每場對戰的結果。而且玩家在比賽開始前就要提交卡表，所以每份卡表都是實際上場的牌組。此外，本網站只計算8人以上、每人1副牌組的公開標準賽，也只算實際打完的對戰（不含輪空和鏡像對戰）。"
 ],
 "3a46f4e05d": [
@@ -563,8 +563,8 @@
 "2 cards",
 "2張"
 ],
-"3d506b84fd": [
-"New in the list (the first time since the set came out, for 3 days) and Breakout decks (a rare deck with a top-8 finish at a big event)",
+"e37f070061": [
+"New in the list (for the first time since the set came out; shown for 3 days) and Breakout decks (rare decks with a top-8 finish at a big event)",
 "新上榜的牌組（擴充包推出以來首次上榜，顯示3天）與黑馬牌組（在大型比賽進入八強的少見牌組）"
 ],
 "3d81bd05a3": [
@@ -595,8 +595,8 @@
 "Breakout deck",
 "黑馬牌組"
 ],
-"42b36a9675": [
-"The other lists compare their cards with it. Lists with the same count are sorted by their best place.",
+"1e9152da33": [
+"The other lists show which cards they change compared with it. Lists with the same count are sorted by their best finish.",
 "其他卡表會顯示和這份卡表相比換了哪些卡。人數相同的卡表依最佳名次排序。"
 ],
 "42df7965d2": [
@@ -695,8 +695,8 @@
 "List 1",
 "卡表1"
 ],
-"500c824120": [
-"Win rate against the 10 most played decks {0} (games), best first. Bars from 20% to 80%; light = too few games to be sure it is not 50%. Tap a deck to open it.",
+"d43fdba378": [
+"Win rate against the 10 most-played decks {0} (games), best first. Bars run from 20% to 80%. A light bar means there are too few games to say that the result really differs from 50%. Tap a deck to open it.",
 "{0}對最常用的10副牌組的勝率（對戰數），由高到低排列。長條範圍為20%～80%。顏色較淺代表對戰數太少，還不能確定結果真的偏離50%。點選牌組即可開啟。"
 ],
 "50832fb363": [
@@ -707,12 +707,12 @@
 "Show all",
 "顯示全部"
 ],
-"5128e386a1": [
-"The ▲ / ▼ number is how much the share went up or down over the last {0} days, in percentage points (8.3% → 12.0% = ▲3.7).",
+"4fe854410e": [
+"The ▲ / ▼ number shows how many percentage points the share went up or down over the last {0} days (for example, 8.3% to 12.0% = ▲3.7).",
 "▲ / ▼ 的數字表示最近{0}天內使用率上升或下降了多少個百分點（例如從8.3%到12.0%＝▲3.7）。"
 ],
-"516dd47a55": [
-"Public Standard events with 8 or more players on {t0}Limitless TCG{t1}, from the last 7 days, because the meta changes fast (up to 14 days when there are few events, late in a set; never before the set&rsquo;s release). The numbers are computed here, so they can differ a little from other sites.",
+"0c1495b2ee": [
+"From public Standard events with 8 or more players on {t0}Limitless TCG{t1}. The meta moves fast, so only the last 7 days count (up to 14 days late in a set, when there are fewer events, but never from before the set came out). All the numbers are worked out by this site, so they may differ a little from other sites.",
 "資料來自{t0}Limitless TCG{t1}上8人以上的公開標準賽。環境變化很快，所以只看最近7天（擴充包後期比賽較少時最多14天，但不含擴充包推出前的比賽）。所有數值都由本網站自行計算，因此可能和其他網站略有不同。"
 ],
 "518e73b3a3": [
@@ -727,8 +727,8 @@
 "Top 16",
 "十六強"
 ],
-"5351e118ae": [
-"Updated {0}.{t0} Ranked best first, from our testing so far (it can change). Deck notes made with help from {t1}GameWith{t2}.",
+"97dc4ba04e": [
+"Updated {0}.{t0} Ranked from best to worst based on our testing so far (this may change). Deck notes were written with help from {t1}GameWith{t2}.",
 "更新：{0}。{t0}依目前的測試由強到弱排列（可能會變動）。牌組說明參考了{t1}GameWith{t2}。"
 ],
 "53668c4b2c": [
@@ -747,16 +747,16 @@
 "&middot; in {0} {1}deck{2}",
 "&middot; {0}副{1}牌組{2!}"
 ],
-"548bcc2f35": [
-"Win rate against the 10 most played decks {0}, best first. Green bar: above 50%, red: below. {t0}Light bar{t1}: too few games to be sure it is not 50%. Right: the number of games.",
+"aaca3c9b23": [
+"Win rate against the 10 most-played decks {0}, best first. Green bar: above 50%; red: below. {t0}Light bar{t1}: too few games to say that the result really differs from 50%. On the right: the number of games.",
 "{0}對最常用的10副牌組的勝率，由高到低排列。綠色長條高於50%，紅色低於50%。{t0}顏色較淺的長條{t1}表示對戰數太少，還不能確定結果真的偏離50%。右側為對戰數。"
 ],
 "54907cba83": [
 "&#9888; Below the cut",
 "&#9888; 未達門檻"
 ],
-"54df5b93d8": [
-"No pack has that card.",
+"2cc52b38c6": [
+"That card isn’t in any pack.",
 "沒有擴充包收錄這張卡牌。"
 ],
 "5548ae4f34": [
@@ -775,8 +775,8 @@
 "Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes",
 "Pocket Meta QR – Pokémon TCG Pocket環境牌組與比賽結果，附QR碼"
 ],
-"566bcc7a1f": [
-"Each day = the window that ends on that day (7–14 days, wider when there are few events), so the numbers move slowly. Faded: under 30 players.{0}",
+"528da2475a": [
+"Each day shows the period that ends on that day (7–14 days, longer when there are few events), so the numbers change slowly. Faded: under 30 players.{0}",
 "每一天代表在當天結束的統計期間（7～14天，比賽較少時較長），所以數值變化較慢。顏色較淺：少於30人。{0}"
 ],
 "56820cd9a6": [
@@ -787,8 +787,8 @@
 "Open in Latest Events &rsaquo;",
 "在「最新比賽」中開啟 &rsaquo;"
 ],
-"56bcd8fe54": [
-"New{t0}: the first time this deck is in the list since {0} came out. The tag shows for 3 days.",
+"91e73a2486": [
+"New{t0}: this deck is in the list for the first time since {0} came out. The tag stays for 3 days.",
 "新上榜{t0}：這副牌組在{0}推出後首次進入排名。這個標籤會顯示3天。"
 ],
 "56ded40877": [
@@ -895,8 +895,8 @@
 "NEW",
 "NEW"
 ],
-"67524d7001": [
-"The deck has no top player in these days. {t0}Unproven{t1}: some players won more than they lost, but none reached a top result; the page shows the best of them. {t2}No top result{t3}: no player won more than they lost; the page shows the best-placed list. Both are a starting point, not a proven list.",
+"e80819462a": [
+"Both labels mean that no top player used this deck in this period. {t0}Unproven{t1}: some players won more matches than they lost, but nobody got to 2 wins ahead. The page shows the best of their lists. {t2}No top result{t3}: nobody won more than they lost with this deck. The page shows the best-placed list. Either way, treat the list as something to try, not a proven recipe.",
 "這兩個標籤都表示：這段期間沒有頂尖玩家使用這副牌組。{t0}待驗證{t1}：有玩家勝多於敗，但沒有人做到淨勝2場。頁面會顯示其中最好的玩家的卡表。{t2}沒有頂尖成績{t3}：沒有人用這副牌組勝多於敗。頁面會顯示名次最好的卡表。不管哪一種，都建議把卡表當成可以試試看的參考，而不是保證有效的配方。"
 ],
 "67b6a61bdd": [
@@ -951,8 +951,8 @@
 "change in 24 hours",
 "24小時變動"
 ],
-"6c3a3bb7b9": [
-"The big number is the deck’s {t0}share{t1}: of {t2}all players{t3} in those events (every entry, whatever their result), the part who played this deck. 12.0% = about 1 player in 8. It is not about the “top players” (that count, under each list, only takes players who won at least 2 more matches than they lost).",
+"dc537b6a53": [
+"The big number is the deck’s {t0}share{t1}: how many of {t2}all players{t3} in those events (every entry counts, whatever the result) played this deck. 12.0% is about 1 player in 8. This has nothing to do with “top players”: the count under each list only includes players with at least 2 more wins than losses.",
 "大數字是牌組的{t0}使用率{t1}：在這些比賽的{t2}所有玩家{t3}中（每一位參加者都算，不論成績），有多少比例使用這副牌組。12.0%大約是每8人中有1人。這和「頂尖玩家」無關：各卡表下方的人數只計算勝場比敗場多2場以上的玩家。"
 ],
 "6cb6084c7f": [
@@ -1003,16 +1003,16 @@
 "Search an event or deck",
 "搜尋比賽或牌組"
 ],
-"7046e8f2dd": [
-"The lists did not load. Close and open the event again.",
+"a0b96f5cd0": [
+"The lists couldn’t load. Close the event and open it again.",
 "無法載入卡表。請關閉比賽後再開啟一次。"
 ],
 "70b8058643": [
 "stayed {t0}#{0}",
 "維持{t0}第{0}名"
 ],
-"7164a73633": [
-"This is on purpose, so every number on the page is about the game as it is played today. For past results and every Pok&eacute;mon TCG Pocket card, {t0}Limitless TCG{t1} keeps the full archive.",
+"327b2d0c93": [
+"That&rsquo;s on purpose: every number on the page should reflect the game as it&rsquo;s played today. For past results and every Pok&eacute;mon TCG Pocket card, {t0}Limitless TCG{t1} has the full archive.",
 "這是刻意的設計：頁面上的每個數值，都應該反映現在的遊戲狀況。想看過去的結果或Pokémon TCG Pocket的所有卡牌，可以到{t0}Limitless TCG{t1}查看完整的紀錄。"
 ],
 "719ea396ad": [
@@ -1055,8 +1055,8 @@
 "Not a top list now",
 "目前不在頂尖卡表中"
 ],
-"75367d1a97": [
-"No player of this deck won more matches than they lost {0}, so it has no top-player list.",
+"80a3aa11c6": [
+"Nobody won more matches than they lost with this deck {0}, so it has no top-player list.",
 "{0}沒有玩家用這副牌組勝多於敗，因此沒有頂尖玩家的卡表。"
 ],
 "75ab30ea65": [
@@ -1079,8 +1079,8 @@
 "for the meta",
 "（環境適用）"
 ],
-"775ee8b04a": [
-"The tournaments of the same days, newest first. Open one to see the lists of its top 8 players, with a QR code for each. Events where players bring more than 1 deck are not listed, because they have no single list per player.",
+"acb7849724": [
+"Every event from the same period, newest first. Open one to see its top 8 lists, each with a QR code. Events where each player brings more than one deck aren&rsquo;t listed, because there&rsquo;s no way to tell which deck won each match.",
 "同一期間的所有比賽，由新到舊排列。開啟一場比賽，就能看到八強的卡表，每份都附QR碼。每人帶多副牌組的比賽不會列出，因為無法得知每場對戰是用哪副牌組贏的。"
 ],
 "7789ef8e5a": [
@@ -1143,8 +1143,8 @@
 "+{0} event{1}",
 "+{0}場比賽{1!}"
 ],
-"7d8bdc5e6b": [
-"Now: {t0}{0} days{t1}, because fewer events were played in the last 7 days.",
+"d70f8f098a": [
+"Now: {t0}{0} days{t1}. There were only a few events in the last 7 days, so the period was extended.",
 "目前：{t0}{0}天{t1}。最近7天的比賽較少，所以把期間拉長了。"
 ],
 "7e29279cfb": [
@@ -1179,8 +1179,8 @@
 "&times;{0} in this list",
 "這份卡表中&times;{0}"
 ],
-"81826fc524": [
-"Open a deck, tap its QR code and save the image. In the game: {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. On a computer, you can also point the game&rsquo;s camera at the screen.",
+"64a53708b2": [
+"Open the deck you want, tap its QR code and save the image. Then, in the game, go to {t0}My Decks &rarr; + &rarr; Scan Code &rarr; Scan Saved Image{t1}. That&rsquo;s it! On a computer, you can even point the game&rsquo;s camera straight at your screen.",
 "開啟想要的牌組，點選QR碼並儲存圖片。接著在遊戲中依序點選{t0}我的牌組 → ＋ → 讀取條碼 → 讀取已儲存的圖片{t1}，就完成了！用電腦的話，也可以直接用遊戲的相機掃描螢幕。"
 ],
 "8235bdefc9": [
@@ -1199,8 +1199,8 @@
 "Faded: fewer than 30 players, so this rate is less certain.",
 "顏色較淺：少於30人，這個數值較不可靠。"
 ],
-"8434bf2392": [
-"Share, win rate, rank and matchups count all players; Cards counts the top players. A tie is half a win; mirror matches are not counted.",
+"15033d2f82": [
+"Share, win rate, rank and matchups count all players; the Cards section counts only top players. A tie counts as half a win, and mirror matches aren’t counted.",
 "使用率、勝率、排名和對戰相性以所有玩家計算；「卡牌」區塊只計算頂尖玩家。平手算半場勝利，鏡像對戰不計。"
 ],
 "84e3ee8374": [
@@ -1211,8 +1211,8 @@
 "Show {0} older packs",
 "顯示較舊的擴充包（{0}）"
 ],
-"857fa3b382": [
-"List 1 of a deck is the list that the most top players used. A list with only 1, 2 or 3 cards swapped counts with it: the tiles under the list show how many top players used it exactly or with 1, 2 or 3 swaps (tap a tile for those versions, each with its own QR code). A list with 4 or more cards swapped is shown as its own list when 2 or more top players used it, or 1 player finished in the top 8 of an event with 32 or more players. {t0}&#9733; Popular now{t1} marks a list 1 that clearly more top players used exactly than any other list.",
+"75823dd342": [
+"List 1 is the list that the most top players used. Lists that differ from it by only 1, 2 or 3 cards count with it: the tiles under the list show how many top players used it exactly, and how many made 1, 2 or 3 swaps (tap a tile to see those versions, each with its own QR code). A list with 4 or more different cards gets its own spot if 2 or more top players used it, or if 1 player took it to the top 8 of an event with 32+ players. The {t0}&#9733; Popular now{t1} badge appears on List 1 when clearly more top players used it exactly than any other list.",
 "卡表1是最多頂尖玩家使用的卡表。只差1、2或3張的卡表會算進卡表1：卡表下方的方塊會顯示有幾位頂尖玩家完全照用，以及有幾位替換了1、2或3張（點選方塊可查看這些版本，每個都附QR碼）。差4張以上的卡表，如果有2位以上頂尖玩家使用，或有1位玩家用它在32人以上的比賽打進八強，就會單獨列出。{t0}★ 目前熱門{t1}會標在卡表1上，條件是完全照用的頂尖玩家明顯多於其他任何卡表。"
 ],
 "861edba005": [
@@ -1239,8 +1239,8 @@
 "place at",
 "："
 ],
-"8896272648": [
-"No one with this deck won more than they lost {0}. This is its best-placed list.",
+"b01c37efc3": [
+"Nobody won more than they lost with this deck {0}. This is its best-placed list.",
 "{0}沒有人用這副牌組勝多於敗。這是名次最好的卡表。"
 ],
 "88c70db626": [
@@ -1255,12 +1255,12 @@
 "A top result: at least 2 more wins than losses at an event {0}.",
 "頂尖成績：{0}在比賽中勝場比敗場多2場以上。"
 ],
-"8948bad5c9": [
-"No deck builder:{t0} import a list with its QR code, then change it in the game.",
+"afba1eccfb": [
+"A deck builder:{t0} import a list with its QR code, then tweak it in the game.",
 "組牌功能：{t0}用QR碼匯入卡表後，直接在遊戲中微調就好。"
 ],
-"899e85d0d1": [
-"A place is compared to the event size: 5th of 547 ranks before 2nd of 153. The other lists compare their cards with it.",
+"1288c8b51b": [
+"Each finish is weighed against the event size: 5th of 547 ranks above 2nd of 153. The other lists show which cards they change compared with it.",
 "名次會考慮比賽人數：547人中的第5名排在153人中的第2名之前。其他卡表會顯示和這份卡表相比換了哪些卡。"
 ],
 "89b86ab0e6": [
@@ -1299,8 +1299,8 @@
 "Booster",
 "擴充包"
 ],
-"8e7fc3f8ed": [
-"New set: {0}{t0} came out {1}. Until {2}, the numbers also include events from before it.",
+"61c0d00307": [
+"New set: {0}{t0} came out {1}. Until {2}, the numbers also include events from before its release.",
 "新擴充包：{0}{t0}於{1}推出。{2}之前，數值也包含推出前的比賽。"
 ],
 "8eaf38d66f": [
@@ -1339,12 +1339,12 @@
 "· {0} players",
 "· {0}人"
 ],
-"93daa2f17e": [
-"The decks that win in Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, the {t2}latest events{t3} with their top 8, and a {t4}QR code{t5} for every list, so you can import a deck in a few taps.",
+"fba6a556f3": [
+"Pocket Meta QR shows you the decks winning Pok&eacute;mon TCG Pocket tournaments {t0}right now{t1}, plus the top 8 from the {t2}latest events{t3}. Every list comes with a {t4}QR code{t5}, so you can get the deck into the game in a few taps.",
 "Pocket Meta QR幫你整理{t0}目前{t1}在Pokémon TCG Pocket比賽中獲勝的牌組，以及{t2}最新比賽{t3}的八強。每份卡表都附有{t4}QR碼{t5}，點幾下就能把牌組匯入遊戲。"
 ],
-"953d4f3666": [
-"A {t0}top player{t1} won at least 2 more matches than they lost (ties do not count) at a single-deck event {0}.",
+"a197a95929": [
+"A {t0}top player{t1} finished a single-deck event {0} with at least 2 more wins than losses (ties don’t count).",
 "{t0}頂尖玩家{t1}是指{0}在每人1副牌組的比賽中，勝場比敗場多2場以上的玩家（平手不計）。"
 ],
 "961d9b56f9": [
@@ -1419,12 +1419,12 @@
 "place",
 "名次"
 ],
-"9eaea27829": [
-"An event shows here {t0}after it ends{t1}, usually a few hours after it starts. It is listed under the day it was played (your time), so a new event can show under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.",
+"d78584f458": [
+"An event shows up here {t0}after it ends{t1}, usually a few hours after it starts. It&rsquo;s listed under the day it was played (in your time zone), so a new event can appear under &ldquo;Yesterday&rdquo;: look for &ldquo;added N h ago&rdquo;.",
 "比賽會在{t0}結束後{t1}顯示，通常是開始後幾小時。比賽依舉行日期（你的時區）排列，所以新比賽可能出現在「昨天」底下：請找「N小時前新增」。"
 ],
-"9ec76bfa7e": [
-"Yes: no ads and no sign-up. No cookies and no personal data: the site only counts visits and button taps, anonymously (GoatCounter). This browser keeps only your theme and the last tab you used.",
+"3b4177f41b": [
+"Yes, completely: no ads, no sign-up. No cookies or personal data either: the site only counts visits and button taps, anonymously (GoatCounter). Your browser keeps just two things: your theme (light or dark) and the last tab you opened.",
 "完全免費：沒有廣告，也不用註冊。也不使用Cookie或個人資料：網站只會匿名統計造訪次數和按鈕點選次數（GoatCounter）。你的瀏覽器只會記住兩件事：你的主題（淺色或深色）和最後開啟的分頁。"
 ],
 "9fcb4b1bfc": [
@@ -1467,8 +1467,8 @@
 "Search and filter",
 "搜尋與篩選"
 ],
-"a40926803d": [
-"In the game: My Decks → + → Scan Code, then point the camera at this code. Or download the image.",
+"6d383bea3a": [
+"In the game, go to My Decks → + → Scan Code and point the camera at this code. Or download the image.",
 "在遊戲中依序點選我的牌組 → ＋ → 讀取條碼，再將相機對準這個條碼。也可以下載圖片。"
 ],
 "a452ac820f": [
@@ -1499,8 +1499,8 @@
 "Saving is not available here: long-press the QR code instead.",
 "這裡無法儲存，請長按QR碼。"
 ],
-"a79387a4ad": [
-"What is in Latest Events?",
+"590dba4ca7": [
+"What&rsquo;s in Latest Events?",
 "「最新比賽」分頁裡有什麼？"
 ],
 "a7f8e7cc0d": [
@@ -1511,8 +1511,8 @@
 "{0}Popular now",
 "{0}目前熱門"
 ],
-"a9a48e26e0": [
-"A deck plays a card when half or more of its lists play it. A {t0}meta card{t1} is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded, with “small” under them, and counted apart. Pokémon and Trainers count; rarity and your own collection are not used.",
+"0f9ed58020": [
+"A card counts as part of a deck when half or more of the deck’s lists play it. A {t0}meta card{t1} is played by at least one deck with a 1.0% share or more. Cards that only smaller decks play are faded, marked “small”, and counted separately. Pokémon and Trainers both count; rarity and your own collection don’t matter.",
 "如果一副牌組有一半以上的卡表放入某張卡，這張卡就算是這副牌組的卡牌。{t0}環境卡{t1}是指至少被1副使用率1.0%以上的牌組使用的卡牌。只有小眾牌組使用的卡牌會以淺色顯示，下方標示「小眾」，並另外計算。寶可夢和訓練家都會計算；不考慮稀有度和你自己的收藏。"
 ],
 "aa13831f68": [
@@ -1539,12 +1539,12 @@
 "too rare to rank",
 "太少，不列入排名"
 ],
-"acfa231857": [
-"Decks with 30+ players {0}: share against win rate. Lines: the median share and 50% win rate.",
+"4c4eb05449": [
+"Decks with 30+ players {0}: share vs. win rate. The lines mark the median share and a 50% win rate.",
 "{0}使用者30人以上的牌組：使用率與勝率的關係。線條為使用率中位數和50%勝率。"
 ],
-"ad0938bfaf": [
-"The 10 decks played most {0}, in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle; the shelf turns by itself and stops when you touch it. Drag or flick it; tap a deck to open it.",
+"9dadb1f9bd": [
+"The 10 most-played decks {0} in public Standard events with 8 or more players on Limitless TCG. #1 starts in the middle, and the shelf turns by itself (it stops as soon as you touch it). You can drag or flick it, and tapping a deck opens it.",
 "{0}在Limitless TCG上8人以上的公開標準賽中最常使用的10副牌組。第1名從中間開始，展示架會自動轉動（一碰就會停下）。可以拖曳或滑動，點一下牌組就能開啟。"
 ],
 "ad0f717c5c": [
@@ -1639,8 +1639,8 @@
 "next check in about {0} min",
 "約{0}分鐘後進行下次檢查"
 ],
-"b7c44ae8ae": [
-"The shelf shows the 10 packs with the most meta cards (#1 in the middle); the list has every pack, the older series under it. Tap a pack to see its cards; tap a card to see the decks that play it.",
+"64966e1469": [
+"The shelf shows the 10 packs with the most meta cards (#1 in the middle). Below it are all the packs, with the older series at the bottom. Tap a pack to see its cards, or a card to see the decks that play it.",
 "展示架顯示環境卡最多的10種擴充包（第1名在中間）；列表包含所有擴充包，較舊的系列在下方。點選擴充包可查看卡牌；點選卡牌可查看使用它的牌組。"
 ],
 "b812e498b4": [
@@ -1679,8 +1679,8 @@
 "Open your browser&rsquo;s {t0}Share{t1} {0} menu.",
 "開啟瀏覽器的{t0}分享{t1} {0}選單。"
 ],
-"bd81811d71": [
-"Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks from public tournaments on Limitless, like a tier list built from real results: share, win rate and the lists the top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster pack gives the cards of the meta.",
+"a5d998e59f": [
+"Pocket Meta QR ranks this week&rsquo;s Pok&eacute;mon TCG Pocket decks using public tournaments on Limitless. Think of it as a tier list built from real results: share, win rate and the lists top players use. Every list has a QR code you can scan in the game to import the deck, and the Packs page shows which booster packs the meta&rsquo;s cards come from.",
 "Pocket Meta QR根據Limitless公開比賽的結果，為本週的Pok&eacute;mon TCG Pocket牌組排名。就像用真實戰績做成的強度排行表：使用率、勝率，以及頂尖玩家使用的卡表。每份卡表都有QR碼，在遊戲中讀取即可匯入牌組；「該抽哪個包」頁面則告訴你環境卡出自哪個擴充包。"
 ],
 "bf3d48422f": [
@@ -1695,8 +1695,8 @@
 "Search decks by deck or card name",
 "用牌組名稱或卡牌名稱搜尋牌組"
 ],
-"c06cdf65c7": [
-"Deck data did not load. Reload the page to try again.",
+"470c958ae5": [
+"Couldn’t load the deck data. Reload the page to try again.",
 "無法載入牌組資料。請重新整理頁面再試一次。"
 ],
 "c0ee3cda6e": [
@@ -1711,8 +1711,8 @@
 "Link copied",
 "已複製連結"
 ],
-"c31ba3ef37": [
-"Days = how many days that window had.",
+"532cb1965f": [
+"Days = how many days that period covered.",
 "天數＝該統計期間的天數。"
 ],
 "c3476ebd0f": [
@@ -1771,8 +1771,8 @@
 "Meta decks{t0}{t1}Latest tournaments{t2}{t3}Which pack to open{t4}{t5}Limited Battle",
 "環境牌組{t0}{t1}最新比賽{t2}{t3}該抽哪個包{t4}{t5}限定對戰"
 ],
-"c9929a6b53": [
-"players won more than they lost with this deck {0}, but none reached a top result. This is the best of them.",
+"6448ac5f3f": [
+"players won more than they lost with this deck {0}, but none got to 2 wins ahead. This is the best of their lists.",
 "人{0}用這副牌組勝多於敗，但沒有人做到淨勝2場。這是其中成績最好的卡表。"
 ],
 "c9b4332dc1": [
@@ -1843,8 +1843,8 @@
 "Early results{t0} &middot; day",
 "早期結果{t0} &middot; 天數"
 ],
-"d1e9c146ea": [
-"Core: in 90%+ of the {0} top players' lists. Flex: share of top players who play it{1}.{2}",
+"587024b143": [
+"Core: in 90% or more of the {0} top players’ lists. Flex: the share of top players who play the card{1}.{2}",
 "固定：{0}位頂尖玩家的卡表中有90%以上放入的卡牌。彈性：使用這張卡牌的頂尖玩家比例{1}。{2}"
 ],
 "d27dc1b686": [
@@ -1863,8 +1863,8 @@
 "Could not copy:",
 "無法複製："
 ],
-"d50280bff1": [
-"What does this site not do?",
+"e9b02baac2": [
+"What doesn&rsquo;t this site do?",
 "這個網站不提供什麼？"
 ],
 "d579d7b438": [
@@ -1983,8 +1983,8 @@
 "Last 7 days",
 "最近7天"
 ],
-"dfe3c5d44a": [
-"Yes: tap {t0}Add to Home Screen{t1} at the bottom of the page for the steps.",
+"0c2c936032": [
+"Sure! Tap {t0}Add to Home Screen{t1} at the bottom of the page to see how. Then you can open the site with one tap, just like any other app.",
 "可以！點選頁面最下方的{t0}加入主畫面{t1}，就能看到設定步驟。之後點一下就能開啟網站，就像其他應用程式一樣。"
 ],
 "e000ac6209": [
@@ -2019,8 +2019,8 @@
 "Records",
 "戰績"
 ],
-"e615ae42b5": [
-"Why Limitless TCG, and can I trust the results?",
+"e2b27d0bea": [
+"Why Limitless TCG? Can I trust the results?",
 "為什麼選擇Limitless TCG？結果可信嗎？"
 ],
 "e6866f28e4": [
@@ -2035,8 +2035,8 @@
 "Hand-picked",
 "精選"
 ],
-"e7a5c67393": [
-"The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the current set&rsquo;s release, so in a new set&rsquo;s first days the results are early ones. The line under the title shows the dates.",
+"a1e7ff63bc": [
+"Usually the last 7 days. When there are only a few events (often late in a set), the page goes back 10 or 14 days, so every number has enough players behind it. Events from before the current set came out never count, so in a new set&rsquo;s first few days, the numbers are still settling. The exact dates are right under the title.",
 "通常是最近7天。比賽較少時（常見於擴充包後期），頁面會把期間拉長到最近10天或14天，讓每個數值都有足夠的玩家數支撐。目前擴充包推出前的比賽一律不計，所以新擴充包剛推出的幾天，數值還在變動中。確切日期就在標題正下方。"
 ],
 "e903ded5bb": [
@@ -2087,8 +2087,8 @@
 "One row per number of wins, one dot per player. Blue: the top 8.",
 "每種勝場數一行，每位玩家一個點。藍色：八強。"
 ],
-"f0c4717b8a": [
-"That event is not in the list anymore: it shows the events {0}.",
+"baea395436": [
+"That event isn’t in the list anymore: it only shows events {0}.",
 "這場比賽已不在列表中：目前顯示{0}的比賽。"
 ],
 "f0e3ef5401": [
@@ -2111,12 +2111,12 @@
 "Biggest",
 "最大"
 ],
-"f22a80a34b": [
-"Which booster packs give the cards of the meta decks {0}.",
+"db5612c506": [
+"Which booster packs the cards of the meta decks {0} come from.",
 "{0}環境牌組的卡牌出自哪些擴充包。"
 ],
-"f2335414bf": [
-"multi-deck event{0} (players bring more than one deck) {1} not listed: their results do not show which deck won each match.",
+"5173853811": [
+"multi-deck event{0} (each player brings more than one deck) {1} not listed: there&rsquo;s no way to tell which deck won each match.",
 "場多牌組比賽{0!}（每人可帶多副牌組）{1!}不列出：因為結果無法看出每場對戰是哪副牌組獲勝。"
 ],
 "f314effecd": [
@@ -2139,8 +2139,8 @@
 "Won by{t0} {0} ·",
 "冠軍{t0} {0} ·"
 ],
-"f3f9391cee": [
-"Not every tournament:{t0} only public Standard events with 8 or more players and 1 deck per player.",
+"e4444f6b7a": [
+"Every tournament:{t0} only public Standard events with 8 or more players and 1 deck per player count.",
 "所有比賽：{t0}只計算8人以上、每人1副牌組的公開標準賽。"
 ],
 "f4b15c9c91": [
@@ -2155,24 +2155,24 @@
 "Used by",
 "使用："
 ],
-"f5967e775f": [
-"Not every card:{t0} the Packs tab and the card pages show only the cards that this week&rsquo;s meta decks play.",
+"798970a489": [
+"Every card:{t0} the Packs tab and the card pages only show cards that this week&rsquo;s meta decks play.",
 "所有卡牌：{t0}「該抽哪個包」分頁和卡牌頁面只顯示本週環境牌組使用的卡牌。"
 ],
 "f6bb0f468a": [
 "Days",
 "天數"
 ],
-"f744f6ce38": [
-"Did not load. Swipe away and back.",
+"5e00670fb6": [
+"Couldn’t load. Swipe away and back.",
 "無法載入。請滑開後再回來。"
 ],
-"f7e42baf96": [
-"The last 7 days. When there are few events (often late in a set) the page uses the last 10 or 14 days, so every number has enough players behind it. It never counts events from before the set&rsquo;s release.",
+"d6017b0b51": [
+"Usually the last 7 days. When there are only a few events (often late in a set), the page goes back 10 or 14 days, so every number has enough players behind it. Events from before the set came out never count.",
 "通常是最近7天。比賽較少時（常見於擴充包後期），頁面會把期間拉長到最近10天或14天，讓每個數值都有足夠的玩家數支撐。擴充包推出前的比賽一律不計。"
 ],
-"f80619bbf4": [
-"No older weeks or past sets:{t0} no results or tier lists from before the days shown under the title.",
+"df4ee6db0c": [
+"Old data:{t0} no results or tier lists from before the dates under the title.",
 "過去的資料：{t0}沒有標題下方日期之前的結果或強度排行表。"
 ],
 "f83481bd50": [
@@ -2207,12 +2207,12 @@
 "Switch to light mode",
 "切換為淺色模式"
 ],
-"ff3e8e536e": [
-"1 player won more than they lost with this deck {0}, but did not reach a top result. This is their list.",
+"5d2e9d9b35": [
+"1 player won more than they lost with this deck {0}, but didn’t get to 2 wins ahead. This is their list.",
 "1人{0}用這副牌組勝多於敗，但沒有做到淨勝2場。這是他的卡表。"
 ],
-"ffa4a6d465": [
-"Limitless TCG{t0} is the main place where Pok&eacute;mon TCG Pocket tournaments are played online. New events start there every day, from small cups to open events with more than 300 players, and thousands of players take part every week. Each result is public as soon as an event ends, and this site checks for new ones every hour, so the meta here is days fresher than a tier list made by hand. Pocket Meta QR is not part of Limitless TCG: it reads its public results.",
+"b9ad35c118": [
+"Limitless TCG{t0} is where most online Pok&eacute;mon TCG Pocket tournaments happen. New events start every day, from small cups to open events with 300+ players, and thousands of people play each week. Results go public as soon as an event ends, and this site checks for new ones every hour. That&rsquo;s why the meta here is days ahead of any hand-made tier list. Just so you know: Pocket Meta QR isn&rsquo;t affiliated with Limitless TCG. It only reads the results that Limitless makes public.",
 "Limitless TCG{t0}是大部分Pokémon TCG Pocket線上比賽舉辦的地方。每天都有新比賽，從小型盃賽到300人以上的公開賽都有，每週有好幾千人參加。比賽一結束結果就會公開，本網站每小時檢查一次有沒有新結果。所以這裡的環境資訊，會比人工整理的強度排行表早好幾天。另外說明：Pocket Meta QR和Limitless TCG沒有關係，只是讀取Limitless公開的結果。"
 ],
 "ffa4f00cd6": [
