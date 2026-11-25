@@ -3649,18 +3649,18 @@
  },
  "umbreon-c1-mega-absol-ex-b1": {
   "name": "Umbreon Mega Absol ex",
-  "seen": "2026-11-23",
-  "rank": 59,
+  "seen": "2026-11-25",
+  "rank": 61,
   "share": 0.23,
-  "win": 38.89,
+  "win": 52.38,
   "count": 5,
-  "games": 18,
+  "games": 21,
   "more": 1,
-  "dates": "Nov 17 – 22",
+  "dates": "Nov 19 – 24",
   "best": [
-   "35th of 118",
-   "Umbreon x Storm Returns-$5+FA SC AND MORE",
-   "2026-11-17"
+   "6th of 81",
+   "The Breakfast Club Daily-FA",
+   "2026-11-24"
   ],
   "cards": [
    [
@@ -3676,27 +3676,23 @@
     1
    ],
    [
+    "Darkrai ex",
+    1
+   ],
+   [
     "Professor's Research",
     2
    ],
    [
-    "Sabrina",
-    1
-   ],
-   [
-    "Cyrus",
-    1
-   ],
-   [
     "Copycat",
-    1
+    2
    ],
    [
     "Serena's Choice",
     1
    ],
    [
-    "Sightseer",
+    "Cyrus",
     1
    ],
    [
@@ -3705,18 +3701,14 @@
    ],
    [
     "X Speed",
-    1
+    2
    ],
    [
     "Repel",
     1
    ],
    [
-    "Max Repel",
-    1
-   ],
-   [
-    "Red Card",
+    "Field Blower",
     1
    ],
    [
@@ -4967,6 +4959,97 @@
    ],
    [
     "Hiking Trail",
+    1
+   ]
+  ],
+  "xs": []
+ },
+ "mega-mewtwo-x-ex-c1-mega-mewtwo-y-ex-p-c": {
+  "name": "Mega Mewtwo X ex Mega Mewtwo Y ex",
+  "seen": "2026-11-25",
+  "rank": 57,
+  "share": 0.23,
+  "win": 0,
+  "count": 5,
+  "games": 7,
+  "more": 1,
+  "dates": "Nov 19 – 24",
+  "best": [
+   "25th of 35",
+   "OTS Pokemon TCG Pocket Arena Pop Up | Standard",
+   "2026-11-22"
+  ],
+  "cards": [
+   [
+    "Eevee",
+    1
+   ],
+   [
+    "Sylveon",
+    1
+   ],
+   [
+    "Indeedee ex",
+    1
+   ],
+   [
+    "Mega Mewtwo X ex",
+    1
+   ],
+   [
+    "Mega Mewtwo Y ex",
+    1
+   ],
+   [
+    "Mew ex",
+    1
+   ],
+   [
+    "Copycat",
+    1
+   ],
+   [
+    "Cyrus",
+    1
+   ],
+   [
+    "Professor's Research",
+    1
+   ],
+   [
+    "Serena's Choice",
+    1
+   ],
+   [
+    "Poké Ball",
+    2
+   ],
+   [
+    "Genome Converter Y",
+    1
+   ],
+   [
+    "Potion",
+    1
+   ],
+   [
+    "Super Potion",
+    1
+   ],
+   [
+    "Sweet Honey",
+    1
+   ],
+   [
+    "Eviolite",
+    2
+   ],
+   [
+    "Protective Poncho",
+    1
+   ],
+   [
+    "Peculiar Plaza",
     1
    ]
   ],
