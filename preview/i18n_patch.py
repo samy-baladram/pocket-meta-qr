@@ -42,11 +42,12 @@ html[lang="fr"] small.t1s-x { letter-spacing: -0.02em; } /* Nov 24: "8e · nouve
 [data-en-only]::before { content: attr(data-en-only); display: block; margin: 0 0 12px; padding: 9px 12px; border-radius: 12px;
   font-size: 13px; line-height: 1.35; color: var(--muted); background: var(--surface, #fff); box-shadow: inset 0 0 0 1px var(--line-strong, #c9d6e2); }
 .lang-btn { right: 40px; width: auto; gap: 5px; padding: 0 10px 0 9px; border-radius: 16px; display: flex; align-items: center;
-  font: 700 11px/1 inherit; letter-spacing: 0.02em; } /* Nov 26: 11px (was 12px) for the 3-letter codes */
-.lang-btn svg.chev { width: 12px; height: 12px; }
+  font-family: inherit; font-size: 11px; font-weight: 700; line-height: 1; letter-spacing: 0.02em; height: 26px; top: -3px; padding: 0 9px 0 8px; gap: 4px; } /* Nov 26: 11px, 26px high (was 32px). The old shorthand "font: 700 12px/1 inherit" was not valid CSS (inherit cannot be in it), so the pill used the browser's button font (13.3px) */
+.lang-btn svg:not(.chev) { width: 14px; height: 14px; }
+.lang-btn svg.chev { width: 11px; height: 11px; }
 /* Nov 26: phones: the language pill takes the top-right corner and the dark-mode button sits under it (side by side, the pill came too close to the title) */
-@media (max-width: 599px) { #themeBtn { top: 32px; } .lang-btn { right: 0; } }
-.lang-pop { position: absolute; z-index: 59; /* above the title row (.hrow, z 20, later in the page) and the tab band */ top: 32px; right: 0; width: 264px; padding: 10px; border-radius: 18px;
+@media (max-width: 599px) { #themeBtn { top: 29px; } .lang-btn { right: 0; } }
+.lang-pop { position: absolute; z-index: 59; /* above the title row (.hrow, z 20, later in the page) and the tab band */ top: 28px; right: 0; width: 264px; padding: 10px; border-radius: 18px;
   background: var(--surface); box-shadow: var(--raised), var(--bevel); }
 .lang-pop[hidden] { display: none; }
 .lang-pop h2 { margin: 2px 0 8px; font-size: 12px; font-weight: 700; color: var(--muted); text-align: center; }
