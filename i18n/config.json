@@ -17,7 +17,16 @@
   "PT",
   "ZH",
   "Pocket Meta QR",
-  "up"
+  "up",
+  "ENG",
+  "SPA",
+  "FRA",
+  "GER",
+  "ITA",
+  "POR",
+  "JPN",
+  "KOR",
+  "CHT"
  ],
  "skipScripts": [
   "qrcode-generator"

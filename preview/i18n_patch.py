@@ -42,8 +42,10 @@ html[lang="fr"] small.t1s-x { letter-spacing: -0.02em; } /* Nov 24: "8e · nouve
 [data-en-only]::before { content: attr(data-en-only); display: block; margin: 0 0 12px; padding: 9px 12px; border-radius: 12px;
   font-size: 13px; line-height: 1.35; color: var(--muted); background: var(--surface, #fff); box-shadow: inset 0 0 0 1px var(--line-strong, #c9d6e2); }
 .lang-btn { right: 40px; width: auto; gap: 5px; padding: 0 10px 0 9px; border-radius: 16px; display: flex; align-items: center;
-  font: 700 12px/1 inherit; letter-spacing: 0.02em; }
+  font: 700 11px/1 inherit; letter-spacing: 0.02em; } /* Nov 26: 11px (was 12px) for the 3-letter codes */
 .lang-btn svg.chev { width: 12px; height: 12px; }
+/* Nov 26: phones: the language pill takes the top-right corner and the dark-mode button sits under it (side by side, the pill came too close to the title) */
+@media (max-width: 599px) { #themeBtn { top: 32px; } .lang-btn { right: 0; } }
 .lang-pop { position: absolute; z-index: 59; /* above the title row (.hrow, z 20, later in the page) and the tab band */ top: 32px; right: 0; width: 264px; padding: 10px; border-radius: 18px;
   background: var(--surface); box-shadow: var(--raised), var(--bevel); }
 .lang-pop[hidden] { display: none; }
@@ -62,11 +64,11 @@ btn = '<button class="theme-btn" id="themeBtn" type="button" aria-label="Switch 
 GLOBE = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
          '<circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18"/></svg>')
 CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'
-one(btn, btn + f'\n    <button class="theme-btn lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langPop">{GLOBE}<span id="langCur">EN</span>{CHEV}</button>'
+one(btn, btn + f'\n    <button class="theme-btn lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langPop">{GLOBE}<span id="langCur">ENG</span>{CHEV}</button>'
     '\n    <div class="lang-pop" id="langPop" hidden><h2 id="langTtl">Language</h2><ul id="langList" role="radiogroup" aria-labelledby="langTtl"></ul></div>')
 th = '  $("themeBtn").addEventListener("click", () => {'
-MENU_JS = r"""  { const LN = [["en", "English", "EN"], ["es", "Español", "ES"], ["fr", "Français", "FR"], ["de", "Deutsch", "DE"],
-      ["it", "Italiano", "IT"], ["pt", "Português (Brasil)", "PT"], ["ja", "日本語", "日本語"], ["ko", "한국어", "KO"], ["zh", "繁體中文", "ZH"]]; // Nov 24 (owner): the game's order
+MENU_JS = r"""  { const LN = [["en", "English", "ENG"], ["es", "Español", "SPA"], ["fr", "Français", "FRA"], ["de", "Deutsch", "GER"],
+      ["it", "Italiano", "ITA"], ["pt", "Português (Brasil)", "POR"], ["ja", "日本語", "JPN"], ["ko", "한국어", "KOR"], ["zh", "繁體中文", "CHT"]]; // Nov 24 (owner): the game's order. Nov 26 (owner): the pill shows the game's 3-letter codes
     const JA = PG_L === "ja", btn = $("langBtn"), pop = $("langPop"), list = $("langList"), cur = LN.find((x) => x[0] === PG_L) || LN[0];
     const ES = PG_L === "es", PT = PG_L === "pt", DE = PG_L === "de", FR = PG_L === "fr", IT = PG_L === "it", KO = PG_L === "ko", ZH = PG_L === "zh"; $("langCur").textContent = cur[2]; $("langTtl").textContent = JA ? "言語" : ES || PT ? "Idioma" : DE ? "Sprache" : FR ? "Langue" : IT ? "Lingua" : KO ? "언어" : ZH ? "語言" : "Language";
     btn.setAttribute("aria-label", (JA ? "言語：" : ES || PT ? "Idioma: " : DE ? "Sprache: " : FR ? "Langue\u00a0: " : IT ? "Lingua: " : KO ? "언어: " : ZH ? "語言：" : "Language: ") + cur[1]);
