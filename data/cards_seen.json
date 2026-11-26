@@ -3459,14 +3459,14 @@
   ]
  },
  "Giratina ex": {
-  "id": "c1-101",
+  "id": "a2b-035",
   "seen": "2026-11-26",
-  "dates": "Nov 17 – 25",
+  "dates": "Nov 17 – 26",
   "pct": 3,
-  "u": 13,
+  "u": 14,
   "pack": [
-   "Dual Fusion Mega Mewtwo X pack",
-   "Dual Fusion pack"
+   "Shining Revelry pack",
+   "Shining Revelry pack"
   ],
   "nd": 4,
   "L": [
@@ -3481,12 +3481,12 @@
     4
    ],
    [
-    "Giratina ex Mega Mewtwo Y ex",
+    "Mega Mewtwo Y ex Giratina ex",
     2,
-    1
+    2
    ],
    [
-    "Mega Mewtwo Y ex Giratina ex",
+    "Giratina ex Mega Mewtwo Y ex",
     2,
     1
    ]
