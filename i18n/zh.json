@@ -1191,10 +1191,6 @@
 "· {t0}{0}{t1} win",
 "· 勝率{t0}{0}{t1}"
 ],
-"851ff4d12f": [
-"Show {0} older packs",
-"顯示較舊的擴充包（{0}）"
-],
 "75823dd342": [
 "List 1 is the list that the most top players used. Lists that differ from it by only 1, 2 or 3 cards count with it: the tiles under the list show how many top players used it exactly, and how many made 1, 2 or 3 swaps (tap a tile to see those versions, each with its own QR code). A list with 4 or more different cards gets its own spot if 2 or more top players used it, or if 1 player took it to the top 8 of an event with 32+ players. The {t0}&#9733; Popular now{t1} badge appears on List 1 when clearly more top players used it exactly than any other list.",
 "卡表1是最多頂尖玩家使用的卡表。只差1、2或3張的卡表會算進卡表1：卡表下方的方塊會顯示有幾位頂尖玩家完全照用，以及有幾位替換了1、2或3張（點選方塊可查看這些版本，每個都附QR碼）。差4張以上的卡表，如果有2位以上頂尖玩家使用，或有1位玩家用它在32人以上的比賽打進八強，就會單獨列出。{t0}★ 目前熱門{t1}會標在卡表1上，條件是完全照用的頂尖玩家明顯多於其他任何卡表。"
@@ -1859,10 +1855,6 @@
 "no meta cards",
 "沒有環境卡"
 ],
-"d6a99999ca": [
-"series &middot; the older sets",
-"系列 &middot; 較舊的擴充包"
-],
 "d6aa410291": [
 "Niche",
 "冷門"
@@ -2210,5 +2202,17 @@
 "d31a88af96": [
 "In {0} of the {1} packs",
 "收錄於{1}種擴充包中的{0}種"
+],
+"5eac0fae2e": [
+"Latest winners",
+"最新冠軍牌組"
+],
+"bee8e0c36e": [
+"events{0}",
+"{^}場比賽{0}"
+],
+"a2d2f6d30f": [
+"Tap or point at a dot to see the deck.",
+"點一下或把滑鼠移到圓點上，就能看到牌組。"
 ]
 }

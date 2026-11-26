@@ -107,7 +107,7 @@
 "242feab371": "decks",
 "24345a1437": "shared",
 "244cdd379c": "tooltips",
-"2451222400": "shell",
+"2451222400": "whatsnew",
 "24ea1f77f4": "shell",
 "24ecb68c93": "events",
 "250cd1927b": "search",
@@ -371,7 +371,6 @@
 "83a0cd42f1": "shell",
 "84022162f8": "decks",
 "84e3ee8374": "decks",
-"851ff4d12f": "packs",
 "861edba005": "search",
 "876870e87a": "events",
 "876d097a1a": "search",
@@ -579,7 +578,6 @@
 "d6017b0b51": "tooltips",
 "d64554a07f": "whatsnew",
 "d646073d7c": "packs",
-"d6a99999ca": "packs",
 "d6aa410291": "decks",
 "d6bb22ac07": "seo",
 "d6f34a97a5": "shell",
@@ -684,6 +682,9 @@
 "fc45091249": "shell",
 "fdd289e370": "shared",
 "ffa4f00cd6": "decks",
-"ffd5f6df10": "events"
+"ffd5f6df10": "events",
+"5eac0fae2e": "events",
+"bee8e0c36e": "events",
+"a2d2f6d30f": "tooltips"
 }
 }

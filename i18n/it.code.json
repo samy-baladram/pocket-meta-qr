@@ -993,12 +993,6 @@
    "group": "grammar"
   },
   {
-   "note": "buste: Serie A · le espansioni precedenti",
-   "find": "<span>${esc(ser)} series &middot; the older sets</span>",
-   "replace": "<span>Serie ${esc(ser)} &middot; le espansioni precedenti</span>",
-   "group": "packs"
-  },
-  {
    "note": "Limited Battle: updated … (5 giorni fa)",
    "find": "`${m} min ago` : h < 24 ? `${h} h ago` : `${d} day${d > 1 ? \"s\" : \"\"} ago`",
    "replace": "`${m} min fa` : h < 24 ? `${h} h fa` : `${d} giorn${d > 1 ? \"i\" : \"o\"} fa`",

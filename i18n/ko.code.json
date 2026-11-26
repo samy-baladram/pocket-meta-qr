@@ -1065,12 +1065,6 @@
    "group": "packs"
   },
   {
-   "note": "packs list count: 12件（ほか以前30件）",
-   "find": "${nA === PKV.length ? nA : nA + \" + \" + (PKV.length - nA) + \" older\"}",
-   "replace": "${nA === PKV.length ? nA + \"개\" : nA + \"개 (이전 \" + (PKV.length - nA) + \"개)\"}",
-   "group": "tooltips"
-  },
-  {
    "note": "card popup: packs joined with ・ (R37: all: the aria-label and the bold promo line)",
    "find": "ps.map((p) => p.name).join(\" or \")",
    "replace": "ps.map((p) => p.name).join(\", \")",

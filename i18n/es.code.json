@@ -981,12 +981,6 @@
    "group": "grammar"
   },
   {
-   "note": "sobres: Serie A · las expansiones anteriores",
-   "find": "<span>${esc(ser)} series &middot; the older sets</span>",
-   "replace": "<span>Serie ${esc(ser)} &middot; las expansiones anteriores</span>",
-   "group": "packs"
-  },
-  {
    "note": "Limited Battle: updated … (hace 5 días)",
    "find": "`${m} min ago` : h < 24 ? `${h} h ago` : `${d} day${d > 1 ? \"s\" : \"\"} ago`",
    "replace": "`hace ${m} min` : h < 24 ? `hace ${h} h` : `hace ${d} día${d > 1 ? \"s\" : \"\"}`",

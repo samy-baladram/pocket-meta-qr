@@ -1202,10 +1202,6 @@
 "· {t0}{0}{t1} win",
 "· {t0}{0}{t1} Siegquote"
 ],
-"851ff4d12f": [
-"Show {0} older packs",
-"{0} ältere Packs zeigen"
-],
 "75823dd342": [
 "List 1 is the list that the most top players used. Lists that differ from it by only 1, 2 or 3 cards count with it: the tiles under the list show how many top players used it exactly, and how many made 1, 2 or 3 swaps (tap a tile to see those versions, each with its own QR code). A list with 4 or more different cards gets its own spot if 2 or more top players used it, or if 1 player took it to the top 8 of an event with 32+ players. The {t0}&#9733; Popular now{t1} badge appears on List 1 when clearly more top players used it exactly than any other list.",
 "Liste 1 ist die Liste, die die meisten Top-Spieler genutzt haben. Listen, die sich nur in 1, 2 oder 3 Karten von ihr unterscheiden, zählen mit dazu: Die Kacheln unter der Liste zeigen, wie viele Top-Spieler sie genau so gespielt haben und wie viele mit 1, 2 oder 3 Änderungen (tippe auf eine Kachel, um diese Versionen zu sehen, jede mit eigenem QR-Code). Eine Liste mit 4 oder mehr anderen Karten bekommt einen eigenen Platz, wenn 2 oder mehr Top-Spieler sie genutzt haben oder 1 Spieler damit bei einem Turnier mit 32 oder mehr Spielern in die Top 8 kam. Das Label {t0}★ Gerade beliebt{t1} steht an Liste 1, wenn deutlich mehr Top-Spieler genau diese Liste gespielt haben als jede andere."
@@ -1894,10 +1890,6 @@
 "no meta cards",
 "keine Meta-Karten"
 ],
-"d6a99999ca": [
-"series &middot; the older sets",
-"Serien &middot; die älteren Erweiterungen"
-],
 "d6aa410291": [
 "Niche",
 "Nische"
@@ -2261,5 +2253,17 @@
 "d31a88af96": [
 "In {0} of the {1} packs",
 "In {0} von {1} Packs"
+],
+"5eac0fae2e": [
+"Latest winners",
+"Neueste Sieger"
+],
+"bee8e0c36e": [
+"events{0}",
+"Turniere{0}"
+],
+"a2d2f6d30f": [
+"Tap or point at a dot to see the deck.",
+"Tippe auf einen Punkt oder zeig mit der Maus darauf, um das Deck zu sehen."
 ]
 }

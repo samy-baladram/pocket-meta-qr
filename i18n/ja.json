@@ -376,7 +376,7 @@
 ],
 "2451222400": [
 "Show {0} older update{1}",
-"以前の更新を表示（{0}）{1!}"
+"以前の更新を{0}件表示{1!}"
 ],
 "24ea1f77f4": [
 "Last change",
@@ -1402,10 +1402,6 @@
 "· {t0}{0}{t1} win",
 "· 勝率{t0}{0}{t1}"
 ],
-"851ff4d12f": [
-"Show {0} older packs",
-"以前のパックを表示（{0}）"
-],
 "75823dd342": [
 "List 1 is the list that the most top players used. Lists that differ from it by only 1, 2 or 3 cards count with it: the tiles under the list show how many top players used it exactly, and how many made 1, 2 or 3 swaps (tap a tile to see those versions, each with its own QR code). A list with 4 or more different cards gets its own spot if 2 or more top players used it, or if 1 player took it to the top 8 of an event with 32+ players. The {t0}&#9733; Popular now{t1} badge appears on List 1 when clearly more top players used it exactly than any other list.",
 "レシピ1は、いちばん多くの上位プレイヤーが使ったレシピです。1〜3枚だけ違うレシピも、同じレシピの仲間として数えています。レシピの下のタイルを見ると、まったく同じ形で使った人と、1〜3枚入れ替えて使った人がそれぞれ何人いるかがわかります（タップすると、そのバージョンをQRコード付きで見られます）。4枚以上違うレシピは、上位プレイヤー2人以上が使ったとき、または32人以上の大会でベスト8に入ったときに、別のレシピとして表示します。{t0}&#9733; いま人気{t1}のマークは、まったく同じレシピを使った人が他よりはっきり多いレシピ1に付きます。"
@@ -2201,10 +2197,6 @@
 "no meta cards",
 "環境カードなし"
 ],
-"d6a99999ca": [
-"series &middot; the older sets",
-"シリーズ &middot; 以前の拡張パック"
-],
 "d6aa410291": [
 "Niche",
 "ニッチ"
@@ -2628,5 +2620,17 @@
 "d31a88af96": [
 "In {0} of the {1} packs",
 "{1}パック中{0}パックに収録"
+],
+"5eac0fae2e": [
+"Latest winners",
+"最新の優勝デッキ"
+],
+"bee8e0c36e": [
+"events{0}",
+"{^}大会{0}"
+],
+"a2d2f6d30f": [
+"Tap or point at a dot to see the deck.",
+"点をタップ（またはマウスを重ねる）すると、デッキが表示されます。"
 ]
 }

@@ -981,12 +981,6 @@
    "group": "grammar"
   },
   {
-   "note": "packs: Série A · as coleções anteriores",
-   "find": "<span>${esc(ser)} series &middot; the older sets</span>",
-   "replace": "<span>Serie ${esc(ser)} &middot; die älteren Erweiterungen</span>",
-   "group": "packs"
-  },
-  {
    "note": "Limited Battle: updated … (há 5 dias)",
    "find": "`${m} min ago` : h < 24 ? `${h} h ago` : `${d} day${d > 1 ? \"s\" : \"\"} ago`",
    "replace": "`vor ${m} Min.` : h < 24 ? `vor ${h} Std.` : `vor ${d} Tag${d > 1 ? \"en\" : \"\"}`",

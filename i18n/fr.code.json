@@ -993,12 +993,6 @@
    "group": "grammar"
   },
   {
-   "note": "boosters: Série A · les extensions précédentes",
-   "find": "<span>${esc(ser)} series &middot; the older sets</span>",
-   "replace": "<span>Série ${esc(ser)} &middot; les extensions précédentes</span>",
-   "group": "packs"
-  },
-  {
    "note": "Limited Battle: updated … (il y a 5 jours)",
    "find": "`${m} min ago` : h < 24 ? `${h} h ago` : `${d} day${d > 1 ? \"s\" : \"\"} ago`",
    "replace": "`il y a ${m} min` : h < 24 ? `il y a ${h} h` : `il y a ${d} jour${d > 1 ? \"s\" : \"\"}`",
