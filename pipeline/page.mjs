@@ -549,7 +549,7 @@ function intros(dataDir, page) {
     const top = D.decks.slice(0, 3).map((d, i) => `#${i + 1} ${d.name} ${d.share.toFixed(1)}%`).join(", ");
     t[""] = `This week's top Pokémon TCG Pocket decks from ${D.summary.tournaments} tournaments ` +
       `(${span(D.span[0], D.span[1])}): ${top}. Every list has a QR code to copy it in the game.`;
-    d[""] = fit(`${span(D.span[0], D.span[1])} meta from ${D.summary.tournaments} tournaments: `,
+    d[""] = fit(`${span(D.span[0], D.span[1])} meta from ${(D.summary.noMulti || D.summary).tournaments} tournaments: `,
       D.decks.slice(0, 5).map((x, i) => `#${i + 1} ${x.name} (${Math.round(x.share)}%)`), "A QR code for every list.");
   }
   if (E?.events?.length) {   // the 3 newest events with 32+ players (else the 3 newest)

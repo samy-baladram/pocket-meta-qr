@@ -162,6 +162,7 @@ Use the same word in new docs and UI notes.
 | `format` | string | always `standard` |
 | `span` | [date, date] | first and last tournament day in the window (`YYYY-MM-DD`); inside the `wd` days that end on the build day |
 | `summary` | object | **new.** tournaments, players (entries) and played matches in the window |
+| `summary.noMulti` | object | Nov 26, 2026: the same 3 counts without multi-deck events (they are not listed on the site). The page's top line uses it; old data without it: the page uses `summary` |
 | `decks` | array | most players first, max 40, share >= 0.5 % |
 | `more` | int | **new in v11.** number of decks in `more.json`; `0` = no button |
 | `latest` | object or absent | **new in v15.** the single-deck event of the window that reached the site last (largest `at`, then latest `ts`): `{tid, name, players, ts, at, dt}`, same values as in `events.json` (open it there by `tid`). Absent when the window has no single-deck event |

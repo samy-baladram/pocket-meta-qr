@@ -72,6 +72,10 @@ def main():
     q = ",".join("?" * len(tids))
     summary = db.execute(f"SELECT COUNT(*), SUM(players), MIN(day), MAX(day) FROM tournaments WHERE id IN ({q})", tids).fetchone()
     matches = db.execute(f"SELECT COUNT(*) FROM matches WHERE special IS NULL AND b IS NOT NULL AND tid IN ({q})", tids).fetchone()[0]
+    # Nov 26, 2026 (owner): the same counts without multi-deck events (the site does not list them), for the page's top line.
+    one = db.execute(f"SELECT COUNT(*), SUM(players) FROM tournaments WHERE multi_deck = 0 AND id IN ({q})", tids).fetchone()
+    one_m = db.execute(f"""SELECT COUNT(*) FROM matches m JOIN tournaments t ON t.id = m.tid
+                           WHERE m.special IS NULL AND m.b IS NOT NULL AND t.multi_deck = 0 AND m.tid IN ({q})""", tids).fetchone()[0]
 
     # Lists for energy votes and art samples: the current set, or the last 7 days (old-set decks in a new set's first
     # week). For one set (as now) this is the current set.
@@ -290,7 +294,8 @@ def main():
     out = {
         "builtAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "set": cur, "setName": set_name, "format": "standard", "window": a.window,
-        "summary": {"tournaments": summary[0], "players": summary[1] or 0, "matches": matches},
+        "summary": {"tournaments": summary[0], "players": summary[1] or 0, "matches": matches,
+                    "noMulti": {"tournaments": one[0], "players": one[1] or 0, "matches": one_m}},
         "span": [summary[2], summary[3]] if summary[2] else None,
         "decks": decks,
         # R16c: every card of every stored decklist (its images stay on the site for old share links).
