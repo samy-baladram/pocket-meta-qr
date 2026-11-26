@@ -2632,5 +2632,117 @@
 "a2d2f6d30f": [
 "Tap or point at a dot to see the deck.",
 "点をタップ（またはマウスを重ねる）すると、デッキが表示されます。"
+],
+"7ff4ecb9aa": [
+"Nov 26, 2026",
+"2026年11月26日"
+],
+"7a6de23eee": [
+"Sort menu in Packs to Open",
+"「引くべきパック」の並び替えメニュー"
+],
+"bdc15d027e": [
+"The sort is now a small menu next to the list header. Packs sort by most meta cards first, and you can change it to newest. All the packs show in the list, the older series too.",
+"並び替えが、一覧の見出しの横にある小さなメニューになりました。最初は環境カードが多い順で、新しい順にも変えられます。以前のシリーズも含め、すべてのパックが一覧に並びます。"
+],
+"3f6533d68a": [
+"Open Packs to Open",
+"引くべきパックを開く"
+],
+"630a982459": [
+"Top 10 label in the shelf",
+"棚の中にトップ10の見出し"
+],
+"70c551901a": [
+"The Top 10 label is now inside the shelf, at the top. The deck name and its share are at the bottom, on a soft fade.",
+"トップ10の見出しが棚の中の上部に入りました。デッキ名と使用率は下部の、ふんわりとしたグラデーションの上に表示します。"
+],
+"26de53a1d0": [
+"Event count at the top",
+"上部の大会数"
+],
+"f78a8b40c8": [
+"The number of events at the top no longer counts the multi-deck events. Those events are not in the lists, so the number is now the same as in the Events tab.",
+"上部の大会数に、複数デッキの大会を含めないようにしました。これらの大会は一覧に載っていないため、大会タブの数と同じになります。"
+],
+"b8f9b0d4bd": [
+"A simpler Events tab",
+"大会タブをシンプルに"
+],
+"4b4052c358": [
+"The Rising and falling panel and the Most wins panel are off for now.",
+"「上昇・下降」と「優勝が多いデッキ」の欄は、いったんお休みしています。"
+],
+"dbcc0e1038": [
+"Open the Events tab",
+"大会タブを開く"
+],
+"8c56d5f2ae": [
+"One color band on every page",
+"どのページも同じカラー帯"
+],
+"d09c9f5099": [
+"The colored band under the tabs is now the same on every page and has the same height. It stays when a filter is on, so the page no longer changes when you filter.",
+"タブの下のカラー帯が、どのページでも同じ見た目・同じ高さになりました。絞り込み中も残るので、絞り込んでもページが動きません。"
+],
+"7f40f58993": [
+"Language button",
+"言語ボタン"
+],
+"b0dbbcc66a": [
+"The language button shows the game’s 3-letter codes: ENG, SPA, FRA, GER, ITA, POR, JPN, KOR and CHT. On phones it sits in the top-right corner, with the dark mode button under it, so it stays clear of the title.",
+"言語ボタンに、ゲームと同じ3文字のコード（ENG、SPA、FRA、GER、ITA、POR、JPN、KOR、CHT）を表示します。スマホでは右上の角に置き、その下にダークモードのボタンがあるので、タイトルと重なりません。"
+],
+"4fbea4b4d7": [
+"Info in small popups",
+"情報は小さなポップアップで"
+],
+"91e76a8f7a": [
+"In a deck’s stats, the info buttons of Matchups and Meta map, and the one in Top players, now open a small popup next to the button. The stats stay open behind it. Tap anywhere else to close it.",
+"デッキの統計で、「相性」と「環境マップ」の情報ボタン、「上位プレイヤー」の情報ボタンが、ボタンの横に小さなポップアップを開くようになりました。統計は後ろに開いたままです。ほかの場所をタップすると閉じます。"
+],
+"f6eb5d574f": [
+"Meta map shows the deck",
+"環境マップでデッキを表示"
+],
+"cf711ef141": [
+"On a computer, point at a dot on the Meta map to see its deck, share and win rate under the map. On a phone, tap the dot.",
+"パソコンでは、環境マップの点にマウスを重ねると、マップの下にそのデッキと使用率・勝率を表示します。スマホでは点をタップしてください。"
+],
+"a79d7cd117": [
+"Things grow under the mouse",
+"マウスを重ねると少し大きく"
+],
+"4dacf06ae6": [
+"On a computer, buttons, pills, rows, tabs, the Limited Battle banner and the shelf items get a bit bigger when you point at them, in place of a color change. The Core and Flex cards in a deck’s stats do too.",
+"パソコンでは、ボタン、ラベル、行、タブ、限定バトルのバナー、棚のアイテムにマウスを重ねると、色が変わる代わりに少し大きくなります。デッキの統計の確定枠・自由枠のカードも同じです。"
+],
+"147bcc73c3": [
+"Card details in Packs to Open",
+"「引くべきパック」でカードの詳細"
+],
+"0ab4d79045": [
+"On a computer, point at a card in an open pack to see its details, as in the deck lists.",
+"パソコンでは、開いたパックのカードにマウスを重ねると、レシピと同じようにカードの詳細を表示します。"
+],
+"65db16613d": [
+"Booster packs have rounded corners, like the cards.",
+"パックの角が、カードと同じように丸くなりました。"
+],
+"6bd0a117cb": [
+"The deck names on the Meta map no longer block a tap on the dot under them.",
+"環境マップのデッキ名が、その下の点のタップをじゃましなくなりました。"
+],
+"1a980477d8": [
+"The Matchups rows and the Meta map dots react to a tap, like the other buttons.",
+"「相性」の行と環境マップの点が、ほかのボタンと同じようにタップに反応します。"
+],
+"6545e496dc": [
+"In Packs to Open, the energy and deck filters of the Meta tab no longer show after you come back from another tab.",
+"「引くべきパック」で、ほかのタブから戻ったときに最強デッキのエネルギーとデッキの絞り込みが出なくなりました。"
+],
+"ef2f53744b": [
+"While the page loads, the Top 10 label sits in an empty shelf, not alone in the middle of the page.",
+"ページの読み込み中、トップ10の見出しは空の棚の中に表示され、ページの真ん中にぽつんと出なくなりました。"
 ]
 }
