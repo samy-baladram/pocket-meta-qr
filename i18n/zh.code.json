@@ -27,13 +27,13 @@
    "group": "shell"
   },
   {
-   "note": "list: 上位プレイヤーN人が使用",
+   "note": "list (same rule as ja; zh text in replace)",
    "find": "<span class=\"tpu\">Used by</span><b>${T}</b><span>top player${T === 1 ? \"\" : \"s\"}</span>",
    "replace": "<span class=\"tpu\">頂尖玩家</span><b>${T}</b><span>人使用</span>",
    "group": "tooltips"
   },
   {
-   "note": "share button label: この大会のリンクをコピー",
+   "note": "share button label (same rule as ja; zh text in replace)",
    "find": "aria-label=\"${TOUCH ? \"Share\" : \"Copy the link to\"} this ${what}\"",
    "replace": "aria-label=\"${TOUCH ? \"分享\" : \"複製連結：\"}${({ event: \"這場比賽\", deck: \"這副牌組\", list: \"這份卡表\", pack: \"這個擴充包\", card: \"這張卡牌\" })[what] || what}\"",
    "group": "tooltips"
@@ -165,13 +165,13 @@
    "group": "tooltips"
   },
   {
-   "note": "tab label: Limited Battle, 9日残り",
+   "note": "tab label (same rule as ja; zh text in replace)",
    "find": "b.setAttribute(\"aria-label\", `Limited Battle, ${lbLeft(true)}`)",
    "replace": "b.setAttribute(\"aria-label\", `限定對戰，${lbLeft(true)}`)",
    "group": "limited"
   },
   {
-   "note": "breakout: <deck>が<event>で優勝 / 7位（325名）",
+   "note": "breakout (same rule as ja; zh text in replace)",
    "find": "<b>${esc(b.name)}</b> ${b.place === 1 ? \"won\" : `took ${ordF(b.place)} at`} ${esc(shortEv(b.ev || \"\"))} (${b.players} players)",
    "replace": "<b>${esc(b.name)}</b>在${esc(shortEv(b.ev || \"\"))}（${b.players}人）${b.place === 1 ? \"奪冠\" : \"取得\" + ordF(b.place)}",
    "group": "tooltips"
@@ -325,7 +325,7 @@
    "group": "events"
   },
   {
-   "note": "breakout: <event>で優勝 / <event>で3位",
+   "note": "breakout (same rule as ja; zh text in replace)",
    "find": "`${b[1] === 1 ? \"Won\" : ordF(b[1]) + \" at\"} ${shortEv(b[3] || \"\")}`",
    "replace": "`${shortEv(b[3] || \"\")} ${b[1] === 1 ? \"冠軍\" : ordF(b[1])}`",
    "group": "tooltips"
@@ -445,7 +445,7 @@
    "group": "limited"
   },
   {
-   "note": "Limited Battle days left (long): 残り9日 / 残り5時間",
+   "note": "Limited Battle days left (long) (same rule as ja; zh text in replace)",
    "find": "(long ? `${d} days left`",
    "replace": "(long ? `剩餘${d}天`",
    "group": "limited"
@@ -463,13 +463,13 @@
    "group": "decks"
   },
   {
-   "note": "matchup preview: ピカチュウ戦 62%",
+   "note": "matchup preview (same rule as ja; zh text in replace)",
    "find": "`${Math.round(mu[0].p)}% vs ${esc(nameOf(mu[0].o)).split(\" \")[0]}`",
    "replace": "`對${esc(nameOf(mu[0].o)).split(\" \")[0]} ${Math.round(mu[0].p)}%`",
    "group": "decks"
   },
   {
-   "note": "top players sheet: 今週の成績",
+   "note": "top players sheet (same rule as ja; zh text in replace)",
    "find": "<p class=\"slg sl2\">Results ${winWk()} <span>",
    "replace": "<p class=\"slg sl2\">${winWk()}的成績 <span>",
    "group": "decks"
@@ -781,7 +781,7 @@
    "group": "search"
   },
   {
-   "note": "deck stats header: 35デッキ中1位",
+   "note": "deck stats header (same rule as ja; zh text in replace)",
    "find": "`#${d.rank} of ${nDk}`",
    "replace": "`${nDk}副牌組中第${d.rank}名`",
    "group": "decks"
@@ -883,7 +883,7 @@
    "group": "tooltips"
   },
   {
-   "note": "ghost row: 使用率 · 公開レシピなし",
+   "note": "ghost row (same rule as ja; zh text in replace)",
    "find": "<b>${pct(g.share)}</b> share &middot; <span class=\"gnl\">no public list yet</span>",
    "replace": "使用率<b>${pct(g.share)}</b> &middot; <span class=\"gnl\">沒有公開卡表</span>",
    "group": "decks"
@@ -907,13 +907,13 @@
    "group": "decks"
   },
   {
-   "note": "top players line: 上位プレイヤー12人中8人",
+   "note": "top players line (same rule as ja; zh text in replace)",
    "find": "`${v.nu} of ${v.of} top players`",
    "replace": "`頂尖玩家${v.of}人中${v.nu}人`",
    "group": "decks"
   },
   {
-   "note": "top 10 rising/falling: すべて表示（8）",
+   "note": "top 10 rising/falling (same rule as ja; zh text in replace)",
    "find": ">Show all ${L.length}</button>",
    "replace": ">顯示全部（${L.length}）</button>",
    "group": "decks"
@@ -931,7 +931,7 @@
    "group": "decks"
   },
   {
-   "note": "filter chip: C1のカード",
+   "note": "filter chip (same rule as ja; zh text in replace)",
    "find": "${esc(data.set || \"set\")} cards`",
    "replace": "${esc(data.set || \"set\")}的卡牌`",
    "group": "search"
@@ -949,14 +949,14 @@
    "group": "grammar"
   },
   {
-   "note": "trend: 横ばい",
+   "note": "trend (same rule as ja; zh text in replace)",
    "find": "|| \"steady\"",
    "replace": "|| \"持平\"",
    "all": true,
    "group": "decks"
   },
   {
-   "note": "new set notice: 今日に発売",
+   "note": "new set notice (same rule as ja; zh text in replace)",
    "find": "today ? \"today\" : D(rel)",
    "replace": "today ? \"今天\" : D(rel)",
    "group": "decks"
@@ -968,13 +968,13 @@
    "group": "decks"
   },
   {
-   "note": "events filter line: ピカチュウexが優勝・参加50名以上：5大会",
+   "note": "events filter line (same rule as ja; zh text in replace)",
    "find": "<p class=\"evnote\">${L.length ? `${L.length} event${L.length > 1 ? \"s\" : \"\"}` : \"No events\"}${evWin ? ` won by ${esc((wins[evWin] || {}).w ? wins[evWin].w.name : \"\")}` : \"\"}${evDk ? ` with ${esc(dn(evDk))} in the top 8` : \"\"}${evMin ? ` with ${evMin}+ players` : \"\"}${q && !evDk ? ` for &ldquo;${esc(evQ.trim())}&rdquo;` : \"\"}",
    "replace": "<p class=\"evnote\">${[evWin ? `${esc((wins[evWin] || {}).w ? wins[evWin].w.name : \"\")}奪冠` : \"\", evDk ? `${esc(dn(evDk))}進入八強` : \"\", evMin ? `${evMin}人以上` : \"\", q && !evDk ? `「${esc(evQ.trim())}」` : \"\"].filter(Boolean).join(\"，\")}：${L.length ? `${L.length}場比賽` : \"沒有比賽\"}",
    "group": "tooltips"
   },
   {
-   "note": "event rows: 3時間前に追加",
+   "note": "event rows (same rule as ja; zh text in replace)",
    "find": " \\u00b7 <span class=\"evadd\">added ${addAgo(e.at)}</span>",
    "replace": " \\u00b7 <span class=\"evadd\">${addAgo(e.at)}新增</span>",
    "group": "events"
@@ -986,38 +986,31 @@
    "group": "events"
   },
   {
-   "note": "most wins: すべて表示（N） (tap)",
+   "note": "most wins (same rule as ja; zh text in replace)",
    "find": "\"Show less\" : \"Show all \" + ma.dataset.n",
    "replace": "\"收起\" : \"顯示全部（\" + ma.dataset.n + \"）\"",
    "group": "events"
   },
   {
-   "note": "most wins: すべて表示（N）",
+   "note": "most wins (same rule as ja; zh text in replace)",
    "find": "${mAll ? \"Show less\" : \"Show all \" + wl.length}",
    "replace": "${mAll ? \"收起\" : \"顯示全部（\" + wl.length + \"）\"}",
    "group": "events"
   },
   {
-   "note": "top 10 rising/falling: すべて表示（N） (tap)",
+   "note": "top 10 rising/falling (same rule as ja; zh text in replace)",
    "find": "\"Show less\" : \"Show all \" + c.querySelectorAll(\".t1s-r\").length",
    "replace": "\"收起\" : \"顯示全部（\" + c.querySelectorAll(\".t1s-r\").length + \"）\"",
    "group": "tooltips"
   },
   {
-   "note": "pack row: 環境カード5枚",
+   "note": "pack row (same rule as ja; zh text in replace)",
    "find": "`<b>${m}</b> meta card${m > 1 ? \"s\" : \"\"}` : x.cards.length ? \"\" : \"no meta cards\"",
    "replace": "`環境卡<b>${m}</b>張` : x.cards.length ? \"\" : \"沒有環境卡\"",
    "group": "tooltips"
   },
   {
-   "note": "packs header: 今週の環境向け",
-   "find": "for the meta ${winWk()}",
-   "replace": "${winWk()}環境適用",
-   "all": true,
-   "group": "packs"
-  },
-  {
-   "note": "card popup: packs joined with ・ (R37: all: the aria-label and the bold promo line)",
+   "note": "card popup (same rule as ja; zh text in replace)",
    "find": "ps.map((p) => p.name).join(\" or \")",
    "replace": "ps.map((p) => p.name).join(\"、\")",
    "all": true,
@@ -1042,13 +1035,13 @@
    "group": "grammar"
   },
   {
-   "note": "Live chip: ● 最新 · 5分前 / ● 3時間前にチェック",
+   "note": "Live chip (same rule as ja; zh text in replace)",
    "find": "${fresh ? `<b>Live</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt).replace(/ ago$/, \"\")}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}`}",
    "replace": "${fresh ? `<b>最新</b><span class=\"mu\">&middot; ${agoTxt(data.updatedAt)}` : `<span class=\"mu\">${agoTxt(data.updatedAt)}檢查`}",
    "group": "tooltips"
   },
   {
-   "note": "Live panel: 5分前にチェック",
+   "note": "Live panel (same rule as ja; zh text in replace)",
    "find": "<b>Checked ${agoTxt(data.updatedAt)}</b>",
    "replace": "<b>${agoTxt(data.updatedAt)}檢查</b>",
    "group": "shell"
@@ -1066,7 +1059,7 @@
    "group": "shell"
   },
   {
-   "note": "Live panel: 5分前にサイトに追加",
+   "note": "Live panel (same rule as ja; zh text in replace)",
    "find": "<span>Added to the site ${agoTxt(e.at)}</span>",
    "replace": "<span>${agoTxt(e.at)}加入網站</span>",
    "group": "shell"

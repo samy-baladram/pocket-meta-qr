@@ -239,10 +239,6 @@
 "Just added",
 "Recién añadido"
 ],
-"1d50bf1d8b": [
-"Winners",
-"Barajas ganadoras"
-],
 "1e6fd9a5e6": [
 "Latest events",
 "Últimos torneos"
@@ -1055,10 +1051,6 @@
 "years ago",
 "años atrás"
 ],
-"76a893e205": [
-"for the meta",
-"para el meta"
-],
 "acb7849724": [
 "Every event from the same period, newest first. Open one to see its top 8 lists, each with a QR code. Events where each player brings more than one deck aren&rsquo;t listed, because there&rsquo;s no way to tell which deck won each match.",
 "Todos los torneos del mismo periodo, de más reciente a más antiguo. Toca uno para ver las listas de su top 8, cada una con su código QR. Los torneos en los que cada jugador lleva más de una baraja no aparecen, porque no hay forma de saber con qué baraja se ganó cada partida."
@@ -1194,10 +1186,6 @@
 "861edba005": [
 "Suggestions",
 "Sugerencias"
-],
-"876870e87a": [
-"last {0} events{1}",
-"últimos {0} torneos{1}"
 ],
 "876d097a1a": [
 "Decks whose main list has no Pokémon ex",

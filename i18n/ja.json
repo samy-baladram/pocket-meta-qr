@@ -286,10 +286,6 @@
 "Just added",
 "追加されたばかり"
 ],
-"1d50bf1d8b": [
-"Winners",
-"優勝デッキ"
-],
 "1e6fd9a5e6": [
 "Latest events",
 "最新の大会"
@@ -1254,10 +1250,6 @@
 "years ago",
 "年前"
 ],
-"76a893e205": [
-"for the meta",
-"（環境向け）"
-],
 "acb7849724": [
 "Every event from the same period, newest first. Open one to see its top 8 lists, each with a QR code. Events where each player brings more than one deck aren&rsquo;t listed, because there&rsquo;s no way to tell which deck won each match.",
 "同じ期間に開かれた大会を、新しい順に並べています。大会をタップすると、ベスト8のレシピがQRコード付きで見られます。なお、1人が複数のデッキを持ち込む形式の大会は、どのデッキで勝ったのかがわからないため載せていません。"
@@ -1409,10 +1401,6 @@
 "861edba005": [
 "Suggestions",
 "候補"
-],
-"876870e87a": [
-"last {0} events{1}",
-"直近{0}大会{1!}"
 ],
 "876d097a1a": [
 "Decks whose main list has no Pokémon ex",

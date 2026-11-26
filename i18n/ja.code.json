@@ -1202,13 +1202,6 @@
    "group": "tooltips"
   },
   {
-   "note": "packs header: 今週の環境向け",
-   "find": "for the meta ${winWk()}",
-   "replace": "${winWk()}の環境向け",
-   "all": true,
-   "group": "packs"
-  },
-  {
    "note": "card popup: packs joined with ・ (R37: all: the aria-label and the bold promo line)",
    "find": "ps.map((p) => p.name).join(\" or \")",
    "replace": "ps.map((p) => p.name).join(\"・\")",

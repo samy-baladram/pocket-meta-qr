@@ -239,10 +239,6 @@
 "Just added",
 "剛剛新增"
 ],
-"1d50bf1d8b": [
-"Winners",
-"冠軍牌組"
-],
 "1e6fd9a5e6": [
 "Latest events",
 "最新比賽"
@@ -1059,10 +1055,6 @@
 "years ago",
 "年前"
 ],
-"76a893e205": [
-"for the meta",
-"（環境適用）"
-],
 "acb7849724": [
 "Every event from the same period, newest first. Open one to see its top 8 lists, each with a QR code. Events where each player brings more than one deck aren&rsquo;t listed, because there&rsquo;s no way to tell which deck won each match.",
 "同一期間的所有比賽，由新到舊排列。開啟一場比賽，就能看到八強的卡表，每份都附QR碼。每人帶多副牌組的比賽不會列出，因為無法得知每場對戰是用哪副牌組贏的。"
@@ -1198,10 +1190,6 @@
 "861edba005": [
 "Suggestions",
 "建議"
-],
-"876870e87a": [
-"last {0} events{1}",
-"最近{0}場比賽{1!}"
 ],
 "876d097a1a": [
 "Decks whose main list has no Pokémon ex",
