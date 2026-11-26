@@ -4306,14 +4306,14 @@
  },
  "mega-mewtwo-y-ex-p-c-mega-diancie-ex-b3b": {
   "name": "Mega Mewtwo Y ex Mega Diancie ex",
-  "seen": "2026-11-25",
-  "rank": 56,
-  "share": 0.24,
-  "win": 47.62,
-  "count": 5,
-  "games": 21,
+  "seen": "2026-11-26",
+  "rank": 60,
+  "share": 0.22,
+  "win": 48.48,
+  "count": 7,
+  "games": 33,
   "more": 1,
-  "dates": "Nov 19 – 24",
+  "dates": "Nov 17 – 26",
   "best": [
    "9th of 88",
    "Block Dragon Standard (Any 2 card prize)",
@@ -5133,6 +5133,69 @@
    [
     "Heavy Helmet",
     1
+   ]
+  ],
+  "xs": []
+ },
+ "galvantula-a3b-pawmot-c1": {
+  "name": "Galvantula Pawmot",
+  "seen": "2026-11-26",
+  "rank": 55,
+  "share": 0.22,
+  "win": 36.36,
+  "count": 7,
+  "games": 22,
+  "more": 1,
+  "dates": "Nov 17 – 26",
+  "best": [
+   "32nd of 74",
+   "Underground Pocket Tournament | $5",
+   "2026-11-26"
+  ],
+  "cards": [
+   [
+    "Pawmi",
+    2
+   ],
+   [
+    "Pawmot",
+    2
+   ],
+   [
+    "Joltik",
+    2
+   ],
+   [
+    "Galvantula",
+    2
+   ],
+   [
+    "Oricorio",
+    2
+   ],
+   [
+    "Professor's Research",
+    2
+   ],
+   [
+    "Copycat",
+    2
+   ],
+   [
+    "Serena's Choice",
+    1
+   ],
+   [
+    "Cyrus",
+    1
+   ],
+   [
+    "Rare Candy",
+    2
+   ],
+   [
+    "Poké Ball",
+    2
    ]
   ],
   "xs": []

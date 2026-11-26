@@ -3459,21 +3459,21 @@
   ]
  },
  "Giratina ex": {
-  "id": "a2b-035",
+  "id": "c1-101",
   "seen": "2026-11-26",
   "dates": "Nov 17 – 26",
   "pct": 3,
-  "u": 14,
+  "u": 15,
   "pack": [
-   "Shining Revelry pack",
-   "Shining Revelry pack"
+   "Dual Fusion Mega Mewtwo X pack",
+   "Dual Fusion pack"
   ],
   "nd": 4,
   "L": [
    [
     "Giratina ex Dragonair",
     2,
-    7
+    8
    ],
    [
     "Giratina ex Darkrai ex",
@@ -4624,10 +4624,10 @@
  },
  "Minior": {
   "id": "b4-090",
-  "seen": "2026-11-25",
-  "dates": "Nov 16 – 23",
+  "seen": "2026-11-26",
+  "dates": "Nov 17 – 26",
   "pct": 0,
-  "u": 2,
+  "u": 1,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
@@ -4635,9 +4635,9 @@
   "nd": 1,
   "L": [
    [
-    "Mega Skarmory ex Mantyke",
+    "Mega Tyranitar ex",
     1,
-    2
+    1
    ]
   ]
  },
@@ -5484,6 +5484,49 @@
     "Mega Altaria ex Greninja",
     1,
     2
+   ]
+  ]
+ },
+ "Kid's Room": {
+  "id": "b3b-069",
+  "seen": "2026-11-26",
+  "dates": "Nov 17 – 26",
+  "pct": 0,
+  "u": 2,
+  "pack": [
+   "Everyday Wonders pack",
+   "Everyday Wonders pack"
+  ],
+  "nd": 2,
+  "L": [
+   [
+    "Pikachu ex Pawmot",
+    1,
+    1
+   ],
+   [
+    "Mega Tyranitar ex",
+    1,
+    1
+   ]
+  ]
+ },
+ "Morpeko": {
+  "id": "b2b-045",
+  "seen": "2026-11-26",
+  "dates": "Nov 17 – 26",
+  "pct": 0,
+  "u": 1,
+  "pack": [
+   "Mega Shine pack",
+   "Mega Shine pack"
+  ],
+  "nd": 1,
+  "L": [
+   [
+    "Mega Tyranitar ex",
+    1,
+    1
    ]
   ]
  }
