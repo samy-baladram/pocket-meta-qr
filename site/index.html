@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795700561-8f5e -->
+<!-- ui: artifact version 1795703228-1671 -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -116,6 +116,12 @@ body {
 }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; /* the status bar strip (home-screen app): the banner gradient */
   background: linear-gradient(90deg, var(--band-bot), var(--band-mid) 33%, var(--band-mid2) 67%, var(--band-top)); }
+/* Nov 26: home-screen app (iPhone, iPad): the status bar is on the banner, so the banner was taller than in Safari by the status bar.
+   10px less under the status bar (iPhone: 7px, so the language button stays 3px clear of the status bar strip). Safari: inset 0, no change. */
+@media (display-mode: standalone) { html body { padding-top: calc(10px + env(safe-area-inset-top, 0px)); } }
+@media (display-mode: standalone) and (max-width: 760px) { html body { padding-top: max(10px, calc(3px + env(safe-area-inset-top, 0px))); } }
+:root.ios-app body { padding-top: calc(10px + env(safe-area-inset-top, 0px)); }
+@media (max-width: 760px) { :root.ios-app body { padding-top: max(10px, calc(3px + env(safe-area-inset-top, 0px))); } }
 /* Nov 15: wide screens: the whole page scales up in steps (like browser zoom), so text and cards are not at phone size */
 @media (min-width: 1440px) { html { zoom: 1.15; } }
 @media (min-width: 1800px) { html { zoom: 1.3; } }
@@ -2397,6 +2403,7 @@ a.dkev { text-decoration: none; }
 .pbd { position: absolute; z-index: -1; left: calc(50% - 50vw); width: 100vw; top: var(--pbdT, 0px); height: 175px; pointer-events: none; }
 @media (min-width: 700px) { .pbd { height: 215px; } }
 :root:not(.pbd-on) .pbd { display: none; }
+:root.ios-app .pbd { transform: translateZ(0); -webkit-transform: translateZ(0); } /* Nov 26: iOS home-screen app: the band on its own layer (WebKit dropped it after fast tab changes, until a reload) */
 .pbd > i { position: absolute; inset: 0; background: linear-gradient(100deg, var(--bd1), var(--bd2)); clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--bdS, 8.75vw)), 0 100%); } /* --bdS = width x tan 5 deg (set in CSS px: zoom-safe) */
 /* the slanted lower edge: the banner's 5 deg; a dark inner shadow band along it, clipped by the shape */
 .pbd > i::after { content: ""; position: absolute; left: 0; bottom: 0; width: 102%; height: 27px; transform-origin: 0 100%; transform: rotate(-5deg); background: linear-gradient(rgba(20, 30, 60, 0), rgba(20, 30, 60, 0.09) 55%, rgba(20, 30, 60, 0.22)); }
@@ -6240,6 +6247,15 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     addEventListener("pointermove", (e) => { if (el && Math.hypot(e.clientX - x0, e.clientY - y0) > 6) off(); }, o);
     addEventListener("pointerup", () => { if (!el) return; clearTimeout(tm); if (!t0) on(); const n = el, d = Math.max(0, 60 - (performance.now() - t0)); el = null; setTimeout(() => n.classList.remove("prs"), d); }, o);
     addEventListener("pointercancel", off, o); addEventListener("blur", off); addEventListener("scroll", off, { passive: true }); })(); /* scroll: the page only (not in capture: the shelves move by themselves) */
+  // Nov 26: iOS home-screen app only (navigator.standalone exists only there): after fast tab changes WebKit could drop the band's
+  // layer until a reload. After each tab change, back / forward and a return to the app: place it again and make WebKit draw it again.
+  const IOS_APP = navigator.standalone === true; if (IOS_APP) document.documentElement.classList.add("ios-app");
+  let pbdRaf = 0;
+  function pbdKick() { if (!IOS_APP || pbdRaf) return; pbdRaf = requestAnimationFrame(() => requestAnimationFrame(() => { pbdRaf = 0; const p = $("pbd"), t = $("tbar"); if (!p) return;
+    if (t) document.documentElement.style.setProperty("--pbdT", (t.offsetTop + t.offsetHeight) + "px");
+    p.style.display = "none"; void p.offsetHeight; p.style.display = ""; })); }
+  if (IOS_APP) { document.addEventListener("click", (e) => { if (e.target.closest && e.target.closest("#tabs a, .fnav a, #lbBan, [data-go]")) pbdKick(); }); // the tabs, the footer links, the Limited banner, "Open …" links addEventListener("popstate", pbdKick); addEventListener("pageshow", pbdKick);
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) pbdKick(); }); }
   // Nov 25: the page band (.pbd) starts right under the tab bar (layout px: page zoom safe); the header above can change height (Limited Battle banner, fonts)
   (() => { const t = $("tbar"), w = t && t.closest(".wrap"), set = () => { if (t) document.documentElement.style.setProperty("--pbdT", (t.offsetTop + t.offsetHeight) + "px"); };
     set(); if (w && typeof ResizeObserver !== "undefined") new ResizeObserver(set).observe(w); addEventListener("resize", set); })();
