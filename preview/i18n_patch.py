@@ -35,7 +35,8 @@ html:not([lang="en"]) .evsub, html:not([lang="en"]) .evsub > span { flex-wrap: w
 html:not([lang="en"]) .pkr-n small { white-space: normal; overflow-wrap: anywhere; }
 html:not([lang="en"]) :root .swt .swpl, html:not([lang="en"]) .swpl { white-space: normal; text-align: center; }
 html:not([lang="en"]) .t1s-h > :first-child { flex: none; white-space: nowrap; }
-html:not([lang="en"]) .t1s-lab > div { inset: 0 10px; gap: 0 4px; font-size: 12px; flex-wrap: wrap; align-content: center; line-height: 1.2; } /* the name keeps its line; the rest moves under it */
+html:not([lang="en"]) .t1s-lab > div { inset: auto 10px 0; height: auto; min-height: 24px; gap: 0 4px; font-size: 12px; flex-wrap: wrap; align-content: center; line-height: 1.2; } /* the name keeps its line; the rest moves under it. Nov 26: at the bottom of the shelf, as in English (was inset: 0 = the middle of the fade) */
+html:not([lang="en"]) .evsh .t1s-lab > div { min-height: 38px; }
 html[lang="fr"] small.t1s-x { letter-spacing: -0.02em; } /* Nov 24: "8e · nouveau → 3,6 %" in the Top 10 rising row fits 360 px */
 .tabs .tls { display: none; } @media (max-width: 599px) { .tabs .tls { display: inline; } } /* Nov 24: a tab's own short label on phones (.tlx = the long one), for languages that keep sentence case: fr "Decks méta" / "Méta" */
 /* Nov 23: sections a language does not translate yet (EN_ONLY in the page script) get a short note at the top */
