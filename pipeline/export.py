@@ -32,7 +32,8 @@ MORE_SHARE = 0.2  # % for the "Show more decks" file (more.json, R9)
 WINDOW_DAYS = 7   # the page's window (7d), also for rk0 / nw (R14)
 TOP_MIN_NET, TOP_PCT = 2, 0      # R23 (Nov 14, 2026, user): top player = W - L >= 2 only (TOP_PCT 0 turns the top 25 % part off; R22 had 0.25)
 MAX_DECKS = 40
-BRK_PLAYERS, BRK_PLACE = 128, 8   # R33: a deck under MORE_SHARE with a top-BRK_PLACE finish at a BRK_PLAYERS+ event
+BRK_PLAYERS, BRK_PLACE = 128, 4   # R33: a deck under MORE_SHARE with a top-BRK_PLACE finish at a BRK_PLAYERS+ event
+                                  # Nov 27, 2026 (owner): top 4 (was top 8): a 7th place alone was too weak a signal
 TREND_DAYS = 7    # R24: days in the stats.json trend (same as build_db.py)
 TOP_MU, MU_MIN = 10, 10   # R24: matchups against the TOP_MU decks with the highest share, with MU_MIN+ games
 MAX_ROWS = 0      # finishes read per deck; 0 = all (build.mjs keeps up to 10 distinct lists from them)

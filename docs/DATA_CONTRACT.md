@@ -13,6 +13,7 @@ Changes from version 1 (the artifact data of Nov 3, 2026):
 - Version 29 (request R33 of the UI chat, owner decision Nov 23): **Breakout decks**: a deck under 0.2 % share with a
   top-8 finish at a single-deck event of the window with 128+ players (`BRK_PLACE`, `BRK_PLAYERS` in export.py) is in
   `more.json` (after the other decks) with **`brk`**; `data.json` gets a top-level **`brk`** list (see below).
+  Nov 27, 2026 (owner): **top 4** (`BRK_PLACE` = 4, was 8). Same format, no new field.
 - Version 28 (request R25 of the UI chat, approved by the user Nov 15): **adaptive window** of 7, 10 or 14 days,
   never before the current set's release (see "Window"). `window` = `"adaptive"`; new top-level fields in `data.json`:
   **`wd`**, **`wr`**, **`wch`**, **`bige`**; new **`tr.wd`** in `stats.json`. Every number that used the 7-day window
