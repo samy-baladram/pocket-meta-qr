@@ -2202,5 +2202,13 @@
 "a2d2f6d30f": [
 "Tap or point at a dot to see the deck.",
 "점을 탭하거나 마우스를 올리면 덱을 볼 수 있어요."
+],
+"23d2735d65": [
+"A rare deck (under 0.2% share {0}) with a top-4 finish at a big event (128+ players): {t0}{1}{t1}.",
+"큰 대회(128명 이상)에서 TOP 4에 든, {0} 사용률 0.2% 미만의 드문 덱: {t0}{1}{t1}."
+],
+"964059bf49": [
+"New in the list (for the first time since the set came out; shown for 3 days) and Breakout decks (rare decks with a top-4 finish at a big event)",
+"랭킹에 새로 오른 덱(확장팩 출시 이후 처음, 3일간)과 급부상 덱(큰 대회에서 TOP 4에 든 드문 덱)"
 ]
 }

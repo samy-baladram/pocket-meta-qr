@@ -2732,5 +2732,13 @@
 "ef2f53744b": [
 "While the page loads, the Top 10 label sits in an empty shelf, not alone in the middle of the page.",
 "ページの読み込み中、トップ10の見出しは空の棚の中に表示され、ページの真ん中にぽつんと出なくなりました。"
+],
+"23d2735d65": [
+"A rare deck (under 0.2% share {0}) with a top-4 finish at a big event (128+ players): {t0}{1}{t1}.",
+"大きな大会（128人以上）でベスト4に入った、{0}の使用率が0.2%未満の珍しいデッキ：{t0}{1}{t1}。"
+],
+"964059bf49": [
+"New in the list (for the first time since the set came out; shown for 3 days) and Breakout decks (rare decks with a top-4 finish at a big event)",
+"ランキングに新登場したデッキ（拡張パックの発売以降で初めて、3日間）と躍進デッキ（大きな大会でベスト4に入った珍しいデッキ）"
 ]
 }

@@ -2202,5 +2202,13 @@
 "a2d2f6d30f": [
 "Tap or point at a dot to see the deck.",
 "Tocca un punto o passaci sopra con il mouse per vedere il mazzo."
+],
+"23d2735d65": [
+"A rare deck (under 0.2% share {0}) with a top-4 finish at a big event (128+ players): {t0}{1}{t1}.",
+"Un mazzo raro (meno dello 0,2% di utilizzo {0}) con un top 4 in un grande torneo (128+ giocatori): {t0}{1}{t1}."
+],
+"964059bf49": [
+"New in the list (for the first time since the set came out; shown for 3 days) and Breakout decks (rare decks with a top-4 finish at a big event)",
+"Nuovi in classifica (per la prima volta dall’uscita dell’espansione; restano segnati per 3 giorni) e mazzi rivelazione (mazzi rari arrivati nel top 4 di un grande torneo)"
 ]
 }

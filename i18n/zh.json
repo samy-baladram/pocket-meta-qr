@@ -2202,5 +2202,13 @@
 "a2d2f6d30f": [
 "Tap or point at a dot to see the deck.",
 "點一下或把滑鼠移到圓點上，就能看到牌組。"
+],
+"23d2735d65": [
+"A rare deck (under 0.2% share {0}) with a top-4 finish at a big event (128+ players): {t0}{1}{t1}.",
+"在大型比賽（128人以上）進入四強、{0}使用率低於0.2%的少見牌組：{t0}{1}{t1}。"
+],
+"964059bf49": [
+"New in the list (for the first time since the set came out; shown for 3 days) and Breakout decks (rare decks with a top-4 finish at a big event)",
+"新上榜的牌組（擴充包推出以來首次上榜，顯示3天）與黑馬牌組（在大型比賽進入四強的少見牌組）"
 ]
 }

@@ -2202,5 +2202,13 @@
 "a2d2f6d30f": [
 "Tap or point at a dot to see the deck.",
 "Toca un punto o pasa el cursor por encima para ver la baraja."
+],
+"23d2735d65": [
+"A rare deck (under 0.2% share {0}) with a top-4 finish at a big event (128+ players): {t0}{1}{t1}.",
+"Una baraja rara (menos del 0,2 % de uso {0}) con un top 4 en un torneo grande (128+ jugadores): {t0}{1}{t1}."
+],
+"964059bf49": [
+"New in the list (for the first time since the set came out; shown for 3 days) and Breakout decks (rare decks with a top-4 finish at a big event)",
+"Nuevas en el ranking (la primera vez desde que salió la expansión, durante 3 días) y barajas revelación (una baraja rara con un top 4 en un torneo grande)"
 ]
 }
