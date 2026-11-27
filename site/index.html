@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795703228-1671 -->
+<!-- ui: artifact version 1795764765-9c7b -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -6247,6 +6247,21 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     addEventListener("pointermove", (e) => { if (el && Math.hypot(e.clientX - x0, e.clientY - y0) > 6) off(); }, o);
     addEventListener("pointerup", () => { if (!el) return; clearTimeout(tm); if (!t0) on(); const n = el, d = Math.max(0, 60 - (performance.now() - t0)); el = null; setTimeout(() => n.classList.remove("prs"), d); }, o);
     addEventListener("pointercancel", off, o); addEventListener("blur", off); addEventListener("scroll", off, { passive: true }); })(); /* scroll: the page only (not in capture: the shelves move by themselves) */
+  // Nov 27: card name while the card image loads (as in Packs to Open): the same gray name card as a failed image (phSvg above),
+  // drawn as the image's background, so the card shows its name until the picture covers it. No new markup, so no layout change.
+  // Step 1: the deck list cards. PH_SEL grows to the other big cards later. The name: data-n / data-cn / alt (the translated name).
+  const PH_SEL = ".cards img.tcard";
+  function phSet(img) {
+    if (img.dataset.lph || img.dataset.ph || (img.complete && img.naturalWidth)) return;
+    const m = /(?:^|\/)[cz]\/([a-z0-9]+-\d+)\.webp/.exec(img.getAttribute("src") || ""); if (!m) return;
+    const name = (img.dataset.n || img.dataset.cn || img.alt || "").replace(/\s*\((?:in|out|not in [^)]*)\)\s*$/, ""); if (!name) return;
+    img.dataset.lph = "1"; img.style.backgroundImage = `url("${phSvg(name, m[1])}")`; img.style.backgroundSize = "100% 100%";
+    const off = () => { img.style.backgroundImage = ""; img.style.backgroundSize = ""; delete img.dataset.lph; };
+    img.addEventListener("load", off, { once: true });
+  }
+  const phScan = (root) => { if (root.matches && root.matches(PH_SEL)) phSet(root); if (root.querySelectorAll) root.querySelectorAll(PH_SEL).forEach(phSet); };
+  new MutationObserver((ms) => { for (const m of ms) for (const n of m.addedNodes) if (n.nodeType === 1) phScan(n); }).observe(document.body, { childList: true, subtree: true });
+  phScan(document.body);
   // Nov 26: iOS home-screen app only (navigator.standalone exists only there): after fast tab changes WebKit could drop the band's
   // layer until a reload. After each tab change, back / forward and a return to the app: place it again and make WebKit draw it again.
   const IOS_APP = navigator.standalone === true; if (IOS_APP) document.documentElement.classList.add("ios-app");
