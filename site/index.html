@@ -1,4 +1,4 @@
-<!-- ui: artifact version 1795764765-9c7b -->
+<!-- ui: artifact version 1795767394-2baf -->
 <title>Pocket Meta QR – Pokémon TCG Pocket meta decks and tournaments with QR codes</title>
 <meta name="description" content="This week's winning Pokémon TCG Pocket decks and latest tournaments, the lists that top players use, and a QR code for every list to import it into the game.">
 <link rel="canonical" href="https://pocketmetaqr.com/">
@@ -4083,7 +4083,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     return `<h3>Rank ${d.rank}</h3>${body}<p class="inote">Ranks are compared with the data of 24 h earlier.</p>`;
   }
   function rbHTML(d, pod) {
-    if (d.brk && d.brk.length) return `<span class="rb rbt rbk solo" data-tip="${esc(`<h3>Breakout deck</h3><p>A rare deck (under 0.2% share ${winWk()}) with a top-8 finish at a big event (128+ players): <b>${esc(b0(d))}</b>.</p><p>Too few players used this deck to rank it fairly, so it has no rank number.</p>`)}" aria-label="Breakout deck">${BRK_I}</span>`; // Nov 23: no rank number (not a fair rank at this size)
+    if (d.brk && d.brk.length) return `<span class="rb rbt rbk solo" data-tip="${esc(`<h3>Breakout deck</h3><p>A rare deck (under 0.2% share ${winWk()}) with a top-4 finish at a big event (128+ players): <b>${esc(b0(d))}</b>.</p><p>Too few players used this deck to rank it fairly, so it has no rank number.</p>`)}" aria-label="Breakout deck">${BRK_I}</span>`; // Nov 23: no rank number (not a fair rank at this size)
     const cls = pod ? ` pm ${["g", "s", "b"][pod - 1]}` : "";
     const rn = `<span class="rn">${pod ? RB_CR : ""}<span class="mn">${d.rank}</span></span>`;
     if (!hasTrend() || (!("rk0" in d) && !d.nw)) return `<span class="rb${cls} solo" aria-hidden="true">${rn}</span>`; // no R14 data for this deck
@@ -4451,7 +4451,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (on) pod.outerHTML = `<div class="podflat">${top.map((d, k) => rowHTML(d, k + 1)).join("")}</div>`;
     else { flat.outerHTML = podiumHTML(top); podFit(); podGrow(); }
   }
-  // Nov 23: Breakout decks (R33): a rare deck (under 0.2% share) with a top-8 finish at a 128+ player event; d.brk = [[tid, place, players, event name], ...] (best first)
+  // Nov 23: Breakout decks (R33): a rare deck (under 0.2% share) with a top-4 (Nov 27; was top-8) finish at a 128+ player event; d.brk = [[tid, place, players, event name], ...] (best first)
   // the line under the Top 10 (data.json brk = [{ id, name, art, tid, place, players, ev }]: the deck is in more.json)
   const brkLine = () => { const L = (data && data.brk) || []; if (!L.length) return "";
     return `<div class="t1s-brk">${L.slice(0, 2).map((b) => `${typeof RDECK !== "undefined" && RDECK ? `<a href="/decks/${esc(b.id)}/"` : '<button type="button"'} class="brkr" data-go="${esc(b.id)}">${t2c({ art: b.art || [] }, 26, 42, 34, 15, 5)}<span class="brkt"><span class="brkk">${BRK_I}Breakout</span><span class="brkn"><span class="brkm"><span class="brkm-t"><b>${esc(b.name)}</b> ${b.place === 1 ? "won" : `took ${ordF(b.place)} at`} ${esc(shortEv(b.ev || ""))} (${b.players} players)</span></span></span></span>${SPCH}${typeof RDECK !== "undefined" && RDECK ? "</a>" : "</button>"}`).join("")}</div>`; };
@@ -5319,7 +5319,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     $("fen").innerHTML = ENERGY_ORDER.map((e) =>
       `<button class="ech" type="button" data-e="${e}" aria-pressed="false" title="${cap(e)}"><img src="e/${e}.webp" alt="${cap(e)}" width="22" height="22"></button>`).join("");
     $("fdk").innerHTML = [["noex", "No ex", "Decks whose main list has no Pok\u00e9mon ex"], 
-      ["rise", "Rising", "Up in rank in the last 24 hours, or new in the list"], ["nw", "New", "New in the list (for the first time since the set came out; shown for 3 days) and Breakout decks (rare decks with a top-8 finish at a big event)"], ["new", `${esc(data.set || "set")} cards`, `Decks that use a card from ${esc(data.setName || data.set || "the newest set")}`]]
+      ["rise", "Rising", "Up in rank in the last 24 hours, or new in the list"], ["nw", "New", "New in the list (for the first time since the set came out; shown for 3 days) and Breakout decks (rare decks with a top-4 finish at a big event)"], ["new", `${esc(data.set || "set")} cards`, `Decks that use a card from ${esc(data.setName || data.set || "the newest set")}`]]
       .map(([k, t, tip]) => `<button class="fdc" type="button" data-k="${k}" aria-pressed="false" title="${tip}"${(k === "rise" && !hasTrend()) || (k === "nw" && !nwAny()) ? " disabled" : ""}>${k === "rise" ? `<span class="fup">${RB_UP}</span>` : k === "nw" ? `<span class="fnw">${SPARK}</span>` : ""}${t}</button>`).join("");
     $("filtBtn").hidden = false;
   }
