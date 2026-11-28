@@ -1,172 +1,241 @@
 {
  "Professor's Research": {
   "id": "pa-007",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 94,
-  "u": 370,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 93,
+  "u": 341,
   "pack": null,
-  "nd": 49,
+  "nd": 46,
   "L": [
    [
     "Mega Charizard Y ex Entei ex",
     2,
-    44
+    40
    ],
    [
     "Hoopa ex Mega Absol ex",
     2,
-    42
+    36
    ],
    [
     "Mega Altaria ex Espeon",
     2,
-    36
+    41
    ],
    [
     "Magnezone Miraidon ex",
     2,
-    30
+    19
    ],
    [
     "Mega Altaria ex Greninja",
     2,
-    26
-   ],
-   [
-    "Suicune ex Baxcalibur",
-    2,
-    13
-   ],
-   [
-    "Vespiquen ex Shuckle ex",
-    2,
-    13
+    20
    ],
    [
     "Mega Lucario ex Lucario",
     2,
-    8
+    6
+   ],
+   [
+    "Vespiquen ex Shuckle ex",
+    2,
+    10
+   ],
+   [
+    "Suicune ex Baxcalibur",
+    2,
+    11
    ],
    [
     "Hydreigon Mega Absol ex",
     1,
-    16
+    13
+   ],
+   [
+    "Entei ex Charizard",
+    2,
+    17
+   ],
+   [
+    "Hoopa ex Mega Sableye ex",
+    2,
+    15
    ],
    [
     "Chien-Pao ex Baxcalibur",
     2,
     3
-   ],
-   [
-    "Hoopa ex Mega Sableye ex",
-    2,
-    14
-   ],
-   [
-    "Entei ex Charizard",
-    2,
-    15
    ]
   ]
  },
  "Poké Ball": {
   "id": "pa-005",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 95,
-  "u": 374,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 96,
+  "u": 352,
   "pack": null,
-  "nd": 49,
+  "nd": 46,
   "L": [
    [
     "Mega Charizard Y ex Entei ex",
     2,
-    44
+    40
    ],
    [
     "Hoopa ex Mega Absol ex",
     2,
-    42
+    36
    ],
    [
     "Mega Altaria ex Espeon",
     2,
-    36
+    41
    ],
    [
     "Magnezone Miraidon ex",
     2,
-    30
+    19
    ],
    [
     "Mega Altaria ex Greninja",
     2,
-    26
-   ],
-   [
-    "Suicune ex Baxcalibur",
-    2,
-    13
+    21
    ],
    [
     "Mega Lucario ex Lucario",
     2,
-    8
+    6
    ],
    [
-    "Hydreigon Mega Absol ex",
-    2,
-    23
-   ],
-   [
-    "Chien-Pao ex Baxcalibur",
+    "Suicune ex Baxcalibur",
     2,
     11
    ],
    [
-    "Hoopa ex Mega Sableye ex",
+    "Hydreigon Mega Absol ex",
     2,
-    14
+    20
    ],
    [
     "Entei ex Charizard",
     2,
+    17
+   ],
+   [
+    "Hoopa ex Mega Sableye ex",
+    2,
     15
+   ],
+   [
+    "Chien-Pao ex Baxcalibur",
+    2,
+    10
    ],
    [
     "Dedenne ex Indeedee ex",
     2,
-    12
+    11
    ]
   ]
  },
  "Copycat": {
   "id": "b1-225",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 78,
-  "u": 310,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 79,
+  "u": 288,
   "pack": [
    "Mega Rising Mega Gyarados pack",
    "Mega Rising pack"
   ],
-  "nd": 47,
+  "nd": 45,
   "L": [
    [
     "Mega Charizard Y ex Entei ex",
     1,
-    23
+    20
    ],
    [
     "Hoopa ex Mega Absol ex",
     1,
-    30
+    26
    ],
    [
     "Mega Altaria ex Espeon",
     2,
+    41
+   ],
+   [
+    "Magnezone Miraidon ex",
+    1,
+    12
+   ],
+   [
+    "Mega Altaria ex Greninja",
+    2,
+    21
+   ],
+   [
+    "Mega Lucario ex Lucario",
+    1,
+    6
+   ],
+   [
+    "Vespiquen ex Shuckle ex",
+    1,
+    10
+   ],
+   [
+    "Suicune ex Baxcalibur",
+    2,
+    7
+   ],
+   [
+    "Hydreigon Mega Absol ex",
+    2,
+    19
+   ],
+   [
+    "Entei ex Charizard",
+    1,
+    15
+   ],
+   [
+    "Hoopa ex Mega Sableye ex",
+    1,
+    4
+   ],
+   [
+    "Chien-Pao ex Baxcalibur",
+    2,
+    10
+   ]
+  ]
+ },
+ "Cyrus": {
+  "id": "a2-150",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 55,
+  "u": 199,
+  "pack": [
+   "Space-Time Smackdown Palkia pack",
+   "Space-Time Smackdown pack"
+  ],
+  "nd": 33,
+  "L": [
+   [
+    "Hoopa ex Mega Absol ex",
+    2,
     36
+   ],
+   [
+    "Mega Altaria ex Espeon",
+    1,
+    6
    ],
    [
     "Magnezone Miraidon ex",
@@ -175,107 +244,38 @@
    ],
    [
     "Mega Altaria ex Greninja",
-    2,
-    26
+    1,
+    21
    ],
    [
-    "Suicune ex Baxcalibur",
-    2,
+    "Mega Lucario ex Lucario",
+    1,
+    6
+   ],
+   [
+    "Vespiquen ex Shuckle ex",
+    1,
     7
    ],
    [
-    "Vespiquen ex Shuckle ex",
-    1,
-    13
-   ],
-   [
-    "Mega Lucario ex Lucario",
-    1,
-    8
-   ],
-   [
-    "Hydreigon Mega Absol ex",
-    2,
-    22
-   ],
-   [
-    "Chien-Pao ex Baxcalibur",
-    2,
-    11
-   ],
-   [
-    "Hoopa ex Mega Sableye ex",
-    1,
-    3
-   ],
-   [
-    "Entei ex Charizard",
-    1,
-    14
-   ]
-  ]
- },
- "Cyrus": {
-  "id": "a2-150",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 57,
-  "u": 227,
-  "pack": [
-   "Space-Time Smackdown Palkia pack",
-   "Space-Time Smackdown pack"
-  ],
-  "nd": 35,
-  "L": [
-   [
-    "Hoopa ex Mega Absol ex",
-    2,
-    42
-   ],
-   [
-    "Mega Altaria ex Espeon",
-    1,
-    5
-   ],
-   [
-    "Magnezone Miraidon ex",
-    1,
-    30
-   ],
-   [
-    "Mega Altaria ex Greninja",
-    1,
-    26
-   ],
-   [
     "Suicune ex Baxcalibur",
     1,
-    1
-   ],
-   [
-    "Vespiquen ex Shuckle ex",
-    1,
-    10
-   ],
-   [
-    "Mega Lucario ex Lucario",
-    1,
-    8
+    2
    ],
    [
     "Hydreigon Mega Absol ex",
     1,
-    23
+    20
    ],
    [
     "Hoopa ex Mega Sableye ex",
     2,
-    14
+    15
    ],
    [
     "Dedenne ex Indeedee ex",
     1,
-    8
+    6
    ],
    [
     "Mega Mewtwo X ex Mega Diancie ex",
@@ -283,92 +283,92 @@
     2
    ],
    [
-    "Giratina ex Dragonair",
+    "Greninja ex Mega Greninja ex",
     1,
-    1
+    11
    ]
   ]
  },
  "Serena's Choice": {
   "id": "c1-127",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 66,
-  "u": 260,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 62,
+  "u": 226,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
   ],
-  "nd": 46,
+  "nd": 42,
   "L": [
    [
     "Mega Charizard Y ex Entei ex",
     1,
-    40
+    37
    ],
    [
     "Hoopa ex Mega Absol ex",
     1,
-    13
+    10
    ],
    [
     "Mega Altaria ex Espeon",
     1,
-    3
+    2
    ],
    [
     "Magnezone Miraidon ex",
     1,
-    18
+    11
    ],
    [
     "Mega Altaria ex Greninja",
     1,
-    6
-   ],
-   [
-    "Suicune ex Baxcalibur",
-    2,
-    10
-   ],
-   [
-    "Vespiquen ex Shuckle ex",
-    1,
-    13
+    5
    ],
    [
     "Mega Lucario ex Lucario",
     1,
-    7
+    5
+   ],
+   [
+    "Vespiquen ex Shuckle ex",
+    1,
+    8
+   ],
+   [
+    "Suicune ex Baxcalibur",
+    2,
+    8
    ],
    [
     "Hydreigon Mega Absol ex",
     2,
-    23
-   ],
-   [
-    "Chien-Pao ex Baxcalibur",
-    2,
-    9
-   ],
-   [
-    "Hoopa ex Mega Sableye ex",
-    1,
-    11
+    19
    ],
    [
     "Entei ex Charizard",
     1,
+    13
+   ],
+   [
+    "Hoopa ex Mega Sableye ex",
+    1,
     12
+   ],
+   [
+    "Chien-Pao ex Baxcalibur",
+    2,
+    8
    ]
   ]
  },
  "Field Blower": {
   "id": "b3-147",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 47,
-  "u": 184,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 48,
+  "u": 174,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
@@ -383,17 +383,22 @@
    [
     "Hoopa ex Mega Absol ex",
     1,
-    42
+    36
    ],
    [
     "Mega Altaria ex Espeon",
     1,
-    32
+    37
    ],
    [
-    "Magnezone Miraidon ex",
+    "Mega Lucario ex Lucario",
     1,
-    2
+    4
+   ],
+   [
+    "Vespiquen ex Shuckle ex",
+    1,
+    10
    ],
    [
     "Suicune ex Baxcalibur",
@@ -401,24 +406,9 @@
     2
    ],
    [
-    "Vespiquen ex Shuckle ex",
-    1,
-    13
-   ],
-   [
-    "Mega Lucario ex Lucario",
-    1,
-    6
-   ],
-   [
     "Hydreigon Mega Absol ex",
     1,
-    19
-   ],
-   [
-    "Chien-Pao ex Baxcalibur",
-    1,
-    10
+    15
    ],
    [
     "Hoopa ex Mega Sableye ex",
@@ -428,26 +418,36 @@
    [
     "Entei ex Charizard",
     1,
-    3
+    5
+   ],
+   [
+    "Chien-Pao ex Baxcalibur",
+    1,
+    9
    ],
    [
     "Mega Mewtwo X ex Mega Diancie ex",
     1,
-    7
+    8
+   ],
+   [
+    "Greninja ex Mega Greninja ex",
+    1,
+    6
    ]
   ]
  },
  "Pokémon Center Lady": {
   "id": "a2b-070",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 36,
-  "u": 144,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 35,
+  "u": 129,
   "pack": [
    "Shining Revelry pack",
    "Shining Revelry pack"
   ],
-  "nd": 26,
+  "nd": 25,
   "L": [
    [
     "Mega Charizard Y ex Entei ex",
@@ -457,17 +457,12 @@
    [
     "Hoopa ex Mega Absol ex",
     1,
-    42
+    36
    ],
    [
     "Magnezone Miraidon ex",
     1,
-    16
-   ],
-   [
-    "Suicune ex Baxcalibur",
-    1,
-    9
+    10
    ],
    [
     "Mega Lucario ex Lucario",
@@ -475,7 +470,22 @@
     4
    ],
    [
+    "Suicune ex Baxcalibur",
+    1,
+    8
+   ],
+   [
     "Hydreigon Mega Absol ex",
+    1,
+    3
+   ],
+   [
+    "Hoopa ex Mega Sableye ex",
+    1,
+    15
+   ],
+   [
+    "Entei ex Charizard",
     1,
     3
    ],
@@ -485,24 +495,14 @@
     2
    ],
    [
-    "Hoopa ex Mega Sableye ex",
-    1,
-    14
-   ],
-   [
-    "Entei ex Charizard",
-    1,
-    2
-   ],
-   [
     "Mega Mewtwo X ex Mega Diancie ex",
     1,
-    9
+    10
    ],
    [
     "Giratina ex Dragonair",
     1,
-    7
+    3
    ],
    [
     "Butterfree Mega Sceptile ex",
@@ -513,54 +513,49 @@
  },
  "Rare Candy": {
   "id": "a3-144",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 31,
-  "u": 123,
+  "u": 114,
   "pack": [
    "Celestial Guardians Lunala or Solgaleo pack",
    "Celestial Guardians pack"
   ],
-  "nd": 21,
+  "nd": 19,
   "L": [
    [
     "Mega Altaria ex Greninja",
     2,
-    26
+    21
    ],
    [
     "Suicune ex Baxcalibur",
     2,
-    13
+    11
    ],
    [
     "Hydreigon Mega Absol ex",
     2,
-    23
-   ],
-   [
-    "Chien-Pao ex Baxcalibur",
-    2,
-    11
+    20
    ],
    [
     "Entei ex Charizard",
     1,
-    7
+    8
+   ],
+   [
+    "Chien-Pao ex Baxcalibur",
+    2,
+    10
    ],
    [
     "Greninja ex Mega Greninja ex",
     1,
-    9
+    11
    ],
    [
     "Mega Greninja ex Greninja ex",
     1,
-    5
-   ],
-   [
-    "Umbreon Hydreigon",
-    2,
     4
    ],
    [
@@ -569,48 +564,58 @@
     3
    ],
    [
-    "Pikachu ex Pawmot",
+    "Umbreon Hydreigon",
     2,
-    6
+    2
    ],
    [
-    "Mega Greninja ex Greninja",
-    1,
-    1
+    "Pikachu ex Pawmot",
+    2,
+    5
    ],
    [
     "Hydreigon Mega Sableye ex",
     2,
     4
+   ],
+   [
+    "Mega Greninja ex Greninja",
+    1,
+    2
    ]
   ]
  },
  "Sabrina": {
   "id": "a1-225",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 27,
-  "u": 107,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 28,
+  "u": 104,
   "pack": [
    "Genetic Apex Charizard pack",
    "Genetic Apex pack"
   ],
-  "nd": 20,
+  "nd": 21,
   "L": [
    [
     "Mega Altaria ex Espeon",
     1,
-    36
+    40
    ],
    [
-    "Vespiquen ex Shuckle ex",
+    "Magnezone Miraidon ex",
     1,
-    13
+    1
    ],
    [
     "Mega Lucario ex Lucario",
     1,
-    7
+    5
+   ],
+   [
+    "Vespiquen ex Shuckle ex",
+    1,
+    10
    ],
    [
     "Hydreigon Mega Absol ex",
@@ -620,37 +625,32 @@
    [
     "Dedenne ex Indeedee ex",
     1,
-    5
+    6
    ],
    [
     "Mega Mewtwo X ex Mega Diancie ex",
     1,
-    9
+    10
    ],
    [
     "Giratina ex Dragonair",
     1,
-    7
+    3
    ],
    [
     "Mega Manectric ex Heliolisk",
     1,
-    3
+    4
    ],
    [
     "Butterfree Mega Sceptile ex",
     1,
-    4
-   ],
-   [
-    "Umbreon Mega Sableye ex",
-    1,
     3
    ],
    [
-    "Miraidon ex Magnezone",
+    "Dragonair Mega Rayquaza ex",
     1,
-    1
+    4
    ],
    [
     "Entei ex",
@@ -661,32 +661,27 @@
  },
  "X Speed": {
   "id": "pa-002",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 23,
-  "u": 91,
+  "u": 83,
   "pack": null,
   "nd": 14,
   "L": [
    [
     "Hoopa ex Mega Absol ex",
     1,
-    42
-   ],
-   [
-    "Vespiquen ex Shuckle ex",
-    2,
-    13
+    36
    ],
    [
     "Mega Lucario ex Lucario",
     1,
-    6
+    4
    ],
    [
-    "Chien-Pao ex Baxcalibur",
-    1,
-    1
+    "Vespiquen ex Shuckle ex",
+    2,
+    10
    ],
    [
     "Hydreigon Mega Absol ex",
@@ -696,7 +691,12 @@
    [
     "Hoopa ex Mega Sableye ex",
     1,
-    14
+    15
+   ],
+   [
+    "Chien-Pao ex Baxcalibur",
+    1,
+    1
    ],
    [
     "Greninja ex Mega Greninja ex",
@@ -706,12 +706,12 @@
    [
     "Umbreon Hydreigon",
     1,
-    4
+    2
    ],
    [
     "Lopunny Raboot",
     1,
-    1
+    3
    ],
    [
     "Umbreon Mega Sableye ex",
@@ -719,8 +719,8 @@
     4
    ],
    [
-    "Azumarill Lopunny",
-    2,
+    "Mega Skarmory ex Mantyke",
+    1,
     1
    ],
    [
@@ -732,10 +732,10 @@
  },
  "Lucky Ice Pop": {
   "id": "b2-145",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 27,
-  "u": 106,
+  "u": 97,
   "pack": [
    "Fantastical Parade pack",
    "Fantastical Parade pack"
@@ -745,12 +745,12 @@
    [
     "Hoopa ex Mega Absol ex",
     2,
-    42
+    36
    ],
    [
     "Magnezone Miraidon ex",
     1,
-    8
+    6
    ],
    [
     "Mega Altaria ex Greninja",
@@ -760,12 +760,7 @@
    [
     "Mega Lucario ex Lucario",
     1,
-    4
-   ],
-   [
-    "Chien-Pao ex Baxcalibur",
-    1,
-    5
+    2
    ],
    [
     "Hydreigon Mega Absol ex",
@@ -775,17 +770,22 @@
    [
     "Hoopa ex Mega Sableye ex",
     2,
-    14
+    15
+   ],
+   [
+    "Chien-Pao ex Baxcalibur",
+    1,
+    5
    ],
    [
     "Mega Mewtwo X ex Mega Diancie ex",
     1,
-    9
+    10
    ],
    [
-    "Umbreon Mega Sableye ex",
+    "Dragonair Mega Rayquaza ex",
     1,
-    3
+    2
    ],
    [
     "Entei ex",
@@ -793,23 +793,23 @@
     3
    ],
    [
-    "Dragonair Mega Rayquaza ex",
-    1,
-    1
-   ],
-   [
     "Hydreigon Mega Sableye ex",
     1,
     4
+   ],
+   [
+    "Umbreon Mega Sableye ex",
+    1,
+    2
    ]
   ]
  },
  "Mars": {
   "id": "a2-155",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 22,
-  "u": 85,
+  "u": 81,
   "pack": [
    "Space-Time Smackdown Palkia pack",
    "Space-Time Smackdown pack"
@@ -824,17 +824,7 @@
    [
     "Hoopa ex Mega Absol ex",
     1,
-    41
-   ],
-   [
-    "Suicune ex Baxcalibur",
-    1,
-    7
-   ],
-   [
-    "Vespiquen ex Shuckle ex",
-    1,
-    2
+    36
    ],
    [
     "Mega Lucario ex Lucario",
@@ -842,9 +832,19 @@
     1
    ],
    [
+    "Vespiquen ex Shuckle ex",
+    1,
+    2
+   ],
+   [
+    "Suicune ex Baxcalibur",
+    1,
+    5
+   ],
+   [
     "Hoopa ex Mega Sableye ex",
     1,
-    14
+    15
    ],
    [
     "Entei ex Charizard",
@@ -854,7 +854,7 @@
    [
     "Greninja ex Mega Greninja ex",
     1,
-    7
+    9
    ],
    [
     "Mega Greninja ex Greninja ex",
@@ -875,35 +875,40 @@
  },
  "Repel": {
   "id": "a3a-064",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 22,
-  "u": 86,
+  "u": 82,
   "pack": [
    "Extradimensional Crisis pack",
    "Extradimensional Crisis pack"
   ],
-  "nd": 13,
+  "nd": 15,
   "L": [
    [
     "Mega Charizard Y ex Entei ex",
     1,
-    12
+    9
    ],
    [
     "Hoopa ex Mega Absol ex",
     1,
-    41
-   ],
-   [
-    "Suicune ex Baxcalibur",
-    1,
-    1
+    35
    ],
    [
     "Mega Lucario ex Lucario",
     1,
     1
+   ],
+   [
+    "Vespiquen ex Shuckle ex",
+    1,
+    1
+   ],
+   [
+    "Suicune ex Baxcalibur",
+    1,
+    2
    ],
    [
     "Hydreigon Mega Absol ex",
@@ -913,22 +918,22 @@
    [
     "Hoopa ex Mega Sableye ex",
     1,
-    14
+    15
    ],
    [
     "Entei ex Charizard",
+    1,
+    3
+   ],
+   [
+    "Mega Manectric ex Heliolisk",
     1,
     2
    ],
    [
     "Pikachu ex Pawmot",
     1,
-    3
-   ],
-   [
-    "Umbreon Mega Sableye ex",
-    1,
-    5
+    2
    ],
    [
     "Entei ex",
@@ -936,23 +941,18 @@
     3
    ],
    [
-    "Hydreigon Mega Sableye ex",
+    "Umbreon Mega Sableye ex",
     1,
-    1
-   ],
-   [
-    "Mega Rayquaza ex Dragonair",
-    1,
-    1
+    4
    ]
   ]
  },
  "Deceptive Needle": {
   "id": "b4-148",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 24,
-  "u": 94,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 23,
+  "u": 84,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
@@ -962,30 +962,30 @@
    [
     "Hoopa ex Mega Absol ex",
     2,
-    42
+    36
    ],
    [
     "Hydreigon Mega Absol ex",
     2,
-    23
+    20
    ],
    [
     "Hoopa ex Mega Sableye ex",
     2,
-    14
+    15
    ],
    [
     "Umbreon Hydreigon",
     1,
+    2
+   ],
+   [
+    "Hydreigon Mega Sableye ex",
+    2,
     4
    ],
    [
     "Umbreon Mega Sableye ex",
-    2,
-    5
-   ],
-   [
-    "Hydreigon Mega Sableye ex",
     2,
     4
    ],
@@ -997,56 +997,46 @@
    [
     "Umbreon Mega Absol ex",
     2,
-    1
+    2
    ]
   ]
  },
  "Eviolite": {
   "id": "c1-123",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 22,
-  "u": 88,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 23,
+  "u": 85,
   "pack": [
    "Dual Fusion Mega Mewtwo X or Pikachu pack",
    "Dual Fusion pack"
   ],
-  "nd": 17,
+  "nd": 20,
   "L": [
    [
     "Mega Charizard Y ex Entei ex",
     1,
-    14
-   ],
-   [
-    "Hoopa ex Mega Absol ex",
-    1,
-    1
+    15
    ],
    [
     "Suicune ex Baxcalibur",
     2,
-    13
+    11
    ],
    [
     "Chien-Pao ex Baxcalibur",
     2,
-    11
+    10
    ],
    [
     "Dedenne ex Indeedee ex",
     2,
-    12
+    11
    ],
    [
     "Mega Mewtwo X ex Mega Diancie ex",
     2,
-    9
-   ],
-   [
-    "Giratina ex Dragonair",
-    1,
-    8
+    10
    ],
    [
     "Greninja ex Mega Greninja ex",
@@ -1054,8 +1044,13 @@
     4
    ],
    [
-    "Miraidon ex Magnezone",
-    2,
+    "Giratina ex Dragonair",
+    1,
+    4
+   ],
+   [
+    "Dragonair Mega Rayquaza ex",
+    1,
     1
    ],
    [
@@ -1071,15 +1066,20 @@
    [
     "Giratina ex Darkrai ex",
     2,
-    2
+    1
+   ],
+   [
+    "Miraidon ex Magnezone",
+    2,
+    1
    ]
   ]
  },
  "Mega Altaria ex": {
   "id": "b1-102",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 16,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 17,
   "u": 62,
   "pack": [
    "Mega Rising Mega Altaria pack",
@@ -1090,21 +1090,21 @@
    [
     "Mega Altaria ex Espeon",
     1,
-    36
+    41
    ],
    [
     "Mega Altaria ex Greninja",
     1,
-    26
+    21
    ]
   ]
  },
  "Mega Absol ex": {
   "id": "b1-151",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 17,
-  "u": 67,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 16,
+  "u": 59,
   "pack": [
    "Mega Rising Mega Gyarados pack",
    "Mega Rising pack"
@@ -1114,30 +1114,30 @@
    [
     "Hoopa ex Mega Absol ex",
     1,
-    42
+    36
    ],
    [
     "Hydreigon Mega Absol ex",
     1,
-    23
+    20
    ],
    [
-    "Umbreon Mega Sableye ex",
+    "Hoopa ex Greninja",
     1,
     1
    ],
    [
     "Umbreon Mega Absol ex",
     1,
-    1
+    2
    ]
   ]
  },
  "Swablu": {
   "id": "b1-196",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 16,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 17,
   "u": 62,
   "pack": [
    "Mega Rising Mega Altaria pack",
@@ -1148,21 +1148,21 @@
    [
     "Mega Altaria ex Espeon",
     2,
-    36
+    41
    ],
    [
     "Mega Altaria ex Greninja",
     2,
-    26
+    21
    ]
   ]
  },
  "Darkrai ex": {
   "id": "a2-110",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 15,
-  "u": 61,
+  "u": 55,
   "pack": [
    "Space-Time Smackdown Dialga pack",
    "Space-Time Smackdown pack"
@@ -1172,12 +1172,12 @@
    [
     "Hoopa ex Mega Absol ex",
     1,
-    42
+    36
    ],
    [
     "Hoopa ex Mega Sableye ex",
     1,
-    14
+    15
    ],
    [
     "Umbreon Mega Sableye ex",
@@ -1187,7 +1187,7 @@
    [
     "Giratina ex Darkrai ex",
     2,
-    2
+    1
    ],
    [
     "Umbreon Mega Absol ex",
@@ -1198,30 +1198,30 @@
  },
  "Greninja": {
   "id": "a1-089",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 13,
-  "u": 52,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 14,
+  "u": 51,
   "pack": [
    "Genetic Apex Charizard pack",
    "Genetic Apex pack"
   ],
-  "nd": 11,
+  "nd": 9,
   "L": [
    [
     "Mega Altaria ex Greninja",
     2,
-    26
+    21
    ],
    [
     "Greninja ex Mega Greninja ex",
     1,
-    9
+    11
    ],
    [
     "Mega Greninja ex Greninja ex",
     2,
-    5
+    4
    ],
    [
     "Mega Sceptile ex Greninja",
@@ -1231,46 +1231,36 @@
    [
     "Mega Greninja ex Greninja",
     2,
-    1
+    2
    ],
    [
     "Umbreon ex Umbreon",
     2,
-    2
+    3
    ],
    [
     "Hoopa ex Greninja",
     2,
-    1
-   ],
-   [
-    "Mega Greninja ex Suicune ex",
-    2,
-    1
+    2
    ],
    [
     "Mimikyu ex Greninja",
     2,
-    2
+    3
    ],
    [
-    "Mega Blaziken ex Greninja",
-    1,
-    1
-   ],
-   [
-    "Mega Lucario ex Greninja",
+    "Mega Greninja ex Suicune ex",
     2,
-    1
+    2
    ]
   ]
  },
  "Hoopa ex": {
   "id": "b4-103",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 14,
-  "u": 57,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 15,
+  "u": 53,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
@@ -1280,26 +1270,26 @@
    [
     "Hoopa ex Mega Absol ex",
     2,
-    42
+    36
    ],
    [
     "Hoopa ex Mega Sableye ex",
     2,
-    14
+    15
    ],
    [
     "Hoopa ex Greninja",
     2,
-    1
+    2
    ]
   ]
  },
  "Small Balloon": {
   "id": "b3b-064",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 14,
-  "u": 57,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 17,
+  "u": 61,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
@@ -1314,12 +1304,12 @@
    [
     "Mega Altaria ex Espeon",
     1,
-    35
+    40
    ],
    [
     "Mega Altaria ex Greninja",
     2,
-    2
+    1
    ],
    [
     "Mega Lucario ex Lucario",
@@ -1329,7 +1319,7 @@
    [
     "Dedenne ex Indeedee ex",
     2,
-    12
+    11
    ],
    [
     "Mega Sceptile ex Greninja",
@@ -1339,7 +1329,7 @@
    [
     "Umbreon ex Umbreon",
     1,
-    2
+    3
    ],
    [
     "Mega Rayquaza ex Dragonair",
@@ -1350,25 +1340,25 @@
  },
  "Flame Patch": {
   "id": "b1-217",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 17,
-  "u": 67,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 18,
+  "u": 66,
   "pack": [
    "Mega Rising Mega Blaziken pack",
    "Mega Rising pack"
   ],
-  "nd": 6,
+  "nd": 5,
   "L": [
    [
     "Mega Charizard Y ex Entei ex",
     2,
-    44
+    40
    ],
    [
     "Entei ex Charizard",
     2,
-    15
+    17
    ],
    [
     "Entei ex",
@@ -1378,26 +1368,21 @@
    [
     "Ho-Oh ex Charizard",
     2,
-    3
+    4
    ],
    [
     "Mega Blaziken ex",
     2,
-    1
-   ],
-   [
-    "Mega Blaziken ex Greninja",
-    1,
-    1
+    2
    ]
   ]
  },
  "Eevee": {
   "id": "b1-184",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 12,
-  "u": 48,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 14,
+  "u": 52,
   "pack": [
    "Mega Rising Mega Gyarados pack",
    "Mega Rising pack"
@@ -1407,65 +1392,70 @@
    [
     "Mega Altaria ex Espeon",
     2,
-    36
+    41
    ],
    [
     "Umbreon Hydreigon",
     2,
-    4
+    2
    ],
    [
     "Umbreon Mega Sableye ex",
     2,
-    5
+    4
    ],
    [
     "Umbreon ex Umbreon",
     2,
-    2
+    3
    ],
    [
     "Umbreon Mega Absol ex",
     2,
-    1
+    2
    ]
   ]
  },
  "Entei ex": {
   "id": "a4a-010",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 16,
-  "u": 62,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 17,
+  "u": 61,
   "pack": [
    "Secluded Springs pack",
    "Secluded Springs pack"
   ],
-  "nd": 3,
+  "nd": 4,
   "L": [
    [
     "Mega Charizard Y ex Entei ex",
     2,
-    44
+    40
    ],
    [
     "Entei ex Charizard",
     2,
-    15
+    17
    ],
    [
     "Entei ex",
     2,
     3
+   ],
+   [
+    "Ho-Oh ex Charizard",
+    1,
+    1
    ]
   ]
  },
  "May": {
   "id": "b1-223",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 13,
-  "u": 53,
+  "u": 46,
   "pack": [
    "Mega Rising Mega Blaziken pack",
    "Mega Rising pack"
@@ -1475,12 +1465,12 @@
    [
     "Mega Charizard Y ex Entei ex",
     1,
-    26
+    21
    ],
    [
     "Magnezone Miraidon ex",
     1,
-    3
+    1
    ],
    [
     "Entei ex Charizard",
@@ -1490,12 +1480,12 @@
    [
     "Greninja ex Mega Greninja ex",
     1,
-    7
+    9
    ],
    [
     "Mega Greninja ex Greninja ex",
     1,
-    5
+    4
    ],
    [
     "Ho-Oh ex Charizard",
@@ -1503,18 +1493,18 @@
     3
    ],
    [
-    "Mega Tyranitar ex Tyranitar",
+    "Mega Greninja ex Suicune ex",
     1,
-    2
+    1
    ]
   ]
  },
  "Charizard": {
   "id": "c1-018",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 16,
-  "u": 62,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 17,
+  "u": 61,
   "pack": [
    "Dual Fusion Mega Mewtwo X pack",
    "Dual Fusion pack"
@@ -1524,26 +1514,26 @@
    [
     "Mega Charizard Y ex Entei ex",
     2,
-    44
+    40
    ],
    [
     "Entei ex Charizard",
     2,
-    15
+    17
    ],
    [
     "Ho-Oh ex Charizard",
     1,
-    3
+    4
    ]
   ]
  },
  "Charmeleon": {
   "id": "b2b-008",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 16,
-  "u": 62,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 17,
+  "u": 61,
   "pack": [
    "Mega Shine pack",
    "Mega Shine pack"
@@ -1553,26 +1543,26 @@
    [
     "Mega Charizard Y ex Entei ex",
     2,
-    44
+    40
    ],
    [
     "Entei ex Charizard",
     2,
-    15
+    17
    ],
    [
     "Ho-Oh ex Charizard",
     2,
-    3
+    4
    ]
   ]
  },
  "Blue's Provocation": {
   "id": "c1-126",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 16,
-  "u": 63,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 17,
+  "u": 62,
   "pack": [
    "Dual Fusion Mega Mewtwo X pack",
    "Dual Fusion pack"
@@ -1582,17 +1572,17 @@
    [
     "Mega Charizard Y ex Entei ex",
     2,
-    44
+    40
    ],
    [
     "Entei ex Charizard",
     2,
-    15
+    17
    ],
    [
     "Ho-Oh ex Charizard",
     1,
-    3
+    4
    ],
    [
     "Suicune ex Blastoise",
@@ -1603,10 +1593,10 @@
  },
  "Mega Charizard Y ex": {
   "id": "b1a-014",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 11,
-  "u": 44,
+  "u": 40,
   "pack": [
    "Crimson Blaze pack",
    "Crimson Blaze pack"
@@ -1616,31 +1606,26 @@
    [
     "Mega Charizard Y ex Entei ex",
     1,
-    44
+    40
    ]
   ]
  },
  "Giant Cape": {
   "id": "a2-147",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 9,
-  "u": 35,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 7,
+  "u": 26,
   "pack": [
    "Space-Time Smackdown Dialga pack",
    "Space-Time Smackdown pack"
   ],
-  "nd": 7,
+  "nd": 6,
   "L": [
-   [
-    "Mega Charizard Y ex Entei ex",
-    1,
-    1
-   ],
    [
     "Magnezone Miraidon ex",
     1,
-    16
+    12
    ],
    [
     "Suicune ex Baxcalibur",
@@ -1650,12 +1635,7 @@
    [
     "Dedenne ex Indeedee ex",
     1,
-    5
-   ],
-   [
-    "Milotic ex Eevee ex",
-    1,
-    9
+    3
    ],
    [
     "Greninja ex Mega Greninja ex",
@@ -1663,38 +1643,43 @@
     1
    ],
    [
+    "Milotic ex Eevee ex",
+    1,
+    8
+   ],
+   [
     "Miraidon ex Magnezone",
     1,
-    2
+    1
    ]
   ]
  },
  "Froakie": {
   "id": "a1-087",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 13,
-  "u": 53,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 14,
+  "u": 51,
   "pack": [
    "Genetic Apex Charizard pack",
    "Genetic Apex pack"
   ],
-  "nd": 11,
+  "nd": 9,
   "L": [
    [
     "Mega Altaria ex Greninja",
     4,
-    25
+    20
    ],
    [
     "Greninja ex Mega Greninja ex",
     4,
-    5
+    7
    ],
    [
     "Mega Greninja ex Greninja ex",
-    3,
-    5
+    2,
+    4
    ],
    [
     "Mega Sceptile ex Greninja",
@@ -1704,56 +1689,46 @@
    [
     "Mega Greninja ex Greninja",
     2,
-    1
+    2
    ],
    [
     "Umbreon ex Umbreon",
     2,
-    2
+    3
    ],
    [
     "Hoopa ex Greninja",
-    2,
-    1
-   ],
-   [
-    "Mega Greninja ex Suicune ex",
-    2,
-    1
+    1,
+    2
    ],
    [
     "Mimikyu ex Greninja",
     2,
-    2
+    3
    ],
    [
-    "Mega Blaziken ex Greninja",
-    1,
-    1
-   ],
-   [
-    "Mega Lucario ex Greninja",
+    "Mega Greninja ex Suicune ex",
     2,
-    1
+    2
    ]
   ]
  },
  "Training Area": {
   "id": "b2-153",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 10,
-  "u": 41,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 13,
+  "u": 48,
   "pack": [
    "Fantastical Parade pack",
    "Fantastical Parade pack"
   ],
-  "nd": 4,
+  "nd": 3,
   "L": [
    [
     "Mega Altaria ex Espeon",
     1,
-    35
+    40
    ],
    [
     "Milotic ex Eevee ex",
@@ -1763,21 +1738,16 @@
    [
     "Mega Manectric ex Heliolisk",
     1,
-    3
-   ],
-   [
-    "Mega Sharpedo ex Gyarados",
-    1,
-    1
+    6
    ]
   ]
  },
  "Charmander": {
   "id": "b2b-007",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 16,
-  "u": 64,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 17,
+  "u": 62,
   "pack": [
    "Mega Shine pack",
    "Mega Shine pack"
@@ -1787,59 +1757,54 @@
    [
     "Mega Charizard Y ex Entei ex",
     5,
-    38
+    35
    ],
    [
     "Entei ex Charizard",
     2,
-    15
+    17
    ],
    [
     "Ho-Oh ex Charizard",
-    2,
+    4,
     3
    ]
   ]
  },
  "Lisia": {
   "id": "b1-226",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 9,
-  "u": 37,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 7,
+  "u": 27,
   "pack": [
    "Mega Rising Mega Altaria pack",
    "Mega Rising pack"
   ],
-  "nd": 6,
+  "nd": 5,
   "L": [
    [
     "Mega Altaria ex Espeon",
     1,
-    2
+    3
    ],
    [
     "Magnezone Miraidon ex",
     1,
-    30
+    19
    ],
    [
     "Lopunny Raboot",
     1,
-    1
+    3
    ],
    [
     "Miraidon ex Magnezone",
     1,
-    2
-   ],
-   [
-    "Magnezone ex Magnezone",
-    1,
     1
    ],
    [
-    "Mega Sharpedo ex Gyarados",
+    "Magnezone ex Magnezone",
     1,
     1
    ]
@@ -1847,30 +1812,25 @@
  },
  "Oricorio": {
   "id": "a3-066",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 12,
-  "u": 47,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 9,
+  "u": 33,
   "pack": [
    "Celestial Guardians Solgaleo pack",
    "Celestial Guardians pack"
   ],
-  "nd": 5,
+  "nd": 4,
   "L": [
    [
     "Magnezone Miraidon ex",
     2,
-    30
-   ],
-   [
-    "Mega Altaria ex Greninja",
-    1,
-    2
+    19
    ],
    [
     "Dedenne ex Indeedee ex",
     2,
-    12
+    11
    ],
    [
     "Pikachu ex Pawmot",
@@ -1886,10 +1846,10 @@
  },
  "Igglybuff": {
   "id": "a4a-059",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 9,
-  "u": 36,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 11,
+  "u": 41,
   "pack": [
    "Secluded Springs pack",
    "Secluded Springs pack"
@@ -1899,50 +1859,45 @@
    [
     "Mega Altaria ex Espeon",
     1,
-    36
+    41
    ]
   ]
  },
  "Chien-Pao ex": {
   "id": "b2a-037",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 9,
-  "u": 34,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 8,
+  "u": 29,
   "pack": [
    "Paldean Wonders pack",
    "Paldean Wonders pack"
   ],
-  "nd": 4,
+  "nd": 3,
   "L": [
    [
     "Suicune ex Baxcalibur",
     1,
-    13
+    11
    ],
    [
     "Chien-Pao ex Baxcalibur",
     2,
-    11
+    10
    ],
    [
     "Milotic ex Eevee ex",
     1,
-    9
-   ],
-   [
-    "Mega Sharpedo ex Gyarados",
-    1,
-    1
+    8
    ]
   ]
  },
  "Darkrai": {
   "id": "b2b-040",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 9,
-  "u": 36,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 11,
+  "u": 41,
   "pack": [
    "Mega Shine pack",
    "Mega Shine pack"
@@ -1952,16 +1907,16 @@
    [
     "Mega Altaria ex Espeon",
     2,
-    36
+    41
    ]
   ]
  },
  "Espeon": {
   "id": "b3a-020",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 9,
-  "u": 36,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 11,
+  "u": 41,
   "pack": [
    "Paradox Drive pack",
    "Paradox Drive pack"
@@ -1971,15 +1926,15 @@
    [
     "Mega Altaria ex Espeon",
     2,
-    36
+    41
    ]
   ]
  },
  "Suicune ex": {
   "id": "a4a-020",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 7,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 8,
   "u": 29,
   "pack": [
    "Secluded Springs pack",
@@ -1990,22 +1945,22 @@
    [
     "Suicune ex Baxcalibur",
     2,
-    13
+    11
    ],
    [
     "Greninja ex Mega Greninja ex",
     2,
-    9
+    11
    ],
    [
     "Mega Greninja ex Greninja ex",
     2,
-    5
+    4
    ],
    [
     "Mega Greninja ex Suicune ex",
     2,
-    1
+    2
    ],
    [
     "Suicune ex Blastoise",
@@ -2016,10 +1971,10 @@
  },
  "Clemont": {
   "id": "b1a-068",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 9,
-  "u": 36,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 7,
+  "u": 27,
   "pack": [
    "Crimson Blaze pack",
    "Crimson Blaze pack"
@@ -2029,17 +1984,17 @@
    [
     "Magnezone Miraidon ex",
     1,
-    29
+    18
    ],
    [
     "Mega Manectric ex Heliolisk",
     2,
-    3
+    6
    ],
    [
     "Miraidon ex Magnezone",
     1,
-    3
+    2
    ],
    [
     "Magnezone ex Magnezone",
@@ -2050,20 +2005,20 @@
  },
  "Chingling": {
   "id": "b1-109",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 7,
-  "u": 29,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 6,
+  "u": 23,
   "pack": [
    "Mega Rising Mega Altaria, Mega Blaziken or Mega Gyarados pack",
    "Mega Rising pack"
   ],
-  "nd": 5,
+  "nd": 3,
   "L": [
    [
     "Mega Altaria ex Greninja",
     2,
-    24
+    20
    ],
    [
     "Umbreon Mega Sableye ex",
@@ -2074,45 +2029,40 @@
     "Mega Greninja ex Greninja",
     2,
     1
-   ],
-   [
-    "Mega Tyranitar ex Tyranitar",
-    1,
-    1
-   ],
-   [
-    "Mega Lucario ex Greninja",
-    2,
-    1
    ]
   ]
  },
  "Rainbow Cave": {
   "id": "b4-155",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 12,
-  "u": 48,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 13,
+  "u": 47,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
   ],
-  "nd": 6,
+  "nd": 7,
   "L": [
    [
     "Mega Charizard Y ex Entei ex",
     1,
-    21
+    19
    ],
    [
     "Entei ex Charizard",
     1,
-    13
+    15
    ],
    [
     "Giratina ex Dragonair",
     2,
-    8
+    4
+   ],
+   [
+    "Dragonair Mega Rayquaza ex",
+    2,
+    4
    ],
    [
     "Entei ex",
@@ -2120,9 +2070,9 @@
     3
    ],
    [
-    "Dragonair Mega Rayquaza ex",
-    2,
-    2
+    "Ho-Oh ex Charizard",
+    1,
+    1
    ],
    [
     "Mega Rayquaza ex Dragonair",
@@ -2133,10 +2083,10 @@
  },
  "Magneton": {
   "id": "a1-098",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 9,
-  "u": 34,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 6,
+  "u": 22,
   "pack": [
    "Genetic Apex Pikachu pack",
    "Genetic Apex pack"
@@ -2146,12 +2096,12 @@
    [
     "Magnezone Miraidon ex",
     2,
-    30
+    19
    ],
    [
     "Miraidon ex Magnezone",
     2,
-    3
+    2
    ],
    [
     "Magnezone ex Magnezone",
@@ -2162,10 +2112,10 @@
  },
  "Magnemite": {
   "id": "b1a-024",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 9,
-  "u": 34,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 6,
+  "u": 22,
   "pack": [
    "Crimson Blaze pack",
    "Crimson Blaze pack"
@@ -2175,12 +2125,12 @@
    [
     "Magnezone Miraidon ex",
     2,
-    30
+    19
    ],
    [
     "Miraidon ex Magnezone",
     2,
-    3
+    2
    ],
    [
     "Magnezone ex Magnezone",
@@ -2191,10 +2141,10 @@
  },
  "Magnezone": {
   "id": "b1a-026",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 9,
-  "u": 34,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 6,
+  "u": 22,
   "pack": [
    "Crimson Blaze pack",
    "Crimson Blaze pack"
@@ -2204,12 +2154,12 @@
    [
     "Magnezone Miraidon ex",
     2,
-    30
+    19
    ],
    [
     "Miraidon ex Magnezone",
     1,
-    3
+    2
    ],
    [
     "Magnezone ex Magnezone",
@@ -2220,39 +2170,34 @@
  },
  "Lucky Egg": {
   "id": "b3-148",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 7,
-  "u": 26,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 6,
+  "u": 21,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
   ],
-  "nd": 3,
+  "nd": 2,
   "L": [
    [
     "Mega Altaria ex Greninja",
     2,
-    24
+    20
    ],
    [
     "Mega Greninja ex Greninja",
     1,
-    1
-   ],
-   [
-    "Mega Lucario ex Greninja",
-    2,
     1
    ]
   ]
  },
  "Miraidon ex": {
   "id": "b3a-019",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 9,
-  "u": 34,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 6,
+  "u": 22,
   "pack": [
    "Paradox Drive pack",
    "Paradox Drive pack"
@@ -2262,12 +2207,12 @@
    [
     "Magnezone Miraidon ex",
     1,
-    30
+    19
    ],
    [
     "Miraidon ex Magnezone",
     2,
-    3
+    2
    ],
    [
     "Magnezone ex Magnezone",
@@ -2278,10 +2223,10 @@
  },
  "Professor Turo": {
   "id": "b3a-073",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 8,
-  "u": 32,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 6,
+  "u": 21,
   "pack": [
    "Paradox Drive pack",
    "Paradox Drive pack"
@@ -2291,12 +2236,12 @@
    [
     "Magnezone Miraidon ex",
     1,
-    28
+    18
    ],
    [
     "Miraidon ex Magnezone",
-    1,
-    3
+    2,
+    2
    ],
    [
     "Magnezone ex Magnezone",
@@ -2307,10 +2252,10 @@
  },
  "Baxcalibur": {
   "id": "b2a-036",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 6,
-  "u": 24,
+  "u": 21,
   "pack": [
    "Paldean Wonders pack",
    "Paldean Wonders pack"
@@ -2320,31 +2265,31 @@
    [
     "Suicune ex Baxcalibur",
     2,
-    13
+    11
    ],
    [
     "Chien-Pao ex Baxcalibur",
     2,
-    11
+    10
    ]
   ]
  },
  "Inflatable Boat": {
   "id": "a4a-067",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 5,
-  "u": 19,
+  "u": 17,
   "pack": [
    "Secluded Springs pack",
    "Secluded Springs pack"
   ],
-  "nd": 6,
+  "nd": 5,
   "L": [
    [
     "Suicune ex Baxcalibur",
     1,
-    13
+    11
    ],
    [
     "Chien-Pao ex Baxcalibur",
@@ -2357,11 +2302,6 @@
     1
    ],
    [
-    "Mega Greninja ex Greninja ex",
-    1,
-    1
-   ],
-   [
     "Mega Greninja ex Greninja",
     1,
     1
@@ -2369,16 +2309,16 @@
    [
     "Mega Greninja ex Suicune ex",
     1,
-    1
+    2
    ]
   ]
  },
  "Hiking Trail": {
   "id": "b2b-069",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 11,
-  "u": 45,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 12,
+  "u": 42,
   "pack": [
    "Mega Shine pack",
    "Mega Shine pack"
@@ -2388,27 +2328,27 @@
    [
     "Mega Altaria ex Greninja",
     1,
-    2
+    1
    ],
    [
     "Hydreigon Mega Absol ex",
     1,
-    19
+    16
    ],
    [
     "Chien-Pao ex Baxcalibur",
     2,
-    11
-   ],
-   [
-    "Dedenne ex Indeedee ex",
-    1,
-    1
+    10
    ],
    [
     "Pikachu ex Pawmot",
     1,
-    4
+    3
+   ],
+   [
+    "Lopunny Raboot",
+    1,
+    2
    ],
    [
     "Hydreigon Mega Sableye ex",
@@ -2416,12 +2356,12 @@
     3
    ],
    [
-    "Mega Blaziken ex",
+    "Umbreon ex Umbreon",
     1,
-    1
+    3
    ],
    [
-    "Umbreon ex Umbreon",
+    "Mega Blaziken ex",
     1,
     2
    ],
@@ -2439,10 +2379,10 @@
  },
  "Wally": {
   "id": "b4-153",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 4,
-  "u": 15,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 3,
+  "u": 12,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
@@ -2452,50 +2392,65 @@
    [
     "Mega Charizard Y ex Entei ex",
     1,
-    15
+    12
    ]
   ]
  },
  "Soothing Shore": {
   "id": "b4-154",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 5,
-  "u": 21,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 6,
+  "u": 23,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
   ],
-  "nd": 4,
+  "nd": 7,
   "L": [
    [
     "Suicune ex Baxcalibur",
     1,
-    7
-   ],
-   [
-    "Milotic ex Eevee ex",
-    1,
-    9
+    5
    ],
    [
     "Greninja ex Mega Greninja ex",
     1,
-    3
+    5
    ],
    [
     "Mega Greninja ex Greninja ex",
     1,
     2
+   ],
+   [
+    "Milotic ex Eevee ex",
+    1,
+    8
+   ],
+   [
+    "Mega Greninja ex Greninja",
+    2,
+    1
+   ],
+   [
+    "Mega Skarmory ex Mantyke",
+    1,
+    1
+   ],
+   [
+    "Mega Greninja ex Suicune ex",
+    1,
+    1
    ]
   ]
  },
  "Deino": {
   "id": "b1-155",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 8,
-  "u": 31,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 7,
+  "u": 26,
   "pack": [
    "Mega Rising Mega Gyarados pack",
    "Mega Rising pack"
@@ -2505,12 +2460,12 @@
    [
     "Hydreigon Mega Absol ex",
     2,
-    23
+    20
    ],
    [
     "Umbreon Hydreigon",
     2,
-    4
+    2
    ],
    [
     "Hydreigon Mega Sableye ex",
@@ -2521,10 +2476,10 @@
  },
  "Hydreigon": {
   "id": "b1-157",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 8,
-  "u": 31,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 7,
+  "u": 26,
   "pack": [
    "Mega Rising Mega Gyarados pack",
    "Mega Rising pack"
@@ -2534,12 +2489,12 @@
    [
     "Hydreigon Mega Absol ex",
     2,
-    23
+    20
    ],
    [
     "Umbreon Hydreigon",
     2,
-    4
+    2
    ],
    [
     "Hydreigon Mega Sableye ex",
@@ -2550,10 +2505,10 @@
  },
  "Mega Sableye ex": {
   "id": "b3b-041",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 7,
-  "u": 28,
+  "u": 26,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
@@ -2563,20 +2518,20 @@
    [
     "Hoopa ex Mega Sableye ex",
     1,
-    14
+    15
    ],
    [
     "Umbreon Hydreigon",
+    1,
+    2
+   ],
+   [
+    "Hydreigon Mega Sableye ex",
     1,
     4
    ],
    [
     "Umbreon Mega Sableye ex",
-    1,
-    5
-   ],
-   [
-    "Hydreigon Mega Sableye ex",
     1,
     4
    ],
@@ -2589,44 +2544,49 @@
  },
  "Frogadier": {
   "id": "c1-041",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 4,
-  "u": 16,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 5,
+  "u": 20,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
   ],
-  "nd": 4,
+  "nd": 5,
   "L": [
    [
     "Greninja ex Mega Greninja ex",
     2,
-    9
+    11
    ],
    [
     "Mega Greninja ex Greninja ex",
     2,
-    5
+    4
    ],
    [
     "Mega Greninja ex Greninja",
+    2,
+    2
+   ],
+   [
+    "Hoopa ex Greninja",
     2,
     1
    ],
    [
     "Mega Greninja ex Suicune ex",
     2,
-    1
+    2
    ]
   ]
  },
  "Greninja ex": {
   "id": "b1-073",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 4,
-  "u": 14,
+  "u": 15,
   "pack": [
    "Mega Rising Mega Gyarados pack",
    "Mega Rising pack"
@@ -2636,41 +2596,46 @@
    [
     "Greninja ex Mega Greninja ex",
     1,
-    9
+    11
    ],
    [
     "Mega Greninja ex Greninja ex",
     1,
-    5
+    4
    ]
   ]
  },
  "Peculiar Plaza": {
   "id": "b2-155",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 5,
-  "u": 18,
+  "u": 20,
   "pack": [
    "Fantastical Parade pack",
    "Fantastical Parade pack"
   ],
-  "nd": 7,
+  "nd": 8,
   "L": [
    [
     "Mega Mewtwo X ex Mega Diancie ex",
     2,
-    9
+    10
    ],
    [
     "Giratina ex Darkrai ex",
     1,
-    2
+    1
    ],
    [
     "Mega Diancie ex Carbink",
     2,
     1
+   ],
+   [
+    "Mimikyu ex Greninja",
+    1,
+    3
    ],
    [
     "Mega Mewtwo Y ex Giratina ex",
@@ -2688,18 +2653,18 @@
     1
    ],
    [
-    "Mimikyu ex Greninja",
-    1,
-    2
+    "Mew ex Mega Diancie ex",
+    2,
+    1
    ]
   ]
  },
  "Fragrant Forest": {
   "id": "b3-153",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 4,
-  "u": 17,
+  "u": 13,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
@@ -2709,21 +2674,21 @@
    [
     "Vespiquen ex Shuckle ex",
     2,
-    13
+    10
    ],
    [
     "Butterfree Mega Sceptile ex",
     2,
-    4
+    3
    ]
   ]
  },
  "Mega Greninja ex": {
   "id": "c1-042",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 4,
-  "u": 16,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 5,
+  "u": 19,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
@@ -2733,31 +2698,31 @@
    [
     "Greninja ex Mega Greninja ex",
     1,
-    9
+    11
    ],
    [
     "Mega Greninja ex Greninja ex",
     1,
-    5
+    4
    ],
    [
     "Mega Greninja ex Greninja",
     1,
-    1
+    2
    ],
    [
     "Mega Greninja ex Suicune ex",
     1,
-    1
+    2
    ]
   ]
  },
  "Leaf Cape": {
   "id": "a3-147",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 4,
-  "u": 16,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 3,
+  "u": 12,
   "pack": [
    "Celestial Guardians Solgaleo pack",
    "Celestial Guardians pack"
@@ -2767,36 +2732,36 @@
    [
     "Vespiquen ex Shuckle ex",
     2,
-    13
+    10
    ],
    [
     "Butterfree Mega Sceptile ex",
     1,
-    3
+    2
    ]
   ]
  },
  "Indeedee ex": {
   "id": "b1-121",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 4,
-  "u": 16,
+  "u": 15,
   "pack": [
    "Mega Rising Mega Altaria pack",
    "Mega Rising pack"
   ],
-  "nd": 4,
+  "nd": 5,
   "L": [
    [
     "Dedenne ex Indeedee ex",
     1,
-    12
+    11
    ],
    [
     "Giratina ex Darkrai ex",
     1,
-    2
+    1
    ],
    [
     "Mega Mewtwo Y ex Giratina ex",
@@ -2807,15 +2772,20 @@
     "Giratina ex Mega Mewtwo Y ex",
     1,
     1
+   ],
+   [
+    "Mew ex Mega Diancie ex",
+    1,
+    1
    ]
   ]
  },
  "Bombirdier": {
   "id": "b3-115",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 7,
-  "u": 29,
+  "u": 25,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
@@ -2825,26 +2795,26 @@
    [
     "Hydreigon Mega Absol ex",
     1,
-    22
-   ],
-   [
-    "Umbreon Mega Sableye ex",
-    1,
-    3
+    19
    ],
    [
     "Hydreigon Mega Sableye ex",
     1,
     4
+   ],
+   [
+    "Umbreon Mega Sableye ex",
+    1,
+    2
    ]
   ]
  },
  "Frigibax": {
   "id": "b2a-034",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 6,
-  "u": 25,
+  "u": 22,
   "pack": [
    "Paldean Wonders pack",
    "Paldean Wonders pack"
@@ -2853,20 +2823,20 @@
   "L": [
    [
     "Suicune ex Baxcalibur",
-    4,
+    2,
     11
    ],
    [
     "Chien-Pao ex Baxcalibur",
     4,
-    8
+    7
    ]
   ]
  },
  "Starting Plains": {
   "id": "b2-154",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 3,
   "u": 11,
   "pack": [
@@ -2886,7 +2856,7 @@
     3
    ],
    [
-    "Giratina ex Darkrai ex",
+    "Ho-Oh ex Charizard",
     1,
     1
    ],
@@ -2899,10 +2869,10 @@
  },
  "Teal Mask Ogerpon ex": {
   "id": "b2-017",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 5,
-  "u": 19,
+  "u": 17,
   "pack": [
    "Fantastical Parade pack",
    "Fantastical Parade pack"
@@ -2912,21 +2882,21 @@
    [
     "Vespiquen ex Shuckle ex",
     1,
-    13
+    10
    ],
    [
     "Dedenne ex Indeedee ex",
     1,
-    6
+    7
    ]
   ]
  },
  "Umbreon": {
   "id": "c1-084",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 3,
-  "u": 12,
+  "u": 11,
   "pack": [
    "Dual Fusion Mega Mewtwo X pack",
    "Dual Fusion pack"
@@ -2936,31 +2906,31 @@
    [
     "Umbreon Hydreigon",
     2,
-    4
+    2
    ],
    [
     "Umbreon Mega Sableye ex",
     2,
-    5
+    4
    ],
    [
     "Umbreon ex Umbreon",
     2,
-    2
+    3
    ],
    [
     "Umbreon Mega Absol ex",
     2,
-    1
+    2
    ]
   ]
  },
  "Shuckle ex": {
   "id": "a4-021",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 3,
-  "u": 13,
+  "u": 10,
   "pack": [
    "Wisdom of Sea and Sky Lugia pack",
    "Wisdom of Sea and Sky pack"
@@ -2970,16 +2940,16 @@
    [
     "Vespiquen ex Shuckle ex",
     2,
-    13
+    10
    ]
   ]
  },
  "Treecko": {
   "id": "b3-005",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 7,
+  "u": 6,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
@@ -2994,16 +2964,16 @@
    [
     "Butterfree Mega Sceptile ex",
     1,
-    4
+    3
    ]
   ]
  },
  "Grovyle": {
   "id": "b3-006",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 7,
+  "u": 6,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
@@ -3018,16 +2988,16 @@
    [
     "Butterfree Mega Sceptile ex",
     1,
-    4
+    3
    ]
   ]
  },
  "Mega Sceptile ex": {
   "id": "b3-008",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 7,
+  "u": 6,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
@@ -3042,16 +3012,16 @@
    [
     "Butterfree Mega Sceptile ex",
     1,
-    4
+    3
    ]
   ]
  },
  "Wallace": {
   "id": "b3b-068",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 9,
+  "u": 8,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
@@ -3061,16 +3031,16 @@
    [
     "Milotic ex Eevee ex",
     2,
-    9
+    8
    ]
   ]
  },
  "Combee": {
   "id": "b4-010",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 3,
-  "u": 13,
+  "u": 10,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
@@ -3080,16 +3050,16 @@
    [
     "Vespiquen ex Shuckle ex",
     4,
-    12
+    8
    ]
   ]
  },
  "Vespiquen ex": {
   "id": "b4-011",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 3,
-  "u": 13,
+  "u": 10,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
@@ -3099,16 +3069,16 @@
    [
     "Vespiquen ex Shuckle ex",
     2,
-    13
+    10
    ]
   ]
  },
  "Arena of Antiquity": {
   "id": "b3-154",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 8,
+  "u": 6,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
@@ -3118,16 +3088,16 @@
    [
     "Mega Lucario ex Lucario",
     1,
-    8
+    6
    ]
   ]
  },
  "Milotic ex": {
   "id": "b3b-015",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 9,
+  "u": 8,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
@@ -3137,16 +3107,16 @@
    [
     "Milotic ex Eevee ex",
     2,
-    9
+    8
    ]
   ]
  },
  "Dedenne ex": {
   "id": "b3b-024",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 3,
-  "u": 12,
+  "u": 11,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
@@ -3156,26 +3126,26 @@
    [
     "Dedenne ex Indeedee ex",
     2,
-    12
+    11
    ]
   ]
  },
  "Mega Diancie ex": {
   "id": "b3b-032",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 3,
-  "u": 11,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 4,
+  "u": 13,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
   ],
-  "nd": 3,
+  "nd": 4,
   "L": [
    [
     "Mega Mewtwo X ex Mega Diancie ex",
     1,
-    9
+    10
    ],
    [
     "Mega Diancie ex Carbink",
@@ -3184,6 +3154,11 @@
    ],
    [
     "Mega Mewtwo Y ex Mega Diancie ex",
+    1,
+    1
+   ],
+   [
+    "Mew ex Mega Diancie ex",
     1,
     1
    ]
@@ -3191,20 +3166,20 @@
  },
  "Flutter Mane": {
   "id": "b3b-035",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 3,
-  "u": 11,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 4,
+  "u": 13,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
   ],
-  "nd": 3,
+  "nd": 4,
   "L": [
    [
     "Mega Mewtwo X ex Mega Diancie ex",
     1,
-    9
+    10
    ],
    [
     "Mega Diancie ex Carbink",
@@ -3215,15 +3190,20 @@
     "Mega Mewtwo Y ex Mega Diancie ex",
     1,
     1
+   ],
+   [
+    "Mew ex Mega Diancie ex",
+    1,
+    1
    ]
   ]
  },
  "Dragonair": {
   "id": "b4-117",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 3,
-  "u": 11,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 2,
+  "u": 9,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
@@ -3233,12 +3213,12 @@
    [
     "Giratina ex Dragonair",
     2,
-    8
+    4
    ],
    [
     "Dragonair Mega Rayquaza ex",
     2,
-    2
+    4
    ],
    [
     "Mega Rayquaza ex Dragonair",
@@ -3249,10 +3229,10 @@
  },
  "Clear Veil": {
   "id": "b4-149",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 5,
+  "u": 4,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
@@ -3267,16 +3247,16 @@
    [
     "Dedenne ex Indeedee ex",
     1,
-    4
+    3
    ]
   ]
  },
  "Mega Mewtwo X ex": {
   "id": "c1-056",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 2,
-  "u": 9,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 3,
+  "u": 10,
   "pack": [
    "Dual Fusion Mega Mewtwo X pack",
    "Dual Fusion pack"
@@ -3286,16 +3266,16 @@
    [
     "Mega Mewtwo X ex Mega Diancie ex",
     1,
-    9
+    10
    ]
   ]
  },
  "Rocky Helmet": {
   "id": "a2-148",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 4,
+  "u": 3,
   "pack": [
    "Space-Time Smackdown Palkia pack",
    "Space-Time Smackdown pack"
@@ -3314,17 +3294,17 @@
    ],
    [
     "Giratina ex Darkrai ex",
-    1,
-    2
+    2,
+    1
    ]
   ]
  },
  "Feebas": {
   "id": "a4a-021",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 9,
+  "u": 8,
   "pack": [
    "Secluded Springs pack",
    "Secluded Springs pack"
@@ -3334,14 +3314,14 @@
    [
     "Milotic ex Eevee ex",
     2,
-    9
+    8
    ]
   ]
  },
  "Mantyke": {
   "id": "a4a-023",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -3351,7 +3331,7 @@
   "nd": 1,
   "L": [
    [
-    "Mega Sharpedo ex Gyarados",
+    "Mega Skarmory ex Mantyke",
     2,
     1
    ]
@@ -3359,10 +3339,10 @@
  },
  "Quick-Grow Extract": {
   "id": "b1a-067",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 5,
+  "u": 4,
   "pack": [
    "Crimson Blaze pack",
    "Crimson Blaze pack"
@@ -3377,16 +3357,16 @@
    [
     "Butterfree Mega Sceptile ex",
     2,
-    4
+    3
    ]
   ]
  },
  "Bonsly": {
   "id": "b3-078",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 8,
+  "u": 6,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
@@ -3396,16 +3376,16 @@
    [
     "Mega Lucario ex Lucario",
     1,
-    8
+    6
    ]
   ]
  },
  "Carbink": {
   "id": "b3b-031",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 3,
-  "u": 11,
+  "u": 12,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
@@ -3415,7 +3395,7 @@
    [
     "Mega Mewtwo X ex Mega Diancie ex",
     2,
-    9
+    10
    ],
    [
     "Mega Diancie ex Carbink",
@@ -3431,10 +3411,10 @@
  },
  "Drampa": {
   "id": "b4-124",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 2,
-  "u": 9,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 1,
+  "u": 5,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
@@ -3444,7 +3424,7 @@
    [
     "Giratina ex Dragonair",
     1,
-    8
+    4
    ],
    [
     "Mega Rayquaza ex Dragonair",
@@ -3455,10 +3435,10 @@
  },
  "Giratina ex": {
   "id": "a2b-035",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 27",
-  "pct": 4,
-  "u": 16,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 3,
+  "u": 11,
   "pack": [
    "Shining Revelry pack",
    "Shining Revelry pack"
@@ -3468,22 +3448,22 @@
    [
     "Giratina ex Dragonair",
     2,
-    8
+    4
    ],
    [
     "Giratina ex Darkrai ex",
     2,
-    2
-   ],
-   [
-    "Mega Mewtwo Y ex Giratina ex",
-    2,
-    2
+    1
    ],
    [
     "Mimikyu ex Greninja",
     1,
     3
+   ],
+   [
+    "Mega Mewtwo Y ex Giratina ex",
+    2,
+    2
    ],
    [
     "Giratina ex Mega Mewtwo Y ex",
@@ -3494,10 +3474,10 @@
  },
  "Hitmonlee": {
   "id": "a1-154",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 2,
-  "u": 7,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 1,
+  "u": 5,
   "pack": [
    "Genetic Apex Mewtwo pack",
    "Genetic Apex pack"
@@ -3507,16 +3487,16 @@
    [
     "Mega Lucario ex Lucario",
     1,
-    7
+    5
    ]
   ]
  },
  "Vaporeon": {
   "id": "a1a-019",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 9,
+  "u": 8,
   "pack": [
    "Mythical Island pack",
    "Mythical Island pack"
@@ -3526,16 +3506,16 @@
    [
     "Milotic ex Eevee ex",
     1,
-    9
+    8
    ]
   ]
  },
  "Lucario": {
   "id": "a2-092",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 8,
+  "u": 6,
   "pack": [
    "Space-Time Smackdown Dialga pack",
    "Space-Time Smackdown pack"
@@ -3545,16 +3525,16 @@
    [
     "Mega Lucario ex Lucario",
     1,
-    8
+    6
    ]
   ]
  },
  "Red": {
   "id": "a2b-071",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 2,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 0,
+  "u": 1,
   "pack": [
    "Shining Revelry pack",
    "Shining Revelry pack"
@@ -3564,16 +3544,16 @@
    [
     "Giratina ex Darkrai ex",
     1,
-    2
+    1
    ]
   ]
  },
  "Eevee ex": {
   "id": "a3b-056",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 9,
+  "u": 8,
   "pack": [
    "Eevee Grove pack",
    "Eevee Grove pack"
@@ -3583,40 +3563,35 @@
    [
     "Milotic ex Eevee ex",
     2,
-    9
+    8
    ]
   ]
  },
  "Mega Lucario ex": {
   "id": "b3-081",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 9,
+  "u": 6,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Mega Lucario ex Lucario",
     2,
-    8
-   ],
-   [
-    "Mega Lucario ex Greninja",
-    1,
-    1
+    6
    ]
   ]
  },
  "Korrina": {
   "id": "b3-149",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 8,
+  "u": 6,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
@@ -3626,16 +3601,16 @@
    [
     "Mega Lucario ex Lucario",
     1,
-    8
+    6
    ]
   ]
  },
  "Caterpie": {
   "id": "b3b-001",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 4,
+  "u": 3,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
@@ -3645,16 +3620,16 @@
    [
     "Butterfree Mega Sceptile ex",
     2,
-    4
+    3
    ]
   ]
  },
  "Metapod": {
   "id": "b3b-002",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 4,
+  "u": 3,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
@@ -3664,16 +3639,16 @@
    [
     "Butterfree Mega Sceptile ex",
     2,
-    4
+    3
    ]
   ]
  },
  "Butterfree": {
   "id": "b3b-003",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 4,
+  "u": 3,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
@@ -3683,16 +3658,16 @@
    [
     "Butterfree Mega Sceptile ex",
     2,
-    4
+    3
    ]
   ]
  },
  "Dratini": {
   "id": "c1-098",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 3,
-  "u": 12,
+  "u": 10,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
@@ -3702,12 +3677,12 @@
    [
     "Giratina ex Dragonair",
     4,
-    6
+    3
    ],
    [
     "Dragonair Mega Rayquaza ex",
     2,
-    2
+    4
    ],
    [
     "Mega Rayquaza ex Dragonair",
@@ -3718,10 +3693,10 @@
  },
  "Pokémon Communication": {
   "id": "a2-146",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 4,
+  "u": 5,
   "pack": [
    "Space-Time Smackdown Dialga pack",
    "Space-Time Smackdown pack"
@@ -3731,11 +3706,11 @@
    [
     "Mega Greninja ex Greninja",
     1,
-    1
+    2
    ],
    [
-    "Mega Tyranitar ex",
-    2,
+    "Hoopa ex Greninja",
+    1,
     1
    ],
    [
@@ -3744,33 +3719,28 @@
     1
    ],
    [
-    "Mega Tyranitar ex Tyranitar",
-    2,
+    "Umbreon Mega Absol ex",
+    1,
     1
    ]
   ]
  },
  "Zeraora": {
   "id": "a3a-021",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 4,
+  "u": 2,
   "pack": [
    "Extradimensional Crisis pack",
    "Extradimensional Crisis pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
-    "Magnezone Miraidon ex",
-    2,
-    1
-   ],
-   [
     "Miraidon ex Magnezone",
-    2,
-    3
+    1,
+    2
    ]
   ]
  },
@@ -3795,10 +3765,10 @@
  },
  "Vaporeon ex": {
   "id": "b3-037",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 2,
-  "u": 9,
+  "u": 8,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
@@ -3808,16 +3778,16 @@
    [
     "Milotic ex Eevee ex",
     1,
-    9
+    8
    ]
   ]
  },
  "Elegant Cape": {
   "id": "b3b-065",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 4,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 2,
+  "u": 7,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
@@ -3827,21 +3797,21 @@
    [
     "Mega Manectric ex Heliolisk",
     1,
-    3
+    4
    ],
    [
     "Lopunny Raboot",
     1,
-    1
+    3
    ]
   ]
  },
  "Erika": {
   "id": "a1-219",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 2,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 0,
+  "u": 1,
   "pack": [
    "Genetic Apex Charizard pack",
    "Genetic Apex pack"
@@ -3851,38 +3821,33 @@
    [
     "Butterfree Mega Sceptile ex",
     1,
-    2
+    1
    ]
   ]
  },
  "Riolu": {
   "id": "a2-091",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 4,
-  "u": 15,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 2,
+  "u": 9,
   "pack": [
    "Space-Time Smackdown Dialga pack",
    "Space-Time Smackdown pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Mega Lucario ex Lucario",
-    3,
-    6
-   ],
-   [
-    "Mega Lucario ex Greninja",
-    2,
-    1
+    4,
+    4
    ]
   ]
  },
  "Pheromosa": {
   "id": "a3a-007",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
   "u": 2,
   "pack": [
@@ -3919,8 +3884,8 @@
  },
  "Protective Poncho": {
   "id": "b2-147",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 3,
   "u": 10,
   "pack": [
@@ -3948,82 +3913,67 @@
  },
  "Furfrou": {
   "id": "b3b-061",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 3,
+  "u": 2,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Mega Sceptile ex Greninja",
     1,
     2
-   ],
-   [
-    "Mega Blaziken ex Greninja",
-    1,
-    1
    ]
   ]
  },
  "Scorbunny": {
   "id": "c1-022",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 2,
+  "u": 3,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Lopunny Raboot",
     2,
-    1
-   ],
-   [
-    "Azumarill Lopunny",
-    2,
-    1
+    3
    ]
   ]
  },
  "Raboot": {
   "id": "c1-023",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 2,
+  "u": 3,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Lopunny Raboot",
     2,
-    1
-   ],
-   [
-    "Azumarill Lopunny",
-    2,
-    1
+    3
    ]
   ]
  },
  "Pikachu ex": {
   "id": "c1-043",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 2,
-  "u": 6,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 1,
+  "u": 5,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
@@ -4033,16 +3983,16 @@
    [
     "Pikachu ex Pawmot",
     2,
-    6
+    5
    ]
   ]
  },
  "Pawmi": {
   "id": "c1-048",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 2,
-  "u": 6,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 1,
+  "u": 5,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
@@ -4052,16 +4002,16 @@
    [
     "Pikachu ex Pawmot",
     2,
-    6
+    5
    ]
   ]
  },
  "Pawmot": {
   "id": "c1-050",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 2,
-  "u": 6,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 1,
+  "u": 5,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
@@ -4071,112 +4021,92 @@
    [
     "Pikachu ex Pawmot",
     2,
-    6
+    5
    ]
   ]
  },
  "Marill": {
   "id": "c1-058",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 2,
+  "u": 3,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Lopunny Raboot",
     1,
-    1
-   ],
-   [
-    "Azumarill Lopunny",
-    2,
-    1
+    3
    ]
   ]
  },
  "Azumarill": {
   "id": "c1-059",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 2,
+  "u": 3,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Lopunny Raboot",
     1,
-    1
-   ],
-   [
-    "Azumarill Lopunny",
-    2,
-    1
+    3
    ]
   ]
  },
  "Buneary": {
   "id": "c1-115",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 2,
+  "u": 3,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Lopunny Raboot",
     2,
-    1
-   ],
-   [
-    "Azumarill Lopunny",
-    2,
-    1
+    3
    ]
   ]
  },
  "Lopunny": {
   "id": "c1-116",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 2,
+  "u": 3,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Lopunny Raboot",
     2,
-    1
-   ],
-   [
-    "Azumarill Lopunny",
-    2,
-    1
+    3
    ]
   ]
  },
  "Light Ball": {
   "id": "c1-124",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 2,
-  "u": 6,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 1,
+  "u": 5,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
@@ -4186,7 +4116,7 @@
    [
     "Pikachu ex Pawmot",
     2,
-    6
+    5
    ]
   ]
  },
@@ -4292,25 +4222,20 @@
  },
  "Larvitar": {
   "id": "a4-103",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 4,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 0,
+  "u": 1,
   "pack": [
    "Wisdom of Sea and Sky Ho-Oh pack",
    "Wisdom of Sea and Sky pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Mega Tyranitar ex",
     2,
-    2
-   ],
-   [
-    "Mega Tyranitar ex Tyranitar",
-    2,
-    2
+    1
    ]
   ]
  },
@@ -4335,16 +4260,21 @@
  },
  "Will": {
   "id": "a4-156",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 0,
-  "u": 1,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 1,
+  "u": 2,
   "pack": [
    "Wisdom of Sea and Sky Lugia pack",
    "Wisdom of Sea and Sky pack"
   ],
-  "nd": 1,
+  "nd": 2,
   "L": [
+   [
+    "Mega Skarmory ex Mantyke",
+    2,
+    1
+   ],
    [
     "Giratina ex Mega Mewtwo Y ex",
     1,
@@ -4354,34 +4284,29 @@
  },
  "Heavy Helmet": {
   "id": "b1-219",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 4,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 0,
+  "u": 1,
   "pack": [
    "Mega Rising Mega Gyarados pack",
    "Mega Rising pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Mega Tyranitar ex",
     1,
-    2
-   ],
-   [
-    "Mega Tyranitar ex Tyranitar",
-    1,
-    2
+    1
    ]
   ]
  },
  "Helioptile": {
   "id": "b1a-028",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 3,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 2,
+  "u": 6,
   "pack": [
    "Crimson Blaze pack",
    "Crimson Blaze pack"
@@ -4391,16 +4316,16 @@
    [
     "Mega Manectric ex Heliolisk",
     2,
-    3
+    6
    ]
   ]
  },
  "Clemont's Backpack": {
   "id": "b1a-066",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 3,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 2,
+  "u": 6,
   "pack": [
    "Crimson Blaze pack",
    "Crimson Blaze pack"
@@ -4410,14 +4335,14 @@
    [
     "Mega Manectric ex Heliolisk",
     2,
-    3
+    6
    ]
   ]
  },
  "Metal Core Barrier": {
   "id": "b2-148",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 27",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -4435,10 +4360,10 @@
  },
  "Sightseer": {
   "id": "b2-150",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 0,
-  "u": 1,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 1,
+  "u": 3,
   "pack": [
    "Fantastical Parade pack",
    "Fantastical Parade pack"
@@ -4447,15 +4372,15 @@
   "L": [
    [
     "Lopunny Raboot",
-    2,
-    1
+    1,
+    3
    ]
   ]
  },
  "Electric Generator": {
   "id": "b2a-086",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
   "u": 3,
   "pack": [
@@ -4478,10 +4403,10 @@
  },
  "Mega Manectric ex": {
   "id": "b2b-027",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 3,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 2,
+  "u": 6,
   "pack": [
    "Mega Shine pack",
    "Mega Shine pack"
@@ -4491,7 +4416,7 @@
    [
     "Mega Manectric ex Heliolisk",
     2,
-    3
+    6
    ]
   ]
  },
@@ -4630,10 +4555,10 @@
  },
  "Heliolisk": {
   "id": "b4-061",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 3,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 2,
+  "u": 6,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
@@ -4643,22 +4568,27 @@
    [
     "Mega Manectric ex Heliolisk",
     2,
-    3
+    6
    ]
   ]
  },
  "Minior": {
   "id": "b4-090",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 0,
-  "u": 1,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 1,
+  "u": 2,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
   ],
-  "nd": 1,
+  "nd": 2,
   "L": [
+   [
+    "Mega Skarmory ex Mantyke",
+    1,
+    1
+   ],
    [
     "Mega Tyranitar ex",
     1,
@@ -4668,56 +4598,46 @@
  },
  "Pupitar": {
   "id": "c1-076",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 4,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 0,
+  "u": 1,
   "pack": [
    "Dual Fusion Mega Mewtwo X pack",
    "Dual Fusion pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Mega Tyranitar ex",
     2,
-    2
-   ],
-   [
-    "Mega Tyranitar ex Tyranitar",
-    2,
-    2
+    1
    ]
   ]
  },
  "Mega Tyranitar ex": {
   "id": "c1-085",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 4,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 0,
+  "u": 1,
   "pack": [
    "Dual Fusion Mega Mewtwo X pack",
    "Dual Fusion pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Mega Tyranitar ex",
     2,
-    2
-   ],
-   [
-    "Mega Tyranitar ex Tyranitar",
-    1,
-    2
+    1
    ]
   ]
  },
  "Mega Skarmory ex": {
   "id": "c1-091",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 27",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -4735,12 +4655,12 @@
  },
  "Red Card": {
   "id": "pa-006",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 2,
-  "u": 7,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 1,
+  "u": 5,
   "pack": null,
-  "nd": 5,
+  "nd": 3,
   "L": [
    [
     "Hoopa ex Mega Absol ex",
@@ -4748,17 +4668,7 @@
     1
    ],
    [
-    "Suicune ex Baxcalibur",
-    1,
-    1
-   ],
-   [
     "Chien-Pao ex Baxcalibur",
-    1,
-    1
-   ],
-   [
-    "Mega Greninja ex Greninja ex",
     1,
     1
    ],
@@ -4771,17 +4681,17 @@
  },
  "Electrike": {
   "id": "pb-043",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 3,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 2,
+  "u": 6,
   "pack": null,
   "nd": 1,
   "L": [
    [
     "Mega Manectric ex Heliolisk",
-    1,
-    3
+    2,
+    4
    ]
   ]
  },
@@ -4806,8 +4716,8 @@
  },
  "Budding Expeditioner": {
   "id": "a1a-066",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 27",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -4825,8 +4735,8 @@
  },
  "Vespiquen": {
   "id": "a2-018",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -4863,8 +4773,8 @@
  },
  "Steel Apron": {
   "id": "a4-153",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 27",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -4901,8 +4811,8 @@
  },
  "Indeedee": {
   "id": "b2-076",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 27",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -4920,10 +4830,10 @@
  },
  "Gouging Fire": {
   "id": "b3a-054",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 2,
+  "u": 4,
   "pack": [
    "Paradox Drive pack",
    "Paradox Drive pack"
@@ -4933,14 +4843,14 @@
    [
     "Dragonair Mega Rayquaza ex",
     2,
-    2
+    4
    ]
   ]
  },
  "Ancient Booster Energy Capsule": {
   "id": "b3a-069",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -4958,10 +4868,10 @@
  },
  "Professor Sada": {
   "id": "b3a-072",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 2,
+  "u": 4,
   "pack": [
    "Paradox Drive pack",
    "Paradox Drive pack"
@@ -4971,26 +4881,31 @@
    [
     "Dragonair Mega Rayquaza ex",
     1,
-    2
+    4
    ]
   ]
  },
  "Mega Rayquaza ex": {
   "id": "b4-120",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 3,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 2,
+  "u": 6,
   "pack": [
    "Ruler of the Skies pack",
    "Ruler of the Skies pack"
   ],
-  "nd": 2,
+  "nd": 3,
   "L": [
    [
     "Dragonair Mega Rayquaza ex",
     1,
-    2
+    4
+   ],
+   [
+    "Ho-Oh ex Charizard",
+    1,
+    1
    ],
    [
     "Mega Rayquaza ex Dragonair",
@@ -5020,8 +4935,8 @@
  },
  "Mew ex": {
   "id": "c1-057",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 27",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5058,23 +4973,18 @@
  },
  "Full Heal": {
   "id": "c1-122",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 2,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 0,
+  "u": 1,
   "pack": [
    "Dual Fusion Pikachu pack",
    "Dual Fusion pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Giratina ex Dragonair",
-    1,
-    1
-   ],
-   [
-    "Mega Tyranitar ex Tyranitar",
     1,
     1
    ]
@@ -5082,8 +4992,8 @@
  },
  "Squirtle": {
   "id": "c1-029",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5101,8 +5011,8 @@
  },
  "Blastoise": {
   "id": "c1-031",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5120,8 +5030,8 @@
  },
  "Max Repel": {
   "id": "c1-121",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
   "u": 2,
   "pack": [
@@ -5139,10 +5049,10 @@
  },
  "Ho-Oh ex": {
   "id": "a4-034",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 3,
+  "u": 4,
   "pack": [
    "Wisdom of Sea and Sky Ho-Oh pack",
    "Wisdom of Sea and Sky pack"
@@ -5152,14 +5062,14 @@
    [
     "Ho-Oh ex Charizard",
     2,
-    3
+    4
    ]
   ]
  },
  "Lugia ex": {
   "id": "a4-149",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
   "u": 3,
   "pack": [
@@ -5177,8 +5087,8 @@
  },
  "Mega Mewtwo Y ex": {
   "id": "pc-002",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
   "u": 4,
   "pack": [
@@ -5206,8 +5116,8 @@
  },
  "Genome Converter Y": {
   "id": "pc-009",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
   "u": 4,
   "pack": [
@@ -5254,82 +5164,67 @@
  },
  "Torchic": {
   "id": "b1-033",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
   "u": 2,
   "pack": [
    "Mega Rising Mega Blaziken pack",
    "Mega Rising pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Mega Blaziken ex",
     2,
-    1
-   ],
-   [
-    "Mega Blaziken ex Greninja",
-    2,
-    1
+    2
    ]
   ]
  },
  "Mega Blaziken ex": {
   "id": "b1-036",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
   "u": 2,
   "pack": [
    "Mega Rising Mega Blaziken pack",
    "Mega Rising pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Mega Blaziken ex",
     2,
-    1
-   ],
-   [
-    "Mega Blaziken ex Greninja",
-    2,
-    1
+    2
    ]
   ]
  },
  "Heatmor": {
   "id": "b1-044",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
   "u": 2,
   "pack": [
    "Mega Rising Mega Altaria, Mega Blaziken or Mega Gyarados pack",
    "Mega Rising pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
    [
     "Mega Blaziken ex",
     1,
-    1
-   ],
-   [
-    "Mega Blaziken ex Greninja",
-    1,
-    1
+    2
    ]
   ]
  },
  "Mimikyu ex": {
   "id": "b2-073",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 3,
+  "u": 4,
   "pack": [
    "Fantastical Parade pack",
    "Fantastical Parade pack"
@@ -5337,23 +5232,23 @@
   "nd": 2,
   "L": [
    [
+    "Mimikyu ex Greninja",
+    2,
+    3
+   ],
+   [
     "Mega Mewtwo Y ex Giratina ex",
     2,
     1
-   ],
-   [
-    "Mimikyu ex Greninja",
-    2,
-    2
    ]
   ]
  },
  "Castform Sunny Form": {
   "id": "b3-024",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 0,
-  "u": 1,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 1,
+  "u": 2,
   "pack": [
    "Pulsing Aura pack",
    "Pulsing Aura pack"
@@ -5363,7 +5258,7 @@
    [
     "Mega Blaziken ex",
     1,
-    1
+    2
    ]
   ]
  },
@@ -5388,8 +5283,8 @@
  },
  "Gardevoir": {
   "id": "a1-132",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5407,8 +5302,8 @@
  },
  "Ralts": {
   "id": "b4-071",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5426,8 +5321,8 @@
  },
  "Misty": {
   "id": "a1-220",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
   "u": 2,
   "pack": [
@@ -5445,10 +5340,10 @@
  },
  "Umbreon ex": {
   "id": "a4-112",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 1,
-  "u": 2,
+  "u": 3,
   "pack": [
    "Wisdom of Sea and Sky Ho-Oh pack",
    "Wisdom of Sea and Sky pack"
@@ -5458,14 +5353,14 @@
    [
     "Umbreon ex Umbreon",
     1,
-    2
+    3
    ]
   ]
  },
  "Guzma": {
   "id": "a3-151",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5502,8 +5397,8 @@
  },
  "Magnezone ex": {
   "id": "b3-054",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5559,21 +5454,16 @@
  },
  "Kid's Room": {
   "id": "b3b-069",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
-  "pct": 1,
-  "u": 2,
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
+  "pct": 0,
+  "u": 1,
   "pack": [
    "Everyday Wonders pack",
    "Everyday Wonders pack"
   ],
-  "nd": 2,
+  "nd": 1,
   "L": [
-   [
-    "Pikachu ex Pawmot",
-    1,
-    1
-   ],
    [
     "Mega Tyranitar ex",
     1,
@@ -5583,8 +5473,8 @@
  },
  "Morpeko": {
   "id": "b2b-045",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 26",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5602,10 +5492,10 @@
  },
  "Irida": {
   "id": "a2a-072",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 27",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
-  "u": 2,
+  "u": 1,
   "pack": [
    "Triumphant Light pack",
    "Triumphant Light pack"
@@ -5615,14 +5505,14 @@
    [
     "Mega Greninja ex Greninja ex",
     1,
-    2
+    1
    ]
   ]
  },
  "Absol": {
   "id": "a4-120",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 27",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
@@ -5640,8 +5530,8 @@
  },
  "Zangoose": {
   "id": "c1-112",
-  "seen": "2026-11-27",
-  "dates": "Nov 18 – 27",
+  "seen": "2026-11-28",
+  "dates": "Nov 19 – 27",
   "pct": 0,
   "u": 1,
   "pack": [
